@@ -2,4 +2,5 @@ sudo: required
 dist: trusty # Ubuntu 14.04
 services: docker # Enables docker
 script:
-- ./latexdockercmd.sh latexmk -pdf -outdir=./_build ./EtaleI/EtaleI.tex
+- cd ./EtaleI
+- ../latexdockercmd.sh latexmk -pdf -outdir=./_build EtaleI.tex
