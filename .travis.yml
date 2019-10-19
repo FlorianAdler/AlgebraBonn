@@ -1,0 +1,6 @@
+sudo: required
+dist: trusty # Ubuntu 14.04
+services: docker # Enables docker
+script:
+- cd ./EtaleI
+- ./latexdockercmd.sh latexmk -pdf -outdir=./_build
