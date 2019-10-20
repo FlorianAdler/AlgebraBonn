@@ -5,10 +5,13 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  local_dir: ./EtaleI
+  keep_history: false
+  local_dir: ./PDFfiles
   on:
     branch: master
 script:
 - cd ./EtaleI
 - ../latexdockercmd.sh latexmk -pdf EtaleI.tex
+- cd ..
+- mkdir PDFfiles
+- cp ./EtaleI/EtaleI.pdf PDFfiles
