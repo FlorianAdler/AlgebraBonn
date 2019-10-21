@@ -1,0 +1,237 @@
+\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot]{scrbook}
+\usepackage{StyleFF}
+\usepackage{ShortcutsFF}
+\subject{Lecture Notes for}
+\title{The Fargues--Fontaine Curve}
+\subtitle{Or: \enquote{The Fundamental Curve of $p$-adic Hodge Theory}}
+\author{{\normalsize Lecturer}\\
+	Johannes Anschütz}
+\date{{\normalsize Notes typed by}\\
+	Ferdinand Wagner}
+\publishers{Winter Term 2019/20\\
+University of Bonn}
+
+\begin{document}
+\frontmatter
+\KOMAoption{chapterprefix}{false}
+\maketitle
+\noindent This text consists of notes on the lecture Selected Topics in Algebra (The Fargues--Fontaine Curve), taught at the University of
+Bonn by Dr.\ Johannes Anschütz in the winter term (Wintersemester) 2019/20.\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
+
+
+\tableofcontents
+\listoftoc{lol}
+\setcounter{llecture}{-1}
+\chapter{Introduction and Motivation}
+\renewcommand{\thedummy}{\thechapter.\thesection.\arabic{dummy}}
+\lecture[What is this $p$-adic Hodge theory?]{2019-10-16}
+The $0\ordinalth$ lecture had a lot of hard theorems and deep facts thrown at us---for purely motivational purposes! That is, none of the following is a prerequisite for this lecture; rather it shows where we're going, and parts of it will be discussed in detail.
+
+Fix a prime $p$ and a finite extension $K/\IQ_p$. Let $C$ be the completion of an algebraic closure $\ov{K}$ of $K$. We put $G_K=\Gal(\ov{K}/K)$. Note that the $G_K$-action on $\ov{K}$ can be continuously extended to $C$.
+\begin{thm}[Faltings, Tsuji$,\dotsc$]\label{thm:HTdecomp}
+	Let $X/K$ be a proper smooth scheme. For $n\geq 0$ there exists a natural $G_K$-equivariant \enquote{Hodge--Tate decomposition}
+	\begin{equation*}
+		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}C\cong \bigoplus_{i+j=n}H^i\big(X,\Omega_{X/K}^j\big)\otimes_KC(-j)
+	\end{equation*}
+\end{thm}
+\begin{rem}\label{rem:HTdecomp}
+	There are a \emph{lot} of things in \cref{thm:HTdecomp} that demand clarification.
+	\begin{numerate}
+		\item $H_\et^n(X_{\ov{K}},\IQ_p)$ is the $p$-adic étale cohomology, defined as
+		\begin{equation*}
+			H_\et^n\big(X_{\ov{K}},\IQ_p\big)\coloneqq \Big(\lim_{k\geq 0} H_{\et}^n\big(X_{\ov{K}},\IZ/p^k\IZ\big)\Big)\otimes_{\IZ_p}\IQ_p\,.
+		\end{equation*}
+		\item $G_K$ acts diagonally on the left-hand side and via $C(-j)$ on the right-hand side. Here, $M(-j)$ is a \defemph{Tate twist}. In general this is defined as $M(j)\coloneqq M\otimes_{\IZ_p}\IZ_p(1)^{\otimes j}$, where
+		\begin{equation*}
+			\IZ_p(1)=\lim_{k\geq 0}\mu_{p^k}(C)\,,
+		\end{equation*}
+		equipped with its natural $G_K$-action.
+		\item \cref{thm:HTdecomp} got its name from the analogous assertion in complex Hodge theory: If $Y$ is a compact Kähler manifold, then
+		\begin{equation*}
+			H^n(Y,\IZ)\otimes_{\IZ}\IC\cong\bigoplus_{i+j=n}H^i\big(Y,\Omega_{Y/\IC}^j\big)\,.
+		\end{equation*}
+		\item The Tate twists are necessary to get $G_K$-invariance of the decomposition. To see this, take for example $X=\IP_K^1$, $n=2$. As $\IG_{m,\ov{K}}$ is $\IP_{\ov{K}}^1\setminus\{\text{two points}\}$, the left-hand side can be calculated as
+		\begin{align*}
+			H_\et^2\big(\IP_{\ov{K}}^1,\IQ_p\big)\cong H_\et^1\big(\IG_{m,\ov{K}},\IQ_p\big)&\cong \Hom\big(\pi_1^\et(\IG_{m,\ov{K}}),\IQ_p\big)\\
+			&\cong \Hom\big(\IZ_p(1),\IQ_p\big)\\
+			&\cong \IQ_p(-1)
+		\end{align*}
+		On the right-hand side, the only non-vanishing summand is $H^1(X,\Omega_{X/K}^1)\cong K$. So far, everything is ok as both sides in \cref{thm:HTdecomp} are one-dimensional $C$-vector spaces. However, there can't be an $G_K$-equivariant isomorphism $C(-1)\cong C$, as can be seen from the following theorem. 
+	\end{numerate}
+\end{rem}
+\begin{thm}[Tate]
+	Let $H_\cts^*(G_K,-)$ denote continous group cohomology/Galois cohomology. With notation as above, we have
+	\begin{numerate}
+		\item $H_\cts^*(G_K,C(j))=0$ for all $j\neq 0$.
+		\item $K\cong H_\cts^0(G_K,C)\cong H_\cts^1(G_K,C)$. In particular, $K\cong C^{G_K}$ (and not even this is trivial).
+	\end{numerate}
+\end{thm}
+\begin{cor}\label{cor:etKnowsHodge}
+	For all $n\geq 0$ and $j\geq 0$ we have
+	\begin{equation*}
+		H^{n-j}\big(X,\Omega_{X/K}^j\big)\cong \Big(H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}C(j)\Big)^{\smash{G_K}}\,.
+	\end{equation*}
+\end{cor}
+\begin{cntx}
+	As a slogan, \cref{cor:etKnowsHodge} shows that \enquote{$p$-adic étale cohomology knows Hodge cohomology}. The converse, however, is not true, and in fact, it fails almost always. Here are two counterexamples.
+	\begin{numerate}
+		\item If $X$ is an elliptic curve over $K$, then the Hodge--Tate decomposition shows
+		\begin{equation*}
+			H_\et^1\big(X_{\ov{K}},\IQ_p\big)\cong C\oplus C(-1)\,,
+		\end{equation*}
+		independent of $X$. However, the $G_K$-action on $H_\et^1\big(X_{\ov{K}},\IQ_p\big)$ knows if $X$ has good or semistable reduction. So this is not seen by Hodge cohomology.
+		\item If $X=\Spec L$, where $L/K$ is finite, then
+		\begin{equation*}
+			H_\et^0\big(X_{\ov{K}},\IQ_p\big)\cong \prod_{L\monomorphism\ov{K}}\IQ_p\,,
+		\end{equation*}
+		on which $G_K$ acts by permuting the factors. This action determines $X$. However, $H_\et^0\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}\cong C^{[L:K]}$ only knows $[L:K]$ and not $L$.
+	\end{numerate}
+\end{cntx}
+A nice application of \cref{thm:HTdecomp} and \cref{cor:etKnowsHodge} is the following theorem.
+\begin{thm}[Ito, Veys, Kontsevich$,\dotsc$]\label{thm:MinimalModels}
+	Let $Y$, $Y'$ be smooth minimal models (i.e., smooth projective schemes over $\IC$ with nef canonical bundle). If $Y$, $Y'$ are birational, then
+	\begin{equation*}
+		\dim_\IC H^i\big(Y,\Omega_{Y/\IC}^j\big)=\dim_\IC H^i\big(Y',\Omega_{Y'/\IC}^j\big)\quad\text{for all }i,j\geq 0\,.
+	\end{equation*}
+\end{thm}
+\begin{proof}[Idea of the proof]
+	It's well-known that if $Y$, $Y'$ are birational and smooth minimal models, then they are \defemph{$K$-equivalent}. That is, there exists a diagram
+	\begin{equation}\label{diag:K-eq1}
+		\begin{tikzcd}
+			 & Z\dlar["f",swap]\drar["g"] & \\
+			 Y & & Y'
+		\end{tikzcd}
+	\end{equation}
+	such that $Z$ is proper and smooth over $\IC$, the morphisms $f$ and $g$ are proper and birational, and $f^*K_Y\cong g^*K_{Y'}$ holds for the respective canonical bundles (or rather canonical divisors in this notation).
+	
+	Now we \defemph{spread out} over some finitely generated $\IZ$-algebra $A\subseteq \IC$. This means the following: all data---the schemes $Y$, $Y'$, $Z$ together with the morphisms $f$ and $g$---can be described by finitely many polynomials. Taking $A=\IZ[\{\text{all their finitely many coefficients}\}]$ we see that all these polynomials are already defined over $A$. Hence also the corresponding schemes are already defined over $A$. To make this precise: there is a diagram
+	\begin{equation}\label{diag:K-eq2}
+		\begin{tikzcd}
+			& \Zz\dlar["\snake{f}",swap]\drar["\snake{g}"] & \\
+			\Yy & & \Yy'
+		\end{tikzcd}
+	\end{equation}
+	of schemes over $A$, such that \cref{diag:K-eq1} is the base-change of \cref{diag:K-eq2} along $\Spec \IC\morphism\Spec A$. Since Hodge numbers are constant for proper smooth morphisms in characteristic $0$, we can replace $A$ by some suitable localization. Hence we may assume $A=\Oo_F[N^{-1}]$ for some number field $F/\IQ$. By a $p$-adic integration black box we have $\Yy(\IF_{\ell^k})=\Yy'(\IF_{\ell^k})$ for all primes $\ell$ such that $(\ell,N)=1$ and all $k\geq 1$. Fix a prime $p$. If $(p,N)=1$, then
+	\begin{equation*}
+		H_\et^*\big(\Yy_{\ov{\Ff}_\ell},\IQ_p\big)^{\mathrm{ss}}\cong
+		H_\et^*\big(\Yy'_{\ov{\Ff}_\ell},\IQ_p\big)^{\mathrm{ss}}
+	\end{equation*}
+	are isomorphic as Galois representations for all primes $\ell$ such that $(\ell,pN)=1$. This is somehow implied by the Weil conjectures. Also $(-)^{\mathrm{ss}}$ denotes semisimplification. By Chebotarev's density theorem we thus obtain
+	\begin{equation*}
+		H_\et^*\big(\Yy_{\ov{F}},\IQ_p\big)^{\mathrm{ss}}\cong
+		H_\et^*\big(\Yy'_{\ov{F}},\IQ_p\big)^{\mathrm{ss}}\,.
+	\end{equation*}
+	Now pick a prime ideal $\pp\mid p$ in $\Oo_F$ and put $K=F_\pp$. Then also
+	\begin{equation*}
+		H_\et^*\big(\Yy_{\ov{K}},\IQ_p\big)^{\mathrm{ss}}\cong
+		H_\et^*\big(\Yy'_{\ov{K}},\IQ_p\big)^{\mathrm{ss}}\,.
+	\end{equation*}
+	Finally, the Hodge decomposition from \cref{thm:HTdecomp} together with \cref{cor:etKnowsHodge} and a \enquote{small argument $\epsilon$} (to get rid of the semisimplifications) implies
+	\begin{align*}
+		\dim_KH^i\big(\Yy_K,\Omega_{\Yy_K/K}^j\big)\cong \dim_KH^i\big(\Yy'_K,\Omega_{\Yy'_K/K}^j\big)\quad\text{for all }i,j\geq 0\,.
+	\end{align*}
+	Base-changing (in a zig-zag) back to $\IC$ finally proves the assertion.
+\end{proof}
+Another nice application is the degeneration of the \emph{Hodge--de Rham spectral sequence}. Let $Y/k$ be a proper smooth scheme over a field $k$. The \defemph{de Rham cohomology} of $Y$ is defined as the (hyper-)cohomology of the de Rham complex $\Omega_{Y/k}^\bullet$,
+\begin{equation*}
+	H_\dR^n(Y/k)=H^n\left(0\morphism \Oo_Y\morphism[\d]\Omega_{Y/k}^1\morphism[\d]\Omega_{Y/k}^2\morphism[\d]\dotso\right)\,.
+\end{equation*}
+Then, more or less by definition, there is a spectral sequence
+\begin{equation*}
+	E_1^{i,j}=H^j\big(Y,\Omega_{Y/k}^i\big)\converge H_\dR^{i+j}(Y/k)\,,
+\end{equation*}
+called \defemph{Hodge--de Rham spectral sequence}. This sequence is degenerate, which can be proved by similar methods as \cref{thm:MinimalModels}.
+\begin{qst}
+	Again, one can ask whether in our original situation $H_\et^n\big(X_{\ov{K}},\IQ_p\big)$ \enquote{knows} $H_\dR^n(X/K)$ including its Hodge filtration? This question is in part answered by the following theorem.
+\end{qst}
+\begin{thm}[Faltings, Tsuji$,\dotsc$]\label{thm:deRhamComp}
+	For $n\geq 0$ there exists a natural $G_K$-equivariant filtered \enquote{de Rham comparison} isomorphism
+	\begin{equation*}
+		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}B_\dR\cong H_\dR^n(X/K)\otimes_KB_\dR\,.
+	\end{equation*}
+\end{thm}
+\begin{rem}\label{rem:deRhamComp}
+	Again, a lot of clarifications need to be done.
+	\begin{numerate}
+		\item $B_\dR$ is Fontaine's field of \emph{$p$-adic periods} and comes with a $G_K$-action. It is the fraction field of some complete DVR $B_\dR^+$ with residue field $C$ (thus, abstractly, $B_\dR^+\cong C\llbracket t\rrbracket$, but this isomorphism is \emph{not} $G_K$-equivariant). We have a natural filtration $\Fil^jB_\dR=\xi^jB_\dR^+$, where $\xi\in B_\dR^+$ is a uniformizer. The associated graded object is
+		\begin{equation*}
+			B_\HT\coloneqq \gr B_\dR=\bigoplus_{j\in\IZ}C(j)\,.
+		\end{equation*}
+		Thus, the de Rham comparison (\cref{thm:deRhamComp}) implies the Hodge--Tate decomposition (\cref{thm:HTdecomp}).
+		\item The $G_K$-action is diagonally on the left-hand side and via $B_\dR$ on the right-hand side. Conversely, the filtration on the right-hand side is diagonally, whereas on the left-hand side it comes from $B_\dR$.
+		
+		\item If $X=\IP_K^1$ and $n=2$, we obtain $\IQ_p(-1)\otimes_{\IQ_p}B_\dR\cong B_\dR$ (we use the calculations from \cref{rem:HTdecomp}\itememph{1}). Hence there exists a canonical $G_K$-stable line $\IQ_pt\subseteq B_\dR$ such that $G_K$ acts via a cyclotomic character $\chi_\cycl\colon G_K\morphism\IZ_p^\times$ (i.e.\ $\IQ_pt\cong \IQ_p(1)$). 
+		
+		For some $\epsilon\in \IZ_p(1)\setminus\{0\}$ we thus get $t=\log{}[\epsilon]\in B_\dR$. Such an element is also called \enquote{Fontaine's $2\pi\mathrm{i}$}.
+	\end{numerate}
+\end{rem}
+From now on, we will talk about stuff that will be the actual contents of the lecture. Assume that, additionally to the usual assumptions, $X$ has \defemph{good reduction}. That is, $X=\XX_K$ for some smooth proper $\XX\morphism\Spec \Oo_K$. Let $\XX_0$ be the special fibre. Then we get refinement of the de Rham comparison theorem (\cref{thm:deRhamComp}):
+\begin{thm}[Faltings, Niziol, Tsuji]\label{thm:crystallineStuff}
+	For $n\geq 0$ there exists a natural $G_K$-equivariant filtered $\phi$-equivariant isomorphism
+	\begin{equation*}
+		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}B_\cris\cong H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\otimes_{\Oo_{K_0}}B_\cris\,.
+	\end{equation*}
+\end{thm}
+\begin{rem}
+	As usual, we should explain a lot of notation.
+	\begin{numerate}
+		\item Here, $K_0\subseteq K$ is the maximal subextension that is unramified over $\IQ_p$ (so $p$ is a uniformizer of $\Oo_{K_0}$). There exists a (unique) Frobenius lift $\phi$, which acts on $\Oo_{K_0}$.
+		\item $H_\cris^n(\XX_0/\Oo_{K_0})$ is the \emph{crystalline cohomology} of $\XX_0$ over $\Oo_{K_0}$. Roughly, this is the \enquote{de Rham cohomology of a smooth lift}. It has the Frobenius $\phi$ acting on it. Moreover,
+		\begin{equation*}
+			\Big(H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\big[p^{-1}\big], \phi, \Fil^\bullet\Big)
+		\end{equation*}
+		is a \defemph{filtered $\phi$-module} (or \defemph{Frobenius isocrystal}), that is, a finite-dimensional $K_0$-vector space $D$, with an automorphism $\phi_D\colon D\morphism D$ that satisfies $\phi_D(\lambda d)=\phi(\lambda)\phi_D(d)$ for all $\lambda\in K_0$, $d\in D$ (this is called \defemph{$\phi$-semilinear}), and a filtration $\Fil^\bullet(D_K)$ (coming from the Hodge filtration) on $D_K\coloneqq D\otimes_{K_0}K$.
+		\item $B_\cris$ is Fontaine's ring of \defemph{crystalline $p$-adic periods}. It is constructed as follows. Let
+		\begin{equation*}
+			A_\cris\coloneqq H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,,
+		\end{equation*}
+		with a Frobenius action $\phi$ on it. Put $B_\cris^+\coloneqq A_\cris[p^{-1}]$. Then $B_\cris^+$ is actually a $G_K$-stable subring of $B_\dR^+$, and it contains $t=\log{}[\epsilon]$ from \cref{rem:deRhamComp}\itememph{3}. Then we can finally define $B_\cris=B_\cris^+[t^{-1}]$. Also note that $\phi(t)=pt$.
+		
+		One cool feature of the Fargues--Fontaine curve is that all these strange period rings appear as rings of functions on it.
+		\item \cref{thm:crystallineStuff} is analogous to the following statement in $\ell$-adic cohomology (where $\ell\neq p$ is a prime). Let $\XX\morphism\Spec \Oo_K$ be smooth proper, and $s,\eta\in\Spec \Oo_K$ the special resp.\ the generic point. Then there exists a $G_K$-equivariant isomorphism
+		\begin{equation*}
+			H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)\cong H_\et^*(\XX_{\ov{s}},\IQ_\ell)\,.
+		\end{equation*}
+		In particular, $H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)$ is unramified.
+		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})[p^{-1}]$ contain the \enquote{same information}. More mysterious, however, is the question how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces to $K_0$-vector spaces with Frobenius and a filtration over $K$? This became known as \enquote{Grothendieck's question on the \emph{mysterious functor}}. This was resolved by Fontaine: There are functors
+		\begin{equation*}
+			D_\cris\colon \Rep_{\IQ_p}G_K \doublelrmorphism \left\{\text{filtered }\phi\text{-modules}\right\}\noloc V_\cris
+		\end{equation*} 
+		given by $D_\cris(V)=(V\otimes_{\IQ_p}B_\cris)^{G_K}$ and $V_\cris(D)=\Fil^0(D\otimes_{K_0}B_\cris)^{\phi=1}$. They satisfy the following theorem, which will be the main goal of the lecture.
+	\end{numerate}
+\end{rem}
+\begin{thm}[Colmerz/Fontaine]\label{thm:ColmerzFontaine}
+	\enquote{Weakly admissible implies admissible}. That is, $D_\cris$ and $V_\cris$ restrict to equivalences
+	\begin{equation*}
+		D_\cris\colon\left\{
+		\begin{tabular}{c}
+			crystalline $G_K$-\\
+			representations
+		\end{tabular}\right\}\lrisomorphism \left\{
+		\begin{tabular}{c}
+			weakly admissible\\
+			filtered $\phi$-modules
+		\end{tabular}
+		\right\}\noloc V_\cris\,.
+	\end{equation*}
+\end{thm}
+\begin{rem}
+	\begin{numerate}
+		\item $V\in \Rep_{\IQ_p}G_K$ is called \defemph{crystalline} if $\dim_{K_0}D_\cris(V)=\dim_{\IQ_p}V$.
+		\item Being \defemph{weakly admissible} has something to do with \enquote{the Newton polygon lying above the Hodge polygon}.
+		\item The essential ingredient in the proof of \cref{thm:ColmerzFontaine} will be the \defemph{Fargues--Fontaine curve} (duh!), together with the relation between its $G_K$-invariant vector bundles and $\Rep_{\IQ_p}G_K$ resp.\ $\left\{\text{filtered }\phi\text{-modules}\right\}$. We can already define it as
+		\begin{equation*}
+			X_\FFC\coloneqq \Proj\Big(\bigoplus_{d\geq 0}(B_\cris^+)^{\phi=p^d}\Big)\,.
+		\end{equation*}
+		We will see that this is a Dedekind scheme over $\IQ_p$, and the completions of the local rings at its closed points are $B_\dR^+$.
+	\end{numerate}
+\end{rem}
+
+\mainmatter\KOMAoption{chapterprefix}{true}
+\renewcommand{\thedummy}{\thesection.\arabic{dummy}}
+
+
+\appendix
+\backmatter\KOMAoption{chapterprefix}{false}
+\printbibliography
+\end{document}

@@ -34,17 +34,17 @@
 \setcounter{biburlnumpenalty}{7000}
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
-\addbibresource{LiteratureEtaleI.bib}
+\addbibresource{LiteratureFF.bib}
 
 %%%% lists %%%%
 \newlength{\thmsep}%hax
 \setlength{\thmsep}{\topsep}%dunno y dis workin
 \setlength{\parindent}{1.5em}
+
 \usepackage{enumitem}
 \newenvironment{numerate}{\begin{enumerate}[wide=0pt, leftmargin=*, labelindent=0pt, itemsep=0.5\thmsep, topsep=0.5\thmsep, label={\upshape(\arabic*)}, listparindent=\parindent, parsep=0pt]}{\end{enumerate}}
 \newcommand{\itememph}[1]{$(#1)$}
 \newenvironment{alphanumerate}{\begin{enumerate}[wide=0pt, leftmargin=*,labelindent=0pt, itemsep=0.5\thmsep, topsep=0.5\thmsep, label={\itememph{\alph*}}, listparindent=\parindent, parsep=0pt]}{\end{enumerate}}
-\newenvironment{temize}{\begin{itemize}[labelindent=\parindent, itemsep=0.5\thmsep, topsep=0.5\thmsep, listparindent=\parindent, parsep=0pt]}{\end{itemize}}
 
 %%%% page headings %%%%
 \usepackage[autooneside=false,automark]{scrlayer-scrpage}
