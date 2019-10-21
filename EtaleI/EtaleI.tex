@@ -22,7 +22,7 @@
 }
 
 \newcommand{\mysteriousduck}{%
-	\smash{\tikz[baseline=(guenther-bill)]\duck[name=guenther, tshirt=white, grumpy, body=white, hat=black,sunglasses=black,  bill=black!25!white, scale=0.3];}\hspace{-0.4em}
+	\smash{\tikz[baseline=(guenther-bill), scale=0.3]\duck[name=guenther, tshirt=white, grumpy, body=white, hat=black,sunglasses=black,  bill=black!25!white];}\hspace{-0.4em}
 }
 
 \subject{Lecture Notes for}
@@ -75,9 +75,9 @@ Moreover, I will use the modern meaning of the word \emph{scheme}. That is, a sc
 \end{equation*}
 Now assume that $X$ is some variety $X$ over $k=\IF_q$, where $q=p^n$, and $f=\Frob_q$ is the Frobenius on $X$. Then the fixed points of $f$ are precisely the $k$-valued points of $X$. As the \enquote{derivative} $\d f$ vanishes, $(\id{}-\d f)$ should be invertible, so all fixed points of $f$ ought to have multiplicity one (bear in mind that all of this is purely motivational and has no ambition of being a formal argument). Hence we could hope that
 \begin{equation*}
-	\# X(k)=\sum_{i=0}^{2\dim(X)}(-1)^i\Tr\big(f^*\big| H^i(X_{\ov{k}},\mysteriousduck)\big)\,,
+	\# X(k)=\sum_{i=0}^{2\dim(X)}(-1)^i\Tr\big(f^*\big| H^i(X_{\ov{k}},\magic)\big)\,,
 \end{equation*}
-where $H^i(X_{\ov{k}},\mysteriousduck)$ is a mysterious cohomology group of the base change of $X$ to an algebraic closure of $k$. Also the sum ranging up to $2\dim(X)$ accounts for the fact that the \enquote{cohomological dimension} of $X$ should be twice its Krull dimension, same as the topological dimension of a complex manifold is twice its $\IC$-dimension.
+where $H^i(X_{\ov{k}},\magic)$ is a mysterious cohomology group of the base change of $X$ to an algebraic closure of $k$. Also the sum ranging up to $2\dim(X)$ accounts for the fact that the \enquote{cohomological dimension} of $X$ should be twice its Krull dimension, same as the topological dimension of a complex manifold is twice its $\IC$-dimension.
 
 Such a mystery cohomology theory with sufficiently nice properties is called a \defemph{Weil cohomology theory}\footnote{In fact, one can formulate a series of axioms to properly define the notion of \defemph{Weil cohomology theory}, but we didn't do that in the lecture.}, named after André Weil, who noticed that such a cohomology theory would solve most of his conjectures on varieties over finite fields, that became famously known as the \emph{Weil conjectures}.
 
