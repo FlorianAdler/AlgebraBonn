@@ -272,9 +272,22 @@
 	{\IsArgEmpty{#1}{\twoheadleftarrow}{\overset{#1}{\mathrel{\smash{\longtwoheadleftarrow}\vphantom{\rightarrow}}}}}%
 	{\IsArgEmpty{#1}{\twoheadleftarrow}{\overset{#1}{\mathrel{\smash{\longtwoheadleftarrow}\vphantom{\rightarrow}}}}}%
 }
+\newlength{\morphismlength}
+\settowidth{\morphismlength}{$\longrightarrow$}
 
-%ugly
-\newcommand{\doublelrmorphism}{\mathrel{\substack{\textstyle\longrightarrow\\[-0.67ex]\textstyle\longleftarrow}}}
+%somewhat ugly
+\NewDocumentCommand{\doublemorphism}{O{} O{}}{%
+	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\morphismlength-0.04em}]%
+	\vphantom{x}\rar[shift left=0.45ex, "#1"]\rar[shift right=0.45ex, "#2"{swap}] \& \vphantom{x}%
+	\end{tikzcd}%
+}
+
+%somewhat ugly
+\NewDocumentCommand{\doublelrmorphism}{O{} O{}}{%
+	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\morphismlength-0.04em}]%
+	\vphantom{x}\rar[shift left=0.45ex, "#1"]\& \lar[shift left=0.45ex, "#2"{swap}] \vphantom{x}%
+	\end{tikzcd}%
+}
 
 %\colon in opposite direction, e.g. for adjunctions
 \newcommand*\noloc{%

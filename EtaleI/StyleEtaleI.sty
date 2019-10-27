@@ -30,20 +30,26 @@
 \usetikzlibrary{arrows}
 
 %%%% bibliography %%%%
-\usepackage[backend=biber,style=alphabetic]{biblatex}
+\usepackage[backend=biber,style=alphabetic, sorting=anyt]{biblatex}
 \setcounter{biburlnumpenalty}{7000}
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 \addbibresource{LiteratureEtaleI.bib}
+\defbibnote{LINKS}{All URLs have been tested to be accessible from within the Bonn University eduroam. To access them from outside, you might have to activate the \href{https://www.hrz.uni-bonn.de/en/services/internet-and-network-access/vpn}{\texttt{bonnet} VPN}.}
 
 %%%% lists %%%%
 \newlength{\thmsep}%hax
 \setlength{\thmsep}{\topsep}%dunno y dis workin
 \setlength{\parindent}{1.5em}
+
 \usepackage{enumitem}
+
 \newenvironment{numerate}{\begin{enumerate}[wide=0pt, leftmargin=*, labelindent=0pt, itemsep=0.5\thmsep, topsep=0.5\thmsep, label={\upshape(\arabic*)}, listparindent=\parindent, parsep=0pt]}{\end{enumerate}}
+
 \newcommand{\itememph}[1]{$(#1)$}
+
 \newenvironment{alphanumerate}{\begin{enumerate}[wide=0pt, leftmargin=*,labelindent=0pt, itemsep=0.5\thmsep, topsep=0.5\thmsep, label={\itememph{\alph*}}, listparindent=\parindent, parsep=0pt]}{\end{enumerate}}
+
 \newenvironment{temize}{\begin{itemize}[labelindent=\parindent, itemsep=0.5\thmsep, topsep=0.5\thmsep, listparindent=\parindent, parsep=0pt]}{\end{itemize}}
 
 %%%% page headings %%%%
@@ -53,6 +59,7 @@
 
 %%%% miscellaneous %%%%
 \usepackage{blindtext}
+\usepackage{xparse}
 
 
 %%%% CUSTOM LIST OF LECTURES %%%%
@@ -87,7 +94,7 @@ listname={List of Lectures}%
 	\DTMsavedate{retardDate}{#2}%
 	\stepcounter{llecture}%
 	\marginnote{\textsc{Lecture~\arabic{llecture}}\\%
-		\normalfont \DTMenglishordinal{\DTMfetchday{retardDate}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}%
+		\normalfont \smash{\DTMenglishordinal{\DTMfetchday{retardDate}}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}%
 	\addxcontentsline{lol}{chapter}{Lecture~\arabic{llecture} (\DTMenglishordinal{\DTMfetchday{retardDate}} \DTMmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate})}%
 	\IsArgEmpty{#1}{}{\texttolol{#1}}%
 }
@@ -141,6 +148,8 @@ listname={List of Lectures}%
 \newtheorem{rem}[dummy]{Remark}
 \newtheorem{defi*}[dummy]{Definition*}
 \newtheorem{rem*}[dummy]{Remark*}
+\newtheorem*{urem}{Remark}
+\newtheorem*{urem*}{Remark*}
 \newtheorem{exm}[dummy]{Example}
 \newtheorem{cntx}[dummy]{Counterexample}
 \newtheorem{exm*}[dummy]{Example*}

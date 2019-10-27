@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot]{scrbook}
+\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot, bibliography=oldstyle]{scrbook}
 \usepackage{StyleEtaleI}
 \usepackage{ShortcutsEtaleI}
 \usepackage{halloweenmath}
@@ -39,7 +39,9 @@ University of Bonn}
 \KOMAoption{chapterprefix}{false}
 \maketitle
 \noindent This text consists of notes on the lecture Advanced Topics in Algebraic Geometry (Étale Cohomology I), taught at the University of
-Bonn by Professor Jens Franke in the winter term (Wintersemester) 2019/20.\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
+Bonn by Professor Jens Franke in the winter term (Wintersemester) 2019/20.
+
+Some changes and some additions have been made by the author. To distinguish them from the lecture's actual contents, they are labelled with an asterisk. So any \emph{Lemma}* or \emph{Remark}* or \emph{Proof}* that the reader might encounter are wholly the author's responsibility.\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
 
 
 \tableofcontents
@@ -60,15 +62,16 @@ The goal of this lecture is to study the \emph{$\ell$-adic cohomology} of a sche
 \end{align*}
 Along the way, we will come across sheaves on the étale site, the relation between étale and Galois cohomology, cohomology of curves, and proper base change.
 
-\numpar*{Author's note}I will not follow Franke's numbering scheme\footnote{\ldots\ although he would probably call it a numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. Also, as proofs can be sketchy sometimes, I might include some additions to the lectures in these notes. To label them as such, I'll put an asterisk behind. So any \emph{Lemma}* or \emph{Remark}* or \emph{Proof}* that the reader might encounter have not been part of the lecture.
+\numpar*{Author's note}
+In these notes, the modern meaning of the word \emph{scheme} is used. That is, a scheme in these lecture notes is what Professor Franke would call a \emph{prescheme}, and what he would call a \emph{scheme} will be called a \emph{separated scheme} in here.
 
-Moreover, I will use the modern meaning of the word \emph{scheme}. That is, a scheme in these lecture notes is what Professor Franke would call a \emph{prescheme}, and what he would call a \emph{scheme} will be called a \emph{separated scheme} in here.
+Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 
 \chapter{Motivation and Basic Definitions}
 \section{Motivation}
-\lecture[Weil cohomology theories: some motivation, some (counter-)examples; flatness, flat base change, faithfully flat descent]{2019-10-18}
+\lecture[Weil cohomology theories: some motivation, some (counter-)examples; flatness, flat base change, faithfully flat descent.]{2019-10-18}
 \numpar{Problem} For a scheme $X$, we would like to have cohomology groups $H^*(X,\IZ)$ with properties similar to the ones familiar from algebraic topology. For example, if $f\colon X\morphism X$ is a continuous map of a topological space into itself, then (under some sensible conditions) the \emph{Lefschetz trace formula} says
 \begin{equation*}
 	\#\left\{\text{fixed points of }f\text{, counted with multiplicity}\right\}=\sum_{i=0}^{\dim(X)}(-1)^i\Tr\left(f^ *\middle| H^i(X,\IQ)\right)\,.
@@ -215,7 +218,7 @@ the canonical projections to the $i\ordinalth$ factor, to the $j\ordinalth$ fact
 	\end{alphanumerate}
 \end{rem}
 \begin{prop}
-	If $f\colon X\morphism Y$ is faithfully flat and quasi-compact (which we abbreviate as \enquote{fpqc} in the following), then the functor $f^*\colon \cat{QCoh}_{\Oo_Y}\morphism \cat{Desc}_{X/Y}$ from \cref{rem:descentFunctor}\itememph{b} is an equivalence of categories.
+	If $f\colon X\morphism Y$ is faithfully flat and quasi-compact (which we abbreviate as \enquote{fpqc} in the following, from French \enquote{fidélement plat et quasi-compact}), then the functor $f^*\colon \cat{QCoh}_{\Oo_Y}\morphism \cat{Desc}_{X/Y}$ from \cref{rem:descentFunctor}\itememph{b} is an equivalence of categories.
 \end{prop}
 \begin{proof}[Sketch of a proof]
 	The proof consists of two essentially independent steps and a third step that combines the first two. Step~1 is to prove the assertion under the assumption that $f$ has a section $\sigma\colon Y\morphism X$ (this is pretty much straightforward). Step~2 is to construct a right-adjoint $R\colon \cat{Desc}_{X/Y}\morphism \cat{QCoh}_{\Oo_Y}$ of $f^*$.\footnote{Professor Franke emphasizes that this should be in every mathematicians bag of tricks: if you are to show that some functor is an equivalence, look for a right- or left-adjoint!}
@@ -223,15 +226,15 @@ the canonical projections to the $i\ordinalth$ factor, to the $j\ordinalth$ fact
 	In Step~3 we show that $R$ (and thus $f^*$) is an equivalence of categories. This boils down to checking that unit and counit of the adjunction are natural isomorphisms. However, a map being an isomorphism can be checked after faithfully flat base change. Base-changing by $f$ itself, we end up in a situation where a section $\sigma$ exists---the diagonal $\Delta\colon X\morphism X\times_YX$. So Step~1 can be applied, which concludes the proof. For more details check out \cite[Theorem~7]{jacobians}.
 \end{proof}
 \begin{cor}\label{cor:fpqcEqualizer}
-	\lecture[Étale morphisms]{2019-10-21}
+	\lecture[Properties of fpqc morphisms; Grothendieck topologies.]{2019-10-21}
 	If $f\colon X\morphism Y$ is fpqc, then for all open subset $U\subseteq Y$ we have a natural isomorphism
 	\begin{equation*}
-		\Global(U,\Oo_Y)\isomorphism\left\{\lambda\in \Global(f^{-1}(U),\Oo_X)\st p_1^*\lambda =p_2^*\lambda\text{ in }\Global(U,p_*\Oo_{X\times_YX})\right\}\,.
+		\Global(U,\Oo_Y)\isomorphism\left\{\lambda\in \Global(f^{-1}(U),\Oo_X)\st p_1^*\lambda =p_2^*\lambda\text{ in }\Global(p^{-1}(U),\Oo_{X\times_YX})\right\}\,.
 	\end{equation*}
 	Here, $p\colon X\times_YX\morphism Y$ denotes the natural morphism (and $p=fp_1=fp_2$).
 \end{cor}
 At this point, Professor Franke recalls the notion of mono-/epimorphism and their \defemph{effective} variants. We refer to \cite[Appendix~A.1]{alggeo2} for the relevant definitions and to \cite[Subsection~1.3.1]{alggeo1} for a construction of equalizers in the category of schemes.
-\begin{prop}
+\begin{prop}\label{prop:fpqcEffectiveEpi}
 	An fpqc morphism is an effective epimorphism in the category of schemes.
 \end{prop}
 \begin{proof}[Sketch of a proof]
@@ -239,14 +242,14 @@ At this point, Professor Franke recalls the notion of mono-/epimorphism and thei
 	
 	If you are looking for a more detailed proof than this extremely brief sketch, check out \cite[Corollary~2.6.2]{jacobians}.
 \end{proof}
-\begin{prop}
-	If $f\colon X\morphism Y$ is  a morphism of locally finite type between locally noetherian schemes, then $f$ is an open map on underlying topological spaces.
+\begin{prop}\label{prop:ppfOpen}
+	If $f\colon X\morphism Y$ is flat a morphism of locally finite type between locally noetherian schemes, then $f$ is an open map on underlying topological spaces.
 \end{prop}
 \begin{proof*}
 	See \cite[Corollary~2.5.1]{jacobians}.
 \end{proof*}
 \begin{rem*}
-	[TODO] of locally finite presentation. The key idea in the proof is an ingenious trick that reduces
+	One can generalize \cref{prop:ppfOpen} to flat morphisms of \emph{locally finite presentation} between arbitrary (i.e.\ not necessarily locally noetherian) schemes. The key idea in the proof is an ingenious trick that reduces
 	everything to the noetherian case. You can find a very nice exposition of this in Akhil Mathews
 	blog, see \url{https://amathew.wordpress.com/2010/12/26/}!
 \end{rem*}
@@ -264,58 +267,184 @@ You might have already seen Grothendieck topologies defined via \defemph{coverin
 	is a sieve over $X\in \Cc$.
 \end{exm}
 \begin{defi}\label{def:GrothendieckTopo}
-	A \defemph{Grothendieck topology} on a category $\Cc$ is given by specifying a collection $\Cc_x$ of sieves over $x$ for all $x\in \Cc$, called the \defemph{covering sieves}, which are subject to the following conditions.
+	A \defemph{Grothendieck topology} on a category $\Cc$ is given by specifying a collection $ C_x$ of sieves over $x$ for all $x\in \Cc$, called the \defemph{covering sieves}, which are subject to the following conditions.
 	\begin{alphanumerate}
 		\item The all-sieve (containing all morphisms $u\morphism x$) is a covering sieve of $x$.
-		\item If $p\colon y\morphism x$ is a morphism in $\Cc$ and $\Ss\in\Cc_x$ a covering sieve of $x$, then $p^*\Ss\in\Cc_y$ is a covering sieve of $y$. Here, we define
+		\item If $p\colon y\morphism x$ is a morphism in $\Cc$ and $\Ss\in C_x$ a covering sieve of $x$, then $p^*\Ss\in C_y$ is a covering sieve of $y$. Here, we define
 		\begin{equation*}
 			p^*\Ss=\left\{u\to y\st (u\to y\morphism[p]x)\in \Ss\right\}\,.
 		\end{equation*}
-		\item Let $\Ss$, $\Tt$ be sieves over $x$ such that $\Tt\in \Cc_x$. If for all $(p\colon y\morphism x)\in \Tt$ we have $p^*\Ss\in\Cc_y$, then also $\Ss\in\Cc_x$.
+		\item Let $\Ss$, $\Tt$ be sieves over $x$ such that $\Ss\in  C_x$. If for all $(p\colon y\morphism x)\in \Ss$ we have $p^*\Tt\in C_y$, then also $\Tt\in C_x$.
 	\end{alphanumerate}
 	A category $\Cc$ together with a fixed Grothendieck topology is called a \defemph{site}.
 \end{defi}
 \begin{rem}
 	\begin{alphanumerate}
 		\item One can interpret \cref{def:GrothendieckTopo}\itememph{c} as saying that being a covering is a local property (and can thus be tested on another covering).
-		\item If $\Tt\in\Cc_x$ and $\Ss\supseteq \Tt$, then also $\Ss\in\Cc_x$ (as one would expect that if a subsieve of $\Ss$ is already sufficient to \enquote{cover} $x$, then a fortiori the same is true for the whole sieve $\Ss$). Indeed, the condition in \cref{def:GrothendieckTopo}\itememph{c} is then trivially satisfied, because if $(p\colon y\morphism x)\in \Tt$, then $p^*\Ss\supseteq p^*\Tt$. However, the right-hand side is the all-sieve in this case, hence so is the left-hand side.
+		\item If $\Tt\in C_x$ and $\Ss\supseteq \Tt$, then also $\Ss\in C_x$ (as one would expect that if a subsieve of $\Ss$ is already sufficient to \enquote{cover} the element $x$, then a fortiori the same is true for the whole sieve $\Ss$). Indeed, the condition in \cref{def:GrothendieckTopo}\itememph{c} is then trivially satisfied, because if $(p\colon y\morphism x)\in \Tt$, then $p^*\Ss\supseteq p^*\Tt$. However, the right-hand side is the all-sieve in this case, hence so is the left-hand side.
 	\end{alphanumerate}
 \end{rem}
 \begin{exm}
-	Let $\Cc$ be again the partially ordered set of open subsets of a topological space $X$. Define $\Ss\in\Cc_U$ iff $U=\bigcup_{(V\subseteq U)\in\Ss}V$. Then this defines a Grothendieck topology on the category $\Cc$.
+	Let $\Cc$ be again the partially ordered set of open subsets of a topological space $X$. Define $\Ss\in C_U$ iff $U=\bigcup_{(V\subseteq U)\in\Ss}V$. Then this defines a Grothendieck topology on the category $\Cc$.
 \end{exm}
 \begin{con}
 	Let $S$ be a scheme. We make the category $\cat{Sch}/S$ of schemes over $S$ into a site $(\cat{Sch}/S)_\Zar$ by defining a Grothendieck topology as follows: A sieve $\Ss$ over some $S$-scheme $X$ is a covering sieve iff there is a Zariski-open covering $X=\bigcup_{i\in I}U_i$ such that all morphisms $Y\morphism X$ that factor over some $U_i\monomorphism X$ belong to $\Ss$.
 \end{con}
 The next thing to do is to introduce the fpqc topology and the fppf topology on $\cat{Sch}/S$, and then finally the étale topology. But before we do this, we prove the very abstract and technical \cref{prop:technicalAF}, which in the end will save us some work in proving that certain equivalent descriptions of our topologies are indeed equivalent.
 
-\begin{rem*}
-	Before we dive into the horrible technical nightmare of \cref{prop:technicalAF}, let us motivate some of the things that happen there. First of all, the three topologies we are going to look at are all somehow generated by a certain class of morphisms: the fpqc morphisms, the fppf morphisms, and the étale morphisms respectively. This role is played by $\Cc$ in \cref{prop:technicalAF}. In the first two cases, $\Cc_\fpqc$ and $\Cc_\fppf$ are precisely the classes of fpqc and fppf morphisms. For the étale topology, we would take $\Cc_{\et}$ to be the class of étale and surjective morphisms.
+\begin{rem*}\label{rem*:clarificationsForTechnicalAF}
+	Before we dive into the horrible technical nightmare of \cref{prop:technicalAF}, let us motivate some of the things that happen there. First of all, the three topologies we are going to look at are all somehow generated by a certain class of morphisms: the fpqc morphisms, the fppf morphisms, and the étale morphisms respectively. This role is played by $\Cc$ in \cref{prop:technicalAF}. In the first two cases, $\Cc_\fpqc$ and $\Cc_\fppf$ are precisely the classes of fpqc and fppf morphisms. For the étale topology, we would take $\Cc_\et$ to be the class of étale and surjective morphisms.
 	
 	Second, our topologies are, of course, generated by sieves. This is what $\Ss$ stands for in \cref{prop:technicalAF}. The purpose of said proposition is to establish two equivalent characterizations of these sieves---essentially, we will show that everything can be chosen affine if we wish to.
 	
-	Third, it might become reasonable to define our topology only on a nice subcategory of $\cat{Sch}/S$: for example, on the full subcategory of locally noetherian $S$-schemes. However, this might get us into trouble. The problem is that if we use \cref{def:GrothendieckTopo}\itememph{b} to its full potential, then it suddenly spawns fibre products. But fibre products need not preserve noetherianness. For example, $\Spec \IC$ and $\Spec \IQ$ are perfectly fine noetherian schemes, but $\Spec \IC\times_{\Spec \IQ}\Spec \IC\cong \Spec (\IC\otimes_\IQ\IC)$ is a non-noetherian abomination. That's where the property $\Pp$ comes in (and in particular, that's why we need $\Pp$ to be preserved under base change). It turns out that it's possible to restrict the étale and fppf topology to the full subcategory of locally noetherian $S$-schemes, so in this case $\Pp_\et$ and $\Pp_\fppf$ could be the properties of being locally noetherian. In the fpqc case however, such a restriction is impossible. So $\Pp_\fpqc$ will be the empty property (that is satisfied by every scheme) in this case. Of course, $\Pp_\et$ and $\Pp_\fppf$ can also be chosen to be the empty property.
+	Third, it might become reasonable to define our topology only on a nice subcategory of $\cat{Sch}/S$: for example, on the full subcategory of locally noetherian $S$-schemes. However, this might get us into trouble. The problem is that if we use \cref{def:GrothendieckTopo}\itememph{b} to its full potential, then it suddenly spawns fibre products. But fibre products need not preserve noetherianness. For example, $\Spec \IC$ and $\Spec \IQ$ are perfectly fine noetherian schemes, but $\Spec \IC\times_{\Spec \IQ}\Spec \IC\cong \Spec (\IC\otimes_\IQ\IC)$ is a non-noetherian abomination. That's where the property $\Pp$ comes in (and in particular, that's why we need $\Pp$ to be preserved under morphisms in $\Cc$). It turns out that it's possible to restrict the étale and fppf topology to the full subcategory of locally noetherian $S$-schemes, so in this case $\Pp_\et$ and $\Pp_\fppf$ could be the property of being locally noetherian. In the fpqc case however, such a restriction is impossible. So $\Pp_\fpqc$ will necessarily be the empty property (that is satisfied by every scheme) in this case. Of course, $\Pp_\et$ and $\Pp_\fppf$ can also be chosen to be the empty property.
 \end{rem*}
 \begin{prop}\label{prop:technicalAF}
 	Let $S$ be a scheme and $\Cc$ a class of quasi-compact morphisms of $S$-schemes, which has the following properties.
 	\begin{alphanumerate}
 		\item $\Cc$ is closed under composition, finite coproducts, and base-change.
-		\item For every affine\footnote{This means that $U$ is affine, and an $S$-scheme, and \emph{not} that $U\morphism S$ is an affine morphism.} scheme $U$ over $S$, we have $\id_U\in\Cc$.
-		\item If $U=\bigcup_{i=1}^nU_i$ is an affine open cover of an affine $S$-scheme $U$ such that $(U\morphism X)\in \Cc$, then the canonical morphism
-		\begin{equation*}
-			\coprod_{i=1}^nU_i\morphism U\morphism X
-		\end{equation*}
-		is an element of $\Cc$.
+		\item If $U=\bigcup_{i=1}^nU_i$ is an affine open cover of an affine\footnote{This means that $U$ is affine, and an $S$-scheme, and \emph{not} that $U\morphism S$ is an affine morphism.} scheme $U$ over $S$, then the canonical morphism $\coprod_{i=1}^nU_i\morphism U$ is an element of $\Cc$.\footnote{Note that in the lecture we also had the requirement that $\id_U$ is an element of $\Cc$. However, this trivially follows from \itememph{b}.}
 	\end{alphanumerate}
-	Now let $\Pp$ be a local property of $S$-schemes, such that if $X'\morphism X$ is a morphism in $\Cc$ and $X$ has property $\Pp$, then $X'$ has $\Pp$ as well. Let $(\cat{Sch}/S)^\Pp\subseteq \cat{Sch}/S$ be the full subcategory of all objects with $\Pp$. Then for an object $X\in(\cat{Sch}/S)^\Pp$ and any sieve $\Ss$ over $X$, the following conditions on $\Ss$ are equivalent.
+	Now let $\Pp$ be a local property of $S$-schemes, such that if $X'\morphism X$ is a morphism in $\Cc$ and $X$ has property $\Pp$, then $X'$ has $\Pp$ as well.\footnote{In the lecture we required $\Pp$ to be \enquote{stable under base change \ldots}, but didn't define what this was supposed to mean for a property of schemes (rather than morphisms). This is (at least equivalent to) what Franke had in mind.} Let $(\cat{Sch}/S)^\Pp\subseteq \cat{Sch}/S$ be the full subcategory of all objects with $\Pp$. Then for an object $X\in(\cat{Sch}/S)^\Pp$ and any sieve $\Ss$ over $X$, the following conditions on $\Ss$ are equivalent.
 	\begin{numerate}
-		\item There are an open cover $X=\bigcup_{i\in I}U_i$, together with finite sets $K_i$ for all $i\in I$, and morphisms $U_{i,j}\morphism U_i$ for all $j\in K_i$, such that $U_{i,j}$ satisfy $\Pp$, the coproduct $\coprod_{j\in K_i}U_{i,j}\morphism U_i$ is in $\Cc$ for all $i\in I$, and all compositions $U_{i,j}\morphism U_i\morphism X$ are in $\Ss$.
+		\item There are an open cover $X=\bigcup_{i\in I}U_i$, together with finite sets $J_i$ for all $i\in I$, and morphisms $U_{i,j}\morphism U_i$ for all $j\in J_i$, such that all $U_{i,j}$ satisfy $\Pp$, the coproduct $\coprod_{j\in J_i}U_{i,j}\morphism U_i$ is in $\Cc$ for all $i\in I$, and all compositions $U_{i,j}\morphism U_i\morphism X$ are in $\Ss$.
 		\item The same as \itememph{1}, but now all $U_i$ and $U_{i,j}$ are required to be affine.
 	\end{numerate}
 	Moreover, these sieves define a Grothendieck topology on $(\cat{Sch}/S)^\Pp$.
 \end{prop}
+\begin{proof}
+	\lecture[The fpqc and the fppf topology; sheaves on sites.]{2019-10-25}It's clear that \itememph{2} implies \itememph{1}. For the converse we basically need the observations that quasi-compact schemes admit finite affine open covers and that affine schemes are quasi-compact, together with the fact that all morphisms from $\Cc$ are quasi-compact by assumption. However, writing this up is quite a pain, so we leave it as an exercise.
+	
+	We are left to check the conditions for a Grothendieck topology on $(\cat{Sch}/S)^\Pp$. To see that the all-sieve is covering, take any affine open cover $X=\bigcup_{i\in I}U_i$, $J_i=\{i\}$ for all $i$ and $U_{i,i}=U_i$. Then $\bigcup_{j\in J_i}U_{i,j}\morphism U_i$ is the identity on $U_i$, which is in $\Cc$ by \itememph{b}. Also $U_{i,i}\morphism U_i\morphism X$ is obviously part of the all-sieve. This shows that the all-sieve is covering.
+	
+	Now let $\Ss$ be a sieve on $X$ satisfying the equivalent properties \itememph{1}, \itememph{2}. Let $p\colon Y\morphism X$ be any morphism in $(\cat{Sch}/S)^\Pp$. We need to show that $p^*\Ss$ satisfies the equivalent properties as well. To this end, let $X=\bigcup_{i\in I}U_i$, $J_i$ and $U_{i,j}$ for all $i\in I$, $j\in J_i$ witness the property \itememph{2} for $\Ss$. Now consider
+	\begin{equation*}
+		V_i=Y\times_XU_i\quad\text{and}\quad V_{i,j}=Y\times_XU_{i,j}\,.
+	\end{equation*}
+	Then the morphism $\coprod_{j\in J_i}V_{i,j}\morphism V_i$ is in $\Cc$ because it is a base change of $\coprod_{j\in J_i}U_{i,j}\morphism U_i$, which is in $\Cc$, and $\Cc$ is stable under base change by \itememph{a}. Moreover, the $V_{i,j}$ all satisfy $\Pp$. Indeed, since $\Pp$ is local, it suffices to show that $\coprod_{j\in J_i}V_{i,j}$ has $\Pp$, and since $\coprod_{j\in J_i}V_{i,j}\morphism V_i$ is in $\Cc$, it suffices to show that $V_i$ has $\Pp$ (by our assumption on $\Pp$ and $\Cc$). However, $V_i$ is an open subset of $Y$, which has $\Pp$, so $V_i$ has $\Pp$ as well since $\Pp$ is local. It remains to see $(V_{i,j}\morphism Y)\in p^*\Ss$. But the $V_{i,j}$ fit into pullback diagrams
+	\begin{equation*}
+		\begin{tikzcd}
+			V_{i,j} \rar\dar\drar[pullback] & Y\dar["p"]\\
+			U_{i,j}\rar & X
+		\end{tikzcd}\,,
+	\end{equation*}
+	so $V_{i,j}\morphism Y\morphism X$ factors over a morphism in $\Ss$. Thus $(V_{i,j}\morphism Y)\in p^*\Ss$ holds by definition.
+	
+	Last but not least we prove locality of covering sieves. Let $\Ss\in C_X$ be a covering sieve of $X$ and let $U_i$, $J_i$ and $U_{i,j}$ witness \itememph{2} for $\Ss$. Let $\Tt$ be another sieve over $X$ such that $p^*\Tt\in C_Y$ for any $(p\colon Y\morphism X)\in \Ss$. In particular, we can apply this to $(\sigma_{i,j}\colon U_{i,j}\morphism X)\in\Ss$. Thus, there are an affine open cover $U_{i,j}=\bigcup_{k\in K_{i,j}}V_{i,j,k}$ and finite sets $L_{i,j,k}$ for all $k\in K_{i,j}$ together with morphisms $V_{i,j,k,l}\morphism V_{i,j,k}$, such that $\coprod_{l\in L_{i,j,k}}V_{i,j,k,l}\morphism V_{i,j,k}$ is in $\Cc$, all $V_{i,j,k,l}$ have $\Pp$, and $V_{i,j,k,l}\morphism U_{i,j}$ is an element of $\sigma_{i,j}^*\Tt$ (up to now that was just unraveling of definitions). Since the $U_{i,j}$ are affine, we may assume that the $K_{i,j}$ are finite sets as well. Thus
+	\begin{equation*}
+		\coprod_{j\in J_i}\coprod_{k\in K_{i,j}}\coprod_{l\in L_{i,j,k}}V_{i,j,k,l}\morphism U_i
+	\end{equation*}
+	is a finite coproduct. This morphism is also in $\Cc$, since it can be factored as
+	\begin{equation*}
+		\coprod_{j\in J_i}\coprod_{k\in K_{i,j}}\coprod_{l\in L_{i,j,k}}V_{i,j,k,l}\morphism \coprod_{j\in J_i}\coprod_{k\in K_{i,j}}V_{i,j,k}\morphism \coprod_{j\in J_i}U_{i,j}\morphism U_i\,.
+	\end{equation*}
+	The left-most arrow is in $\Cc$ since it is a finite coproduct of $\coprod_{l\in L_{i,j,k,l}}V_{i,j,k,l}\morphism V_{i,j,k}$, which is in $\Cc$ by assumption, and $\Cc$ is stable under finite coproducts by \itememph{a}. The middle arrow is in $\Cc$, because it is a finite coproduct of $\coprod_{k\in K_{i,j}}V_{i,j,k}\morphism U_{i,j}$, which are in $\Cc$ by \itememph{b}. Finally, the right-most arrow is in $\Cc$ by assumption. 
+	
+	This finally shows that $\Tt$ is a covering sieve of $X$. Thus, we indeed get a Grothendieck topology of $(\cat{Sch}/S)^\Pp$.
+\end{proof}
+\begin{rem}
+	This can be found in the $4\ordinalth$ issue of the \emph{Séminaire de Géométrie Algébrique du Bois Marie (SGA)} publications. Professor Franke outlines the contents of the various SGAs.
+	\begin{numerate}
+		\item[{\cite{sga1}}] Flat descent, the étale fundamental group.
+		\item[{\cite{sga2}}] Local cohomology.
+		\item[{[SGA$_4$]}] This consists of three parts: in \cite{sga4.1}, \cite{sga4.2} the general theory of topoi and the étal topos of a scheme are introduced. The third part \cite{sga4.3} proves hard theorems in étale cohomology.
+		\item[{\cite{sga4.5}}] This is a very good reference besides \cite{milne} and \cite{kiehlfreitag}. Especially the \enquote{Arcata} part is very recommendable.
+		\item[{\cite{sga5}}] $\ell$-adic cohomology.
+	\end{numerate}
+	You should be able to read French though (\emph{author's note}: personal experience shows that Google Translate is usually sufficient).
+\end{rem}
+\begin{defi}
+	\begin{alphanumerate}
+		\item Let $\Pp_\fpqc$ be the trivial property and $\Cc_\fpqc$ be the class of fpqc morphisms. Then the Grothedieck topology constructed in \cref{prop:technicalAF} is called the \defemph{fpqc topology}. The corresponding site $(\cat{Sch}/S)_\fpqc$ is called the \defemph{big fpqc site}.
+		\item Let $\Pp_\fppf$ be either the trivial property or $\Pp_\fppf=\left\{\text{locally noetherian schemes}\right\}$. Let $\Cc_\fppf$ be the class of faithfully flat and finitely presented morphisms. Then the Grothendieck topology from \cref{prop:technicalAF} is called the \defemph{fppf topology}. The corresponding site $(\cat{Sch}/S)_\fppf$ is called the \defemph{big fppf site}.
+	\end{alphanumerate}
+\end{defi}
+\begin{rem}
+	\begin{alphanumerate}
+		\item We cannot choose $\Pp_\fpqc=\left\{\text{locally noetherian schemes}\right\}$. For example, take the counterexample from \cref{rem*:clarificationsForTechnicalAF}: $\Spec\IC\morphism \Spec\IQ$ is an fpqc morphism, hence so is its base change $\Spec(\IC\otimes_\IQ\IC)\morphism \Spec\IC$. However, $\IC\otimes_\IQ\IC$ is non-noetherian. 
+		
+		To see this, let $I$ be the kernel of the multiplication map $\IC\otimes_\IQ\IC\morphism \IC$. If $\IC\otimes_\IQ\IC$ was noetherian, then $I/I^2$ would be a finitely generated module over $(\IC\otimes_\IQ\IC)/I\cong \IC$. However, $I/I^2\cong \Omega_{\IC/\IQ}$, whose $\IC$-dimension is the cardinality of the continuum.
+		\item However, this works for the fppf topology since being locally noetherian is preserved under finitely presented morphisms. The abbreviation fppf comes from French \enquote{fidélement plat et de présentation finie}.
+	\end{alphanumerate}
+\end{rem}
+Having defined Grothendieck topologies and seen some examples, the next step is to define sheaves on sites.
+\begin{defi}\label{def:sheaf}
+	Let $\Cc$ be an arbitrary category.
+	\begin{alphanumerate}
+		\item A \defemph{presheaf} on $\Cc$ (with values in sets, groups, rings, \ldots) is a functor from $\Cc^\op$ to the categories of groups, sets, rings, \ldots.
+		\item Suppose $\Cc$ is equipped with a Grothendieck topology defined by collections $C_x$ of covering sieves for all $x\in \Cc$. Then a presheaf $\Ff$ is called a \defemph{sheaf} if for all $x\in \Cc$ and all $\Ss\in C_x$ the following condition holds: the morphisms $v^*\colon \Ff(x)\morphism\Ff(u)$ for $(v\colon u\morphism x)\in\Ss$ induce a bijection
+		\begin{equation*}
+			\Ff(x)\isomorphism \lim_{v\in\Ss}\Ff(u)
+		\end{equation*}
+	\end{alphanumerate}
+\end{defi}
+\begin{rem}
+	\begin{alphanumerate}
+		\item If only injectivity of the above map is assumed, the presheaf $\Ff$ is called \defemph{separated}.
+		\item If $\Ff$ has values in sets, groups, rings, \ldots, then the limit on the right-hand side of \cref{def:sheaf}\itememph{b} can be explicitly described as follows:
+		\begin{equation*}
+			\lim_{v\in \Ss}\Ff(u)=\left\{(f_v)_{v\in \Ss}\in\prod_{v\in\Ss}\Ff(u)\st \begin{tabular}{c}
+				if $(v\colon u\rightarrow x),(v'\colon u'\rightarrow x)\in\Ss$ and\\
+				 $\pi\colon u\rightarrow u'$
+				 is any morphism such\\
+				 that $v=v'\pi$, then $f_v=\pi^*f_{v'}$
+			\end{tabular}\right\}
+		\end{equation*}
+	\end{alphanumerate}
+\end{rem}
+\begin{prop}\label{prop:fpqcSheaf}
+	For the Grothendieck topologies of \cref{prop:technicalAF}, a presheaf $\Ff$ on $(\cat{Sch}/S)^\Pp$ is a sheaf iff its restriction to Zariski-open subsets of any $X\in (\cat{Sch}/S)^\Pp$ is an ordinary sheaf on $X$, and for every morphism $(X'\morphism X)\in\Cc$ the sequence
+	\begin{equation*}
+		\Ff(X)\morphism\Ff(X')\doublemorphism[p_1^*][p_2^*]\Ff(X'\times_XX')
+	\end{equation*}
+	establishes the left arrow as an equalizer of the double arrow on the right. Here, we denote by $p_1,p_2\colon X'\times_XX'\morphism X'$ the canonical projections.
+\end{prop}
+\begin{proof}[Sketch of a proof*]
+	Let's first assume that $\Ff$ is a sheaf. Since every sieve over $X$ generated by a Zariski-open cover is indeed a covering sieve (since the condition from \cref{prop:technicalAF}\itememph{2} is obviously satisfied), we see that $\Ff$ restricts to a Zariski-sheaf on $X$. Moreover, if the morphism $X'\morphism X$ is in $\Cc$, then the sieve $\Ss$ of all morphisms $v\colon U\morphism X$ that factor through $X'$ is a covering sieve. Indeed, the condition from \cref{prop:technicalAF}\itememph{1} is clearly satisfied. Hence
+	\begin{equation*}
+		\Ff(X)\isomorphism\lim_{v\in \Ss}\Ff(U)\,.
+	\end{equation*}
+	Now every $\Ff(X)\morphism \Ff(U)$ factors through $\Ff(X)\morphism\Ff(X')$. Moreover, if $U\morphism X$ factors in two different ways through $X'$, then this induces a unique map $U\morphism X'\times_XX'$, and thus a map $\Ff(X'\times_XX')\morphism\Ff(U)$. If you think about it, this shows that
+	\begin{equation*}
+		\Ff(X')\doublemorphism[p_1^*][p_2^*]\Ff(X'\times_XX')
+	\end{equation*}
+	is a coinitial subdiagram of the diagram given by $\{\Ff(U)\}_{v\in\Ss}$. Hence the limit over the latter diagram is the same as the equalizer of $p_1^*$ and $p_2^*$, so $\Ff(X)$ mapping isomorphically to that limit means that $\Ff(X)$ is said equalizer, as claimed.
+	
+	Now for the converse. Assume that $\Ff$ is a presheaf with the required property and let $\Ss$ be a covering sieve over $X$. Let $X=\bigcup_{i\in I}U_i$, $J_i$, and $U_{i,j}\morphism U_i$ be the associated data. For all $i\in I$, let $\Ss_i\subseteq \Ss$ be the subsieve of all morphisms $(v\colon U\morphism X)$ that factor through some $U_{i,j}$. We first show that we have an isomorphism
+	\begin{equation*}
+		\Ff(U_i)\isomorphism \limit_{v\in\Ss_i}\Ff(U)
+	\end{equation*}
+	To see this, note that the subdiagram spanned by all $\Ff(U_{i,j})$ and all $\Ff(U_{i,j}\times_X U_{i,k})$ for $j,k\in J_i$, together with the projection morphisms between them, is a coinitial subdiagram of the whole $\{\Ff(U)\}_{v\in\Ss_i}$. Indeed, that's basically the same argument as in the proof above (if $U\morphism X$ factors through $U_{i,j}$ and $U_{i,k}$, then also through $U_{i,j}\times U_{i,k}$). So we may as well take the limit over that subdiagram. But taking into account that $\Ff$ takes disjoint unions to products (because it restricts to an ordinary Zariski sheaf), the limit over said subdiagram is given by the equalizer of
+	\begin{equation*}
+		\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\Bigg)\doublemorphism[p_1^*][p_2^*]\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\times_X\coprod_{k\in J_i}U_{i,k}\Bigg)\,.
+	\end{equation*}
+	Since $\coprod_{j\in J_i}U_{i,j}\morphism U_i$ is in $\Cc$, our assumption on $\Ff$ shows that the above equalizer is just $\Ff(U_i)$, as claimed.
+	
+	For $i,i'\in I$ let $\Ss_{i,i'}\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through some $U_{i,j}\times_XU_{i',j'}$ for $j\in J_i$, $j'\in J_{i'}$. In the same way as above we find an isomorphism
+	\begin{equation*}
+		\Ff(U_i\times_XU_{i'})\isomorphism \lim_{v\in\Ss_{i,i'}}\Ff(U)\,.
+	\end{equation*}
+	Now let $\Ss'\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through $U_{i,j}$ for some $i\in I$, $j\in J_i$. By the above considerations, we find that the limit over the diagram $\{\Ff(U)\}_{v\in\Ss'}$ is the same as the limit over
+	\begin{align*}
+		\prod_{i\in I}\Ff(U_i)\doublemorphism[p_1^*][p_2^*]\prod_{i,i'\in I}\Ff(U_i\times_XU_{i'})\,,
+	\end{align*}
+	which is just $\Ff(X)$ by the usual Zariski sheaf axiom for $X$. So it remains to show that replacing $\Ss$ by $\Ss'$ doesn't change the limit. To see this, let $p\colon Y\morphism X$ be an element of $\Ss$ and let $V_i=Y\times_XU_i$, $V_{i,j}=Y\times_XU_{i,j}$. Repeating the above steps with $Y$ instead of $X$, we see that $\Ff(Y)$ is already determined by the $\Ff(V_{i,j})$. However, each $V_{i,j}\morphism X$ factors over $U_{i,j}$, i.e., lies in $\Ss'$. This shows that indeed it doesn't matter whether the limit is taken over all $v\in \Ss$ are all $v\in \Ss'$.
+\end{proof}
 
+\begin{exm}
+	Let $F$ be any $S$-scheme. Then $\Hom_{\cat{Sch}/S}(-,F)\colon (\cat{Sch}/S)^\op\morphism\cat{Set}$ is a presheaf on $\cat{Sch}/S$. We claim that it is actually an fpqc sheaf, i.e., a sheaf on the site $(\cat{Sch}/S)_\fpqc$ (and then the same is true for $(\cat{Sch}/S)_\fppf$).
+	
+	To prove this, we use \cref{prop:fpqcSheaf} of course. It is easy to see that $\Hom_{\cat{Sch}/S}(-,F)$ is a sheaf in the Zariski topology (since morphisms can be glued). So it's left to check the second condition, i.e.,
+	\begin{equation*}
+		\Hom_{\cat{Sch}/S}(X,F)\isomorphism\left\{\phi\in\Hom_{\cat{Sch}/S}(X',F)\st \phi p_1=\phi p_2\text{ in }\Hom_{\cat{Sch}/S}(X'\times_XX',F)\right\}
+	\end{equation*}
+	whenever $X'\morphism X$ is an fpqc morphism. For fixed $X'\morphism X$, the condition that this holds for all $F$ is precisely the definition for $X'\morphism X$ being the coequalizer
+	\begin{equation*}
+		\Coeq\Big(X'\times_XX'\doublemorphism[p_1][p_2]X'\Big)\,.
+	\end{equation*}
+	But then again this is equivalent to $X'\morphism X$ being an effective epimorphism, which we proved in \cref{prop:fpqcEffectiveEpi}.
+\end{exm}
 \appendix
 \backmatter\KOMAoption{chapterprefix}{false}
-\printbibliography
+\printbibliography[prenote=LINKS]
 \end{document}

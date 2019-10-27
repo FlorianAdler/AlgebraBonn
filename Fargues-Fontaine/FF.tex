@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot]{scrbook}
+\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot,bibliography=totoc]{scrbook}
 \usepackage{StyleFF}
 \usepackage{ShortcutsFF}
 \subject{Lecture Notes for}
@@ -16,7 +16,9 @@ University of Bonn}
 \KOMAoption{chapterprefix}{false}
 \maketitle
 \noindent This text consists of notes on the lecture Selected Topics in Algebra (The Fargues--Fontaine Curve), taught at the University of
-Bonn by Dr.\ Johannes Anschütz in the winter term (Wintersemester) 2019/20.\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
+Bonn by Dr.\ Johannes Anschütz in the winter term (Wintersemester) 2019/20.
+
+Some changes and some additions have been made by the author. To distinguish them from the lecture's actual contents, they are labelled with an asterisk. So any \emph{Lemma}* or \emph{Remark}* or \emph{Proof}* that the reader might encounter are wholly the author's responsibility.\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
 
 
 \tableofcontents
@@ -24,7 +26,7 @@ Bonn by Dr.\ Johannes Anschütz in the winter term (Wintersemester) 2019/20.\\[\
 \setcounter{llecture}{-1}
 \chapter{Introduction and Motivation}
 \renewcommand{\thedummy}{\thechapter.\thesection.\arabic{dummy}}
-\lecture[What is this $p$-adic Hodge theory?]{2019-10-16}
+\lecture[What is this \enquote{$p$-adic Hodge theory} and what does it have to do with this lecture?]{2019-10-16}
 The $0\ordinalth$ lecture had a lot of hard theorems and deep facts thrown at us---for purely motivational purposes! That is, none of the following is a prerequisite for this lecture; rather it shows where we're going, and parts of it will be discussed in detail.
 
 Fix a prime $p$ and a finite extension $K/\IQ_p$. Let $C$ be the completion of an algebraic closure $\ov{K}$ of $K$. We put $G_K=\Gal(\ov{K}/K)$. Note that the $G_K$-action on $\ov{K}$ can be continuously extended to $C$.
@@ -200,7 +202,7 @@ From now on, we will talk about stuff that will be the actual contents of the le
 		given by $D_\cris(V)=(V\otimes_{\IQ_p}B_\cris)^{G_K}$ and $V_\cris(D)=\Fil^0(D\otimes_{K_0}B_\cris)^{\phi=1}$. They satisfy the following theorem, which will be the main goal of the lecture.
 	\end{numerate}
 \end{rem}
-\begin{thm}[Colmerz/Fontaine]\label{thm:ColmerzFontaine}
+\begin{thm}[Colmez/Fontaine]\label{thm:ColmerzFontaine}
 	\enquote{Weakly admissible implies admissible}. That is, $D_\cris$ and $V_\cris$ restrict to equivalences
 	\begin{equation*}
 		D_\cris\colon\left\{
@@ -221,14 +223,434 @@ From now on, we will talk about stuff that will be the actual contents of the le
 		\item Being \defemph{weakly admissible} has something to do with \enquote{the Newton polygon lying above the Hodge polygon}.
 		\item The essential ingredient in the proof of \cref{thm:ColmerzFontaine} will be the \defemph{Fargues--Fontaine curve} (duh!), together with the relation between its $G_K$-invariant vector bundles and $\Rep_{\IQ_p}G_K$ resp.\ $\left\{\text{filtered }\phi\text{-modules}\right\}$. We can already define it as
 		\begin{equation*}
-			X_\FFC\coloneqq \Proj\Big(\bigoplus_{d\geq 0}(B_\cris^+)^{\phi=p^d}\Big)\,.
+			X_\FFC\coloneqq \Proj\Bigg(\bigoplus_{d\geq 0}(B_\cris^+)^{\phi=p^d}\Bigg)\,.
 		\end{equation*}
 		We will see that this is a Dedekind scheme over $\IQ_p$, and the completions of the local rings at its closed points are $B_\dR^+$.
 	\end{numerate}
 \end{rem}
 
+
 \mainmatter\KOMAoption{chapterprefix}{true}
 \renewcommand{\thedummy}{\thesection.\arabic{dummy}}
+
+\chapter{Yet to be named}
+\section{Ramified Witt Vectors}
+\lecture[The abstract of this lecture is left as an exercise.]{2019-10-23}
+Let $p$ be a prime, $K/\IQ_p$ a finite extension with ring of integers $\Oo_K$. We fix a choice of uniformizer $\pi$ and let $\IF_q=\Oo_K/\pi\Oo_K$ be the residue field of $\Oo_K$, where $q=p^f$. The goal for today is to prove
+\begin{prop}\label{prop:FqAlgebrasEquivalence}
+	There is an equivalence of categories
+	\begin{align*}
+		\left\{\begin{tabular}{c}
+			$\pi$-torsionfree $\pi$-adically complete $\Oo_K$-alge-\\
+			bras $R$ with perfect residue ring $R/\pi R$
+		\end{tabular}
+		\right\}&\isomorphism\left\{\text{perfect $\IF_q$-algebras}\right\}\\
+		R&\longmapsto A=R/\pi R\,.
+	\end{align*}
+\end{prop}
+For the proof, we will construct an inverse functor $A\mapsto W_{\Oo_K}(A)$ that somehow \enquote{reconstructs} $R$ from $R/\pi R$.
+\begin{rem}
+	The most important case is the unramified one, i.e., $K=\IQ_p$, in which case we obtain an equivalence
+	\begin{align*}
+	\left\{\begin{tabular}{c}
+	$p$-torsionfree $p$-adically complete rings\\
+	$R$ with perfect residue ring $R/pR$
+	\end{tabular}
+	\right\}&\isomorphism\left\{\text{perfect $\IF_p$-algebras}\right\}\\
+	R&\longmapsto A=R/p R\,.
+	\end{align*}
+	We will see (in \cref{cor:unramifiedWitt}) that the general case can be reduced to this one. Also we put $W\coloneqq W_{\IZ_p}$ for brevity.
+\end{rem}
+\numpar*{Example}
+We will see $W(\IF_p)=\IZ_p$ and $W(\IF_q)=\Oo_{K_0}$ where $K_0$ is the maximal unramified subextension of $K/\IQ_p$ (i.e., the unique unramified extension with residue field $\IF_q$). Moreover, we will see
+	\begin{equation*}
+		W\big(\IF\big\llbracket T^{1/p^\infty}\big\rrbracket\big)=\IZ_p\big\llbracket T^{1/p^\infty}\big\rrbracket\,.
+	\end{equation*}
+	
+\subsection{The construction of \texorpdfstring{$W_{\Oo_K}$}{W}}
+\begin{lem}\label{lem:LTE}
+	Let $R$ be any $\Oo_K$-algebra and $x,y\in R$ such that $x\equiv y\mod \pi$. Then
+	\begin{equation*}
+		x^{q^k}\equiv y^{q^k}\mod \pi^{k+1}\quad\text{for all }k\geq 0\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	By induction on $k$, this boils down to the following question: if $x\equiv y\mod \pi^k$, show $x^q\equiv y^q\mod \pi^{k+1}$. To see this, write $x=y+\pi^ka$ for some $a\in R$. As all binomial coefficients $\binom{q}{i}$ except for $i=0,q$ are divisible by $p$, we obtain 
+	\begin{equation*}
+		x^q=(y+\pi^ka)^q=y^q+p\pi^k(\ldots)+\pi^{kq}a^q\,.
+	\end{equation*}
+	As $\pi\mid p$, the assertions follows.
+\end{proof}
+\begin{deflem}
+	Let $R$ be a $p$-adically complete $\Oo_K$-algebra with $A=R/\pi R$ perfect. Let $a\in A$. Choose any sequence of lifts $\alpha_n\in R$ of $a^{1/q^n}\in A$. Then the sequence $(\alpha_n^{q^n})_{n\in \IN}$ converges in $R$ to a lift of $a$, which is independent of the choices of $\alpha_n$. The map
+	\begin{align*}
+		[-]\colon A&\morphism R\\
+		a&\longmapsto [a]\coloneqq\lim_{n\to\infty}\alpha_n^{q^n}
+	\end{align*}
+	is well-defined and called the \defemph{Teichmüller representative}. It defines a natural multiplicative section of $R\epimorphism A$.
+\end{deflem}
+\begin{proof}
+	We have $\alpha_{n+1}^q\equiv \alpha_n\mod \pi$, hence
+	\begin{equation*}
+		\alpha_{n+1}^{q^{n+1}}\equiv \alpha_n^{q^n}\mod \pi^{n+1}
+	\end{equation*}
+	by \cref{lem:LTE}. This shows convergence of the sequence in question. To show that it doesn't depend on the choice of lifts can be seen by a similar argument. Now if $a,b\in A$ are given together with a choice of lifts $\alpha_n$ and $\beta_n$, we can choose $\alpha_n\beta_n$ as lifts of $(ab)^1/q^n$, since the choice of lifts doesn't matter. From this argument, multiplicativity is clear. Naturality is similar.
+\end{proof}
+\begin{lem}\label{lem:TeichmüllerRep}
+	In our usual situation, every $x\in R$ admits a unique representation
+	\begin{equation*}
+		x=\sum_{n=0}^{\infty}[x_n]\pi^n\quad\text{for some }x_n\in A\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Let $x_0\in A$ be the reduction of $x$. Then $x\equiv[x_0]\mod \pi$, so $x-[x_0]=\pi y_1$ for some $y_1\in R$, which is unique as $R$ is $\pi$-torsionfree. Now let $x_1\in A$ be the reduction of $y_1$. Similar as above, write $y_1=[x_1]+\pi y_2$. Now repeat this process to get a representation of the desired type. Uniqueness can be shown along the lines of the construction.
+\end{proof}
+\begin{urem}
+	We can think of $R\morphism A$ in a similar way as we think about $A\llbracket T\rrbracket\morphism A$ with its canonical section $A\morphism A\llbracket T\rrbracket$ given by $a\mapsto a$. Since in our situation $R$ has characteristic $0$ but $A$ has characteristic $p$, there is no way $[-]\colon A\morphism R$ can be additive. So it being multiplicative is really the best we could hope for.
+\end{urem}
+At this point, \cref{lem:TeichmüllerRep} allows us to recover $R$ as a \emph{set} from $A=R/\pi R$. But what about the ring structure? Let's try! Say we have sequences $(x_n),(y_n)\in A^{\IN}$ and we want to find the unique sequence $(s_n)\in A^{\IN}$ such that
+\begin{equation*}
+	\sum_{n=0}^{\infty}[x_n]\pi^n+\sum_{n=0}^{\infty}[y_n]\pi^n=\sum_{n=0}^\infty [s_n]\pi^n\,.
+\end{equation*}
+One could naively assume that $s_n$ is just $x_n+y_n$. Spoiler: \emph{it's not}. For $n=0$, we calculate modulo $\pi$. We should have $[x_0]+[y_0]=[s_0]$, hence $s_0=x_0+y_0$. That was easy! Now for $n=1$. We calculate modulo $\pi^2$:
+\begin{equation*}
+	[x_0]+[x_1]\pi+[y_0]+[y_1]\pi\equiv [s_0]+[s_1]\pi\equiv [x_0+y_0]+[s_1]\pi\mod \pi^2\,.
+\end{equation*}
+Hence we want to put
+\begin{equation*}
+	``s_1=x_1+y_1+\frac{[x_0]+[y_0]-[x_0+y_0]}{\pi}\text{''}\,,
+\end{equation*}
+except it's not clear at all how to define this formally. Here we use a trick: since $A$ is perfect and $[-]$ is multiplicative, we have
+\begin{align*}
+	[x_0]+[y_0-[x_0+y_0]=\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q-\big[x_0^{1/q}+y_0^{1/q}\big]^q\,.
+\end{align*}
+Since $\big[x_0^{1/q}\big]+\big[y_0^{1/q}\big]\equiv\big[x_0^{1/q}+y_0^{1/q}\big]\mod \pi$, \cref{lem:LTE} shows
+\begin{equation*}
+	\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q\equiv\big[x_0^{1/q}+y_0^{1/q}\big]^q\mod \pi^2\,.
+\end{equation*}
+Hence we can choose
+\begin{equation*}
+	s_1=x_1+y_1-\sum_{i=1}^{q-1}\frac{1}{\pi}\binom{q}{i}\big[x_0^{1/q}\big]^i\big[y_0^{1/q}\big]^{q-i}\,,
+\end{equation*}
+where the $\pi^{-1}\binom{q}{i}$ are considered as elements of $\Oo_K$. In the very unpleasant Germany of 1936, the mathematician and SA member Ernst Witt understood this pattern and extended it to higher $n$ as follows.
+\begin{defi}
+	For $n\geq 0$, define the \emph{$n\ordinalth$ ghost component} as
+	\begin{equation*}
+		W_n=\sum_{i=0}^{n}X_i^{q^{n-i}}\pi^i\in\Oo_K[X_0,\dotsc,X_n]\,.
+	\end{equation*}
+\end{defi}
+\begin{urem}
+The idea behind the $W_n$ is that 
+\begin{equation*}
+	\sum_{i=0}^n[a_i]\pi^i=W_n\Big(\big[a_0^{1/q^n}\big],\dotsc,\big[a_n^{1/q^0}\big]\Big)\,.
+\end{equation*}
+\end{urem}
+\begin{prop}\label{prop:WittPolynomials}
+	There are unique sequences of polynomials $(S_n)_{n\in \IN}$, $(P_n)_{n\in\IN}$ in the polynomial ring $\Oo_K[X_0,\ldots,X_n,Y_0,\ldots,Y_n]$, such that
+	\begin{align*}
+		W_n(X_0,\dotsc,X_n)+W_n(Y_0,\dotsc,Y_n)&=W_n(S_0,\dotsc,S_n)\\
+		W_n(X_0,\dotsc,X_n)\cdot W_n(Y_0,\dotsc,Y_n)&=W_n(P_0,\dotsc,P_n)\,.
+	\end{align*}
+\end{prop}
+\begin{proof}%nitl
+	We show more generally that for any polynomial $\Phi\in\Oo_K[X,Y]$ there is a unique sequence $(\Phi)_{n\in\IN}$ of polynomials $\Phi_n\in\Oo_K[X_0,\dotsc,X_n,Y_0,\dotsc,Y_n]$ such that
+	\begin{equation*}
+		\Phi\big(W_n(X_0,\dotsc,X_n),W_n(Y_0,\dotsc,Y_n)\big)=W_n(\Phi_0,\dotsc,\Phi_n)\,.
+	\end{equation*}
+	We show this via induction on $n$. For $n=0$ we have to take $\Phi_0(X_0,Y_0)=\Phi(X_0,Y_0)$. Now suppose $\Phi_0,\dotsc,\Phi_n$ are already constructed. We need to check that
+	\begin{equation}\label{eq:Witt1}
+		\Phi\big(W_{n+1}(X_0,\dotsc,X_{n+1}),W_{n+1}(Y_0,\dotsc,Y_{n+1})\big)-W_{n+1}(\Phi_0,\dotsc,\Phi_n,0)
+	\end{equation}
+	is a polynomial divisible by $\pi^{n+1}$; for then $\pi^{-(n+1)}\cdot(\text{this polynomial})$ is the unique choice for $\Phi_{n+1}$. Note that 
+	\begin{equation}\label{eq:Witt2}
+		W_{n+1}(X_0,\dotsc,X_{n+1})\equiv W_n\left(X_0^q,\dotsc,X_n^q\right)\mod\pi^{n+1}\,.
+	\end{equation}
+	Using \cref{eq:Witt1} together with the induction hypothesis, we obtain
+	\begin{align*}
+		\Phi\big(W_{n+1}(X_0,\dotsc,X_{n+1}),W_{n+1}(Y_0,\dotsc,Y_{n+1})\big)&\equiv \Phi\big(W_n(X_0^q,\dotsc,X_n^q),W_n(Y_0^q,\dotsc,Y_n^q)\big)\\
+		&\equiv W_n\big(\Phi_0^{(q)},\dotsc,\Phi_n^{(q)}\big)\mod \pi^{n+1}\,,
+	\end{align*}
+	where $\Phi_i^{(q)}$ is the polynomial obtained from $\Phi_i$ by replacing every variable by its $q\ordinalth$ power. Note that $\Phi_i^{(q)}\equiv \Phi_i^q\mod \pi$. Thus, using \cref{lem:LTE} we get
+	\begin{equation*}
+		\pi^i\big(\Phi_i^{(q)}\big)^{q^{n-i}}\equiv \pi^i\Phi_i^{q^{n+1-i}}\mod \pi^{n+1}\,.
+	\end{equation*}
+	But this shows $W_n\big(\Phi_0^{(q)},\dotsc,\Phi_n^{(q)}\big)\equiv W_{n+1}(\Phi_0,\dotsc,\Phi_n,0)\mod \pi^{n+1}$. Now putting everything together shows that the polynomial in \cref{eq:Witt1} is indeed divisible by $\pi^{n+1}$, as required.
+\end{proof}
+\begin{cor}\label{cor:snpn}
+	Let $(x_n)_{n\in\IN}$ and $(y_n)_{n\in\IN}$ be sequences in $A^\IN$, where $A=R/\pi R$. For all $n\geq 0$ put
+	\begin{align*}
+		s_n&=S_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\\
+		p_n&=P_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\,. 
+	\end{align*}
+	Then these sequences $(s_n)_{n\in\IN}$ and $(p_n)_{n\in\IN}$ satisfy
+	\begin{align*}
+		\sum_{n=0}^\infty[x_n]\pi^n+\sum_{n=0}^\infty[y_n]\pi^n&=\sum_{n=0}^\infty[s_n]\pi^n\\
+		\Bigg(\sum_{n=0}^\infty[x_n]\pi^n\Bigg)\cdot\Bigg(\sum_{n=0}^\infty[y_n]\pi^n\Bigg)&=\sum_{n=0}^\infty[p_n]\pi^n\,.
+	\end{align*}
+\end{cor}
+\begin{proof*}
+	Again, we show the assertion more generally for an arbitrary $\Phi\in\Oo_K[X,Y]$ and its associated Witt polynomials $(\Phi_n)_{n\in\IN}$ constructed in the proof of \cref{prop:WittPolynomials}. The key observation is the following:
+	\begin{numerate}
+		\item[$(*)$] If $a_0,\dotsc,a_n$ and $a_0',\dotsc,a'_n$ are elements of $R$ such that $a_i\equiv a_i'\mod \pi$, then
+		\begin{align*}
+			W_n(a_0,\dotsc,a_n)\equiv W_n(a'_0,\dotsc,a'_n)\mod \pi^{n+1}\,.
+		\end{align*}
+	\end{numerate}
+	Indeed, if you think about it, this immediately follows from \cref{lem:LTE} and the definition of the $W_n$. Now fix some $N$ and put
+	\begin{align*}
+		\varphi_n&=\Phi_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\\
+		\varphi_n'&=\Phi_n\left(\big[x_0^{1/q^N}\big],\dotsc,\big[x_n^{1/q^{N-n}}\big],\big[y_0^{1/q^N}\big],\dotsc,\big[y_n^{1/q^{N-n}}\big]\right)\,.
+	\end{align*}
+	By construction of the Witt polynomials $(\Phi_n)_{n\in\IN}$ (see the proof of \cref{prop:WittPolynomials}) we immediately have 
+	\begin{equation*}
+		\Phi\left(W_N\left(\big[x_0^{1/q^N}\big],\dotsc,\big[x_N^{1/q^0}\big]\right),W_N\left(\big[y_0^{1/q^N}\big],\dotsc,\big[y_N^{1/q^0}\big]\right)\right)= W_N(\varphi_0',\dotsc,\varphi_N')\,.
+	\end{equation*}
+	But also $\varphi_n'\equiv\big[\varphi_n^{1/q^{N-n}}\big]\mod \pi$. Hence, by \itememph{*}, we obtain
+	\begin{align*}
+		W_N(\varphi_0',\dotsc,\varphi_N')\equiv W_N\left(\big[\varphi_0^{1/q^N}\big],\dotsc,\big[\varphi_n^{1/q^{0}}\big]\right)\mod \pi^{N+1}\,.
+	\end{align*}
+	Taking $N\rightarrow\infty$, this shows
+	\begin{equation*}
+		\Phi\Bigg(\sum_{n=0}^\infty[x_n]\pi^n,\sum_{n=0}^\infty[y_n]\pi^n\Bigg)=\sum_{n=0}^\infty[\varphi_n]\pi^n\,.
+	\end{equation*}
+	For $\Phi=X+Y$ resp.\ $\Phi=XY$ we retain the assertion of this corollary.
+\end{proof*}
+The upshot is that we can now reconstruct $R$ as a ring from $A=R/\pi R$. The next goal is to start with an arbitrary $A$ and construct an $R$ in a functorial way. In particular, we will allow $A$ to be an $\Oo_K$-algebra instead of an $\IF_q$-algebra (recall that $\IF_q=\Oo_K/\pi\Oo_K$). In the end, we will only be interested in the latter case, but allowing for rings of characteristic $0$ too gives us some nice uniqueness properties.
+\begin{defi}\label{def:W_OK}
+	For any $\Oo_K$-algebra $A$ write $W_{\Oo_K}(A)=A^\IN$. Its elements (which are sequences) are denoted $x=[x_0,x_1,\dotsc]$.
+\end{defi}
+\begin{prop}\label{prop:W_OK}
+	The functor from \cref{def:W_OK} admits a unique factorization
+	\begin{equation*}
+		\begin{tikzcd}
+		\cat{Alg}_{\Oo_K}\drar[dashed, "W_{\Oo_K}(-)"{swap}]\ar[rr, "(-)^\IN"] & & \cat{Set}\\
+		& \cat{Alg}_{\Oo_K} \urar["\mathrm{forget}"{swap}]&
+		\end{tikzcd}
+	\end{equation*}
+	such that the natural transformation $\Ww$ given by
+	\begin{align*}
+		\Ww_A\colon W_{\Oo_K}(A)&\morphism A^\IN\\
+		[x_n]_{n\in\IN}&\longmapsto \big(W_n(x_0,\dotsc,x_n)\big)_{n\in\IN}
+	\end{align*}
+	is a morphism of $\Oo_K$-algebras. Here $A^\IN$ is equipped with its natural component-wise $\Oo_K$-algebra structure.
+\end{prop}
+\begin{proof}
+	We first construct a natural $\Oo_K$-algebra structure on $W_{\Oo_K}(A)$. If two sequences $x=[x_n]_{n\in\IN}$ and $[y_n]_{n\in\IN}$ are given, we define $x+y=[s_n]_{n\in\IN}$ and $xy=[p_n]_{n\in\IN}$, where---you might have guessed it---we put
+	\begin{equation*}
+		s_n=S_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\quad\text{and}\quad p_n=P_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\,.
+	\end{equation*}
+	To see that this is determines a ring structure, the crucial thing to notice is that the proof of \cref{prop:WittPolynomials} works just the same if $\Phi\in\Oo_K[X_1,\ldots,X_N]$ is a polynomial in arbitrary many variables instead of just $N=2$. So by choosing suitable $\Phi$, we can verify all ring axioms. For example, $\Phi=-X_1$ constructs additive inverses, $\Phi=(X_1+X_2)+X_3=X_1+(X_2+X_3)$ shows the associativity law of addition, $\Phi=X_1(X_2+X_3)=X_1X_2+X_1X_3$ shows distributivity, and so on. Also, if $\alpha\in\Oo_K$, then $\Phi=\alpha X_1$ defines multiplication by $\alpha$ on $W_{\Oo_K}(A)$, turning it into an $\Oo_K$-algebra.
+	
+	This provides a factorization through $\cat{Alg}_{\Oo_K}$. It is clear from the construction that $\Ww_A$ is an $\Oo_K$-algebra morphism. So it remains to show that this factorization is unique. If $A$ is $\pi$-torsionfree, then $\Ww_A\colon W_{\Oo_K}(A)\morphism A^\IN$ is easily seen to be injective, hence the $\Oo_K$-algebra structure on $W_{\Oo_K}(A)$ is uniquely determined by the one on $A^\IN$. In general, every $A$ admits a surjection $A'\epimorphism A$ from a $\pi$-torsionfree $\Oo_K$-algebra; e.g., $A'=\Oo_K\left[T_a\st a\in A\right]$ does it. Then $W_{\Oo_K}(A')\epimorphism W_{\Oo_K}(A)$ uniquely determines the $\Oo_K$-algebra structure on $W_{\Oo_K}(A)$. This shows uniqueness.
+\end{proof}
+\begin{urem}
+	\begin{numerate}
+		\item For the uniqueness part it was crucial to have \enquote{enough} $\pi$-torsionfree $\Oo_K$-algebras. If we had worked with $\IF_q$-algebras, where $\pi=0$, this wouldn't have been possible. In this case, $W_n(x_0,\dotsc,x_n)$ is just $x_0^{q^n}$. Hence the name \enquote{ghost components}.
+		
+		\item Also, \cref{prop:W_OK} gives the functor $W_{\Oo_K}(-)$ the structure of a ring scheme.
+	\end{numerate}
+\end{urem}	
+\begin{lem}\label{lem:W_OKTeichmüller}
+	The natural map (which we will also call \enquote{Teichmüller lift})
+	\begin{align*}
+		[-]\colon A&\morphism W_{\Oo_K}(A)\\
+		x&\longmapsto [x,0,0,\dotsc]
+	\end{align*}
+	is multiplicative.
+\end{lem}
+\begin{proof*}
+	It's easy to see $P_0(X_0,Y_0)=X_0Y_0$. So to prove the assertion it suffices to check that $P_n(X_0,0,\dotsc,0,Y_0,0,\dotsc,0)=0$ for all $n>0$. But
+	\begin{align*}
+		W_n(X_0,0,\dotsc,0)\cdot W_n(Y_0,0,\dotsc,0)=X_0^{q^n}Y_0^{q^n}=W_n(X_0Y_0,0,\dotsc,0)\,,
+	\end{align*}
+	so this is easy to check by induction on $n$ (and using that polynomial rings over $\Oo_K$ are $\pi$-torsionfree).
+\end{proof*}
+If $A$ happens to be an $\IF_q$-algebra, then we have the Frobenius $(-)^q$ on $A$. By functoriality, it extends to an endomorphism $F\colon W_{\Oo_K}(A)\morphism W_{\Oo_K}(A)$. The next lemma shows that $F$ actually exists for arbitrary $A$ and can be explicitly described.
+\begin{lem}\label{lem:WittFrob}
+	\begin{numerate}
+		\item There is a unique natural transformation $F\colon W_{\Oo_K}(-)\morphism W_{\Oo_K}(-)$ of $\Oo_K$-algebras making the following diagram commute:
+		\begin{equation*}
+			\begin{tikzcd}
+				W_{\Oo_K}(A)\rar["\Ww"]\dar["F"{swap}] & A^\IN\dar &[-2.4em] (x_n)_{n\in\IN}\dar[|->]\\
+				W_{\Oo_K}(A)\rar["\Ww"] & A^\IN &[-2.4em] (x_{n+1})_{n\in \IN}
+			\end{tikzcd}
+		\end{equation*}
+		\item If $A$ is an $\IF_q$-algebra, then $F$ is given by $F([x_0,x_1,\dotsc])=[x_0^q,x_1^q,\dotsc]$ and it is induced by the Frobenius on $A$.
+	\end{numerate}
+\end{lem}
+\begin{proof*}
+	We first construct a sequence $(F_n)_{n\in\IN}$ of polynomials $F_n\in \Oo_K[X_0,\dotsc,X_{n+1}]$ satisfying $W_{n+1}(X_0,\dotsc,X_{n+1})=W_n(F_0,\dotsc,F_n)$ and that $F_n\equiv X_n^q\mod \pi$. This is done by induction on $n$, the case $n=0$ being trivial. Suppose $F_0,\dotsc,F_{n-1}$ have already been constructed and have the required property. If we could prove that
+	\begin{equation}\label{eq:Fn}
+		W_{n+1}(X_0,\dotsc,X_{n+1})-W_n(F_0,\dotsc,F_{n-1},0)\equiv \pi^n X_0^q\mod \pi^{n+1}\,,
+	\end{equation}
+	this would show existence of $F_n$ and $F_n\equiv X_n^q\mod \pi$ at once. To prove \cref{eq:Fn}, we may equivalently show
+	\begin{align}\label{eq:Fn2}
+		\begin{split}
+			0&\equiv W_{n+1}(X_0,\dotsc,X_{n-1},0,0)-W_n(F_0,\dotsc,F_{n-1},0)\\
+			&\equiv W_{n-1}\big(X_0^{q^2},\dotsc,X_{n-1}^{q^2}\big)-W_{n-1}\left(F_0^q,\dotsc,F_{n-1}^q\right)\mod \pi^{n+1}\,.
+		\end{split}
+	\end{align}
+	But $F_i\equiv X_i^q\mod \pi$ shows $F_i^q\equiv X_i^{q^2}\mod \pi^2$ by \cref{lem:LTE}, hence the bottom line of \cref{eq:Fn2} is indeed $0$ modulo $\pi^{n+1}$ by another application of \cref{lem:LTE}.
+	
+	Thus we can construct a sequence $F=(F_n)_{n\in \IN}$ with the required properties. By construction, $F$ makes the diagram in \itememph{1} commute and satisfies \itememph{2}. So it remains to show that $F$ is unique with this property and a morphism of $\Oo_K$-algebras. This can be done by the same argument as in the proof of \cref{prop:W_OK}. If $A$ is $\pi$-torsionfree, $W_{\Oo_K}(A)$ injects into $A^\IN$, hence it is uniquely determined and an $\Oo_K$-algebra morphism. In general, we take a surjection $A'\epimorphism A$ from a $\pi$-torsionfree $\Oo_K$-algebra.
+\end{proof*}
+\begin{lem}
+	There is a natural transformation $V\colon W_{\Oo_K}(-)\morphism W_{\Oo_K}(-)$ of $\Oo_K$-modules that makes the following diagram commute:
+	\begin{equation*}
+		\begin{tikzcd}
+			{[x_0,x_1,\dotsc]}\dar[|->] &[-2.4em] W_{\Oo_K}(A)\dar["V"{swap}]\rar["\Ww"] & A^\IN\dar &[-2.4em] (x_n)_{n\in\IN}\dar[|->]\\
+			{[0,x_0,x_1,\dotsc]} &[-2.4em] W_{\Oo_K}(A) \rar["\Ww"] & A^\IN &[-2.4em] (\pi x_{n-1})_{n\in\IN}
+		\end{tikzcd}\,,
+	\end{equation*}
+	where we put $x_{-1}=0$. Moreover, $V$ is unique with this property.
+\end{lem}
+\begin{proof*}
+	It's immediately clear that $V$ as constructed makes the diagram commute. To show that $V$ is unique, we use the usual trick: for $\pi$-torsionfree $\Oo_K$-algebras $A$, this is clear; in general, consider a surjection $A'\epimorphism A$ where $A'$ is $\pi$-torsionfree.
+\end{proof*}
+\numpar*{Remark}
+The letter $V$ stands for the German word \enquote{Verschiebung}. In contrast to $F$, $V$ is no ring endomorphism and it does depend on the choice of $\pi$.\footnote{Well, $W_n$ and thus $\Ww$ depend on $\pi$ too, so we cannot really say that $F$ is \enquote{independent} of $\pi$. But at least its image in $A^\IN$ is, in contrast to the image of $V$ in $A^\IN$.}
+\begin{lem}\label{lem:FVidentities}
+	The following identities hold for $F$ and the Verschiebung $V$.
+	\begin{numerate}
+		\item $FV=\pi$.
+		\item $V(F(x)y)=xV(y)$ for all $x,y\in W_{\Oo_K}(A)$.
+		\item $\pi F(x)y=F(xV(y))$ for all $x,y\in W_{\Oo_K}(A)$. 
+	\end{numerate}
+\end{lem}
+\begin{proof}
+	If $A$ is $\pi$-torsionfree, these can be checked in $A^\IN$. In general, take a surjection $A'\epimorphism A$ where $A'$ is $\pi$-torsionfree to reduce everything to the $\pi$-torsionfree case.
+\end{proof}
+\begin{lem}\label{lem:imVn}
+	\begin{numerate}
+		\item For all $n\in\IN$, the image of $V^n$ is an ideal in $W_{\Oo_K}(A)$.
+		\item We have $W_{\Oo_K}(A)\cong \lim_{n\in\IN}W_{\Oo_K}(A)/\im V^n$.
+		\item Every $x\in W_{\Oo_K}(A)$ admits a unique representation
+		\begin{equation*}
+			x=\sum_{n=0}^\infty V^n[x_n]
+		\end{equation*}
+		for some $x_n\in A$, where $[-]\colon A\morphism W_{\Oo_K}(A)$ is the Teichmüller lift from \cref{lem:W_OKTeichmüller}. In fact, the $x_n$ are determined by $x=[x_n]_{n\in\IN}$.
+	\end{numerate}
+\end{lem}
+\begin{proof*}
+	Since $V$ is $\Oo_K$-linear, $\im V^n$ is a subgroup of $W_{\Oo_K}(A)$. Moreover, \cref{lem:FVidentities}\itememph{1} shows $xV^n(y)=V^n(F^n(x)y)$ for all $x,y\in W_{\Oo_K}(A)$, hence $\im V^n$ is closed under scalar multiplication. This shows \itememph{1}.
+	
+	Now part~\itememph{2}. We claim that the canonical map of sets $W_{\Oo_K}(A)\morphism A^N$ given by $[x_n]_{n\in\IN}\mapsto (x_0,\dotsc,x_{N-1})$ descends to a bijection
+	\begin{equation*}
+		W_{\Oo_K}(A)/\im V^N\isomorphism A^N\,.
+	\end{equation*}
+	Let's first check that it is well-defined. Let $y=[y_n]_{n\in \IN}$ be in the image of $V^n$, i.e., $y_n=0$ for all $n< N$. Let $x+y=[s_n]_{n\in \IN}$. Then what we need to show is that $s_n=x_n$ for all $n<N$. Thus, it suffices to check the polynomial identity
+	\begin{equation*}
+		S_n(X_0,\dotsc,X_n,0,\dotsc,0)=X_n\,.
+	\end{equation*}
+	However, this is easily seen from induction and the trivial identity
+	\begin{equation*}
+		W_n(X_0,\dotsc,X_n)+W_n(0,\dotsc,0)=W_n(X_0,\dotsc,X_n)\,.
+	\end{equation*}
+	Since $W_{\Oo_K}(A)/\im V^N\morphism A^N$ is automatically surjective, it remains to show injectivity. So let $x,y\in W_{\Oo_K}(A)$ be such that $x_n=y_n$ for all $n<N$. Let $x-y=[\delta_n]_{n\in\IN}$. To show that $\delta$ is in the image of $V^n$, we need to check $\delta_n=0$ for $n<N$. Thus, it suffices to check the polynomial identity
+	\begin{equation*}
+		\Delta_n(X_0,\dotsc,X_n,X_0,\dotsc,X_n)=0\,,
+	\end{equation*}
+	where $\Delta=X-Y\in\Oo_K[X,Y]$ and $(\Delta_n)_{n\in\IN}$ are the associated Witt polynomials constructed in the proof of \cref{prop:WittPolynomials}. This can be done in the same way as above.
+	
+	Now since $A^\IN\cong \lim_{n\in\IN}A^n$, the bijection $W_{\Oo_K}(A)/\im V^n\cong A^n$ for all $n\in \IN$ shows that $W_{\Oo_K}(A)\cong \lim_{n\in\IN}W_{\Oo_K}(A)/\im V^n$ is true as a limit of sets. However, the limit in the category of $\Oo_K$-algebras can be taken on the level of sets. This shows \itememph{2}.
+	
+	Finally, we show \itememph{3}. First we prove that for all $N\in \IN$ we have
+	\begin{equation}\label{eq:sumVn}
+		\sum_{n=0}^NV^n[x_n]=[x_0,\dotsc,x_N,0,0,\dotsc]\,.
+	\end{equation}
+	We use induction on $N$. The case $N=0$ is trivial. Now suppose the assertion is true for $N-1$. To prove it for $N$, it suffices to check the following polynomial identity: if $(X_n)_{n\in\IN}$ and $(Y_n)_{n\in\IN}$ are sequences of variables such that $X_N=0$ and $Y_n=0$ for all $n\neq N$, then
+	\begin{equation*}
+		S_n(X_0,\dotsc,X_n,Y_0,\dotsc,Y_n)=\begin{cases}
+		Y_N&\text{if }n= N\\
+		X_n&\text{else}
+		\end{cases}\,.
+	\end{equation*}
+	For $n<N$, we obtain an identity that was already seen in the proof of \itememph{2}. For $n\geq N$, this easily follows by induction on $n$, using the identity
+	\begin{equation*}
+		W_n(X_0,\dotsc,X_n)+W_n(Y_0,\dotsc,Y_n)=W_n(X_0,\dotsc,X_{N-1},Y_N,X_{N+1},\dotsc,X_n)\,.
+	\end{equation*}
+	This shows \cref{eq:sumVn}. Now let $x-[x_0,\dotsc,x_N,0,0,\dotsc]=\delta=[\delta_n]_{n\in\IN}$. As in the proof of \itememph{2} we see that $\delta_n=0$ for $n\leq N$. Hence $\delta\in\im V^n$. This shows \itememph{3} except for the uniqueness part. But uniqueness is also clear from \cref{eq:sumVn}.
+\end{proof*}
+\begin{urem*}
+	\cref{lem:imVn} holds for arbitrary $A$, despite what was claimed in the lecture. We leave it as an exercise to relate this error to the lecture's overall rushed style.
+\end{urem*}
+Now that the general theory of $W_{\Oo_K}(-)$ is set up, we restrict ourselves to the case where $A$ has characteristic $p$, i.e., $\pi=0$ on $A$ and $A$ is an $\IF_q$-algebra.
+\begin{lem}\label{lem:Vincharp}
+	Suppose $\pi=0$ on $A$. Then the following hold:
+	\begin{numerate}
+		\item For $x=[x_n]_{n\in\IN}\in A$ we have $x=\sum_{n=0}^\infty V^n[x_n]$.
+		\item $VF=\pi$. Hence $V$ and $F$ commute.
+		\item $F\big(\sum_{n=0}^\infty V^n[x_n]\big)=\sum_{n=0}^\infty V^n[x_n^q]$.
+	\end{numerate}
+\end{lem}
+\begin{proof*}
+	Part~\itememph{1} was already seen in \cref{lem:imVn}\itememph{3}. Now \itememph{3} is an immediate consequence of \itememph{1} and \cref{lem:WittFrob}\itememph{2}. For \itememph{2}, note that $VF$ sends $[x_0,x_1,\dotsc]$ to $[0,x_0^q,x_1^q,\dotsc]$. Thus, it suffices to show that the Witt polynomials $(\Pi_n)_{n\in\IN}$ associated to $\Pi=\pi X\in\Oo_K[X]$ satisfy
+	\begin{equation*}
+		\Pi_n(X_0,\dotsc,X_n)\equiv X_{n-1}^q\mod \pi\quad\text{for }n\geq 1
+	\end{equation*}
+	and $\Pi_0\equiv 0\mod \pi$. We show this by induction on $n$, the case $n=0$ being trivial. Now suppose the assertions holds up to $n$. Then $\Pi_i\equiv X_{i-1}^q\mod \pi$ for all $i\leq n$ shows, by \cref{lem:LTE}, that
+	\begin{equation*}
+		W_{n+1}(\Pi_1,\dotsc,\Pi_{n+1})\equiv \pi X_0^{q^{n+1}}+\dotsb+\pi^{n}X_{n-1}^{q^2}+\pi^{n+1}\Pi_{n+1}\mod \pi^{n+2}\,.
+	\end{equation*}
+	However, the left-hand side can, by definition, be computed as
+	\begin{align*}
+		W_{n+1}(\Pi_1,\dotsc,\Pi_{n+1})&\equiv\pi W_{n+1}(X_0,\dotsc,X_{n+1})\\
+		&\equiv \pi X_0^{q^{n+1}}+\dotsb+\pi^nX_{n-1}^{q^2}+\pi^{n+1}X_n^q\mod \pi^{n+2}\,.
+	\end{align*}
+	This shows indeed $\Pi_{n+1}\equiv X_n^q\mod \pi$, as claimed.
+\end{proof*}
+\begin{lem}\label{lem:W_OKpi}
+	If $A$ is a perfect $\IF_q$-algebra, then $W_{\Oo_K}(A)$ is $\pi$-adically complete, and if $x=[x_n]_{n\in\IN}$, then
+	\begin{equation*}
+		x=\sum_{n=0}^\infty\big[x_n^{1/q^n}\big]\pi^n\,.
+	\end{equation*}
+\end{lem}
+\begin{proof*}
+	Since $A$ is perfect, the Frobenius is an automorphism, hence the same is true for $F$ on $W_{\Oo_K}(A)$. Thus \cref{lem:Vincharp}\itememph{2} shows that the image of $V^n$ is the image of $\pi^n$. Thus \cref{lem:imVn}\itememph{2} proves that $W_{\Oo_K}(A)$ is $\pi$-adically complete.
+	
+	To see the second assertion, note that by \cref{lem:Vincharp}\itememph{2} we have
+	\begin{equation*}
+		[x_n]\pi^n=V^nF^n\big[x_n^{1/q^n}\big]=V^n[x_n]\,,
+	\end{equation*}
+	and use \cref{lem:imVn}\itememph{3}.
+\end{proof*}
+Finally we have everything together to prove \cref{prop:FqAlgebrasEquivalence}.
+\begin{proof}[Proof of \cref{prop:FqAlgebrasEquivalence}]
+	We claim that $W_{\Oo_K}(-)$ defines an inverse functor. If $A$ is a perfect $\IF_q$-algebra, \cref{lem:W_OKpi} shows $W_{\Oo_K}(A)/\pi W_{\Oo_K}(A)= W_{\Oo_K}(A)/\im V$. The right-hand side is isomorphic $A$ as an $\Oo_K$-algebra. On the level of sets this was seen in the proof of \cref{lem:imVn}\itememph{2}. As $\Oo_K$-algebra this follows from $S_0=X_0+Y_0$, $P_0=X_0Y_0$, and $(aX)_0=aX_0$ for all $a\in\Oo_K$.
+	
+	Thus, the image of $W_{\Oo_K}(-)$ is as desired. It remains to provide a natural isomorphism between $R$ and $W_{\Oo_K}(A)$ if $A=R/\pi R$. We define it via
+	\begin{align*}
+		W_{\Oo_K}(A)&\morphism R\\
+		\sum_{n=0}^\infty[x_n]\pi^n&\longmapsto\sum_{n=0}^\infty[x_n]\pi^n\,.
+	\end{align*}
+	By \cref{lem:TeichmüllerRep} and \cref{lem:W_OKpi}, it is a natural bijection. By \cref{cor:snpn} it is $\Oo_K$-linear. We are done.
+\end{proof}
+\begin{cor}\label{cor:unramifiedWitt}
+	Let $K_0$ be the maximal unramified subextension of $K/\IQ_p$ (or in other words, the unique unramified extension of $\IQ_p$ with residue field $\IF_q$). Then there is a natural isomorphism
+	\begin{equation*}
+		W(A)\otimes_{\Oo_{K_0}}\Oo_K\isomorphism W_{\Oo_K}(A)\,.
+	\end{equation*}
+\end{cor}
+\begin{proof*}
+	Since $p$ is a uniformizer of $\Oo_{K_0}$, the Witt vectors $W(A)$ taken over $\IZ_p$ are the same as if they were taken over $\Oo_{K_0}$. Now the diagram
+	\begin{equation*}
+		\begin{tikzcd}[row sep=normal]
+			\left\{\begin{tabular}{c}
+			$p$-torsionfree $p$-adically complete \\
+			$\Oo_K$-algebras $R$ s.th.\ $R/p R$ is perfect
+			\end{tabular}
+			\right\}\ar[dd,"-\otimes_{\Oo_{K_0}}\Oo_K"{swap}]
+			\drar[start anchor=south east, end anchor=north west, "-/p-"{swap}] & \\
+			 & \left\{\text{perfect $\IF_q$-algebras}\right\}\ular[start anchor=168, end anchor=355, bend right, dotted, "W(-)"{swap}]\dlar[start anchor=192, end anchor=5, bend left, dotted, "W_{\Oo_K}(-)"]\\
+			\left\{\begin{tabular}{c}
+			$\pi$-torsionfree $\pi$-adically complete \\
+			$\Oo_K$-algebras $R$ s.th.\ $R/\pi R$ is perfect
+			\end{tabular}
+			\right\}\urar[start anchor=north east, end anchor=south west,"-/\pi-"] & 
+		\end{tikzcd}
+	\end{equation*}
+	of functors between categories commutes. Hence the diagram formed by the vertical arrow and the two dotted quasi-inverses commutes up to natural isomorphism, which is precisely what we want to show.
+\end{proof*}
 
 
 \appendix

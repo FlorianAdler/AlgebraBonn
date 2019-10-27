@@ -4,7 +4,9 @@
 \newcommand{\D}{D}
 \renewcommand{\H}{\mathrm{H}}
 \newcommand{\R}{\mathrm{R}}
-\renewcommand{\phi}{\varphi}
+\let\varphidummy\phi
+\let\phi\varphi
+\renewcommand{\varphi}{\varphidummy}
 \renewcommand{\epsilon}{\varepsilon}
 
 \newcommand{\Aa}{\mathcal{A}}
