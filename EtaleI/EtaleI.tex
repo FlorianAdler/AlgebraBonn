@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot, bibliography=oldstyle]{scrbook}
+\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot, bibliography=totoc]{scrbook}
 \usepackage{StyleEtaleI}
 \usepackage{ShortcutsEtaleI}
 \usepackage{halloweenmath}
@@ -66,6 +66,10 @@ Along the way, we will come across sheaves on the étale site, the relation betw
 In these notes, the modern meaning of the word \emph{scheme} is used. That is, a scheme in these lecture notes is what Professor Franke would call a \emph{prescheme}, and what he would call a \emph{scheme} will be called a \emph{separated scheme} in here.
 
 Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
+
+\numpar*{Important note}
+There will be no lecture next Friday ($1\ordinalst$ November), and the lecture next Monday ($4\ordinalth$ November) will take place in Seminarraum 0.011.
+
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 
@@ -364,9 +368,22 @@ The next thing to do is to introduce the fpqc topology and the fppf topology on 
 		\item We cannot choose $\Pp_\fpqc=\left\{\text{locally noetherian schemes}\right\}$. For example, take the counterexample from \cref{rem*:clarificationsForTechnicalAF}: $\Spec\IC\morphism \Spec\IQ$ is an fpqc morphism, hence so is its base change $\Spec(\IC\otimes_\IQ\IC)\morphism \Spec\IC$. However, $\IC\otimes_\IQ\IC$ is non-noetherian. 
 		
 		To see this, let $I$ be the kernel of the multiplication map $\IC\otimes_\IQ\IC\morphism \IC$. If $\IC\otimes_\IQ\IC$ was noetherian, then $I/I^2$ would be a finitely generated module over $(\IC\otimes_\IQ\IC)/I\cong \IC$. However, $I/I^2\cong \Omega_{\IC/\IQ}$, whose $\IC$-dimension is the cardinality of the continuum.
-		\item However, this works for the fppf topology since being locally noetherian is preserved under finitely presented morphisms. The abbreviation fppf comes from French \enquote{fidélement plat et de présentation finie}.
+		\item However, this works for the fppf topology since being locally noetherian is preserved under finitely presented morphisms. The abbreviation fppf comes from French \enquote{fidélement plat et de présentation finie}. For fppf covering sieves, Professor Franke briefly mentioned some equivalent characterizations, which we summarize in the following lemma. 
 	\end{alphanumerate}
 \end{rem}
+\begin{lem*}
+	Let $X$ be a scheme over $S$ and let $\Ss$ be a sieve over $X$. Then the following are equivalent:
+	\begin{alphanumerate}
+		\item $\Ss$ is an fppf-covering sieve.
+		\item We find an affine open cover $X=\bigcup_{i\in I}U_i$ and fppf morphisms $V_i\morphism U_i$ such that $(V_i\morphism U_i\morphism X)\in \Ss$ for all $i\in I$.
+		\item Same as \itememph{b}, but the $V_i\morphism U_i$ are quasi-finite in addition to being fppf.
+	\end{alphanumerate}
+\end{lem*}
+\begin{proof}[Sketch of a proof\textup{*}]
+	Clearly \itememph{c} implies \itememph{b} implies \itememph{a}. To see \itememph{a} $\Rightarrow$ \itememph{b}, the crucial thing to note is that if $X=\bigcup_{i\in I}U_i$, $K_i$, and $U_{i,j}$ are as in \cref{prop:technicalAF}\itememph{2}, then the $U_{i,j}\morphism U_i$ are open maps by \cref{prop:ppfOpen}. The rest is purely formal.
+	
+	However, \itememph{b} $\Rightarrow$ \itememph{c} is not so easy to see. This needs Cohen--Macaulay properties and we refer to \cite[\stackstag{056X}]{stacks-project}.
+\end{proof}
 Having defined Grothendieck topologies and seen some examples, the next step is to define sheaves on sites.
 \begin{defi}\label{def:sheaf}
 	Let $\Cc$ be an arbitrary category.
@@ -444,6 +461,272 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	\end{equation*}
 	But then again this is equivalent to $X'\morphism X$ being an effective epimorphism, which we proved in \cref{prop:fpqcEffectiveEpi}.
 \end{exm}
+\section{Étale Morphisms}
+\lecture[Unramified and étale morphisms: definitions, basic properties; étale coverings; pullback of Kähler differentials under étale morphisms.]{2019-10-28}Most of the results of this section have already been featured in Professor Franke's lecture on Jacobians of curves. So check out \cite[Section~2.7]{jacobians} for more detailed proofs.
+\begin{prop}\label{prop:unramified}
+	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian preschemes. Then the following conditions are equivalent for all points $x\in X$:
+	\begin{alphanumerate}
+		\item We have $(\Omega_{X/Y})_x=0$.
+		\item The diagonal $\Delta_{X/Y}\colon X\morphism X\times_YX$ is an open embedding at $x$.
+		\item If $y=f(x)$, then $\mm_{X,x}=\mm_{Y,y}\Oo_{X,x}$, and the extension $\kappa(x)/\kappa(y)$ on residue fields is separable.
+	\end{alphanumerate}
+	If $f$ is separated (so that $\Delta_{X/Y}$ is a closed embedding), these are moreover equivalent to
+	\begin{alphanumerate}\setcounter{enumi}{3}
+		\item If $\Jj\subseteq \Oo_{X\times_YX}$ is the sheaf of ideals defining the closed embedding $\Delta_{X/Y}$, then $\Jj_w=0$ for $w=\Delta_{X/Y}(x)$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	Since the assertion is local, we may assume $X=\Spec B$ and $Y=\Spec A$. In this case, $f$ is automatically separated. Then \itememph{b} $\Rightarrow$ \itememph{d} follows basically from the fact that $\Jj$ is coherent. The equivalence with \itememph{a} follows from the following \cref{prop:Kähler} as follows. If $\Jj$ vanishes at $w$, then so does $\Omega_{X/Y}\cong \Delta_{X/Y}^*(\Jj/\Jj^2)$ at $x$. Conversely, if $(\Omega_{X/Y})_x=0$, then $(\Jj/\Jj^2)_w=0$, hence $\Jj_w=\Jj_w^2$, hence $\Jj_w=0$ by Nakayama. We won't prove the equivalence with \itememph{c} here, but you can find it in \cite[Lemma~2.7.2]{jacobians}.
+\end{proof}
+\begin{prop}\label{prop:Kähler}
+	Let $f\colon X\morphism Y$ be a separated morphism of schemes and let $\Jj\subseteq \Oo_{X\times_YX}$ the sheaf of ideals defined by the closed embedding $\Delta_{X/Y}\colon X\morphism X\times_YX$. Then we have canonical isomorphisms
+	\begin{equation*}
+		\Omega_{X/Y}\cong \Delta_{X/Y}^*\Jj\cong \Delta_{X/Y}^*(\Jj/\Jj^2)\,.
+	\end{equation*}
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	The assertion is local on $X$ and $Y$, hence it can be reduced to the affine case, where it follows from \cref{lem:Kähler} below.
+\end{proof}
+\begin{lem}\label{lem:Kähler}
+	Let $B$ be an algebra over $A$. Let $I$ be the kernel of the multiplication map $B\otimes_AB\morphism B$. Then, canonically, 
+	\begin{equation*}
+		I/I^2\cong \Omega_{B/A}\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}[Sketch of a proof]
+In fact, for any $B$-module $M$ we obtain a canonical bijection
+\begin{align*}
+\Hom_B(I/I^2,M)&\isomorphism \Der_A(B,M)\\
+\phi&\longmapsto \d(b)=\phi(1\otimes b-b\otimes 1)\\
+\phi(b_1\otimes b_2)=b_1\d(b_2)&\longmapsfrom \d
+\end{align*}
+(lots of things are to check here actually, but we leave it like that since this is also a pretty well-known fact).
+\end{proof}
+\begin{defi}
+	\begin{alphanumerate}
+		\item If the equivalent properties of \cref{prop:unramified} are satisfied, the morphism $f$ is called \defemph{unramified at $x$}. If $f$ is unramified at every $x\in X$, we call $f$ \defemph{unramified}.
+		\item If the equivalent properties of \cref{prop:unramified} are satisfied and $f$ is moreover flat at $x$, then $f$ is called \defemph{étale at $x$}. If $f$ is étale at every $x\in X$, we call $f$ \defemph{étale}.
+		\item The morphism $f$ is called an \defemph{étale covering} if it is finite and étale.
+	\end{alphanumerate}
+\end{defi}
+\begin{fact}
+	Let $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ be morphisms of schemes.
+	\begin{alphanumerate}
+		\item The class of étale morphisms is stable under composition and base change, and being étale is a local property on source and target. The same holds for unramified morphisms.
+		\item If $gf$ is étale and $g$ is unramified, then $f$ is étale.
+		\item If $f$ is étale and a closed embedding, then $f$ is also an open embedding. In fact, this holds already when $f$ is flat and locally of finite presentation.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}
+	Part~\itememph{a}. It is clear from the definitions that being unramified is local on source and target. Moreover, from \cref{prop:unramified}\itememph{a} and the base change properties of Kähler differentials it is evident that being unramified is preserved under base change, and from \cref{prop:unramified}\itememph{c} we easily see that compositions of unramified morphisms are unramified again. Then the same follows for étale morphisms, since flat morphisms also have all these properties. This shows \itememph{a}.
+	
+	Part~\itememph{b}. We factor $f$ as
+	\begin{equation*}
+		\begin{tikzcd}
+			X\rar["f"]\drar["{j=(\id_X,f)}"{swap}]& Y\\
+			& X\times_ZY\uar["p"{swap}]
+		\end{tikzcd}\,,
+	\end{equation*}
+	where $p$ is étale since it is a base change of $gf\colon X\morphism Z$. By \cref{prop:unramified}\itememph{b}, the diagonal $\Delta_{Y/Z}\colon Y\morphism Y\times_ZY$ is an open embedding. Hence so is $j$, since it is the base change of $\Delta_{X/Y}$ with respect to $(f,\id_Y)\colon X\times_YZ\morphism Y\times_ZY$. Hence $j$ is étale too (see \cref{exm:embeddings}\itememph{b} below), which by \itememph{a} proves that $f$ is étale as well.
+	
+	Part~\itememph{c}. Suppose $f$ is a flat closed embedding of locally finite presentation. Locally, $f$ looks like $\Spec A/I\monomorphism \Spec A$ for some finitely generated ideal $I\subseteq A$. As $A/I$ is flat over $A$, we have $I\otimes_AA/I\cong IA/I$. But the right-hand side is $0$, hence $I/I^2=0$. As $I$ is finitely generated, this implies $I_\pp=0$ for all prime ideals $\pp\in V(I)$ by Nakayama. But then for all such $\pp$ there is an $g\notin\pp$ such that already $I_g=0$. Hence $D(g)\subseteq V(I)$, proving that $\Spec A/I\monomorphism\Spec A$ is also an open embedding.
+\end{proof}
+\begin{fact}\label{fact:etaleFibres}
+	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian schemes. Let $x\in X$, $y=f(x)$. Then $f$ is unramified at $x$ iff the fibre $f^{-1}\{y\}$ is unramified at $x$ over $\kappa(y)$. If, in addition, $f$ is flat at $x$, then it is étale at $x$ iff $f^{-1}\{y\}\morphism\Spec \kappa(y)$ is étale at $x$.
+\end{fact}
+\begin{proof}
+	The residue fields of $x$ and $y$ don't change upon passing to $f^{-1}\{y\}\morphism\Spec\kappa(y)$, and likewise the condition $\Oo_{X,x}/\mm_{Y,y}\Oo_{X,x}\cong \kappa(x)$ is preserved. Hence \cref{prop:unramified}\itememph{c} shows that $f$ is unramified at $x$ iff $f^{-1}\{y\}\morphism\Spec\kappa(y)$ is unramified at $x$. Since flatness is preserved under base change, the second assertion follows at once.
+\end{proof}
+\begin{exm}\label{exm:embeddings}
+	\begin{alphanumerate}
+		\item Let $k$ be a field and $f\colon X\morphism \Spec k$ a morphism of finite type. Then $f$ is étale at $x\in X$ iff $\Oo_{X,x}$ is a finite separable field extension of $k$. This is a straightforward consequence of \cref{prop:unramified}\itememph{c}.
+		\item Every open or closed embedding is unramified (this is clear from \cref{prop:unramified}\itememph{c}). Hence every open embedding is étale.
+	\end{alphanumerate}
+\end{exm}
+\begin{lem}\label{lem:etaleTrace}
+	Let $A$ be a finite-dimensional algebra over a field $k$. Then the following are equivalent:
+	\begin{alphanumerate}
+		\item $A$ is étale over $k$.
+		\item We can write $A\cong \prod_{i=1}^{n}\ell_i$, where the $\ell_i$ are finite separable field extensions of $k$.
+		\item The trace form $(a,b)\mapsto \Tr_{A/k}(ab)$ is a perfect pairing\footnote{To avoid ambiguity, we use the term \defemph{perfect pairing} rather than \defemph{non-degenerate pairing} for  bilinear forms $\langle -,-\rangle\colon P\times Q\morphism R$, with $P$ and $Q$ finite projective $R$-modules, that induce isomorphisms $P\isomorphism\Hom_R(Q,R)$ and $Q\isomorphism \Hom_R(P,R)$ (and actually either one follows from the other).} on $A\times A$.
+	\end{alphanumerate}
+\end{lem}
+\begin{proof*}
+	We prove \itememph{a} $\Leftrightarrow$ \itememph{b}. Since over a field everything is flat, the only question is whether $A$ is unramified. Since $A$ is finite-dimensional over $k$ and thus an artinian ring, we have 
+	\begin{equation*}
+		A\cong \prod_{i=1}^nA_{\mm_i}
+	\end{equation*}
+	where $\{\mm_1,\dotsc,\mm_n\}$ are the finitely many prime ideals of $A$ (see e.g.\ \cite[Corollary~2.16]{eisenbudCommAlg} for a proof). By \cref{exm:embeddings}\itememph{a}, $A$ is unramified at $\mm_i$ over $k$ iff $A_{\mm_i}$ is a finite separable field extension of $k$. This easily shows equivalence of \itememph{a} and \itememph{b}.
+	
+	If $\ell/k$ is a finite field extension, then a well-known assertion from classical field theory shows that $\Tr_{\ell/k}\colon \ell\times\ell\morphism k$ is perfect iff $\ell/k$ is separable. This immediately shows \itememph{b} $\Rightarrow$ \itememph{c}. For the converse, we only need to verify that all $A_{\mm_i}$ are fields. But if $x\in\mm_iA_{\mm_i}$, then $x$ is nilpotent in $A_{\mm_i}$, hence $a\mapsto \Tr_{A_{\mm_i}/k}(ax)$ is identically $0$ as nilpotent maps have vanishing trace. Thus $x=0$ as the trace pairing $\Tr_{A/k}$ is assumed perfect.
+\end{proof*}
+\begin{prop}\label{prop:finiteEtale}
+	Let $f\colon X\morphism Y$ be a finite flat morphism between locally noetherian schemes, so $\Bb=f_*\Oo_X$ is a vector bundle on $Y$ in addition to being an $\Oo_Y$-algebra, and $X=\SPEC \Bb$. Then the following are equivalent:
+	\begin{alphanumerate}
+		\item $f$ is étale.
+		\item The trace pairing, which is locally given by $(a,b)\mapsto \Tr_{\Bb/\Oo_Y}(ab)$, is perfect.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}[Sketch of a proof\textup{*}]
+	Since both assertions are local, we may assume that $X=\Spec B$ and $Y=\Spec A$ are affine, and moreover that $B$ is a finite free $A$-module. The trick is---of course---to reduce everything to fibres and apply \cref{lem:etaleTrace}. For condition \itememph{a} this is straightforward: since $B$ is already flat (even free) over $A$, étaleness can be checked on fibres by \cref{fact:etaleFibres}. So it suffices to transform \itememph{b} into a fibre-wise condition. To show that the map $B\morphism\Hom_A(B,A)$ induced by $\Tr_{B/A}$ is an isomorphism, it suffices to check that it is a locally split injection, since both sides are free $A$-modules of the same rank. But being a locally split injection in a neighbourhood of a prime $\pp\in\Spec A$ can be tested after tensoring with $\kappa(\pp)$. This is a very nice lemma that can be found in \cite[Ch.\:0 (19.1.12)]{egaIV1}. Thus also \itememph{b} can be tested on fibres, so everything reduces to \cref{lem:etaleTrace}. For more details, check out \cite[Proposition~2.7.2]{jacobians}.
+\end{proof}
+An interesting consequence is \cref{cor:etaleCodim2}. In fact, something much stronger is true: by a theorem of Zariski--Nagata, the étale fundamental group of a scheme doesn't change when a closed subscheme of codimension $\geq2$ is removed. %We might sketch a proof of this in one of the upcoming lectures.
+\begin{cor}\label{cor:etaleCodim2}
+	In the situation of \cref{prop:finiteEtale}, let $U\subseteq Y$ be an open subset such that every irreducible component of $Y\setminus U$ has codimension $\geq 2$. If the restriction $f|_{f^{-1}(U)}\colon f^{-1}(U)\morphism U$ is étale, then also $f$ is étale.
+\end{cor}
+\begin{proof*}
+	Working locally, we may assume that $X=\Spec B$ and $Y=\Spec A$ are affine and $B$ is a finite free $A$-module. By \cref{prop:finiteEtale} it suffices to show that $\Tr_{B/A}$ induces an isomorphism $B\isomorphism \Hom_A(B,A)$. Since $B$ and $\Hom_A(B,A)$ are finite free $A$-modules of the same rank, this morphism is given by some square matrix $C$ with coefficients in $A$. Thus is suffices to show that $\det C$ is invertible in $A$. Since $B\morphism\Hom_A(B,A)$ is an isomorphism over $U$ by assumption, we see that $V(\det C)$ must be contained in $Y\setminus U$. But every irreducible component of $V(\det C)$ has codimension $\leq 1$ by Krull's principal ideal theorem. Thus $V(\det C)=\emptyset$, whence $\det C$ is indeed invertible.
+\end{proof*}
+\begin{prop}
+	Let $f\colon X\morphism Y$ be an étale morphism between locally noetherian $S$-schemes. Then we have a canonical isomorphism
+	\begin{align*}
+		f^*\Omega_{Y/S}\isomorphism \Omega_{X/S}\,.
+	\end{align*}
+\end{prop}
+\begin{proof}
+	Surjectivity follows from the well-known short exact sequence
+	\begin{equation*}
+		f^*\Omega_{Y/S}\morphism\Omega_{X/S}\morphism\Omega_{X/Y}\morphism 0\,,
+	\end{equation*}
+	in which $\Omega_{X/Y}=0$ by \cref{prop:unramified} as $f$ is unramified. For injectivity, first note that the assertion is local on $X$, $Y$, and $S$. Hence without restriction they are all affine. Now consider the following diagram:
+	\begin{equation*}
+		\begin{tikzcd}
+			X \ar[rr,mono,bend left=50, "\Delta_{X/S}"{swap}]\rar[mono,"\Delta_{X/Y}"]\drar["f"{swap}] & X\times_YX\dar\rar[mono]\drar[dash, phantom, "(\boxtimes)"] & X\times_SX\dar["p"]\\
+			& Y\rar[mono,"\Delta_{Y/S}"] & Y\times_SY
+		\end{tikzcd}
+	\end{equation*}
+	Since $X$, $Y$, and $S$ are affine and thus separated, the diagonaly $\Delta_{X/S}$, $\Delta_{Y/S}$, and $\Delta_{X/Y}$ are closed embeddings. Moreover, $\Delta_{X/Y}$ is also an open embedding by \cref{prop:unramified}\itememph{b}. Moreover, it's easy to see that \itememph{\boxtimes} is a pullback square. Hence also $X\times_YX\monomorphism X\times_SX$ is a closed embedding. Moreover, the pullback is taken along $p$, which is a flat since it factors into a composition $X\times_SX\morphism X\times_SY\morphism Y\times_SY$ of base changes of the flat morphism $f\colon X\morphism Y$. 
+	
+	Now let $\Jj_Y\subseteq \Oo_{Y\times_SY}$ be the ideal defined by $\Delta_{Y/S}$. Then commutativity of the diagram together with \cref{prop:Kähler} shows
+	\begin{equation*}
+		f^*\Omega_{Y/S}\cong f^*\Delta_{Y/S}^*\Jj_Y\cong \Delta_{X/S}^*p^*\Jj_Y\,.
+	\end{equation*}
+	Since $\Omega_{X/S}\cong \Delta_{X/S}^*\Jj_X$, where $\Jj_X$ defines the closed embedding $\Delta_{X/S}$, it suffices to identify $\Jj_X$ with $p^*\Jj_Y$ (we will immediately see why this is not quite true, but at least that's the spirit). Since $p$ is flat and \itememph{\boxtimes} a pullback square, $p^*\Jj_Y\subseteq \Oo_{X\times_SX}$ is the ideal defined by the closed embedding $X\times_YX\monomorphism X\times_SX$. Moreover, $\Delta_{X/Y}$ is an open-closed embedding. Hence $p^*\Jj_Y\subseteq \Jj_X$, and while they might not coincide, their pullbacks to $X$ are certainly equal. This shows indeed $f^*\Omega_{Y/S}\cong \Omega_{X/S}$, as claimed.
+\end{proof}
+\begin{prop}
+	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian schemes. If $f$ is étale at $x\in X$ and $y=f(x)$, then $\Oo_{X,x}$ is regular iff so is $\Oo_{Y,y}$.
+\end{prop}
+\begin{proof*}
+	Let $X_y=f^{-1}\{y\}$ be the fibre over $y$. Then $X_y\morphism\Spec \kappa(y)$ is étale at $x$. By \cref{exm:embeddings}\itememph{a}, $\Oo_{X_y,x}$ is a zero-dimensional ring. But since $\Oo_{X,x}$ is flat over $\Oo_{Y,y}$, equality holds in the inequality
+	\begin{equation*}
+		\dim\Oo_{X,x}\leq\dim\Oo_{Y,y}+\dim\Oo_{X_y,x}
+	\end{equation*}
+	(see \cite[\stackstag{00ON}]{stacks-project}). This shows
+	\begin{equation}\label{eq:etaleDim}
+		\dim\Oo_{X,x}=\dim\Oo_{Y,y}\,.
+	\end{equation}
+	Moreover, $\mm_{X,x}=\mm_{Y,y}\Oo_{X,x}\cong \mm_{Y,y}\otimes_{\Oo_{Y,y}}\Oo_{X,x}$ using \cref{prop:unramified}\itememph{c} and flatness. Hence $\mm_{X,x}/\mm_{X,x}^2\cong \mm_{Y,y}/\mm_{Y,y}^2\otimes_{\kappa(y)}\kappa(x)$. Thus
+	\begin{equation}\label{eq:etaleResidue}
+		\dim_{\kappa(x)}\mm_{X,x}/\mm_{X,x}^2=\dim_{\kappa(y)}\mm_{Y,y}/\mm_{Y,y}^2\,.
+	\end{equation}
+	Combining \cref{eq:etaleDim} and \cref{eq:etaleResidue} immediately shows that $\Oo_{X,x}$ is regular iff so is $\Oo_{Y,y}$.
+\end{proof*}
+\begin{prop}[{\cite[Arcata II Def.\ (1.1)]{sga4.5}}]\label{prop:formallyEtale}
+	Let $R\morphism S$ be a map of finite type between noetherian rings. Then the following conditions are equivalent:
+	\begin{alphanumerate}
+		\item Let $A$ be an $R$-algebra with an ideal $I\subseteq A$ such that $I^2=0$. Then there is a canonical isomorphism $\Hom_R(S,A)\cong \Hom_R(S,A/I)$. In other words, for every solid \enquote{lifting problem} as below, there exists a unique dashed \enquote{solution}: 
+		\begin{equation}\label{diag:formallyEtale}
+			\begin{tikzcd}
+				R\dar\rar & A\dar\\
+				S\rar\urar[dashed,"\exists!"] & A/I
+			\end{tikzcd}\,.
+		\end{equation}
+		\item[\itememph{a'}] Same as \itememph{a}, but $I$ is only nilpotent.
+		\item[\itememph{a''}] Same as \itememph{a}, but we require this only for local rings $A$.
+		\item $S$ is flat over $R$ and $\Omega_{S/R}=0$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof*}
+	Brace yourselves, for this proof is going to be lengthy. To make it as readable as possible, we break it into three parts.
+	
+	\emph{Proof of equivalence of \itememph{a}, \itememph{a'}, and \itememph{a''}.}
+	It's clear that \itememph{a'} $\Rightarrow$ \itememph{a} $\Rightarrow$ \itememph{a''}. For the converse, let's show \itememph{a} implies \itememph{a'}. Let $I\subseteq A$ such that $I^n=0$. Using \itememph{a} repeatedly, we see that $S\morphism A/I$ lifts uniquely to some $S\morphism A/I^2$, which in turn lifts uniquely to some $S\morphism A/I^4$ etc. Inductively, we see that we get a unique lift to $A/I^{2^m}$ for all $m\geq 0$. Choosing $m$ such that $2^m\geq n$ provides a unique lift to $A=A/I^{2^m}$, as desired.
+	
+	Next, we show \itememph{a''} $\Rightarrow$ \itememph{a}. Suppose we are given a lifting problem as in \cref{diag:formallyEtale}. Condition \itememph{a''} provides unique lifts $S\morphism A_\pp$ of $S\morphism A_\pp/IA_\pp$ for every prime $\pp\in\Spec A$. But $S$ is of finite presentation over $R$ (since we assume it is of finite type and both are noetherian), so an easy argument shows that $S\morphism A_\pp$ already factors over $A_f$ for some $f\notin \pp$. Since this can be done for any prime $\pp$, we end up with a bunch of maps $S\morphism A_{f_i}$, where $i$ ranges over some indexing set $I$, and $\Spec A=\bigcup_{i\in I}D(f_i)$. Moreover, for any $i,j\in I$, the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			S \rar\dar & A_{f_i}\dar\\
+			A_{f_j}\rar & A_{f_if_j}
+		\end{tikzcd}
+	\end{equation*}
+	commutes. Indeed, this follows from the fact that for any prime $\qq\in D(f_if_j)$ the induced map $S\morphism A_\qq$ is uniquely determined as a lift of $S\morphism A_\qq/IA_\qq$, by the uniqueness condition of \itememph{a''}. Thus, the maps $S\morphism A_{f_i}$ determine a unique map $S\morphism A$ with the desired properties. To put it in fancy words: here we used that $\Hom_{\cat{Sch}}(-,\Spec S)$ is a sheaf in the Zariski topology. This concludes the proof of equivalence of \itememph{a}, \itememph{a'}, and \itememph{a''}.
+	
+	\emph{Proof of \itememph{b} $\Rightarrow$ \itememph{a}.} We first show that any lift in \cref{diag:formallyEtale} is unique if it exists. Suppose there are two lifts $\phi_1,\phi_2\colon S\morphism A$ of $\ov{\phi}\colon S\morphism A/I$, where the ideal $I$ satisfies $I^2=0$. Now consider $d=\phi_1-\phi_2$ as a map $d\colon S\morphism A$ of $R$-modules. By assumption, $d$ takes values in $I$ and vanishes on elements in the image of $R\morphism S$. Moreover, since $I=I/I^2$, it can be regarded as an $A/I$-module. Thus, for all $s,t\in S$, we obtain
+	\begin{align*}
+		d(st)=\phi_1(s)\phi_1(t)-\phi_2(s)\phi_2(t)&=(\phi_1(s)-\phi_2(s))\phi_1(t)+\phi_2(s)(\phi_1(t)-\phi_2(t))\\
+		&=d(s)\ov{\phi}(t)+\ov{\phi}(s)d(t)\,.
+	\end{align*}
+	Thus, $d\colon S\morphism I$ is a derivation. However, $\Der_R(S,I)=\Hom_S(\Omega_{S/R},I)=0$ as $\Omega_{S/R}=0$. This shows $\phi_1=\phi_2$ and thus uniqueness of lifts.
+	
+	Now for existence. Since $S$ is finitely presented over $R$, we may write it as $S\cong T/J$, where $T=R[x_1,\dotsc,x_n]$ is a polynomial ring over $R$ and $J\subseteq T$ a finitely generated ideal. We claim that among all possible lifting problems like \cref{diag:formallyEtale}, it is enough to solve the following one:
+	\begin{equation}\label{diag:formallyEtale2}
+		\begin{tikzcd}
+		R\dar\rar & T/J^2\dar\\
+		S\rar[iso]\urar[dashed] & T/J
+		\end{tikzcd}\,.
+	\end{equation}
+	Indeed, if any other lifting problem like \cref{diag:formallyEtale} is given, there always exists a lift $\psi\colon T\morphism A$ of $\ov{\phi}\colon S\morphism A/I$ (that's just polynomial rings being awesome). But then $\psi(J)\subseteq I$, hence $\psi(J^2)\subseteq I^2=0$. This shows that $\psi$ factors over some $\ov{\psi}\colon T/J^2\morphism A$. But then composing $\ov{\psi}$ with $S\morphism T/J^2$ from \cref{diag:formallyEtale2} produces a solution $S\morphism A$ of our lifting problem, as desired.
+	
+	Thus, it's enough to produce a split of $T/J^2\morphism T/J$. By \cite[Proposition~16.12]{eisenbudCommAlg}, this is equivalent to the condition that the left-most arrow in the conormal sequence
+	\begin{equation*}
+		J/J^2\morphism \Omega_{T/R}\otimes_TS\morphism\Omega_{S/R}\morphism 0
+	\end{equation*}
+	is a split monomorphism. But $\Omega_{S/R}=0$ by assumption, so $J/J^2\morphism\Omega_{T/R}\otimes_TS$ is a split monomorphism iff it is an isomorphism iff it is a locally split monomorphism. The latter condition can be checked on fibres. More precisely, by \cite[Ch.\:0 (19.1.12)]{egaIV1} it is enough to see that
+	\begin{equation*}
+		J/J^2\otimes_S\kappa(\ov\qq)\morphism\Omega_{T/R}\otimes_TS\otimes_S\kappa(\ov{\qq})
+	\end{equation*}
+	is injective for all primes $\ov{\qq}\subseteq \Spec T/J$. Let $\qq\in\Spec T$ be the prime over $\ov{\qq}$. Then $\kappa(\qq)=\kappa(\ov\qq)$, so we may instead work with $\qq$ everywhere. Let $\pp\in\Spec R$ be the preimage of $\qq$. Then it doesn't matter if we tensor the above sequence with $-\otimes_R\kappa(\pp)$ first and then $-\otimes_T\kappa(\qq)$ , or just with $-\otimes_T\kappa(\qq)$. Hence we may replace $\Omega_{T/R}$ by $\Omega_{T/R}\otimes_R\kappa(\pp)\cong \Omega_{T\otimes_R\kappa(\pp)/\kappa(\pp)}$ and $J$ by $J\otimes_R\kappa(\pp)$. Note that $J\otimes_R\kappa(\pp)\morphism T\otimes_R\kappa(\pp)$ is injective since $\Tor_1^R(\kappa(\pp),T/J)=0$, as $S\cong T/J$ is flat over $R$. In particular, $J\otimes_R\kappa(\pp)$ is an ideal in $T\otimes_R\kappa(\pp)$.
+	
+	So what use is that to us? Well, now we can replace $R$ by $\kappa(\pp)$! Thus, we are in the same situation as before, but now $R$ is a field $k=\kappa(\pp)$. This makes things much easier! First of all, since $S$ has finite type over $k$,
+	$\Omega_{S/k}=0$ shows that
+	\begin{equation*}
+		S=\prod_{i=1}^m\ell_i
+	\end{equation*}
+	is a finite product of separable field extensions $\ell_i/k$ (see \cite[Corollary~16.16]{eisenbudCommAlg} for a proof). In particular, $S$ is artinian and the $\ell_i$ are its localizations at prime ideals. Thus, $S_{\ov{\qq}}\cong \kappa(\ov{\qq})\cong \kappa(\qq)$, and $\kappa(\qq)$ is separable over $k$. 
+	
+	Now we want to show that
+	\begin{equation*}
+		J/J^2\otimes_T\kappa(\qq)\morphism\Omega_{T/k}\otimes_T\kappa(\qq)
+	\end{equation*}
+	is injective. Note that $J/J^2\otimes_T\kappa(\qq)\cong J_\qq/\qq J_\qq$, as $J\subseteq \qq$. But $T_\qq/J_\qq\cong S_{\ov{\qq}}\cong \kappa(\qq)$. Hence $J_\qq=\qq T_\qq$ is already the maximal ideal of the local ring $T_\qq$. Moreover,
+	\begin{equation*}
+		\Omega_{T/k}\otimes_T\kappa(\qq)\cong \Omega_{T_\qq/k}\otimes_{T_\qq}\kappa(\qq)\,.
+	\end{equation*}
+	Hence what we want to show is that
+	\begin{equation*}
+		\qq/\qq^2\morphism\Omega_{T_\qq/k}\otimes_{T_\qq}\kappa(\qq)\,.
+	\end{equation*}
+	is injective. Now $T_\qq=k[x_1,\dotsc,x_n]_\qq$ is a noetherian local ring containing $k$, and its residue field $\kappa(\qq)$ is separable over $k$. Thus, we may apply \cite[\stackstag{00TU}]{stacks-project}, which precisely gives us that the above map is injective (the proof of this lemma basically constructs a splitting of the morphism in question). We are done!
+	
+	\emph{Proof of \itememph{a} $\Rightarrow$ \itememph{b}.} We first show $\Omega_{S/R}=0$. Consider any lifting problem like \cref{diag:formallyEtale}. Then $\ov{\phi}\colon S\morphism A/I$ has a unique lift $\phi\colon S\morphism A$. However, reversing the argument in the proof of \itememph{b} $\Rightarrow$ \itememph{a}, we see that any derivation $d\colon S\morphism I$ gives rise to another solution $\phi+d\colon S\morphism A$ of the lifting problem. Thus, $0=\Der_A(S,I)=\Hom_S(\Omega_{S/R},I)$ holds in all such situations. Now consider $A=S\oplus\Omega_{S/R}$, with its natural $S$-module structure. We can extend this to a natural graded ring structure via $\omega_1\omega_2=0$ for all $\omega_1,\omega_2\in \Omega_{S/R}$. Thus, $A$ is an $S$-algebra with an ideal $I=\Omega_{S/R}$ that satisfies $I^2=0$. Applying our previous considerations, we see $0=\Hom_S(\Omega_{S/R},\Omega_{S/R})$, whence $\Omega_{S/R}=0$, as desired.
+	
+	It remains to show that $S$ is flat over $R$. Since $R$ and $S$ are assumed to be noetherian, there is actually a very quick argument: write $S\cong T/J$, where $T=R[x_1,\dotsc,x_n]$ is a polynomial ring. Then \itememph{a'} shows that the isomorphism $S\isomorphism T/J$ lifts to unique maps $S\morphism T/J^n$ for all $n>0$. Hence, if $\roof{T}$ is the $J$-adic completion of $T$, then $\roof{T}\epimorphism S$ has a unique split $S\morphism \roof{T}$. In particular, $S$ is a direct summand of $\roof{T}$. But $\roof{T}$ is flat over $T$, which is flat over $R$, so $S$ too is flat over $R$.
+\end{proof*}
+\begin{rem}
+	\cite[Arcata]{sga4.5} has only conditions \itememph{a} and \itememph{b}, together with another condition \itememph{c}, which is a Jacobian-like criterion. Moreover, $R$ doesn't need to be noetherian; instead it is assumed that $S$ is finitely presented over $R$. Then the equivalent conditions are used as a definition \defemph{étale ring maps}.
+\end{rem}
+\begin{rem*}
+	Our proof* of \cref{prop:formallyEtale} works for the non-noetherian case as well---except for the very last step: completions of non-noetherian rings need not be flat! Here we present a way to circumvent this argument.
+	
+	As usual, write $S\cong T/J$, and let $\ov{\qq}\in \Spec S$ be a prime with preimages $\qq\in \Spec T$ and $\pp\in \Spec R$. It suffices to show that $S_{\ov{\qq}}$ is flat over $R_\pp$. Our goal is to show that $J_\qq$ can be generated by elements $f_1,\dotsc,f_c$, whose images in $T_\qq/\pp T_\qq$ form a regular sequence. Then \cite[\stackstag{0470}]{stacks-project} can be applied to see that $S_{\ov\qq}\cong T_\qq/J_\qq$ is flat over $R_\pp$.
+	
+	Our first goal along that way is to show that $J_\qq/\qq J_\qq\morphism\qq/\qq^2$ is injective. One way to see this is to show that even $J_\qq=\qq T_\qq$ holds, by an argument as in the proof of \itememph{b} $\Rightarrow$ \itememph{a}. Here we use a different argument, that also works in more general situations. First note that
+	\begin{equation*}
+		J/J^2\morphism\Omega_{T/R}\otimes_TS
+	\end{equation*}
+	is split injective. Indeed, this follows from \cite[Proposition~16.12]{eisenbudCommAlg}, because the projection map $T/J^2\morphism T/J\cong S$ admits a splitting by \cref{prop:formallyEtale}\itememph{a}. In particular, the above map stays injective under tensoring with $\kappa(\qq)$, i.e.,
+	\begin{equation*}
+		J_\qq/\qq J_\qq\morphism\Omega_{T_\qq/R_\pp}\otimes_{T_\qq}\kappa(\qq)
+	\end{equation*}
+	is injective. But this map factors through $\qq/\qq^2$ via the conormal sequence
+	\begin{equation*}
+		\qq/\qq^2\morphism\Omega_{T_\qq/R_\pp}\otimes_{T_\qq}\kappa(\qq)\morphism\Omega_{\kappa(\qq)/R_\pp}\morphism 0\,
+	\end{equation*}
+	hence $J_\qq/\qq J_\qq\morphism \qq/\qq^2$ is indeed injective. Now choose a basis $(\ov{f}_1,\dotsc,\ov{f}_c)$ of the $\kappa(\qq)$-vector space $J_\qq/\qq J_\qq$ and extend it to a basis $(\ov{f}_1,\dotsc,\ov{f}_d)$ of $\qq/\qq^2$ (note that $\qq/\qq^2$ is finite-dimensional since $T_\qq/\pp T_\qq\cong \kappa(\pp)[x_1,\dotsc,x_n]_\qq$ is noetherian, even though $T_\qq$ need not be noetherian). For all $i=1,\dotsc,c$ choose lifts $f_i\in J_\qq$ of $\ov{f}_i$By Nakayama's lemma, the $f_i$ generate $J_\qq$. Moreover, their images in $T_\qq/\pp T_\qq$ are part of a minimal generating system of the maximal ideal $\qq (T_\qq/\pp T_\qq)\subseteq T_\qq/\pp T_\qq$. Indeed, just choose lifts $f_j\in T_\qq/\pp T_\qq$ of the $\ov{f}_j$ for $j=c+1,\dotsc,d$ to get a complete minimal generating system of $\qq(T_\qq/\pp T_\qq)$, by a well-known Nakayama argument.
+	
+	But $T_\qq/\qq T_\qq$ is a regular local ring because it is a localization of $\kappa(\pp)[x_1,\dotsc,x_n]$ at some prime ideal. Hence any minimal generating system of its maximal ideal form a regular sequence (see \cite[\stackstag{00NQ}]{stacks-project} or the proof of \cite[Proposition~2.2.1]{homalg}). This shows that $f_1,\dotsc,f_c$ have the required property and we are done.
+\end{rem*}
+
 \appendix
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography[prenote=LINKS]

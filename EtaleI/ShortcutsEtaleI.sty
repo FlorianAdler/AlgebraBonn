@@ -122,7 +122,7 @@
 \newcommand{\newoperator}[1]{\expandafter\def\csname #1\endcsname{\operatorname{#1}}}
 
 \newcommand{\Ann}{\operatorname{Ann}}
-\newcommand{\Aann}{\operatorname{\Aa nn}}
+\newcommand{\Aann}{\mathop{\Aa nn}}
 \newoperator{Ass}
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\cha}{\operatorname{char}}
@@ -181,8 +181,8 @@
 \newoperator{Tot}
 \newoperator{Ext}
 \newoperator{sgn}
-\DeclareMathOperator{\SPEC}{\mathbf{Spec}}
-\DeclareMathOperator{\PROJ}{\mathbf{Proj}}
+\DeclareMathOperator{\SPEC}{\underline{\smash{\mathrm{Spec}}}}%{\mathbf{Spec}}
+\DeclareMathOperator{\PROJ}{\underline{\smash{\mathrm{Proj}}}}%{\mathbf{Proj}}
 \newcommand{\nil}{\operatorname{nil}}
 \newcommand{\Spec}{\operatorname{Spec}}
 \newoperator{Proj}
@@ -327,8 +327,8 @@
 \newcommand{\pullbacksign}{\tikz{\draw[line width=rule_thickness, line cap=round] (0,0) ++ (-0.75ex,-0.75ex) -- ++(1.5ex,0ex) -- ++ (0ex,1.5ex);\node at (-0.6ex,0.6ex) {.};}}
 \newcommand{\pushoutsign}{\tikz{\draw (0,0) ++ (-0.75ex,-0.75ex) -- ++(0ex,1.5ex) -- ++ (1.5ex,0ex);\node at (0.6ex,-0.6ex) {.};}}
 \tikzcdset{
-	pullback/.style = {dash, phantom, "\pullbacksign", very near start},
-	pushout/.style = {dash, phantom, "\pushoutsign", very near end}
+	pullback/.style = {dash, phantom, "\pullbacksign"},
+	pushout/.style = {dash, phantom, "\pushoutsign"}
 }
 
 \tikzcdset{
