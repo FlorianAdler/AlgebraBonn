@@ -53,6 +53,7 @@
 
 %%%% miscellaneous %%%%
 \usepackage{blindtext}
+\usepackage{xparse}
 
 
 %%%% CUSTOM LIST OF LECTURES %%%%
@@ -94,9 +95,13 @@ listname={List of Lectures}%
 
 %%%% THEOREMS AND CROSS-REFERENCING %%%%
 
+%%%% equations %%%%
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+
 %%%% relevant packages %%%%
 \usepackage{amsthm}
-\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=cyan,urlcolor=blue!60!black,unicode]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=magenta,urlcolor=cyan,unicode]{hyperref}
 \usepackage[capitalize,compress]{cleveref}
 
 \newcommand{\stackstag}[1]{\href{https://stacks.math.columbia.edu/tag/#1}{Tag~#1}}
@@ -192,7 +197,7 @@ listname={List of Lectures}%
 \crefformat{defi*}{Definition*~\textup{#2#1#3}}
 \crefformat{exm*}{Example*~\textup{#2#1#3}}
 
-\newenvironment{proof*}{\begin{proof}[Proof\emph{*}]}{\end{proof}}
+\newenvironment{proof*}[1][Proof]{\begin{proof}[#1\emph{*}]}{\end{proof}}
 
 %%%% STYLE CHOICES %%%%
 
@@ -250,7 +255,7 @@ font={}
 \newcommand{\unnumparr}[1]{\unnumpar{#1.\enskip---\enskip}}
 
 \newcommand{\numpar}[1]{%
-	\edef\retardedDummy{#1}%
+	\edef\retardedDummy{\detokenize{#1}}%
 	\def\retardedDummz{*}
 	\ifx\retardedDummy\retardedDummz%
 	\expandafter\unnumparr
