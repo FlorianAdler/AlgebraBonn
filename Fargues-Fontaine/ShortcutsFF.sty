@@ -150,6 +150,8 @@
 \newcommand{\alt}{\mathrm{alt}}
 \newoperator {Cl}
 \newoperator{Pic}
+\newoperator{Frac}
+\newoperator{Prim}
 \newoperator{Div}
 \renewcommand{\det}{\operatorname{det}}%otherwise, det_K behaves strangely in displaymode
 \newoperator{Mat}
@@ -217,6 +219,7 @@
 \DeclareMathOperator*{\limit}{lim}
 \DeclareMathOperator{\Global}{\Gamma}
 \renewcommand*\d{\mathrm{d}}
+
 
 %%%% fancy arrows %%%%
 %
@@ -388,7 +391,11 @@
 \newcommand{\complete}{\lowerwidehatsym}
 \newcommand{\qcmod}{\lowerwidetildesym}
 
-%%%% micellaneous %%%%
+
+\newcommand{\cotimes}{\mathbin{\roof{\otimes}}}
+
+%%%% miscellaneous %%%%
+\newcommand{\blank}{\phantom{w}}
 \newcommand{\defemph}[1]{\emph{#1}}%{\textbf{\upshape#1}} %emphasize style of a to-be-defined object in a definition
 \newcommand{\ordinalst}{^{\text{st}}}
 \newcommand{\ordinalnd}{^{\text{nd}}}
@@ -398,3 +405,4 @@
 
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
+\newcommand{\localize}[1]{\big[\textstyle\frac{1}{#1}\big]}

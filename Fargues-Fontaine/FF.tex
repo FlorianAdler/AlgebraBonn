@@ -185,14 +185,14 @@ From now on, we will talk about stuff that will be the actual contents of the le
 		\item Here, $K_0\subseteq K$ is the maximal subextension that is unramified over $\IQ_p$ (so $p$ is a uniformizer of $\Oo_{K_0}$). There exists a (unique) Frobenius lift $\phi$, which acts on $\Oo_{K_0}$.
 		\item $H_\cris^n(\XX_0/\Oo_{K_0})$ is the \emph{crystalline cohomology} of $\XX_0$ over $\Oo_{K_0}$. Roughly, this is the \enquote{de Rham cohomology of a smooth lift}. It has the Frobenius $\phi$ acting on it. Moreover,
 		\begin{equation*}
-			\Big(H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\big[p^{-1}\big], \phi, \Fil^\bullet\Big)
+			\Big(H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\big[\textstyle\frac 1p\big], \phi, \Fil^\bullet\Big)
 		\end{equation*}
 		is a \defemph{filtered $\phi$-module} (or \defemph{Frobenius isocrystal}), that is, a finite-dimensional $K_0$-vector space $D$, with an automorphism $\phi_D\colon D\morphism D$ that satisfies $\phi_D(\lambda d)=\phi(\lambda)\phi_D(d)$ for all $\lambda\in K_0$, $d\in D$ (this is called \defemph{$\phi$-semilinear}), and a filtration $\Fil^\bullet(D_K)$ (coming from the Hodge filtration) on $D_K\coloneqq D\otimes_{K_0}K$.
 		\item $B_\cris$ is Fontaine's ring of \defemph{crystalline $p$-adic periods}. It is constructed as follows. Let
 		\begin{equation*}
-			A_\cris\coloneqq H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,,
+			\IA_\cris\coloneqq H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,,
 		\end{equation*}
-		with a Frobenius action $\phi$ on it. Put $B_\cris^+\coloneqq A_\cris[p^{-1}]$. Then $B_\cris^+$ is actually a $G_K$-stable subring of $B_\dR^+$, and it contains $t=\log{}[\epsilon]$ from \cref{rem:deRhamComp}\itememph{3}. Then we can finally define $B_\cris=B_\cris^+[t^{-1}]$. Also note that $\phi(t)=pt$.
+		with a Frobenius action $\phi$ on it. Put $B_\cris^+\coloneqq \IA_\cris\big[\frac1p\big]$. Then $B_\cris^+$ is actually a $G_K$-stable subring of $B_\dR^+$, and it contains $t=\log{}[\epsilon]$ from \cref{rem:deRhamComp}\itememph{3}. Then we can finally define $B_\cris=B_\cris^+\big[\frac1t\big]$. Also note that $\phi(t)=pt$.
 		
 		One cool feature of the Fargues--Fontaine curve is that all these strange period rings appear as rings of functions on it.
 		\item \cref{thm:crystallineStuff} is analogous to the following statement in $\ell$-adic cohomology (where $\ell\neq p$ is a prime). Let $\XX\morphism\Spec \Oo_K$ be smooth proper, and $s,\eta\in\Spec \Oo_K$ the special resp.\ the generic point. Then there exists a $G_K$-equivariant isomorphism
@@ -200,7 +200,7 @@ From now on, we will talk about stuff that will be the actual contents of the le
 			H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)\cong H_\et^*(\XX_{\ov{s}},\IQ_\ell)\,.
 		\end{equation*}
 		In particular, $H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)$ is unramified.
-		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})[p^{-1}]$ contain the \enquote{same information}. More mysterious, however, is the question how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces to $K_0$-vector spaces with Frobenius and a filtration over $K$? This became known as \enquote{Grothendieck's question on the \emph{mysterious functor}}. This was resolved by Fontaine: There are functors
+		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})\big[\frac1p\big]$ contain the \enquote{same information}. More mysterious, however, is the question how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces to $K_0$-vector spaces with Frobenius and a filtration over $K$? This became known as \enquote{Grothendieck's question on the \emph{mysterious functor}}. This was resolved by Fontaine: There are functors
 		\begin{equation*}
 			D_\cris\colon \Rep_{\IQ_p}G_K \doublelrmorphism \left\{\text{filtered }\phi\text{-modules}\right\}\noloc V_\cris
 		\end{equation*} 
@@ -327,7 +327,7 @@ Hence we want to put
 \end{equation*}
 except it's not clear at all how to define this formally. Here we use a trick: since $R$ is perfect and $[-]$ is multiplicative, we have
 \begin{align*}
-	[x_0]+[y_0-[x_0+y_0]=\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q-\big[x_0^{1/q}+y_0^{1/q}\big]^q\,.
+	[x_0]+[y_0]-[x_0+y_0]=\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q-\big[x_0^{1/q}+y_0^{1/q}\big]^q\,.
 \end{align*}
 Since $\big[x_0^{1/q}\big]+\big[y_0^{1/q}\big]\equiv\big[x_0^{1/q}+y_0^{1/q}\big]\mod \pi$, \cref{lem:LTE} shows
 \begin{equation*}
@@ -341,7 +341,7 @@ where the $\pi^{-1}\binom{q}{i}$ are considered as elements of $\Oo_E$. In the v
 \begin{defi}
 	For $n\geq 0$, define the \emph{$n\ordinalth$ ghost component} as
 	\begin{equation*}
-		W_n=\sum_{i=0}^{n}X_i^{q^{n-i}}\pi^i\in\Oo_E[X_0,\dotsc,X_n]\,.
+		W_n(X_0,\dotsc,X_n)=\sum_{i=0}^{n}X_i^{q^{n-i}}\pi^i\in\Oo_E[X_0,\dotsc,X_n]\,.
 	\end{equation*}
 \end{defi}
 \begin{urem}
@@ -669,7 +669,7 @@ Finally we have everything together to prove \cref{prop:FqAlgebrasEquivalence}.
 \lecture[Definition of $\IA_\inf$. Tilting as an adjoint to $W_{\Oo_E}(-)$. Perfectoid $\Oo_E$-algebras: tilting equivalence, examples. A picture of $\Spec \IA_\inf$.]{2019-10-30}
 Apparently, $\IA_\inf$ is so awesome that Pierre Colmez titled it \enquote{The One Ring to rule them all} (\href{https://www.facebook.com/cyclotomicmemes/photos/a.189056291880728/347547606031595/?type=3&theater}{somewhat related}). For example, it already determines $B_\cris$ and $B_\dR$.
 
-Throughout this section, let $p$ be a prime, $E/\IQ_p$ a finite extension, $\pi\in \Oo_E$ a uniformizer and $\IF_q=\Oo_E/\pi\Oo_E$ for $q=p^f$. Moreover, let $F/\IF_q$ be a non-archimedean algebraically closed extension. For us, \defemph{non-archimedean} always means that $F$ is complete with respect to a non-archimedean non-trivial valuation $|-|\colon F\morphism\IR_{\geq 0}$. As usual, the \defemph{ring of integers} $\Oo_F$ is defined as
+Throughout this section, let $p$ be a prime, $E/\IQ_p$ a finite extension, $\pi\in \Oo_E$ a uniformizer and $\IF_q=\Oo_E/\pi\Oo_E$ for $q=p^f$. Moreover, let $F/\IF_q$ be a non-archimedean algebraically closed extension. For us, \defemph{non-archimedean} always means that $F$ is complete with respect to a non-archimedean non-trivial valuation $|\blank|\colon F\morphism\IR_{\geq 0}$. As usual, the \defemph{ring of integers} $\Oo_F$ is defined as
 \begin{equation*}
 	\Oo_F=\left\{x\in F\st |x|\leq 1\right\}\,.
 \end{equation*}
@@ -727,7 +727,7 @@ Note that $A^\flat$ is always a perfect $\IF_q$-algebra (in fact, that's a purel
 			W_{\Oo_E,n}(A/\pi A)\rar["\theta_n"] & A/\pi^{n+1}A
 		\end{tikzcd}
 	\end{equation*}
-	commutes. Indeed, given a sequence $[\ov{a}_0,\dotsc,\ov{a}_{n+1}]\in W_{\Oo_E,n+1}(A/\pi A)$ with lifts $[a_0,\dotsc,a_{n+1}]$, we have
+	commutes. Indeed, given $[\ov{a}_0,\dotsc,\ov{a}_{n+1}]\in W_{\Oo_E,n+1}(A/\pi A)$ with lifts $[a_0,\dotsc,a_{n+1}]$, we have
 	\begin{equation*}
 		W_{n+1}(a_0,\dotsc,a_{n+1})\equiv W_n(a_0^q,\dotsc,a_n^q)\mod \pi^{n+1}\,,
 	\end{equation*}
@@ -896,7 +896,7 @@ The following fact wasn't mentioned in the lecture, but this made it hard for me
 	\end{equation*}
 	So suppose $y$ lies in the intersection and choose $(x_n)_{n\in \IN}$ such that $y\equiv \xi x_n\mod \pi^n$. Then $\xi(x_{n+1}-x_n)\equiv 0\mod \pi^n$. Thus the $(x_{n+1}-x_n)$ converge to $0$ in the $(\pi,\xi)$-adic topology. Hence $(x_n)_{n\in \IN}$ converges to some $x\in W$ satisfying $y=\xi x$. This shows \itememph{a}.
 	
-	It remains to show \itememph{*}. Write $\xi=[r_0]+\pi u$, where $u\in W$ is a unit. If $\xi x_n\equiv 0\mod \pi^n$, then also $([r_0]^s+\pi^su^s)x_n\equiv 0\mod \pi^n$ for all odd $s$, since $[r_0]+\pi u$ divides $[r_0]^s+\pi^su^s$ for odd $s$. Now $\pi^sx_n\equiv -[r_0]^su^{-s}x_n\mod \pi^n$ shows that the first $n$ coefficients in the Witt vector expansion of $\pi^sx_n$ must be divisible by $r_0^s$. In other words, we can write
+	It remains to show \itememph{*}. Write $\xi=[r_0]+\pi u$, where $u\in W$ is a unit. If $\xi x_n\equiv 0\mod \pi^n$, then also $([r_0]^s+\pi^su^s)x_n\equiv 0\mod \pi^n$ for all odd $s$, since $[r_0]+\pi u$ divides $[r_0]^s+\pi^su^s$ for odd $s$. Now $\pi^sx_n\equiv -[r_0]^su^{-s}x_n\mod \pi^n$ shows that the first $n$ coefficients in $\pi$-adic expansion of $\pi^sx_n$ must be divisible by $r_0^s$. In other words, we can write
 	\begin{equation*}
 		x_n=[r_0^sy_0]+[r_0^sy_1]\pi+\dotsb+[r_0^sy_{n-s-1}]\pi^{n-s-1}+\pi^{n-s}z\,.
 	\end{equation*}
@@ -977,7 +977,7 @@ If $C/E$ is a non-archimedean (recall that this requires $C$ to be complete) alg
 	
 	It remains to see that $\theta\colon W_{\Oo_E}(\Oo_C^\flat)\morphism\Oo_C$ is surjective and that $(W_{\Oo_E}(\Oo_C^\flat),\xi)$ is a perfect prism. The first assertion is because $(-)^\sharp\colon \Oo_C^\flat\morphism\Oo_C$ is surjective since $C$ is algebraically closed. For the second assertion, $\xi=\pi-[\pi^\flat]$ is clearly distinguished by \cref{rem:perfectoid}\itememph{2}, so it remains to show that $\Oo_C^\flat$ is $\pi^\flat$-complete. Observe that for all $c\geq 0$ the $c\ordinalth$ component of $(\pi^\flat)^{q^n}$ is $0$ for all $n\geq c$. From this observation, $\pi^\flat$-completeness of $\Oo_C^\flat$ easily follows.
 \end{proof}
-Next time we proof the following lemma.
+Next time we proof the first half of the following \cref{lem:perfectoidOC} (see \cref{lem:OcflatisOF}). The other half will have to wait until the $4\ordinalth$ lecture.
 \begin{lem}\label{lem:perfectoidOC}
 	Let $A$ be a perfectoid $\Oo_E$-algebra. Then $A$ is isomorphic to $\Oo_C$ for some non-archimedean algebraically closed extension $C/E$ if and only if $A^\flat$ is isomorphic to $\Oo_F$ for some non-archimedean algebraically closed extension $F/\IF_q$.
 \end{lem}
@@ -985,7 +985,7 @@ Next time we proof the following lemma.
 	Recall that for $F$ as in \cref{lem:perfectoidOC} we put $\IA_\inf=W_{\Oo_E}(\Oo_F)$.
 	\begin{numerate}
 		\item $\IA_\inf$ is a local integral domain. This is in fact true for any $W_{\Oo_E}(R)$ if $R$ itself is a local integral domain over $\IF_q$ (this follows from \cref{lem:W_OEpi} for example).
-		\item $\IA_\inf$ is $(\pi,[\varpi])$-complete for any $\varpi\in\mm_F\setminus \{0\}$. Indeed, this follows from \cref{rem:perfectoid}\itememph{2} as $\Oo_F$ is easily seen to be $\varpi$-complete.
+		\item $\IA_\inf$ is $(\pi,[\varpi])$-complete for any $\varpi\in\mm_F\setminus \{0\}$. Indeed, this follows from \cref{rem:perfectoid}\itememph{2} as $\Oo_F$ is easily seen to be $\varpi$-complete. Such $\varpi$ is called a \defemph{pseudo-uniformizer}.
 		\item By a theorem of Ludwig--Lang, $\IA_\inf$ has infinite Krull dimension (and is, in particular, non-noetherian). We can actually see by hand that $\IA_\inf$ is at least three-dimensional: there is a chain
 		\begin{equation*}
 			0\subsetneq\bigcup_{x\in\mm_F}[x]\IA_\inf\subsetneq W_{\Oo_E}(\mm_F)\subsetneq (\pi,W_{\Oo_E}(\mm_F))
@@ -993,28 +993,237 @@ Next time we proof the following lemma.
 		of prime ideals. Also note that $(\pi,W_{\Oo_E}(\mm_F))$ is the unique maximal ideal of $\IA_\inf$ since an element of $\IA_\inf$ is invertible iff its image in $\IA_\inf/\pi\IA_\inf\cong \Oo_F$ is invertible.
 	\end{numerate}
 \end{rem}
-Despite \cref{rem:AinfProperties}, we should think of $\IA_\inf$ as a two-dimensional ring, except for some \enquote{bad} primes. Here's a \enquote{picture} of $\Spec\IA_\inf$.
+Despite \cref{rem:AinfProperties}\itememph{3}, we should think of $\IA_\inf$ as a two-dimensional ring, except for some \enquote{bad} primes. Here's a \enquote{picture} of $\Spec\IA_\inf$. The left picture shows a select choice of prime ideals of $\IA_\inf$. In the right picture the corresponding residue fields are shown and the Frobenius action $\phi$ is indicated.
+\begin{center}
+	\tabcolsep=0pt
+	\begin{tabularx}{\textwidth}{X c X c X}
+		& \begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+		\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
+		\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
+		\fill (0,0) circle (0.5ex) node[below=4] (null) {$(\pi,W_{\Oo_E}(\mm_F))$};
+		\fill (4,0) circle (0.5ex) node[below=4] (pi) {$(\pi)$};
+		%\path (null) -- (pi) node[pos=0.5] {\scriptsize$\Spec W_{\Oo_E}(k)$};
+		\fill (0,4) circle (0.5ex) node[right=4] {$W_{\Oo_E}(\mm_F)$};
+		\draw[rounded corners, thick] (-1ex,-1ex) rectangle (4cm+1ex,1ex) node[pos=0.5, below=4] {\scriptsize$\Spec \Oo_F$};
+		\draw[rotate=30,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex) node[pos=0.5,rotate=30] {\scriptsize$\Spec \Oo_C$};
+		\draw[pattern=north west lines, rounded corners, thick] (1ex,-1ex) rectangle (-1ex,4cm+1ex) node[pos=0.5, rotate=90, above=4] {\scriptsize$\Spec W_{\Oo_E}(k)$} node[pos=0.5, rotate=90, below=4] {\scriptsize \enquote{bad} primes};
+		\fill (30:3.5cm) circle (0.5ex) node[right=4,align=left] {$(\pi-[\pi^\flat])$,\\[0.5ex] $\Oo_C$ untilt of $\Oo_F$};
+		\draw[rotate=60,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex) node[pos=0.5, rotate=60] {\scriptsize$\Spec \Oo_{\smash{C'}}$};
+		\fill (60:3.5cm) circle (0.5ex) node[right=4, align=left] {$(\pi-[a])$,\\[0.5ex] $a\in\mm_F\setminus\{0\}$};
+		\end{tikzpicture} & & \begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+		\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
+		\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
+		\fill (0,0) circle (0.5ex) node[below=4] (null) {$k$};
+		\fill (4,0) circle (0.5ex) node[below=4] (pi) {$F$};
+		%\path (null) -- (pi) node[pos=0.5] {\scriptsize$\Spec W_{\Oo_E}(k)$};
+		\fill (0,4) circle (0.5ex) node[right=4] {$W_{\Oo_E}(k)\left[\frac1\pi\right]$};
+		\draw[rounded corners, thick] (-1ex,-1ex) rectangle (4cm+1ex,1ex);
+		\draw[rotate=30,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex);
+		\draw[pattern=north west lines, rounded corners, thick] (1ex,-1ex) rectangle (-1ex,4cm+1ex);
+		\fill (30:3.5cm) circle (0.5ex) node[right=4] {$C$};
+		\draw[->, shift={(0,0)}] (30:4.5cm) arc (30:50:4.5cm) node[pos=0.5,above right] {$\phi$};
+		\end{tikzpicture} &
+	\end{tabularx}
+\end{center}
+We put $k=\Oo_F/\mm_F$ for convenience. We will see next time that $\Spec\IA_\inf$ is indeed \enquote{two-dimensional away from $[\varpi]=0$}. More precisely, we will show the following: let $(\Oo_C,\iota)$ be an untilt of $\Oo_F$ and $\xi$ a generator of $\ker(\theta\colon \IA_\inf\morphism \Oo_C)$. Put
+\begin{equation*}
+	B_\dR^+=\IA_\inf\left[\textstyle \frac 1\pi\right]_\xi^\complete\,.
+\end{equation*}
+Then $B_\dR^+$ is always a DVR and the same is true for $\IA_{\inf,(\pi-[\pi^\flat])}$ (see \cref{lem:BdR+DVR} below). Moreover, in the lecture after the next one we will show that all $(\pi-[a])$ for $a\in\mm_F\setminus\{0\}$ are prime ideals, and in fact $\IA_\inf/(\pi-[a])$ is isomorphic to another untilt $\Oo_{C'}$ of $\Oo_F$ (as indicated in the left picture), with $C'/E$ an algebraically closed non-archimedean extension.
+\numpar{Side remark}
+\lecture[$B_\dR^+$ is a DVR. A universal property for $\IA_\inf$. $p$-adic PD-thickenings and $\IA_\cris$.]{2019-11-06}
+Why this setup? Let $K/\IQ_p$ be a discretely valued non-archime-dean field extension with perfect residue field and let $X/K$ be a smooth proper scheme.  The objects of interest in $p$-adic hodge theory are the $p$-adic cohomology groups $H_\et^*(X_{\ov{K}},\IQ_p)$. We will replace $\IQ_p$ by $E$ and $\ov{K}$ by $C=\roof{\ov{K}}$, with $F=C^\flat=\Frac(\Oo_C^\flat)$.
+\begin{defi}
+	An element $x=\sum_{n=0}^\infty [x_n]\pi^n$ of $\IA_\inf$ is called \defemph{primitive} if $x_0\neq 0$ and there exists a $d\geq 0$ such that $x_d\in \Oo_F^\times$. If $x$ is primitive, the smallest such $d$ is called the \defemph{degree} of $x$. The set primitive elements of degree $d$ is denoted $\Prim_d$.
+\end{defi}
+\begin{exm}
+	We have $\Prim_0=\IA_\inf^\times$. Moreover, any element $x\in \Prim_1$ is distinguished. The converse is true iff $[x_0]\neq 0$.
+\end{exm}
+Next time we will see that if $a\in \Prim_1$, then $a\IA_\inf$ is  a prime ideal and $\IA_\inf/a\IA_\inf\cong \Oo_C$ for some non-archimedean algebraically closed extension $C/E$ (which generalizes the claim about the $(\pi-[a])$ above). For now let $C/E$ be such an extension and $|\blank|\colon C\morphism \IR_{\geq 0}$ its norm. Recall that \cref{prop:(A/I)b} provides an isomorphism
+\begin{equation*}
+	\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C\,,
+\end{equation*}
+sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1/q})^\sharp,\dotsc)$ contained in the right-hand side.
+\begin{lem}\label{lem:OcflatisOF}
+	Assume we are in the above situation.
+	\begin{numerate}
+		\item The map $|\blank|^\flat\colon \Oo_C^\flat\morphism\IR_{\geq 0}$ given by $x\mapsto |x^\sharp|$ is a norm on $\Oo_C^\flat$. Moreover, $\Oo_C^\flat$ is complete with respect to the topology induced by $|\blank|^\flat$.
+		\item $C^\flat=\Frac(\Oo_C^\flat)$ is a non-archimedean algebraically closed extension of $\IF_q$.
+	\end{numerate}
+\end{lem}
+\begin{proof}
+	It is clear that $|\blank|^\flat$ is multiplicative, that $|1|^\flat=1$, and that $|x|^\flat=0$ iff $x=0$. So only the triangle inequality remains. We calculate
+	\begin{align*}
+		|x+y|^\flat=|(x+y)^\sharp|&=\lim_{n\to\infty}\bigg|\Big(\big(x^{1/q^n}\big)^\sharp+\big(y^{1/q^n}\big)\Big)^{q^n}\bigg|\\
+		&=\lim_{n\to\infty}\max\left\{\big|\big(x^{1/q^n}\big)^\sharp\big|^{q^n},\big|\big(y^{1/q^n}\big)^\sharp\big|^{q^n}\right\}\\
+		&=\lim_{n\to\infty}\max\left\{|x^\sharp|,|y^\sharp|\right\}\\
+		&=\max\big\{|x|^\flat,|y|^\flat\big\}
+	\end{align*}
+	This shows that $|\blank|^\flat$ is a norm in $\Oo_C^\flat$. To show that $\Oo_C^\flat$ is complete, we claim that the topology generated by $|\blank|^\flat$ is the inverse limit topology on $\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C$. A neighbourhood basis of $0$ in the topology generated by $|\blank|^\flat$ is given by the sets
+	\begin{equation*}
+		\big\{x\ \big|\ |x|^\flat<\epsilon\big\}\quad\text{for all }\epsilon>0\,.
+	\end{equation*}
+	In the inverse limit topology, a neighbourhood basis of $0$ is given by the sets
+	\begin{equation*}
+		\left\{x\in \Oo_C^\flat\st \big|\big(x^{1/q^n}\big)^\sharp\big|<\delta\right\}\quad\text{for all }\delta>0\text{, }n\geq 0\,.
+	\end{equation*}
+	But $|(x^{1/q^n})^\sharp|=(|x|^\flat)^{1/q^n}$, so its easy to see that these topology bases not only generate the same topology, but even coincide on the nose.
+	
+	
+	For \itememph{2}, it remains to show that $C^\flat$ is algebraically closed, and for this it suffices to show that $\Oo_C^\flat$ is integrally closed. So let $f\in \Oo_C^\flat[T]$ be a monic polynomial. Write $f(T)=T^d+a_{d-1}T^{d-1}+\dotsb+a_0$. For all $n\geq 0$ put
+	\begin{equation*}
+		f_n(T)=T^d+\big(a_{d-1}^{1/q^n}\big)^\sharp T^{d-1}+\dotsb+\big(a_0^{1/q^n}\big)^\sharp\in \Oo_C[T]\,.
+	\end{equation*}
+	Then $f_{n+1}(T)^q\equiv f_n(T^q)\mod \pi$. Now fix $n\geq 0$ and let $x\in \Oo_C$ be a zero of $f_n$, which exists as $\Oo_C$ is integrally closed. Choose $y\in \Oo_C$ such that $y^q=x$. Although $y$ need not be a root of $f_{n+1}$, we certainly have $|f_{n+1}(y)|\leq |\pi|^{1/q}$. Let $z_1,\dotsc,z_n\in \Oo_C$ be the actual roots of $f_{n+1}$. Then
+	\begin{equation*}
+		|f_{n+1}(y)|=\prod_{i=1}^d|y-z_i|\leq |\pi|^{1/q}\,.
+	\end{equation*}
+	hence there exists an index $i$ such that $|y-z_i|\leq |\pi|^{1/dq}$, or equivalently $|y-z_i|^q\leq |\pi|^{1/d}$. Then also $|x-z_i^q|\leq |\pi|^{1/d}$ as all other terms in the expansion of $(y-z_i)^q$ are divisible by $\pi$. By induction, we obtain a sequence $(x_n)_{n\in \IN}$ such that $x_n\in\Oo_C$, $f_n(x_n)=0$, and the $x_n$ are \enquote{close} to being $q$-power compatible in the sense that $|x_{n+1}-x_n^q|\leq |\pi|^{1/d}$. But this is actually sufficient! Indeed, put $\aa=\left\{y\in \Oo_C\st |y|\leq |\pi|^{1/d}\right\}$. Then $x=(x_n)_{n\in\IN}$ is an element of
+	\begin{equation*}
+		\lim_{x\mapsto x^q}\Oo_C/\aa\cong \lim_{x\mapsto x^q}\Oo_C/\pi\Oo_C=\Oo_C^\flat\,,
+	\end{equation*}
+	where we use \cref{prop:(A/I)b} to obtain the isomorphism on the left. Hence $x$ corresponds to an element $x\in \Oo_C^\flat$, which clearly satisfies $f(x)=0$.
+\end{proof}
+\begin{lem}\label{lem:BdR+DVR}
+	Let $\Oo_C$ be an untilt of $\Oo_F$ and let $\xi$ be a distinguished generator of the kernel of $\theta\colon \IA_\inf\morphism\Oo_C$. As above, we put $B_\dR^+=\IA_\inf\localize{\pi}_\xi^\complete$. Then the following holds.
+	\begin{numerate}
+		\item The canonical map $\IA_\inf\monomorphism B_\dR^+$ is an injection.
+		\item $B_\dR^+$ and $\IA_{\inf,(\xi)}$ are discrete valuation rings.
+	\end{numerate}
+\end{lem}
+\begin{proof}
+	Since we are not in a noetherian setting, we need to be careful with completion. As $(\xi)$ is obviously a finitely generated ideal, \cite[\stackstag{05GG}]{stacks-project} shows that $B_\dR^+$ is $\xi$-complete. Moreover,
+	\begin{equation*}
+		B_\dR^+/(\xi^n)\cong \IA_\inf\big[\textstyle\frac1\pi\big]/(\xi^n)\cong \IA_\inf/(\xi^n)\big[\textstyle\frac1\pi\big]\,,
+	\end{equation*}
+	by exactness of localization. We claim that $\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}$ is injective for all $n$. To show this, we need to check that $\IA_\inf/(\xi^n)$ is $\pi$-torsionfree. We use induction on $n$. For $n=1$ we get $\IA_\inf/(\xi)\cong \Oo_C$, which is $\pi$-torsionfree. Now suppose $\pi x=\xi^ny$ for some $x,y\in\IA_\inf$. By the $n=1$ case we see that $x$ must be divisible by $\xi$, say, $x=\xi x'$. Since $\IA_\inf$ is a domain this implies $\pi x'=\xi^{n-1}y$. But then the induction hypothesis shows that $x'$ itself must be divisible by $\xi^{n-1}$, proving the claim.
+	Now since limits are left exact, we see that
+	\begin{align*}
+		\IA_\inf\cong \lim_{n\in \IN}\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}\cong B_\dR^+
+	\end{align*}
+	is injective, as required. The isomorphism on the left-hand side uses that $\IA_\inf$ is $\xi$-complete by \cite[\stackstag{09OT}]{stacks-project} and the fact that $\IA_\inf$ is $(\pi,\xi)$-complete. This shows \itememph{1}.
+	
+	For \itememph{2}, first note that $B_\dR^+/(\xi)\cong \Oo_C\localize{\pi}\cong C$. Hence \cite[\stackstag{05GH}]{stacks-project} implies that $B_\dR^+$ is noetherian. Moreover, we know that $B_\dR^+$ is local with maximal ideal $(\xi)$, because it is $\xi$-adically complete and its quotient by $\xi$ is $C$, which is a field. This implies $\dim B_\dR^+\leq 1$. Moreover, we are done once we show $\dim B_\dR^+\geq 1$, since then $B_\dR^+$ is a one-dimensional noetherian local ring whose maximal ideal is principal, hence regular, hence a DVR.
+	
+	For $\dim B_\dR^+\geq 1$ it suffices to see that $B_\dR^+$ is a domain, since then $0\subsetneq (\xi)$ is a chain of prime ideals. From \itememph{1} and the fact that $\IA_\inf$ is a domain, it's easy to see that $B_\dR^+$ is $\xi$-torsionfree. Now if $xy=0$ for $x,y\in B_\dR^+$, then $x$ or $y$ must be divisible by $\xi$ as $B_\dR^+/(\xi)\cong C$. Say $x=\xi x'$. Then $B_\dR^+$ being $\xi$-torsionfree shows $x'y=0$. Iterating the argument shows $x=0$ or $y=0$ as $B_\dR^+$ is $\xi$-complete. This finishes the proof that $B_\dR^+$ is indeed a DVR.
+	
+	Now for $\IA_{\inf,(\xi)}$. Take any prime ideal $\pp\subseteq \IA_{\inf,(\xi)}$ such that $\xi\notin \pp$. Still $\pp\subseteq (\xi)$ as $(\xi)$ is the maximal ideal of $\IA_{\inf,(\xi)}$. Hence, if $a\in \pp$, then $a=b\xi$. But since $\pp$ is prime and $\xi\notin\pp$, this implies $b\in\pp$. Thus $\xi\pp=\pp$. Now let $\qq=\pp B_\dR^+$. Then $\xi\qq=\qq$ shows $\qq=0$ as $B_\dR^+$ is a DVR. But $\IA_{\inf,(\xi)}\monomorphism B_\dR^+$ is injective by \itememph{1} as localizations of injections stay injective. This shows $\pp=0$.
+	
+	What we have shown is that $\Spec \IA_{\inf,(\xi)}$ has exactly two points, namely $\{0,(\xi)\}$. But then all prime ideals of $\IA_\inf$ are finitely generated, which implies that $\IA_\inf$ is noetherian by the rather obscure fact \cite[\stackstag{05KG}]{stacks-project}. Now it's clear that $\IA_{\inf,(\xi)}$ is one-dimensional and regular, hence a DVR.
+\end{proof}
+
+Have you ever wondered what the \enquote{$\inf$} in $\IA_\inf$ actually means? It stands for \emph{infinitesimal}. In fact, this leads to a description of $\IA_\inf$ as a universal thickening of $\Oo_C$!
+\begin{defi}
+	Let $R$ be a $\pi$-complete $\Oo_E$-algebras. A \defemph{$\pi$-adic pro-infinitesimal thickening of $R$} is a  surjection $D\epimorphism R$ of $\Oo_E$-algebras with kernel $I$ such that $D$ is $(\pi,I)$-adically complete.
+\end{defi}
+\begin{exm}
+	For $R\in\left\{\Oo_C,\Oo_C/\pi\Oo_C\right\}$, the natural map $\IA_\inf\epimorphism R$ is a $\pi$-adic pro-infinitesimal thickening. Indeed, its kernel is given by $(\xi)$ and $(\pi,\xi)$ respectively. Actually, $\IA_\inf$ is the universal $\pi$-adic pro-infinitesimal thickening of $R$, as shown in the following lemma!
+\end{exm}
+\begin{lem}\label{lem:AinfUniversal}
+	Let $R\in\{\Oo_C,\Oo_C/\pi\Oo_C\}$ and let $D\epimorphism R$ be a $\pi$-adic pro-infinitesimal thickening. Then it factors uniquely as
+	\begin{equation*}
+		\begin{tikzcd}
+			\IA_\inf\rar[epi]\dar[dashed,"\exists!"{swap}] & R\\
+			D\urar[epi] &
+		\end{tikzcd}
+	\end{equation*}
+\end{lem}
+\begin{proof}[Sketch of a proof]
+	By \cref{prop:(A/I)b} we have $\lim_{x\mapsto x^q}D\cong (D/(\pi,I))^\flat\cong R^\flat$. By the same argument $\lim_{x\mapsto x^q} D\cong D^\flat$. Hence $D^\flat\cong R^\flat$. Thus, the Witt-tilting adjunction (\cref{prop:tiltWittAdjunction}) provides a unique map 
+	\begin{align*}
+		\IA_\inf\cong W_{\Oo_E}(R^\flat)\morphism D\,.
+	\end{align*}
+	It's easily verified that this map has the required properties.
+\end{proof}
+\subsection{\texorpdfstring{$p$}{p}-adic PD-thickenings and \texorpdfstring{$\IA_\cris$}{Acris}}
+From now on, we restrict our attention to the case $E=\IQ_p$ and $\pi=p$. As above, let $R\in\{\Oo_C,\Oo_C/p\Oo_C\}$.
+\begin{defi}
+	A \defemph{$p$-adic PD-thickening} of $R$ is a triple $(D,D\epimorphism R,(\gamma_n)_{n\in\IN})$, where $D$ is $p$-complete and $(\gamma_n)_{n\in\IN}$ a PD-structure on $J=\ker(D\epimorphism R)$ which is compatible with the canonical PD-structure on $pR$.
+\end{defi}
+\begin{rem}
+	\begin{numerate}
+		\item If $D$ is $p$-torsionfree, then necessarily $\gamma_n(x)=x^n/n!$.
+		\item Normalize $|\blank|\colon C\morphism \IR_{\geq 0}$ such that $|p|=p^{-1}$. Then a well-known calculation shows $|n!|\geq p^{(n-1)/(p-1)}$ for all $n\in\IN$. In fact, the $1$ in $n-1$ can be replaced by the digit sum of the $p$-adic expansion of $n$. Thus, it's easy to check that
+		$|x^n/n!|\leq 1$ for all $n\in\IN$ iff $|x|<p^{-1/(p-1)}$. Moreover, one may check that
+		\begin{equation*}
+			\left\{x\in\Oo_C\st|x|<p^{-1/(p-1)}\right\}
+		\end{equation*}
+		is the largest ideal in $\Oo_C$ admitting divided powers.
+	\end{numerate}
+\end{rem}
+\begin{defi}
+	The ring $\IA_\cris$ denotes the universal $p$-adic PD-thickening of $\Oo_C$, or equivalently, of $\Oo_C/p\Oo_C$. In fancy words,
+	\begin{equation*}
+		\IA_\cris=H_\cris^0(\Oo_C/\IZ_p)\cong H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,.
+	\end{equation*}
+\end{defi}
+Concretely, $\IA_\cris$ is the $p$-adic divided power envelope of $\ker\theta=(\xi)\subseteq \IA_\inf$. This follows more or less from \cref{lem:AinfUniversal}, but this requires an additional argument, since a $p$-adic PD-thickening $D$ of $R$ need not be $(p,J)$-complete, so $D\epimorphism R$ need not be a $p$-adic pro-infinitesimal thickening. But the conclusion of that lemma is still true: we get a unique map $\IA_\inf\morphism D$ over $R$, and then its formal to see that $\IA_\cris$ can be described as above.
+
+So where does the map $\IA_\inf\morphism D$ come from? A closer inspection of the proof of \cref{lem:AinfUniversal} shows that we only need to show that $D^\flat\morphism R^\flat$ is an isomorphism. We can't use \cref{prop:(A/I)b} to prove this. However, we can still construct an inverse $R^\flat\morphism D^\flat$ in the same way as in the proof of that proposition. This is based on the following observation, that serves as a replacement for \cref{lem:keyLemma}.
+\begin{lem*}
+	If $x,y\in D$ such that $x\equiv y\mod (p,J)$, then $(x^{p^n}-y^{p^n})_{n\in\IN}$ converges to $0$ in the $p$-adic topology.
+\end{lem*}
+\begin{proof*}
+	Observe that for $d\in J$ we have $d^t=t!\gamma_t(d)$, so $d^t$ is divisible by $p^{v_p(t!)}$. Now put $x=y+pz+d$, where $z\in R$ and $d\in J$. Then a typical term in the multinomial expansion of $x^{p^n}-y^{p^n}$ looks like
+	\begin{equation*}
+		\binom{p^n}{r,s,t}y^r(pz)^sd^t\,,
+	\end{equation*}
+	where $r+s+t=p^n$. Fix some $N>0$. If $t>p^N$, then the above consideration shows that $d^t$ is at least divisible by $p^N$ (we are very permissive here). If $t\leq p^N$, then the multinomial coefficient is at least divisible by $p^{n-N}$. Hence if $n\geq 2N$, every term will at least be divisible by $p^N$, and we're done.
+\end{proof*}
+Now that we know $\IA_\cris$ is the $p$-adic divided power envelope of $(\xi)$, we can write it down explicitly as
+\begin{equation*}
+	\IA_\cris\cong \IA_\inf\big[\textstyle\frac{\xi^n}{n!}\ \big|\  n\in\IN\big]_p^\complete\cong \IA_\inf\cotimes_{\IZ[x]}D_{\IZ[x]}(x)\,,
+\end{equation*}
+using that $\xi$ is a non-zero divisor in $\IA_\inf$. Also $-\cotimes_{\IZ[x]}-$ refers to the $p$-adic completed tensor product, with $\IZ[x]\morphism\IA_\inf$ sending $x\mapsto \xi$. Finally, the tensor factor on the right is defined as
+\begin{equation*}
+	D_{\IZ[x]}(x)=\IZ\langle x\rangle =\bigoplus_{n\in\IN}\IZ\big\{\textstyle\frac{x^n}{n!}\big\}\,.
+\end{equation*}
+Then
+\begin{equation*}
+	D_{\IZ[x]}(x)_p^\complete\cong\big(\IZ[y_0,y_1,\dotsc]/(y_0-x,y_n^p-py_{n+1} \text{ for }n\in\IN)\big)_p^\complete\,.
+\end{equation*}
+In particular, we can calculate
+\begin{equation*}
+	\IA_\cris\cong \Oo_C/p\Oo_C\otimes_{\IF_p}\IF_p[y_1,y_2,\dotsc]/(y_1^p,y_2^p,\dotsc)\,.
+\end{equation*}
+Some intuition: the image of $\Spec \IA_\cris$ in $\Spec \IA_\inf$ is roughly described by the following picture.
 \begin{center}
 	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
-	\draw[-to] (0,0) -- (7,0) node[below] {$[\varpi]$};
-	\draw[-to] (0,0) -- (0,7) node[left] {$\pi$};
-	\fill (0,0) circle (0.5ex) node[below=4] (null) {$(\pi,W_{\Oo_E}(\mm_F))$};
-	\fill (6,0) circle (0.5ex) node[below=4] (pi) {$(\pi)$};
-	%\path (null) -- (pi) node[pos=0.5] {\scriptsize$\Spec W_{\Oo_E}(k)$};
-	\fill (0,6) circle (0.5ex) node[left=4] {$W_{\Oo_E}(\mm_F)$};
-	\draw[rounded corners, thick] (-1ex,-1ex) rectangle (6cm+1ex,1ex) node[pos=0.5, below=4] {\scriptsize$\Spec \Oo_F$};
-	\draw[rotate=30,rounded corners, thick] (-1ex,-1ex) rectangle (6cm+1ex,1ex) node[pos=0.5,rotate=30] {\scriptsize$\Spec \Oo_C$};
-	\draw[pattern=north west lines, rounded corners, thick] (1ex,-1ex) rectangle (-1ex,6cm+1ex) node[pos=0.5, rotate=90, above=4] {\scriptsize$\Spec W_{\Oo_E}(k)$} node[pos=0.5, rotate=90, below=4] {\scriptsize the \enquote{bad} primes};
-	\fill (30:6cm) circle (0.5ex) node[right=4,align=left] {$(\pi-[\pi^\flat])$, for $\Oo_C$\\an untilt of $\Oo_F$};
-	\draw[rotate=60,rounded corners, thick] (-1ex,-1ex) rectangle (5cm+1ex,1ex);
-	\fill (60:5cm) circle (0.5ex) node[above right] {$(\pi-[a])$, for $a\in\mm_F\setminus\{0\}$};
+	\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
+	\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
+	\fill (0,0) circle (0.5ex);
+	%\fill (4,0) circle (0.5ex);
+	\fill (2,2) circle (0.5ex) node[right=4] {$(\xi)$};
+	\fill (1.6,2.4) circle (0.4ex) node[above right=4] (1) {$\phi^{-1}(\xi)$};
+	\fill (1.28,2.72) circle (0.32ex);
+	\fill (1.024,2.976) circle (0.256ex);
+	\fill (0.819,3.181) circle (0.205ex);
+	\fill (0.655,3.345) circle (0.164ex);
+	\fill (0.524,3.476) circle (0.13ex) node[above right=4] (n) {$\phi^{-n}(\xi)$};
+	\path (1.south west) -- (n.south west) node[pos=0.5,sloped, above=4] {$\dotsc$};
+	\draw[thick, rounded corners=2.5] (-1ex,-1ex) -- (0,-1.414ex) -- (1ex,-1ex) --  (2cm+1ex,2cm-1ex) -- (2cm+1.414ex,2) -- (2cm+1ex,2cm+1ex) -- (1ex,4cm+1ex) -- (0,4cm+1.414ex) -- (-1ex,4cm+1ex) -- cycle;
+	\draw[->, shift={(0,0)}] (30:4.5cm) arc (30:50:4.5cm) node[pos=0.5,above right] {$\phi$};
+	\path (0,0) -- (2,2) node[pos=0.5,sloped] {$\Spec \IA_\cris$};
+	\fill (3,1) circle (0.5ex) node[right=4, align=left] {$(p-[a])$\\$a\in\mm_F\setminus\{0\}$};
 	\end{tikzpicture}
 \end{center}
-In this picture we put $k=\Oo_F/\mm_F$ for convenience. We will see next time that $\Spec\IA_\inf$ is indeed \enquote{two-dimensional away from $[\varpi]=0$}. More precisely, we will show the following: let $(\Oo_C,\iota)$ be an untilt of $\Oo_F$ and $\xi$ a generator of $\ker(\theta\colon \IA_\inf\morphism \Oo_C)$. Put
-\begin{equation*}
-	B_\dR^+=\IA_\inf\left[\frac{1}{[\varpi]}\right]_\xi^\complete\,.
-\end{equation*}
-Then $B_\dR^+$ is always a DVR.
+Note that $\phi^{-1}(\xi)=(p-[p^\flat]^{1/p})$. Concretely, if $a\in\mm_F\setminus\{0\}$ such that $|a|\leq |p^\flat|^p=|p|^p$, then $(p-[a])\IA_\cris=(p)$. We may think of this as \enquote{$1-[a]/p\in\IA_\cris$}. And if $a=\phi^{-n}(p^\flat)$ for some $n\in \IN$, then $\IA_\inf\epimorphism\IA_\inf/(p-[a])$ factors over $\IA_\cris$.
+
+Recall that $\IA_\inf$ should be thought of as a mixed characteristic analog of $\Oo_F\llbracket z\rrbracket$. In fact, we see a similar picture for $\Oo_F\llbracket z\rrbracket$.
+\begin{center}
+	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+	\draw[-to] (0,0) -- (5,0) node[below] {$\varpi$};
+	\draw[-to] (0,0) -- (0,5) node[left] {$z$};
+	\fill (4,0) circle (0.5ex) node[below=4] {$(z)$};
+	\fill (2.5,1.5) circle (0.5ex) node[above right=4] {$(z-a)$, $a\in\mm_F$};
+	%\fill (20:3.75cm) circle (0.5ex) node[right=4, align=left] {$(p-[a])$\\\scriptsize for $a\in\mm_F\setminus\{0\}$};
+	\draw[->, shift={(0,0)}] (35:4.5cm) arc (35:55:4.5cm) node[pos=0.5,above right] {$\phi$};
+	\draw[rotate around={135:(4,0)},thick,rounded corners, shift={(4,0)}] (-1ex,-1ex) rectangle (5.25cm+1ex,1ex);
+	\end{tikzpicture}
+\end{center}
+The surrounded area may be described as $\Prim_1/\Oo_F\llbracket z\rrbracket^\times\cong\mm_F=\left\{x\in F\st |x|<1\right\}$. This is also the \enquote{open rigid-analytic disc} $\ID_F$. It contains the \enquote{punctured disc} $\ID_F^*=\mm_F\setminus\{0\}$. Then the equal characteristic analog of the Fargues--Fontaine curve is the quotient $\ID_F^*/\phi^\IZ$.
+
+However, for $\IA_\inf$ the canonical map $\mm_F\epimorphism\Prim_1/\IA_\inf^\times$ sending $a\in\mm_F$ to $(\pi-[a])$ is not bijective! For example, $(\pi-[\pi^\flat])$ depends on choices of $(q^n)\ordinalth$ roots of $\pi$ to get $\pi^\flat=(\pi,\pi^{1/q},\dotsc)$.
 
 \appendix
 \backmatter\KOMAoption{chapterprefix}{false}

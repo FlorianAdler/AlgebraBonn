@@ -16,6 +16,9 @@
 \widowpenalty=8000
 \clubpenalty=8000
 
+%%%% tables %%%%
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 %%%% math %%%%
 \usepackage{amsmath,amsfonts,amssymb,mathtools}
@@ -89,7 +92,7 @@ listname={List of Lectures}%
 	\stepcounter{llecture}%
 	\marginnote{\textsc{Lecture~\arabic{llecture}}\\%
 		\normalfont \smash{\DTMenglishordinal{\DTMfetchday{retardDate}}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}%
-	\addxcontentsline{lol}{chapter}{Lecture~\arabic{llecture} (\DTMenglishordinal{\DTMfetchday{retardDate}} \DTMmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate})}%
+	\addxcontentsline{lol}{chapter}{Lecture~\arabic{llecture} (\DTMenglishordinal{\DTMfetchday{retardDate}}~\DTMmonthname{\DTMfetchmonth{retardDate}},~\DTMfetchyear{retardDate})}%
 	\IsArgEmpty{#1}{}{\texttolol{#1}}%
 }
 
