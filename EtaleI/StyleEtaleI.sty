@@ -94,7 +94,7 @@ listname={List of Lectures}%
 	\DTMsavedate{retardDate}{#2}%
 	\stepcounter{llecture}%
 	\marginnote{\textsc{Lecture~\arabic{llecture}}\\%
-		\normalfont \smash{\DTMenglishordinal{\DTMfetchday{retardDate}}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}%
+		\normalfont \mbox{\smash{\DTMenglishordinal{\DTMfetchday{retardDate}}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}}%
 	\addxcontentsline{lol}{chapter}{Lecture~\arabic{llecture} (\DTMenglishordinal{\DTMfetchday{retardDate}} \DTMmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate})}%
 	\IsArgEmpty{#1}{}{\texttolol{#1}}%
 }
@@ -149,6 +149,7 @@ listname={List of Lectures}%
 \theoremstyle{cdef}
 \newtheorem{defi}[dummy]{Definition}
 \newtheorem{defprop}[dummy]{Definition/Proposition}
+\newtheorem{deflem}[dummy]{Definition/Lemma}
 \newtheorem{rem}[dummy]{Remark}
 \newtheorem{defi*}[dummy]{Definition*}
 \newtheorem{rem*}[dummy]{Remark*}
@@ -179,6 +180,7 @@ listname={List of Lectures}%
 \crefformat{con}{Construction~\textup{#2#1#3}}
 \crefformat{defi}{Definition~\textup{#2#1#3}}
 \crefformat{defprop}{Definition/Proposition~\textup{#2#1#3}}
+\crefformat{deflem}{Definition/Lemma~\textup{#2#1#3}}
 \crefformat{exc}{Exercise~\textup{#2#1#3}}
 \crefformat{exm}{Example~\textup{#2#1#3}}
 \crefformat{cntx}{Counterexample~\textup{#2#1#3}}
