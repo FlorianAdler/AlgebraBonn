@@ -16,6 +16,7 @@
 \publishers{Winter Term 2019/20\\
 University of Bonn}
 
+%\includeonly{nothingtoseehere}
 \begin{document}
 \frontmatter
 \KOMAoption{chapterprefix}{false}
@@ -29,1201 +30,474 @@ Some changes and some additions have been made by the author. To distinguish the
 \tableofcontents
 \listoftoc{lol}
 \setcounter{llecture}{-1}
-\chapter{Introduction and Motivation}
-\renewcommand{\thedummy}{\thechapter.\thesection.\arabic{dummy}}
-\lecture[What is this \enquote{$p$-adic Hodge theory} and what does it have to do with this lecture?]{2019-10-16}
-The $0\ordinalth$ lecture had a lot of hard theorems and deep facts thrown at us---for purely motivational purposes! That is, none of the following is a prerequisite for this lecture; rather it shows where we're going, and parts of it will be discussed in detail.
-
-Fix a prime $p$ and a finite extension $K/\IQ_p$. Let $C$ be the completion of an algebraic closure $\ov{K}$ of $K$. We put $G_K=\Gal(\ov{K}/K)$. Note that the $G_K$-action on $\ov{K}$ can be continuously extended to $C$.
-\begin{thm}[Faltings, Tsuji$,\dotsc$]\label{thm:HTdecomp}
-	Let $X/K$ be a proper smooth scheme. For $n\geq 0$ there exists a natural $G_K$-equivariant \enquote{Hodge--Tate decomposition}
-	\begin{equation*}
-		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}C\cong \bigoplus_{i+j=n}H^i\big(X,\Omega_{X/K}^j\big)\otimes_KC(-j)
-	\end{equation*}
-\end{thm}
-\begin{rem}\label{rem:HTdecomp}
-	There are a \emph{lot} of things in \cref{thm:HTdecomp} that demand clarification.
-	\begin{numerate}
-		\item $H_\et^n(X_{\ov{K}},\IQ_p)$ is the $p$-adic étale cohomology, defined as
-		\begin{equation*}
-			H_\et^n\big(X_{\ov{K}},\IQ_p\big)\coloneqq \Big(\lim_{k\geq 0} H_{\et}^n\big(X_{\ov{K}},\IZ/p^k\IZ\big)\Big)\otimes_{\IZ_p}\IQ_p\,.
-		\end{equation*}
-		\item $G_K$ acts diagonally on the left-hand side and via $C(-j)$ on the right-hand side. Here, $M(-j)$ is a \defemph{Tate twist}. In general this is defined as $M(j)\coloneqq M\otimes_{\IZ_p}\IZ_p(1)^{\otimes j}$, where
-		\begin{equation*}
-			\IZ_p(1)=\lim_{k\geq 0}\mu_{p^k}(C)\,,
-		\end{equation*}
-		equipped with its natural $G_K$-action.
-		\item \cref{thm:HTdecomp} got its name from the analogous assertion in complex Hodge theory: If $Y$ is a compact Kähler manifold, then
-		\begin{equation*}
-			H^n(Y,\IZ)\otimes_{\IZ}\IC\cong\bigoplus_{i+j=n}H^i\big(Y,\Omega_{Y/\IC}^j\big)\,.
-		\end{equation*}
-		\item The Tate twists are necessary to get $G_K$-invariance of the decomposition. To see this, take for example $X=\IP_K^1$, $n=2$. As $\IG_{m,\ov{K}}$ is $\IP_{\ov{K}}^1\setminus\{\text{two points}\}$, the left-hand side can be calculated as
-		\begin{align*}
-			H_\et^2\big(\IP_{\ov{K}}^1,\IQ_p\big)\cong H_\et^1\big(\IG_{m,\ov{K}},\IQ_p\big)&\cong \Hom\big(\pi_1^\et(\IG_{m,\ov{K}}),\IQ_p\big)\\
-			&\cong \Hom\big(\IZ_p(1),\IQ_p\big)\\
-			&\cong \IQ_p(-1)
-		\end{align*}
-		On the right-hand side, the only non-vanishing summand is $H^1(X,\Omega_{X/K}^1)\cong K$. So far, everything is ok as both sides in \cref{thm:HTdecomp} are one-dimensional $C$-vector spaces. However, there can't be an $G_K$-equivariant isomorphism $C(-1)\cong C$, as can be seen from the following theorem. 
-	\end{numerate}
-\end{rem}
-\begin{thm}[Tate]
-	Let $H_\cts^*(G_K,-)$ denote continous group cohomology/Galois cohomology. With notation as above, we have
-	\begin{numerate}
-		\item $H_\cts^*(G_K,C(j))=0$ for all $j\neq 0$.
-		\item $K\cong H_\cts^0(G_K,C)\cong H_\cts^1(G_K,C)$. In particular, $K\cong C^{G_K}$ (and not even this is trivial).
-	\end{numerate}
-\end{thm}
-\begin{cor}\label{cor:etKnowsHodge}
-	For all $n\geq 0$ and $j\geq 0$ we have
-	\begin{equation*}
-		H^{n-j}\big(X,\Omega_{X/K}^j\big)\cong \Big(H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}C(j)\Big)^{\smash{G_K}}\,.
-	\end{equation*}
-\end{cor}
-\begin{cntx}
-	As a slogan, \cref{cor:etKnowsHodge} shows that \enquote{$p$-adic étale cohomology knows Hodge cohomology}. The converse, however, is not true, and in fact, it fails almost always. Here are two counterexamples.
-	\begin{numerate}
-		\item If $X$ is an elliptic curve over $K$, then the Hodge--Tate decomposition shows
-		\begin{equation*}
-			H_\et^1\big(X_{\ov{K}},\IQ_p\big)\cong C\oplus C(-1)\,,
-		\end{equation*}
-		independent of $X$. However, the $G_K$-action on $H_\et^1\big(X_{\ov{K}},\IQ_p\big)$ knows if $X$ has good or semistable reduction. So this is not seen by Hodge cohomology.
-		\item If $X=\Spec L$, where $L/K$ is finite, then
-		\begin{equation*}
-			H_\et^0\big(X_{\ov{K}},\IQ_p\big)\cong \prod_{L\monomorphism\ov{K}}\IQ_p\,,
-		\end{equation*}
-		on which $G_K$ acts by permuting the factors. This action determines $X$. However, $H_\et^0\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}\cong C^{[L:K]}$ only knows $[L:K]$ and not $L$.
-	\end{numerate}
-\end{cntx}
-A nice application of \cref{thm:HTdecomp} and \cref{cor:etKnowsHodge} is the following theorem.
-\begin{thm}[Ito, Veys, Kontsevich$,\dotsc$]\label{thm:MinimalModels}
-	Let $Y$, $Y'$ be smooth minimal models (i.e., smooth projective schemes over $\IC$ with nef canonical bundle). If $Y$, $Y'$ are birational, then
-	\begin{equation*}
-		\dim_\IC H^i\big(Y,\Omega_{Y/\IC}^j\big)=\dim_\IC H^i\big(Y',\Omega_{Y'/\IC}^j\big)\quad\text{for all }i,j\geq 0\,.
-	\end{equation*}
-\end{thm}
-\begin{proof}[Idea of the proof]
-	It's well-known that if $Y$, $Y'$ are birational and smooth minimal models, then they are \defemph{$K$-equivalent}. That is, there exists a diagram
-	\begin{equation}\label{diag:K-eq1}
-		\begin{tikzcd}
-			 & Z\dlar["f",swap]\drar["g"] & \\
-			 Y & & Y'
-		\end{tikzcd}
-	\end{equation}
-	such that $Z$ is proper and smooth over $\IC$, the morphisms $f$ and $g$ are proper and birational, and $f^*K_Y\cong g^*K_{Y'}$ holds for the respective canonical bundles (or rather canonical divisors in this notation).
-	
-	Now we \defemph{spread out} over some finitely generated $\IZ$-algebra $A\subseteq \IC$. This means the following: all data---the schemes $Y$, $Y'$, $Z$ together with the morphisms $f$ and $g$---can be described by finitely many polynomials. Taking $A=\IZ[\{\text{all their finitely many coefficients}\}]$ we see that all these polynomials are already defined over $A$. Hence also the corresponding schemes are already defined over $A$. To make this precise: there is a diagram
-	\begin{equation}\label{diag:K-eq2}
-		\begin{tikzcd}
-			& \Zz\dlar["\snake{f}",swap]\drar["\snake{g}"] & \\
-			\Yy & & \Yy'
-		\end{tikzcd}
-	\end{equation}
-	of schemes over $A$, such that \cref{diag:K-eq1} is the base-change of \cref{diag:K-eq2} along $\Spec \IC\morphism\Spec A$. Since Hodge numbers are constant for proper smooth morphisms in characteristic $0$, we can replace $A$ by some suitable localization. Hence we may assume $A=\Oo_F[N^{-1}]$ for some number field $F/\IQ$. By a $p$-adic integration black box we have $\Yy(\IF_{\ell^k})=\Yy'(\IF_{\ell^k})$ for all primes $\ell$ such that $(\ell,N)=1$ and all $k\geq 1$. Fix a prime $p$. If $(p,N)=1$, then
-	\begin{equation*}
-		H_\et^*\big(\Yy_{\ov{\Ff}_\ell},\IQ_p\big)^{\mathrm{ss}}\cong
-		H_\et^*\big(\Yy'_{\ov{\Ff}_\ell},\IQ_p\big)^{\mathrm{ss}}
-	\end{equation*}
-	are isomorphic as Galois representations for all primes $\ell$ such that $(\ell,pN)=1$. This is somehow implied by the Weil conjectures. Also $(-)^{\mathrm{ss}}$ denotes semisimplification. By Chebotarev's density theorem we thus obtain
-	\begin{equation*}
-		H_\et^*\big(\Yy_{\ov{F}},\IQ_p\big)^{\mathrm{ss}}\cong
-		H_\et^*\big(\Yy'_{\ov{F}},\IQ_p\big)^{\mathrm{ss}}\,.
-	\end{equation*}
-	Now pick a prime ideal $\pp\mid p$ in $\Oo_F$ and put $K=F_\pp$. Then also
-	\begin{equation*}
-		H_\et^*\big(\Yy_{\ov{K}},\IQ_p\big)^{\mathrm{ss}}\cong
-		H_\et^*\big(\Yy'_{\ov{K}},\IQ_p\big)^{\mathrm{ss}}\,.
-	\end{equation*}
-	Finally, the Hodge decomposition from \cref{thm:HTdecomp} together with \cref{cor:etKnowsHodge} and a \enquote{small argument $\epsilon$} (to get rid of the semisimplifications) implies
-	\begin{align*}
-		\dim_KH^i\big(\Yy_K,\Omega_{\Yy_K/K}^j\big)\cong \dim_KH^i\big(\Yy'_K,\Omega_{\Yy'_K/K}^j\big)\quad\text{for all }i,j\geq 0\,.
-	\end{align*}
-	Base-changing (in a zig-zag) back to $\IC$ finally proves the assertion.
-\end{proof}
-Another nice application is the degeneration of the \emph{Hodge--de Rham spectral sequence}. Let $Y/k$ be a proper smooth scheme over a field $k$. The \defemph{de Rham cohomology} of $Y$ is defined as the (hyper-)cohomology of the de Rham complex $\Omega_{Y/k}^\bullet$,
-\begin{equation*}
-	H_\dR^n(Y/k)=H^n\left(0\morphism \Oo_Y\morphism[\d]\Omega_{Y/k}^1\morphism[\d]\Omega_{Y/k}^2\morphism[\d]\dotso\right)\,.
-\end{equation*}
-Then, more or less by definition, there is a spectral sequence
-\begin{equation*}
-	E_1^{i,j}=H^j\big(Y,\Omega_{Y/k}^i\big)\converge H_\dR^{i+j}(Y/k)\,,
-\end{equation*}
-called \defemph{Hodge--de Rham spectral sequence}. This sequence is degenerate, which can be proved by similar methods as \cref{thm:MinimalModels}.
-\begin{qst}
-	Again, one can ask whether in our original situation $H_\et^n\big(X_{\ov{K}},\IQ_p\big)$ \enquote{knows} $H_\dR^n(X/K)$ including its Hodge filtration? This question is in part answered by the following theorem.
-\end{qst}
-\begin{thm}[Faltings, Tsuji$,\dotsc$]\label{thm:deRhamComp}
-	For $n\geq 0$ there exists a natural $G_K$-equivariant filtered \enquote{de Rham comparison} isomorphism
-	\begin{equation*}
-		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}B_\dR\cong H_\dR^n(X/K)\otimes_KB_\dR\,.
-	\end{equation*}
-\end{thm}
-\begin{rem}\label{rem:deRhamComp}
-	Again, a lot of clarifications need to be done.
-	\begin{numerate}
-		\item $B_\dR$ is Fontaine's field of \emph{$p$-adic periods} and comes with a $G_K$-action. It is the fraction field of some complete DVR $B_\dR^+$ with residue field $C$ (thus, abstractly, $B_\dR^+\cong C\llbracket t\rrbracket$, but this isomorphism is \emph{not} $G_K$-equivariant). We have a natural filtration $\Fil^jB_\dR=\xi^jB_\dR^+$, where $\xi\in B_\dR^+$ is a uniformizer. The associated graded object is
-		\begin{equation*}
-			B_\HT\coloneqq \gr B_\dR=\bigoplus_{j\in\IZ}C(j)\,.
-		\end{equation*}
-		Thus, the de Rham comparison (\cref{thm:deRhamComp}) implies the Hodge--Tate decomposition (\cref{thm:HTdecomp}).
-		\item The $G_K$-action is diagonally on the left-hand side and via $B_\dR$ on the right-hand side. Conversely, the filtration on the right-hand side is diagonally, whereas on the left-hand side it comes from $B_\dR$.
-		
-		\item If $X=\IP_K^1$ and $n=2$, we obtain $\IQ_p(-1)\otimes_{\IQ_p}B_\dR\cong B_\dR$ (we use the calculations from \cref{rem:HTdecomp}\itememph{1}). Hence there exists a canonical $G_K$-stable line $\IQ_pt\subseteq B_\dR$ such that $G_K$ acts via a cyclotomic character $\chi_\cycl\colon G_K\morphism\IZ_p^\times$ (i.e.\ $\IQ_pt\cong \IQ_p(1)$). 
-		
-		For some $\epsilon\in \IZ_p(1)\setminus\{0\}$ we thus get $t=\log{}[\epsilon]\in B_\dR$. Such an element is also called \enquote{Fontaine's $2\pi\mathrm{i}$}.
-	\end{numerate}
-\end{rem}
-From now on, we will talk about stuff that will be the actual contents of the lecture. Assume that, additionally to the usual assumptions, $X$ has \defemph{good reduction}. That is, $X=\XX_K$ for some smooth proper $\XX\morphism\Spec \Oo_K$. Let $\XX_0$ be the special fibre. Then we get refinement of the de Rham comparison theorem (\cref{thm:deRhamComp}):
-\begin{thm}[Faltings, Niziol, Tsuji]\label{thm:crystallineStuff}
-	For $n\geq 0$ there exists a natural $G_K$-equivariant filtered $\phi$-equivariant isomorphism
-	\begin{equation*}
-		H_\et^n\big(X_{\ov{K}},\IQ_p\big)\otimes_{\IQ_p}B_\cris\cong H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\otimes_{\Oo_{K_0}}B_\cris\,.
-	\end{equation*}
-\end{thm}
-\begin{rem}
-	As usual, we should explain a lot of notation.
-	\begin{numerate}
-		\item Here, $K_0\subseteq K$ is the maximal subextension that is unramified over $\IQ_p$ (so $p$ is a uniformizer of $\Oo_{K_0}$). There exists a (unique) Frobenius lift $\phi$, which acts on $\Oo_{K_0}$.
-		\item $H_\cris^n(\XX_0/\Oo_{K_0})$ is the \emph{crystalline cohomology} of $\XX_0$ over $\Oo_{K_0}$. Roughly, this is the \enquote{de Rham cohomology of a smooth lift}. It has the Frobenius $\phi$ acting on it. Moreover,
-		\begin{equation*}
-			\Big(H_\cris^n\big(\XX_0/\Oo_{K_0}\big)\big[\textstyle\frac 1p\big], \phi, \Fil^\bullet\Big)
-		\end{equation*}
-		is a \defemph{filtered $\phi$-module} (or \defemph{Frobenius isocrystal}), that is, a finite-dimensional $K_0$-vector space $D$, with an automorphism $\phi_D\colon D\morphism D$ that satisfies $\phi_D(\lambda d)=\phi(\lambda)\phi_D(d)$ for all $\lambda\in K_0$, $d\in D$ (this is called \defemph{$\phi$-semilinear}), and a filtration $\Fil^\bullet(D_K)$ (coming from the Hodge filtration) on $D_K\coloneqq D\otimes_{K_0}K$.
-		\item $B_\cris$ is Fontaine's ring of \defemph{crystalline $p$-adic periods}. It is constructed as follows. Let
-		\begin{equation*}
-			\IA_\cris\coloneqq H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,,
-		\end{equation*}
-		with a Frobenius action $\phi$ on it. Put $B_\cris^+\coloneqq \IA_\cris\big[\frac1p\big]$. Then $B_\cris^+$ is actually a $G_K$-stable subring of $B_\dR^+$, and it contains $t=\log{}[\epsilon]$ from \cref{rem:deRhamComp}\itememph{3}. Then we can finally define $B_\cris=B_\cris^+\big[\frac1t\big]$. Also note that $\phi(t)=pt$.
-		
-		One cool feature of the Fargues--Fontaine curve is that all these strange period rings appear as rings of functions on it.
-		\item \cref{thm:crystallineStuff} is analogous to the following statement in $\ell$-adic cohomology (where $\ell\neq p$ is a prime). Let $\XX\morphism\Spec \Oo_K$ be smooth proper, and $s,\eta\in\Spec \Oo_K$ the special resp.\ the generic point. Then there exists a $G_K$-equivariant isomorphism
-		\begin{equation*}
-			H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)\cong H_\et^*(\XX_{\ov{s}},\IQ_\ell)\,.
-		\end{equation*}
-		In particular, $H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)$ is unramified.
-		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})\big[\frac1p\big]$ contain the \enquote{same information}. More mysterious, however, is the question how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces to $K_0$-vector spaces with Frobenius and a filtration over $K$? This became known as \enquote{Grothendieck's question on the \emph{mysterious functor}}. This was resolved by Fontaine: There are functors
-		\begin{equation*}
-			D_\cris\colon \Rep_{\IQ_p}G_K \doublelrmorphism \left\{\text{filtered }\phi\text{-modules}\right\}\noloc V_\cris
-		\end{equation*} 
-		given by $D_\cris(V)=(V\otimes_{\IQ_p}B_\cris)^{G_K}$ and $V_\cris(D)=\Fil^0(D\otimes_{K_0}B_\cris)^{\phi=1}$. They satisfy the following theorem, which will be the main goal of the lecture.
-	\end{numerate}
-\end{rem}
-\begin{thm}[Colmez/Fontaine]\label{thm:ColmerzFontaine}
-	\enquote{Weakly admissible implies admissible}. That is, $D_\cris$ and $V_\cris$ restrict to equivalences
-	\begin{equation*}
-		D_\cris\colon\left\{
-		\begin{tabular}{c}
-			crystalline $G_K$-\\
-			representations
-		\end{tabular}\right\}\lrisomorphism \left\{
-		\begin{tabular}{c}
-			weakly admissible\\
-			filtered $\phi$-modules
-		\end{tabular}
-		\right\}\noloc V_\cris\,.
-	\end{equation*}
-\end{thm}
-\begin{rem}
-	\begin{numerate}
-		\item $V\in \Rep_{\IQ_p}G_K$ is called \defemph{crystalline} if $\dim_{K_0}D_\cris(V)=\dim_{\IQ_p}V$.
-		\item Being \defemph{weakly admissible} has something to do with \enquote{the Newton polygon lying above the Hodge polygon}.
-		\item The essential ingredient in the proof of \cref{thm:ColmerzFontaine} will be the \defemph{Fargues--Fontaine curve} (duh!), together with the relation between its $G_K$-invariant vector bundles and $\Rep_{\IQ_p}G_K$ resp.\ $\left\{\text{filtered }\phi\text{-modules}\right\}$. We can already define it as
-		\begin{equation*}
-			X_\FFC\coloneqq \Proj\Bigg(\bigoplus_{d\geq 0}(B_\cris^+)^{\phi=p^d}\Bigg)\,.
-		\end{equation*}
-		We will see that this is a Dedekind scheme over $\IQ_p$, and the completions of the local rings at its closed points are $B_\dR^+$.
-	\end{numerate}
-\end{rem}
-
+\include{./Chapters/FFintro}
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 \renewcommand{\thedummy}{\thesection.\arabic{dummy}}
 
-\chapter{Yet to be named}
-\section{Ramified Witt Vectors}
-\lecture[The abstract of this lecture is left as an exercise.]{2019-10-23}
-Let $p$ be a prime, $E/\IQ_p$ a finite extension with ring of integers $\Oo_E$. We fix a choice of uniformizer $\pi$ and let $\IF_q=\Oo_E/\pi\Oo_E$ be the residue field of $\Oo_E$, where $q=p^f$. The goal for today is to prove
-\begin{prop}\label{prop:FqAlgebrasEquivalence}
-	There is an equivalence of categories
-	\begin{align*}
-		\left\{\begin{tabular}{c}
-			$\pi$-torsionfree $\pi$-adically complete $\Oo_E$-alge-\\
-			bras $A$ with perfect residue ring $A/\pi A$
-		\end{tabular}
-		\right\}&\isomorphism\left\{\text{perfect $\IF_q$-algebras}\right\}\\
-		A&\longmapsto R=A/\pi A\,.
-	\end{align*}
-\end{prop}
-For the proof, we will construct an inverse functor $R\mapsto W_{\Oo_E}(R)$ that somehow \enquote{reconstructs} $A$ from $A/\pi A$.
-\begin{rem}
-	The most important case is the unramified one, i.e., $E=\IQ_p$, in which case we obtain an equivalence
-	\begin{align*}
-	\left\{\begin{tabular}{c}
-	$p$-torsionfree $p$-adically complete rings\\
-	$A$ with perfect residue ring $A/pA$
-	\end{tabular}
-	\right\}&\isomorphism\left\{\text{perfect $\IF_p$-algebras}\right\}\\
-	A&\longmapsto R=A/p A\,.
-	\end{align*}
-	We will see (in \cref{cor:unramifiedWitt}) that the general case can be reduced to this one. Also we put $W\coloneqq W_{\IZ_p}$ for brevity.
-\end{rem}
-\numpar*{Example}
-We will see $W(\IF_p)=\IZ_p$ and $W(\IF_q)=\Oo_{E_0}$ where $E_0$ is the maximal unramified subextension of $E/\IQ_p$ (i.e., the unique unramified extension with residue field $\IF_q$). Moreover, we will see
-	\begin{equation*}
-		W\big(\IF_p\big\llbracket T^{1/p^\infty}\big\rrbracket\big)=\IZ_p\big\llbracket T^{1/p^\infty}\big\rrbracket\,.
-	\end{equation*}
-	
-\subsection{The construction of \texorpdfstring{$W_{\Oo_E}$}{W}}
-\begin{lem}\label{lem:LTE}
-	Let $A$ be any $\Oo_E$-algebra and $x,y\in A$ such that $x\equiv y\mod \pi$. Then
-	\begin{equation*}
-		x^{q^k}\equiv y^{q^k}\mod \pi^{k+1}\quad\text{for all }k\geq 0\,.
-	\end{equation*}
-\end{lem}
-\begin{proof}
-	By induction on $k$, this boils down to the following question: if $x\equiv y\mod \pi^k$, show $x^q\equiv y^q\mod \pi^{k+1}$. To see this, write $x=y+\pi^ka$ for some $a\in A$. As all binomial coefficients $\binom{q}{i}$ except for $i=0,q$ are divisible by $p$, we obtain 
-	\begin{equation*}
-		x^q=(y+\pi^ka)^q=y^q+p\pi^k(\ldots)+\pi^{kq}a^q\,.
-	\end{equation*}
-	As $\pi\mid p$, the assertions follows.
-\end{proof}
-\begin{deflem}\label{deflem:Teichmüller}
-	Let $A$ be a $p$-adically complete $\Oo_E$-algebra with $R=A/\pi A$ perfect. Let $a\in R$. Choose any sequence of lifts $\alpha_n\in A$ of $a^{1/q^n}\in R$. Then the sequence $(\alpha_n^{q^n})_{n\in \IN}$ converges in $A$ to a lift of $a$, which is independent of the choices of $\alpha_n$. The map
-	\begin{align*}
-		[-]\colon R&\morphism A\\
-		a&\longmapsto [a]\coloneqq\lim_{n\to\infty}\alpha_n^{q^n}
-	\end{align*}
-	is well-defined and called the \defemph{Teichmüller representative}. It defines a natural multiplicative section of $A\epimorphism R$.
-\end{deflem}
-\begin{proof}
-	We have $\alpha_{n+1}^q\equiv \alpha_n\mod \pi$, hence
-	\begin{equation*}
-		\alpha_{n+1}^{q^{n+1}}\equiv \alpha_n^{q^n}\mod \pi^{n+1}
-	\end{equation*}
-	by \cref{lem:LTE}. This shows convergence of the sequence in question. To show that it doesn't depend on the choice of lifts can be seen by a similar argument. Now if $a,b\in R$ are given together with a choice of lifts $\alpha_n$ and $\beta_n$, we can choose $\alpha_n\beta_n$ as lifts of $(ab)^1/q^n$, since the choice of lifts doesn't matter. From this argument, multiplicativity is clear. Naturality is similar.
-\end{proof}
-\begin{lem}\label{lem:TeichmüllerRep}
-	In our usual situation, every $x\in A$ admits a unique representation
-	\begin{equation*}
-		x=\sum_{n=0}^{\infty}[x_n]\pi^n\quad\text{for some }x_n\in R\,.
-	\end{equation*}
-\end{lem}
-\begin{proof}
-	Let $x_0\in R$ be the reduction of $x$. Then $x\equiv[x_0]\mod \pi$, so $x-[x_0]=\pi y_1$ for some $y_1\in A$, which is unique as $A$ is $\pi$-torsionfree. Now let $x_1\in R$ be the reduction of $y_1$. Similar as above, write $y_1=[x_1]+\pi y_2$. Now repeat this process to get a representation of the desired type. Uniqueness can be shown along the lines of the construction.
-\end{proof}
-\begin{urem}
-	We can think of $A\morphism R$ in a similar way as we think about $R\llbracket T\rrbracket\morphism R$ with its canonical section $R\morphism R\llbracket T\rrbracket$ given by $a\mapsto a$. Since in our situation $A$ has characteristic $0$ but $R$ has characteristic $p$, there is no way $[-]\colon R\morphism A$ can be additive. So it being multiplicative is really the best we could hope for.
-\end{urem}
-At this point, \cref{lem:TeichmüllerRep} allows us to recover $A$ as a \emph{set} from $R=A/\pi A$. But what about the ring structure? Let's try! Say we have sequences $(x_n),(y_n)\in R^{\IN}$ and we want to find the unique sequence $(s_n)\in R^{\IN}$ such that
-\begin{equation*}
-	\sum_{n=0}^{\infty}[x_n]\pi^n+\sum_{n=0}^{\infty}[y_n]\pi^n=\sum_{n=0}^\infty [s_n]\pi^n\,.
-\end{equation*}
-One could naively assume that $s_n$ is just $x_n+y_n$. Spoiler: \emph{it's not}. For $n=0$, we calculate modulo $\pi$. We should have $[x_0]+[y_0]=[s_0]$, hence $s_0=x_0+y_0$. That was easy! Now for $n=1$. We calculate modulo $\pi^2$:
-\begin{equation*}
-	[x_0]+[x_1]\pi+[y_0]+[y_1]\pi\equiv [s_0]+[s_1]\pi\equiv [x_0+y_0]+[s_1]\pi\mod \pi^2\,.
-\end{equation*}
-Hence we want to put
-\begin{equation*}
-	``s_1=x_1+y_1+\frac{[x_0]+[y_0]-[x_0+y_0]}{\pi}\text{''}\,,
-\end{equation*}
-except it's not clear at all how to define this formally. Here we use a trick: since $R$ is perfect and $[-]$ is multiplicative, we have
-\begin{align*}
-	[x_0]+[y_0]-[x_0+y_0]=\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q-\big[x_0^{1/q}+y_0^{1/q}\big]^q\,.
-\end{align*}
-Since $\big[x_0^{1/q}\big]+\big[y_0^{1/q}\big]\equiv\big[x_0^{1/q}+y_0^{1/q}\big]\mod \pi$, \cref{lem:LTE} shows
-\begin{equation*}
-	\big[x_0^{1/q}\big]^q+\big[y_0^{1/q}\big]^q\equiv\big[x_0^{1/q}+y_0^{1/q}\big]^q\mod \pi^2\,.
-\end{equation*}
-Hence we can choose
-\begin{equation*}
-	s_1=x_1+y_1-\sum_{i=1}^{q-1}\frac{1}{\pi}\binom{q}{i}\big[x_0^{1/q}\big]^i\big[y_0^{1/q}\big]^{q-i}\,,
-\end{equation*}
-where the $\pi^{-1}\binom{q}{i}$ are considered as elements of $\Oo_E$. In the very unpleasant Germany of 1936, the mathematician and SA member Ernst Witt understood this pattern and extended it to higher $n$ as follows.
+\include{./Chapters/FF11to12}
+
+
+\section{Newton Polygons and Factorizations}
+\subsection{The Power Series Case}
+\lecture[Newton polygons of polynomials. The Legendre Transform. Newton polygons of power series. Newton polygons in $\IA_\inf$ and untilts of $\Oo_F$.]{2019-11-13}
+Let $K$ be a non-archimedean field, $v\colon K\morphism\IR\cup\{\infty\}$ its valuation (written additively). Let $f=a_0+a_1T+\dotsb+a_nT^n\in K[T]$ be a polynomial.
 \begin{defi}
-	For $n\geq 0$, define the \emph{$n\ordinalth$ ghost component} as
-	\begin{equation*}
-		W_n(X_0,\dotsc,X_n)=\sum_{i=0}^{n}X_i^{q^{n-i}}\pi^i\in\Oo_E[X_0,\dotsc,X_n]\,.
-	\end{equation*}
+	The \defemph{Newton polygon} $\Newt_\poly(f)$ is the largest convex polygon below $\{(i,v(a_i))\}_{i\in\IZ}$, where we put $a_i=0$ for $i\notin\{0,1,\dotsc,n\}$ by convention.
 \end{defi}
-\begin{urem}
-The idea behind the $W_n$ is that 
-\begin{equation*}
-	\sum_{i=0}^n[a_i]\pi^i=W_n\Big(\big[a_0^{1/q^n}\big],\dotsc,\big[a_n^{1/q^0}\big]\Big)\,.
-\end{equation*}
-\end{urem}
-\begin{prop}\label{prop:WittPolynomials}
-	There are unique sequences of polynomials $(S_n)_{n\in \IN}$, $(P_n)_{n\in\IN}$ in the polynomial ring $\Oo_E[X_0,\ldots,X_n,Y_0,\ldots,Y_n]$, such that
+There is a better description via the \defemph{Legendre transform}. To set this up, we introduce the notations $\ov{\IR}=\IR\cup\{\pm\infty\}$ and $\Ff=\{\phi\colon \ov{\IR}\morphism\ov{\IR}\}$.
+\begin{defi}
+	We define the \defemph{Legendre transform} $\Ll\colon \Ff\morphism\Ff$ and the \defemph{inverse Legendre transform} $\snake{\Ll}\colon \Ff\morphism\Ff$ via
 	\begin{align*}
-		W_n(X_0,\dotsc,X_n)+W_n(Y_0,\dotsc,Y_n)&=W_n(S_0,\dotsc,S_n)\\
-		W_n(X_0,\dotsc,X_n)\cdot W_n(Y_0,\dotsc,Y_n)&=W_n(P_0,\dotsc,P_n)\,.
+		\Ll\phi(\lambda)&=\inff_{x\in\IR}\{\phi(x)+\lambda x\}\,\\
+		\snake{\Ll}\phi(x)&=\sup_{x\in\IR}\{\phi(\lambda)-\lambda x\}\,.
 	\end{align*}
-\end{prop}
-\begin{proof}%nitl
-	We show more generally that for any polynomial $\Phi\in\Oo_E[X,Y]$ there is a unique sequence $(\Phi)_{n\in\IN}$ of polynomials $\Phi_n\in\Oo_E[X_0,\dotsc,X_n,Y_0,\dotsc,Y_n]$ such that
-	\begin{equation*}
-		\Phi\big(W_n(X_0,\dotsc,X_n),W_n(Y_0,\dotsc,Y_n)\big)=W_n(\Phi_0,\dotsc,\Phi_n)\,.
-	\end{equation*}
-	We show this via induction on $n$. For $n=0$ we have to take $\Phi_0(X_0,Y_0)=\Phi(X_0,Y_0)$. Now suppose $\Phi_0,\dotsc,\Phi_n$ are already constructed. We need to check that
-	\begin{equation}\label{eq:Witt1}
-		\Phi\big(W_{n+1}(X_0,\dotsc,X_{n+1}),W_{n+1}(Y_0,\dotsc,Y_{n+1})\big)-W_{n+1}(\Phi_0,\dotsc,\Phi_n,0)
-	\end{equation}
-	is a polynomial divisible by $\pi^{n+1}$; for then $\pi^{-(n+1)}\cdot(\text{this polynomial})$ is the unique choice for $\Phi_{n+1}$. Note that 
-	\begin{equation}\label{eq:Witt2}
-		W_{n+1}(X_0,\dotsc,X_{n+1})\equiv W_n\left(X_0^q,\dotsc,X_n^q\right)\mod\pi^{n+1}\,.
-	\end{equation}
-	Using \cref{eq:Witt1} together with the induction hypothesis, we obtain
-	\begin{align*}
-		\Phi\big(W_{n+1}(X_0,\dotsc,X_{n+1}),W_{n+1}(Y_0,\dotsc,Y_{n+1})\big)&\equiv \Phi\big(W_n(X_0^q,\dotsc,X_n^q),W_n(Y_0^q,\dotsc,Y_n^q)\big)\\
-		&\equiv W_n\big(\Phi_0^{(q)},\dotsc,\Phi_n^{(q)}\big)\mod \pi^{n+1}\,,
-	\end{align*}
-	where $\Phi_i^{(q)}$ is the polynomial obtained from $\Phi_i$ by replacing every variable by its $q\ordinalth$ power. Note that $\Phi_i^{(q)}\equiv \Phi_i^q\mod \pi$. Thus, using \cref{lem:LTE} we get
-	\begin{equation*}
-		\pi^i\big(\Phi_i^{(q)}\big)^{q^{n-i}}\equiv \pi^i\Phi_i^{q^{n+1-i}}\mod \pi^{n+1}\,.
-	\end{equation*}
-	But this shows $W_n\big(\Phi_0^{(q)},\dotsc,\Phi_n^{(q)}\big)\equiv W_{n+1}(\Phi_0,\dotsc,\Phi_n,0)\mod \pi^{n+1}$. Now putting everything together shows that the polynomial in \cref{eq:Witt1} is indeed divisible by $\pi^{n+1}$, as required.
-\end{proof}
-\begin{cor}\label{cor:snpn}
-	Let $(x_n)_{n\in\IN}$ and $(y_n)_{n\in\IN}$ be sequences in $R^\IN$, where $R=A/\pi A$. For all $n\geq 0$ put
-	\begin{align*}
-		s_n&=S_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\\
-		p_n&=P_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\,. 
-	\end{align*}
-	Then these sequences $(s_n)_{n\in\IN}$ and $(p_n)_{n\in\IN}$ satisfy
-	\begin{align*}
-		\sum_{n=0}^\infty[x_n]\pi^n+\sum_{n=0}^\infty[y_n]\pi^n&=\sum_{n=0}^\infty[s_n]\pi^n\\
-		\Bigg(\sum_{n=0}^\infty[x_n]\pi^n\Bigg)\cdot\Bigg(\sum_{n=0}^\infty[y_n]\pi^n\Bigg)&=\sum_{n=0}^\infty[p_n]\pi^n\,.
-	\end{align*}
-\end{cor}
-\begin{proof*}
-	Again, we show the assertion more generally for an arbitrary $\Phi\in\Oo_E[X,Y]$ and its associated Witt polynomials $(\Phi_n)_{n\in\IN}$ constructed in the proof of \cref{prop:WittPolynomials}. The key observation is the following:
-	\begin{numerate}
-		\item[$(*)$] If $a_0,\dotsc,a_n$ and $a_0',\dotsc,a'_n$ are elements of $A$ such that $a_i\equiv a_i'\mod \pi$, then
-		\begin{align*}
-			W_n(a_0,\dotsc,a_n)\equiv W_n(a'_0,\dotsc,a'_n)\mod \pi^{n+1}\,.
-		\end{align*}
-	\end{numerate}
-	Indeed, if you think about it, this immediately follows from \cref{lem:LTE} and the definition of the $W_n$. Now fix some $N$ and put
-	\begin{align*}
-		\varphi_n&=\Phi_n\left(x_0^{1/q^n},\dotsc,x_n^{1/q^0},y_0^{1/q^n},\dotsc,y_n^{1/q^0}\right)\\
-		\varphi_n'&=\Phi_n\left(\big[x_0^{1/q^N}\big],\dotsc,\big[x_n^{1/q^{N-n}}\big],\big[y_0^{1/q^N}\big],\dotsc,\big[y_n^{1/q^{N-n}}\big]\right)\,.
-	\end{align*}
-	By construction of the Witt polynomials $(\Phi_n)_{n\in\IN}$ (see the proof of \cref{prop:WittPolynomials}) we immediately have 
-	\begin{equation*}
-		\Phi\left(W_N\left(\big[x_0^{1/q^N}\big],\dotsc,\big[x_N^{1/q^0}\big]\right),W_N\left(\big[y_0^{1/q^N}\big],\dotsc,\big[y_N^{1/q^0}\big]\right)\right)= W_N(\varphi_0',\dotsc,\varphi_N')\,.
-	\end{equation*}
-	But also $\varphi_n'\equiv\big[\varphi_n^{1/q^{N-n}}\big]\mod \pi$. Hence, by \itememph{*}, we obtain
-	\begin{align*}
-		W_N(\varphi_0',\dotsc,\varphi_N')\equiv W_N\left(\big[\varphi_0^{1/q^N}\big],\dotsc,\big[\varphi_n^{1/q^{0}}\big]\right)\mod \pi^{N+1}\,.
-	\end{align*}
-	Taking $N\rightarrow\infty$, this shows
-	\begin{equation*}
-		\Phi\Bigg(\sum_{n=0}^\infty[x_n]\pi^n,\sum_{n=0}^\infty[y_n]\pi^n\Bigg)=\sum_{n=0}^\infty[\varphi_n]\pi^n\,.
-	\end{equation*}
-	For $\Phi=X+Y$ resp.\ $\Phi=XY$ we retain the assertion of this corollary.
-\end{proof*}
-The upshot is that we can now reconstruct $A$ as a ring from $R=A/\pi A$. The next goal is to start with an arbitrary $R$ and construct an $A$ in a functorial way. In particular, we will allow $R$ to be an $\Oo_E$-algebra instead of an $\IF_q$-algebra (recall that $\IF_q=\Oo_E/\pi\Oo_E$). In the end, we will only be interested in the latter case, but allowing for rings of characteristic $0$ too gives us some nice uniqueness properties.
-\begin{defi}\label{def:W_OE}
-	For any $\Oo_E$-algebra $R$ write $W_{\Oo_E}(R)=R^\IN$. Its elements (which are sequences) are denoted $x=[x_0,x_1,\dotsc]$.
 \end{defi}
-\begin{prop}\label{prop:W_OE}
-	The functor from \cref{def:W_OE} admits a unique factorization
+Note that $\snake{\Ll}\phi=-\Ll(-\phi)$. As a Slogan: \enquote{$\Ll$ and $\snake{\Ll}$ interchange $x$-coordinates and slopes}.
+\begin{exm}\label{exm:LegendreOfLinear}
+	If $\phi(x)=ax+b$, then one easily verifies
 	\begin{equation*}
-		\begin{tikzcd}
-		\cat{Alg}_{\Oo_E}\drar[dashed, "W_{\Oo_E}(-)"{swap}]\ar[rr, "(-)^\IN"] & & \cat{Set}\\
-		& \cat{Alg}_{\Oo_E} \urar["\mathrm{forget}"{swap}]&
-		\end{tikzcd}
-	\end{equation*}
-	such that the natural transformation $\Ww$ given by
-	\begin{align*}
-		\Ww_R\colon W_{\Oo_E}(R)&\morphism R^\IN\\
-		[x_n]_{n\in\IN}&\longmapsto \big(W_n(x_0,\dotsc,x_n)\big)_{n\in\IN}
-	\end{align*}
-	is a morphism of $\Oo_E$-algebras. Here $R^\IN$ is equipped with its natural component-wise $\Oo_E$-algebra structure.
-\end{prop}
-\begin{proof}
-	We first construct a natural $\Oo_E$-algebra structure on $W_{\Oo_E}(R)$. If two sequences $x=[x_n]_{n\in\IN}$ and $[y_n]_{n\in\IN}$ are given, we define $x+y=[s_n]_{n\in\IN}$ and $xy=[p_n]_{n\in\IN}$, where---you might have guessed it---we put
-	\begin{equation*}
-		s_n=S_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\quad\text{and}\quad p_n=P_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\,.
-	\end{equation*}
-	To see that this is determines a ring structure, the crucial thing to notice is that the proof of \cref{prop:WittPolynomials} works just the same if $\Phi\in\Oo_E[X_1,\ldots,X_N]$ is a polynomial in arbitrary many variables instead of just $N=2$. So by choosing suitable $\Phi$, we can verify all ring axioms. For example, $\Phi=-X_1$ constructs additive inverses, $\Phi=(X_1+X_2)+X_3=X_1+(X_2+X_3)$ shows the associativity law of addition, $\Phi=X_1(X_2+X_3)=X_1X_2+X_1X_3$ shows distributivity, and so on. Also, if $\alpha\in\Oo_E$, then $\Phi=\alpha X_1$ defines multiplication by $\alpha$ on $W_{\Oo_E}(R)$, turning it into an $\Oo_E$-algebra.
-	
-	This provides a factorization through $\cat{Alg}_{\Oo_E}$. It is clear from the construction that $\Ww_R$ is an $\Oo_E$-algebra morphism. So it remains to show that this factorization is unique. If $R$ is $\pi$-torsionfree, then $\Ww_R\colon W_{\Oo_E}(R)\morphism R^\IN$ is easily seen to be injective, hence the $\Oo_E$-algebra structure on $W_{\Oo_E}(R)$ is uniquely determined by the one on $R^\IN$. In general, every $R$ admits a surjection $R'\epimorphism R$ from a $\pi$-torsionfree $\Oo_E$-algebra; e.g., $R'=\Oo_E\left[T_a\st a\in R\right]$ does it. Then $W_{\Oo_E}(R')\epimorphism W_{\Oo_E}(R)$ uniquely determines the $\Oo_E$-algebra structure on $W_{\Oo_E}(R)$. This shows uniqueness.
-\end{proof}
-\begin{urem}
-	\begin{numerate}
-		\item For the uniqueness part it was crucial to have \enquote{enough} $\pi$-torsionfree $\Oo_E$-algebras. If we had worked with $\IF_q$-algebras, where $\pi=0$, this wouldn't have been possible. In this case, $W_n(x_0,\dotsc,x_n)$ is just $x_0^{q^n}$. Hence the name \enquote{ghost components}.
-		
-		\item Also, \cref{prop:W_OE} gives the functor $W_{\Oo_E}(-)$ the structure of a ring scheme.
-	\end{numerate}
-\end{urem}	
-\begin{lem}\label{lem:W_OETeichmüller}
-	The natural map (which we will also call \enquote{Teichmüller lift})
-	\begin{align*}
-		[-]\colon R&\morphism W_{\Oo_E}(R)\\
-		x&\longmapsto [x,0,0,\dotsc]
-	\end{align*}
-	is multiplicative.
-\end{lem}
-\begin{proof*}
-	It's easy to see $P_0(X_0,Y_0)=X_0Y_0$. So to prove the assertion it suffices to check that $P_n(X_0,0,\dotsc,0,Y_0,0,\dotsc,0)=0$ for all $n>0$. But
-	\begin{align*}
-		W_n(X_0,0,\dotsc,0)\cdot W_n(Y_0,0,\dotsc,0)=X_0^{q^n}Y_0^{q^n}=W_n(X_0Y_0,0,\dotsc,0)\,,
-	\end{align*}
-	so this is easy to check by induction on $n$ (and using that polynomial rings over $\Oo_E$ are $\pi$-torsionfree).
-\end{proof*}
-\subsection{Frobenius and Verschiebung}
-If $R$ happens to be an $\IF_q$-algebra, then we have the Frobenius $(-)^q$ on $R$. By functoriality, it extends to an endomorphism $F\colon W_{\Oo_E}(R)\morphism W_{\Oo_E}(R)$. The next lemma shows that $F$ actually exists for arbitrary $R$ and can be explicitly described.
-\begin{lem}\label{lem:WittFrob}
-	\begin{numerate}
-		\item There is a unique natural transformation $F\colon W_{\Oo_E}(-)\morphism W_{\Oo_E}(-)$ of $\Oo_E$-algebras making the following diagram commute:
-		\begin{equation*}
-			\begin{tikzcd}
-				W_{\Oo_E}(R)\rar["\Ww"]\dar["F"{swap}] & R^\IN\dar &[-2.4em] (x_n)_{n\in\IN}\dar[|->]\\
-				W_{\Oo_E}(R)\rar["\Ww"] & R^\IN &[-2.4em] (x_{n+1})_{n\in \IN}
-			\end{tikzcd}
-		\end{equation*}
-		\item If $R$ is an $\IF_q$-algebra, then $F$ is given by $F([x_0,x_1,\dotsc])=[x_0^q,x_1^q,\dotsc]$ and it is induced by the Frobenius on $R$.
-	\end{numerate}
-\end{lem}
-\begin{proof*}
-	We first construct a sequence $(F_n)_{n\in\IN}$ of polynomials $F_n\in \Oo_E[X_0,\dotsc,X_{n+1}]$ satisfying $W_{n+1}(X_0,\dotsc,X_{n+1})=W_n(F_0,\dotsc,F_n)$ and that $F_n\equiv X_n^q\mod \pi$. This is done by induction on $n$, the case $n=0$ being trivial. Suppose $F_0,\dotsc,F_{n-1}$ have already been constructed and have the required property. If we could prove that
-	\begin{equation}\label{eq:Fn}
-		W_{n+1}(X_0,\dotsc,X_{n+1})-W_n(F_0,\dotsc,F_{n-1},0)\equiv \pi^n X_0^q\mod \pi^{n+1}\,,
-	\end{equation}
-	this would show existence of $F_n$ and $F_n\equiv X_n^q\mod \pi$ at once. To prove \cref{eq:Fn}, we may equivalently show
-	\begin{align}\label{eq:Fn2}
-		\begin{split}
-			0&\equiv W_{n+1}(X_0,\dotsc,X_{n-1},0,0)-W_n(F_0,\dotsc,F_{n-1},0)\\
-			&\equiv W_{n-1}\big(X_0^{q^2},\dotsc,X_{n-1}^{q^2}\big)-W_{n-1}\left(F_0^q,\dotsc,F_{n-1}^q\right)\mod \pi^{n+1}\,.
-		\end{split}
-	\end{align}
-	But $F_i\equiv X_i^q\mod \pi$ shows $F_i^q\equiv X_i^{q^2}\mod \pi^2$ by \cref{lem:LTE}, hence the bottom line of \cref{eq:Fn2} is indeed $0$ modulo $\pi^{n+1}$ by another application of \cref{lem:LTE}.
-	
-	Thus we can construct a sequence $F=(F_n)_{n\in \IN}$ with the required properties. By construction, $F$ makes the diagram in \itememph{1} commute and satisfies \itememph{2}. So it remains to show that $F$ is unique with this property and a morphism of $\Oo_E$-algebras. This can be done by the same argument as in the proof of \cref{prop:W_OE}. If $R$ is $\pi$-torsionfree, $W_{\Oo_E}(R)$ injects into $R^\IN$, hence it is uniquely determined and an $\Oo_E$-algebra morphism. In general, we take a surjection $R'\epimorphism R$ from a $\pi$-torsionfree $\Oo_E$-algebra.
-\end{proof*}
-\begin{lem}
-	There is a natural transformation $V\colon W_{\Oo_E}(-)\morphism W_{\Oo_E}(-)$ of $\Oo_E$-modules that makes the following diagram commute:
-	\begin{equation*}
-		\begin{tikzcd}
-			{[x_0,x_1,\dotsc]}\dar[|->] &[-2.4em] W_{\Oo_E}(R)\dar["V"{swap}]\rar["\Ww"] & R^\IN\dar &[-2.4em] (x_n)_{n\in\IN}\dar[|->]\\
-			{[0,x_0,x_1,\dotsc]} &[-2.4em] W_{\Oo_E}(R) \rar["\Ww"] & R^\IN &[-2.4em] (\pi x_{n-1})_{n\in\IN}
-		\end{tikzcd}\,,
-	\end{equation*}
-	where we put $x_{-1}=0$. Moreover, $V$ is unique with this property.
-\end{lem}
-\begin{proof*}
-	It's immediately clear that $V$ as constructed makes the diagram commute. To show that $V$ is unique, we use the usual trick: for $\pi$-torsionfree $\Oo_E$-algebras $R$, this is clear; in general, consider a surjection $R'\epimorphism R$ where $R'$ is $\pi$-torsionfree.
-\end{proof*}
-\numpar*{Remark}
-The letter $V$ stands for the German word \enquote{Verschiebung}. In contrast to $F$, $V$ is no ring endomorphism and it does depend on the choice of $\pi$.\footnote{Well, $W_n$ and thus $\Ww$ depend on $\pi$ too, so we cannot really say that $F$ is \enquote{independent} of $\pi$. But at least its image in $R^\IN$ is, in contrast to the image of $V$ in $R^\IN$.}
-\begin{lem}\label{lem:FVidentities}
-	The following identities hold for $F$ and the Verschiebung $V$.
-	\begin{numerate}
-		\item $FV=\pi$.
-		\item $V(F(x)y)=xV(y)$ for all $x,y\in W_{\Oo_E}(R)$.
-		\item $\pi F(x)y=F(xV(y))$ for all $x,y\in W_{\Oo_E}(R)$. 
-	\end{numerate}
-\end{lem}
-\begin{proof}
-	If $R$ is $\pi$-torsionfree, these can be checked in $R^\IN$. In general, take a surjection $R'\epimorphism R$ where $R'$ is $\pi$-torsionfree to reduce everything to the $\pi$-torsionfree case.
-\end{proof}
-\begin{lem}\label{lem:imVn}
-	\begin{numerate}
-		\item For all $n\in\IN$, the image of $V^n$ is an ideal in $W_{\Oo_E}(R)$.
-		\item We have $W_{\Oo_E}(R)\cong \lim_{n\in\IN}W_{\Oo_E}(R)/\im V^n$.
-		\item Every $x\in W_{\Oo_E}(R)$ admits a unique representation
-		\begin{equation*}
-			x=\sum_{n=0}^\infty V^n[x_n]
-		\end{equation*}
-		for some $x_n\in R$, where $[-]\colon R\morphism W_{\Oo_E}(R)$ is the Teichmüller lift from \cref{lem:W_OETeichmüller}. In fact, the $x_n$ are determined by $x=[x_n]_{n\in\IN}$.
-	\end{numerate}
-\end{lem}
-\begin{proof*}
-	Since $V$ is $\Oo_E$-linear, $\im V^n$ is a subgroup of $W_{\Oo_E}(R)$. Moreover, \cref{lem:FVidentities}\itememph{1} shows $xV^n(y)=V^n(F^n(x)y)$ for all $x,y\in W_{\Oo_E}(R)$, hence $\im V^n$ is closed under scalar multiplication. This shows \itememph{1}.
-	
-	Now part~\itememph{2}. We claim that the canonical map of sets $W_{\Oo_E}(R)\morphism R^N$ given by $[x_n]_{n\in\IN}\mapsto (x_0,\dotsc,x_{N-1})$ descends to a bijection
-	\begin{equation*}
-		W_{\Oo_E}(R)/\im V^N\isomorphism R^N\,.
-	\end{equation*}
-	Let's first check that it is well-defined. Let $y=[y_n]_{n\in \IN}$ be in the image of $V^n$, i.e., $y_n=0$ for all $n< N$. Let $x+y=[s_n]_{n\in \IN}$. Then what we need to show is that $s_n=x_n$ for all $n<N$. Thus, it suffices to check the polynomial identity
-	\begin{equation*}
-		S_n(X_0,\dotsc,X_n,0,\dotsc,0)=X_n\,.
-	\end{equation*}
-	However, this is easily seen from induction and the trivial identity
-	\begin{equation*}
-		W_n(X_0,\dotsc,X_n)+W_n(0,\dotsc,0)=W_n(X_0,\dotsc,X_n)\,.
-	\end{equation*}
-	Since $W_{\Oo_E}(R)/\im V^N\morphism R^N$ is automatically surjective, it remains to show injectivity. So let $x,y\in W_{\Oo_E}(R)$ be such that $x_n=y_n$ for all $n<N$. Let $x-y=[\delta_n]_{n\in\IN}$. To show that $\delta$ is in the image of $V^n$, we need to check $\delta_n=0$ for $n<N$. Thus, it suffices to check the polynomial identity
-	\begin{equation*}
-		\Delta_n(X_0,\dotsc,X_n,X_0,\dotsc,X_n)=0\,,
-	\end{equation*}
-	where $\Delta=X-Y\in\Oo_E[X,Y]$ and $(\Delta_n)_{n\in\IN}$ are the associated Witt polynomials constructed in the proof of \cref{prop:WittPolynomials}. This can be done in the same way as above.
-	
-	Now since $R^\IN\cong \lim_{n\in\IN}R^n$, the bijection $W_{\Oo_E}(R)/\im V^n\cong R^n$ for all $n\in \IN$ shows that $W_{\Oo_E}(R)\cong \lim_{n\in\IN}W_{\Oo_E}(R)/\im V^n$ is true as a limit of sets. However, the limit in the category of $\Oo_E$-algebras can be taken on the level of sets. This shows \itememph{2}.
-	
-	Finally, we show \itememph{3}. First we prove that for all $N\in \IN$ we have
-	\begin{equation}\label{eq:sumVn}
-		\sum_{n=0}^NV^n[x_n]=[x_0,\dotsc,x_N,0,0,\dotsc]\,.
-	\end{equation}
-	We use induction on $N$. The case $N=0$ is trivial. Now suppose the assertion is true for $N-1$. To prove it for $N$, it suffices to check the following polynomial identity: if $(X_n)_{n\in\IN}$ and $(Y_n)_{n\in\IN}$ are sequences of variables such that $X_N=0$ and $Y_n=0$ for all $n\neq N$, then
-	\begin{equation*}
-		S_n(X_0,\dotsc,X_n,Y_0,\dotsc,Y_n)=\begin{cases}
-		Y_N&\text{if }n= N\\
-		X_n&\text{else}
+		\Ll\phi(\lambda)=\begin{cases}
+			b & \text{if }\lambda=-a\\
+			-\infty & \text{else}
 		\end{cases}\,.
 	\end{equation*}
-	For $n<N$, we obtain an identity that was already seen in the proof of \itememph{2}. For $n\geq N$, this easily follows by induction on $n$, using the identity
-	\begin{equation*}
-		W_n(X_0,\dotsc,X_n)+W_n(Y_0,\dotsc,Y_n)=W_n(X_0,\dotsc,X_{N-1},Y_N,X_{N+1},\dotsc,X_n)\,.
-	\end{equation*}
-	This shows \cref{eq:sumVn}. Now let $x-[x_0,\dotsc,x_N,0,0,\dotsc]=\delta=[\delta_n]_{n\in\IN}$. As in the proof of \itememph{2} we see that $\delta_n=0$ for $n\leq N$. Hence $\delta\in\im V^n$. This shows \itememph{3} except for the uniqueness part. But uniqueness is also clear from \cref{eq:sumVn}.
-\end{proof*}
-\begin{urem*}
-	\cref{lem:imVn} holds for arbitrary $R$, despite what was claimed in the lecture. We leave it as an exercise to relate this error to the lecture's overall rushed style.
-\end{urem*}
-Now that the general theory of $W_{\Oo_E}(-)$ is set up, we restrict ourselves to the case where $R$ has characteristic $p$, i.e., $\pi=0$ on $R$ and $R$ is an $\IF_q$-algebra.
-\begin{lem}\label{lem:Vincharp}
-	Suppose $\pi=0$ on $R$. Then the following hold:
+	Also note that $\snake{\Ll}\Ll\phi=\phi$ in this case.
+\end{exm}
+\begin{lem}\label{lem:Legendre}
+	Let $\phi,\psi\in\Ff$. Then the following hold.
 	\begin{numerate}
-		\item For $x=[x_n]_{n\in\IN}\in R$ we have $x=\sum_{n=0}^\infty V^n[x_n]$.
-		\item $VF=\pi$. Hence $V$ and $F$ commute.
-		\item $F\big(\sum_{n=0}^\infty V^n[x_n]\big)=\sum_{n=0}^\infty V^n[x_n^q]$.
+		\item The Legendre transform $\Ll\phi$ is always concave, i.e., it satisfies the inequality
+		\begin{equation*}
+			\Ll\phi(a\lambda+b\mu)\geq a\Ll\phi(\lambda)+b\Ll\phi(\mu)
+		\end{equation*}
+		for all $a,b\geq 0$ such that $a+b=1$. Similarly $\snake{\Ll}\phi$ is convex.
+		\item If $\phi\leq \psi$, then $\Ll\phi\leq \Ll\psi$ and $\snake{\Ll}\phi\leq \snake{\Ll}\psi$.
+		\item We have $\snake{\Ll}\Ll\phi\leq \phi\leq \Ll\snake{\Ll}\phi$.
+		\item If $\phi$ admits a supporting line at $x$ of slope $\lambda$, i.e., $\phi(y)\geq \phi(x)+\lambda(y-x)$ for all $y$, then $\Ll\phi$ admits a capping line at $-\lambda$ of slope $x$.
+		\item $\snake{\Ll}\Ll\phi$ is the largest convex function below $\phi$, and likewise $\Ll\snake{\Ll}\phi$ is the smallest concave function over $\phi$.
+		\item $\Ll$ and $\snake{\Ll}$ define inverse bijections $\{\text{convex }\phi\colon \IR\morphism\ov{\IR}\}\lrisomorphism \{\text{concave }\psi\colon \IR\morphism\ov{\IR}\}$.
+	\end{numerate}
+\end{lem}
+\begin{proof}
+	Parts \itememph{1} to \itememph{4} are straightforward from the definitions. We only prove \itememph{5} and \itememph{6}. For $a,b\in \IR$ put $\psi_{a,b}(x)=ax+b$ and consider the set $M\coloneqq\left\{(a,b)\st \psi_{a,b}\leq \phi\right\}$. Then $\psi=\sup_M\left\{\psi_{a,b}\right\}$ is the largest convex function below $\phi$. By \itememph{1} and \itememph{3} we get $\snake{\Ll}\Ll\phi\leq \psi$. Moreover, \cref{exm:LegendreOfLinear} and \itememph{2} show 
+	\begin{equation*}
+		\psi_{a,b}=\snake{\Ll}\Ll\psi_{a,b}\leq \snake{\Ll}\Ll\phi\,,
+	\end{equation*}
+	hence $\psi\leq \snake{\Ll}\Ll\phi$. This proves that $\snake{\Ll}\Ll\phi$ is the largest convex function below $\phi$. The second part of \itememph{5} is completely analogous.
+	
+	Part~\itememph{6} is a formal consequence of \itememph{3} and \itememph{5}. We know that $\Ll\colon(\Ff,\leq)\doublelrmorphism (\Ff,\leq)\noloc \snake{\Ll}$ define an adjoint pair of functors. Hence $\Ll$ and $\snake{\Ll}$ induce inverse bijections between the full subcategories on which the unit resp.\ the counit of this adjunction is a natural isomorphism. Now $\left\{\phi\st \snake{\Ll}\Ll\phi=\phi\right\}=\{\phi\text{ convex}\}$ and likewise $\left\{\psi\st \psi=\Ll\snake{\Ll}\psi\right\}=\{\psi\text{ concave}\}$.
+\end{proof}
+\numpar{Example \smash{\Attention}}
+$\Ll$ and $\snake{\Ll}$ preserve piece-wise linear functions. In pictures, this looks roughly as follows.
+\begin{center}
+	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+	\begin{scope}[xshift=-6.75cm]
+	\draw[-to] (-0.5,0) -- (4,0);
+	\draw[-to] (0,-0.5) -- (0,4);
+	\fill (3,0.25) circle (0.5ex) node (4) {};
+	\fill (1.5,1) circle (0.5ex) node (3) {};
+	\fill (0.75,1.75) circle (0.5ex) node (2) {};
+	\fill (0.25,2.75) circle (0.5ex) node (1) {};
+	\draw[thick] (0.25,2.75) -- (0.75,1.75) node[pos=0.5,right=1.5] {$\lambda_1$} -- (1.5,1) node[pos=0.5,above right=-2] {$\lambda_2$} -- (3,0.25) node[pos=0.5,above=1.5] {$\lambda_3$};
+	\draw (0.25,0.75ex) -- (0.25,-0.75ex) node[below] {$x_1$};
+	\draw (0.75,0.75ex) -- (0.75,-0.75ex) node[below] {$x_2$};
+	\draw (1.5,0.75ex) -- (1.5,-0.75ex) node[below] {$x_3$};
+	\draw (3,0.75ex) -- (3,-0.75ex) node[below] {$x_4$};
+	\end{scope}
+	\begin{scope}[xshift=0.25cm]
+	\draw[-to] (-0.5,0) -- (4,0);
+	\draw[-to] (0,-0.5) -- (0,4);
+	\fill (2,3.25) circle (0.5ex) node (3) {};
+	\fill (1,2.5) circle (0.5ex) node (2) {};
+	\fill (0.5,1.75) circle (0.5ex) node (1) {};
+	\draw[thick] (-0.1875,-0.3125) -- (0.5,1.75) -- (1,2.5) -- (2,3.25) -- (3.5,3.625);
+	\draw[dotted] (0.5,1.75) -- (1.25,4);
+	\draw[dotted] (-0.5,1.375) -- (1,2.5);
+	\draw[dotted] (2,3.25) -- (3,4);
+	\draw[dotted] (0.5,1.75) -- (-0.5,0.25);
+	\draw[dotted] (1,2.5) -- (2,4);
+	\draw[dotted] (2,3.25) -- (-0.5,2.625);
+	\draw (0.5,0.75ex) -- (0.5,-0.75ex);
+	\node[below] at (0.45,-0.75ex) {$-\lambda_3$};
+	\draw (1,0.75ex) -- (1,-0.75ex);
+	\node[below] at (1.175,-0.75ex) {$-\lambda_2$};
+	\draw (2,0.75ex) -- (2,-0.75ex) node[below] {$-\lambda_1$};
+	\node at (0.9,3.75) {$x_4$};
+	\node at (1.55,3.75) {$x_3$};
+	\node at (-0.25,1.85) {$x_2$};
+	\node at (-0.25,2.9) {$x_1$};
+	\end{scope}
+	\draw[-to,bend left] (-2.5,2.125) to node[pos=0.5,above] {$\Ll$} (-1,2.125);
+	\draw[-to,bend left] (-1,1.875) to node[pos=0.5,below] {$\snake{\Ll}$} (-2.5,1.875);
+	\end{tikzpicture}
+\end{center}
+
+Back to Newton polygonials for polynoms. Let $f\in K[T]$ be as above. As $\Newt_\poly(f)$ is the largest convex function below $\{(i,v(a_i))\}_{i\in \IZ}$, we have
+\begin{equation*}
+	\Ll\Newt_\poly(f)(r)=\inff_{i\in\IZ}\left\{v(a_i)+ri\right\}\eqqcolon v_r(f)\,.
+\end{equation*}
+The expression on the right-hand side has a nice geometric interpretation for $r\in v(\ov{K})$. In this case we have
+\begin{equation*}
+	v_r(f)\coloneqq \inff_{i\in\IZ}\left\{v(a_i)+ri\right\}=\inff\left\{v(f(x))\st x\in\ov{K}\text{ and }v(x)=r\right\}\,.
+\end{equation*}
+Indeed, as $v(a_ix^i)=v(a_i)+ri$, it's clear that \enquote{$\geq $} holds. For the converse, choose $x_0\in\ov{K}$ with $v(x_0)=r$. We want to find a $y\in\ov{K}$ such that $v(y)=0$ and $v(f(x_0y))=v_r(f)$. Let $b\in \ov{K}$ such that $v(b)=-v_r(f)$ and put $b_i=ba_ix_0^i$. Then $v(b_i)\geq 0$. Let $n_0\leq n$ be the largest index such that $v(b_{n_0})=0$. Let $c\in\ov{K}$ such that $v(c)=0=v(b_0-c)$, which exists as $\Oo_{\ov{K}}/\mm_{\ov{K}}$ is an algebraically closed field, hence has at least two non-zero elements. Now let $y\in\ov{K}$ be a solution of $c=b_0+\dotsb+b_{n_0}y^{n_0}$. As $v(b_{n_0})=0$, $y\in\Oo_{\ov{K}}$, and then a simple inspection shows $v(y)=0$. Now it's easy to check that indeed $v(f(x_0y))=v_r(f)$, hence we are done. 
+\begin{exc}\label{exc:vrOfProduct}
+	For all polynomials $f,g\in K[T]$ and all $r\in\IR$ we have 
+	\begin{equation*}
+		v_r(fg)=v_r(f)+v_r(g)\,.
+	\end{equation*}
+\end{exc}
+\begin{proof*}
+	Let $(a_i)$ and $(b_j)$ be the coefficients of $f$ and $g$, and $(c_k)$ the coefficients of $fg$. Then $c_k=\sum_{i+j=k}a_ib_j$. Hence $v(c_k)+rk\geq \inf\{v(a_i)+ri+v(b_j)+rj\}$ by the strong triangle inequality. This shows \enquote{$\geq$}. 
+	
+	For the converse, let $s\geq 0$ and $t\geq 0$ be minimal indices such that $v(a_s)+rs=v_r(f)$ and $v(b_t)+rt=v_r(g)$. For all $(i,j)\neq (s,t)$ satisfying $i+j=s+t$, we have 
+	\begin{equation*}
+		v(a_i)+ri+v(b_j)+rj>v(a_s)+rs+v(b_t)+rt\,,
+	\end{equation*}
+	hence $v(a_i)+v(b_j)>v(a_s)+v(b_t)$, hence $v(c_{s+t})=v(a_s)+v(b_t)$. This finally proves $v(c_{s+t})+r(s+t)=v_r(f)+v_r(g)$ and we are done.
+\end{proof*}
+\begin{rem}\label{rem:Ladditive}
+	For $f=a_0+a_1T+\dotsb+a_nT^n$ let $\phi_f$ be the piece-wise linear function connecting the $\{(i,v(a_i))\}_{i\in\IZ}$. Then \cref{exc:vrOfProduct} shows $\Ll\phi_{fg}=\Ll\phi_f+\Ll\phi_g$. As a slogan, we \enquote{concatenate the concave piece-wise linear functions to a new one}.
+\end{rem}
+\begin{defi}
+	Let $\phi,\psi\in\Ff$ such that $-\infty\notin \im\phi\cup\im\psi$. Then we define the \defemph{convolution} $\phi*\psi\colon \IR\morphism\ov{\IR}$ as
+	\begin{equation*}
+		(\phi*\psi)(x)=\inff_{y+z=x}\left\{\phi(y)+\psi(z)\right\}\,.
+	\end{equation*}
+\end{defi}
+\begin{lem}\label{lem:convolution}
+	Let $\phi,\psi\in\Ff$ such that $-\infty\notin \im\phi\cup\im\psi$.
+	\begin{numerate}
+		\item If $\phi$ and $\psi$ are convex, then so is $\phi*\psi$.
+		\item We have $\Ll(\phi*\psi)=\Ll\phi+\Ll\psi$.
 	\end{numerate}
 \end{lem}
 \begin{proof*}
-	Part~\itememph{1} was already seen in \cref{lem:imVn}\itememph{3}. Now \itememph{3} is an immediate consequence of \itememph{1} and \cref{lem:WittFrob}\itememph{2}. For \itememph{2}, note that $VF$ sends $[x_0,x_1,\dotsc]$ to $[0,x_0^q,x_1^q,\dotsc]$. Thus, it suffices to show that the Witt polynomials $(\Pi_n)_{n\in\IN}$ associated to $\Pi=\pi X\in\Oo_E[X]$ satisfy
+	We start with \itememph{1}. Let $x_1,x_2\in\IR$ and $a,b\geq 0$ such that $a+b=1$. We need to show
 	\begin{equation*}
-		\Pi_n(X_0,\dotsc,X_n)\equiv X_{n-1}^q\mod \pi\quad\text{for }n\geq 1
+		(\phi*\psi)(ax_1+bx_2)\leq a(\phi*\psi)(x_1)+b(\phi*\psi)(x_2)\,.
 	\end{equation*}
-	and $\Pi_0\equiv 0\mod \pi$. We show this by induction on $n$, the case $n=0$ being trivial. Now suppose the assertions holds up to $n$. Then $\Pi_i\equiv X_{i-1}^q\mod \pi$ for all $i\leq n$ shows, by \cref{lem:LTE}, that
+	Let $y_1,y_2,z_1,z_2\in\IR$ such that $x_1=y_1+z_1$ and $x_2=y_2+z_2$. Put $x=ax_1+bx_2$, $y=ay_1+bz_1$, and $z=ay_2+by_2$. Then $x=y+z$ and 
 	\begin{equation*}
-		W_{n+1}(\Pi_1,\dotsc,\Pi_{n+1})\equiv \pi X_0^{q^{n+1}}+\dotsb+\pi^{n}X_{n-1}^{q^2}+\pi^{n+1}\Pi_{n+1}\mod \pi^{n+2}\,.
+		\phi(y)+\psi(z)\leq a(\phi(y_1)+\psi(y_2))+b(\phi(z_1)+\psi(z_2))
 	\end{equation*}
-	However, the left-hand side can, by definition, be computed as
-	\begin{align*}
-		W_{n+1}(\Pi_1,\dotsc,\Pi_{n+1})&\equiv\pi W_{n+1}(X_0,\dotsc,X_{n+1})\\
-		&\equiv \pi X_0^{q^{n+1}}+\dotsb+\pi^nX_{n-1}^{q^2}+\pi^{n+1}X_n^q\mod \pi^{n+2}\,.
-	\end{align*}
-	This shows indeed $\Pi_{n+1}\equiv X_n^q\mod \pi$, as claimed.
+	by convexity of $\phi$ and $\psi$. Taking infima shows the required inequality. This shows \itememph{1}. Part~\itememph{2} follows straight from the definitions.
 \end{proof*}
-\begin{lem}\label{lem:W_OEpi}
-	If $R$ is a perfect $\IF_q$-algebra, then $W_{\Oo_E}(R)$ is $\pi$-adically complete, and if $x=[x_n]_{n\in\IN}$, then
+\begin{cor}\label{cor:NewtConvolution}
+	If $f,g\in K[T]$ are polynomials, then
 	\begin{equation*}
-		x=\sum_{n=0}^\infty\big[x_n^{1/q^n}\big]\pi^n\,.
-	\end{equation*}
-\end{lem}
-\begin{proof*}
-	Since $R$ is perfect, the Frobenius is an automorphism, hence the same is true for $F$ on $W_{\Oo_E}(R)$. Thus \cref{lem:Vincharp}\itememph{2} shows that the image of $V^n$ is the image of $\pi^n$. Thus \cref{lem:imVn}\itememph{2} proves that $W_{\Oo_E}(R)$ is $\pi$-adically complete.
-	
-	To see the second assertion, note that by \cref{lem:Vincharp}\itememph{2} we have
-	\begin{equation*}
-		[x_n]\pi^n=V^nF^n\big[x_n^{1/q^n}\big]=V^n[x_n]\,,
-	\end{equation*}
-	and use \cref{lem:imVn}\itememph{3}.
-\end{proof*}
-Finally we have everything together to prove \cref{prop:FqAlgebrasEquivalence}.
-\begin{proof}[Proof of \cref{prop:FqAlgebrasEquivalence}]
-	We claim that $W_{\Oo_E}(-)$ defines an inverse functor. If $R$ is a perfect $\IF_q$-algebra, \cref{lem:W_OEpi} shows $W_{\Oo_E}(R)/\pi W_{\Oo_E}(R)= W_{\Oo_E}(R)/\im V$. The right-hand side is isomorphic $R$ as an $\Oo_E$-algebra. On the level of sets this was seen in the proof of \cref{lem:imVn}\itememph{2}. Rs $\Oo_E$-algebra this follows from $S_0=X_0+Y_0$, $P_0=X_0Y_0$, and $(aX)_0=aX_0$ for all $a\in\Oo_E$.
-	
-	Thus, the image of $W_{\Oo_E}(-)$ is as desired. It remains to provide a natural isomorphism between $A$ and $W_{\Oo_E}(R)$ if $R=A/\pi A$. We define it via
-	\begin{align*}
-		W_{\Oo_E}(R)&\morphism A\\
-		\sum_{n=0}^\infty[x_n]\pi^n&\longmapsto\sum_{n=0}^\infty[x_n]\pi^n\,.
-	\end{align*}
-	By \cref{lem:TeichmüllerRep} and \cref{lem:W_OEpi}, it is a natural bijection. By \cref{cor:snpn} it is $\Oo_E$-linear. We are done.
-\end{proof}
-\begin{cor}\label{cor:unramifiedWitt}
-	Let $E_0$ be the maximal unramified subextension of $E/\IQ_p$ (or in other words, the unique unramified extension of $\IQ_p$ with residue field $\IF_q$). Then there is a natural isomorphism
-	\begin{equation*}
-		W(R)\otimes_{\Oo_{E_0}}\Oo_E\isomorphism W_{\Oo_E}(R)\,.
+		\Newt_\poly(fg)=\Newt_\poly(f)*\Newt_\poly(g)\,.
 	\end{equation*}
 \end{cor}
-\begin{proof*}
-	Since $p$ is a uniformizer of $\Oo_{E_0}$, the Witt vectors $W(R)$ taken over $\IZ_p$ are the same as if they were taken over $\Oo_{E_0}$. Now the diagram
-	\begin{equation*}
-		\begin{tikzcd}[row sep=normal]
-			\left\{\begin{tabular}{c}
-			$p$-torsionfree $p$-adically complete \\
-			$\Oo_E$-algebras $A$ s.th.\ $A/p A$ is perfect
-			\end{tabular}
-			\right\}\ar[dd,"-\otimes_{\Oo_{E_0}}\Oo_E"{swap}]
-			\drar[start anchor=south east, end anchor=north west, "-/p-"{swap}] & \\
-			 & \left\{\text{perfect $\IF_q$-algebras}\right\}\ular[start anchor=168, end anchor=355, bend right, dotted, "W(-)"{swap}]\dlar[start anchor=192, end anchor=5, bend left, dotted, "W_{\Oo_E}(-)"]\\
-			\left\{\begin{tabular}{c}
-			$\pi$-torsionfree $\pi$-adically complete \\
-			$\Oo_E$-algebras $A$ s.th.\ $A/\pi A$ is perfect
-			\end{tabular}
-			\right\}\urar[start anchor=north east, end anchor=south west,"-/\pi-"] & 
-		\end{tikzcd}
-	\end{equation*}
-	of functors between categories commutes. Hence the diagram formed by the vertical arrow and the two dotted quasi-inverses commutes up to natural isomorphism, which is precisely what we want to show.
-\end{proof*}
-\begin{exm*}
-	Now we can easily verify the examples given at the beginning of the section. To prove
-	\begin{equation*}
-		W(\IF_p)=\IZ_p\,,\quad W(\IF_q)=\Oo_{E_0}\,,\quad\text{and}\quad W\big(\IF_p\big\llbracket T^{1/p^\infty}\big\rrbracket\big)=\IZ_p\big\llbracket T^{1/p^\infty}\big\rrbracket\,,
-	\end{equation*}
-	it suffices to see that the respective right-hand sides are $p$-complete, $p$-torsionfree and that modding out $p$ gives $\IF_p$, $\IF_q$, and $\IF_p\big\llbracket T^{1/p^\infty}\big\rrbracket$ respectively. This is easy to check.
-\end{exm*}
-
-\section{The ring \texorpdfstring{$\IA_\inf$}{Ainf}}
-\lecture[Definition of $\IA_\inf$. Tilting as an adjoint to $W_{\Oo_E}(-)$. Perfectoid $\Oo_E$-algebras: tilting equivalence, examples. A picture of $\Spec \IA_\inf$.]{2019-10-30}
-Apparently, $\IA_\inf$ is so awesome that Pierre Colmez titled it \enquote{The One Ring to rule them all} (\href{https://www.facebook.com/cyclotomicmemes/photos/a.189056291880728/347547606031595/?type=3&theater}{somewhat related}). For example, it already determines $B_\cris$ and $B_\dR$.
-
-Throughout this section, let $p$ be a prime, $E/\IQ_p$ a finite extension, $\pi\in \Oo_E$ a uniformizer and $\IF_q=\Oo_E/\pi\Oo_E$ for $q=p^f$. Moreover, let $F/\IF_q$ be a non-archimedean algebraically closed extension. For us, \defemph{non-archimedean} always means that $F$ is complete with respect to a non-archimedean non-trivial valuation $|\blank|\colon F\morphism\IR_{\geq 0}$. As usual, the \defemph{ring of integers} $\Oo_F$ is defined as
-\begin{equation*}
-	\Oo_F=\left\{x\in F\st |x|\leq 1\right\}\,.
-\end{equation*}
-Note that $\Oo_F$ is local with maximal ideal $\mm_F=\left\{x\in F\st|x|<1\right\}$.
-\begin{defi}
-	In the above setting, we define
-	\begin{equation*}
-		\IA_\inf=\IA_{\inf,E,F}\coloneqq W_{\Oo_E}(\Oo_F)\,.
-	\end{equation*}
-\end{defi}
-\begin{rem}
-	\begin{numerate}
-		\item $\IA_\inf$ should be thought of a \enquote{power series ring over $\Oo_F$ in the indeterminate $\pi$}. So its equal characteristic analog should be $\Oo_F\llbracket z\rrbracket$.
-		\item $\IA_\inf$ has a natural Frobenius action $\phi$, given by the Witt vector Frobenius, which is, in turn, given by the Frobenius on $\Oo_F$.
-	\end{numerate}
-\end{rem}
-In the proof of \cref{prop:FqAlgebrasEquivalence} we have seen that $W_{\Oo_E}(-)$ is a quasi-inverse to $-/\pi -$ on some suitable category. In general, $W_{\Oo_E}(-)$ still possesses an adjoint, the \defemph{tilt functor}.
-\begin{defi}
-	Let $A$ be a $\pi$-complete $\Oo_E$-algebra. Then the \defemph{tilt of $A$} is
-	\begin{equation*}
-		A^\flat\coloneqq \lim_{x\mapsto x^q}A/\pi A=\left\{(a_0,a_1,\dotsc)\in\prod_{n\in\IN}A/\pi A\st a_i^q=a_{i-1}\text{ for all }i>0\right\}\,.
-	\end{equation*}
-\end{defi}
-Note that $A^\flat$ is always a perfect $\IF_q$-algebra (in fact, that's a purely category-theoretical statement): the Frobenius on $A^\flat$ is given by $\Frob_{q,A^\flat}(a_0,a_1,\dotsc)=(a_0^q,a_0,a_1,\dotsc)$ and it has an inverse defined by $\Frob_{q,A^\flat}^{-1}(a_0,a_1,\dotsc)=(a_1,a_2,\dotsc)$.
-\begin{prop}\label{prop:tiltWittAdjunction}
-	There is an adjunction
-	\begin{equation*}
-		W_{\Oo_E}(-)\colon \left\{\text{$\pi$-complete $\Oo_E$-algebras}\right\}\doublelrmorphism \left\{\text{perfect $\IF_q$-algebras}\right\}\noloc (-)^\flat\,.
-	\end{equation*}
-\end{prop}
-\begin{rem}
-	Before we sketch a proof of \cref{prop:tiltWittAdjunction}, let us leave two remarks.
-	\begin{numerate}
-		\item If $R$ is a perfect $\IF_q$-algebra, then the unit $R\morphism W_{\Oo_E}(R)^\flat$ of the adjunction is given by $r\mapsto (r,r^{1/q},r^{1/q^2},\dotsc)$. Thus it is an isomorphism. In particular, this shows that $W_{\Oo_E}(-)$ is fully faithful by abstract nonsense. However, we have already seen that in the proof of \cref{prop:FqAlgebrasEquivalence}, where moreover the essential image of $W_{\Oo_E}(-)$ was identified as the class of $\pi$-complete $\pi$-torsionfree $\Oo_E$-algebras $A$ such that $A/\pi A$ is perfect.
-		\item The counit $\theta\colon W_{\Oo_E}(A^\flat)\morphism A$ is usually called \defemph{Fontaine's map}.
-	\end{numerate}
-\end{rem}
-\begin{proof}[Sketch of a proof of \cref{prop:tiltWittAdjunction}]
-	First we state the following slightly more general form of the key \cref{lem:LTE} (actually, this proof only uses the previous formulation, but for future use the more general version will be handy). It can be proved in the exact same way as \cref{lem:LTE}.
-	\begin{lem}[\enquote{$q$-power map is $\pi$-adically contracting}]\label{lem:keyLemma}
-		Let $B$ be any $\Oo_E$-algebra and $I\subseteq B$ an ideal such that $\pi\in I$. If $x,y\in B$ such that $x\equiv y\mod I$, then
-		\begin{equation*}
-			x^{q^n}\equiv y^{q^n}\mod I^{n+1}\quad\text{for all }n\geq 0\,.
-		\end{equation*}
-	\end{lem}
-	We construct the counit $\theta$ as follows. Fix $n>0$. By $W_{\Oo_E,n}(A)$ we denote the truncated Witt vectors of length $n+1$. These are obtained by cutting off everything after the first $n+1$ components. In other words, $W_{\Oo_E,n}(A)=W_{\Oo_E}(A)/\im V^{n+1}$. Consider the map
-	\begin{align*}
-		\Ww_n\colon W_{\Oo_E,n}(A)&\morphism A/\pi^{n+1}A\\
-		[a_0,\dotsc,a_n]&\longmapsto W_n(a_0,\dotsc,a_n)\mod \pi^{n+1}\,.
-	\end{align*}
-	If $a_i\equiv 0\mod \pi$ for all $i=0,\dotsc,n$, then \cref{lem:keyLemma} shows $W_n(a_0,\dotsc,a_n)\equiv 0\mod \pi^ {n+1}$. Thus, we get an induced map $\theta_n\colon W_{\Oo_E,n}(A/\pi A)\morphism A/\pi^{n+1}A$. We check that the diagram
-	\begin{equation*}
-		\begin{tikzcd}
-			W_{\Oo_E,n+1}(A/\pi A)\dar["F"{swap}]\rar["\theta_{n+1}"] & A/\pi^{n+2}A\dar\\
-			W_{\Oo_E,n}(A/\pi A)\rar["\theta_n"] & A/\pi^{n+1}A
-		\end{tikzcd}
-	\end{equation*}
-	commutes. Indeed, given $[\ov{a}_0,\dotsc,\ov{a}_{n+1}]\in W_{\Oo_E,n+1}(A/\pi A)$ with lifts $[a_0,\dotsc,a_{n+1}]$, we have
-	\begin{equation*}
-		W_{n+1}(a_0,\dotsc,a_{n+1})\equiv W_n(a_0^q,\dotsc,a_n^q)\mod \pi^{n+1}\,,
-	\end{equation*}
-	which is precisely what we want. Passing to the limit, we obtain a map
-	\begin{equation*}
-		\theta\colon W_{\Oo_E}(A^\flat)\cong \lim_FW_{\Oo_E,n}(A/\pi A)\morphism \lim_{n \in\IN}A/\pi^{n+1}A\cong A\,.
-	\end{equation*}
-	The isomorphism on the left is easy to check, and the isomorphism on the right follows from $A$ being $\pi$-complete. In the lecture, that was the end of the proof sketch. In these notes we will finish the proof, but only after we understand the map $\theta$ a little better.
-\end{proof}
-Another application of \cref{lem:keyLemma} is the following.
-\begin{prop}\label{prop:(A/I)b}
-	Let $A$ be a $\pi$-complete $\Oo_E$-algebra. Let $I\subseteq A$ be an ideal containing $I$, such that $A$ is also $I$-complete. Then the canonical map
-	\begin{equation*}
-		\lim_{x\mapsto x^q}A\isomorphism (A/I)^\flat
-	\end{equation*}
-	is an isomorphism. In particular, the left-hand side (which is a priori only a multiplicative monoid) inherits a natural ring structure.
-\end{prop}
 \begin{proof}
-	Let $x=(\ov{x}_0,\ov{x}_1,\dotsc)\in (A/I)^\flat$. For every $n\geq 0$ choose a lift $x_n\in A$ of $\ov{x}_n$. By \cref{lem:keyLemma}, $(x_n^{q^n})_{n\in\IN}$ is a Cauchy sequence in the $I$-adic topology. Put
-	\begin{equation*}
-		x^\sharp=\lim_{n\to\infty}x_n^{q^n}\,.
-	\end{equation*}
-	As in the proof of \cref{deflem:Teichmüller}, $x^\sharp$ is independent of the choice of lifts and $(-)^\sharp$ is multiplicative. Now it's easy to see that the map
-	\begin{align*}
-		(A/I)^\flat&\morphism \lim_{x\mapsto x^q}A\\
-		x&\longmapsto \big(x^\sharp,(x^{1/q})^\sharp,\dotsc\big)
-	\end{align*}
-	is a multiplicative inverse of the map in question. This proves the assertion.
+	Both sides are convex by definition, and agree after applying $\Ll$ (use \cref{rem:Ladditive} and \cref{lem:convolution}), so they are already equal by \cref{lem:Legendre}.
 \end{proof}
-\begin{lem}\label{lem:WAb->A}
-	The counit $\theta\colon W_{\Oo_E}(A^\flat)\morphism A$ can be explicitly described as 
-	\begin{equation*}
-		\sum_{n=0}^\infty[a_n]\pi^n\longmapsto \sum_{n=0}^\infty a_n^\sharp \pi^n\,.
-	\end{equation*}
-\end{lem}
-\begin{proof*}
-	Let us first describe the isomorphism $W_{\Oo_E}(A^\flat)\cong \lim_FW_{\Oo_E,n}(A/\pi A)$ that is part of the definition of $\theta$. The underlying set of $W_{\Oo_E}(A^\flat)$ consists of sequences $[a_0,a_1,\dotsc]$, where each $a_n\in A^\flat$ is itself a sequence $a_n=(\ov{a}_{n,i})_{i\in\IN}$ in $A/\pi A$ such that $\ov{a}_{n,i}^q=\ov{a}_{n,i-1}$. The underlying set of $\lim_FW_{\Oo_E,n}(A/\pi A)$ consists of sequences $([\ov{a}_{0,0}],[\ov{a}_{0,1},\ov{a}_{1,1}],[\ov{a}_{0,2},\ov{a}_{1,2},\ov{a}_{2,2}],\dotsc)$ that are compatible under $F$. The isomorphism in question is given by
-	\begin{align*}
-		W_{\Oo_E}(A^\flat)&\isomorphism\lim_FW_{\Oo_E,n}(A/\pi A)\\
-		[\ov{a}_0,\ov{a}_1,\ov{a}_2,\dotsc]&\longmapsto \big([\ov{a}_{0,0}],[\ov{a}_{0,1},\ov{a}_{1,1}],[\ov{a}_{0,2},\ov{a}_{1,2},\ov{a}_{2,2}],\dotsc\big)\,.
-	\end{align*}
-	Indeed, it is clear that this defines a bijection on set level and one may check that it is also compatible with the ring structures on either side.
-	
-	Now let $a=[a_0,a_1,\dotsc]\in W_{\Oo_E}(A^\flat)$ be as above. We unwind what $\theta(a)$ actually is. By definition of the map $\theta_N\colon W_{\Oo_E,N}(A/\pi A)\morphism A/\pi^{N+1}A$, we have
-	\begin{equation*}
-		\theta_N[\ov{a}_{0,N},\dotsc,\ov{a}_{N,N}]\equiv\sum_{n=0}^Na_{n,N}^{q^{N-n}}\pi^n\mod \pi^{N+1}\,,
-	\end{equation*}
-	where the $a_{n,N}$ are arbitrary lifts of $\ov{a}_{n,N}$. 
-	Thus, the coefficient of $\pi^n$ in $\theta(a)$ is given by
-	\begin{equation*}
-		\lim_{N\to\infty}a_{n,N}^{q^{N-n}}=\big(a_n^{1/q^n}\big)^\sharp\,.
-	\end{equation*}
-	The exponent $1/q^n$ seems off at first glance, but according to \cref{lem:W_OEpi} this is exactly what we want.
-\end{proof*}
-\begin{proof*}[End of proof of \cref{prop:tiltWittAdjunction}]
-	Let $A$ be a $\pi$-complete $\Oo_E$-algebra and $R$ a perfect $\IF_q$-algebra. By \cref{prop:FqAlgebrasEquivalence} we have a bijection
-	\begin{equation*}
-		\Hom(R,A^\flat)\cong \Hom\big(W_{\Oo_E}(R),W_{\Oo_E}(A^\flat)\big)\,,
-	\end{equation*}
-	so it suffices to see that every $\Oo_E$-algebra morphism $\alpha\colon W_{\Oo_E}(R)\morphism A$ factors uniquely over $\theta$. Let such an $\alpha$ be given. Modulo $\pi$ we get an induced morphism $\ov{\alpha}\colon R\morphism A/\pi A$. Since $R$ is perfect, $R^\flat\cong R$. Also $A^\flat\cong (A/\pi A)^\flat$. Hence we get an induced morphism $\ov{\alpha}^\flat\colon R\morphism A^\flat$. We claim that
-	\begin{equation*}
-		\begin{tikzcd}
-			W_{\Oo_E}(R)\dar["W_{\Oo_E}(\ov{\alpha}^\flat)"{swap}]\rar["\alpha"]& A\\
-			W_{\Oo_E}(A^\flat)\urar["\theta"{swap}]&
-		\end{tikzcd}
-	\end{equation*}
-	commutes. In view of \cref{lem:WAb->A} we only need to check that $\alpha[x]=\ov{\alpha}^\flat(x)^\sharp$ for all $x\in R$. By construction, $\ov{\alpha}^\flat(x)$ is the sequence $(\ov{\alpha}(x),\ov{\alpha}(x^{1/q}),\dotsc)\in A^\flat$. Moreover, $\alpha[x^{1/q^n}]$ is a lift of $\ov{\alpha}(x^{1/q^n})$ for all $n\in\IN$. Raising $\ov{\alpha}(x^{1/q^n})$ to the $(q^n)\ordinalth$ power gives $\alpha[x]$ back, since both $\alpha$ and the Teichmüller lift $[-]$ are multiplicative. This shows indeed $\alpha[x]=\ov{\alpha}^\flat(x)^\sharp$.
-	
-	To finish the proof, it's left to see why $\ov{\alpha}^\flat$ is the only choice. Suppose $\beta\colon R\morphism A^\flat$ leads to a commutative diagram as above. Reducing modulo $\pi$ we see that the composition of $\beta$ with $A^\flat\morphism A/\pi$ must coincide with $\ov{\alpha}$. In other words, the $0\ordinalth$ component of $\beta\colon R\morphism A^\flat$ must be given by $\ov{\alpha}$. By naturality of the Witt vector Frobenius, the diagram
-	\begin{equation*}
-		\begin{tikzcd}
-		W_{\Oo_E}(R)\rar["F^{-1}"]\dar["W_{\Oo_E}(\beta)"{swap}"]& W_{\Oo_E}(R)\dar["W_{\Oo_E}(\beta)"{swap}]\rar["\alpha"]& A\\
-		W_{\Oo_E}(A^\flat)\rar["F^{-1}"] & W_{\Oo_E}(A^\flat)\urar["\theta"{swap}]&
-		\end{tikzcd}
-	\end{equation*}
-	commutes as well. Reducing modulo $\pi$ and walking around the perimeter, we see that the $1\ordinalst$ component of $R\morphism A^\flat$ must be given by $\ov{\alpha}((-)^{1/q})$. Repeating this argument, we see that $\beta=\ov{\alpha}^\flat$, as desired.
-\end{proof*}
-\subsection{Perfectoid \texorpdfstring{$\Oo_E$}{O}-Algebras}
-\begin{defi}
-	\begin{numerate}
-		\item A \defemph{perfect prism} over $\Oo_E$ is a pair $(W_{\Oo_E}(R),I)$, where $R$ is a perfect $\IF_q$-algebra, $I\subseteq W_{\Oo_E}(R)$ is a principal ideal generated by an element $d$ such that
-		\begin{equation*}
-			\frac{F(d)-d^q}{\pi}\in W_{\Oo_E}(R)^\times
-		\end{equation*}
-		(such $d$ is called \defemph{distinguished}), and such that $W_{\Oo_E}(R)$ is $(\pi,I)$-adically complete.
-		\item An $\Oo_E$-algebra $A$ is a \defemph{perfectoid $\Oo_E$-algebra} if it can be written as $A\cong W_{\Oo_E}(R)/I$ for some perfect prism $(W_{\Oo_E}(R),I)$ over $\Oo_E$.
-	\end{numerate}
-\end{defi}
-\begin{rem}\label{rem:perfectoid}
-	\begin{numerate}
-		\item To see that $F(d)-d^q$ is always divisible by $\pi$, note that $F$ is the lift of the Frobenius on $R$. In particular, $F$ and $(-)^q$ become equal after reducing modulo $\pi$.
-		\item An element $d=\sum_{n=0}^\infty[r_n]\pi^n\in W_{\Oo_E}(R)$ is distinguished iff $r_1\in R^\times$. Indeed, by \cref{lem:WittFrob}\itememph{2} and \cref{lem:W_OEpi} we have $F(d)\equiv [r_0^q]+[r_1^q]\pi\mod \pi^2$ and from the key \cref{lem:keyLemma} we get $d^q\equiv [r_0^q]\mod \pi^2$. Hence
-		\begin{equation*}
-			\frac{F(d)-d^q}{\pi}\equiv [r_1^q]\mod \pi\,.
-		\end{equation*}
-		By $\pi$-completeness, an element $x\in W_{\Oo_E}(R)$ is invertible iff its modulo-$\pi$ reduction is invertible. And $r_1^q\in R$ is invertible iff so is $r_1$. Moreover, $W_{\Oo_E}(R)$ is $(\pi,d)$-adically complete iff $R$ is $r_0$-complete. Since this seems rather non-trivial to me, we give it a proper proof in \cref{lem*:nonTrivial} below.
-		\item Perfect rings are perfectoid. Indeed, if $R$ is perfect, we have $R\cong W_{\Oo_E}(R)/\pi W_{\Oo_E}(R)$, and $(W_{\Oo_E}(R),\pi)$ is clearly a perfect prism (by \itememph{2} for example). Conversely, if an algebra $A$ over $\IF_q=\Oo_E/\pi\Oo_E$ is perfectoid, then it is also perfect. This too was not trivial for me, so we prove it in \cref{lem*:perfectoid=perfect} below.
-		\item If $A$ is perfectoid, say, $A\cong W_{\Oo_E}(R)/I$, then
-		\begin{equation*}
-			A^\flat\cong (W_{\Oo_E}(R)/I)^\flat\cong \big(W_{\Oo_E}(R)/(\pi,I)\big)^\flat\cong (R/IR)^\flat\cong R^\flat\cong R\,.
-		\end{equation*}
-		The only non-obvious step is $(R/IR)^\flat\cong R^\flat$. To see this, first note that $IR$ is an ideal containing the image of $\pi$ in $R$ since this image is $0$. Moreover, $R$ is $IR$-adically complete by \cref{lem*:nonTrivial}. Hence the isomorphism follows from \cref{prop:(A/I)b}.
-	\end{numerate}
-\end{rem}
-\begin{lem*}\label{lem*:nonTrivial}
-	Let $R$ be a perfect $\IF_q$-algebra and $d=\sum_{n=0}^\infty[r_n]\pi^n$ be an element of $W=W_{\Oo_E}(R)$. Then $W$ is $(\pi,d)$-adically complete iff $R$ is $r_0$-complete.
-\end{lem*}
-\begin{proof*}
-	Let's first assume $W$ is $(\pi,d)$-complete. Then $R$ being $r_0$-complete is equivalent to $R$ being $(\pi,d)$-complete too. By \cite[\stackstag{031A}]{stacks-project}, we need to check that
-	\begin{equation*}
-		\pi W=\bigcap_{n\geq 1}\big(\pi W+(\pi,d)^n\big)\,.
-	\end{equation*}
-	Suppose some $w\in W$ is contained in $\pi W+(\pi,d)^n$ for all $n\in \IN$. Then its image $\ov{w}\in R$ is divisible by $r_0^n$ for all $n\geq 0$, hence also $[\ov{w}]$ is divisible by $[r_0]^n$ for all $n\geq 0$. By a well-known argument, $W$ being $(\pi,d)$-complete is equivalent to $W$ being complete with respect to the ideals $\{(\pi^n,d^n)\}_{n\geq 1}$. By abstract nonsense, we may replace this family of ideals by $\{(\pi^{n+1},d^{q^n})\}_{n\geq 1}$. But $d^{q^n}\equiv [r_0]^{q^n}\mod \pi^{n+1}$ by the key \cref{lem:keyLemma}, hence $W$ is also complete with respect to the ideals $\{(\pi^{n+1},[r_0]^{q^n})\}_{n\geq 1}$. Since $[\ov{w}]$ lies in all of them by assumption, we get $\ov{w}=0$, hence $w\in\pi W$, as required.
-	
-	Now assume $R$ is $r_0$-complete. It suffices to show that $W$ is complete with respect to the ideals $\{(\pi^n,d^n)\}_{n\geq 1}$. By an abstract nonsense argument, this is equivalent to $W$ being complete with respect to $\{(\pi^n,d^m)\}_{n,m\geq 1}$. Since $W$ is $\pi$-complete, it thus suffices to show that $W/\pi^nW$ is $d$-complete for all $n\geq 1$. The key \cref{lem:keyLemma} shows $d^{q^m}\equiv [r_0]^{q^m}\mod \pi^n$ for all $m\geq n-1$. Thus we may equivalently show that $W/\pi^nW$ is $[r_0]$-complete.
-	
-	We argue by induction over $n$. The case $n=1$ is just the assumption. Now assume the assertion holds up to $n$. Consider the short exact sequence
-	\begin{equation*}
-		0\morphism W/\pi^nW\morphism[\pi]W/\pi^{n+1}W\morphism R\morphism 0\,.
-	\end{equation*}
-	Suppose $x\in W/\pi^nW$ has the property that $\pi x\in W/\pi^{n+1}W$ is divisible by $[r_0]^m$, say, $\pi x=[r_0^m]y$. Write $x=[x_0]+[x_1]\pi+\dotsb+[x_{n-1}]\pi^{n-1}$ and $y=[y_0]+[y_1]\pi+\dotsb+[y_n]\pi^n$. Then
-	\begin{equation*}
-		[x_0]\pi+[x_1]\pi^2+\dotsb+[x_{n-1}]\pi^n=[r_0^my_0]+[r_0^my_1]\pi+\dotsb+[r_0^my_n]\pi^n\,.
-	\end{equation*}
-	By uniqueness of these representations, we get $0=r_0^my_0$, $x_0=r_0^my_1$ and so on up to $x_{n-1}=r_0^my_n$. In particular, $x=[r_0]^m([y_1]+\dotsb+[y_n]\pi^{n-1})$ is divisible by $[r_0]^m$! We conclude that the sequence
-	\begin{equation*}
-		0\morphism W/(\pi^n,[r_0]^m)\morphism[\pi] W/(\pi^{n+1},[r_0]^m)\morphism R/r_0^mR\morphism 0
-	\end{equation*}
-	is exact again. Taking limits over $m$ we obtain a diagram
-	\begin{equation*}
-		\begin{tikzcd}
-			0 \rar & W/\pi^nW\dar[iso]\rar["\pi"] & W/\pi^{n+1}W \dar\rar & R\rar\dar[iso] & 0\\
-			0 \rar &\lim\limits_{m\geq 1}W/(\pi^n,[r_0]^m)\rar["\pi"] & \lim\limits_{m\geq 1}W/(\pi^{n+1},[r_0]^m)\rar & \lim\limits_{m\geq 1}R/r_0^mR\rar & 0
-		\end{tikzcd}
-	\end{equation*}
-	in which the outer vertical arrows are isomorphisms by the induction hypothesis. Thus the middle vertical arrow is an isomorphism as well by the five lemma (note that the bottom sequence is exact by the Mittag-Leffler condition, but this isn't even needed for the argument).
-\end{proof*}
-\begin{lem*}\label{lem*:perfectoid=perfect}
-	If an algebra $A$ over $\IF_q=\Oo_E/\pi\Oo_E$ is perfectoid, then $A$ is already a perfect $\IF_q$-algebra.
-\end{lem*}
-\begin{proof*}
-	Write $A\cong W_{\Oo_E}(R)/I$. Since $\pi$ vanishes on $A$, we have $\pi\in A$. By \cref{rem:perfectoid}\itememph{4}, $A^\flat\cong R\cong W_{\Oo_E}(R)/\pi W_{\Oo_E}(R)$. Hence it suffices to prove that $I$ is generated by $\pi$, since then $A\cong A^\flat$ is perfect.
-	
-	The argument that follows is stolen from \cite[Lemma~3.10]{BMS}. Write $\pi=dw$, where $d\in I$ is a distinguished generator and $w=\sum_{n=0}^\infty [w_n]\pi^n$ is some element of $W_{\Oo_E}(A^\flat)$. The Witt polynomial $P_1$ is given by $P_1(X,Y)=X_0^qY_1+X_1Y_0^q+\pi X_1Y_1$. Thus $\pi=dw$ yields
-	\begin{equation*}
-		1=r_0^qw_1+r_1w_0^q
-	\end{equation*}
-	(note that $\pi r_1w_1$ vanishes in $A^\flat$). We claim that $r_1w_0^q=1-r_0^qw_1$ is a unit in $A^\flat$. It suffices to check that it is mapped to a unit under the projection $A^\flat\morphism A/\pi A=A$ to the $0\ordinalth$ component. But $A\cong A^\flat/r_0A^\flat$, hence $1-r_0^qw_1$ is mapped to $1\in A$, which is indeed a unit. Thus also $r_1$ and $w_0$ are units in $A^\flat$. But $w_0$ being a unit implies that $w$ itself is a unit in $W_{\Oo_E}(A^\flat)$, hence $\pi$ is indeed a generator of $I$.
-\end{proof*}
-The following fact wasn't mentioned in the lecture, but this made it hard for me to read some of the literature that uses the \enquote{old} definition of perfectoid rings. So we prove it here.
-\begin{lem*}
-	Let $(W_{\Oo_E}(R),I)$ be a perfect prism over $\Oo_E$ and $A=W_{\Oo_E}(R)/I$.
-	\begin{alphanumerate}
-		\item If $\xi$ is a distinguished generator of $I$, then $\xi$ is a non-zero divisor in $W_{\Oo_E}(R)$.
-		\item $A$ is $\pi$-complete.
-	\end{alphanumerate}
-\end{lem*}
-\begin{proof*}
-	Put $W=W_{\Oo_E}(R)$ for convenience. Both \itememph{a} and \itememph{b} are based on the following observation.
-	\begin{alphanumerate}
-		\item[\itememph{*}] Let $(x_n)_{n\in \IN}$ be a sequence such that $\xi x_n\equiv 0\mod \pi^n$. Then the $x_n$ converge to $0$ in the $(\pi,\xi)$-adic topology.
-	\end{alphanumerate}
-	Claim \itememph{*} immediately implies \itememph{a}. Also  \itememph{b} is not far: by \cite[\stackstag{031A}]{stacks-project}, we need to check that
-	\begin{equation*}
-		\xi W=\bigcap_{n\geq 1}(\xi W+\pi^nW)\,.
-	\end{equation*}
-	So suppose $y$ lies in the intersection and choose $(x_n)_{n\in \IN}$ such that $y\equiv \xi x_n\mod \pi^n$. Then $\xi(x_{n+1}-x_n)\equiv 0\mod \pi^n$. Thus the $(x_{n+1}-x_n)$ converge to $0$ in the $(\pi,\xi)$-adic topology. Hence $(x_n)_{n\in \IN}$ converges to some $x\in W$ satisfying $y=\xi x$. This shows \itememph{a}.
-	
-	It remains to show \itememph{*}. Write $\xi=[r_0]+\pi u$, where $u\in W$ is a unit. If $\xi x_n\equiv 0\mod \pi^n$, then also $([r_0]^s+\pi^su^s)x_n\equiv 0\mod \pi^n$ for all odd $s$, since $[r_0]+\pi u$ divides $[r_0]^s+\pi^su^s$ for odd $s$. Now $\pi^sx_n\equiv -[r_0]^su^{-s}x_n\mod \pi^n$ shows that the first $n$ coefficients in $\pi$-adic expansion of $\pi^sx_n$ must be divisible by $r_0^s$. In other words, we can write
-	\begin{equation*}
-		x_n=[r_0^sy_0]+[r_0^sy_1]\pi+\dotsb+[r_0^sy_{n-s-1}]\pi^{n-s-1}+\pi^{n-s}z\,.
-	\end{equation*}
-	Thus, $x_n\in(\pi^{n-s},[r_0]^s)$ for all odd $s$. Choosing $s$ roughly equal to $n/2$, we see that $(x_n)_{n\in \IN}$ converges with respect to the ideals $\{(\pi^m,[r_0]^m)\}_{m\geq 1}$. But these ideals generate $(\pi,\xi)$-adic topology, as seen in the proof of \cref{lem*:nonTrivial}. 
-\end{proof*}
-
-
-\cref{rem:perfectoid}\itememph{4} suggests the following definition.
-\begin{defi}
-	Let $R$ be a perfect $\IF_q$-algebra. An \defemph{untilt} of $R$ is a pair $(A,\iota)$, where $A$ is a perfectoid $\Oo_E$-algebra and $\iota$ an isomorphism $\iota\colon R\morphism A^\flat$.
-\end{defi}
-Again by \cref{rem:perfectoid}\itememph{4} we get a bijection
-\begin{equation*}
-	\left\{\begin{tabular}{c}
-		isomorphism classes of\\
-		untilts $(A,\iota)$ of $R$
-	\end{tabular}\right\}\lrisomorphism \left\{\begin{tabular}{c}
-	ideals $I\subseteq W_{\Oo_E}(R)$ such that\\ $(W_{\Oo_E}(R),I)$
-	is a perfect prism over $\Oo_E$
-	\end{tabular}\right\}
-\end{equation*}
-\begin{exc}[Tilting equivalence]\label{exc:tilting}
-	If $A$ is a perfectoid $\Oo_E$-algebra, then there is an equivalence of categories
-	\begin{align*}
-		\left\{\text{perfectoid $A$-algebras}\right\}&\lrisomorphism \left\{\text{perfect(oid) $A^\flat$-algebras}\right\}\\
-		B&\longmapsto B^\flat\\
-		W_{\Oo_E}(S)\otimes_{W_{\Oo_E}(A^\flat)}A&\longmapsfrom S
-	\end{align*}
-	(on the left-hand side, $A$ gets a $W_{\Oo_E}(A^\flat)$-algebra structure via $\theta$).
-\end{exc}
-\begin{proof*}[Disproof]
-	%Let $T=W_{\Oo_E}(S)\otimes_{W_{\Oo_E}(A^\flat)}A$. We first check $T^\flat\cong S$. We have 
-	%\begin{equation*}
-	%	T/\pi T\cong S\otimes_{A^\flat}A/\pi A\,.
-	%\end{equation*}
-	The assertion as stated is wrong. Take $A^\flat=\IF_p\llbracket T^{1/p^\infty}\rrbracket$ and $A$ comes from the perfect prism $(W(A^\flat),T-p)$. This works by \cref{lem*:nonTrivial} since $T-p$ is clearly distinguished and $A^\flat$ is $T$-complete. We claim that there is a perfect $A^\flat$-algebra $S$ such that $W(S)\otimes_{W(A^\flat)}A$ is not perfectoid. Indeed, for it to be perfectoid, $(W(S),(T-p)W(S))$ would need to be a perfect prism, which again needs $S$ to be $T$-complete by \cref{lem*:nonTrivial} again. However, there are perfect $A^\flat$ algebras $S$ which are not $T$-complete; for example, the Laurent series ring $S=\IF_p(\!(T^{1/p^\infty})\!)$.
-\end{proof*}
-\numpar{Corrected exercise* \textmd{(The actual tilting equivalence)}}
-By a \defemph{perfectoid $A^\flat$-algebra} $S$ we don't just understand an $A^\flat$-algebra that is perfectoid. The topology on $S$ must also be induced by the topology on $A^\flat$, i.e., $S$ must be $(\pi,I)$-complete, where $I$ is the kernel of $\theta\colon W_{\Oo_E}(A^\flat)\morphism A$ (so that $(W_{\Oo_E}(A^\flat),I)$ is a perfect prism that gives $A$). Then there is an equivalence of categories
-\begin{equation*}
-	\left\{\text{perfectoid $A$-algebras}\right\}\lrisomorphism \left\{\text{perfect $A^\flat$-algebras}\right\}
-\end{equation*}
-as in \cref{exc:tilting}.
-\begin{proof*}
-	Put $W_A=W_{\Oo_E}(A^\flat)$ and $W_S=W_{\Oo_E}(S)$ for convenience. Let $\xi$ be a distinguished generator of $I$. First note that $W_S\otimes_{W_A}A\cong W_S/\xi W_S$ is again perfectoid. Indeed, we need to check that $(W_S,\xi W_S)$ is a perfect prism. Clearly $\xi W_S$ is a distinguishedly generated ideal. Also $S$ is $(\pi,I)$-complete and hence $\xi$-complete, so $W_S$ is $(\pi,\xi W_S)$-complete by \cref{lem*:nonTrivial}. This shows that $(W_S,\xi W_S)$ is a perfect prism, as required. Now the calculation from \cref{rem:perfectoid}\itememph{4} shows $(W_S/\xi W_S)^\flat\cong S$.
-	
-	Conversely, we have to show that for a perfectoid $A$-algebra $B$ we get $B\cong W_B\otimes_{W_A} A$, where $W_B=W_{\Oo_E}(B^\flat)$ for brevity, and that $B^\flat$ is $(\pi,I)$-complete. Write $B\cong W_B/J$. Then  $(W_A,I)\morphism (W_B,J)$ is a morphism of perfect prisms in the sense that it is a $\Oo_E$-algebra morphism that maps $I$ into $J$. An argument analogous to the stolen one from the proof of \cref{lem*:perfectoid=perfect} (hint: replace $1$ be the coefficient of $\pi$ in $\xi$, which is still a unit) shows that actually $J=IW_B$. But this immediately shows $B\cong W_B\otimes_{W_A}A$ and we are done.
-\end{proof*}
-
-\numpar{Example \smash{\Attention}}\label{exm:OCperfectoid}
-If $C/E$ is a non-archimedean (recall that this requires $C$ to be complete) algebraically closed field extension, then the ring of integers $\Oo_C$ is a perfectoid $\Oo_E$-algebra.
-\begin{proof}
-	We first formulate two claims which together will imply the assertion.
-	\begin{numerate}
-		\item Let $\{\pi^{1/q^n}\}_{n\geq 0}$ be a compatible system of $(q^n)\ordinalth$ roots of $\pi$ in $\Oo_C$. They define an element $\pi^\flat=(\pi,\pi^{1/q},\dotsc)\in\Oo_C^\flat$. Then 
-		\begin{equation*}
-			\Oo_C^\flat/\pi^\flat\Oo_C^\flat\cong\Oo_C/\pi\Oo_C\,.
-		\end{equation*}
-		\item The kernel of $\theta\colon W_{\Oo_E}(\Oo_C^\flat)\morphism\Oo_C$ is generated by $\pi-[\pi^\flat]$.
-	\end{numerate}
-	We start with \itememph{1}. Note that by \cref{prop:(A/I)b} we may write $\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C$. Now let $y=(y_0,y_1,\dotsc)\in\Oo_C^\flat$. Then $\pi^\flat\mid y$ iff $\pi^{1/q^n}\mid y_n$ for all $n\geq 0$. Since $\Oo_C$ is a valuation ring, this is equivalent to $|\pi|^{1/q^n}\geq |y_n|=|y_0|^{1/q^n}$. Thus, $\pi^\flat\mid y$ is equivalent to the single condition $y_0\equiv 0\mod \pi$. Therefore, the kernel of $(-)^\sharp\colon \Oo_C^\flat\morphism \Oo_C/\pi\Oo_C$ is generated by $\pi^\flat$. However, $\Oo_C^\flat\epimorphism \Oo_C/\pi\Oo_C$ is clearly surjective (since $C$ is algebraically closed), hence indeed
-	\begin{equation*}
-		\Oo_C^\flat/\pi^\flat\Oo_C^\flat\cong \Oo_C/\pi\Oo_C\,.
-	\end{equation*}
-	For \itememph{2}, \cref{lem:WAb->A} shows $\theta(\pi-[\pi^\flat])=\pi-(\pi^\flat)^\sharp=\pi-\pi=0$. So $\pi-[\pi^\flat]\in\ker\theta$. Conversely, let $x=\sum_{n=0}^\infty[x_n]\pi^n$ be an element of $\ker\theta$. Hence
-	\begin{equation*}
-		0\equiv \theta(x)\equiv \sum_{n=0}^\infty x_n^\sharp\pi^n\equiv x_0^\sharp\mod \pi\,.
-	\end{equation*}
-	From \itememph{1} we get $\pi^\flat\mid x_0$, say, $x_0=\pi^\flat y$. Write $z^{(0)}=\sum_{n=1}^\infty [x_n]\pi^{n-1}$ and $x^{(1)}=[y]+z^{(0)}$. Then $x=[\pi^\flat]x^{(1)}+(\pi-[\pi^\flat])z^{(0)}$. We obtain
-	\begin{equation*}
-		0=\theta(x)=\theta\big([\pi^\flat]x^{(1)}\big)=\pi\theta\big(x^{(1)}\big)\,,
-	\end{equation*}
-	hence also $\theta(x^{(1)})=0$ since $\Oo_C$ is $\pi$-torsionfree. Repeating this process with $x^{(1)}$ and iterating, we get an expression
-	\begin{equation*}
-		x=\xi\big(z^{(0)}+[\pi^\flat]z^{(1)}+\dotsb\big)\,,
-	\end{equation*}
-	where $\xi=\pi-[\pi^\flat]$. This shows that $x$ lies in the ideal generated by $\xi$, proving \itememph{2}.
-	
-	It remains to see that $\theta\colon W_{\Oo_E}(\Oo_C^\flat)\morphism\Oo_C$ is surjective and that $(W_{\Oo_E}(\Oo_C^\flat),\xi)$ is a perfect prism. The first assertion is because $(-)^\sharp\colon \Oo_C^\flat\morphism\Oo_C$ is surjective since $C$ is algebraically closed. For the second assertion, $\xi=\pi-[\pi^\flat]$ is clearly distinguished by \cref{rem:perfectoid}\itememph{2}, so it remains to show that $\Oo_C^\flat$ is $\pi^\flat$-complete. Observe that for all $c\geq 0$ the $c\ordinalth$ component of $(\pi^\flat)^{q^n}$ is $0$ for all $n\geq c$. From this observation, $\pi^\flat$-completeness of $\Oo_C^\flat$ easily follows.
-\end{proof}
-Next time we proof the first half of the following \cref{lem:perfectoidOC} (see \cref{lem:OcflatisOF}). The other half will have to wait until the $4\ordinalth$ lecture.
-\begin{lem}\label{lem:perfectoidOC}
-	Let $A$ be a perfectoid $\Oo_E$-algebra. Then $A$ is isomorphic to $\Oo_C$ for some non-archimedean algebraically closed extension $C/E$ if and only if $A^\flat$ is isomorphic to $\Oo_F$ for some non-archimedean algebraically closed extension $F/\IF_q$.
-\end{lem}
-\begin{rem}\label{rem:AinfProperties}
-	Recall that for $F$ as in \cref{lem:perfectoidOC} we put $\IA_\inf=W_{\Oo_E}(\Oo_F)$.
-	\begin{numerate}
-		\item $\IA_\inf$ is a local integral domain. This is in fact true for any $W_{\Oo_E}(R)$ if $R$ itself is a local integral domain over $\IF_q$ (this follows from \cref{lem:W_OEpi} for example).
-		\item $\IA_\inf$ is $(\pi,[\varpi])$-complete for any $\varpi\in\mm_F\setminus \{0\}$. Indeed, this follows from \cref{rem:perfectoid}\itememph{2} as $\Oo_F$ is easily seen to be $\varpi$-complete. Such $\varpi$ is called a \defemph{pseudo-uniformizer}.
-		\item By a theorem of Ludwig--Lang, $\IA_\inf$ has infinite Krull dimension (and is, in particular, non-noetherian). We can actually see by hand that $\IA_\inf$ is at least three-dimensional: there is a chain
-		\begin{equation*}
-			0\subsetneq\bigcup_{x\in\mm_F}[x]\IA_\inf\subsetneq W_{\Oo_E}(\mm_F)\subsetneq (\pi,W_{\Oo_E}(\mm_F))
-		\end{equation*}
-		of prime ideals. Also note that $(\pi,W_{\Oo_E}(\mm_F))$ is the unique maximal ideal of $\IA_\inf$ since an element of $\IA_\inf$ is invertible iff its image in $\IA_\inf/\pi\IA_\inf\cong \Oo_F$ is invertible.
-	\end{numerate}
-\end{rem}
-Despite \cref{rem:AinfProperties}\itememph{3}, we should think of $\IA_\inf$ as a two-dimensional ring, except for some \enquote{bad} primes. Here's a \enquote{picture} of $\Spec\IA_\inf$. The left picture shows a select choice of prime ideals of $\IA_\inf$. In the right picture the corresponding residue fields are shown and the Frobenius action $\phi$ is indicated.
-\begin{center}
-	\tabcolsep=0pt
-	\begin{tabularx}{\textwidth}{X c X c X}
-		& \begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
-		\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
-		\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
-		\fill (0,0) circle (0.5ex) node[below=4] (null) {$(\pi,W_{\Oo_E}(\mm_F))$};
-		\fill (4,0) circle (0.5ex) node[below=4] (pi) {$(\pi)$};
-		%\path (null) -- (pi) node[pos=0.5] {\scriptsize$\Spec W_{\Oo_E}(k)$};
-		\fill (0,4) circle (0.5ex) node[right=4] {$W_{\Oo_E}(\mm_F)$};
-		\draw[rounded corners, thick] (-1ex,-1ex) rectangle (4cm+1ex,1ex) node[pos=0.5, below=4] {\scriptsize$\Spec \Oo_F$};
-		\draw[rotate=30,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex) node[pos=0.5,rotate=30] {\scriptsize$\Spec \Oo_C$};
-		\draw[pattern=north west lines, rounded corners, thick] (1ex,-1ex) rectangle (-1ex,4cm+1ex) node[pos=0.5, rotate=90, above=4] {\scriptsize$\Spec W_{\Oo_E}(k)$} node[pos=0.5, rotate=90, below=4] {\scriptsize \enquote{bad} primes};
-		\fill (30:3.5cm) circle (0.5ex) node[right=4,align=left] {$(\pi-[\pi^\flat])$,\\[0.5ex] $\Oo_C$ untilt of $\Oo_F$};
-		\draw[rotate=60,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex) node[pos=0.5, rotate=60] {\scriptsize$\Spec \Oo_{\smash{C'}}$};
-		\fill (60:3.5cm) circle (0.5ex) node[right=4, align=left] {$(\pi-[a])$,\\[0.5ex] $a\in\mm_F\setminus\{0\}$};
-		\end{tikzpicture} & & \begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
-		\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
-		\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
-		\fill (0,0) circle (0.5ex) node[below=4] (null) {$k$};
-		\fill (4,0) circle (0.5ex) node[below=4] (pi) {$F$};
-		%\path (null) -- (pi) node[pos=0.5] {\scriptsize$\Spec W_{\Oo_E}(k)$};
-		\fill (0,4) circle (0.5ex) node[right=4] {$W_{\Oo_E}(k)\left[\frac1\pi\right]$};
-		\draw[rounded corners, thick] (-1ex,-1ex) rectangle (4cm+1ex,1ex);
-		\draw[rotate=30,rounded corners, thick] (-1ex,-1ex) rectangle (3.5cm+1ex,1ex);
-		\draw[pattern=north west lines, rounded corners, thick] (1ex,-1ex) rectangle (-1ex,4cm+1ex);
-		\fill (30:3.5cm) circle (0.5ex) node[right=4] {$C$};
-		\draw[->, shift={(0,0)}] (30:4.5cm) arc (30:50:4.5cm) node[pos=0.5,above right] {$\phi$};
-		\end{tikzpicture} &
-	\end{tabularx}
-\end{center}
-We put $k=\Oo_F/\mm_F$ for convenience. We will see next time that $\Spec\IA_\inf$ is indeed \enquote{two-dimensional away from $[\varpi]=0$}. More precisely, we will show the following: let $(\Oo_C,\iota)$ be an untilt of $\Oo_F$ and $\xi$ a generator of $\ker(\theta\colon \IA_\inf\morphism \Oo_C)$. Put
-\begin{equation*}
-	B_\dR^+=\IA_\inf\left[\textstyle \frac 1\pi\right]_\xi^\complete\,.
-\end{equation*}
-Then $B_\dR^+$ is always a DVR and the same is true for $\IA_{\inf,(\pi-[\pi^\flat])}$ (see \cref{lem:BdR+DVR} below). Moreover, in the lecture after the next one we will show that all $(\pi-[a])$ for $a\in\mm_F\setminus\{0\}$ are prime ideals, and in fact $\IA_\inf/(\pi-[a])$ is isomorphic to another untilt $\Oo_{C'}$ of $\Oo_F$ (as indicated in the left picture), with $C'/E$ an algebraically closed non-archimedean extension.
-\numpar{Side remark}
-\lecture[$B_\dR^+$ is a DVR. A universal property for $\IA_\inf$. $p$-adic PD-thickenings and $\IA_\cris$.]{2019-11-06}
-Why this setup? Let $K/\IQ_p$ be a discretely valued non-archime-dean field extension with perfect residue field and let $X/K$ be a smooth proper scheme.  The objects of interest in $p$-adic hodge theory are the $p$-adic cohomology groups $H_\et^*(X_{\ov{K}},\IQ_p)$. We will replace $\IQ_p$ by $E$ and $\ov{K}$ by $C=\roof{\ov{K}}$, with $F=C^\flat=\Frac(\Oo_C^\flat)$.
-\begin{defi}
-	An element $x=\sum_{n=0}^\infty [x_n]\pi^n$ of $\IA_\inf$ is called \defemph{primitive} if $x_0\neq 0$ and there exists a $d\geq 0$ such that $x_d\in \Oo_F^\times$. If $x$ is primitive, the smallest such $d$ is called the \defemph{degree} of $x$. The set primitive elements of degree $d$ is denoted $\Prim_d$.
-\end{defi}
-\begin{exm}
-	We have $\Prim_0=\IA_\inf^\times$. Moreover, any element $x\in \Prim_1$ is distinguished. The converse is true iff $[x_0]\neq 0$.
+\begin{exm}\label{exm:NewtConvolution}
+	Let's illustrate \cref{cor:NewtConvolution} for $f=T-\alpha$ and $g=T-\beta$:
+	\begin{center}
+		\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+		\begin{scope}[xshift=-9.5cm]
+		\draw[-to] (-0.5,0) -- (2.5,0);
+		\draw[-to] (0,-0.5) -- (0,2.5);
+		\fill (0,1) circle (0.5ex);
+		\fill (0.5,0) circle (0.5ex);
+		\draw[thick] (0,1) -- (0.5,0) node[pos=0.5,above right=-2] {$-v(\alpha)$};
+		\node at (1.25,2) {$\Newt_\poly(f)$};
+		\end{scope}
+		\begin{scope}[xshift=-5.5cm]
+		\draw[-to] (-0.5,0) -- (2.5,0);
+		\draw[-to] (0,-0.5) -- (0,2.5);
+		\fill (0,0.4) circle (0.5ex);
+		\fill (1.25,0) circle (0.5ex);
+		\draw[thick] (0,0.4) -- (1.25,0);
+		\node[above] at (0.75,0.25) {$-v(\beta)$};
+		\node at (1.25,2) {$\Newt_\poly(g)$};
+		\end{scope}
+		\begin{scope}[xshift=0cm]
+		\draw[-to] (-0.5,0) -- (2.5,0);
+		\draw[-to] (0,-0.5) -- (0,2.5);
+		\fill (0,1.4) circle (0.5ex);
+		\fill (0.5,0.4) circle (0.5ex);
+		\fill (1.75,0) circle (0.5ex);
+		\draw[thick] (0,1.4) -- (0.5,0.4) node[pos=0.5,above right=-2] {$-v(\alpha)$} -- (1.75,0);
+		\node[above] at (1.25,0.25) {$-v(\beta)$};
+		\node at (1.25,2) {$\Newt_\poly(fg)$};
+		\end{scope}
+		\draw[-to,bend left] (-2.5,1) to node[pos=0.5,above=1] {convolution} (-1,1);
+		\end{tikzpicture}
+	\end{center}
+	In particular, if $f\in K[T]$ is a polynomial of degree $n$ and $\alpha_1,\dotsc,\alpha_n\in\ov{K}$ its zeros counted with multiplicity, then induction on $n$ shows that $\Newt_\poly(f)$ has exactly $-v(\alpha_1),\dotsc,-v(\alpha_n)$ as its slopes, with the same multiplicities.
 \end{exm}
-Next time we will see that if $a\in \Prim_1$, then $a\IA_\inf$ is  a prime ideal and $\IA_\inf/a\IA_\inf\cong \Oo_C$ for some non-archimedean algebraically closed extension $C/E$ (which generalizes the claim about the $(\pi-[a])$ above). For now let $C/E$ be such an extension and $|\blank|\colon C\morphism \IR_{\geq 0}$ its norm. Recall that \cref{prop:(A/I)b} provides an isomorphism
-\begin{equation*}
-	\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C\,,
-\end{equation*}
-sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1/q})^\sharp,\dotsc)$ contained in the right-hand side.
-\begin{lem}\label{lem:OcflatisOF}
-	Assume we are in the above situation.
-	\begin{numerate}
-		\item The map $|\blank|^\flat\colon \Oo_C^\flat\morphism\IR_{\geq 0}$ given by $x\mapsto |x^\sharp|$ is a norm on $\Oo_C^\flat$. Moreover, $\Oo_C^\flat$ is complete with respect to the topology induced by $|\blank|^\flat$.
-		\item $C^\flat=\Frac(\Oo_C^\flat)$ is a non-archimedean algebraically closed extension of $\IF_q$.
-	\end{numerate}
-\end{lem}
-\begin{proof}
-	It is clear that $|\blank|^\flat$ is multiplicative, that $|1|^\flat=1$, and that $|x|^\flat=0$ iff $x=0$. So only the triangle inequality remains. We calculate
-	\begin{align*}
-		|x+y|^\flat=|(x+y)^\sharp|&=\lim_{n\to\infty}\bigg|\Big(\big(x^{1/q^n}\big)^\sharp+\big(y^{1/q^n}\big)\Big)^{q^n}\bigg|\\
-		&=\lim_{n\to\infty}\max\left\{\big|\big(x^{1/q^n}\big)^\sharp\big|^{q^n},\big|\big(y^{1/q^n}\big)^\sharp\big|^{q^n}\right\}\\
-		&=\lim_{n\to\infty}\max\left\{|x^\sharp|,|y^\sharp|\right\}\\
-		&=\max\big\{|x|^\flat,|y|^\flat\big\}
-	\end{align*}
-	This shows that $|\blank|^\flat$ is a norm in $\Oo_C^\flat$. To show that $\Oo_C^\flat$ is complete, we claim that the topology generated by $|\blank|^\flat$ is the inverse limit topology on $\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C$. A neighbourhood basis of $0$ in the topology generated by $|\blank|^\flat$ is given by the sets
-	\begin{equation*}
-		\big\{x\ \big|\ |x|^\flat<\epsilon\big\}\quad\text{for all }\epsilon>0\,.
-	\end{equation*}
-	In the inverse limit topology, a neighbourhood basis of $0$ is given by the sets
-	\begin{equation*}
-		\left\{x\in \Oo_C^\flat\st \big|\big(x^{1/q^n}\big)^\sharp\big|<\delta\right\}\quad\text{for all }\delta>0\text{, }n\geq 0\,.
-	\end{equation*}
-	But $|(x^{1/q^n})^\sharp|=(|x|^\flat)^{1/q^n}$, so its easy to see that these topology bases not only generate the same topology, but even coincide on the nose.
-	
-	
-	For \itememph{2}, it remains to show that $C^\flat$ is algebraically closed, and for this it suffices to show that $\Oo_C^\flat$ is integrally closed. So let $f\in \Oo_C^\flat[T]$ be a monic polynomial. Write $f(T)=T^d+a_{d-1}T^{d-1}+\dotsb+a_0$. For all $n\geq 0$ put
-	\begin{equation*}
-		f_n(T)=T^d+\big(a_{d-1}^{1/q^n}\big)^\sharp T^{d-1}+\dotsb+\big(a_0^{1/q^n}\big)^\sharp\in \Oo_C[T]\,.
-	\end{equation*}
-	Then $f_{n+1}(T)^q\equiv f_n(T^q)\mod \pi$. Now fix $n\geq 0$ and let $x\in \Oo_C$ be a zero of $f_n$, which exists as $\Oo_C$ is integrally closed. Choose $y\in \Oo_C$ such that $y^q=x$. Although $y$ need not be a root of $f_{n+1}$, we certainly have $|f_{n+1}(y)|\leq |\pi|^{1/q}$. Let $z_1,\dotsc,z_n\in \Oo_C$ be the actual roots of $f_{n+1}$. Then
-	\begin{equation*}
-		|f_{n+1}(y)|=\prod_{i=1}^d|y-z_i|\leq |\pi|^{1/q}\,.
-	\end{equation*}
-	hence there exists an index $i$ such that $|y-z_i|\leq |\pi|^{1/dq}$, or equivalently $|y-z_i|^q\leq |\pi|^{1/d}$. Then also $|x-z_i^q|\leq |\pi|^{1/d}$ as all other terms in the expansion of $(y-z_i)^q$ are divisible by $\pi$. By induction, we obtain a sequence $(x_n)_{n\in \IN}$ such that $x_n\in\Oo_C$, $f_n(x_n)=0$, and the $x_n$ are \enquote{close} to being $q$-power compatible in the sense that $|x_{n+1}-x_n^q|\leq |\pi|^{1/d}$. But this is actually sufficient! Indeed, put $\aa=\left\{y\in \Oo_C\st |y|\leq |\pi|^{1/d}\right\}$. Then $x=(x_n)_{n\in\IN}$ is an element of
-	\begin{equation*}
-		\lim_{x\mapsto x^q}\Oo_C/\aa\cong \lim_{x\mapsto x^q}\Oo_C/\pi\Oo_C=\Oo_C^\flat\,,
-	\end{equation*}
-	where we use \cref{prop:(A/I)b} to obtain the isomorphism on the left. Hence $x$ corresponds to an element $x\in \Oo_C^\flat$, which clearly satisfies $f(x)=0$.
-\end{proof}
-\begin{lem}\label{lem:BdR+DVR}
-	Let $\Oo_C$ be an untilt of $\Oo_F$ and let $\xi$ be a distinguished generator of the kernel of $\theta\colon \IA_\inf\morphism\Oo_C$. As above, we put $B_\dR^+=\IA_\inf\localize{\pi}_\xi^\complete$. Then the following holds.
-	\begin{numerate}
-		\item The canonical map $\IA_\inf\monomorphism B_\dR^+$ is an injection.
-		\item $B_\dR^+$ and $\IA_{\inf,(\xi)}$ are discrete valuation rings.
-	\end{numerate}
-\end{lem}
-\begin{proof}
-	Since we are not in a noetherian setting, we need to be careful with completion. As $(\xi)$ is obviously a finitely generated ideal, \cite[\stackstag{05GG}]{stacks-project} shows that $B_\dR^+$ is $\xi$-complete. Moreover,
-	\begin{equation*}
-		B_\dR^+/(\xi^n)\cong \IA_\inf\big[\textstyle\frac1\pi\big]/(\xi^n)\cong \IA_\inf/(\xi^n)\big[\textstyle\frac1\pi\big]\,,
-	\end{equation*}
-	by exactness of localization. We claim that $\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}$ is injective for all $n$. To show this, we need to check that $\IA_\inf/(\xi^n)$ is $\pi$-torsionfree. We use induction on $n$. For $n=1$ we get $\IA_\inf/(\xi)\cong \Oo_C$, which is $\pi$-torsionfree. Now suppose $\pi x=\xi^ny$ for some $x,y\in\IA_\inf$. By the $n=1$ case we see that $x$ must be divisible by $\xi$, say, $x=\xi x'$. Since $\IA_\inf$ is a domain this implies $\pi x'=\xi^{n-1}y$. But then the induction hypothesis shows that $x'$ itself must be divisible by $\xi^{n-1}$, proving the claim.
-	Now since limits are left exact, we see that
-	\begin{align*}
-		\IA_\inf\cong \lim_{n\in \IN}\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}\cong B_\dR^+
-	\end{align*}
-	is injective, as required. The isomorphism on the left-hand side uses that $\IA_\inf$ is $\xi$-complete by \cite[\stackstag{09OT}]{stacks-project} and the fact that $\IA_\inf$ is $(\pi,\xi)$-complete. This shows \itememph{1}.
-	
-	For \itememph{2}, first note that $B_\dR^+/(\xi)\cong \Oo_C\localize{\pi}\cong C$. Hence \cite[\stackstag{05GH}]{stacks-project} implies that $B_\dR^+$ is noetherian. Moreover, we know that $B_\dR^+$ is local with maximal ideal $(\xi)$, because it is $\xi$-adically complete and its quotient by $\xi$ is $C$, which is a field. This implies $\dim B_\dR^+\leq 1$. Moreover, we are done once we show $\dim B_\dR^+\geq 1$, since then $B_\dR^+$ is a one-dimensional noetherian local ring whose maximal ideal is principal, hence regular, hence a DVR.
-	
-	For $\dim B_\dR^+\geq 1$ it suffices to see that $B_\dR^+$ is a domain, since then $0\subsetneq (\xi)$ is a chain of prime ideals. From \itememph{1} and the fact that $\IA_\inf$ is a domain, it's easy to see that $B_\dR^+$ is $\xi$-torsionfree. Now if $xy=0$ for $x,y\in B_\dR^+$, then $x$ or $y$ must be divisible by $\xi$ as $B_\dR^+/(\xi)\cong C$. Say $x=\xi x'$. Then $B_\dR^+$ being $\xi$-torsionfree shows $x'y=0$. Iterating the argument shows $x=0$ or $y=0$ as $B_\dR^+$ is $\xi$-complete. This finishes the proof that $B_\dR^+$ is indeed a DVR.
-	
-	Now for $\IA_{\inf,(\xi)}$. Take any prime ideal $\pp\subseteq \IA_{\inf,(\xi)}$ such that $\xi\notin \pp$. Still $\pp\subseteq (\xi)$ as $(\xi)$ is the maximal ideal of $\IA_{\inf,(\xi)}$. Hence, if $a\in \pp$, then $a=b\xi$. But since $\pp$ is prime and $\xi\notin\pp$, this implies $b\in\pp$. Thus $\xi\pp=\pp$. Now let $\qq=\pp B_\dR^+$. Then $\xi\qq=\qq$ shows $\qq=0$ as $B_\dR^+$ is a DVR. But $\IA_{\inf,(\xi)}\monomorphism B_\dR^+$ is injective by \itememph{1} as localizations of injections stay injective. This shows $\pp=0$.
-	
-	What we have shown is that $\Spec \IA_{\inf,(\xi)}$ has exactly two points, namely $\{0,(\xi)\}$. But then all prime ideals of $\IA_\inf$ are finitely generated, which implies that $\IA_\inf$ is noetherian by the rather obscure fact \cite[\stackstag{05KG}]{stacks-project}. Now it's clear that $\IA_{\inf,(\xi)}$ is one-dimensional and regular, hence a DVR.
-\end{proof}
-
-Have you ever wondered what the \enquote{$\inf$} in $\IA_\inf$ actually means? It stands for \emph{infinitesimal}. In fact, this leads to a description of $\IA_\inf$ as a universal thickening of $\Oo_C$!
+Now we want to define Newton polygons for power series. So let $f\in \Oo_K\llbracket T\rrbracket$ be a power series, say, $f=\sum_{i=0}^\infty a_iT^i$.
 \begin{defi}
-	Let $R$ be a $\pi$-complete $\Oo_E$-algebras. A \defemph{$\pi$-adic pro-infinitesimal thickening of $R$} is a  surjection $D\epimorphism R$ of $\Oo_E$-algebras with kernel $I$ such that $D$ is $(\pi,I)$-adically complete.
-\end{defi}
-\begin{exm}
-	For $R\in\left\{\Oo_C,\Oo_C/\pi\Oo_C\right\}$, the natural map $\IA_\inf\epimorphism R$ is a $\pi$-adic pro-infinitesimal thickening. Indeed, its kernel is given by $(\xi)$ and $(\pi,\xi)$ respectively. Actually, $\IA_\inf$ is the universal $\pi$-adic pro-infinitesimal thickening of $R$, as shown in the following lemma!
-\end{exm}
-\begin{lem}\label{lem:AinfUniversal}
-	Let $R\in\{\Oo_C,\Oo_C/\pi\Oo_C\}$ and let $D\epimorphism R$ be a $\pi$-adic pro-infinitesimal thickening. Then it factors uniquely as
+	The \defemph{Newton polygon} $\Newt(f)$ is the largest \defemph{decreasing} convex function below $\{(i,v(a_i))\}_{i\in\IZ}$, where $a_i=0$ for $i<0$ by convention. In other words,
 	\begin{equation*}
-		\begin{tikzcd}
-			\IA_\inf\rar[epi]\dar[dashed,"\exists!"{swap}] & R\\
-			D\urar[epi] &
-		\end{tikzcd}
+		\Ll\Newt(f)(r)=\begin{cases}
+		v_r(f)\coloneqq\inff_{i\in\IZ}\{v(a_i)+ri\} & \text{if }r\geq 0\\
+		-\infty & \text{if }r<0
+		\end{cases}\,.
 	\end{equation*}
-\end{lem}
-\begin{proof}[Sketch of a proof]
-	By \cref{prop:(A/I)b} we have $\lim_{x\mapsto x^q}D\cong (D/(\pi,I))^\flat\cong R^\flat$. By the same argument $\lim_{x\mapsto x^q} D\cong D^\flat$. Hence $D^\flat\cong R^\flat$. Thus, the Witt-tilting adjunction (\cref{prop:tiltWittAdjunction}) provides a unique map 
-	\begin{align*}
-		\IA_\inf\cong W_{\Oo_E}(R^\flat)\morphism D\,.
-	\end{align*}
-	It's easily verified that this map has the required properties.
-\end{proof}
-\subsection{\texorpdfstring{$p$}{p}-adic PD-thickenings and \texorpdfstring{$\IA_\cris$}{Acris}}
-From now on, we restrict our attention to the case $E=\IQ_p$ and $\pi=p$. As above, let $R\in\{\Oo_C,\Oo_C/p\Oo_C\}$.
-\begin{defi}
-	A \defemph{$p$-adic PD-thickening} of $R$ is a triple $(D,D\epimorphism R,(\gamma_n)_{n\in\IN})$, where $D$ is $p$-complete and $(\gamma_n)_{n\in\IN}$ a PD-structure on $J=\ker(D\epimorphism R)$ which is compatible with the canonical PD-structure on $pR$.
 \end{defi}
 \begin{rem}
 	\begin{numerate}
-		\item If $D$ is $p$-torsionfree, then necessarily $\gamma_n(x)=x^n/n!$.
-		\item Normalize $|\blank|\colon C\morphism \IR_{\geq 0}$ such that $|p|=p^{-1}$. Then a well-known calculation shows $|n!|\geq p^{(n-1)/(p-1)}$ for all $n\in\IN$. In fact, the $1$ in $n-1$ can be replaced by the digit sum of the $p$-adic expansion of $n$. Thus, it's easy to check that
-		$|x^n/n!|\leq 1$ for all $n\in\IN$ iff $|x|<p^{-1/(p-1)}$. Moreover, one may check that
-		\begin{equation*}
-			\left\{x\in\Oo_C\st|x|<p^{-1/(p-1)}\right\}
-		\end{equation*}
-		is the largest ideal in $\Oo_C$ admitting divided powers.
+		\item A power series $f$ defines a function on the \enquote{open rigid-analytic unit disc} $\ID=\left\{x\st |x|<1\right\}$. In fact, one can handle general $f\in K\llbracket T\rrbracket$ as functions if one is careful with domains of convergence.
+		\item For $f\in\Oo_K[T]$, $\Newt(f)$ omits the positive slopes from $\Newt_\poly(f)$, as these correspond to zeros outside of $\ID$. In particular, $\Newt(f)\neq \Newt_\poly(f)$ in general.
 	\end{numerate}
 \end{rem}
-\begin{defi}
-	The ring $\IA_\cris$ denotes the universal $p$-adic PD-thickening of $\Oo_C$, or equivalently, of $\Oo_C/p\Oo_C$. In fancy words,
+Similar to the polynomial case in \cref{exm:NewtConvolution}, there is a connection between slopes of the Newton polygon of a power series $f$ and zeros of $f$ (but we won't prove this). 
+\begin{thm}[Lazard]\label{thm:Lazard}
+	Let $f\in\Oo_K\llbracket T\rrbracket$. Let $\lambda\neq 0$ be a slope of $\Newt(f)$. Then there exists a zero $\alpha\in\roof{\ov{K}}$ of $f$ with $v(\alpha)=-\lambda$. In other words, in $\Oo_{\roof{\ov{K}}}\llbracket T\rrbracket$ the power series $f$ an be factored as $f=(T-\alpha)g$.
+\end{thm}
+\begin{rem}
+	\begin{numerate}
+		\item Suppose $\Newt(f)$ is eventually constant (this is e.g.\ the case if $K$ is discretely valued), i.e., $f=a\snake{f}$ for $a\in\Oo_K$ and $\snake{f}$ is primitive of some degree $d$. Then the Weierstraß preparation theorem shows $f=aPg$, where $a\in \Oo_K$, $P$ is a monic polynomial of degree $d$, and $g\in\Oo_K\llbracket T\rrbracket^\times$ is a unit.
+		\item Suppose $\cha K=0$. Then $\log_p(1-x)=\sum_{i=0}^\infty (-1)^{i-1}x^i/i$ has zeros precisely at $\mu_{p^\infty}(\ov{K})$. Draw the Newton polygon of $\log_p(1-x)$ and prove this!
+	\end{numerate}
+\end{rem}
+\subsection{Newton Polygons in \texorpdfstring{$\IA_\inf$}{Ainf}}
+With notation as usual we put $\IA_\inf=W_{\Oo_E}(\Oo_F)$. We want to introduce an analogue of Newton polygons of power series for $\IA_\inf$. As a side note, there is no \enquote{subring of polynomials in $\IA_\inf$}: $\left\{\sum_{i=0}^n[a_i]\pi^i\st a_i\in\Oo_F\right\}$ is not closed under addition. So there's no sensible generalization of Newton polygons of polynomials to $\IA_\inf$.
+\begin{defi}\label{def:AinfNewton}
+	Let $f=\sum_{i=0}^\infty[a_i]\pi^i\in\IA_\inf$. Then the \defemph{Newton polygon $\Newt(f)$ of $f$} is the largest decreasing convex function below $\{(i,v(a_i))\}_{i\in\IZ}$. In other words,
 	\begin{equation*}
-		\IA_\cris=H_\cris^0(\Oo_C/\IZ_p)\cong H_\cris^0\big((\Oo_C/p\Oo_C)/\IZ_p\big)\,.
+		\Ll\Newt(f)(r)=\begin{cases}
+		v_r(f)\coloneqq\inff_{i\in\IZ}\{v(a_i)+ri\} & \text{if }r\geq 0\\
+		-\infty & \text{if }r<0
+		\end{cases}\,.
 	\end{equation*}
 \end{defi}
-Concretely, $\IA_\cris$ is the $p$-adic divided power envelope of $\ker\theta=(\xi)\subseteq \IA_\inf$. This follows more or less from \cref{lem:AinfUniversal}, but this requires an additional argument, since a $p$-adic PD-thickening $D$ of $R$ need not be $(p,J)$-complete, so $D\epimorphism R$ need not be a $p$-adic pro-infinitesimal thickening. But the conclusion of that lemma is still true: we get a unique map $\IA_\inf\morphism D$ over $R$, and then its formal to see that $\IA_\cris$ can be described as above.
-
-So where does the map $\IA_\inf\morphism D$ come from? A closer inspection of the proof of \cref{lem:AinfUniversal} shows that we only need to show that $D^\flat\morphism R^\flat$ is an isomorphism. We can't use \cref{prop:(A/I)b} to prove this. However, we can still construct an inverse $R^\flat\morphism D^\flat$ in the same way as in the proof of that proposition. This is based on the following observation, that serves as a replacement for \cref{lem:keyLemma}.
-\begin{lem*}
-	If $x,y\in D$ such that $x\equiv y\mod (p,J)$, then $(x^{p^n}-y^{p^n})_{n\in\IN}$ converges to $0$ in the $p$-adic topology.
-\end{lem*}
+\numpar{Lemma \smash{\Attention}}\label{lem:vrValuation}\itshape
+For all $r\geq 0$, $v_r\colon \IA_\inf\morphism\IR\cup\{\infty\}$ is a valuation. In particular, for $f,g\in\IA_\inf$ we have
+\begin{equation*}
+	\Newt(fg)=\Newt(f)*\Newt(g)\,.
+\end{equation*}\upshape
 \begin{proof*}
-	Observe that for $d\in J$ we have $d^t=t!\gamma_t(d)$, so $d^t$ is divisible by $p^{v_p(t!)}$. Now put $x=y+pz+d$, where $z\in R$ and $d\in J$. Then a typical term in the multinomial expansion of $x^{p^n}-y^{p^n}$ looks like
+	It's clear that $v_r(f)=\infty$ iff $f=0$. We first establish the strong triangle inequality. This is essentially straightforward, but still technical. Define \enquote{twisted Witt polynomials}
 	\begin{equation*}
-		\binom{p^n}{r,s,t}y^r(pz)^sd^t\,,
+		\snake{S}_n(X_0,\dotsc,X_n,Y_0,\dotsc,Y_n)=S_n\left(X_0^{q^0},\dotsc,X_n^{q^n},Y_0^{q^0},\dotsc,Y_n^{q^n}\right)\,.
 	\end{equation*}
-	where $r+s+t=p^n$. Fix some $N>0$. If $t>p^N$, then the above consideration shows that $d^t$ is at least divisible by $p^N$ (we are very permissive here). If $t\leq p^N$, then the multinomial coefficient is at least divisible by $p^{n-N}$. Hence if $n\geq 2N$, every term will at least be divisible by $p^N$, and we're done.
+	Using the inductive construction of the $S_n$, it's easy to check that $\snake{S}_n$ is homogeneous of degree $q^n$. If $\alpha X_0^{s_0}\dotsm X_n^{s_n}Y_0^{t_0}\dotsm Y_n^{t_n}$ is a monomial of total degree $q^n$, we define its \defemph{weight} as $q^{-n}\sum_{i=0}^ni(s_i+t_i)$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] There is a polynomial $T_n$ such that $\snake{S}_n\equiv T_n\mod \pi$, no coefficient of $T_n$ is divisible by $\pi$, and every monomial of $T_n$ has weight $\leq n$.
+	\end{alphanumerate}
+	Let's first see why \itememph{*} implies the strong triangle inequality for $v_r$. Let $f,g\in \IA_\inf$, say, $f=\sum_{n=0}^\infty [a_n]\pi^n$, $g=\sum_{n=0}^\infty [b_n]\pi^n$, and let $f+g=\sum_{n=0}^\infty[c_n]\pi^n$. Since $\pi=0$ in $\Oo_F$, we have $c_n=T_n(a_0,\dotsc,a_n,b_0,\dotsc,b_n)^{1/q^n}$. Now let $\alpha X_0^{s_0}\dotsm X_n^{s_n}Y_0^{t_0}\dotsm Y_n^{t_n}$ be a monomial of $T_n$. Since this monomial has weight $\leq n$, we have
+	\begin{equation*}
+		q^{-n}v\big(\alpha a_0^{s_0}\dotsm a_n^{s_n}b_0^{t_0}\dotsm b_n^{t_n}\big)+rn\geq q^{-n}\sum_{i=0}^n\big(s_i(v(a_i)+ri)+t_i(v(b_i)+ri)\big)\,.
+	\end{equation*}
+	Since the right-hand side is a convex combination of $v(a_i)+ri$ and $v(b_i)+ri$ for $i=0,\dotsc,n$, it is bounded below by the minimal value of these guys. This shows
+	\begin{equation*}
+		v(c_n)+rn\geq \min_{i=0,\dotsc,n}\left\{v(a_i)+ri,v(b_i)+ri\right\}\,.
+	\end{equation*}
+	If you think about this a bit, this is enough to prove the strong triangle inequality.
+	
+	We prove \itememph{*} by induction on $n$. The case $n=0$ is clear. Now assume \itememph{*} holds up to $n-1$. Revisiting the proof of \cref{prop:WittPolynomials}, we see that
+	\begin{equation*}
+		\snake{S}_n=\pi^{-n}\Bigg(\sum_{i=0}^n\pi^i\left(X_i^{q^n}+Y_i^{q^n}\right)-\sum_{i=0}^{n-1}\pi^i\snake{S}_i^{q^{n-i}}\Bigg)\,.
+	\end{equation*}
+	Clearly, all monomials of the first sum have weight at most $n$. For the second sum, our key \cref{lem:keyLemma} implies $\snake{S}_i^{q^{n-i}}\equiv T_i^{q^{n-i}}\mod\pi^{n-i+1}$, and multiplying by $\pi^i$, we get a congruence modulo $\pi^{n+1}$, as usual. Moreover, since all monomials of $T_i$ have weight at most $i$, the same is true for $T_i^{q^{n-i}}$. This shows that $T_n$ can be defined in an appropriate way.
+	
+	It remains to show $v_r(fg)=v_r(f)+v_r(g)$. In his notes, Johannes Anschütz writes that $v_r(fg)\geq v_r(f)+v_r(g)$ is trivial, but I don't quite agree on that one. It's certainly trivial for power series, but multiplication in $\IA_\inf$ is more complicated than that. So here we sketch a proof: introduce \enquote{twisted Witt polynomials} $\snake{P}_n$ as above. An easy induction shows that $\snake{P}_n$ is homogeneous of degree $2q^n$, and moreover, that it can be written as a polynomial in $Z_{i,j}$, where we put $Z_{i,j}=X_iY_j$ (and then this polynomial has degree $q^n$). As above, we introduce a notion of \defemph{weight} of a monomial $\alpha Z_{i_0,j_0}^{s_0}\dotsm Z_{i_t,j_t}^{s_t}$ of total degree $q^n$. It is defined as $q^{-n}\sum_{k=0}^t(i_k+j_k)s_k$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] There is a polynomial $Q_n$ such that $\snake{P}_n\equiv Q_n\mod \pi$, no coefficient of $Q_n$ is divisible by $\pi$, and every monomial of $Q_n$ has weight $\leq n$.
+	\end{alphanumerate}
+	Claim~\itememph{\boxtimes} can be proved in the exact same way as \itememph{*}. Likewise, we can adapt the above arguments to see that \itememph{\boxtimes} indeed implies $v_r(fg)\geq v_r(f)+v_r(g)$.
+	
+	To show equality, it suffices to consider the case $r>0$, since it is easy to see that $v_0(f)=\lim_{r\to 0}v_r(f)$, so the $r=0$ case will follow automatically. Let $f=\sum_{n=0}^\infty [a_n]\pi^n$, $g=\sum_{n=0}^\infty [b_n]\pi^n$, and $fg=\sum_{n=0}^\infty[c_n]\pi^n$. Since $r>0$, there are minimal indices $m$, $n$ such that $v(a_m)+rm=v_r(f)$ and $v(b_n)+rn=v_r(g)$. Put $N=m+n$. We will show that $v(c_N)=v(a_m)+v(b_n)$, which will conclude the proof. 
+	
+	We claim that $(1+\pi \beta)Z_{m,n}^{q^N}$ is a monomial in $Q_N$ for some $\beta\in\Oo_E$. To see this, we use the proof of \cref{prop:WittPolynomials} to get
+	\begin{equation*}
+		\snake{P}_N=\pi^{-N}\Bigg(\sum_{i=0}^N\pi^iX_i^{q^N}\cdot \sum_{j=0}^N\pi^iY_i^{q^N}-\sum_{i=0}^{N-1}\pi^i\snake{P}_i^{q^{N-i}}\Bigg)\,.
+	\end{equation*}
+	Clearly, $\pi^NZ_{m,n}^{q^N}$ occurs as a summand if we expand the product of the two sums. So we only need to show that $Z_{m,n}^{q^N}$ doesn't occur, up to multiples of $\pi^{N+1}$, in the right-most sum. For that, note that $Z_{m,n}^{q^N}$ doesn't occur, up to multiples of $\pi^{N-i+1}$, in any $Q_i^{q^{N-i}}$ for $i\leq N-1$. This follows from \itememph{\boxtimes} as $Z_{m,n}^{q^N}$ has weight $N$. But $\snake{P}_i^{q^{N-i}}\equiv Q_i^{q^{N-i}}\mod \pi^{N-i+1}$ by our key \cref{lem:keyLemma}. This does it.
+	
+	As in the proof of the strong triangle inequality, $c_N=Q_N(a_0,\dotsc,a_N,b_0,\dotsc,b_N)^{1/q^N}$. If $\alpha Z_{i_0,j_0}^{s_0}\dotsm Z_{i_t,j_t}^{s_t}$ is a monomial of $Q_N$ different from $(1+\pi\beta)Z_{m,n}^{q^N}$, then
+	\begin{equation*}
+		q^{-N}v\big(\alpha (a_{i_0}b_{j_0})^{s_0}\dotsm (a_{i_t}b_{j_t})^{s_t}\big)+rN\geq q^{-N}\sum_{k=0}^ts_k\big((v(a_{i_k})+ri_k)+(v(b_{j_k})+rj_k)\big)\,,
+	\end{equation*}
+	using that the monomial in question has weight $\leq N$. The sum on the right-hand side is a convex combination of terms $(v(a_{i_k})+ri_k)+(v(b_{j_k})+rj_k)$ for $k=0,\dotsc,t$, each of which is at least $v_r(f)+v_r(g)$. So the right-hand side is $\geq v_r(f)+v_r(g)$. But since $m$ and $n$ are minimal with the property that $v(a_m)+rm=v_r(f)$ and $v(b_n)+rn=v_r(g)$ and since the weight is $\leq N$, some terms will be strictly greater than $v_r(f)+v_r(g)$. Thus, the right-hand side is $>v_r(f)+v_r(g)=v(a_m)+v(b_n)+rN$. In particular, $(1+\pi\beta)(a_mb_n)^{q^N}$ is the unique summand with minimal valuation, proving indeed $v(c_N)=v(a_m)+v(b_n)$.
 \end{proof*}
-Now that we know $\IA_\cris$ is the $p$-adic divided power envelope of $(\xi)$, we can write it down explicitly as
-\begin{equation*}
-	\IA_\cris\cong \IA_\inf\big[\textstyle\frac{\xi^n}{n!}\ \big|\  n\in\IN\big]_p^\complete\cong \IA_\inf\cotimes_{\IZ[x]}D_{\IZ[x]}(x)\,,
-\end{equation*}
-using that $\xi$ is a non-zero divisor in $\IA_\inf$. Also $-\cotimes_{\IZ[x]}-$ refers to the $p$-adic completed tensor product, with $\IZ[x]\morphism\IA_\inf$ sending $x\mapsto \xi$. Finally, the tensor factor on the right is defined as
-\begin{equation*}
-	D_{\IZ[x]}(x)=\IZ\langle x\rangle =\bigoplus_{n\in\IN}\IZ\big\{\textstyle\frac{x^n}{n!}\big\}\,.
-\end{equation*}
-Then
-\begin{equation*}
-	D_{\IZ[x]}(x)_p^\complete\cong\big(\IZ[y_0,y_1,\dotsc]/(y_0-x,y_n^p-py_{n+1} \text{ for }n\in\IN)\big)_p^\complete\,.
-\end{equation*}
-In particular, we can calculate
-\begin{equation*}
-	\IA_\cris\cong \Oo_C/p\Oo_C\otimes_{\IF_p}\IF_p[y_1,y_2,\dotsc]/(y_1^p,y_2^p,\dotsc)\,.
-\end{equation*}
-Some intuition: the image of $\Spec \IA_\cris$ in $\Spec \IA_\inf$ is roughly described by the following picture.
-\begin{center}
-	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
-	\draw[-to] (0,0) -- (5,0) node[below] {$[\varpi]$};
-	\draw[-to] (0,0) -- (0,5) node[left] {$\pi$};
-	\fill (0,0) circle (0.5ex);
-	%\fill (4,0) circle (0.5ex);
-	\fill (2,2) circle (0.5ex) node[right=4] {$(\xi)$};
-	\fill (1.6,2.4) circle (0.4ex) node[above right=4] (1) {$\phi^{-1}(\xi)$};
-	\fill (1.28,2.72) circle (0.32ex);
-	\fill (1.024,2.976) circle (0.256ex);
-	\fill (0.819,3.181) circle (0.205ex);
-	\fill (0.655,3.345) circle (0.164ex);
-	\fill (0.524,3.476) circle (0.13ex) node[above right=4] (n) {$\phi^{-n}(\xi)$};
-	\path (1.south west) -- (n.south west) node[pos=0.5,sloped, above=4] {$\dotsc$};
-	\draw[thick, rounded corners=2.5] (-1ex,-1ex) -- (0,-1.414ex) -- (1ex,-1ex) --  (2cm+1ex,2cm-1ex) -- (2cm+1.414ex,2) -- (2cm+1ex,2cm+1ex) -- (1ex,4cm+1ex) -- (0,4cm+1.414ex) -- (-1ex,4cm+1ex) -- cycle;
-	\draw[->, shift={(0,0)}] (30:4.5cm) arc (30:50:4.5cm) node[pos=0.5,above right] {$\phi$};
-	\path (0,0) -- (2,2) node[pos=0.5,sloped] {$\Spec \IA_\cris$};
-	\fill (3,1) circle (0.5ex) node[right=4, align=left] {$(p-[a])$\\$a\in\mm_F\setminus\{0\}$};
-	\end{tikzpicture}
-\end{center}
-Note that $\phi^{-1}(\xi)=(p-[p^\flat]^{1/p})$. Concretely, if $a\in\mm_F\setminus\{0\}$ such that $|a|\leq |p^\flat|^p=|p|^p$, then $(p-[a])\IA_\cris=(p)$. We may think of this as \enquote{$1-[a]/p\in\IA_\cris$}. And if $a=\phi^{-n}(p^\flat)$ for some $n\in \IN$, then $\IA_\inf\epimorphism\IA_\inf/(p-[a])$ factors over $\IA_\cris$.
+Let now $a=[a_0]-u\pi$ be an element of $\Prim_1$, where $u\in\IA_\inf^\times$ is a unit and $a_0\in\mm_F\setminus \{0\}$. Put $D=\IA_\inf/a\IA_\inf$. Then we have Fontaine's map $\theta\colon \IA_\inf\morphism D$.
+\begin{prop}\label{prop:D}
+	Suppose we are in the above situation.
+	\begin{numerate}
+		\item $D$ is $\pi$-complete and $\pi$-torsionfree.
+		\item We have $D^\flat\cong \Oo_F$.
+		\item The $p\ordinalth$ power map $D\morphism D$, $x\mapsto x^p$ is surjective. In particular, every element of $D$ is the of the form $\theta([x])$ for some $x\in\Oo_F$.
+	\end{numerate}
+\end{prop}
+\begin{proof*}
+	Part~\itememph{1} and~\itememph{2} are easy: $a$ is distinguished and $\Oo_F$ is $a_0$-complete as $a\in\mm_F$. By \cref{rem:perfectoid}, $(\IA_\inf,a)$ is thus a perfect prism, hence $\pi$-complete by \cref{lem*:perfectoidComplete}. In particular, $D$ is perfectoid, so \itememph{2} already follows from \cref{rem:perfectoid}\itememph{4}. For \itememph{1}, it remains to show that $D$ is $\pi$-torsionfree. Suppose $x,y\in\IA_\inf$ are such that $\pi x=ay$. Put $x=\sum_{n=0}^\infty[x_n]\pi^n$ and $y=\sum_{n=0}^\infty[y_n]\pi^n$. Then $[a_0y_0]=0$, hence $y_0=0$ as $a_0\in\mm_F\setminus\{0\}$. So $y=\pi y'$, and since $\IA_\inf$ is $\pi$-torsionfree, we obtain $x=ay'$. This shows that $D$ is indeed $\pi$-torsionfree.
+	
+	Proving that the $p\ordinalth$ power map is surjective is a technical nightmare, but I still want to sketch the proof here. The key to the proof is the following claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] For all $x\in\IA_\inf$ with non-zero image in $D$ and all $N\geq 1$ there is an $m\geq 0$ and $y=\sum_{n=0}^\infty[y_n]\pi^n\in\IA_\inf$ such that $v(y_0)< v(a_0)$, $y_n=0$ for all $n=1,\dotsc,N-1$, and
+		\begin{equation*}
+			x\equiv [a_0]^my\mod a\,.
+		\end{equation*}
+	\end{alphanumerate}
+	We first describe how \itememph{*} implies \itememph{3}. Let $e$ be the ramification index of $\pi$, i.e., $\pi^e\Oo_E=p\Oo_E$, and normalize the valuation $v$ of $\Oo_F$ in such a way that $v(a_0)=1/e$. To show that the image of $x$ in $D$ admits a $p\ordinalth$ root, choose $y$ as above such that $N/e>1+v(a_0)+1/(p-1)$. It suffices to construct a $p\ordinalth$ root of the image of $y$, since $[a_0]$ already admits a $p\ordinalth$ root in $\IA_\inf$. Consider the \enquote{Taylor series expansion of $\sqrt[p]{y}$ around $[y_0]$}, i.e., the series
+	\begin{equation*}
+		\sum_{n=0}^\infty\prod_{k=0}^n\left(\frac{1-kp}{p}\right)\frac{[y_0]^{(-p(n-1)+1)/p}}{n!}(y-[y_0])^n
+	\end{equation*}
+	(right now this doesn't make sense at all, but soon it will). We claim that in $D$ this sum can be rewritten into a converging series. It is well-known that $v_p(n!)<n/(p-1)$. Hence the denominator $p^nn!$ divides $\pi^{e(n+n/(p-1))}$ in $\Oo_E$ and thus also in $\IA_\inf$. Likewise, since $v(y_0)<v(a_0)$ and since $[a_0]$ and $\pi$ only differ by a unit in $D$, we see that $[y_0]^{(p(n-1)-1)/p}$ divides $\pi^{n}$ in $D$. Since $y-[y_0]$ is, by assumption on $y$, divisible by $\pi^N$ and $N/e>1+v(a_0)+1/(p-1)$, all terms in the above sum can be interpreted as elements of $D$, and moreover they converge to $0$ in the $\pi$-adic topology. By \itememph{1}, $D$ is $\pi$-complete, so we can indeed represent $\sqrt[p]{y}$ as a convergent series in $D$.
+	
+	It suffices to show \itememph{*}. If $v(x_0)\geq v(a_0)$, we may subtract a suitable multiple of $a$ to kill the $\pi^0$-term of $x$. In other words, we find $x'$ such that $x\equiv \pi x'\equiv [a_0]u^{-1}x'\mod a$. Now iterate this argument for $u^{-1}x'$. If this doesn't end at some point, the image of $x$ in $D$ is divisible by arbitrary powers of $\pi$, hence $0$ by $\pi$-completeness.
+	
+	So let's assume $v(x_0)<v(a_0)$. Then it's easy to check that $v(y_0)<v(a_0)$ for all $y\in\IA_\inf$ satisfying $x\equiv y\mod a$. Therefore it suffices to find some $b\in \IA_\inf$ such that $y=x+ab$ satisfies $y_n=0$ for all $n=1,\dotsc,N-1$. We will see that this amounts to a system of polynomial equations for $b_0,\dotsc,b_{N-1}$, which has a solution in $\Oo_F$. To get $y_n=0$, we would like to have
+	\begin{equation*}
+		S_n\left(x_0^{q^0},\dotsc,x_n^{q^n},Q_0,\dotsc,Q_n\right)=0\quad\text{for all }n=1,\dotsc,N-1\,,
+	\end{equation*}
+	where $Q_n=Q_n(a_0,\dotsc,a_n,b_0,\dotsc,b_n)$ is defined as in the proof of Lemma~\cref{lem:vrValuation}. If $b_0,\dotsc,b_{n-1}$ are known, then $S_n=0$ uniquely determines $b_n$. Indeed, using the recursive definition of the $S_n$ (compare this to the proof of Lemma~\cref{lem:vrValuation}), we see that $b_n$ only occurs in the summand $Q_n$. And in $Q_n$, $b_n$ only occurs as $a_0^{q^n}b_n^{q^n}$. This shows that $b_n^{q^n}=-\text{some polynomial in $b_0,\dotsc,b_{n-1}$})/a_0^{q^n}$ is uniquely determined, and then $b_n$ is unique since the Frobenius is an automorphism of $\Oo_F$. Moreover, we need to ensure that the value of the polynomial in question is divisible by $a_0^{q^n}$, to get $b_n\in\Oo_F$.
+	
+	Our goal now is to use the above observation to eliminate $b_1,\dotsc,b_{N-2}$ from the equations. We know that $b_1^q$ is a polynomial (with coefficients not in $\Oo_F$, but in $a_0^{-1}\Oo_F$) in $b_0$. Replacing all subsequent polynomial equations by their $q\ordinalth$ powers, which we may do since the Frobenius is an automorphism, we may substitute each $b_1^q$ by the polynomial in $b_0$ to eliminate $b_1$ everywhere. Now repeat this procedure with $b_2,\dotsc,b_{N-2}$. What we obtain in the end is a huge polynomial $\Psi(b_0)$ with coefficients in $a_0^{-K}\Oo_F$ for some very large $K$. We want to choose $b_0$ to be a root of $\Psi$, to get that $b_{N-1}^{q^M}=-\Psi(b_0)/a_0^{q^M}=0$ (for some very large $M$) is in $\Oo_F$ (actually, it would suffice to choose $b_0$ in such a way that $\Psi(b_0)$ is divisible by a very large power of $a_0$). To show that the roots of $\Psi$ are in $\Oo_F$, we claim that $\Psi$ is \defemph{quasi-monic}, which is to say that all coefficients of $\Psi$ are in $a_0^{-K}\Oo_F$ for some $K$ and its leading coefficient has the form $\epsilon a_0^{-K}$, where $\epsilon\in\Oo_F^\times$ is a unit. For a quasi-monic polynomial, $-K$ as above is called its \defemph{valuation}.
+	
+	Let $b_n^{q^{M_n}}=-\Psi_n(b_0)$ be the polynomial equation we get by the above procedure.	We claim that all $\Psi_n$ are quasi-monic, and that the valuation of $\Psi_n$ is smaller than that of $\Psi_{n-1}$. This can be seen by induction on $n$. The key part in the inductive step is that $Q_n$ contains the monomial $a_1^{q^n}b_{n-1}^{q^n}$ up to multiples of $\pi$ (this was seen in the proof of Lemma~\cref{lem:vrValuation}). Moreover, any other monomial containing $b_{n-1}^{q^n}$ must also contain $a_0$ since its weight is $\leq n$. Now $a_1^{q^n}\in\Oo_F^\times$ and $a_0\in\mm_F\setminus\{0\}$ by assumption on $a$, so if we group all monomials containing $b_{n-1}^{q^n}$ we get a coefficient in $\Oo_F^\times$. This being the key idea, we omit the details of the induction.
+	
+	In particular, this shows that $\Psi$ is quasi-monic since it is a the product of $\Psi_{N-1}$ with some power of $a_0$. So $b_0,b_{N-1}\in \Oo_F$ by construction. For $n=1,\dotsc,N-2$ we define $b_n=-\Psi_n(b_0)$. By construction, $(b_0,\dotsc,b_{N-1})$ satisfy all polynomial equations, so it suffices to see $b_n\in\Oo_F$ for all $n=1,\dotsc,N-2$. If, for the sake of contradiction, $n$ is a minimal index such that $0>v(b_n)$, then an induction as above shows $v(b_n)>v(b_{n+1})>\dotsb>v(b_{N-1})$, contradicting $b_{N-1}\in\Oo_F$.
+	
+	This shows that $D$ admits $p\ordinalth$ roots. To finish the proof of \itememph{3}, we need to show that every $d\in D$ is of the form $\theta([x])$. Using \cref{lem:WAb->A}, it suffices to show that $(-)^\sharp\colon \Oo_F\morphism D$ is surjective. But \itememph{2} together with \cref{prop:(A/I)b} shows $\Oo_F\cong D^\flat\cong \limit_{d\mapsto d^q}D$. Since $D$ admits $p\ordinalth$ roots, it's clear that the right-hand side surjects onto $D$.
+\end{proof*}
+\begin{cor}\label{cor:D}
+	Suppose we are in the above situation.
+	\begin{numerate}
+		\item $D$ is a complete valuation ring, with well-defined valuation $v\colon D\morphism\IR\cup\{\infty\}$ constructed as follows: for $d=\theta([x])$ we put $v(d)=v_F(x)$, where $v_F$ denotes the valuation of $F$.
+		\item The fraction field $C=\Frac(D)$ is algebraically closed.
+	\end{numerate}
+\end{cor}
+\begin{proof}
+	We start with \itememph{1}. The first thing to show is that $v$ is well-defined. Suppose $x,y\in \Oo_F$ satisfy $x^\sharp=\theta([x])=\theta([y])=y^\sharp$ (the outer equalities are due to \cref{lem:WAb->A}). Suppose $v_F(x)\geq v_F(y)$, so w.l.o.g.\ $x=yz$. Then $z^\sharp=1$, and it suffices to show $z\in\Oo_F^\times$. Write $z=(z_0,z_1,\dotsc)\in\limit_{d\mapsto d^q}D$, where $z_0=1$. Then each $z_n$ is invertible in $D$, so $z$ is invertible in $D^\flat\cong \Oo_F$.
+	
+	We proceed to show that $D$ is an integral domain. Assume $de=0$ with $d,e\in D$. Write $d=x^\sharp$ and $e=y^\sharp$. Then $[xy]=az$ for some $z\in \IA_\inf$. But $\Newt([xy])$ is a horizontal line, whereas $\Newt(az)=\Newt(a)*\Newt(z)$ contains $-v(a_0)$ as a slope if $z\neq 0$.
+	
+	Now it is completely formal to see that $D$ is a valuation ring. The map $v$ clearly extends to $C=\Frac(D)$ via $v(d/e)=v_F(x)-v_F(y)$ if $d=x^\sharp$ and $e=y^\sharp$. This $v$ is multiplicative and satisfies $v(d/e)=\infty$ iff $d/e=0$. Moreover, an element $d/e\in C$ lies in $D$ precisely iff $v(d/e)>0$. Indeed, if $x$ and $y$ are as above, then $v_F(x)\geq v_F(y)$, hence $x=yz$ because $\Oo_F$ is a valuation ring. Then $d/e=z^\sharp\in D$. This already implies the strong triangle inequality: if $d,e\in D$ and $v(d)\geq v(e)$, then $d/e\in D$, hence $v(1+d/e)\geq 0$, hence $v(d+e)=v(e)+v(1+d/e)\geq v(e)$. This proves \itememph{1}.
+	
+	For \itememph{2}, let $P(T)=T^n+b_{n-1}T^{n-1}+\dotsb+b_0\in D[T]$ be an irreducible polynomial. Since $C$ is a non-archimedean field (which, by our convention, always implies completeness), the Newton polygon $\Newt_\poly(P)$ is a single line. This follows from the classical theory of Newton polygons (e.g.\ \cite[Ch.\:II\:(6.4)]{NEUKIRCH}), or from \cref{exm:NewtConvolution} if one shows that all roots of $P$ have the same valuation, which boils down to the fact that $v$ extends uniquely to any finite extension of $C$. Choose $c_0\in D$ such that $nv(c_0)=v(b_0)$ (such a $c_0$ exists by construction of $v$ and the fact that $\Oo_F$ is integrally closed). Since $\Newt_\poly(P)$ is a single line, $c_0^{-n}P(c_0T)$ is monic and has coefficients in $D$ again, where  Replacing $P$ by $c_0^{-n}P(c_0T)$ we may thus assume $v(b_0)=0$.
+	
+	Now let $Q_0\in\Oo_F[T]$ be a monic polynomial such that the images of $P$ and $Q_0$ in the polynomial ring $(D/\pi D)[T]\cong (\Oo_F/a_0\Oo_F)[T]$ coincide. Let $y_0\in \Oo_F$ be a zero of $Q_0$. Then $P(T+y_0^\sharp)$ is still irreducible and its constant coefficient is divisible by $\pi$. Now choose $c_1\in D$ such that $nv(c_1)=v(P(y_0^\sharp))\geq v(\pi)$. As above, $P_1(T)=c_1^{-n}P(c_1T+y_0^\sharp)$ is monic, has coefficients in $D$, and its constant coefficient is invertible. Now choose $Q_1$ and $y_1$ as above and iterate the argument. The series $y_0+c_1y_1+\dotsb$ converges to a zero of $P$.
+\end{proof}
+We can now finally prove \cref{lem:perfectoidOC}, a result that was already announced long ago in the $2\ordinalnd$ lecture.
+\begin{proof*}[Proof of \cref{lem:perfectoidOC}]
+	Combining \cref{lem:OcflatisOF} and \cref{cor:D} immediately shows this result. More generally, these results show that there is a bijection
+	\begin{equation*}
+		\{\text{iso.\ classes of }C/E\text{ non-arch.\ alg.\ closed s.th. }\Oo_C^\flat\cong \Oo_F\}\lrisomorphism \Prim_1/\IA_\inf^\times\,.
+	\end{equation*}
+	If $C/E$ is as on the left-hand side, then $\Oo_C$ is perfectoid by Example~\cref{exm:OCperfectoid}, hence the kernel of $\theta\colon \IA_\inf\morphism\Oo_C$ is generated by an element of $\Prim_1$, which is unique up to $\IA_\inf$. Conversely, if $a\in \Prim_1$ is given, then $D=\IA_\inf/a\IA_\inf$ and $C=\Frac(D)$ define an element of the left-hand side. These maps induce inverse bijections as required.
+\end{proof*}
+\subsection{The Space \texorpdfstring{$|Y|$}{|Y|} and Factorizations}
+\lecture[Elements of $\IA_\inf$ are \enquote{functions on $|Y|$}. An ultra-metric on $|Y|$. Proof of \cref{thm:NewtonSlope}.]{2019-11-20}Let notation be as usual and recall our construction of the Newton polygon for elements of $\IA_\inf$ in \cref{def:AinfNewton}. The goal for today is to prove the following analogue of Lazard's \cref{thm:Lazard}.
+\begin{thm}[Fargues--Fontaine]\label{thm:NewtonSlope}
+	If $f\in\IA_\inf$ and $\lambda\neq 0$ is a slope of $\Newt(f)$, then there exists an $a\in\Oo_F$ such that $v(a)=-\lambda$ and $f=(\pi-[a])g$ for some $g\in\IA_\inf$.
+\end{thm}
+Crucial to the proof of \cref{thm:NewtonSlope} will be to interpret $\IA_\inf$ as \enquote{functions on the punctured open unit disc in mixed characteristic}. This leads to the following definition.
+\begin{defi}
+	We define the space
+	\begin{align*}
+		|Y|&\coloneqq\left\{\pp\in\Spec\IA_\inf\st\pp\text{ is generated by a primitve element of degree $1$}\right\}\\
+		&\mathrel{{\phantom{\coloneqq}}\mathllap{\cong}} \Prim_1/\IA_\inf^\times\\
+		&\mathrel{{\phantom{\coloneqq}}\mathllap{\cong}}\{\text{iso.\ classes of }C/E\text{ non-arch.\ alg.\ closed s.th. }\Oo_C^\flat\cong \Oo_F\}
+	\end{align*}
+\end{defi}
+Note that $\mm_F\setminus\{0\}$ surjects onto $|Y|$ via $a\mapsto(\pi-[a])$ (to prove this, we must show that any $[a_0]-u\pi\in\Prim_1$ can be multiplied by a suitable unit to become of the form $\pi-[a]$; the coefficients of such a unit can be constructed inductively), but this need not be a bijection. The notation suggests that $|Y|$ should be thought of the underlying space of some $Y$. This should not be taken too literally, but in some sense this is indeed the case. More about this in \cref{rem:Y}
+\begin{nota}
+	\begin{numerate}
+		\item For $y\in|Y|$, let $\pp_y$ denote the corresponding prime ideal, $C_y$ its residue field which is a non-archimedean algebraically closed extension of $E$ with valuation $v_y\colon C_y\morphism \IR\cup\{\infty\}$, and finally let $\theta_y\colon \IA_\inf\morphism\Oo_{C_y}$  denote Fontaine's map.
+		\item For $f\in\IA_\inf$, let $f(y)$ denote the class of $f$ in $C_y$ (think of this as \enquote{$f\in\Global(|Y|,\Oo_{|Y|})$}), and for $y\in |Y|$ we put $v(f(y))=v_y(f)$.
+		\item For $y_1,y_2\in|Y|$, we put $d(y_1,y_2)=v_{y_1}(\theta_{y_1}(\xi_{y_2}))$, where $\xi_{y_2}\in\pp_{y_2}$ is a distinguished generator. We will see in \cref{lem:d} below that $d(-,-)$ defines a ultra-metric on $|Y|$. In particular, $d(y,0)=v_y(\pi(y))$ is in some sense the \enquote{distance to the origin}.
+	\end{numerate}
+\end{nota}
+\begin{rem}\label{rem:Y}
+	\begin{numerate}
+		\item One can define $\YY=\Spf(\IA_\inf)\setminus V(\pi[\varpi])$ as an adic space, wheree $\varpi\in\mm_f\setminus\{0\}$. Then $|Y|\subseteq \YY$ is the set of classical points, and $\IA_\inf\subseteq \Global(\YY,\Oo_\YY)$.
+		\item There is a properly discontinuous action $\phi\curvearrowright\YY$ (think of this as \enquote{$d(\phi(y),0)=\frac1qd(y,0)$}). One can define $\XX^{\mathrm{ad}}=\YY/\phi^\IZ$, the \enquote{adic Fargues--Fontaine curve}.
+	\end{numerate}
+\end{rem}
+Now we can reformulate \cref{thm:NewtonSlope} as follows: if $f\in\IA_\inf$ and $\lambda\neq 0$ is a slope of $\Newt(f)$, then there exists a $y\in |Y|$ such that $v(\pi(y))=-\lambda$ and $f(y)=0$. This is the form in which we will prove it below.
+\begin{lem}\label{lem:d}
+	For $r\geq 0$ let $\aa_r=\left\{x\in\IA_\inf\st v_0(x)\geq r\right\}$. Then for all $y_1,y_2\in|Y|$,
+	\begin{equation*}
+		d(y_1,y_2)=\sup\left\{r\st \pp_{y_1}+\aa_r=\pp_{y_2}+\aa_r\right\}\,.
+	\end{equation*}
+	In particular, $d\colon |Y|\times|Y|\morphism \IR\cup\{\infty\}$ is an ultra-metric.\footnote{As a slogan, an ultra-metric is related to a metric in the same way a valuation is related to a (non-archimedean) norm.} That is:
+	\begin{numerate}
+		\item $d(y_1,y_2)=d(y_2,y_1)$.
+		\item For all $y_3\in|Y|$, $d(y_1,y_2)\geq \min\{d(y_1,y_2),d(y_2,y_3)\}$.
+		\item $d(y_1,y_2)=\infty$ iff $y_1=y_2$.
+	\end{numerate}
+\end{lem}
+\begin{proof}
+	Let $\pp_{y_i}=(\xi_{y_i})$ and write $\xi_{y_1}=\sum_{n=0}^\infty [x_n]\xi_{y_2}^n$. The coefficients $x_n$ exist and can be constructed inductively as follows: since $(-)^\sharp\colon \Oo_F\cong \Oo_{C_{y_2}}^\flat\epimorphism \Oo_{C_{y_2}}$ is surjective by \cref{prop:D}\itememph{3}, the image of $\xi_{y_1}$ in $\Oo_{C_{y_2}}$ has the form $\theta([x_0])$. As $(\xi_{y_2})=\ker\theta_{y_2}$, $\xi'=\xi_{y_1}-[x_0]$ is divisible by $\xi_{y_2}$. Now iterate the argument for $\xi_{y_2}^{-1}\xi'$. Then
+	\begin{equation*}
+		d(y_2,y_1)=v_{y_2}\big(\theta_{y_2}(\xi_{y_1})\big)=v(x_0)\,.
+	\end{equation*}
+	Applying $\theta_{y_1}$, we see $0=\theta_{y_1}(\xi_{y_1})=\sum_{n=0}^\infty\theta_{y_1}([x_n])\theta_{y_1}(\xi_{y_2}^n)$, hence
+	\begin{equation*}
+		\theta_{y_1}([x_0])=\theta_{y_1}(\xi_{y_2})\Bigg(\sum_{n=1}^\infty\theta_{y_1}([x_n])\theta_{y_1}(\xi_{y_2})^{n-1}\Bigg)\,.
+	\end{equation*}
+	Note that the sum on the left-hand side is convergent in $\Oo_{C_{y_1}}$ because in $\xi_{y_2}=[a_{y_2}]-u_{y_2}\pi$ both $a_{y_2}\in\mm_F$ and $\pi$ have positive valuation. This shows
+	\begin{equation*}
+		d(y_2,y_1)=v(x_0)=v_{y_1}\big(\theta_{y_1}([x_0])\big)\geq v_{y_1}\big(\theta_{y_1}(\xi_{y_2})\big)=d(y_1,y_2)\,,
+	\end{equation*}
+	with equality iff $v_{y_1}(\theta_{y_1}([x_1]))=0$, which is fulfilled iff $x_1\in\Oo_F^\times$. But by symmetry we also get $d(y_1,y_2)\geq d(y_2,y_1)$, hence equality must hold.
+	
+	In particular $x_1\in\Oo_F^\times$ is indeed true. Thus, $\xi_{y_1}=[x_0]+u\xi_{y_2}$ for some unit $u\in \IA_\inf^\times$. This shows $\pp_{y_1}+\aa_{v(x_0)}=\pp_{y_2}+\aa_{v(x_0)}$. Therefore
+	\begin{equation*}
+		d(y_1,y_2)\leq \sup\left\{r\st \pp_{y_1}+\aa_r=\pp_{y_2}+\aa_r\right\}\,.
+	\end{equation*}
+	It remains to show the converse inequality. Let $r\geq 0$ such that $\pp_{y_1}+\aa_r=\pp_{y_2}+\aa_r$. Applying $\theta_{y_2}$, we see the ideal $\theta_{y_2}(\xi_{y_1})\Oo_{C_{y_2}}=\theta_{y_2}([x_0])\Oo_{C_{y_2}}$ is continued in $\left\{c\in\Oo_{C_{y_2}}\st v_{y_2}(c)\geq r\right\}$. Thus $v(x_0)=v_{y_2}(\theta_{y_2}([x_0]))\geq r$. This shows $d(y_1,y_2)\geq r$, as required.
+	
+	Properties \itememph{1} and \itememph{2} are now clear. For \itememph{3}, we observe that $\Oo_{C_{y_1}}\cong \IA_\inf/\pp_{y_1}$ is complete in its valuative topology, which is the topology induced by the images of the $\aa_r$. Thus, $\pp_{y_1}=\bigcap_{r\geq 0}(\pp_{y_1}+\aa_r)$. The same is true for $\pp_{y_2}$. Now $\dim(y_1,y_2)=\infty$ implies $\bigcap_{r\geq 0}(\pp_{y_1}+\aa_r)=\bigcap_{r\geq 0}(\pp_{y_2}+\aa_r)$. Therefore $\pp_{y_1}=\pp_{y_2}$, as required.
+\end{proof}
+\begin{defi}
+	For $r>0$ let $|Y_r|=\left\{y\in|Y|\st d(y,0)=r\right\}$ denote the \defemph{\enquote{circle of radius $r$}}.
+\end{defi}
 
-Recall that $\IA_\inf$ should be thought of as a mixed characteristic analog of $\Oo_F\llbracket z\rrbracket$. In fact, we see a similar picture for $\Oo_F\llbracket z\rrbracket$.
-\begin{center}
-	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
-	\draw[-to] (0,0) -- (5,0) node[below] {$\varpi$};
-	\draw[-to] (0,0) -- (0,5) node[left] {$z$};
-	\fill (4,0) circle (0.5ex) node[below=4] {$(z)$};
-	\fill (2.5,1.5) circle (0.5ex) node[above right=4] {$(z-a)$, $a\in\mm_F$};
-	%\fill (20:3.75cm) circle (0.5ex) node[right=4, align=left] {$(p-[a])$\\\scriptsize for $a\in\mm_F\setminus\{0\}$};
-	\draw[->, shift={(0,0)}] (35:4.5cm) arc (35:55:4.5cm) node[pos=0.5,above right] {$\phi$};
-	\draw[rotate around={135:(4,0)},thick,rounded corners, shift={(4,0)}] (-1ex,-1ex) rectangle (5.25cm+1ex,1ex);
-	\end{tikzpicture}
-\end{center}
-The surrounded area may be described as $\Prim_1/\Oo_F\llbracket z\rrbracket^\times\cong\mm_F=\left\{x\in F\st |x|<1\right\}$. This is also the \enquote{open rigid-analytic disc} $\ID_F$. It contains the \enquote{punctured disc} $\ID_F^*=\mm_F\setminus\{0\}$. Then the equal characteristic analog of the Fargues--Fontaine curve is the quotient $\ID_F^*/\phi^\IZ$.
-
-However, for $\IA_\inf$ the canonical map $\mm_F\epimorphism\Prim_1/\IA_\inf^\times$ sending $a\in\mm_F$ to $(\pi-[a])$ is not bijective! For example, $(\pi-[\pi^\flat])$ depends on choices of $(q^n)\ordinalth$ roots of $\pi$ to get $\pi^\flat=(\pi,\pi^{1/q},\dotsc)$.
+\numpar{Proposition \smash{\Attention}}\label{prop:YrComplete}
+\itshape For $r>0$, the space $|Y_r|$ is complete with respect to the ultra-metric $d$.\upshape
+\begin{proof}
+	Let $(y_n)_{n\in\IN}$ be a Cauchy sequence in $|Y_r|$. We need to show that $(y_n)_{n\in\IN}$ converges. To this end we claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] For all $s>0$ the sequence $(\pp_{y_n}+\aa_s)_{n\in\IN}$ of ideals is constant for $n\gge 0$.
+	\end{alphanumerate}
+	Indeed, there exists a $n_0$ such that $d(y_n,y_m)>s$ for all $n,m\geq n_0$. By \cref{lem:d} this implies $\pp_{y_n}+\aa_{s}=\pp_{y_m}+\aa_{s}$ and \itememph{*} is proven.
+	
+	Set $I_s=(\pp_{y_n}+\aa_s)/\aa_s\subseteq \IA_\inf/\aa_s$, where $n\gge 0$ so that the eventual constant value is reached. Put $I=\lim_{s\geq 0}I_s$. This is an ideal in $\lim_{s\geq 0}\IA_\inf/\aa_s\cong \IA_\inf$ (here we use that $\IA_\inf$ is $v_0$-complete; to prove this, you can use the first part of the proof of \cref{lem*:nonTrivial}). Then $I_s=(I+\aa_s)/\aa_s$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] The ideal $I$ is a prime ideal generated by a primitive element of degree $1$, and $(\pp_{y_n})_{n\in\IN}$ converges to $I$ (and then automatically $I\in |Y_r|$; indeed, if the sequence is to converge in $|Y|$ at all, then the limit will be in $|Y_r|$ since this is  a closed subspace).
+	\end{alphanumerate}
+	To prove this, fix $s>r$ and $n\gge 0$ such that $\pp_{y_n}+\aa_s=I+\aa_s$. Writing $\pp_{y_n}=(\xi_{y_n})$, we see that there exists $x\in\aa_s$ such that $a\coloneqq \xi_{y_n}+x$ is an element of $I$. Then $a\in\Prim_1$. Indeed, writing $\xi_{y_n}=[\xi_0]+[\xi_1]\pi+\dotsb$ and $x=[x_0]+[x_1]\pi+\dotsb$, we get $v(\xi_0)=r$ and $v(\xi_1)=0$ because $\xi_{y_n}$ is a distinguished generator of $\pp_{y_n}\in|Y_r|$, and $v(x_0),v(x_1)\geq s> r$ because $x\in\aa_s$. Then using the explicit descriptions for the first two coefficients of $a$ one easily confirms $a\in\Prim_1$.
+	
+	We claim that $a$ generates $I$. Clearly $(a)\subseteq I$, so assume this inclusion is not an equality. Since $\IA_\inf/(a)$ is a valuation ring by \cref{cor:D}\itememph{1}, there exists $r_0>0$ such that $(a)+\aa_{r_0}\subseteq I$. Let $t>\max\{r_0,s\}$ and choose $m$ such that $I+\aa_t=\pp_{y_m}+\aa_t$. But since $\aa_{r_0}\subseteq I\subseteq \pp_{y_m}+\aa_t$ we get $r_0\geq t$ (after applying $\theta_{y_m}$), a contradiction!
+	
+	Now that we know $I\in|Y|$, it's clear that $(\pp_{y_n})_{n\in\IN}$ converges to $I$ as $n\to \infty$, because $\pp_{y_n}+\aa_s=I+\aa_s$ for all $s>0$ and $n\gge 0$. This proves \itememph{\boxtimes} and we are done.
+\end{proof}
+\begin{proof}[Sketch of a proof of \cref{thm:NewtonSlope}]
+	\emph{Step~1.} We reduce to the case where $f\in\IA_\inf$ is primitive of some degree $d$. So assume the assertion is proved in this case and write $f=\sum_{i=0}^\infty [x_i]\pi^i$, $f_n=\sum_{i=0}^n[x_i]\pi^i$. Each $f_n$ is primitive of some degree up to multiplying by a Teichmüller element, so the theorem holds for the $f_n$. Choose $n_0$ such that for all $n\geq n_0$, $\lambda$ occurs as a slope in $\Newt(f_n)$ with the same multiplicity it does in $\Newt(f)$. Let $Y_n=\left\{y\in|Y|\st f(y)=0\text{ and }d(y,0)=-\lambda\right\}$. It suffices to show that we can find a Cauchy sequence $(y_n)_{n\in\IN}$ such that $y_n\in Y_n$. Indeed, by Proposition~\cref{prop:YrComplete}, this sequence converges to a limit $y\in |Y_{-\lambda}|$. We claim that $f(y)=0$. To see this, it suffices to show $v_y(f)\geq r$ for all $r>0$. Choose $N$ such that $-\lambda N>r$ and $N'$ such that $d(y_n,y)>r$ for all $n\geq N'$. Now if $n\geq\max\{N,N'\}$ we have $v_{y_n}(f)\geq (n+1)v_y(\pi)=-\lambda(n+1)>r$ since $f_n(y_n)=0$ and $f-f_n$ is divisible by $\pi^{n+1}$. Hence $f\in\pp_{y_n}+\aa_r$. But $d(y_n,y)>r$ implies $\pp_{y_n}+\aa_r=\pp_y+\aa_r$ by \cref{lem:d}, hence also $v_y(f)\geq r$.
+	
+	So it remains to construct the Cauchy sequence. We will only hint on how to do that. Let $m<n$ be very large and let $y_n$ be a zero of $f_n$. We wish to find a zero $y_m$ of $f_m$ that is close to $y_n$. Using the theorem repeatedly on $f_m$, we can factor it as $f_m=\xi_1\dotsm\xi_\ell\cdot [a] u$, where $\xi_1,,\dots,\xi_\ell$ are distinguished elements corresponding to the roots of $f_m$ inside $|Y|$, $a\in\Oo_F$ is some element, and $u\in\IA_\inf^\times$ is a unit. Clearly $v_{y_n}(u)=0$ and $v_{y_n}([a])=v(a)\leq v_0(f_m)$. Let $x_i\in|Y|$ be the zero corresponding to $\xi_i$. There are only a bounded number, say at most $N$, of $x_i$ with $d(x_i,0)>-\lambda$, since these correspond to smaller slopes of $\Newt(f)$, and the strong triangle inequality gives $d(x_i,y_n)=-\lambda$ in this case. Similarly, there are at most $M$ indices such that $d(x_i,0)=-\lambda$ (these are the interesting ones). All the rest satisfies $d(x_i,0)<-\lambda$, hence $d(x_i,y_n)\leq -\lambda'$ by the strong triangle inequality, where $\lambda'>\lambda$ is the next slope after $\lambda$ in $\Newt(f)$. Thus,
+	\begin{align*}
+		v_{y_n}(f_m)&=\sum_{i=0}^\ell v_{y_n}(\xi_i)+v_{y_n}([a]u)=\sum_{i=0}^\ell d(x_i,y_n)+v_{y_n}([a]u)\\
+		&\leq N\lambda+\sum_{d(x_i,0)=-\lambda}d(x_i,y_n)+(\ell-M-N)\lambda'+v_0(f)\,.
+	\end{align*}
+	However, $v_{y_n}(f_m)\geq (m+1)v_{y_n}(\pi)=-\lambda(m+1)$ since $f_n(y_n)=0$ and $f_n-f_m$ is divisible by $\pi^{m+1}$. This shows that $\sum_{d(x_i,0)=-\lambda}d(x_i,y_n)$ must be quite large. But these are at most $M$ summands, so we find a summand such that $d(x_i,y_n)$ is pretty large. Now take $y_m=x_i$. Up to some technical stuff we will omit, this allows us to construct the desired Cauchy sequence.
+	
+	\emph{Step~2.} Having done the reduction to $f\in\Prim_d$ for some $d$, we may moreover assume that $\lambda$ is the minimal slope of $\Newt(f)$ (i.e., the steepest, since all slopes are negative), by factorizing $f$ and using induction. We claim that there exists a sequence $(y_n)_{n\in\IN}$ in $|Y|$ satisfying
+	\begin{alphanumerate}
+		\item $v_{y_n}(f)\geq -(d+n)\lambda$,
+		\item $d(y_n,y_{n+1})\geq (n-d)/d$, and
+		\item $d(y_n,0)=-\lambda$.
+	\end{alphanumerate}
+	This will immediately imply the theorem, since \itememph{b} and \itememph{c} show that $(y_n)_{n\in\IN}$ is a Cauchy sequence in $|Y_{\-\lambda}|$, hence convergent by Proposition~\cref{prop:YrComplete}, and \itememph{a} ensures that the limit $y$ is a zero of $f$ by a similar argument as above. We will construct this sequence inductively.
+	
+	Write $f= \sum_{n=0}^\infty[x_n]\pi^n$, where $x_d\in\Oo_F^\times$. Let $z\in\Oo_F$ be a zero of $\sum_{i=0}^dx_iT^i\in\Oo_F[T]$ such that $v(z)=-\lambda$, using that $F$ is non-archimedean algebraically closed (and for $v(z)=-\lambda$ we use the classical Newton polygon theory, as in \cref{exm:NewtConvolution}). As $\lambda <0$ is the maximal slope, we have $v(x_i)\geq \lambda(d-i)$ for all $i=0,\dotsc,d$. Thus $x_iz^i=w_iz^d$ for some $w_i\in\Oo_F$. Now put $\pp_{y_1}=(\pi-[z])$. Clearly $y_1$ satisfies \itememph{c}. Moreover,
+	\begin{equation*}
+		f(y_1)=\theta_{y_1}(f)=\sum_{i=0}^d\theta_{y_1}([x_iz^i])+\pi^{d+1}\sum_{i=d+1}^\infty\theta_{y_1}([x_i])\pi^{i-(d+1)}\,.
+	\end{equation*}
+	To show \itememph{a} for $y_1$, it suffices to check that the first sum is divisible by $\pi^{d+1}$. As $x_iz^i=w_iz^d$ and $\pi=[z]$ in $\Oo_{C_{y_1}}$, we have
+	\begin{equation*}
+		\sum_{i=0}^d\theta_{y_1}([x_iz^i])=\pi^d\sum_{i=0}^d\theta_{y_1}([w_i])\,.
+	\end{equation*}
+	By construction of $z$ and the $w_i$ we have $\sum_{i=0}^dw_i=0$. Hence $\sum_{i=0}^d[w_i]\in\pi\IA_\inf$, whence we conclude that \itememph{a} holds for $y_1$. Since we were cut short by a sudden evaluation of the lecture, we will finish the induction next time.
+\end{proof}
 
 \appendix
 \backmatter\KOMAoption{chapterprefix}{false}
