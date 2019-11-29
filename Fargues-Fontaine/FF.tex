@@ -133,7 +133,7 @@ $\Ll$ and $\snake{\Ll}$ preserve piece-wise linear functions. In pictures, this 
 	\end{tikzpicture}
 \end{center}
 
-Back to Newton polygonials for polynoms. Let $f\in K[T]$ be as above. As $\Newt_\poly(f)$ is the largest convex function below $\{(i,v(a_i))\}_{i\in \IZ}$, we have
+Back to Newton polynoms for polygonials. Let $f\in K[T]$ be as above. As $\Newt_\poly(f)$ is the largest convex function below $\{(i,v(a_i))\}_{i\in \IZ}$, we have
 \begin{equation*}
 	\Ll\Newt_\poly(f)(r)=\inff_{i\in\IZ}\left\{v(a_i)+ri\right\}\eqqcolon v_r(f)\,.
 \end{equation*}
@@ -407,8 +407,8 @@ Note that $\mm_F\setminus\{0\}$ surjects onto $|Y|$ via $a\mapsto(\pi-[a])$ (to 
 \end{nota}
 \begin{rem}\label{rem:Y}
 	\begin{numerate}
-		\item One can define $\YY=\Spf(\IA_\inf)\setminus V(\pi[\varpi])$ as an adic space, wheree $\varpi\in\mm_f\setminus\{0\}$. Then $|Y|\subseteq \YY$ is the set of classical points, and $\IA_\inf\subseteq \Global(\YY,\Oo_\YY)$.
-		\item There is a properly discontinuous action $\phi\curvearrowright\YY$ (think of this as \enquote{$d(\phi(y),0)=\frac1qd(y,0)$}). One can define $\XX^{\mathrm{ad}}=\YY/\phi^\IZ$, the \enquote{adic Fargues--Fontaine curve}.
+		\item One can define $\Yy=\Spf(\IA_\inf)^\mathrm{ad}\setminus V(\pi[\varpi])$ as an adic space, where $\varpi\in\mm_f\setminus\{0\}$. Then $|Y|\subseteq \Yy$ is the set of classical points, and $\IA_\inf\subseteq \Global(\Yy,\Oo_\Yy)$.
+		\item There is a properly discontinuous action $\phi\curvearrowright\Yy$ (think of this as \enquote{$d(\phi(y),0)=\frac1qd(y,0)$}). One can define $\Xx=\Yy/\phi^\IZ$, the \enquote{adic Fargues--Fontaine curve}.
 	\end{numerate}
 \end{rem}
 Now we can reformulate \cref{thm:NewtonSlope} as follows: if $f\in\IA_\inf$ and $\lambda\neq 0$ is a slope of $\Newt(f)$, then there exists a $y\in |Y|$ such that $v(\pi(y))=-\lambda$ and $f(y)=0$. This is the form in which we will prove it below.
@@ -480,11 +480,11 @@ Now we can reformulate \cref{thm:NewtonSlope} as follows: if $f\in\IA_\inf$ and 
 	\end{align*}
 	However, $v_{y_n}(f_m)\geq (m+1)v_{y_n}(\pi)=-\lambda(m+1)$ since $f_n(y_n)=0$ and $f_n-f_m$ is divisible by $\pi^{m+1}$. This shows that $\sum_{d(x_i,0)=-\lambda}d(x_i,y_n)$ must be quite large. But these are at most $M$ summands, so we find a summand such that $d(x_i,y_n)$ is pretty large. Now take $y_m=x_i$. Up to some technical stuff we will omit, this allows us to construct the desired Cauchy sequence.
 	
-	\emph{Step~2.} Having done the reduction to $f\in\Prim_d$ for some $d$, we may moreover assume that $\lambda$ is the minimal slope of $\Newt(f)$ (i.e., the steepest, since all slopes are negative), by factorizing $f$ and using induction. We claim that there exists a sequence $(y_n)_{n\in\IN}$ in $|Y|$ satisfying
+	\emph{Step~2.} Having done the reduction to $f\in\Prim_d$ for some $d$, we may moreover assume that $\lambda$ is the maximal slope of $\Newt(f)$ (i.e., the least steep, since all slopes are negative), by factorizing $f$ and using induction. We claim that there exists a sequence $(y_n)_{n\in\IN}$ in $|Y|$ satisfying
 	\begin{alphanumerate}
-		\item $v_{y_n}(f)\geq -(d+n)\lambda$,
-		\item $d(y_n,y_{n+1})\geq (n-d)/d$, and
-		\item $d(y_n,0)=-\lambda$.
+		\item $v_{y_n}(f)\geq -\lambda(d+n)$,
+		\item $d(y_n,y_{n+1})\geq -\lambda(d+n)/d$, and
+		\item $d(y_n,0)=-\lambda$ for all $n\in\IN$.
 	\end{alphanumerate}
 	This will immediately imply the theorem, since \itememph{b} and \itememph{c} show that $(y_n)_{n\in\IN}$ is a Cauchy sequence in $|Y_{\-\lambda}|$, hence convergent by Proposition~\cref{prop:YrComplete}, and \itememph{a} ensures that the limit $y$ is a zero of $f$ by a similar argument as above. We will construct this sequence inductively.
 	
@@ -492,14 +492,215 @@ Now we can reformulate \cref{thm:NewtonSlope} as follows: if $f\in\IA_\inf$ and 
 	\begin{equation*}
 		f(y_1)=\theta_{y_1}(f)=\sum_{i=0}^d\theta_{y_1}([x_iz^i])+\pi^{d+1}\sum_{i=d+1}^\infty\theta_{y_1}([x_i])\pi^{i-(d+1)}\,.
 	\end{equation*}
-	To show \itememph{a} for $y_1$, it suffices to check that the first sum is divisible by $\pi^{d+1}$. As $x_iz^i=w_iz^d$ and $\pi=[z]$ in $\Oo_{C_{y_1}}$, we have
+	To show \itememph{a} for $y_1$, it suffices to check that the first sum is divisible by $\pi^{d+1}$. As $x_iz^i=w_iz^d$ and $\pi=[z]$ in $\Oo_{C_{y_1}}$, we get
 	\begin{equation*}
 		\sum_{i=0}^d\theta_{y_1}([x_iz^i])=\pi^d\sum_{i=0}^d\theta_{y_1}([w_i])\,.
 	\end{equation*}
-	By construction of $z$ and the $w_i$ we have $\sum_{i=0}^dw_i=0$. Hence $\sum_{i=0}^d[w_i]\in\pi\IA_\inf$, whence we conclude that \itememph{a} holds for $y_1$. Since we were cut short by a sudden evaluation of the lecture, we will finish the induction next time.
+	By construction of $z$ and the $w_i$ we have $\sum_{i=0}^dw_i=0$. Hence $\sum_{i=0}^d[w_i]\in\pi\IA_\inf$, whence we conclude that \itememph{a} holds for $y_1$. Since we were cut short by a sudden evaluation of the lecture, we will finish the induction next time \dotso
+	
+	\lecture[Finish the proof of \cref{thm:NewtonSlope}. An amusing exercise. The rings $B^b$ and $B_I$. Definition of the Fargues--Fontaine curve. Newton polygons in $B_I$.]{2019-11-27}\dotso that is, right now. Assume $y_n$ has been constructed. As in the proof of \cref{lem:d}, we can write $f=\sum_{i=0}^\infty [a_i]\xi_{y_n}^i$ with $a_i\in\Oo_F$. Let $z\in F$ be a zero of $\sum_{i=0}^da_iT^i\in\Oo_F[T]$ of maximal valuation. We claim $z\in\Oo_F$. To see this, it suffices to check $a_d\in\Oo_F^\times$, i.e., that $a_d$ maps to a unit in $k=\Oo_F/\mm_F$. Consider $\IA_\inf\morphism W_{\Oo_E}(k)$, where $k=\Oo_F/\mm_F$. Since we can choose $\xi_{y_n}$ to be of the form $\pi-[\varpi]$ with $\varpi\in \mm_F$, its image in $W_{\Oo_E}(k)$ coincides with the image of $\pi$. Thus, reducing $f=\sum_{i=0}^\infty [a_i]\xi_{y_n}^i$ modulo $\mm_F$ shows $a_d\equiv x_d\mod \mm_F$, so $a_d\in\Oo_F^\times$ is indeed a unit. Now we claim that $\pp_{y_{n+1}}=(\xi_{y_n}-[z])$ works.
+	
+	First of all, since $z$ has maximal valuation among the $d$ zeros of $\sum_{i=0}^da_iT^i$, we get $v(z)\geq v(a_0)/d=v_{y_n}(f)/d\geq -\lambda(d+n)/d$. In particular, $v(z)>-\lambda$, so by the explicit descriptions of $S_0$ and $S_1$ it's easy to check that $\xi_{y_n}-[z_{n+1}]$ is primitive of degree $1$, hence $y_{n+1}\in|Y|$. Moreover, $d(y_n,y_{n+1})=v_{y_n}(-[z])=v(z)\geq -\lambda(d+n)/d$, as required. By the strong triangle inequality this also implies $d(y_{n+1},0)$, so \itememph{b} and \itememph{c} hold. It remains to check \itememph{a}. Since $v(z)$ is maximal among the zeros of $\sum_{i=0}^da_iT^i$, $-v(z)$ is the minimal (i.e., steepest) slope in the Newton polygon of that polynomial. In other words, $v(a_i)\geq v(a_0)-iv(z)$. Thus we may write $a_iz^i=a_0b_i$. Calculating in a similar way as above, we obtain
+	\begin{equation*}
+		f(y_{n+1})=\theta_{y_{n+1}}(f)=\theta_{y_{n+1}}([a_0])\sum_{i=0}^d\theta_{y_{n+1}}([b_i])+\xi_{y_n}^{d+1}\sum_{i=d+1}^\infty \theta_{y_{n+1}}([a_i])\xi_{y_n}^{i-(d+1)}\,.
+	\end{equation*}
+	By construction we have $\sum_{i=0}^db_i=0$ (or $a_0=0$, but in this case $f(y_n)=0$ and we are already done), hence $\sum_{i=0}^d[b_i]\in\pi\IA_\inf$. Thus, the first term has valuation at least $v(a_0)+v_{y_{n+1}}(\pi)=v(a_0)+d(y_{n+1},0)\geq -\lambda (d+n+1)$. The second term has valuation at least $(d+1)v_{y_{n+1}}(\xi_{y_n})=(d+1)d(y_n,y_{n+1})\geq -\lambda(d+1)(d+n)/d>-\lambda(d+n+1)$. This shows
+	\begin{equation*}
+		v_{y_{n+1}}(f)\geq -\lambda(d+n+1)\,,
+	\end{equation*}
+	hence \itememph{a} holds and the induction is complete.
 \end{proof}
+\begin{exc}
+	We have seen that there is a surjection $\mm_F\setminus\{0\}\epimorphism |Y|$ sending $a$ to $(\pi-[a])$, but this doesn't tell much. The goal of this exercise is to work out a better description in the special case $E=\IQ_p$.
+	\begin{numerate}
+		\item Let $\epsilon\in (1+\mm_F)\setminus\{1\}$ and put
+		\begin{equation*}
+			u_\epsilon=\frac{[\epsilon]-1}{[\epsilon^{1/p}]-1}=1+[\epsilon^{1/p}]+\dotsb+[\epsilon^{(p-1)/p}]\,.
+		\end{equation*}
+		Show that $u_\epsilon$ is primitive of degree $1$!
+		\item Show that $(1+\mm_F)\setminus\{1\}\epimorphism |Y|$ given by $\epsilon\mapsto (u_\epsilon)$ is surjective!	{\footnotesize(\emph{Hint:} If $C/\IQ_p$ is non-archimedean algebraically closed  together with an isomorphism $\iota\colon \Oo_C^\flat\isomorphism \Oo_F$, and if $\epsilon=(1,\zeta_p,\dotsc)$ is an element of $\Oo_C^\flat\cong \Oo_F$ where $\zeta_p\neq 1$ is a $p\ordinalth$ root of unity, show that the kernel of $\theta\colon \IA_\inf\morphism \Oo_C$ is generated by $u_\epsilon$, using that for $a,b\in\Prim_1$ we have $a\in(b)$ iff $(a)=(b)$.)}
+		\item Let $\IZ_p^\times$ act on $(1+\mm_F)\setminus\{1\}$ via exponentiation, i.e., as $(a,\epsilon)\mapsto \epsilon^a=\sum_{i=0}^\infty \binom{a}{i}(\epsilon-1)^i$. Show that
+		\begin{equation*}
+			|Y|\cong \big((1+\mm_F)\setminus\{1\}\big)/\IZ_p^\times\,!
+		\end{equation*}
+		That is, show if $(u_\epsilon)=(u_{\epsilon'})$, then $\epsilon'=\epsilon^a$ for some $a\in \IZ_p^\times$! {(\footnotesize\emph{Hint:} Let $C=\IA_\inf/(u_\epsilon)\big[\frac 1p\big]$. Then $\epsilon\in\Oo_F\cong \Oo_C^\flat$ is a generator of $T_pC^\times=\left\{a=(a_0,a_1,\dotsc)\in\Oo_C^\flat\st a_0=1\right\}$. If $(u_\epsilon)=(u_{\epsilon'})$, show $\epsilon'\in T_pC^\times$.)} 
+	\end{numerate}
+	 A similar description can be given for arbitrary $E$  actually, but the general case needs Lubin--Tate group laws.
+\end{exc}
+
+\section{The Ring \texorpdfstring{$B$}{B}}
+As usual, let $p$ be a prime, $E/\IQ_p$ a finite extension with uniformizer $\pi\in\Oo_E$ and residue field $\IF_q=\Oo_E/\pi \Oo_E$, and $F/\IF_q$ an algebraically closed non-archimedean field extension (i.e., $F$ is complete with respect to a non-archimedean valuation $v\colon F\morphism \IR\cup\{\infty\}$).
+
+To warm up for the construction of $B$, we first define its \enquote{bounded version} $B^b$ as follows: for $\varpi\in\mm_F\setminus\{0\}$ we put
+\begin{equation*}
+	B^b=\IA_\inf\big[\textstyle\frac{1}{\pi},\frac{1}{[\varpi]}\big]\displaystyle=\left\{\sum_{i\gge -\infty}^\infty [x_i]\pi^i\st x_i=0\text{ for }i\lle 0\text{, }\inff_{i\in\IZ}v(x_i)>-\infty\right\}\,.
+\end{equation*}
+Here we allow the notation $[x]$ also for elements $x\in F$ that need not be in $\Oo_F$. This works as follows: for sufficiently large $n$, we have $\varpi^nx\in\Oo_F$. Then we put $[x]=[\varpi^nx]/[\varpi]^n$, which is indeed an element of $B^b$. And since the Teichmüller lift $[-]$ is multiplicative, it's clear that $[x]$ is independent of the choice of $n$, thus well-defined. Also $B^b$ is clearly independent of the choice of $\varpi$.
+
+Recall the valuations $v_r\colon \IA_\inf\morphism\IR\cup\{\infty\}$ from Lemma~\cref{lem:vrValuation}. Then $v_r$ and the construction of the Newton polygon can be extended to $B^b$; $v_r$ can now attain negative values, and the Newton polygon of an element $f\in \Newt(f)$ need not be contained in the first quadrant $[0,\infty)\times [0,\infty)\subseteq \IR^2$, but in $[x,\infty)\times[y,\infty)$ for some $x,y\in \IR$.
+\begin{defi}
+	Let $I\subseteq (0,\infty)$ be an intervall. We define the \defemph{ring $B_I$} to be the completion of $B^b$ with respect to the family of valuations $\{v_r\}_{r\in I}$.
+\end{defi}
+The intuition behind this is that \enquote{$B_I=\Global(|Y_I|,\Oo_{|Y|})$}, where $|Y_I|$ denotes the \enquote{annulus} $\left\{y\in |Y|\st d(y,0)\in I\right\}$ that is depicted below.
+\begin{center}
+	\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+	\fill[pattern=north west lines,even odd rule] (0,0) circle (1.5) (0,0) circle (0.85);
+	\draw (0,0) circle (1.5);
+	\draw (0,0) circle (0.85);
+	\fill (0,0) circle (0.5ex) node[below=1] {$r=\infty$};
+	\draw (0,0) circle (2);
+	\node[below right=-1] at (1.414,-1.414) {$r=0$};
+	\node [below right] (Y) at (2,2) {$|Y|$};
+	\node [below left] (YI) at (-2,2) {$|Y_I|$};
+	\draw[-to, shorten >=0.5ex] (YI) -- (147.5:1.5);
+	\draw[-to, shorten >=0.5ex] (Y) -- (32.5:2);
+	\end{tikzpicture}
+\end{center}
+\begin{rem}
+	If $R$ is a topological ring such that $0$ has a fundamental system $\Ff$ of neighbourhoods which are open subgroups, then
+	\begin{equation*}
+		\roof{R}=\limit_{U\in\Ff}R/U
+	\end{equation*}
+	is the completion of $R$. Here $R/U$ is a priori only an abelian group since $U$ need not be an ideal. However, by continuity of multiplication in $R$, the completion $\roof{R}$ becomes a ring again in a canonical way.
+	
+	For $B_I$ the situation is a bit different, since there is no single topology on $B^b$, but one for every valuation $v_r$ (and in fact these are incompatible for different values of $r$).  In this case we take the family $\Ff=\left\{\bigcap_{i=1}^nv_{r_i}^{-1}[m,\infty)\st m,n\in\IN\text{ and }r_i\in I\right\}$ and then define
+	\begin{equation*}
+		B_I=\limit_{U\in \Ff}B^b/U
+	\end{equation*}
+	as above. In the case where $I=[a,b]$ is compact, this is indeed the \enquote{smallest} ring in which all sequences that are Cauchy with respect to every $r\in I$ are convergent. Indeed, every $r\in I$ can be written as $r=\lambda a+(1-\lambda)b$ for $0\leq \lambda\leq 1$, and if $v_a(f),v_b(f)\geq m$, then also $v_r(f)\geq \lambda m+(1-\lambda)m=m$. For non-compact $I$, the situation is not that easy, but at least the above construction shows
+	\begin{equation*}
+		B_I=\limit_{J\subseteq I}B_J\,,
+	\end{equation*}
+	where the limit is taken over all compact subintervalls of $J\subseteq I$. In particular, this applies to the most important special case $I=(0,\infty)$.
+\end{rem}
+\begin{defi}
+	The \defemph{ring $B$} is defined as $B=B_{(0,\infty)}$.
+\end{defi}
+So $B$ can be viewed as the \enquote{ring of global sections of $\Oo_{|Y|}$}. Note that the Frobenius $\phi\curvearrowright B^b$ extends, by continuity, to an automorphism of $B$. More generally, $\phi$ induces an isomorphism $\phi\colon B_I\isomorphism B_{qI}$ for $I\subseteq (0,\infty)$. For every $d\in\IZ$, let $B^{\phi=\pi^d}$ be the eigenspace of $\phi$ with respect to the eigenvalue $\pi^d$.
+\numpar{Definition~\smash{\Attention}}
+The \defemph{schematic Fargues--Fontaine curve} (with respect to $E$ and $F$) is the scheme
+\begin{equation*}
+	X=X_\FFC\coloneqq \Proj\Bigg(\bigoplus_{d\geq 0}B^{\phi=\pi^d}\Bigg)\,.
+\end{equation*}
+\begin{rem}
+	As already remarked in \cref{rem:Y}, there is an adic analogue of the Fargues--Fontaine curve: put $\Yy=\Spf(\IA_\inf)^\mathrm{ad}\setminus V(\pi[\varpi])$ and let $\Xx=\Yy/\phi^\IZ$. Then $B\cong \Global(\Yy,\Oo_\Yy)$.
+	\begin{center}
+		\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+		\draw[-to] (0,0) -- (3.5,0) node[below] {$[\varpi]$};
+		\draw[-to] (0,0) -- (0,3.5) node[left] {$\pi$};
+		\draw[->, shift={(0,0)}] (35:1.95cm) arc (35:55:1.95cm) node[pos=0.5,above right] {$\phi$};
+		\draw[rotate around={-45:(0.5,2.5)}, shift={(0.675,2.5)},rounded corners=12.5, thick] (-3ex,-3ex) rectangle (2.5cm+3ex,3ex);
+		\node at (0.6,2.4) {$\Yy$};
+		\end{tikzpicture}
+	\end{center}
+	One can show that $\pi^{-1}\colon \phi^*\Oo_\Yy\isomorphism \Oo_\Yy$ defines the descent datum for a line bundle $\Oo(1)$ on $\Xx$. Moreover, one has
+	\begin{equation*}
+		H^0\big(\Xx,\Oo(1)^{\otimes d}\big)\cong B^{(\pi^{-1}\phi)^d=1}=B^{\phi=\pi^d}\,.
+	\end{equation*}
+\end{rem}
+The goal of the next few lectures is to understand the scheme $X_\FFC$, and in particular the rings $B$ and $B^b$. We start with a lemma that essentially says that the eigenspaces of $\phi$ on $B^b$, i.e., before completion, are rather boring.
+\begin{lem}
+	For $d\in\IZ$ let $(B^b)^{\phi=\pi^d}\subseteq B^b$ be the eigenspace of $\phi$ with respect to the eigenvalue $\pi^d$. Then
+	\begin{equation*}
+		(B^b)^{\phi=\pi^d}=\begin{cases}
+			E & \text{if }d=0\\
+			0 & \text{else}
+		\end{cases}\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	For $d=0$, let $f=\sum_{i\gge -\infty}^\infty [x_i]\pi^i\in B^b$. If $f$ is fixed under $\phi$, then $\phi(x_i)=x_i$ for all $i$, hence $x_i\in\IF_q\subseteq \Oo_F$. This shows $f\in W_{\Oo_E}(\IF_q)\big[\frac 1\pi\big]\cong E$. The converse can be shown in the same way.
+	Now let $d\neq 0$. If $f\in (B^b)^{\phi=\pi^d}$ and $x\in \IR$, then 
+	\begin{equation*}
+		q\Newt(f)(x)=\Newt(\phi(f))(x)=\Newt(\pi^d f)(x)=\Newt (f)(x-d)\,.
+	\end{equation*}
+	Iterating gives $q^n\Newt(f)(x)=\Newt(f)(x-dn)$ for all $n\geq 1$. For $d>0$, we have $\Newt(f)(x-dn)=+\infty$ for $n\gge 0$, hence already $\Newt(f)(x)=+\infty$. This implies $f=0$. For $d<0$ pick $x_0\gge 0$ with $\Newt(f)(x_0)=+\infty$. Since $\Newt(f)$ is decreasing, for all $x\in\IR$ there exists an $n$ such that $\Newt(f)\geq \Newt(x_0-nd)=q^n\Newt(f)(x_0)=+\infty$. Thus $f=0$ follows as before. 
+\end{proof}
+\begin{lem}\label{lem:convergeInB}
+	Let $(x_n)_{n\in\IZ}$ be a sequence in $F$ such that $\lim_{|n|\to\infty}v(x_n)+rn=\infty$ for all $r\in(0,\infty)$. Then $\sum_{n\in\IZ}[x_n]\pi^n$ converges in $B$.
+\end{lem}
+\begin{proof}
+	It suffices to show that $v_r([x_n]\pi^n)\to\infty$ as $|n|\to\infty$ for all $r\in(0,\infty)$. But $v_r([x_n]\pi^n)=v(x_n)+rn$, so this holds by assumption.
+\end{proof}
+\begin{rem}
+	\begin{numerate}
+		\item For all $a\in \mm_F$, the sequence $f_a\coloneqq \sum_{i\in\IZ}[a^{q^{-i}}]\pi^i$ coverges in $B$, and $f_a\in B^{\phi=\pi}$. To prove this we need to check $q^{-i}v(a)+ri=v(a^{q^{-i}})+ri\to \infty$ as $|i|\to\infty$ for all $r\in(0,\infty)$, using \cref{lem:convergeInB}. This is clear as $v(a)>0$. Also one immediately checks $\phi(f_a)=\pi f_a$, hence indeed $f_a\in B^{\phi=d}$. In fact, we will prove later that the above construction gives a bijection $\mm_F\cong B^{\phi=\pi}$. This should seem a bit weird at first since the right-hand side $B^{\phi=\pi}$ is an $E$-vector space, so the left-hand side better be one as well. One can indeed construct a $E$-vector space structure on $\mm_F$ by Lubin--Tate theory.
+		\item In general, it is not known whether elements in $B$ can be written as $\sum_{n\in\IZ}[x_n]\pi^n$ for $[x_n]\in F$. So we need different tools to study $B$.
+	\end{numerate}
+\end{rem}
+The goal for the next few lectures is to prove that $X=X_\FFC$ is indeed a curve.
+\begin{thm}[Fargues--Fontaine]\label{thm:FFCisACurve}
+	The Fargues--Fontaine curve $X_\FFC$ is a Dedekind scheme. More precisely, for each $t\in B^{\phi=\pi}$, the open subset $D_+(t)\cong \Spec B\big[\frac 1t\big]^{\phi=1}$ is the spectrum of a principal ideal domain.
+\end{thm}
+To prove \cref{thm:FFCisACurve} we need Newton polygons for elements in $B_I$, where $I\subseteq (0,\infty)$ is an ideal. Note that for all $r\in I$, the valuation $v_r\colon B^b\morphism \IR\cup\{\infty\}$ extends to $B_I$ by continuity.
+\begin{defi}\label{def:NewtOpen}
+	Assume $I\subseteq (0,\infty)$ is an open intervall, and $f\in B_I$. Let $\Newt_I^0(f)$ be the decreasing convex function whose Legendre transform is
+	\begin{equation*}
+		\Ll\Newt_I^0(f)(r)=\begin{cases}
+		v_r(f) & \text{if }r\in I\\
+		-\infty & \text{else}
+		\end{cases}\,.
+	\end{equation*}
+	The \defemph{Newton polygon $\Newt_I(f)\subseteq \IR^2$} is the subset of the graph of $\Newt_I^0(f)$ with slopes in $-I$.
+\end{defi}
+\begin{rem}
+	If $K\subseteq I$ is compact and $(f_n)_{n\in\IN}$ a sequence in $B^b$ converging to $f\neq 0$, then there exists an $N$ such that for all $n\geq N$ we have $v_r(f_n)=v_r(f)$ for all $r\in K$. In particular, $\Ll\Newt_I^0(f)$ is a concave piece-wise linear function with integral slopes. Thus, $\Newt_I^0(f)$ is a decreasing convex polygon with integral breakpoints.
+\end{rem}
+\begin{rem}
+	\begin{numerate}
+		\item If $a\in\mm_F$ and $f_a$ is as above, then $\Newt_{(0,\infty)}(f_a)$ is a \enquote{polygon version} of the exponential function $i\mapsto v(a)q^{-i}$:
+		\begin{center}
+			\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+			\draw[-to] (-3.5,0) -- (3.5,0);
+			\draw[-to] (0,-0.5) -- (0,3.5);
+			\draw[thick] (-1.6875,3.375) -- (-1,2) -- (0,1) -- (1,0.5) -- (2,0.25) -- (3,0.125) -- (3.375,0.110375);
+			\fill (0,1) circle (0.5ex) node [above right] {$v(a)$};
+			\fill (-1,2) circle (0.5ex);
+			\fill (1,0.5) circle (0.5ex);
+			\fill (2,0.25) circle (0.5ex);
+			\fill (3,0.125) circle (0.5ex);
+			\draw (2,0.75ex) -- (2,-0.75ex) node[below] {$2$};
+			\draw (1,0.75ex) -- (1,-0.75ex) node[below] {$1$};
+			\draw (-1,0.75ex) -- (-1,-0.75ex) node[below] {$-1$};
+			\draw (-2,0.75ex) -- (-2,-0.75ex) node[below] {$-2$};
+			\draw (3,0.75ex) -- (3,-0.75ex) node[below] {$3$};
+			\draw (-3,0.75ex) -- (-3,-0.75ex) node[below] {$-3$};
+			\end{tikzpicture}
+		\end{center}
+		Note that there is no $x\in\IR$ where $\Newt_{(0,\infty)}(f_a)(x)=+\infty$.
+		\item If $f\in B$ and $\lambda_i$ is the slope of $\Newt_{(0,\infty)}(f)$ on $[i,i+1]$, then
+		\begin{equation*}
+			\lambda_i\leq 0\,,\quad\lim_{i\to\infty}\lambda_i=0\,,\quad\text{and}\lim_{i\to-\infty}\lambda_i=-\infty\,.
+		\end{equation*}
+	\end{numerate}
+\end{rem}
+So far we have defined Newton polygons for open intervalls $I$. In the case of compact intervalls $I=[a,b]$, the above \cref{def:NewtOpen} doesn't work any more and we need slightly more complicated one.
+\begin{defi}
+	Let $I=[a,b]$ be a compact intervall and $0\neq f\in B_I$. We define $\Newt_I^0(f)$ to be the decreasing convex function whose Legendre transform is
+	\begin{equation*}
+		\Ll\Newt_I^0(f)(r)=\begin{cases}
+		v_r(f) & \text{if }r\in I\\
+		-\infty & \text{if }r<0\\
+		v_a(f)+(r-a)\partial_-v_a(f) & \text{if }r<a\\
+		v_b(f)+(r-b)\partial_+v_b(f) & \text{if }r\geq b
+		\end{cases}\,,
+	\end{equation*}
+	and again $\Newt_I(f)\subseteq \IR$ is the subset of the graph of $\Newt_I^0(f)$ with slopes in $-I$.
+\end{defi}
+\begin{rem}
+	\begin{numerate}
+		\item If $(f_n)_{n\in\IN}$ is a sequence in $B^b$ converging to $f$, then
+		\begin{equation*}
+			\partial_+v_r(f)=\lim_{n\to\infty}\partial_+v_r(f_n)\quad\text{and}\quad\partial_-v_r(f)=\lim_{n\to\infty}\partial_-v_r(f_n)\,.
+		\end{equation*}
+		Here $\partial_+v_r(f)$ denotes the right-derivative of the function $s\mapsto v_s(f)$ at $s=r$. Likewise $\partial_-$ denotes left-derivatives.
+		\item For $f\in B^b$ and $\lambda$ a slope of $\Newt(f)$, then $\partial_+v_r(f)-\partial_-v_r(f)$ is precisely the multiplicity of $\lambda$ in $\Newt(f)$.
+	\end{numerate}
+\end{rem}
+
 
 \appendix
+
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography
 \end{document}
