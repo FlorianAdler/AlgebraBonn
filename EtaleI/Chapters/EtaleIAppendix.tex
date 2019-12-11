@@ -1,0 +1,155 @@
+\chapter{Some Supplementary Material}
+
+\section{On Inverse Limits of Schemes}\label{sec:inverseLimits}
+In the following, all references refer to \cite{stacks-project} and $\colimit$ always denotes a colimit over filtered partially ordered set. Note that colimits over filtered categories may, with some care, be reduced to colimits over filtered posets (\stackstag{0032}).
+\numpar{}\label{par:schemesInverseLimit}Let $\{S_\alpha\}$ be a cofiltered system of schemes. We investigate whether the limit over this system exists, and list some properties:
+\begin{alphanumerate}
+	\item By \stackstag{01YX}, the cofiltered limit $\limit S_\alpha$ exists if all transition morphisms are affine. Moreover, if $0$ is an initial object in the (surpressed) index poset and $U_0\subseteq S_0$ is an open (or closed, this works just as well) subscheme, then
+	\begin{equation*}
+	\limit_\alpha \left(U_0\times_{S_0}S_\alpha\right)\cong U_0\times_{S_0}\limit_\alpha S_\alpha
+	\end{equation*}
+	(since fibre products are limits too, this follows from abstract nonsense). In fact, we can describe $S=\limit S_\alpha$ explicitly. If $0$ is initial as above, then $S_\alpha\cong \SPEC_{S_0}\Ss_\alpha$ for some quasi-coherent $\Oo_{S_0}$-algebras $\Ss_\alpha$. Then $\Ss=\colimit_\alpha S_\alpha$ is quasi-coherent again and $S\cong \SPEC_{S_0}\Ss$.
+	\item In \stackstag{01Z2} it is proved that if all $S_\alpha$ are non-empty and quasi-compact, then $S$ is non-empty. Actually $S$ is also quasi-compact again, as follows from \itememph{c} and Tychonoff's theorem. Using this assertion together with \itememph{a}, we see that moreover that if all $S_\alpha$ are quasi-separated, then the same is true for $S$.
+	\item By \stackstag{0CUF} we have a homeomorphism $|S|\cong \limit |S_\alpha|$ on underlying topological spaces.
+\end{alphanumerate}
+\numpar{}\label{par:descendingFinPres} From now on, all occurring schemes are quasi-compact and quasi-coherent. It is often a useful fact to know that a certain property of an inverse limit of schemes or morphisms of schemes is already satisfied by a \enquote{finite stage} of the limit. For example, it is a standard strategy to use arguments of this kind to prove assertions about non-noetherian schemes by reduction to the noetherian case.
+\begin{alphanumerate}\setcounter{enumi}{3}
+	\item By \stackstag{01ZR}, every finitely presented $\Oo_S$-module $\Ff$ (in particular, every coherent module if $S$ is noetherian) can be written as the pullback of a finitely presented $\Ff_\alpha$ over $S_\alpha$ for some suitable $\alpha$. If $\Ff=\Vv$ is a vector bundle, then by \stackstag{0B8W} we may even assume that $\Vv_\alpha$ is already a vector bundle too by.
+	\item Let $f\colon X\morphism S$ be a finitely presented morphism. By \stackstag{01ZM}, there is an $\alpha$ such that $f$ can be written as a cofiltered limit over finitely presented morphisms $f_\beta\colon X_\beta\morphism S_\beta$ for all $\beta\geq \alpha$ in such a way that $f$ is the base change of $f_\alpha$ along $S\morphism S_\alpha$, and $f_\beta$ is the base change of $f_\alpha$ along $S_\beta\morphism S_\alpha$ for all $\beta\geq \alpha$.
+	
+	Moreover, if $g\colon Y\morphism S$ is another finitely presented morphism and written as a limit over $g_\beta\colon Y_\beta\morphism S_\beta$ as above, then
+	\begin{equation*}
+	\colimit_{\beta\geq\alpha}\Hom_{\cat{Sch}/S_\beta}(X_\beta,Y_\beta)\cong \Hom_{\cat{Sch}/S}(X,Y)\,.
+	\end{equation*}
+	In this fashion, every finitely presented morphism of schemes can be written as a cofiltered limit of morphisms between schemes of finite type over $\IZ$.
+	\item By \stackstag{0204}, if $f\colon X\morphism S$ is proper morphism and written as a colimit over finite type morphisms $f_\beta\colon X_\beta\morphism S_\beta$ as in \itememph{e}, then already $f_\beta$ is proper for some $\beta\geq \alpha$. The idea is to use Chow's lemma to reduce everything to a similar question about projective morphisms, which is easier to treat.
+	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a colimit as above, then already $f_\beta$ is étale for some $\beta\geq \alpha$.
+\end{alphanumerate}
+\section{The Conditions \texorpdfstring{$R_k$}{Rk} and \texorpdfstring{$S_k$}{Sk}}
+I plan to add more material here once I find the time to work out the proofs in Lecture~7. Recall the following notions:
+\begin{defi*}
+	Let $X$ be a locally notherian scheme and $\Ff$ a coherent $\Oo_X$-module.
+	\begin{alphanumerate}
+		\item We say \emph{$X$ satisfies $R_k$} at the point $x\in X$ if $\Oo_{X,x}$ is regular or  $\dim\Oo_{X,x}> k$. In case $X$ satisfies $R_k$ at all $x\in X$, we just say $X$ satisfies $R_k$.
+		\item We say \emph{$\Ff$ satisfies $S_k$} at the point $x\in X$ if $\depth \Ff_x\geq \min\{k,\dim(\supp \Ff_x)\}$. In case $\Oo_X$ satisfies $S_k$ at all $x\in X$, we often just say \defemph{$X$ satisfies $S_k$}.
+	\end{alphanumerate}
+\end{defi*}
+\begin{lem*}\label{lem:EtaleRkSk}
+	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian schemes. Let $x\in X$ and $y=f(x)$ such that $f$ is étale at $x$. Then the following hold:
+	\begin{alphanumerate}
+		\item $X$ satisfies $R_k$ at $x$ iff $Y$ satisfies $R_k$ at $y$.
+		\item $X$ satisfies $S_k$ at $x$ iff $Y$ satisfies $S_k$ at $y$.
+	\end{alphanumerate}
+\end{lem*}
+\begin{proof*}
+	We have seen in the proof of \cref{prop:etaleRegular} that $\dim \Oo_{X,x}=\dim\Oo_{Y,y}$ and that $\Oo_{X,x}$ is regular iff $\Oo_{Y,y}$ is. This immediately shows \itememph{a}. For \itememph{b}, what remains to check is $\depth \Oo_{X,x}=\depth\Oo_{Y,y}$. Suppose $a_1,\dotsc,a_n\in\mm_{Y,y}$ form a maximal regular sequence. Since $\Oo_{X,x}$ is flat over $\Oo_{Y,y}$, we immediately verify that the images of the $a_i$ in $\mm_{X,x}$ form a regular sequence too. This shows $\depth\Oo_{X,x}\geq \depth\Oo_{Y,y}$.
+	
+	For the converse, we may mod out the ideal $(a_1,\dotsc,a_n)$ to replace $\Oo_{X,x}$ and $\Oo_{Y,y}$ by $\Oo_{X,x}/(a_1,\dotsc,a_n)$ and $\Oo_{Y,y}/(a_1,\dotsc,a_n)$. Thus, we are still in a situation where $f\colon X\morphism Y$ is étale at $x$, but now additionally $\depth \Oo_{Y,y}=0$. This happens iff $\mm_{Y,y}$ is an associated prime ideal of $\Oo_{Y,y}$ (see \cite[Lemma~2.3.1]{homalg} for example). So let $a\in\Oo_{Y,y}$ such that $\mm_{Y,y}=\Ann_{\Oo_{Y,y}}(a)$, i.e., $\mm_{Y,y}$ is the kernel of the multiplication map $a\colon \Oo_{Y,y}\morphism\Oo_{Y,y}$. Since $\Oo_{X,x}$ is flat over $\Oo_{Y,y}$, the kernel of $a\colon \Oo_{X,x}\morphism\Oo_{X,x}$ is given by $\mm_{Y,y}\otimes_{\Oo_{Y,y}}\Oo_{X,x}\cong \mm_{Y,y}\Oo_{X,x}$. But since $f\colon X\morphism Y$ is unramified at $x$, we get $\mm_{Y,y}\Oo_{X,x}=\mm_{X,x}$ (see \cref{prop:unramified}\itememph{c}). Thus $\mm_{X,x}$ is an associated prime ideal of $\Oo_{X,x}$, which shows $\depth \Oo_{X,x}=0$. We are done!
+\end{proof*}
+\section{More on \texorpdfstring{$G$}{G}-Rings and Excellent Rings}
+In the $12\ordinalth$ lecture, when we introduced $G$-rings and excellent rings and all this stuff, Professor Franke casually dropped some facts of the form \enquote{if a noetherian ring is $X$ and $Y$, then it is already $Z$}. Since none of them were obvious to me, I decided to write up proper proofs. Some of them are my own, some are taken from \cite{stacks-project}.
+
+Before we begin with the proofs, we expand a bit upon the terminology that came up in \cref{def:excellent}, and introduce a bit more. Unless otherwise specified, all references in this section are to \cite{stacks-project}.
+\begin{nota*}
+	Throughout this section, if $A$ is a noetherian ring and $\pp\in\Spec A$ a prime ideal, then $\roof{A}_\pp$ denotes the completion of $A_\pp$ with respect to its maximal ideal $\pp A_\pp$. The localization of $\roof{A}$ at $\pp$ (assuming $A$ is local itself) will instead be denoted $\roof{A}\otimes_AA_\pp$. If $\qq\in\Spec \roof{A}$ is a prime ideal, the localization of $\roof{A}$ at $\qq$  will also be denoted $\roof{A}_\qq$, but this shouldn't stir any confusion as it will always be clear whether $\qq$ is a prime ideal in $\roof{A}$ or $A$.
+\end{nota*}
+\begin{defi*}\label{def*:G-ring}
+	An arbitrary noetherian ring $A$ is called a \defemph{$G$-ring} if for all primes $\pp\in\Spec A$ the localization $A_\pp$ is a local $G$-ring in the sense of \cref{def:excellent}\itememph{a}, i.e., for all primes $\qq\in\Spec A_\pp$ the geometric fibres $\roof{A}_\pp\otimes_{A_\pp}\ov{\kappa(\qq)}$ are regular.
+\end{defi*}
+\begin{rem*}
+	A priori it is not clear that a local $G$-ring in the sense of \cref{def:excellent}\itememph{a} is also a $G$-ring in the sense of \cref{def*:G-ring}. Indeed, the latter is a condition on the geometric fibres of $A_\pp\morphism \roof{A}_\pp$ (here $\roof{A}_\pp$ is the completion of $A_\pp$ with respect to $\pp A_\pp$, and not the localization of $\roof{A}$ at $\pp$) for \emph{all} primes $\pp\in\Spec A$, whereas the former only concerns the case where $\pp$ is the maximal ideal of $A$. Nevertheless, these conditions turn out to be equivalent. See \stackstag{07PT} for a proof (and note that The Stacks Project guys use \cref{def*:G-ring} as a definition of $G$-rings).
+\end{rem*}
+\begin{defi*}
+	For a noetherian scheme $X$ let $\Reg(X)=\left\{x\in X\st \Oo_{X,x}\text{ regular}\right\}$ denote the \defemph{regular locus} of $X$. A noetherian ring $A$ is called
+	\begin{alphanumerate}
+		\item $J$-0 if $\Reg(\Spec A)$ contains a non-empty open subset.
+		\item $J$-1 if $\Reg(\Spec A)$ is open.
+		\item $J$-2 if any $A$-algebra of finite type is $J$-1.
+	\end{alphanumerate}
+\end{defi*}
+With this terminology, an noetherian ring $A$ is \emph{excellent} iff it is a $G$-ring, $J$-2, and universally catenary. One of the assertions in the lecture was that if $A$ is local, the $J$-2 condition isn't needed. In fact, something slightly more general is true.
+\begin{prop*}\label{prop*:GJ-2}
+	Let $A$ be a semi-local $G$-ring. Then $A$ is \emph{$J$-2}.
+\end{prop*}
+\begin{proof*}
+	The proof consists of five steps. The first four are to reduce the assertion to the fact that complete noetherian local domains are $J$-0. This is proved in the fifth step, using the Cohen structure theorem.
+	
+	\emph{Step~1.} We first show that it suffices to prove that semi-local $G$-rings which are domains are $J$-0. By some general results on $J$-2 rings, it suffices to prove that every finite $A$-algebra $B$ that happens to be a domain is $J$-0. In fact, by \itememph{4} of \stackstag{07PC} it suffices to prove an even weaker condition. Clearly such $B$ is semi-local again. Moreover, it is still a $G$-ring. Indeed, it can be shown more generally that any algebra of essentially finite type over a $G$-ring is a $G$-ring again. A full proof is in \stackstag{07PV}, but in the case of a finite extension there is actually a simple argument: if $\qq_1,\dots,\qq_n$ are the primes over $\pp\in\Spec A$, then
+	\begin{equation*}
+	\roof{A}_\pp\otimes_AB\cong \prod_{i=1}^n\roof{B}_{\qq_i}
+	\end{equation*}
+	(this follows basically from the Chinese remainder theorem; see \stackstag{07N9} for a full proof). Thus, $\roof{B}_{\qq_i}\otimes_B\ov{\kappa(\qq_i)}$ is a factor of $\roof{A}_\pp\otimes_A\ov{\kappa(\pp)}$, hence regular. This shows that $B$ is indeed a semi-local $G$-ring and a domain. Therefore it suffices to show that these guys are $J$-0, as claimed.
+	
+	\emph{Step~2.} Now let $A$ be a semi-local $G$-ring which is a domain. We show that we can further reduce to the case where $A$ is local. Indeed, let $\mm_1,\dotsc,\mm_n$ be the maximal ideals of $A$. Assuming the local case has been settled, we find non-zero $f_i\in A$ such that the localizations $A_{\mm_i}[f_i^{-1}]$ are regular. Then $A[(f_1\dotsm f_n)^{-1}]$ is regular too, proving that $A$ is $J$-0.
+	
+	\emph{Step~3.} Now let $A$ be local, in addition to the other assumptions. Suppose it has been shown that $\roof{A}$ is $J$-2 (mind that $\roof{A}$ might not be a domain any more). Suppose $\qq\in\Spec \roof{A}$ is a prime such that the localization $\roof{A}_\qq$ is regular, and let $\pp=\qq\cap A$. Then $A_\pp$ is regular too. Indeed, this follows from the characterization of regularity via finiteness of global dimension and the fact that $\roof{A}_\qq$ is faithfully flat over $A_\pp$ (see \stackstag{00OF} for more details). Conversely, if $A_\pp$ is regular and $\qq\in\Spec \roof{A}$ is a prime over $\pp$, then the localization $\roof{A}_\qq$ is regular too by \stackstag{031E}, using that the fibres $\roof{A}\otimes_A\kappa(\pp)$ are regular (a priori we only know this for the geometric fibres, but then it holds for the ordinary fibres as well). This shows that if $f\colon \Spec \roof{A}\morphism\Spec A$ denotes the induced morphism on schemes, then
+	\begin{equation*}
+	\Reg(\Spec \roof{A})=f^{-1}\big(\Reg(\Spec A)\big)\,.
+	\end{equation*}
+	Since we assume $\roof{A}$ is $J$-2, the left-hand side is open. Thus $\Reg(\Spec A)$ is open as well, because $f$ is fpqc and thus a quotient map on underlying topological spaces by \cref{prop:fpqcEffectiveEpi}. Clearly $\Reg(\Spec A)$ is non-empty, because $A$ is a domain, hence regular at $(0)$. This shows that $A$ is $J$-0, as required.
+	
+	\emph{Step~4.} By Step~3, it suffices to show that complete local rings (which are automatically $G$-rings) are $J$-2. Thus $A$ may be assumed complete from now on. This came at the cost of losing the information that $A$ is a domain though. However, this can be quickly regained: as in Step~1, let $B$ be a finite $A$-algebra that is a domain. We are to show that $B$ is $J$-0. Since $A$ is henselian, $B$ is a finite product of local $A$-algebras (\cref{prop:henselian}\itememph{c}). But then $B$ must already be local, or it wouldn't be a domain. Moreover, $B$ is complete with respect to the maximal ideal of $A$, hence complete with respect to its own maximal ideal. This shows that it suffices to consider the case where $A$ is a complete local domain.
+	
+	\emph{Step~5.} After all these reductions, let the actual proof begin! By the Cohen structure theorem in the form of \stackstag{032D} we find a subring $A_0\subseteq A$ such that $A$ is finite over $A_0$ and $A_0\cong \Lambda\llbracket X_1,\dotsc,X_d\rrbracket$, where $\Lambda$ is a field or a Cohen ring (i.e., a complete DVR with uniformizer $p$ a prime number). In particular, $A_0$ is regular. Let $K_0\subseteq K$ denote the fraction fields of $A_0$ and $A$. This is a finite field extension. If it is separable, \cref{lem*:genericSmoothness} below immediately shows that $A$ is $J$-0.
+	
+	Now assume $K_0\subseteq K$ is not separable. This can only happen in positive characteristic, so in particular $A_0\cong k\llbracket X_1,\dotsc,X_d\rrbracket$, where $k$ is the residue field of $A$. Let $N/K_0$ be the normal closure of $K/K_0$ and let $L/K_0$ be fixed field under $\Aut(N/K_0)$. Then $N/K$ is Galois and $L/K_0$ is purely inseparable. Moreover, $L\subseteq K$ since there a purely inseparable element has no other conjugates than itself. Let $B=A\cap L$. Then $A$ is finite over $B$ and the extension $K/L$ on fraction fields is separable. Thus, by \cref{lem*:genericSmoothness} it is enough to show that $B$ is $J$-0. Hence we may assume $A=B$ and that the extension $K/K_0$ is purely inseparable.
+	
+	In this case we may choose a power $q$ of the characteristic $p$ such that $K^q\subseteq K$. Let $k^{1/q}$ be the field obtained by adjoining all $q\ordinalth$ roots of elements of $k$ and consider the ring
+	\begin{equation*}
+	A_0^{1/q}\coloneqq k^{1/q}\big\llbracket X_1^{1/q},\dotsc,X_d^{1/q}\big\rrbracket\,.
+	\end{equation*}
+	By construction, $A\subseteq A_0^{1/q}$, and this is an integral ring extension (but probably not finite). Also note that $A_0^{1/q}$ is flat over $A_0$. Indeed, $k^{1/q}[X_0^{1/q},\dotsc,X_d^{1/q}]$ is flat (and even free) over $k[X_1,\dotsc,X_d]$, and flatness is preserved under completion (this actually needs a small argument, but we omit that here). Moreover, using Grothendieck's generic freeness theorem (see \stackstag{051R} or \cite[Proposition~A.2.1]{jacobians}), there is some non-zero $f\in A_0$ such that $A_f$ is free over $(A_0)_f$. Then $A_f$ is faithfully flat over $(A_0)_f$ as $A_0\subseteq A$ is an inclusion of domains. We claim that this implies that $(A_0^{1/q})_f$ is flat over $A$. Indeed, since faithful flatness is preserved under base change, $(A_0^{1/q})_f\otimes_{(A_0)_f}A_f$ is faithfully flat over $(A_0^{1/q})_f$ and flat over $A_f$, so an easy argument shows that $(A_0^{1/q})_f$ is indeed flat over $A_f$. By going-up, $A_f\subseteq (A_0^{1/q})_f$ is even a faithfully flat ring extension, because it is integral. But now we are done, since $A_0^{1/q}$ is clearly regular, hence $A_f$ is regular too by \stackstag{07NG}.
+\end{proof*}
+It remains to show the claimed lemma about extensions of domains which are separable on fraction fields.
+\begin{lem*}\label{lem*:genericSmoothness}
+	Let $R\subseteq S$ be a finite extension of noetherian domains such that the induced extension $L/K$ of fraction fields is separable. Then $R$ is \emph{$J$-0} iff $S$ is \emph{$J$-0}.
+\end{lem*}
+\begin{proof*}
+	The basic idea of the proof is that such a ring map is \emph{generically smooth}. That is, we claim the following:
+	\begin{alphanumerate}
+		\item[\itememph{*}] There is an element $f\in R$ such that $R_f\morphism S_f$ is smooth (and actually even étale).
+	\end{alphanumerate}
+	Indeed, by Grothendieck's generic freeness theorem (see \stackstag{051R} or \cite[Proposition~A.2.1]{jacobians}), there is a non-zero $f\in R$ such that $S_f$ and $(\Omega_{S/R})_f$ are free over $R$. Then actually $(\Omega_{S/R})_f=0$, because its stalk $\Omega_{L/K}$ at the generic point $(0)\in \Spec S$ vanishes as $L/K$ is separable. This shows that $R_f\morphism S_f$ is flat and unramified, hence étale as claimed.
+	
+	Now assume $R$ is $J$-0. Then $f\in R$ from \itememph{*} may be chosen in such a way that $R_f$ is regular and $R_f\morphism S_f$ is smooth. Thus some general result shows that $S_f$ is regular too (see \stackstag{07NF} for example).
+	
+	Conversely, let $S$ be $J$-0 and choose some non-zero $g\in S$ such that $S_g$ is regular. Since $S$ is finite over $R$, the morphism $\Spec S\morphism\Spec R$ is proper. Hence the image of $V(g)$ in $\Spec R$ is closed. But it can't be all of $\Spec R$, as otherwise $\dim S/gS\geq \dim R$, contradicting the going-up theorem. Thus the image of $V(g)$ is contained in $V(f)$ for some non-zero $f\in R$; moreover, we may assume that $f$ is as in \itememph{*}. Then $R_f\morphism S_f$ is smooth and $S_f$ is regular. Since $R_f\subseteq S_f$ is a finite extension, $S_f$ is actually faithfully flat over $R_f$. Then $R_f$ must be regular too by \stackstag{00OF}.
+\end{proof*}
+The second not at all trivial remark from the $12\ordinalth$ lecture was that excellent rings are always universally Japanese in the sense of \cref{def:excellent}. In fact, catenarity is not even needed.
+\begin{prop*}\label{prop*:quasi-excellentUniversallyJapanese}
+	Let $A$ be a noetherian ring which is a $G$-ring and \emph{$J$-2} (such rings are called quasi-excellent). Then $A$ is universally Japanese. In particular, this holds for all excellent rings.
+\end{prop*}
+The first step is to prove the assertion for complete noetherian local domains, which is already not quite trivial.
+\begin{lem*}\label{lem*:completeUniversallyJapanese}
+	Let $A$ be a complete noetherian local domain (so $A$ is automatically a $G$-ring, hence \emph{$J$-2} by \cref{prop*:GJ-2}, but we won't need that). If $L/K$ is a finite extension of the fraction field of $A$, then the integral closure of $A$ in $L$ is finite over $A$.
+\end{lem*}
+\begin{proof*}
+	The proof we give here is a concrete version of the proof in \stackstag{032W} that uses more general results. By the Cohen structure theorem we find a subring $A_0\subseteq A$ such that $A$ is finite over $A_0$ and $A_0\cong \Lambda\llbracket X_1,\dotsc,X_d\rrbracket$, where $\Lambda$ is a field or a Cohen ring. So it suffices to show the theorem for $A=\Lambda\llbracket X_1,\dotsc,X_d\rrbracket$. In this case $A$ is normal. Let $K$ be its quotient field. If $L/K$ is a separable extension, then finiteness of the integral closure of $A$ in $L$ is a well-known result, using that the trace form $\Tr_{L/K}\colon L\times L\morphism K$ is non-degenerate (see \stackstag{032L} for details). In particular, this completely handles the case where $K$ has characteristic $0$.
+	
+	So from now on we may assume that the characteristic is $p>0$. Then $\Lambda=k$ is the residue field of $A$, so we need to show that the integral closure of $A=k\llbracket X_1,\dotsc,X_d\rrbracket$ in $L$ is finite over $A$. We use induction on $d$. The case $d=0$ is trivial, so let $d\geq 1$ and assume the assertion holds for $d-1$. By an argument similar to the last step of the proof of \cref{prop*:GJ-2}, it suffices to consider the case where $L/K$ is purely inseparable. Choose a power $q$ of $p$ such that $L^q\subseteq K$ and let $B$ denote the integral closure of $A$ in $L$. Let $Y_i=X_i^{1/q}$. Then surely $B$ is contained in
+	\begin{equation*}
+	A^{1/q}\coloneqq k^{1/q}\llbracket Y_1,\dotsc,Y_d\rrbracket\,.
+	\end{equation*}
+	Consider the ring morphism $\epsilon\colon A^{1/q}\morphism A^{1/q}$ that fixes the variables $Y_1,\dotsc,Y_{d-1}$ and sends $Y_d$ to $0$. We may actually assume that $Y_d\in B$ and that $\epsilon$ restricts to a morphism $B\morphism B$. Indeed, $L$ can be generated by elements $\beta_1,\dotsc,\beta_n\in A^{1/q}$ and we are free to enlarge $L$ by adjoining $Y_d$ and $\epsilon(\beta_1),\dotsc,\epsilon(\beta_n)$.
+	
+	Now we claim that $B/Y_dB$ is finite over $A/X_dA\cong k\llbracket X_1,\dotsc,X_{d-1}\rrbracket$. Indeed, these rings can be identified with the images of $B$ and $A$ under $\epsilon$. Certainly $\epsilon(B)$ is integral over $\epsilon(A)$, so we only need to see that the integral closure of $\epsilon(A)\cong k\llbracket X_1,\dotsc,X_{d-1}\rrbracket$ in $L$ is finite over $\epsilon(A)$. This follows from the induction hypothesis. Here we used the following fact: if $K_{d-1}$ is the fraction field of $k\llbracket X_1,\dotsc,X_{d-1}\rrbracket$, then the algebraic closure of $K_{d-1}$ in $L$ is finite over $K$. We leave the proof to the reader.\footnote{\emph{Hint:} $K\subseteq K_{d-1}(\!(X_d)\!)$. Now show that $K_{d-1}^{1/q}$ and $K_{d-1}(\!(X_d)\!)$ are linearly disjoint.}
+	
+	Since $Y_d^{i-1}B/Y_d^iB\cong B/Y_dB$ and $Y_d^q=X_d$, we see that $B/X_dB$ too is finite over $A/X_dX$. Note that $A$ is $X_d$-complete. So as soon as we show $\bigcap_{n\geq 1}X_d^nB=0$, \stackstag{031D} will imply that $B$ is finite over $A$. Indeed, if some $b\in B$ is contained in the intersection, then $b^q\in \bigcap_{n\geq 1}X_d^nA=0$, hence $b=0$. 
+\end{proof*}
+\begin{proof}[Proof of \cref{prop*:GJ-2}]
+	\emph{Step~1.} We simplify the assertion. Let $\pp\in\Spec A$ and $\ell/\kappa(\pp)$ a finite extension. We are to show that the integral closure of $A$ in $\ell$ is finite over $A$. There is a ring $A/\pp\subseteq B\subseteq \ell$ such that $\ell$ is the fraction field of $B$ and $B$ is finite over $A$. Then it suffices to show that the integral closure of $B$ in its fraction field $\ell$ is finite over $B$. Since algebras of finite type over quasi-excellent rings are quasi-excellent again (\stackstag{07QU}), we may assume that $A=B$ is a domain and it suffices to show that the integral closure of $A$ in its fraction field is finite over $A$ (or in other words, \enquote{$A$ is $N$-1}).
+	
+	\emph{Step~2.} We reduce to the case where $A$ is local. Since $A$ is $J$-2 by assumption, the regular locus $\Reg(\Spec A)$ is open, and non-empty because $A$ is a domain. Thus, we find a non-zero $f\in A$ such that $A_f$ is regular, hence normal. Thus we may apply \stackstag{0333} to see that it suffices to show that all localizations $A_\mm$ at maximal ideals are $N$-1. Since $A_\mm$ is quasi-excellent again, we may indeed assume that $A$ is local.
+	
+	\emph{Step~3.} We prove that $A$ is $N$-1 under the assumption that $\roof{A}$ is reduced (which will be proved in Step~4). Let $\qq_1,\dotsc,\qq_n\in\Spec \roof{A}$ be the minimal primes. Since $\roof{A}$ is reduced, hence $R_0$ and $S_1$, these are all the associated primes of $\roof{A}$. Since $\roof{A}$ is reduced, the canonical map 
+	\begin{equation*}
+	\roof{A}\morphism\prod_{i=1}^n\roof{A}/\qq_i
+	\end{equation*}
+	is injective. Since each $\roof{A}/\qq_i$ is a complete noetherian local domain, \cref{lem*:completeUniversallyJapanese} shows that its integral closure in $\kappa(\qq_i)$ is finite over it. Thus, the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ is finite over $\roof{A}$. Now let $B$ be the integral closure of $A$ in its fraction field $K$. Using that $\roof{A}$ is flat over $A$, we see that $B\otimes_A\roof{A}\morphism K\otimes_A\roof{A}$ is injective. The right-hand side is the localization of $\roof{A}$ at the multiplicative set $A\setminus\{0\}$, which only consists of non-zero divisors because $A$ is a domain and $\roof{A}$ is flat over $A$. Thus, $K\otimes_A\roof{A}$ is contained in the localization of $\roof{A}$ at all non-zero divisors. This localization is precisely $\prod_{i=1}^n\kappa(\qq_i)$, because the $\qq_i$ comprise all the associated primes of $\roof{A}$. All in all, this shows that
+	\begin{equation*}
+	B\otimes_A\roof{A}\morphism\prod_{i=1}^n\kappa(\qq_i)
+	\end{equation*}
+	is injective. But $B\otimes_A\roof{A}$ is clearly contained in the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ as noted above, this shows that $B\otimes_A\roof{A}$ is finite over $\roof{A}$. Then $B$ is finite over $A$ (if $\big\{\sum_ib_{i,j}\otimes a_i\big\}$ are generators of $B\otimes_A\roof{A}$, then $\{b_{i,j}\}$ are generators of $B$, using that $\roof{A}$ is faithfully flat over $A$). We are done.
+	
+	\emph{Step~4.} We show that $\roof{A}$ is indeed reduced. Using the younger sibling of Serre's normality criterion, what we have to show is that $\roof{A}$ is $R_0$ and $S_1$. Note that this is fulfilled for $A$ since $A$ is a domain, hence reduced. Moreover, the fibres of $A\morphism\roof{A}$ are regular (even geometrically regular), hence the fibres are $R_n$ and $S_n$ for every $n\geq 0$. Now both $R_0$ and $S_1$ are \enquote{ascending} conditions in the sense that if they hold for the source and the fibres, then they hold for the target as well as long as the morphism in question is flat (see \stackstag{0336}, but in these particular cases everything is easily checkable by hand). This shows that $\roof{A}$ is indeed reduced and this rather lengthy proof has finally come to an end.
+\end{proof}
