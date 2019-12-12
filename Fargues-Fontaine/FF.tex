@@ -425,7 +425,7 @@ Now we can reformulate \cref{thm:NewtonSlope} as follows: if $f\in\IA_\inf$ and 
 	\end{numerate}
 \end{lem}
 \begin{proof}
-	Let $\pp_{y_i}=(\xi_{y_i})$ and write $\xi_{y_1}=\sum_{n=0}^\infty [x_n]\xi_{y_2}^n$. The coefficients $x_n$ exist and can be constructed inductively as follows: since $(-)^\sharp\colon \Oo_F\cong \Oo_{C_{y_2}}^\flat\epimorphism \Oo_{C_{y_2}}$ is surjective by \cref{prop:D}\itememph{3}, the image of $\xi_{y_1}$ in $\Oo_{C_{y_2}}$ has the form $\theta([x_0])$. As $(\xi_{y_2})=\ker\theta_{y_2}$, $\xi'=\xi_{y_1}-[x_0]$ is divisible by $\xi_{y_2}$. Now iterate the argument for $\xi_{y_2}^{-1}\xi'$. Then
+	Let $\pp_{y_i}=(\xi_{y_i})$ and write $\xi_{y_1}=\sum_{n=0}^\infty [x_n]\xi_{y_2}^n$. The coefficients $x_n$ exist and can be constructed inductively as follows: since $(-)^\sharp\colon \Oo_F\cong \Oo_{C_{y_2}}^\flat\epimorphism \Oo_{C_{y_2}}$ is surjective by \cref{prop:D}\itememph{3}, the image of $\xi_{y_1}$ in $\Oo_{C_{y_2}}$ has the form $\theta_{y_2}([x_0])$. As $(\xi_{y_2})=\ker\theta_{y_2}$, $\xi'=\xi_{y_1}-[x_0]$ is divisible by $\xi_{y_2}$. Now iterate the argument for $\xi_{y_2}^{-1}\xi'$. Then
 	\begin{equation*}
 		d(y_2,y_1)=v_{y_2}\big(\theta_{y_2}(\xi_{y_1})\big)=v(x_0)\,.
 	\end{equation*}
@@ -577,7 +577,7 @@ The intuition behind this is that \enquote{$B_I=\Global(|Y_I|,\Oo_{|Y|})$}, wher
 	The \defemph{ring $B$} is defined as $B=B_{(0,\infty)}$.
 \end{defi}
 So $B$ can be viewed as the \enquote{ring of global sections of $\Oo_{|Y|}$}. Note that the Frobenius $\phi\curvearrowright B^b$ extends, by continuity, to an automorphism of $B$. More generally, $\phi$ induces an isomorphism $\phi\colon B_I\isomorphism B_{qI}$ for $I\subseteq (0,\infty)$. For every $d\in\IZ$, let $B^{\phi=\pi^d}$ be the eigenspace of $\phi$ with respect to the eigenvalue $\pi^d$.
-\numpar{Definition~\smash{\Attention}}
+\numpar{Definition~\smash{\Attention}}\label{def:FFC}
 The \defemph{schematic Fargues--Fontaine curve} (with respect to $E$ and $F$) is the scheme
 \begin{equation*}
 	X=X_\FFC\coloneqq \Proj\Bigg(\bigoplus_{d\geq 0}B^{\phi=\pi^d}\Bigg)\,.
@@ -599,7 +599,7 @@ The \defemph{schematic Fargues--Fontaine curve} (with respect to $E$ and $F$) is
 	\end{equation*}
 \end{rem}
 The goal of the next few lectures is to understand the scheme $X_\FFC$, and in particular the rings $B$ and $B^b$. We start with a lemma that essentially says that the eigenspaces of $\phi$ on $B^b$, i.e., before completion, are rather boring.
-\begin{lem}
+\begin{lem}\label{lem:BbEigenspaces}
 	For $d\in\IZ$ let $(B^b)^{\phi=\pi^d}\subseteq B^b$ be the eigenspace of $\phi$ with respect to the eigenvalue $\pi^d$. Then
 	\begin{equation*}
 		(B^b)^{\phi=\pi^d}=\begin{cases}
@@ -622,9 +622,9 @@ The goal of the next few lectures is to understand the scheme $X_\FFC$, and in p
 \begin{proof}
 	It suffices to show that $v_r([x_n]\pi^n)\to\infty$ as $|n|\to\infty$ for all $r\in(0,\infty)$. But $v_r([x_n]\pi^n)=v(x_n)+rn$, so this holds by assumption.
 \end{proof}
-\begin{rem}
+\begin{rem}\label{lem:convergenceInB}
 	\begin{numerate}
-		\item For all $a\in \mm_F$, the sequence $f_a\coloneqq \sum_{i\in\IZ}[a^{q^{-i}}]\pi^i$ coverges in $B$, and $f_a\in B^{\phi=\pi}$. To prove this we need to check $q^{-i}v(a)+ri=v(a^{q^{-i}})+ri\to \infty$ as $|i|\to\infty$ for all $r\in(0,\infty)$, using \cref{lem:convergeInB}. This is clear as $v(a)>0$. Also one immediately checks $\phi(f_a)=\pi f_a$, hence indeed $f_a\in B^{\phi=d}$. In fact, we will prove later that the above construction gives a bijection $\mm_F\cong B^{\phi=\pi}$. This should seem a bit weird at first since the right-hand side $B^{\phi=\pi}$ is an $E$-vector space, so the left-hand side better be one as well. One can indeed construct a $E$-vector space structure on $\mm_F$ by Lubin--Tate theory.
+		\item For all $a\in \mm_F$, the series $f_a\coloneqq \sum_{i\in\IZ}[a^{q^{-i}}]\pi^i$ coverges in $B$, and $f_a\in B^{\phi=\pi}$. To prove this we need to check $q^{-i}v(a)+ri=v(a^{q^{-i}})+ri\to \infty$ as $|i|\to\infty$ for all $r\in(0,\infty)$, using \cref{lem:convergeInB}. This is clear as $v(a)>0$. Also one immediately checks $\phi(f_a)=\pi f_a$, hence indeed $f_a\in B^{\phi=\pi}$. In fact, we will prove later that the above construction gives a bijection $\mm_F\cong B^{\phi=\pi}$. This should seem a bit weird at first since the right-hand side $B^{\phi=\pi}$ is an $E$-vector space, so the left-hand side better be one as well. One can indeed construct a $E$-vector space structure on $\mm_F$ by Lubin--Tate theory.
 		\item In general, it is not known whether elements in $B$ can be written as $\sum_{n\in\IZ}[x_n]\pi^n$ for $[x_n]\in F$. So we need different tools to study $B$.
 	\end{numerate}
 \end{rem}
@@ -643,7 +643,7 @@ To prove \cref{thm:FFCisACurve} we need Newton polygons for elements in $B_I$, w
 	\end{equation*}
 	The \defemph{Newton polygon $\Newt_I(f)\subseteq \IR^2$} is the subset of the graph of $\Newt_I^0(f)$ with slopes in $-I$.
 \end{defi}
-\begin{rem}
+\begin{rem}\label{rem:uniformOnCompact}
 	If $K\subseteq I$ is compact and $(f_n)_{n\in\IN}$ a sequence in $B^b$ converging to $f\neq 0$, then there exists an $N$ such that for all $n\geq N$ we have $v_r(f_n)=v_r(f)$ for all $r\in K$. In particular, $\Ll\Newt_I^0(f)$ is a concave piece-wise linear function with integral slopes. Thus, $\Newt_I^0(f)$ is a decreasing convex polygon with integral breakpoints.
 \end{rem}
 \begin{rem}
@@ -697,7 +697,196 @@ So far we have defined Newton polygons for open intervalls $I$. In the case of c
 		\item For $f\in B^b$ and $\lambda$ a slope of $\Newt(f)$, then $\partial_+v_r(f)-\partial_-v_r(f)$ is precisely the multiplicity of $\lambda$ in $\Newt(f)$.
 	\end{numerate}
 \end{rem}
+\section{The Graded Algebra \texorpdfstring{$P$}{P}}
+\lecture[$P$ is graded factorial. Effective divisors on $|Y|$.]{2019-12-11}As usual, let $p$ be a prime, $E/\IQ_p$ a finite extension with ring of integers $\Oo_E$ and residue field $\Oo_E/\pi\Oo_E\cong \IF_q$. Let $F/\IF_q$ be a non-archimedean algebraically closed extension and $\varpi\in\mm_F\setminus\{0\}$.
+Last time we defined the ring $B=B_{(0,\infty)}$. Now let
+\begin{equation*}
+	P\coloneqq \bigoplus_{d\geq 0}P_d\,,\quad\text{where}\quad P_d=B^{\phi=\pi^d}\,,
+\end{equation*}
+so that $X_\FFC=\Proj P$ is the Fargues--Fontaine curve as defined in Definition~\cref{def:FFC}. The goal for today is to prove the following theorem, working towards \cref{thm:FFCisACurve}, i.e.\ that $X_\FFC$ is indeed a curve.
+\begin{thm}[Fargues--Fontaine]\label{thm:PGradedFactorial}
+	$P$ is graded factorial with irreducible elements of degree $1$, i.e., the multiplicative monoid
+	\begin{equation*}
+		\bigcup_{d\geq 0}\big(P_d\setminus\{0\}\big)/E^\times
+	\end{equation*}
+	is free on $(P_1\setminus\{0\})/E^\times$. In particular, if $d\geq 1$ and $x\in P_d$, then there exist $t_1,\dotsc,t_d\in P_1$ (unique up $E^\times$ and order) such that $x=t_1\dotsm t_d$.
+\end{thm}
+Mind that \cref{thm:PGradedFactorial} does \emph{not} imply $P\cong \Sym_{\IQ_p}^*P_1$. In fact, the right-hand side has non-noetherian $\Proj$, whereas $\Proj P=X_\FFC$ will turn out to be noetherian. For the proof we need
+\begin{thm}\label{thm:BIPID}
+	Assume $I\subseteq (0,\infty)$ is compact. Then $B_I$ is a PID, and $\Spec B_I\setminus\{0\}$ is in canonical bijection with $|Y_I|$.
+\end{thm}
+\begin{proof}
+	We use the easy to prove fact that an integral domain $A$ is a PID iff $A$ is factorial and each (non-invertible) irreducible element generates a maximal ideal. Thus, it suffices to prove the following three claims:
+	\begin{numerate}
+		\item For $y\in |Y_I|$ the map $\theta_y\colon B^b\epimorphism C_y$ has a unique extension to a continuous morphism $\theta_y'\colon B_I\epimorphism C_y$. Moreover, if $\ker \theta_y=(\xi_y)$, then $\xi_y$ is also a generator of $\ker\theta_y$.
+		\item If $f\in B_I\setminus\{0\}$ such that $\Newt_I(f)=\emptyset$, then $f\in B_I^\times$ is a unit.
+		\item If $f\in B_I$ and $\lambda$ is a slope of $\Newt_I(f)$, then there exists a $y\in|Y_{-\lambda}|$ such that $f=\xi_yg$ for some $g\in B_I$. Note that by \itememph{1} this is equivalent to the existence of some $y\in |Y_{-\lambda}|$ such that $f(y)\coloneqq\theta_y'(f)=0$.
+	\end{numerate}
+	We first deduce the theorem from these two claims. Note that since $I$ is compact and the slopes of $\Newt_I^0(f)$ approach $0$, only finitely many of them can be contained in $I$. Hence $\Newt_I(f)$ has only finitely many segments. Using \itememph{3} and \itememph{2} and induction on the number of segments, we see that any non-zero $f$ can be decomposed into a product $f=u\xi_{y_1}\dotsm\xi_{y_n}$ of a unit $u\in B_I^\times$ and prime elements $\xi_{y_i}$. This shows that $B_I$ is factorial. By \itememph{1}, every $\xi_y$ generates a maximal ideal, so $B_I$ is indeed a PID by the fact cited in the beginning. Moreover, we remark that this implies
+	\begin{equation*}
+		(B_I)_{\xi_y}^\complete\cong B_{\dR,y}^+\cong(B^b)_{\xi_y}^\complete\,.
+	\end{equation*}
+	The isomorphism on the right-hand side is due to $\IA_\inf\localize{\pi}/(\xi_y^n)\cong B^b/(\xi_y^n)$ for all $n\geq 1$, which follows from the easy fact that $[\varpi]$ is already invertible in $\IA_\inf\localize{\pi}/(\xi_y^n)$. Hence we get a morphism $B_{\dR,y}^+\morphism (B_I)_{\xi_y}^\complete$ of complete DVRs. This induces an isomorphism on residue fields $C_y$ and $\xi_y$ is a uniformizer on both sides, thus is indeed an isomorphism.
 
+
+	Now we prove the three claims, beginning with \itememph{1}. Let $y\in |Y_I|$ and $r=d(y,0)=v_y(\pi)$, so that $r\in I$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] The map $\theta_y\colon B^b\epimorphism C_y$ is continuous for the $v_r$-topology on $B^b$.
+	\end{alphanumerate}
+	Indeed, if $x=\sum_{i\gge -\infty}^\infty [x_i]\pi^i\in B^b$, then $\theta_y(x)=\sum_{i\gge -\infty}^\infty \theta_y([x_i])\pi^i$, hence
+	\begin{equation*}
+		v_y\big(\theta_y(x)\big)\geq \inf_{i\in\IZ}\big\{v_y\big(\theta_y([x_i])\big)+iv_y(\pi)\big\}=v_r(x)\,,
+	\end{equation*}
+	using $r=v_y(\pi)$. This immediately implies continuity of $\theta_y$, so \itememph{*} is proved. Since every element of $B_I$ can be written as a sequence of elements of $B^b$ which is a Cauchy sequence in the $v_r$-topology (in fact, even a Cauchy sequence in the $v_s$-topology for all $s\in I$), we see that $\theta_y$ has indeed a unique continuous extension $\theta_y'\colon B_I\morphism C_y$.
+	
+	In the lecture it was claimed to be a \enquote{general fact} that $\ker \theta_y'=\ov{\ker\theta_y}$, the closure being taken in $B_I$. I don't see what fact that should be (please enlighten me), so here's a proof. Since $\theta_y'$ is continuous and $0\in C_y$ is closed, the inclusion \enquote{$\supseteq$} is clear. For the converse, let $f\in\ker\theta_y'$ and $(f_n)_{n\in\IN}$ a Cauchy sequence in $B^b$ converging to $f$. Every $f_n$ can be written as $f_n=[x_n]+\xi_y g_n$ for some $x_n\in F$ and $g_n\in B^b$. Indeed, we may assume $\xi_y=\pi-[a]$. For $N\gge 0$ we have $\pi^N\theta_y(f)\in \Oo_{C_y}$, hence by \cref{prop:D}\itememph{3} we may write $\pi^N\theta_y(f)=[z_n]$ for some $z_n\in \Oo_F$. Then $x_n=z_na^{-N}$ does it. Since $v_y(\theta_y(f_n))=v_F(x_n)=v_s([x_n])$ for all $s\in (0,\infty)$, we see that $([x_n])_{n\in\IN}$ is a Cauchy sequence in the $v_s$-topology for all $s\in (0,\infty)$. Thus, $(\xi_yg_n)_{n\in\IN}$ is a Cauchy sequence in the $v_s$-topology for all $s\in I$, and converges to $f$. This proves $f\in\ov{\ker\theta_y}$.
+	
+	The fact that $\ker\theta_y'=(\xi_y)$ is now an easy consequence: suppose $f\in\ov{\ker\theta_y}$ and write $f$ as the limit of a Cauchy sequence $(f_n)_{n\in\IN}$ such that $f_n=\xi_yg_n$. For all $s\in I$ we have
+	\begin{equation*}
+		v_s(g_n-g_m)=v_s(f_n-f_m)-v_s(\xi_y)\,,
+	\end{equation*}
+	hence $(g_n)_{n\in\IN}$ is a Cauchy sequence in the $v_s$-topology as $v_s(\xi_y)\neq \infty$. Thus $g=\lim_{n\to\infty}g_n$ exists in $B_I$ and satisfies $f=\xi_yg$. This proves \itememph{1}.
+	
+	For \itememph{2}, let $I=[a,b]$ and let $(f_n)_{n\in\IN}$ be an $v_s$-Cauchy sequence for all $s\in I$ converging to $f$. Since $f\neq 0$ and $\Newt_I(f)=\emptyset$, we deduce that already $\Newt_I(f_n)=\emptyset$ for all $n\gge 0$ (this follows from \cref{rem:uniformOnCompact} for example). So it suffices to consider the case $f\in B^b$ (indeed, if the $f_n$ are units for $n\gge 0$, then $(f_n^{-1})_{n\gge 0}$ is a Cauchy sequence---here we critically use $f\neq 0$ again---and it converges to an inverse of $f$). Now we can write
+	\begin{equation*}
+		f=\sum_{n\gge -\infty}^\infty [x_n]\pi^n=\sum_{n\leq N}[x_n]\pi^n+\sum_{n>N}[x_n]\pi^n\eqqcolon f_-+f_+\,.
+	\end{equation*}
+	Here $N$ is chosen in such a way that each slope of $\Newt(f)$ on $(-\infty,N]$ is $<-b$ and each slope on $[N,\infty)$ is $>-a$. This works, since by assumption $\Newt(f)$ has no slopes in $I$.
+	\begin{center}
+		\begin{tikzpicture}[line width=rule_thickness, line cap=round, line join =round, x=1cm,y=1cm]
+		\draw[-to] (-4.5,0) -- (4.5,0);
+		\draw[-to] (0,-0.5) -- (0,3.5);
+		\draw[thick] (-3.6875,3.375) -- (-3,2) -- (-2,1) node[pos=0.5, above right] {$\lambda_1$} -- (-1,0.5) node[pos=0.4, above right] {$\lambda_2$} -- (0,0.275) -- (2,0.125) -- (4.375,0.110375);
+		\draw[dotted] (-4.375,3.375) -- (-3,2);
+		\draw[dotted] (-2,1) -- (-1,0);
+		\draw[dotted] (-1,0.5) -- (0.75,-0.375);
+		\draw[dotted] (-2,1) -- (-4.375,2.1875);
+		\fill (-2,1) circle (0.5ex);
+		\fill (-3,2) circle (0.5ex);
+		\fill (-1,0.5) circle (0.5ex);
+		\draw (-1,0.75ex) -- (-1,-0.75ex) node[below] {$N-1$};
+		\draw (-2,0.75ex) -- (-2,-0.75ex) node[below] {$N$};
+		\draw (-3,0.75ex) -- (-3,-0.75ex) node[below] {$N+1$};
+		\end{tikzpicture}
+	\end{center}
+	Let $\lambda_1$ and $\lambda_2$ be the slopes in the picture, so that $-\lambda_1>b>a>-\lambda_2$. Looking at the dotted lines we derive inequalities
+	\begin{align*}
+		v(x_n)&\geq (n-N)\lambda_1+v(x_N)\quad\text{for all }n\leq N\,,\\
+		v(x_n)&\geq (n-N)\lambda_2+v(x_N)\quad\text{for all }n\geq N\,.
+	\end{align*}
+	Let $f=f_-+f_+$ be the above sum decomposition and write 
+	\begin{equation*}
+		f_-=[x_N]\pi^N\left(1+\sum_{n<N}[x_nx_N^{-1}]\pi^{n-N}\right)\,.
+	\end{equation*}
+	Writing the second factor as $1+g$, we claim that $g$ is topologically nilpotent in $B_I$. Indeed, let $r\in I$. We compute
+	\begin{equation*}
+		v_r(g)=\inff_{n<N}\big\{v(x_n)-v(x_N)+r(n-N)\big\}\geq \inff_{n<N}\big\{(\lambda_1+r)(n-N)\big\}=-\lambda_1-r>0\,,
+	\end{equation*}
+	proving that $g$ is topologically nilpotent, as claimed. Thus $(1+g)\in B_I^\times$. The element $[x_N]\pi^N$ is already invertible in $B^b$, hence $f_-=[x_N]\pi^N(1+g)\in B_I^\times$. To show that $f$ is a unit too, write $f=f_-(1+f_-^{-1}f_+)$. Similar as above we show $v_r(f_+)>v_r([x_N]\pi^N)$ for all $r\in I$, hence $f_-^{-1}f_+$ is topologically nilpotent in $B_I$, so $f$ is indeed a unit.
+	
+	We omit the proof of \itememph{3}, since it is very similar to the proof of \cref{thm:NewtonSlope} (approximate $f$ by a Cauchy sequence $(f_n)_{n\in\IN}$ in $B^b$, show that$-\lambda$ occurs as a slope in $\Newt_I(f_n)$ for all $n\gge 0$, find a Cauchy sequence $(y_n)_{n\gge 0}$ of zeros $y_n\in |Y_{-\lambda}|$ of $f_n$, and use that $|Y_{-\lambda}|$ is complete by Proposition~\cref{prop:YrComplete}).
+\end{proof}
+\begin{defi}
+	Let $I\subseteq (0,\infty)$ be any intervall. The \defemph{monoid of effective divisors on $|Y_I|$} is the partially ordered monoid $\Div^+(|Y_I|)$ of formal sums
+	\begin{equation*}
+		\sum_{y\in|Y_I|}n_yy\,,\quad n_y\in\IN\,,
+	\end{equation*}
+	such that for each compact intervall $J\subseteq I$ the set $\left\{y\in|Y_J|\st n_y\neq 0\right\}$ is finite (so in particular, if $I$ is not compact, the above sums need not be finite).
+\end{defi}
+\begin{exm}
+	if $I$ is compact, we have $\Div^+(|Y_I|)=\IN^{|Y_I|}$. In general, for arbitrary intervalls $I$ we have $\Div^+(|Y_I|)\cong \limit_{J}\Div^+(|Y_J|)$, where the limit is taken over all compact subintervalls $J\subseteq I$.
+\end{exm}
+\begin{defi}\label{def:div}
+	For all $y$ we denote by $\ord_y\colon B_{\dR,y}^+\morphism \IN\cup\{\infty\}$ the valuation of $B_{\dR,y}^+$. For $f\in B_I\setminus\{0\}$, let
+	\begin{equation*}
+		\div(f)=\sum_{y\in|Y_I|}\ord_y(f)y\in \Div^+(|Y_I|)
+	\end{equation*}
+	be the \defemph{principal divisor associated to $f$}. Since $B_J$ is a PID for all compact $J\subseteq I$ by \cref{thm:BIPID}, the map $\div\colon B_I\setminus\{0\}\morphism \Div^+(|Y_I|)$ is well-defined, multiplicative, and vanishes on units.
+\end{defi}
+\begin{prop}\label{prop:divInjective}
+	If $I\subseteq (0,\infty)$ is an intervall, then the map
+	\begin{equation*}
+		\div\colon \big(B_I\setminus\{0\}\big)/B_I^\times\morphism \Div^+(|Y_I|)
+	\end{equation*}
+	is injective, and bijective if $I$ is compact. Moreover, $\div(f)\geq \div(g)$ iff $f\in gB_I$.
+\end{prop}
+\begin{proof}
+	The assertion is clear if $I$ is compact, since in this case $B_I$ is a PID by \cref{thm:BIPID}, whose primes are precisely (up to units) the $\xi_y$ for $y\in |Y_I|$. In general, write $B_I\cong\limit_JB_J$ and $\Div^+(|Y_I|)\cong \limit_J\Div^+(|Y_J|)$ and use that limits preserve injective maps. The second assertion can be seen in a similar way.
+\end{proof}
+\begin{lem}\label{lem:PEigenspaces}
+	Recall that $P_d=B^{\phi=\pi^d}$. Then
+	\begin{equation*}
+		P_d=\begin{cases*}
+			E & if $d=0$\\
+			0 & if $d<0$\\
+			\text{complicated} & if $d>0$
+		\end{cases*}
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Similar as for $B^b$ (see \cref{lem:BbEigenspaces}), using $\IA_\inf=\left\{f\in B\st\Newt_{(0,\infty)}(f)\subseteq \IR_{\geq 0}^2\right\}$. This equality is left as an exercise (a hard one, though).
+\end{proof}
+We have a canonical Frobenius action of $\Div^+(|Y|)$ defined as follows: for $y\in|Y|$ let $\phi^*(y)\in |Y|$ be the point associated to the prime ideal $\phi^{-1}(\pp_y)$. Then we put
+\begin{equation*}
+	\phi^*\Bigg(\sum_{y\in|Y|}n_yy\Bigg)=\sum_{y\in|Y|}n_y\phi^*(y)\,.
+\end{equation*}
+Since $d(\phi^*(y),0)=q^{-1}d(y,0)$, it is easily established that the right-hand side is an element of $\Div^+(|Y|)$ again, so we get indeed an action $\phi\curvearrowright \Div^+(|Y|)$.
+\begin{defi}
+	We define $\Div^+(|Y|/\phi^\IZ)\coloneqq \Div^+(|Y|)^{\phi^\IZ}$ to be the monoid of \defemph{effective divisors on the Fargues--Fontaine curve}. 
+\end{defi}
+\begin{rem}\label{rem:Div+}
+	Let $a>0$ be arbitrary and $I=[a,qa)$. Then $\Div^+(|Y|/\phi^\IZ)$ is in canonical bijection with $\Div^+_\mathrm{fin}(|Y_I|)$, where the subscript $_\mathrm{fin}$ denotes the subset of those divisors which are actually finite sums. Indeed, since the Frobenius action is a \enquote{contraction with factor $q^{-1}$} in the sense that $d(\phi^*(y),0)=q^{-1}d(y,0)$, exactly one of the $\{(\phi^n)^*(y)\}_{n\in\IZ}$ will be contained in $|Y_I|$. Now the claimed bijection comes from the fact that every divisor $D\in \Div^+(|Y|/\phi^\IZ)$ can be decomposed into a finite sum of divisors of the form $\sum_{n\in\IZ}(\phi^n)^*(y)$ (do induction in the finite number of $y\in Y_I$ occurring with non-zero coefficient in $D$), and this decomposition is unique.
+\end{rem}
+\begin{thm}
+	The principal divisors map $\div$ from \cref{def:div} induces an isomorphism
+	\begin{equation*}
+		\div\colon\bigcup_{d\geq 0}\big(P_d\setminus\{0\}\big)/E^\times\isomorphism \Div^+\big(|Y|/\phi^\IZ\big)\,.
+	\end{equation*}
+	In particular, this implies \cref{thm:PGradedFactorial}.
+\end{thm}
+\begin{proof}
+	To derive \cref{thm:PGradedFactorial}, use that every effective divisor $D\in \Div^+(|Y|/\phi^\IZ)$ decomposes uniquely into a finite sum of divisors of the form $\sum_{n\in\IZ}(\phi^n)^*(y)$ as in \cref{rem:Div+}. If you think about it, the isomorphism $\div$ translates this into the assertion that the monoid on the left-hand side is free on $(P_d\setminus\{0\})/E^\times$.
+	
+	To prove the theorem, we first check well-definedness. For $x\in P_d\setminus\{0\}$ we have $\phi^*(\div(x))=\div(\phi^{-1}(x))=\div(\pi^{-d}x)=\div(x)$, since $\pi^{-d}$ is a unit in $B$. Hence $\div$ has indeed image in $\Div^+(|Y|)^{\phi^\IZ}$.
+	
+	For injectivity, let $x\in P_d\setminus\{0\}$ and $x'\in P_{d'}\setminus\{0\}$ such that $\div(x)=\div(y)$. Without restriction $d'\geq d$. From the second part of \cref{prop:divInjective} we get $x=ux'$ for some $u\in B^\times$. Then $u\in B^{\phi=\pi^{d-d'}}$. But then \cref{lem:PEigenspaces} allows only $d=d'$. In this case $B^{\phi=1}=E$, so $u\in E^\times$, proving that $x$ and $x'$  represent the same element. This shows injectivity.
+
+	To prove surjectivity, it suffices to show that $\sum_{n\in\IZ}(\phi^n)^*(y)$ is in the image of $P_1\setminus\{0\}$. We may assume $\xi_y=\pi-[a]$. Put
+	\begin{equation*}
+		x=\prod_{n\geq 0}\left(1-\frac{[a]^{q^n}}{\pi}\right)=\prod_{n\leq 0}\frac{\phi^n(\xi_y)}\pi\,.
+	\end{equation*}
+	This $x$ is well-defined as $[a]^{q^n}$ converges to $0$ for $n\to\infty$, see \cref{lem:convergenceInB}\itememph{1}. Moreover, $\phi(x)=\prod_{n\geq 1}(\phi^n(\xi_y)/\pi)=(\xi_y/\pi)^{-1}x$ and $\div(x)=\sum_{n\leq 0}(\phi^n)^*(y)$. Applying \cref{lem:EigenspacesDim1} below to $\xi_y$ provides an element $z\neq 0$ such that $\phi(z)=\xi_yz$. Then
+	\begin{equation*}
+		\div(z)=\div\big(\xi_y\phi^{-1}(z)\big)=y+\phi^*\big(\div(z)\big)=y+\phi^*(y)+(\phi^2)^*(y)+\dotsb\,.
+	\end{equation*}
+	Hence $\div(x\phi^{-1}(z))=\sum_{n\in\IZ}(\phi^n)^*(y)$. Moreover, $\phi(x\phi^{-1}(z))=(\xi_y/\pi)^{-1}xz=\pi x\phi^{-1}(z)$. Hence $t\coloneqq x\pi^{-1}(z)$ is an element of $P_1\setminus\{0\}$ mapping to $\sum_{n\in\IZ}(\phi^n)^*(y)$.
+\end{proof}
+\begin{lem}\label{lem:EigenspacesDim1}
+	Let $\beta\in B^b\cap W_{\Oo_E}(F)^\times$ (for example, $\xi_y$ lies in this intersection). Then we have
+	\begin{equation*}
+		\dim_E(B^b)^{\phi=\beta}=1\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Proving \enquote{$\leq 1$} is easy: if $f,f'\in (B^b)^{\phi=\beta}$ are two non-zero eigenvectors, then
+	\begin{equation*}
+		f/f'\in\left(W_{\Oo_E}(F)\localize{\pi}\right)^{\phi=1}=W_{\Oo_E}(\IF_q)\localize{\pi}=E\,,
+	\end{equation*}
+	which has dimension $1$ over $E$.
+	
+	It remains to prove that $(B^b)^{\phi=\beta}$ is non-zero. Without restriction let $\beta\in\IA_\inf\setminus\pi\IA_\inf$ (a general $\beta\in B^b\cap W_{\Oo_E}(F)^\times$ can be written as $[z^{-1}]\beta'$ for $\beta'\in \IA_\inf\setminus \pi\IA_\inf$ and $z\in \Oo_F$, and it's easy to construct an eigenvector with eigenvalue $[z^{-1}]$). To obtain a non-zero eigenvector of $\beta$, we construct a converging sequence $(x_n)_{n\in\IN}$ in $\IA_\inf$ with the properties
+	\begin{numerate}
+		\item $x_1\notin\pi\IA_\inf$,
+		\item $x_n\equiv x_1\mod \pi$ for all $n\geq 1$, and
+		\item $\phi(x_n)\equiv \beta x_n\mod\pi^n$ for all $n\geq 1$.
+	\end{numerate}
+	We do this by induction on $n$. For $n=1$, take $x_1=[a]$, where $a\in \Oo_F\setminus\{0\}$ is a non-zero solution of $a^q=\ov{\beta }a$, where $\ov{\beta}\in \Oo_F$ is the reduction of $\beta$ modulo $\pi$. Such $a$ exists as $F$ is algebraically closed. Now let $n\geq1$ and assume $x_n$ has already been constructed. We use the ansatz $x_{n+1}=x_n+[u]\pi^n$. Then \itememph{2} is automatically satisfied. For \itememph{3} write $\phi(x_n)\equiv \beta x_n+[z]\pi^n\mod \pi^{n+1}$ and compute
+	\begin{align*}
+		\phi(x_n+[u]\pi^n)&\equiv \beta(x_n+[u]\pi^n)-\beta[u]\pi^n+[u^q]\pi^n+[z]\pi^n\\
+		&\equiv \beta(x_n+[u]\pi^n)-[\ov{\beta}u-u^q-z]\pi^n\mod \pi^{n+1}\,.
+	\end{align*}
+	Thus it suffices to choose $u$ such that $\ov{\beta}u-u^q-z=0$, which is always possible as $F$ is algebraically closed.
+\end{proof}
 
 \appendix
 

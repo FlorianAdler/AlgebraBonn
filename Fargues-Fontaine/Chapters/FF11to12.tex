@@ -289,7 +289,7 @@ The letter $V$ stands for the German word \enquote{Verschiebung}. In contrast to
 \begin{lem}\label{lem:imVn}
 	\begin{numerate}
 		\item For all $n\in\IN$, the image of $V^n$ is an ideal in $W_{\Oo_E}(R)$.
-		\item We have $W_{\Oo_E}(R)\cong \lim_{n\in\IN}W_{\Oo_E}(R)/\im V^n$.
+		\item We have $W_{\Oo_E}(R)\cong \limit_{n\in\IN}W_{\Oo_E}(R)/\im V^n$.
 		\item Every $x\in W_{\Oo_E}(R)$ admits a unique representation
 		\begin{equation*}
 			x=\sum_{n=0}^\infty V^n[x_n]
@@ -318,7 +318,7 @@ The letter $V$ stands for the German word \enquote{Verschiebung}. In contrast to
 	\end{equation*}
 	where $\Delta=X-Y\in\Oo_E[X,Y]$ and $(\Delta_n)_{n\in\IN}$ are the associated Witt polynomials constructed in the proof of \cref{prop:WittPolynomials}. This can be done in the same way as above.
 	
-	Now since $R^\IN\cong \lim_{n\in\IN}R^n$, the bijection $W_{\Oo_E}(R)/\im V^n\cong R^n$ for all $n\in \IN$ shows that $W_{\Oo_E}(R)\cong \lim_{n\in\IN}W_{\Oo_E}(R)/\im V^n$ is true as a limit of sets. However, the limit in the category of $\Oo_E$-algebras can be taken on the level of sets. This shows \itememph{2}.
+	Now since $R^\IN\cong \limit_{n\in\IN}R^n$, the bijection $W_{\Oo_E}(R)/\im V^n\cong R^n$ for all $n\in \IN$ shows that $W_{\Oo_E}(R)\cong \limit_{n\in\IN}W_{\Oo_E}(R)/\im V^n$ is true as a limit of sets. However, the limit in the category of $\Oo_E$-algebras can be taken on the level of sets. This shows \itememph{2}.
 	
 	Finally, we show \itememph{3}. First we prove that for all $N\in \IN$ we have
 	\begin{equation}\label{eq:sumVn}
@@ -450,7 +450,7 @@ In the proof of \cref{prop:FqAlgebrasEquivalence} we have seen that $W_{\Oo_E}(-
 \begin{defi}
 	Let $A$ be a $\pi$-complete $\Oo_E$-algebra. Then the \defemph{tilt of $A$} is
 	\begin{equation*}
-		A^\flat\coloneqq \lim_{x\mapsto x^q}A/\pi A=\left\{(a_0,a_1,\dotsc)\in\prod_{n\in\IN}A/\pi A\st a_i^q=a_{i-1}\text{ for all }i>0\right\}\,.
+		A^\flat\coloneqq \limit_{x\mapsto x^q}A/\pi A=\left\{(a_0,a_1,\dotsc)\in\prod_{n\in\IN}A/\pi A\st a_i^q=a_{i-1}\text{ for all }i>0\right\}\,.
 	\end{equation*}
 \end{defi}
 Note that $A^\flat$ is always a perfect $\IF_q$-algebra (in fact, that's a purely category-theoretical statement): the Frobenius on $A^\flat$ is given by $\Frob_{q,A^\flat}(a_0,a_1,\dotsc)=(a_0^q,a_0,a_1,\dotsc)$ and it has an inverse defined by $\Frob_{q,A^\flat}^{-1}(a_0,a_1,\dotsc)=(a_1,a_2,\dotsc)$.
@@ -493,7 +493,7 @@ Note that $A^\flat$ is always a perfect $\IF_q$-algebra (in fact, that's a purel
 	\end{equation*}
 	which is precisely what we want. Passing to the limit, we obtain a map
 	\begin{equation*}
-		\theta\colon W_{\Oo_E}(A^\flat)\cong \lim_FW_{\Oo_E,n}(A/\pi A)\morphism \lim_{n \in\IN}A/\pi^{n+1}A\cong A\,.
+		\theta\colon W_{\Oo_E}(A^\flat)\cong \limit_FW_{\Oo_E,n}(A/\pi A)\morphism \limit_{n \in\IN}A/\pi^{n+1}A\cong A\,.
 	\end{equation*}
 	The isomorphism on the left is easy to check, and the isomorphism on the right follows from $A$ being $\pi$-complete. In the lecture, that was the end of the proof sketch. In these notes we will finish the proof, but only after we understand the map $\theta$ a little better.
 \end{proof}
@@ -501,7 +501,7 @@ Another application of \cref{lem:keyLemma} is the following.
 \begin{prop}\label{prop:(A/I)b}
 	Let $A$ be a $\pi$-complete $\Oo_E$-algebra. Let $I\subseteq A$ be an ideal containing $I$, such that $A$ is also $I$-complete. Then the canonical map
 	\begin{equation*}
-		\lim_{x\mapsto x^q}A\isomorphism (A/I)^\flat
+		\limit_{x\mapsto x^q}A\isomorphism (A/I)^\flat
 	\end{equation*}
 	is an isomorphism. In particular, the left-hand side (which is a priori only a multiplicative monoid) inherits a natural ring structure.
 \end{prop}
@@ -512,7 +512,7 @@ Another application of \cref{lem:keyLemma} is the following.
 	\end{equation*}
 	As in the proof of \cref{deflem:Teichmüller}, $x^\sharp$ is independent of the choice of lifts and $(-)^\sharp$ is multiplicative. Now it's easy to see that the map
 	\begin{align*}
-		(A/I)^\flat&\morphism \lim_{x\mapsto x^q}A\\
+		(A/I)^\flat&\morphism \limit_{x\mapsto x^q}A\\
 		x&\longmapsto \big(x^\sharp,(x^{1/q})^\sharp,\dotsc\big)
 	\end{align*}
 	is a multiplicative inverse of the map in question. This proves the assertion.
@@ -524,9 +524,9 @@ Another application of \cref{lem:keyLemma} is the following.
 	\end{equation*}
 \end{lem}
 \begin{proof*}
-	Let us first describe the isomorphism $W_{\Oo_E}(A^\flat)\cong \lim_FW_{\Oo_E,n}(A/\pi A)$ that is part of the definition of $\theta$. The underlying set of $W_{\Oo_E}(A^\flat)$ consists of sequences $[a_0,a_1,\dotsc]$, where each $a_n\in A^\flat$ is itself a sequence $a_n=(\ov{a}_{n,i})_{i\in\IN}$ in $A/\pi A$ such that $\ov{a}_{n,i}^q=\ov{a}_{n,i-1}$. The underlying set of $\lim_FW_{\Oo_E,n}(A/\pi A)$ consists of sequences $([\ov{a}_{0,0}],[\ov{a}_{0,1},\ov{a}_{1,1}],[\ov{a}_{0,2},\ov{a}_{1,2},\ov{a}_{2,2}],\dotsc)$ that are compatible under $F$. The isomorphism in question is given by
+	Let us first describe the isomorphism $W_{\Oo_E}(A^\flat)\cong \limit_FW_{\Oo_E,n}(A/\pi A)$ that is part of the definition of $\theta$. The underlying set of $W_{\Oo_E}(A^\flat)$ consists of sequences $[a_0,a_1,\dotsc]$, where each $a_n\in A^\flat$ is itself a sequence $a_n=(\ov{a}_{n,i})_{i\in\IN}$ in $A/\pi A$ such that $\ov{a}_{n,i}^q=\ov{a}_{n,i-1}$. The underlying set of $\limit_FW_{\Oo_E,n}(A/\pi A)$ consists of sequences $([\ov{a}_{0,0}],[\ov{a}_{0,1},\ov{a}_{1,1}],[\ov{a}_{0,2},\ov{a}_{1,2},\ov{a}_{2,2}],\dotsc)$ that are compatible under $F$. The isomorphism in question is given by
 	\begin{align*}
-		W_{\Oo_E}(A^\flat)&\isomorphism\lim_FW_{\Oo_E,n}(A/\pi A)\\
+		W_{\Oo_E}(A^\flat)&\isomorphism\limit_FW_{\Oo_E,n}(A/\pi A)\\
 		[\ov{a}_0,\ov{a}_1,\ov{a}_2,\dotsc]&\longmapsto \big([\ov{a}_{0,0}],[\ov{a}_{0,1},\ov{a}_{1,1}],[\ov{a}_{0,2},\ov{a}_{1,2},\ov{a}_{2,2}],\dotsc\big)\,.
 	\end{align*}
 	Indeed, it is clear that this defines a bijection on set level and one may check that it is also compatible with the ring structures on either side.
@@ -717,7 +717,7 @@ If $C/E$ is a non-archimedean (recall that this requires $C$ to be complete) alg
 		\end{equation*}
 		\item The kernel of $\theta\colon W_{\Oo_E}(\Oo_C^\flat)\morphism\Oo_C$ is generated by $\pi-[\pi^\flat]$.
 	\end{numerate}
-	We start with \itememph{1}. Note that by \cref{prop:(A/I)b} we may write $\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C$. Now let $y=(y_0,y_1,\dotsc)\in\Oo_C^\flat$. Then $\pi^\flat\mid y$ iff $\pi^{1/q^n}\mid y_n$ for all $n\geq 0$. Since $\Oo_C$ is a valuation ring, this is equivalent to $|\pi|^{1/q^n}\geq |y_n|=|y_0|^{1/q^n}$. Thus, $\pi^\flat\mid y$ is equivalent to the single condition $y_0\equiv 0\mod \pi$. Therefore, the kernel of $(-)^\sharp\colon \Oo_C^\flat\morphism \Oo_C/\pi\Oo_C$ is generated by $\pi^\flat$. However, $\Oo_C^\flat\epimorphism \Oo_C/\pi\Oo_C$ is clearly surjective (since $C$ is algebraically closed), hence indeed
+	We start with \itememph{1}. Note that by \cref{prop:(A/I)b} we may write $\Oo_C^\flat\cong \limit_{x\mapsto x^q}\Oo_C$. Now let $y=(y_0,y_1,\dotsc)\in\Oo_C^\flat$. Then $\pi^\flat\mid y$ iff $\pi^{1/q^n}\mid y_n$ for all $n\geq 0$. Since $\Oo_C$ is a valuation ring, this is equivalent to $|\pi|^{1/q^n}\geq |y_n|=|y_0|^{1/q^n}$. Thus, $\pi^\flat\mid y$ is equivalent to the single condition $y_0\equiv 0\mod \pi$. Therefore, the kernel of $(-)^\sharp\colon \Oo_C^\flat\morphism \Oo_C/\pi\Oo_C$ is generated by $\pi^\flat$. However, $\Oo_C^\flat\epimorphism \Oo_C/\pi\Oo_C$ is clearly surjective (since $C$ is algebraically closed), hence indeed
 	\begin{equation*}
 		\Oo_C^\flat/\pi^\flat\Oo_C^\flat\cong \Oo_C/\pi\Oo_C\,.
 	\end{equation*}
@@ -801,7 +801,7 @@ Why this setup? Let $K/\IQ_p$ be a discretely valued non-archime-dean field exte
 \end{exm}
 Next time we will see that if $a\in \Prim_1$, then $a\IA_\inf$ is  a prime ideal and $\IA_\inf/a\IA_\inf\cong \Oo_C$ for some non-archimedean algebraically closed extension $C/E$ (which generalizes the claim about the $(\pi-[a])$ above). For now let $C/E$ be such an extension and $|\blank|\colon C\morphism \IR_{\geq 0}$ its norm. Recall that \cref{prop:(A/I)b} provides an isomorphism
 \begin{equation*}
-	\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C\,,
+	\Oo_C^\flat\cong \limit_{x\mapsto x^q}\Oo_C\,,
 \end{equation*}
 sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1/q})^\sharp,\dotsc)$ contained in the right-hand side.
 \begin{lem}\label{lem:OcflatisOF}
@@ -819,7 +819,7 @@ sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1
 		&=\lim_{n\to\infty}\max\left\{|x^\sharp|,|y^\sharp|\right\}\\
 		&=\max\big\{|x|^\flat,|y|^\flat\big\}
 	\end{align*}
-	This shows that $|\blank|^\flat$ is a norm in $\Oo_C^\flat$. To show that $\Oo_C^\flat$ is complete, we claim that the topology generated by $|\blank|^\flat$ is the inverse limit topology on $\Oo_C^\flat\cong \lim_{x\mapsto x^q}\Oo_C$. A neighbourhood basis of $0$ in the topology generated by $|\blank|^\flat$ is given by the sets
+	This shows that $|\blank|^\flat$ is a norm in $\Oo_C^\flat$. To show that $\Oo_C^\flat$ is complete, we claim that the topology generated by $|\blank|^\flat$ is the inverse limit topology on $\Oo_C^\flat\cong \limit_{x\mapsto x^q}\Oo_C$. A neighbourhood basis of $0$ in the topology generated by $|\blank|^\flat$ is given by the sets
 	\begin{equation*}
 		\big\{x\ \big|\ |x|^\flat<\epsilon\big\}\quad\text{for all }\epsilon>0\,.
 	\end{equation*}
@@ -840,7 +840,7 @@ sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1
 	\end{equation*}
 	hence there exists an index $i$ such that $|y-z_i|\leq |\pi|^{1/dq}$, or equivalently $|y-z_i|^q\leq |\pi|^{1/d}$. Then also $|x-z_i^q|\leq |\pi|^{1/d}$ as all other terms in the expansion of $(y-z_i)^q$ are divisible by $\pi$. By induction, we obtain a sequence $(x_n)_{n\in \IN}$ such that $x_n\in\Oo_C$, $f_n(x_n)=0$, and the $x_n$ are \enquote{close} to being $q$-power compatible in the sense that $|x_{n+1}-x_n^q|\leq |\pi|^{1/d}$. But this is actually sufficient! Indeed, put $\aa=\left\{y\in \Oo_C\st |y|\leq |\pi|^{1/d}\right\}$. Then $x=(x_n)_{n\in\IN}$ is an element of
 	\begin{equation*}
-		\lim_{x\mapsto x^q}\Oo_C/\aa\cong \lim_{x\mapsto x^q}\Oo_C/\pi\Oo_C=\Oo_C^\flat\,,
+		\limit_{x\mapsto x^q}\Oo_C/\aa\cong \limit_{x\mapsto x^q}\Oo_C/\pi\Oo_C=\Oo_C^\flat\,,
 	\end{equation*}
 	where we use \cref{prop:(A/I)b} to obtain the isomorphism on the left. Hence $x$ corresponds to an element $x\in \Oo_C^\flat$, which clearly satisfies $f(x)=0$.
 \end{proof}
@@ -859,7 +859,7 @@ sending an element $x\in \Oo_C^\flat$ of the left-hand side to $(x^\sharp, (x^{1
 	by exactness of localization. We claim that $\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}$ is injective for all $n$. To show this, we need to check that $\IA_\inf/(\xi^n)$ is $\pi$-torsionfree. We use induction on $n$. For $n=1$ we get $\IA_\inf/(\xi)\cong \Oo_C$, which is $\pi$-torsionfree. Now suppose $\pi x=\xi^ny$ for some $x,y\in\IA_\inf$. By the $n=1$ case we see that $x$ must be divisible by $\xi$, say, $x=\xi x'$. Since $\IA_\inf$ is a domain this implies $\pi x'=\xi^{n-1}y$. But then the induction hypothesis shows that $x'$ itself must be divisible by $\xi^{n-1}$, proving the claim.
 	Now since limits are left exact, we see that
 	\begin{align*}
-		\IA_\inf\cong \lim_{n\in \IN}\IA_\inf/(\xi^n)\monomorphism \IA_\inf/(\xi^n)\localize{\pi}\cong B_\dR^+
+		\IA_\inf\cong \limit_{n\in \IN}\IA_\inf/(\xi^n)\monomorphism \limit_{n\in\IN}\Big(\IA_\inf/(\xi^n)\localize{\pi}\Big)\cong B_\dR^+
 	\end{align*}
 	is injective, as required. The isomorphism on the left-hand side uses that $\IA_\inf$ is $\xi$-complete by \cite[\stackstag{09OT}]{stacks-project} and the fact that $\IA_\inf$ is $(\pi,\xi)$-complete. This shows \itememph{1}.
 	
@@ -889,7 +889,7 @@ Have you ever wondered what the \enquote{$\inf$} in $\IA_\inf$ actually means? I
 	\end{equation*}
 \end{lem}
 \begin{proof}[Sketch of a proof]
-	By \cref{prop:(A/I)b} we have $\lim_{x\mapsto x^q}D\cong (D/(\pi,I))^\flat\cong R^\flat$. By the same argument $\lim_{x\mapsto x^q} D\cong D^\flat$. Hence $D^\flat\cong R^\flat$. Thus, the Witt-tilting adjunction (\cref{prop:tiltWittAdjunction}) provides a unique map 
+	By \cref{prop:(A/I)b} we have $\limit_{x\mapsto x^q}D\cong (D/(\pi,I))^\flat\cong R^\flat$. By the same argument $\limit_{x\mapsto x^q} D\cong D^\flat$. Hence $D^\flat\cong R^\flat$. Thus, the Witt-tilting adjunction (\cref{prop:tiltWittAdjunction}) provides a unique map 
 	\begin{align*}
 		\IA_\inf\cong W_{\Oo_E}(R^\flat)\morphism D\,.
 	\end{align*}

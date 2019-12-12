@@ -6,6 +6,8 @@
 \usepackage{tikzducks}
 \usepackage[normalem]{ulem}
 
+\DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
+
 \newcommand{\magic}{%
 	\smash{\tikz[scale=0.125, baseline=-3]{%
 		\fill (-0.65,0) -- (0.65,0) -- (0.65,-1.1) -- (-0.65, -1.1) -- cycle;%
@@ -70,7 +72,7 @@ In these notes, the modern meaning of the word \emph{scheme} is used. That is, a
 
 Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
 
-\numpar*{Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
+\numpar*{\Attention\ Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 \include{./Chapters/EtaleI11to163}
