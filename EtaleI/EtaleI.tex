@@ -4,6 +4,7 @@
 \usepackage{halloweenmath}
 \usetikzlibrary{shapes.geometric}
 \usepackage{tikzducks}
+\usepackage[normalem]{ulem}
 
 \newcommand{\magic}{%
 	\smash{\tikz[scale=0.125, baseline=-3]{%
@@ -68,6 +69,8 @@ Along the way, we will come across sheaves on the étale site, the relation betw
 In these notes, the modern meaning of the word \emph{scheme} is used. That is, a scheme in these lecture notes is what Professor Franke would call a \emph{prescheme}, and what he would call a \emph{scheme} will be called a \emph{separated scheme} in here.
 
 Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
+
+\numpar*{Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 \include{./Chapters/EtaleI11to163}
@@ -418,7 +421,7 @@ The most important application of Artin's approximation theorem to étale cohomo
 	canonically. Here $\Global(X_y,\Ff)$ is abuse of notation for $\Global(X_y,p_1^*\Ff)$, where $p_1\colon X_y\morphism X$ denotes the projection to the first factor.
 \end{cor}
 \begin{proof*}
-	By \cref{prop:henselization}\itememph{g} and the construction \cref{eq:AhColim2} in its proof, we can write $\Oo_{Y_\et,y}\cong \Oo_{Y,|y|}^\sh\cong \colimit_{(V,v)}\Global(V,\Oo_V)$, where $(V,v)$ ranges through the affine étale neighbourhoods of the geometric point $y$. Thus $X_y\cong \limit_{(V,v)}X\times_YV$. Applying \cref{prop:etaleInverseLimit} thus gives
+	By \cref{prop:henselization}\itememph{g} and the construction \cref{eq:AhColim2} in its proof, we can write $\Oo_{Y_\et,y}\cong \Oo_{Y,|y|}^\sh\cong \colimit_{(V,v)}\Global(V,\Oo_V)$, where $(V,v)$ ranges through the affine étale neighbourhoods of the geometric point $y$. Thus $X_y\cong \limit_{(V,v)}X\times_YV$. Applying \cref{prop:etaleInverseLimit} hence gives
 	\begin{equation*}
 		\Global(X_y,\Ff)\cong \colimit_{(V,v)}\Global(X\times_YV,\Ff)\cong \colimit_{(V,v)}\Global(V,f_*\Ff)\,.
 	\end{equation*}
