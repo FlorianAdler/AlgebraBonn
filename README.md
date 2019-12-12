@@ -2,7 +2,7 @@
 
 This means **no lecture notes :fearful::grimacing:** ... unless :point_right:*you* help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address ([ferdinand.wagner@uni-bonn.de](mailto:ferdinand.wagner@uni-bonn.de)). Of course you can also send me T<sub>E</sub>X code or even a pull request (well, less work for me), but I'm totally happy with ~any handwritten notes~ readable handwritten notes. 
 
-**Merry Christmas!**
+**Merry Christmas :christmas_tree:!**
 
 # Notes for Algebra Lectures in Bonn [![Build Status](https://travis-ci.com/FlorianAdler/AlgebraBonn.svg?branch=master)](https://travis-ci.com/FlorianAdler/AlgebraBonn)
 
