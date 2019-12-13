@@ -37,7 +37,7 @@
 \publishers{Winter Term 2019/20\\
 University of Bonn}
 
-%\includeonly{nothingtoseehere}
+\includeonly{nothingtoseehere}
 %\includeonly{./Chapters/EtaleIAppendix}
 \begin{document}
 \frontmatter
@@ -72,7 +72,8 @@ In these notes, the modern meaning of the word \emph{scheme} is used. That is, a
 
 Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
 
-\numpar*{\Attention\ Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
+\numpar*{\Attention\ Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}
+This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 \include{./Chapters/EtaleI11to163}
@@ -334,7 +335,7 @@ The most important application of Artin's approximation theorem to étale cohomo
 	
 	In case $\Gg$ is already a sheaf, let $f^*\Gg=(f^\sharp\Gg)^\Sh$ be the sheafification of $f^\sharp\Gg$. This sheaf is called the \defemph{inverse image} or \defemph{pullback} of $\Gg$ under $f$.
 \end{con}
-\begin{fact}
+\begin{fact}\label{fact:CUcofiltered}
 	The category $\Cc_U$ is cofiltered. Therefore, the colimit defining $\Global(U,f^\sharp\Gg)$ is indeed a filtered colimit.
 \end{fact}
 \begin{proof}
@@ -378,7 +379,7 @@ The most important application of Artin's approximation theorem to étale cohomo
 	\end{alphanumerate}
 \end{rem}
 \begin{prop}\label{prop:etaleInverseLimit}\lecture[Interlude on inverse limits of schemes. Étale sheaves defined over an inverse limit.]{2019-12-09}
-	Let $\{\xi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha\}_{\alpha,\beta}$ be an inverse system of affine morphisms between noetherian (in particular, quasi-compact and quasi-separated) schemes. Put $X=\limit X_\alpha$, with structure morphisms $\xi_\alpha\colon X\morphism X_\alpha$. For some fixed $\alpha$, let $\Ff_\alpha$ be a sheaf on $(X_\alpha)_\et$ and $\Ff$ resp.\ $\Ff_\beta$ for $\beta\geq \alpha$ be its inverse images on $X$ resp.\ $X_\beta$. Then
+	Let $(\xi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha)_{\alpha\leq \beta}$ be an inverse system of affine morphisms between noetherian (in particular, quasi-compact and quasi-separated) schemes. Put $X=\limit X_\alpha$, with structure morphisms $\xi_\alpha\colon X\morphism X_\alpha$. For some fixed $\alpha$, let $\Ff_\alpha$ be a sheaf on $(X_\alpha)_\et$ and $\Ff$ resp.\ $\Ff_\beta$ for $\beta\geq \alpha$ be its inverse images on $X$ resp.\ $X_\beta$. Then
 	\begin{align*}
 		\colimit_{\beta\geq \alpha}\Global(X_\beta,\Ff_\beta)&\isomorphism \Global(X,\Ff)\\
 		\big(\text{image of }f_\beta\in\Global(X_\beta,\Ff_\beta)\big)&\longmapsto \xi_\beta^*(f_\beta)
@@ -415,6 +416,9 @@ The most important application of Artin's approximation theorem to étale cohomo
 	
 	For $i,j\in I$, let $p_1$ and $p_2$ be the projections from $W^{(i)}\times_{X_\alpha}W^{(j)}$ to its two factors. Then the preimages of $p_1^*(f^{(i)}),p_2^*(f^{(j)})\in \Global(W^{(i)}\times_{X_\alpha}W^{(j)},\Ff_\alpha)$ in the set $\Global(U^{(i)}\times_XU^{(j)},\Ff)$ coincide as they are both equal to the restriction of $f\in\Global(X,\Ff)$ along the étale morphism $U^{(i)}\times_XU^{(j)}\morphism X$. Applying the injectivity assertion that was proved in Step~1 with $X_\alpha$ replaced by $W^{(i)}\times_{X_\alpha}W^{(j)}$, we get some $\beta_{i,j}\geq \alpha$ with the property that $p_1^*(f^{(i)})$ and $p_2^*(f^{(j)})$ already coincide in $\Global(X_{\beta_{i,j}}\times_{X_\alpha}W^{(i)}\times_{X_\alpha}W^{(j)},\Ff_{\beta_{i,j}})$. Again, increasing $\alpha$  sufficiently much, we may assume without restriction that $\alpha=\beta_{i,j}$ for all $i,j\in I$. Thus $p_1^*(f^{(i)})=p_2^*(f^{(j)})$ for all $i,j\in I$, i.e., the elements $f^{(i)}\in \Global (W^{(i)},\Ff_\alpha)$ and $f^{(j)}\in \Global (W^{(j)},\Ff_\alpha)$ become equal upon restriction to $W^{(i)}\times_{X_\alpha}W^{(j)}$. Thus, by the sheaf axiom the elements $f^{(i)}$ may be pasted together to an element $f_\alpha\in\Global(U,\Ff_\alpha)$, where $U$ is the union over the images of $W^{(i)}\morphism X_\alpha$ (so $U$ is open by \cref{prop:ppfOpen}). Clearly $\xi_\alpha\colon X\morphism X_\alpha$ factors over $U$, hence so does $\xi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha$ for some $\beta\geq \alpha$ by the argument from Step~1. Now the preimage $f_\beta=\xi_{\beta,\alpha}^*(f_\alpha)$ is an element of $\Global(X_\beta,\Ff_\beta)$, and it maps to $f$ by construction. This shows surjectivity.
 \end{proof}
+\begin{rem}\lecture[Pushforward and pullback in the pro-étale topology.]{2019-12-13}
+	For the sake of simplicity, we have formulated \cref{prop:etaleInverseLimit} for a partially ordered indexing set, but it remains valid for arbitrary cofiltered indexing categories $\Ii$ (in fact, we remarked in \cref{sec:inverseLimits} that these two notions are more or less interchangeable). In this case, the set $\left\{\beta\st \beta\geq \alpha\right\}$ needs to be replaced by the \defemph{comma category} $\Ii/\alpha$ over $\alpha$.
+\end{rem}
 \begin{cor}
 	Let $f\colon X\morphism Y$ be a morphism of schemes and $y\morphism Y$ a geometric point of $Y$. Put $X_y=X\times_Y\Spec\Oo_{Y_\et,y}$. Then
 	\begin{equation*}
@@ -422,13 +426,73 @@ The most important application of Artin's approximation theorem to étale cohomo
 	\end{equation*}
 	canonically. Here $\Global(X_y,\Ff)$ is abuse of notation for $\Global(X_y,p_1^*\Ff)$, where $p_1\colon X_y\morphism X$ denotes the projection to the first factor.
 \end{cor}
-\begin{proof*}
+\begin{proof}
 	By \cref{prop:henselization}\itememph{g} and the construction \cref{eq:AhColim2} in its proof, we can write $\Oo_{Y_\et,y}\cong \Oo_{Y,|y|}^\sh\cong \colimit_{(V,v)}\Global(V,\Oo_V)$, where $(V,v)$ ranges through the affine étale neighbourhoods of the geometric point $y$. Thus $X_y\cong \limit_{(V,v)}X\times_YV$. Applying \cref{prop:etaleInverseLimit} hence gives
 	\begin{equation*}
 		\Global(X_y,\Ff)\cong \colimit_{(V,v)}\Global(X\times_YV,\Ff)\cong \colimit_{(V,v)}\Global(V,f_*\Ff)\,.
 	\end{equation*}
-	The colimit on the right-hand side is precisely $(f_*\Ff)_y$ (up to an easy cofinality argument to reduce to affine étale neighbourhoods).
-\end{proof*}
+	The colimit on the right-hand side is precisely $(f_*\Ff)_y$ (up to an easy cofinality argument to amend the fact that we only consider affine étale neighbourhoods here).
+\end{proof}
+The following \cref{fact:StrictlyHenselianTrivialCoho} should have been given earlier, but Professor Franke forgot about it. It becomes particularly interesting by the fact that the functor $(-)_x$ of taking stalks at a geometric point is exact, whereas taking global sections $\Global(X,-)$ is not. So \cref{fact:StrictlyHenselianTrivialCoho} essentially says that strictly henselian rings have trivial higher étale cohomology.
+\begin{fact}\label{fact:StrictlyHenselianTrivialCoho}
+	Let $X=\Spec A$ where $A$ is a strictly henselian ring (some people call these \enquote{strictly local rings}) and $\Ff$ a sheaf on $X_\et$. Then
+	\begin{equation*}
+		\Global(X,\Ff)\isomorphism \Ff_x
+	\end{equation*}
+	is an isomorphism for any geometric point $x$ such that $|x|$ is the unique closed point of $A$.
+\end{fact}
+\begin{proof}
+	As every étale morphism with $|x|$ in its image has a section by \cref{prop:henselian}\itememph{e}, we see that $(X,x)$ is cofinal in the category of étale neighbourhoods of $x$.
+\end{proof}
+\begin{cor}\label{cor:finiteStalks}
+	If $f\colon X\morphism Y$ is finite and $y$ a geometric point of $Y$, then there is a canonical isomorphism
+	\begin{equation*}
+		(f_*\Ff)_y\isomorphism\prod_{x}\Ff_x\,,
+	\end{equation*}
+	where the product is taken over all lifts $x\colon \Spec \kappa(x)\morphism X$ of $y\colon \Spec\kappa(y)\morphism Y$. [TODO: Needs clarification. The proof is a mess and wrong at several points.]
+\end{cor}
+\begin{proof}
+	The question is local on $Y$, whence we may assume $Y=\Spec A$, $X=\Spec B$, such that $B$ is finite over $A$. Observe that $\Oo_{Y_\et,y}$ is strictly henselian by \cref{prop:henselization}\itememph{g}. By \cref{prop:henselian}\itememph{c}, the finite $\Oo_{Y_\et,y}$-algebra $S=B\otimes_A\Oo_{Y_\et,y}$ may be decomposed as
+	\begin{equation*}
+		S_i=\prod_{i=1}^nS_i\,,
+	\end{equation*}
+	where the $S_i$ are local and strictly henselian by \cref{prop:henselization}\itememph{b}. Moreover, if $\mm$ and $k$ denote the maximal ideal and the residue field of $\Oo_{Y_\et,y}$, then the $S_i/\mm S_i$ are artinian local rings. Thus $B\otimes_Ak\cong \prod_{i=1}^nS_i/\mm S_i$ shows that the unique prime ideals $\mm_i$ of $S_i$ are correspond precisely to the lifts $x_i$ of $y$ [TODO: This is not quite true]. By \cref{fact:StrictlyHenselianTrivialCoho} we have $\Ff_{x_i}\cong \Global(\Spec S_i,\Ff)$ and the assertion follows.
+\end{proof}
+\begin{cor}
+	If $f\colon X\morphism Y$ is a finite, radiciel, and surjective morphism (thus a universal homeomorphism, TODO), the $f_*$ and $f^*$ are mutually inverse equivalences of categories between $\cat{Sh}(X_\et)$ and $\cat{Sh}(Y_\et)$.
+\end{cor}
+\begin{proof}
+	This can be derived from \cref{prop:universalHomeo}, or using the previous \cref{cor:finiteStalks} and verifying that the isomorphisms $(f^*\Gg)_x\cong \Gg_{f(x)}$ and $(f_*\Ff)_y\cong \Ff_{f^{-1}(y)}$ become inverse to each other when applied with $\Ff=f^*\Gg$ or $\Gg=f_*\Ff$.
+\end{proof}
+In the rest of this section Professor Franke gives some hints about how pushforward and pullback work in the pro-étale topology. Recall that $U\morphism X$ is weakly étale if it is flat and the diagonal $U\morphism U\times_XU$ is flat as well (\cref{def:weaklyEtale}). The latter condition is automatic when $U\morphism X$ is a monomorphism, as in this case $U\cong U\times_XU$. Thus, for any pair $f,f'\colon U\morphism U'$ of morphisms of (weakly étale??) $X$-schemes, the equalizer $\Eq(f,f')\morphism U$ is weakly étale. Thus, the proofs of \cref{fact:filtered} and \cref{fact:CUcofiltered} still work, and stalks at geometric points as well as inverse and direct images may be defined as we did in this lecture. The \emph{big} difference, however, is that while the category of weakly étale sheaves of sets as sufficiently many \emph{topos points} (see \cite{stacks-project}, TODO), the topos points given by stalks at geometric points are \emph{not} sufficiently many.
+
+For instance, if $X=\Spec A$ is the spectrum of a Dedekind domain, then the morphism
+\begin{equation*}
+	U\coloneqq\coprod_{\mm\neq 0}\Spec A_\mm\morphism X
+\end{equation*}
+is weakly étale, where the disjoint union is taken over all non-zero (and thus maximal) prime ideals of $A$. Moreover, every geometric point of $X$ lifts to $U$. However, the sieve generated by $U$ is no covering sieve, as faithfully flat descent \emph{fails} for $U\morphism X$.
+
+For the pro-étale topology, what mostly replaces stalks at geometric points are evaluations (i.e., taking sections, not stalks) at $\Spec A$, where $\Spec A\morphism X$ is weakly étale and $A$ is \defemph{strictly $w$-local}. For instance, if $x$ is a geometric point of $X$,  then $\Spec \Oo_{X_\et,x}\morphism X$ is weakly étale (being a filtered limit over étale morphisms to $X$) and one has $\Ff_x=\Global(\Spec \Oo_{X_\et,x},\Ff)$ for weakly étale sheaves $\Ff$.
+
+Recall that a topological space $X$ is \defemph{spectral} if it is sober and the quasi-compact open subsets form a topology base closed under arbitrary finite intersections (allowing the empty intersection, so $X$ itself is quasi-compact). A theorem of Hochster says that  spectral spaces are precisely the underlying spaces of spectra of rings. Bhatt/Scholze now call a spectral space $X$ \defemph{$w$-local} if the closed points form a closed subset and the following equivalent conditions (\cite[Lemma~2.1.4]{proetale}) are satisfied:
+\begin{alphanumerate}
+	\item Every irreducible subset of $X$ contains a unique closed point. [TODO: This is not the right condition, look up the correct one].
+	\item The closed points of $X$ map homeomorphically to the set $\pi_0(X)$ of connected components (equipped with a suitable Zariski topology).
+\end{alphanumerate}
+A ring $A$ is called \defemph{$w$-local} if $\Spec A$ is $w$-local, and \defemph{strictly $w$-local} if it is $w$-local and satisfies the following equivalent conditions (\cite[Definition~2.2.1 and Lemma~2.2.9]{proetale}) are satisfied:
+\begin{numerate}
+	\item Every wealky étale faithfully flat $U\morphism \Spec A$ has a section.
+	\item $A_\mm$ is strictly henselian for every maximal ideal $\mm$ of $A$.
+\end{numerate}
+One then shows that the inclusion of the (non-full) subcategory $\left\{w\text{-local rings}\right\}\subseteq\cat{Rings}$ has a left-adjoint $A\mapsto A^Z$ (see \cite[Lemma~2.2.4]{proetale}). This construction shall be sketched now. Recall that the \defemph{constructive topology} on a spectral space is the coarsest topology for which the quasi-compact open subsets of $X$ are open-closed in $X_\mathrm{const}$. Then $X_\mathrm{const}$ is spectral and compact Hausdorff. When $X$ is noetherian, it has the description that $U\subseteq X_\mathrm{const}$ is open iff for all $x\in U$ the intersection $U\cap \ov{\{x\}}$ contains an open dense subset; the closure being taken in $X$. Then
+\begin{equation*}
+	A^Z=\left\{(a_\pp)\in\prod_{\pp\in\Spec A}A_\pp\st \begin{tabular}{c}
+	there are a decomposition $(\Spec A)_\mathrm{const}=\coprod_{i=1}^nU_i$\\
+	into disjoint open subsets and $f_i\in A$, $a_i\in A_{f_i}$ s.th.\\
+	$V(f)\cap U_i=\emptyset$ and $a_\pp$ is the image of $a_i$ for all $x\in U_i$
+	\end{tabular}\right\}
+\end{equation*}
+In particular, $\IZ^Z$ is the set of all families $(a_p)\in\prod_p\IZ_{(p)}$, $p$ running over the prime numbers, such that there is an $r\in \IQ$ such that $a_p=r$ in $\IQ$ for almost all $p$.
 
 \appendix
 \include{./Chapters/EtaleIAppendix}
