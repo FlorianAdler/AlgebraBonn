@@ -37,7 +37,7 @@
 \publishers{Winter Term 2019/20\\
 University of Bonn}
 
-\includeonly{nothingtoseehere}
+%\includeonly{nothingtoseehere}
 %\includeonly{./Chapters/EtaleIAppendix}
 \begin{document}
 \frontmatter
@@ -419,7 +419,7 @@ The most important application of Artin's approximation theorem to étale cohomo
 \begin{rem}\lecture[Pushforward and pullback in the pro-étale topology.]{2019-12-13}
 	For the sake of simplicity, we have formulated \cref{prop:etaleInverseLimit} for a partially ordered indexing set, but it remains valid for arbitrary cofiltered indexing categories $\Ii$ (in fact, we remarked in \cref{sec:inverseLimits} that these two notions are more or less interchangeable). In this case, the set $\left\{\beta\st \beta\geq \alpha\right\}$ needs to be replaced by the \defemph{comma category} $\Ii/\alpha$ over $\alpha$.
 \end{rem}
-\begin{cor}
+\begin{cor}\label{cor:(f_*F)_y}
 	Let $f\colon X\morphism Y$ be a morphism of schemes and $y\morphism Y$ a geometric point of $Y$. Put $X_y=X\times_Y\Spec\Oo_{Y_\et,y}$. Then
 	\begin{equation*}
 		(f_*\Ff)_y\cong \Global(X_y,\Ff)
@@ -433,7 +433,7 @@ The most important application of Artin's approximation theorem to étale cohomo
 	\end{equation*}
 	The colimit on the right-hand side is precisely $(f_*\Ff)_y$ (up to an easy cofinality argument to amend the fact that we only consider affine étale neighbourhoods here).
 \end{proof}
-The following \cref{fact:StrictlyHenselianTrivialCoho} should have been given earlier, but Professor Franke forgot about it. It becomes particularly interesting by the fact that the functor $(-)_x$ of taking stalks at a geometric point is exact, whereas taking global sections $\Global(X,-)$ is not. So \cref{fact:StrictlyHenselianTrivialCoho} essentially says that strictly henselian rings have trivial higher étale cohomology.
+The following \cref{fact:StrictlyHenselianTrivialCoho} should have been given earlier, but Professor Franke forgot about it. It becomes particularly interesting by the fact that the functor $(-)_x$ of taking stalks at a geometric point is exact, whereas taking global sections $\Global(X,-)$ is not. So \cref{fact:StrictlyHenselianTrivialCoho} essentially says that strictly henselian rings have trivial higher étale cohomology!
 \begin{fact}\label{fact:StrictlyHenselianTrivialCoho}
 	Let $X=\Spec A$ where $A$ is a strictly henselian ring (some people call these \enquote{strictly local rings}) and $\Ff$ a sheaf on $X_\et$. Then
 	\begin{equation*}
@@ -449,42 +449,60 @@ The following \cref{fact:StrictlyHenselianTrivialCoho} should have been given ea
 	\begin{equation*}
 		(f_*\Ff)_y\isomorphism\prod_{x}\Ff_x\,,
 	\end{equation*}
-	where the product is taken over all lifts $x\colon \Spec \kappa(x)\morphism X$ of $y\colon \Spec\kappa(y)\morphism Y$. [TODO: Needs clarification. The proof is a mess and wrong at several points.]
+	where the product is taken over \enquote{all} geometric points $x\colon \Spec \kappa(x)\morphism X$ \enquote{lying over} $y$.
 \end{cor}
-\begin{proof}
-	The question is local on $Y$, whence we may assume $Y=\Spec A$, $X=\Spec B$, such that $B$ is finite over $A$. Observe that $\Oo_{Y_\et,y}$ is strictly henselian by \cref{prop:henselization}\itememph{g}. By \cref{prop:henselian}\itememph{c}, the finite $\Oo_{Y_\et,y}$-algebra $S=B\otimes_A\Oo_{Y_\et,y}$ may be decomposed as
+\begin{rem*}\label{rem:WTFlyingOver}
+	In the lecture we were talking about \enquote{lifts} of $y$ to $X$, but this is definitely not what we want. For example, $Y=\Spec k$ could be the spectrum of a separably closed field and $X=\Spec \ell$ for $\ell/k$ a non-trivial purely inseparable extension. Then the identity on $Y$ is a geometric point, but admits no lift to $X$. So instead I wrote $x$ \enquote{lying over} $y$, but this too needs some explanation: obviously, $x$ lying over $y$ should include the condition that a diagram
 	\begin{equation*}
-		S_i=\prod_{i=1}^nS_i\,,
+		\begin{tikzcd}
+		\Spec \kappa(x)\rar["x"]\dar & X\dar["f"]\\
+		\Spec \kappa(y)\rar["y"] & Y
+		\end{tikzcd}
 	\end{equation*}
-	where the $S_i$ are local and strictly henselian by \cref{prop:henselization}\itememph{b}. Moreover, if $\mm$ and $k$ denote the maximal ideal and the residue field of $\Oo_{Y_\et,y}$, then the $S_i/\mm S_i$ are artinian local rings. Thus $B\otimes_Ak\cong \prod_{i=1}^nS_i/\mm S_i$ shows that the unique prime ideals $\mm_i$ of $S_i$ are correspond precisely to the lifts $x_i$ of $y$ [TODO: This is not quite true]. By \cref{fact:StrictlyHenselianTrivialCoho} we have $\Ff_{x_i}\cong \Global(\Spec S_i,\Ff)$ and the assertion follows.
+	commutes. Still we get into set-theoretic trouble since there is a whole proper class of such $x$, and we would rather have a finite set of them! There are essentially two ways out of this:
+	\begin{numerate}
+		\item We could demand that $\kappa(y)$ and $\kappa(x)$ both equal some chosen separable closures $\kappa(|y|)^\sep$ and $\kappa(|x|)^\sep$ of their underlying ordinary points. We have seen in \cref{rem:setTheory} that this loses no information.
+		\item We could define a preorder on the class of all $x$ as above, with $x'\leq x$ iff $x\colon\Spec \kappa(x)\morphism X$ can be factored over $x'\colon \Spec \kappa(x')\morphism X$. Note that $x'\leq x$ and $x\leq x'$ implies that the fields $\kappa(x)$ and $\kappa(x')$ are isomorphic. Then we can take the finite set of isomorphism classes of $x$ that are minimal with respect to \enquote{$\leq$} (it will become clear from the proof below that such a finite set indeed exists).
+	\end{numerate}
+\end{rem*}
+\begin{proof}[Proof of \cref{cor:finiteStalks}]
+	The question is local on $Y$, whence we may assume $Y=\Spec A$, $X=\Spec B$, such that $B$ is finite over $A$. Observe that $\Oo_{Y_\et,y}$ is strictly henselian by \cref{prop:henselization}\itememph{g}. By \cref{prop:henselian}\itememph{c} thus, the finite $\Oo_{Y_\et,y}$-algebra $S=B\otimes_A\Oo_{Y_\et,y}$ may be decomposed as
+	\begin{equation*}
+		S=\prod_{i=1}^nS_i\,,
+	\end{equation*}
+	where the $S_i$ are local and finite over $\Oo_{Y_\et,y}$. Moreover, if $\mm$ and $k$ denote the maximal ideal and the residue field of $\Oo_{Y_\et,y}$, then the $S_i/\mm S_i$ are finite over $k$, hence artinian local rings. If $\mm_i$ denotes the unique prime ideal of $S_i$, then $\kappa(\mm_i)$ is finite over the searably closed field $k$, hence $\kappa(\mm_i)$ is separably closed itself. Thus, every $x_i\colon \Spec \kappa(\mm_i)\morphism X$ is a geometric point lying over $y$. Moreover, for any $x$ as in \cref{rem:WTFlyingOver}, the morphism $B\morphism\kappa(x)$ factors over $B\otimes_Ak\cong \prod_{i=1}^nS_i/\mm S_i$, which is artinian with maximal ideals $\mm_1,\dotsc,\mm_n$. Thus, the $x_i$ are indeed \enquote{the} geometric points lying over $y$ (in the sense of either one of \itememph{1} or \itememph{2}). Now we compute
+	\begin{equation*}
+		(f_*\Ff)_y\cong \Global(\Spec S,\Ff)\cong \prod_{i=1}^n\Global(\Spec S_i,\Ff)\cong \prod_{i=1}^n\Ff_{x_i}\,.
+	\end{equation*}
+	Here the first isomorphism follows from \cref{cor:(f_*F)_y} as $X_y=\Spec S$ in this case, the second follows from $\Spec S=\coprod_{i=1}^n\Spec S_i$ and the sheaf axiom, and the third isomorphism follows from \cref{fact:StrictlyHenselianTrivialCoho}, using that the $S_i$ are finite over $\Oo_{Y_\et,y}$, hence strictly henselian too by \cref{prop:henselization}\itememph{b}.
 \end{proof}
 \begin{cor}
-	If $f\colon X\morphism Y$ is a finite, radiciel, and surjective morphism (thus a universal homeomorphism, TODO), the $f_*$ and $f^*$ are mutually inverse equivalences of categories between $\cat{Sh}(X_\et)$ and $\cat{Sh}(Y_\et)$.
+	If $f\colon X\morphism Y$ is a finite, radiciel, and surjective morphism (thus a universal homeomorphism, see \cref{rem:universalHomeo}), then $f_*$ and $f^*$ are mutually inverse equivalences of categories between $\cat{Sh}(X_\et)$ and $\cat{Sh}(Y_\et)$.
 \end{cor}
 \begin{proof}
 	This can be derived from \cref{prop:universalHomeo}, or using the previous \cref{cor:finiteStalks} and verifying that the isomorphisms $(f^*\Gg)_x\cong \Gg_{f(x)}$ and $(f_*\Ff)_y\cong \Ff_{f^{-1}(y)}$ become inverse to each other when applied with $\Ff=f^*\Gg$ or $\Gg=f_*\Ff$.
 \end{proof}
-In the rest of this section Professor Franke gives some hints about how pushforward and pullback work in the pro-étale topology. Recall that $U\morphism X$ is weakly étale if it is flat and the diagonal $U\morphism U\times_XU$ is flat as well (\cref{def:weaklyEtale}). The latter condition is automatic when $U\morphism X$ is a monomorphism, as in this case $U\cong U\times_XU$. Thus, for any pair $f,f'\colon U\morphism U'$ of morphisms of (weakly étale??) $X$-schemes, the equalizer $\Eq(f,f')\morphism U$ is weakly étale. Thus, the proofs of \cref{fact:filtered} and \cref{fact:CUcofiltered} still work, and stalks at geometric points as well as inverse and direct images may be defined as we did in this lecture. The \emph{big} difference, however, is that while the category of weakly étale sheaves of sets as sufficiently many \emph{topos points} (see \cite{stacks-project}, TODO), the topos points given by stalks at geometric points are \emph{not} sufficiently many.
+In the rest of this section Professor Franke gives some hints about how pushforward and pullback work in the pro-étale topology. Recall that $U\morphism X$ is weakly étale if it is flat and the diagonal $U\morphism U\times_XU$ is flat as well (\cref{def:weaklyEtale}). The latter condition is automatic when $U\morphism X$ is a monomorphism, as in this case $U\cong U\times_XU$. Combining this observation with an argument analogous to the proof of \cref{prop:universalHomeo}, we see that for any pair $f,f'\colon U\morphism U'$ of morphisms of weakly étale $X$-schemes, the equalizer $\Eq(f,f')\morphism U$ is weakly étale. Clearly being weakly étale is preserved under base change, so all in all the proofs of \cref{fact:filtered} and \cref{fact:CUcofiltered} still work, and stalks at geometric points as well as inverse and direct images may be defined as we did in this lecture.
 
-For instance, if $X=\Spec A$ is the spectrum of a Dedekind domain, then the morphism
+The \emph{big} difference, however, is that while the category of weakly étale sheaves of sets as sufficiently many \emph{topos points} (see \cite[\stackstag{00Y3}]{stacks-project}), the topos points given by stalks at geometric points are \emph{not} sufficiently many! For instance, if $X=\Spec A$ is the spectrum of a Dedekind domain, then the morphism
 \begin{equation*}
 	U\coloneqq\coprod_{\mm\neq 0}\Spec A_\mm\morphism X
 \end{equation*}
 is weakly étale, where the disjoint union is taken over all non-zero (and thus maximal) prime ideals of $A$. Moreover, every geometric point of $X$ lifts to $U$. However, the sieve generated by $U$ is no covering sieve, as faithfully flat descent \emph{fails} for $U\morphism X$.
 
-For the pro-étale topology, what mostly replaces stalks at geometric points are evaluations (i.e., taking sections, not stalks) at $\Spec A$, where $\Spec A\morphism X$ is weakly étale and $A$ is \defemph{strictly $w$-local}. For instance, if $x$ is a geometric point of $X$,  then $\Spec \Oo_{X_\et,x}\morphism X$ is weakly étale (being a filtered limit over étale morphisms to $X$) and one has $\Ff_x=\Global(\Spec \Oo_{X_\et,x},\Ff)$ for weakly étale sheaves $\Ff$.
+For the pro-étale topology, what mostly replaces stalks at geometric points are evaluations (i.e., taking sections, not stalks!) at $\Spec A$, where $\Spec A\morphism X$ is weakly étale and $A$ is \defemph{strictly $w$-local}. For instance, if $x$ is a geometric point of $X$,  then $\Spec \Oo_{X_\et,x}\morphism X$ is weakly étale (being a filtered limit over étale morphisms to $X$) and one has $\Ff_x=\Global(\Spec \Oo_{X_\et,x},\Ff)$ for weakly étale sheaves $\Ff$.
 
-Recall that a topological space $X$ is \defemph{spectral} if it is sober and the quasi-compact open subsets form a topology base closed under arbitrary finite intersections (allowing the empty intersection, so $X$ itself is quasi-compact). A theorem of Hochster says that  spectral spaces are precisely the underlying spaces of spectra of rings. Bhatt/Scholze now call a spectral space $X$ \defemph{$w$-local} if the closed points form a closed subset and the following equivalent conditions (\cite[Lemma~2.1.4]{proetale}) are satisfied:
+We now sketch the definition of what a $w$-local ring is supposed to be. Recall that a topological space $X$ is \defemph{spectral} if it is sober and the quasi-compact open subsets form a topology base closed under arbitrary finite intersections (allowing the empty intersection, so $X$ itself is quasi-compact). A theorem of Hochster says that  spectral spaces are precisely the underlying spaces of spectra of rings. Bhatt/Scholze now call a spectral space $X$ \defemph{$w$-local} if the closed points form a closed subset and the following equivalent conditions (\cite[Lemma~2.1.4]{proetale}) are satisfied:
 \begin{alphanumerate}
-	\item Every irreducible subset of $X$ contains a unique closed point. [TODO: This is not the right condition, look up the correct one].
+	\item Every open cover of $X$ splits, i.e., if $X=\bigcup_{i\in I}$ is an open cover, then $\coprod_{i\in I}U_i\morphism X$ has a section. Note that this is \emph{not} the condition from the lecture; Professor Franke explained to me afterwards that he made a mistake and will probably correct this in the next lecture.
 	\item The closed points of $X$ map homeomorphically to the set $\pi_0(X)$ of connected components (equipped with a suitable Zariski topology).
 \end{alphanumerate}
-A ring $A$ is called \defemph{$w$-local} if $\Spec A$ is $w$-local, and \defemph{strictly $w$-local} if it is $w$-local and satisfies the following equivalent conditions (\cite[Definition~2.2.1 and Lemma~2.2.9]{proetale}) are satisfied:
+A ring $A$ is called \defemph{$w$-local} if $\Spec A$ is $w$-local, and \defemph{strictly $w$-local} if it is $w$-local and satisfies the following equivalent conditions (\cite[Definition~2.2.1 and Lemma~2.2.9]{proetale}):
 \begin{numerate}
-	\item Every wealky étale faithfully flat $U\morphism \Spec A$ has a section.
+	\item Every weakly étale faithfully flat $U\morphism \Spec A$ has a section.
 	\item $A_\mm$ is strictly henselian for every maximal ideal $\mm$ of $A$.
 \end{numerate}
-One then shows that the inclusion of the (non-full) subcategory $\left\{w\text{-local rings}\right\}\subseteq\cat{Rings}$ has a left-adjoint $A\mapsto A^Z$ (see \cite[Lemma~2.2.4]{proetale}). This construction shall be sketched now. Recall that the \defemph{constructive topology} on a spectral space is the coarsest topology for which the quasi-compact open subsets of $X$ are open-closed in $X_\mathrm{const}$. Then $X_\mathrm{const}$ is spectral and compact Hausdorff. When $X$ is noetherian, it has the description that $U\subseteq X_\mathrm{const}$ is open iff for all $x\in U$ the intersection $U\cap \ov{\{x\}}$ contains an open dense subset; the closure being taken in $X$. Then
+One then shows that the inclusion of the (non-full) subcategory $\left\{w\text{-local rings}\right\}\subseteq\cat{Rings}$ has a left-adjoint $A\mapsto A^Z$ (see \cite[Lemma~2.2.4]{proetale}). This construction shall be sketched now. Recall that the \defemph{constructive topology} $X_\mathrm{const}$ on a spectral space $X$ is the coarsest topology for which the quasi-compact open subsets of $X$ are open-closed in $X_\mathrm{const}$. Then $X_\mathrm{const}$ is spectral and compact Hausdorff. When $X$ is noetherian, it has the description that $U\subseteq X_\mathrm{const}$ is open iff for all $x\in U$ the intersection $U\cap \ov{\{x\}}$ contains an open dense subset; the closure being taken in $X$. Then
 \begin{equation*}
 	A^Z=\left\{(a_\pp)\in\prod_{\pp\in\Spec A}A_\pp\st \begin{tabular}{c}
 	there are a decomposition $(\Spec A)_\mathrm{const}=\coprod_{i=1}^nU_i$\\

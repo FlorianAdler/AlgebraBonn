@@ -669,7 +669,7 @@ The formulation of the following \cref{prop:formallyEtale} was a bit messy in th
 	
 	It remains to show essential surjectivity. Since we already know $-\times_XX_0$ is fully faithful, we can check essential surjectivity affine-locally. Let $R$ be a ring with a nilpotent ideal $I$. Put $R_0=R/I$ and let $S_0$ be an étale $R_0$-algebra. By \cref{prop:formallyEtale}\itememph{c} we can write $S_0\cong R_0[x_1,\dotsc,x_n]/(\ov{f}_1,\dotsc,\ov{f}_n)$, where the Jacobian determinant $\det(\partial \ov{f}_i/\partial x_j)$ is invertible in $S_0$. Let $S=R[X_1,\dotsc,X_n]/(f_1,\dotsc,f_n)$, where the $f_i$ are arbitrary lifts of the $\ov{f}_i$. Then $S_0\cong S/I$ and we are done if we can show that $S$ is étale over $R$. It suffices to show that $\Delta \det(\partial f_i/\partial x_j)$ is invertible in $S$. But its reduction modulo $I$ is invertible in $S_0$ and $I$ is nilpotent, hence $\Delta$ is invertible as well.
 \end{proof}
-\begin{rem}
+\begin{rem}\label{rem:universalHomeo}
 	Note that any base change $X'_0=X'\times_XX_0\monomorphism X'$ of $X_0\monomorphism X$ is also defined by a locally nilpotent sheaf of ideals. Hence it is a homeomorphism of Zariski topologies.
 	
 	In general, a morphism such that all of its basechanges are homeomorphisms is called a \defemph{universal homeomorphism}. To study universal homeomorphisms, we start with \defemph{universal bijections}, i.e., morphisms $f\colon X\morphism Y$ such that all base changes $f'\colon X'=X\times_YY'\morphism Y'$ are bijections too. Let $|\blank|\colon \cat{Sch}\morphism\cat{Top}$ denote the forgetful functor sending a scheme to its underlying topological space. With the obvious terminology, a morphism is universally bijective iff it is universally injective and universally surjective.
@@ -1006,7 +1006,7 @@ In the following we will tacitly work with $X_\et$, but the big étale site $(\c
 	\end{equation*}
 	This uses the fact that the étale neighbourhoods of $\pi v$ in $U$ (resp.\ $v$ in $V$) are cofinal in the étale neighbourhoods of $\sigma v$, where $\sigma\colon V\morphism X$ denotes the structure morphism of the $X$-scheme $V$.
 \end{rem}
-\begin{rem}
+\begin{rem}\label{rem:setTheory}
 	So far we considered general geometric points $x\colon \Spec k\morphism X$. From now on, let $\kappa(x)$ denote that $k$. Let $x_0=|x|$. Let $k'$ be the separable closure of the residue field $\kappa(x_0)$ of $\Oo_{X,x_0}$ in $\kappa(x)$ and $x'\colon \Spec k'\morphism X$ denote the corresponding morphism.
 	
 	If $\rho\colon U\morphism X$ is étale and $u_0\in U$ such that $\rho(u)=x_0$, then $\kappa(u_0)$ is a finite separable extension of $\kappa(x_0)$. Therefore, if $u\colon \Spec \kappa(x)\morphism U$ is a geometric point of $U$ such that $\rho u=x$, thus turning $(U,u)$ into an étale neighbourhood of $x$, then the image of $\kappa(u_0)\morphism \kappa(x)=\kappa(u)$ is contained in $k'$. Thus, there is a unique $u'\colon \Spec k'\morphism U$ such that $\rho u'=x'$ and such that
@@ -1056,8 +1056,7 @@ In the following we will tacitly work with $X_\et$, but the big étale site $(\c
 		\item If $f_1,\dotsc,f_n\in A[X_1,\dotsc,X_n]$ are polynomials and $x_0\in k^n$ a common zero of the $\ov{f}_j$ such that $\det(\partial f_i/\partial X_j)(x_0)\neq 0$, then there is a unique $x\in A^n$ which is a common zero of the $f_j$ whose image in $k^n$ is $x_0$.
 	\end{alphanumerate}
 \end{prop}
-\begin{proof}\lecture[Equivalent characterizations of henselian rings. Étale fundamental group of henselian rings. (Strict) henselization.]{2019-11-22}
-	Clearly \itememph{a} $\Rightarrow$ \itememph{b}. We continue with \itememph{b} $\Rightarrow$ \itememph{c}. As a first step, consider $B=A[T]/(f)$, where $f\in A[T]$ is a monic polynomial. Decompose $\ov{f}=\prod_{i=1}^n\phi_i^{e_i}$ into (monic) prime powers in the PID $k[T]$. Using \itememph{b}, we get a decomposition $f=\prod_{i=1}^nf_i$, where $\ov{f}_i=\phi_i^{e_i}$. Note that for $i\neq j$ we have $(f_i,f_j)=A[T]$. Indeed, $C=A[T]/(f_i,f_j)$ is finite over $A$, and $C\otimes_Ak\cong k[T]/(\phi_i^{e_i},\phi_j^{e_j})\cong 0$ vanishes as $\phi_i$ and $\phi_j$ are coprime, so $C$ vanishes already by Nakayama. Putting $B_i=A[T]/(f_i)$, the Chinese remainder theorem shows
+	\lecture[Equivalent characterizations of henselian rings. Étale fundamental group of henselian rings. (Strict) henselization.]{2019-11-22}\noindent\emph{Proof.} Clearly \itememph{a} $\Rightarrow$ \itememph{b}. We continue with \itememph{b} $\Rightarrow$ \itememph{c}. As a first step, consider $B=A[T]/(f)$, where $f\in A[T]$ is a monic polynomial. Decompose $\ov{f}=\prod_{i=1}^n\phi_i^{e_i}$ into (monic) prime powers in the PID $k[T]$. Using \itememph{b}, we get a decomposition $f=\prod_{i=1}^nf_i$, where $\ov{f}_i=\phi_i^{e_i}$. Note that for $i\neq j$ we have $(f_i,f_j)=A[T]$. Indeed, $C=A[T]/(f_i,f_j)$ is finite over $A$, and $C\otimes_Ak\cong k[T]/(\phi_i^{e_i},\phi_j^{e_j})\cong 0$ vanishes as $\phi_i$ and $\phi_j$ are coprime, so $C$ vanishes already by Nakayama. Putting $B_i=A[T]/(f_i)$, the Chinese remainder theorem shows
 	\begin{equation*}
 		A[T]/(f)\cong\prod_{i=1}^nB_i\,,
 	\end{equation*}
@@ -1082,8 +1081,7 @@ In the following we will tacitly work with $X_\et$, but the big étale site $(\c
 	
 	Next we prove \itememph{e} $\Rightarrow$ \itememph{f}. Let $B=A[X_1,\dotsc,X_n]/(f_1,\dotsc,f_n)$ and let $\Delta=\det(\partial f_i/\partial X_j)$ be the Jacobian determinant. An easy application of \cref{prop:formallyEtale}\itememph{e} shows that $B[\Delta^{-1}]$ is étale over $A$. Now \itememph{e} can be applied to $\Spec B[\Delta^{-1}]\morphism \Spec A$. This shows that the morphism $\Spec k\morphism \Spec B[\Delta^{-1}]$ determined by $x_0\in k^n$ can be lifted to a unique section $\Spec A\morphism \Spec B[\Delta^{-1}]\monomorphism \Spec B$. Now $x\in A^n$ can be chosen to be the image of $(X_1,\dotsc,X_n)$ under the corresponding ring morphism $B\morphism A$. 
 	
-	Finally we prove \itememph{f} $\Rightarrow$ \itememph{a}. Consider the system of equations for the coefficients $g_i$, $h_j$ determining $f=gh$. One shows that the Jacobian determinant of this system is the \defemph{resultant $\res(g,h)$} of the polynomials $g$ and $h$ (this follows straight from the definition e.g.\ in the \href{https://en.wikipedia.org/wiki/Resultant}{Wikipedia article}), which modulo $\mm$ is $\res(g_0,h_0)\neq 0$ since $g_0$ and $h_0$ are coprime by our assumption.
-\end{proof}
+	Finally we prove \itememph{f} $\Rightarrow$ \itememph{a}. Consider the system of equations for the coefficients $g_i$, $h_j$ determining $f=gh$. One shows that the Jacobian determinant of this system is the \defemph{resultant $\res(g,h)$} of the polynomials $g$ and $h$ (this follows straight from the definition e.g.\ in the \href{https://en.wikipedia.org/wiki/Resultant}{Wikipedia article}), which modulo $\mm$ is $\res(g_0,h_0)\neq 0$ since $g_0$ and $h_0$ are coprime by our assumption.\qed
 \begin{rem}\label{rem:nonNoetherian}
 	We will later be forced to apply \cref{prop:henselian} in the non-noetherian case as well. The only point in the proof where this gets hairy is Zariski's main theorem. It turns out that it is indeed true in the non-noetherian case as well (as usual, finite type needs to be replaced by finite presentation), and in fact the general case can be reduced to the noetherian case.
 	
@@ -1146,7 +1144,7 @@ There is also a notion of being \defemph{henselian in an ideal $I$}, which only 
 \subsection{Henselization}
 We are now going to define the \defemph{henselization} and the \defemph{strict henselization} of a local ring $A$. These are going to be characterized by universal properties of course. The \defemph{category of henselian $A$-algebras} has local morphisms $A\morphism S$ as objects, where $S$ is a henselian. Morphisms in this category are just morphisms of $A$-algebras.
 
-Fix an embedding $\eta_0\colon k\morphism k^\sep$ into a separable closure. We define a \defemph{category of strictly henselian $A$-algebras with respect to $\eta_0$} as follows: its objects are local morphisms $A\morphism S$, where $S$ is strictly henselian, together with morphisms $k^\sep\morphism \kappa(S)$ such that the diagram
+Fix an embedding $\eta_0\colon k\morphism k^\sep$ into a separable closure. We define a \defemph{category of strictly henselian $A$-algebras with respect to $\eta_0$} as follows: its objects consist of the following data: a local morphism $A\morphism S$, where $S$ is strictly henselian, together with a morphism $k^\sep\morphism \kappa(S)$ such that the diagram
 \begin{equation*}
 	\begin{tikzcd}
 		A\dar \ar[rr] & & S\dar\\
