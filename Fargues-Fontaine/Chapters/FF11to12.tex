@@ -1,4 +1,4 @@
-\chapter{Yet to be named}
+\chapter{Construction of the Fargues--Fontaine Curve}
 \section{Ramified Witt Vectors}
 \lecture[The abstract of this lecture is left as an exercise.]{2019-10-23}
 Let $p$ be a prime, $E/\IQ_p$ a finite extension with ring of integers $\Oo_E$. We fix a choice of uniformizer $\pi$ and let $\IF_q=\Oo_E/\pi\Oo_E$ be the residue field of $\Oo_E$, where $q=p^f$. The goal for today is to prove
@@ -61,7 +61,7 @@ We will see $W(\IF_p)=\IZ_p$ and $W(\IF_q)=\Oo_{E_0}$ where $E_0$ is the maximal
 	\end{equation*}
 	by \cref{lem:LTE}. This shows convergence of the sequence in question. To show that it doesn't depend on the choice of lifts can be seen by a similar argument. Now if $a,b\in R$ are given together with a choice of lifts $\alpha_n$ and $\beta_n$, we can choose $\alpha_n\beta_n$ as lifts of $(ab)^1/q^n$, since the choice of lifts doesn't matter. From this argument, multiplicativity is clear. Naturality is similar.
 \end{proof}
-\begin{lem}\label{lem:TeichmüllerRep}
+\begin{lem}\label{lem:TeichmullerRep}
 	In our usual situation, every $x\in A$ admits a unique representation
 	\begin{equation*}
 		x=\sum_{n=0}^{\infty}[x_n]\pi^n\quad\text{for some }x_n\in R\,.
@@ -73,7 +73,7 @@ We will see $W(\IF_p)=\IZ_p$ and $W(\IF_q)=\Oo_{E_0}$ where $E_0$ is the maximal
 \begin{urem}
 	We can think of $A\morphism R$ in a similar way as we think about $R\llbracket T\rrbracket\morphism R$ with its canonical section $R\morphism R\llbracket T\rrbracket$ given by $a\mapsto a$. Since in our situation $A$ has characteristic $0$ but $R$ has characteristic $p$, there is no way $[-]\colon R\morphism A$ can be additive. So it being multiplicative is really the best we could hope for.
 \end{urem}
-At this point, \cref{lem:TeichmüllerRep} allows us to recover $A$ as a \emph{set} from $R=A/\pi A$. But what about the ring structure? Let's try! Say we have sequences $(x_n),(y_n)\in R^{\IN}$ and we want to find the unique sequence $(s_n)\in R^{\IN}$ such that
+At this point, \cref{lem:TeichmullerRep} allows us to recover $A$ as a \emph{set} from $R=A/\pi A$. But what about the ring structure? Let's try! Say we have sequences $(x_n),(y_n)\in R^{\IN}$ and we want to find the unique sequence $(s_n)\in R^{\IN}$ such that
 \begin{equation*}
 	\sum_{n=0}^{\infty}[x_n]\pi^n+\sum_{n=0}^{\infty}[y_n]\pi^n=\sum_{n=0}^\infty [s_n]\pi^n\,.
 \end{equation*}
@@ -895,7 +895,7 @@ Have you ever wondered what the \enquote{$\inf$} in $\IA_\inf$ actually means? I
 	\end{align*}
 	It's easily verified that this map has the required properties.
 \end{proof}
-\subsection{\texorpdfstring{$p$}{p}-adic PD-thickenings and \texorpdfstring{$\IA_\cris$}{Acris}}
+\subsection{\texorpdfstring{$p$}{p}-adic PD-thickenings and \texorpdfstring{$\IA_\cris$}{Acris}}\label{subsec:Acris}
 From now on, we restrict our attention to the case $E=\IQ_p$ and $\pi=p$. As above, let $R\in\{\Oo_C,\Oo_C/p\Oo_C\}$.
 \begin{defi}
 	A \defemph{$p$-adic PD-thickening} of $R$ is a triple $(D,D\epimorphism R,(\gamma_n)_{n\in\IN})$, where $D$ is $p$-complete and $(\gamma_n)_{n\in\IN}$ a PD-structure on $J=\ker(D\epimorphism R)$ which is compatible with the canonical PD-structure on $pR$.
@@ -932,11 +932,11 @@ So where does the map $\IA_\inf\morphism D$ come from? A closer inspection of th
 \end{proof*}
 Now that we know $\IA_\cris$ is the $p$-adic divided power envelope of $(\xi)$, we can write it down explicitly as
 \begin{equation*}
-	\IA_\cris\cong \IA_\inf\big[\textstyle\frac{\xi^n}{n!}\ \big|\  n\in\IN\big]_p^\complete\cong \IA_\inf\cotimes_{\IZ[x]}D_{\IZ[x]}(x)\,,
+	\IA_\cris\cong \IA_\inf\left[\frac{\xi^n}{n!}\st n\in\IN\right]_p^\complete\cong \IA_\inf\cotimes_{\IZ[x]}D_{\IZ[x]}(x)\,,
 \end{equation*}
 using that $\xi$ is a non-zero divisor in $\IA_\inf$. Also $-\cotimes_{\IZ[x]}-$ refers to the $p$-adic completed tensor product, with $\IZ[x]\morphism\IA_\inf$ sending $x\mapsto \xi$. Finally, the tensor factor on the right is defined as
 \begin{equation*}
-	D_{\IZ[x]}(x)=\IZ\langle x\rangle =\bigoplus_{n\in\IN}\IZ\big\{\textstyle\frac{x^n}{n!}\big\}\,.
+	D_{\IZ[x]}(x)=\IZ\langle x\rangle =\bigoplus_{n\in\IN}\IZ\left\{\frac{x^n}{n!}\right\}\,.
 \end{equation*}
 Then
 \begin{equation*}

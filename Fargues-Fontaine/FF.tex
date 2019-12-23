@@ -249,7 +249,7 @@ Similar to the polynomial case in \cref{exm:NewtConvolution}, there is a connect
 \begin{thm}[Lazard]\label{thm:Lazard}
 	Let $f\in\Oo_K\llbracket T\rrbracket$. Let $\lambda\neq 0$ be a slope of $\Newt(f)$. Then there exists a zero $\alpha\in\roof{\ov{K}}$ of $f$ with $v(\alpha)=-\lambda$. In other words, in $\Oo_{\roof{\ov{K}}}\llbracket T\rrbracket$ the power series $f$ an be factored as $f=(T-\alpha)g$.
 \end{thm}
-\begin{rem}
+\begin{rem}\label{rem:log}
 	\begin{numerate}
 		\item Suppose $\Newt(f)$ is eventually constant (this is e.g.\ the case if $K$ is discretely valued), i.e., $f=a\snake{f}$ for $a\in\Oo_K$ and $\snake{f}$ is primitive of some degree $d$. Then the Weierstraß preparation theorem shows $f=aPg$, where $a\in \Oo_K$, $P$ is a monic polynomial of degree $d$, and $g\in\Oo_K\llbracket T\rrbracket^\times$ is a unit.
 		\item Suppose $\cha K=0$. Then $\log_p(1-x)=\sum_{i=0}^\infty (-1)^{i-1}x^i/i$ has zeros precisely at $\mu_{p^\infty}(\ov{K})$. Draw the Newton polygon of $\log_p(1-x)$ and prove this!
@@ -632,7 +632,7 @@ The goal for the next few lectures is to prove that $X=X_\FFC$ is indeed a curve
 \begin{thm}[Fargues--Fontaine]\label{thm:FFCisACurve}
 	The Fargues--Fontaine curve $X_\FFC$ is a Dedekind scheme. More precisely, for each $t\in B^{\phi=\pi}$, the open subset $D_+(t)\cong \Spec B\big[\frac 1t\big]^{\phi=1}$ is the spectrum of a principal ideal domain.
 \end{thm}
-To prove \cref{thm:FFCisACurve} we need Newton polygons for elements in $B_I$, where $I\subseteq (0,\infty)$ is an ideal. Note that for all $r\in I$, the valuation $v_r\colon B^b\morphism \IR\cup\{\infty\}$ extends to $B_I$ by continuity.
+The first ingredient in the proof of \cref{thm:FFCisACurve} is to construct Newton polygons for elements in $B_I$, where $I\subseteq (0,\infty)$ is an ideal. Note that for all $r\in I$, the valuation $v_r\colon B^b\morphism \IR\cup\{\infty\}$ extends to $B_I$ by continuity.
 \begin{defi}\label{def:NewtOpen}
 	Assume $I\subseteq (0,\infty)$ is an open intervall, and $f\in B_I$. Let $\Newt_I^0(f)$ be the decreasing convex function whose Legendre transform is
 	\begin{equation*}
@@ -697,7 +697,8 @@ So far we have defined Newton polygons for open intervalls $I$. In the case of c
 		\item For $f\in B^b$ and $\lambda$ a slope of $\Newt(f)$, then $\partial_+v_r(f)-\partial_-v_r(f)$ is precisely the multiplicity of $\lambda$ in $\Newt(f)$.
 	\end{numerate}
 \end{rem}
-\section{The Graded Algebra \texorpdfstring{$P$}{P}}
+\section{Proof that the Fargues--Fontaine Curve is a Curve}
+\subsection{The Graded Algebra \texorpdfstring{$P$}{P}}
 \lecture[$P$ is graded factorial. Effective divisors on $|Y|$.]{2019-12-11}As usual, let $p$ be a prime, $E/\IQ_p$ a finite extension with ring of integers $\Oo_E$ and residue field $\Oo_E/\pi\Oo_E\cong \IF_q$. Let $F/\IF_q$ be a non-archimedean algebraically closed extension and $\varpi\in\mm_F\setminus\{0\}$.
 Last time we defined the ring $B=B_{(0,\infty)}$. Now let
 \begin{equation*}
@@ -786,6 +787,7 @@ Mind that \cref{thm:PGradedFactorial} does \emph{not} imply $P\cong \Sym_{\IQ_p}
 	
 	We omit the proof of \itememph{3}, since it is very similar to the proof of \cref{thm:NewtonSlope} (approximate $f$ by a Cauchy sequence $(f_n)_{n\in\IN}$ in $B^b$, show that$-\lambda$ occurs as a slope in $\Newt_I(f_n)$ for all $n\gge 0$, find a Cauchy sequence $(y_n)_{n\gge 0}$ of zeros $y_n\in |Y_{-\lambda}|$ of $f_n$, and use that $|Y_{-\lambda}|$ is complete by Proposition~\cref{prop:YrComplete}).
 \end{proof}
+\subsection{Divisors on \texorpdfstring{$|Y|$}{|Y|}}
 \begin{defi}
 	Let $I\subseteq (0,\infty)$ be any intervall. The \defemph{monoid of effective divisors on $|Y_I|$} is the partially ordered monoid $\Div^+(|Y_I|)$ of formal sums
 	\begin{equation*}
@@ -820,7 +822,7 @@ Mind that \cref{thm:PGradedFactorial} does \emph{not} imply $P\cong \Sym_{\IQ_p}
 			E & if $d=0$\\
 			0 & if $d<0$\\
 			\text{complicated} & if $d>0$
-		\end{cases*}
+		\end{cases*}\,.
 	\end{equation*}
 \end{lem}
 \begin{proof}
@@ -837,7 +839,7 @@ Since $d(\phi^*(y),0)=q^{-1}d(y,0)$, it is easily established that the right-han
 \begin{rem}\label{rem:Div+}
 	Let $a>0$ be arbitrary and $I=[a,qa)$. Then $\Div^+(|Y|/\phi^\IZ)$ is in canonical bijection with $\Div^+_\mathrm{fin}(|Y_I|)$, where the subscript $_\mathrm{fin}$ denotes the subset of those divisors which are actually finite sums. Indeed, since the Frobenius action is a \enquote{contraction with factor $q^{-1}$} in the sense that $d(\phi^*(y),0)=q^{-1}d(y,0)$, exactly one of the $\{(\phi^n)^*(y)\}_{n\in\IZ}$ will be contained in $|Y_I|$. Now the claimed bijection comes from the fact that every divisor $D\in \Div^+(|Y|/\phi^\IZ)$ can be decomposed into a finite sum of divisors of the form $\sum_{n\in\IZ}(\phi^n)^*(y)$ (do induction in the finite number of $y\in Y_I$ occurring with non-zero coefficient in $D$), and this decomposition is unique.
 \end{rem}
-\begin{thm}
+\begin{thm}\label{thm:divIso}
 	The principal divisors map $\div$ from \cref{def:div} induces an isomorphism
 	\begin{equation*}
 		\div\colon\bigcup_{d\geq 0}\big(P_d\setminus\{0\}\big)/E^\times\isomorphism \Div^+\big(|Y|/\phi^\IZ\big)\,.
@@ -887,6 +889,272 @@ Since $d(\phi^*(y),0)=q^{-1}d(y,0)$, it is easily established that the right-han
 	\end{align*}
 	Thus it suffices to choose $u$ such that $\ov{\beta}u-u^q-z=0$, which is always possible as $F$ is algebraically closed.
 \end{proof}
+\subsection{Proof of the Main Result}
+\lecture[The fundamental exact sequence. The Fargues--Fontaine curve is indeed a curve. Cohomology of twisting sheaves on the Fargues--Fontaine curve. Relation with $\IA_\cris$.]{2019-12-18}The aim for today is to show \cref{thm:FFCisACurve}, asserting that $X=\Proj P$ is indeed a \enquote{curve}, i.e., a Dedekind scheme. In some sense, $X$ is similar to $\IP_E^1$. In fact, if $E$ is replaced by $\IC$ or $\IR$, then the analogs of $X$ should be $\IP_\IC^1$ and $\snake{\IP}_\IR^1=V_+(x^2+y^2+z^2)\subseteq \IP_\IR^2$.
+
+We have seen in the proof of \cref{thm:PGradedFactorial} that for every $y\in |Y|$ there is an element $t\in B^{\phi=\pi}$ such that $\div(t)=\sum_{n\in\IZ}(\phi^n)^*(y)$. We denote this element by $\Pi(\xi_y)$.
+\begin{thm}[\enquote{Fundamental exact sequence of $p$-adic Hodge theory}]\label{thm:FundamentalExactSequence}
+	Let $y\in |Y|$ and $t\coloneqq \Pi(\xi_y)\in B^{\phi=\pi}$. Then for all $d\geq 0$ the following sequence is exact:
+	\begin{equation*}
+		0\morphism E\cdot t^d \morphism B^{\phi=\pi^d}\morphism B_{\dR,y}^+/\xi_y^dB_{\dR,y}^+\morphism 0\,.
+	\end{equation*}
+\end{thm}
+\begin{proof}
+	Injectivity on the left is clear. By construction of $\div(t)$, we see that $\ord_y(t)=1$, hence the image of $E\cdot t^d$ is contained in the kernel of $B^{\phi=\pi^d}\morphism B_{\dR,y}^+/\xi_y^dB_{\dR,y}^+$. Conversely, if $x\in B^{\phi=\pi}\cap \xi_y^d B_{\dR,y}^+$, then $\div(x)\geq dy$. But $\div(x)$ is $\phi$-invariant, hence we even get $\div(x)\geq d\div(t)=\div(t^d)$, so $x\in E\cdot t^d$. This shows exactness at $\smash{B^{\phi=\pi^d}}$. 
+	
+	So it remains to show surjectivity of the third arrow. We claim that it suffices to deal with the case $d=1$. Indeed, suppose $B^{\phi=\pi}\epimorphism C_y$ is surjective. For all $c\in C_y$ let $t_c\in B^{\phi=\pi}$ be a preimage; in particular, $t_1$ maps to $1$. Now suppose $x\in B_{\dR,y}^+/\xi_y^dB_{\dR,y}$ is given. If $c_0$ is the image of $x$ in $C_y$, then $t_{c_0}\cdot t_1^{d-1}\in B^{\phi=\pi^d}$ is an element whose image approximates $x$ up to a multiple of $\xi_y$, say, 
+	\begin{equation*}
+		x-t_{c_0}\cdot t_1^{d-1}\equiv c_1\xi_y\mod \xi_y^2B_{\dR,y}^+
+	\end{equation*}
+	for some $c_1\in C_y$. By construction we have $\ord_y(t)=1$, hence $t\equiv u\xi_y\mod \xi_y^2B_{\dR,y}^+$ for some $u\in C_y\setminus \{0\}$. Now $t_{u^{-1}c_1}\cdot t\cdot t_1^{d-2}$ is an element of $B^{\phi=\pi^d}$ and satisfies
+	\begin{equation*}
+		x-t_{c_0}\cdot t_1^{d-1}-t_{u^{-1}c_1}\cdot t\cdot t_1^{d-2}\equiv c_2\xi_y^2\mod \xi_y^3B_{\dR,y}^+
+	\end{equation*}
+	for some $c_2\in C_y$. Continuing in this fashion, we obtain the desired surjectivity.
+	
+	Thus we may assume $d=1$. For simplicity, we finish the proof of surjectivity only for the case $E=\IQ_p$ (the general case needs Lubin--Tate theory). In this case the assertion follows from \cref{lem:Qp} below.
+\end{proof}
+\begin{lem}\label{lem:Qp}
+	Suppose $E=\IQ_p$. Let $\epsilon=(1,\zeta_p,\zeta_{p^2},\dotsc)\in \Oo_{C_y}^\flat\cong \Oo_F$ be a compatible system of non-trivial $(p^n)\ordinalth$ roots of unity. Let $t=\log{[\epsilon]}\in B^{\phi=p}$. Then there exists a commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			1 \rar &\epsilon^{\IQ_p}\dar[iso]\rar & 1+\mm_F \dar[iso, "\log{[-]}"{swap}]\rar & C_y \rar \eqar[d] &0\\
+			1 \rar & \IQ_p\cdot t \rar& B^{\phi=p}\rar["\theta_y"] & C_y\rar & 0 
+		\end{tikzcd}
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	In the above diagram, $\log{[-]}$ denotes the power series defined as in \cref{rem:log}\itememph{2} by $\log (1-x)=\sum_{i=1}^\infty(-1)^{i-1}x^i/i$. An element $u\in1+\mm_F$ satisfies $v_r(1-u)>0$ for all $r\in (0,\infty)$, so its easy to check that the partial sums of this power series form a Cauchy sequence in the $v_r$-topology on $B^b$. Thus the series converges. Moreover, we check $\phi\log(u)=\log(\phi(u))=\log(u^p)=p\log (u)$, so $\log{[-]}\colon 1+\mm_F\morphism B^{\phi=p}$ is well-defined. 
+	
+	In view of \cref{thm:FundamentalExactSequence} have to show surjectivity of $\theta_y\colon B^{\phi=p}\morphism C_y$. Consider the commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			1+\mm_F\dar[epi,"(-)^\sharp"'] \rar["\log{[-]}"]& B^{\phi=p}\dar["\theta_y"]\\
+			1+\mm_{C_y} \rar[epi,"\log"]& C_y
+		\end{tikzcd}\,.
+	\end{equation*}
+	The left vertical arrow is surjective since $C_y$ is algebraically closed (so $(-)^\sharp\colon \Oo_F\epimorphism\Oo_C$ is surjective, and it's easy to check that $1+\mm_F$ is the preimage of $1+\mm_{C_y}$). The bottom horizontal arrow is surjective as its image is $p$-divisible (because $C_y$ admits $p\ordinalth$ roots) and open (because for all $c\in C_y$ in the image, the power series defining $\exp$ converges on $c+p^n\Oo_{C_y}$ for sufficiently large $n$, so $\exp$ defines a local inverse). This shows surjectivity of $\theta_y\colon B^{\phi=p}\morphism C_y$, which is all we need for \cref{thm:FundamentalExactSequence}.
+	
+	Nevertheless, to finish the proof of \cref{lem:Qp}, we also need to show exactness of the top row. But the top row is the inverse limit of
+	\begin{equation*}
+		1\morphism \mu_{p^\infty}(C_y)\morphism 1+\mm_{C_y}\morphism[\log]C_y\morphism 0
+	\end{equation*}
+	along multiplication/exponentiation by $p$. Here we use $\limit_{x\mapsto x^p}\mu_{p^\infty}(C_y)\cong \epsilon^{\IQ_p}$, the left-hand side being isomorphic to $\IQ_p/\IZ_p$ and the right-hand side to $\IQ_p$.
+\end{proof}
+\begin{cor}\label{cor:P/tPpoint}
+	Let $t=\Pi(\xi_y)$ as in \cref{thm:FundamentalExactSequence}. Then we have an isomorphism of graded rings
+	\begin{equation*}
+		P/tP\cong S\coloneqq\left\{f\in C_y[T]\st f(0)\in E\right\}\,.
+	\end{equation*}
+	In particular, $\Proj P/tP=\{0\}$ is a single point. We denote by $\infty_t$ its image in $\Proj P=X$.
+\end{cor}
+\begin{proof}
+	As usual, let $\theta_y\colon B\morphism C_y$ denote the canonical map (or rather the continuous extension of the canonical map, constructed as in Claim~\itememph{1} in the proof of \cref{thm:BIPID}). Then we obtain a morphism of graded rings $P\morphism S$ by sending
+	\begin{equation*}
+		\sum_{d\geq 0}x_d\longmapsto \sum_{d\geq 0}\theta_y(x_d)T^d
+	\end{equation*}
+	(the left-hand side denotes a decomposition of an element of $P=\bigoplus_{d\geq 0}P_d$ into homogeneous components). As $\theta_y(t)=0$, this descends to a graded ring morphism $P/tP\morphism S$. By \cref{lem:PEigenspaces} this is an isomorphism in degree $0$, and surjective by \cref{thm:FundamentalExactSequence}.
+	
+	To see injectivity, suppose $x\in P_d$ satisfies $\theta_y(x)=0$. Then $x$ is divisible by $\xi_y$ in $B_{\dR,y}^+$. Using $\ord_y(t)=1$ and the surjectivity part of the fundamental sequence, we see that we can write $x\equiv t't\mod \xi_y^dB_{\dR,y}^+$ for some $t'\in P_{d-1}$. By the fundamental sequence again, we obtain $x-t't\in Et^d$. Hence $x\in tP$, proving injectivity.
+	
+	It remains to show $\Proj P/tP=\{0\}$. Suppose $\pp$ is a homogeneous prime ideal of $P/tP$ and $cT^d\in \pp$ for some $c\in C_y\setminus\{0\}$, $d\geq 1$. Then $T^{d+1}=c^{-1}T\cdot cT^d$ is an element of $\pp$ since the first factor is an element of $S$ and the second is in $\pp$. Thus $T\in \pp$, so $\pp\notin \Proj S$.
+\end{proof}
+We know $P$ is generated by $P_1$. Hence for all $n\in \IZ$ there are canonical line bundles $\Oo_X(n)$ on $X$. These are obtained as the quasi-coherent sheaves associated to the graded modules $P[n]$ defined by $P[n]_d=P_{d+n}$.
+\begin{lem}\label{lem:HiOXn}
+	For all $n\in \IZ$ we have an isomorphism $H^0(X,\Oo_X(n))\cong B^{\phi=\pi^n}$.
+\end{lem}
+\begin{proof}
+	We have a canonical morphism $B^{\phi=\pi^d}=P_d\morphism H^0(X,\Oo_X(n))$. Since $P$ is graded factorial, it is easy to check that this is an isomorphism.
+\end{proof}
+Now we can restate and prove our main result, \cref{thm:FFCisACurve}. This finally justifies calling the Fargues--Fontaine curve a \defemph{curve}.
+\begin{thm}[Fargues--Fontaine]\label{thm:FFCisACurveII}
+	For any non-zero $t\in P_1=B^{\phi=\pi}$, the ring $B_t\coloneqq P\localize{t}_0=B\localize{t}^{\phi=1}$ is a PID, and on underlying sets
+	\begin{equation*}
+		X=\Proj P=D_+(t)\sqcup V_+(t)=\Spec B_t\sqcup \{\infty_t\}\,.
+	\end{equation*}
+	In particular, $X$ is noetherian and regular of Krull dimension $1$.
+\end{thm}
+\begin{proof}
+	As in the proof of \cref{thm:BIPID}, it suffices that $B_t$ is factorial and that each (non-invertible) irreducible element generates a maximal ideal. If $x\in B_t$, then for some $d\geq 0$ we have $x=t'/t^d$ with $t'\in P_d$. By \cref{thm:PGradedFactorial}, we can factor $t'=t_1\dotsm t_d$ with $t_i\in P_1$. By the previous \cref{cor:P/tPpoint}, the vanishing set of each $t_i/t$ is either empty or a single closed point. Hence $t_i/t$ is a unit or generates a maximal ideal.
+	
+	Now pick $t,t'\in P_1\setminus \{0\}$ non-$E$-collinear (these exist by \cref{thm:divIso} for example). Then $X=\Spec B_t\cup \Spec B_{t'}$ and the theorem follows.
+\end{proof}
+\begin{lem}\label{lem:BdRx}
+	Let $|X|$ denote the set of closed points of $X$. Then---as for $\IP_E^1$---there exists bijections
+	\begin{equation*}
+		|X|\cong |Y|/\phi^\IZ \cong (P_1\setminus\{0\})/E^\times\,.
+	\end{equation*}
+	Moreover, if $y\in |Y|$ corresponds to $x\in |X|$, then $B_{\dR,x}^+\coloneqq \roof{\Oo}_{X,x}\cong B_{\dR,y}^+$.
+\end{lem}
+\begin{proof*}
+	By \cref{thm:divIso}, we get a bijection $|Y|/\phi^\IZ\cong (P_1\setminus\{0\})/E^\times$, as the left-hand side are precisely the \enquote{indecomposable} divisors in $\Div^+(|Y|/\phi^\IZ)$. By \cref{thm:FFCisACurveII} and \cref{cor:P/tPpoint}, we see that the closed points of $X$ are precisely the points of the form $\infty_t$ for $t\in P_1\setminus\{0\}$, and moreover $t$ is unique up to $E^\times$. This shows the asserted bijection.
+	
+	Choose $t\in P_1$ corresponding to $y$ and let $t'\in P_1$ be such that $X=\Spec B_t\cup \Spec B_{t'}$. Then $\ord_y(t)=1$ and $\ord_y(t')=0$, so the canonical map $B\morphism B_{\dR,y}^+$ induces maps $B_{t'}/(t/t')^dB_{t'}\morphism B_{\dR,y}^+/\xi_y^dB_{\dR,y}^+$ for all $d\geq 1$. Taking limits (and using that $(t/t')$ is a maximal ideal in $B_{t'}$) gives a map 
+	\begin{equation*}
+		\roof{\Oo}_{X,x}\morphism B_{\dR,y}^+\,.
+	\end{equation*}
+	We claim that this is an isomorphism. Indeed, it is a morphism of DVRs mapping the uniformizer $t/t'$ to some uniformizer of $B_{\dR,y}^+$, so we only need to check that the induced morphism on residue fields is an isomorphism. But a non-zero map of fields is always injective, so surjectivity suffices. By the fundamental sequence (\cref{thm:FundamentalExactSequence}), $P_1\epimorphism C_y$ surjects onto the residue field of $B_{\dR,y}^+$. Since $t'$ maps to a unit in $B_{\dR,y}^+$, we see that $t'^{-1}P_1\epimorphism C_y$ is still surjective, and $t'^{-1}P_1\subseteq B_{t'}$.
+\end{proof*}
+\begin{defi}\label{def:deg}
+	As usual, let $\Div(X)$ denote the group of \defemph{divisors} of $X$, i.e., the free abelian group on the set of closed points $|X|$.
+	\begin{numerate}
+		\item We define the \defemph{degree map} $\deg\colon \Div(X)\morphism \IZ$ by $\deg\left(\sum_{x\in |X|}n_xx\right)=\sum_{x\in |X|}n_x$.
+		\item If $f\in K(X)^\times$ is a non-zero element of the function field (i.e., the stalk at the generic point) of $X$, we put $\div(f)=\sum_{x\in |X|}\ord_x(f)$, where $\ord_x$ denotes the valuation of $B_{\dR,x}^+$.
+	\end{numerate}
+\end{defi}
+\begin{rem}
+	In the lecture it was pointed out that \cref{def:deg}\itememph{1} is actually a rather odd choice of degree map. To see where this comes from, recall that the \enquote{real} analogue of the Fargues--Fontaine curve should be $\snake{\IP}_{\IR}^1$. Now for a divisor on $\snake{\IP}_{\IR}^1$ consisting of a single point $x$, there are two ways to define its degree:
+	\begin{numerate}
+		\item we could put $\deg x=[\kappa(x):\IR]$,
+		\item or just $\deg x=1$.
+	\end{numerate}
+	Option~\itememph{1} is the one we would expect to be the canonical choice, since it comes from $\snake{\IP}_{\IR}^1$ considered as a curve over $\IR$. But in \cref{def:deg} we actually go with option~\itememph{2}.
+\end{rem}
+\begin{prop}
+	For $f\in K(X)^\times$ we have $\deg(\div(f))=0$ (so heuristically speaking \enquote{$X$ is proper}). Moreover, the induced map
+	\begin{equation*}
+		\deg\colon \Pic(X)\isomorphism \IZ
+	\end{equation*}
+	is an isomorphism, with inverse given by $n\mapsto \Oo_X(n)$.
+\end{prop}
+\begin{proof}
+	Without restriction assume $f=t'/t$, with $t',t\in P_1$. Indeed, since $X$ is locally a PID (\cref{thm:FFCisACurveII}) and $P$ is graded factorial (\cref{thm:PGradedFactorial}), every element in the function field can be decomposed into a product of elements of the form $t/t'$. In this case we have $\div(f)=\infty_{t'}-\infty_t$, which is clearly of degree $0$.
+	
+	To see the second assertion, use the short exact sequence
+	\begin{equation*}
+		0\morphism \IZ\{\Oo_X(1)\}\morphism \Pic(X)\morphism \Pic(\Spec B_t)\morphism 0
+	\end{equation*}
+	(this is rather easy to derive) and the fact that $\Pic(\Spec B_t)=0$ as $B_t$ is factorial.
+\end{proof}
+\begin{prop}
+	The cohomology of the twisting sheaves $\Oo_X(n)$ is given by
+	\begin{equation*}
+		H^i\big(X,\Oo_X(n)\big)=\begin{cases*}
+		B^{\phi=\pi^n} & if $i=0$\\
+		0 & if $i\geq 2$\\
+		0 & if $i=1$, $n\geq 0$\\
+		B_{\dR,x}^+/(\Fil^{-n}B_{\dR,x}^++E) & if $i=1$, $n<0$
+		\end{cases*}\,,
+	\end{equation*}
+	where $x$ may be any closed point of $X$ and $\Fil^dB_{\dR,x}^+=t^dB_{\dR,x}^+$ for $t$ corresponding to $x$ under the bijection from \cref{lem:BdRx}.
+\end{prop}
+\begin{proof*}
+	The case $i=0$ was done in \cref{lem:HiOXn}. The case $i\geq 2$ follows from Grothendieck's theorem on cohomological dimension and the fact that $X$ is one-dimensional, or alternatively via \v Cech cohomology, using that $X$ can be covered by two affine opens.
+	
+	For $i=1$, $n\geq 0$, we claim that it suffices to show $H^1(X,\Oo_X)=0$. Indeed, choose any $t\in P_1\setminus\{0\}$ and let $B_{\dR}^+=B_{\dR,x}^+$ for the corresponding point $x=\infty_t$. Then we have an exact sequence
+	\begin{equation}\label{eq:BdRExactSeq1}
+		0\morphism \Oo_X\morphism[t^n]\Oo_X(n)\morphism t^{-n}B_{\dR}^+/B_{\dR}^+\morphism 0\,.
+	\end{equation}
+	The term on the right-hand side is abuse of notation for the corresponding skyscraper sheaf supported on $\infty_t$. Since a sheaf supported only at a closed point as vanishing higher cohomology, we find that $H^1(X,\Oo_X)\epimorphism H^1(X,\Oo_X(n))$ is surjective, so $H^1(X,\Oo_X)=0$ is indeed sufficient to deduce $H^1(X,\Oo_X(n))=0$ as well.
+	
+	To see $H^1(X,\Oo_X)=0$, let $j\colon \Spec B_t\monomorphism X$ denote the corresponding open embedding. Now look at the exact sequence
+	\begin{equation}\label{eq:BdRExactSeq2}
+		0\morphism \Oo_X\morphism j_*\Oo_{\Spec B_t}\morphism B_{\dR}/B^+_\dR\morphism 0\,,
+	\end{equation} 
+	where $B_\dR\coloneqq \Frac(B^+_\dR)$ denotes the fraction field. Exactness of this sequence can be seen by writing $j_*\Oo_{\Spec B_t}\cong \colimit_{d\geq 0}\Oo_X(d\cdot \infty_t)$ and $B_\dR/B_\dR^+\cong \colimit_{d\geq 0}t^{-d}B_\dR^+/B_\dR^+$. Since $X=\Proj P$ is separated, the inclusion $j\colon \Spec B_t\monomorphism X$ is affine. Hence $H^1(X,j_*\Oo_{\Spec B_t})\cong H^1(\Spec B_t,\Oo_{\Spec B_t})=0$. Therefore, taking the long exact cohomology sequence associated to \cref{eq:BdRExactSeq2} gives
+	\begin{equation*}
+		0\morphism E\morphism B_t\morphism B_\dR/B_\dR^+\morphism H^1(X,\Oo_X)\morphism 0
+	\end{equation*}
+	(using $H^0(X,\Oo_X)\cong P_0\cong E$ by \cref{lem:HiOXn} and \cref{lem:PEigenspaces}). Now the fundamental exact sequence implies that $t^{-d}P_d\epimorphism t^{-d}B_\dR^+/B_\dR^+$ is surjective. Since $B_t=\bigoplus_{d\geq 0}t^{-d}P_d$ and $B_\dR/B_\dR^+\cong \colimit_{d\geq 0}t^{-d}B_\dR^+/B_\dR^+$ and surjectivity behaves well under colimits, wee see that $B_t\epimorphism B_\dR/B_\dR^+$ must be surjective as well. Thus $H^1(X,\Oo_X)=0$, as required.
+	
+	Now let $n<0$. In this case we use the short exact sequence
+	\begin{equation}\label{eq:BdRExactSeq3}
+		0\morphism \Oo_X(n)\morphism[t^{-n}]\Oo_X\morphism B_\dR^+/t^{-n}B_\dR^+\morphism 0\,,
+	\end{equation}
+	which can be derived analogous to \cref{eq:BdRExactSeq1}. Using $H^1(X,\Oo_X)=0$ and $H^0(X,\Oo_X)\cong E$ and $H^0(X,\Oo_X(n))\cong P_n=0$, we find that the induced sequence on cohomology looks like
+	\begin{equation*}
+		0\morphism E\morphism B_\dR^+/t^{-n}B_\dR^+\morphism H^1\big(X,\Oo_X(n)\big)\morphism 0\,.
+	\end{equation*}
+	This immediately implies $H^1(X,\Oo_X(n))=B_\dR^+/(\Fil^{-n}B_\dR^++E)$, as required.
+\end{proof*}
+\subsection{The Fargues--Fontaine Curve and \texorpdfstring{$\IA_\cris$}{Acris}}
+Assume $E=\IQ_p$. In this case we can express $X$ in terms of the crystalline period ring $B_\cris^+=\IA_\cris\localize{p}$. Let's recall the construction of $\IA_\cris$ from \cref{subsec:Acris} first. Fix a non-archimedean algebraically closed extension $C/\IQ_p$. We have seen in the proof of Example~\cref{exm:OCperfectoid} that the kernel of $\theta\colon\IA_\inf\morphism \Oo_C$ is generated by $\xi=p-[p^\flat]$, where $p^\flat=(p,p^{1/p},\dotsc)\in \Oo_C^\flat\cong \Oo_F$. Then
+\begin{equation*}
+	\IA_\cris=\IA_\inf\left[\frac{[p^\flat]^n}{n!}\st n\in\IN\right]_p^\complete
+\end{equation*}
+(in our original definition of $\IA_\cris$ we adjoined divided powers $\xi$ instead; however, $p$ already has divided powers in $\IA_\inf$, so we may equivalently adoin divided powers of $[p^\flat]$).
+\begin{defi}\label{def:Bb+}
+	We define the following variations of the ring $B$.
+	\begin{numerate}
+		\item Let $B^{b,+}\coloneqq \IA_\inf\localize{p}$.
+		\item For an interval $I\subseteq (0,\infty)$, let $B_I^+$ denote the completion of $B^{b,+}$ with respect to the valuations $(v_r)_{r\in I}$. This coincides with the closure of $B^{b,+}$ in $B_I$.
+		\item For $I=\{r\}$, we put $B_r^+\coloneqq B_{\{r\}}^+$ for convenience.
+		\item Let $B^+=B_{(0,\infty)}^+$ be the ring of \enquote{functions on $|Y|$ that extend to the boundary}.
+	\end{numerate}
+\end{defi}
+\begin{rem}\label{rem:Bs+}
+	Note that if $s\leq r$, then $v_s(x)\geq \frac{s}{r}v_r(x)$ for $x\in B^{b,+}$. This would be false for $B^b$, but in $B^{b,+}$ it works because $B^{b,+}$ consist of $p$-power series whose Teichmüller coefficients have non-negative valuation. Thus every $v_s$-Cauchy sequence is a $v_r$-Cauchy sequence too, and we get a canonical inclusion $B_s^+\subseteq B_r^+$. In particular, we obtain $B_r^+=B_{(0,r]}^+$.
+\end{rem}
+\begin{lem}\label{lem:Br+Ainfap}
+	Let $a\in\mm_F\setminus\{0\}$ and $r=v_F(a)$. Then
+	\begin{equation*}
+		B_r^+=\IA_\inf\Big[\textstyle\frac{[a]}p\Big]_p^\complete\localize{p}
+	\end{equation*}
+\end{lem}
+\begin{proof*}
+	Let $A$ denote the right-hand side. We must show that $A$ is $v_r$-complete (or more precisely, complete with respect to the obvious continuous extension of $v_r$ to $A$) and that every $v_r$-continuous map $B^{b,+}\morphism A'$ into a complete topological ring extends uniquely to a map $A\morphism A'$.
+	
+	The latter is quite easy to see: elements $\alpha\in A$ can be (non-uniquely) written as $p$-Laurent series $\alpha=\sum_{n\gge -\infty}^\infty a_np^n$ for $a_n\in \IA_\inf \left[[a]/p\right]$. Now if $B^{b,+}\morphism A'$ is given, then the images of $a_np^n$ are determined, so it suffices to see that $(a_np^n)_{n\gge -\infty}$ is a $v_r$-null sequence (since then the partial sums converge in $A'$, hence we can take their limit as the image of $\alpha$). But $v_r([a]/p)=0$, hence $v_r(b)\geq 0$ for all $b\in \IA_\inf\left[[a]/p\right]$. Thus $v_r(a_np^n)\geq rn$ and we get indeed a $v_r$-null sequence.
+	
+	To see that every $v_r$-Cauchy sequence in $A$ converges, it's enough to check that every series whose terms form a $v_r$-null sequence is convergent. This will be an immediate consequence of the following claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] If $\alpha\in A$ is an element such that $v_r(\alpha)\geq rn$ for some $n\geq 0$, then $\alpha\in p^n\IA_\inf\left[[a]/p\right]_p^\complete$.
+	\end{alphanumerate}
+	To prove \itememph{*}, write $\alpha$ as a $p$-Laurent series as above. Also, without restriction, $r(n+1)>v_r(\alpha)$. All terms $a_mp^m$ with $m\geq n+1$ may be ignored, so we may assume that $\alpha=bp^{-N}$ for some $b\in \IA_\inf\left[[a]/p\right]$ and some $N\geq 0$. Increasing $N$ if necessary we may even assume $b\in \IA_\inf$. Write $b=\sum_{i=0}^\infty[b_i]p^i$. As $v_r(bp^{-N})\geq rn$, we obtain $v_F(b_i)\geq r(N+n-i)$. As $v_F(a)=r$, we may write $b_i=a^{N+n-i}c_i$ for some $c_i\in \Oo_F$. Then
+	\begin{equation*}
+		\alpha=bp^{-N}=p^n\sum_{i=0}^{N+n}[c_i]\left(\frac{[a]}{p}\right)^{N+n-i}+p^{n+1}\sum_{i=N+n+1}^\infty[b_i]p^{i-(N+n+1)}\,.
+	\end{equation*}
+	Both sums are elements of $\IA_\inf[[a]/p]$. This shows that $\alpha$ is indeed divisible by $p^n$, and thus \itememph{*} is proved.
+\end{proof*}
+
+
+The Frobenius $\phi$ on $B^{b,+}$ induces an isomorphism $\phi\colon B_r^+\isomorphism B_{pr}^+\subseteq B_r^+$. Moreover, if $v_C\colon C\morphism \IR\cup\{\infty\}$ denotes the valuation of $C$, then the following lemma holds.
+\begin{lem}\label{lem:B+}
+	Let $r=v_C(p)$. Then $B_{pr}^+\subseteq B_\cris^+\subseteq B_r^+$. Moreover, we have
+	\begin{equation*}
+		B^+=\bigcap_{n=1}^\infty \phi^nB_\cris^+=\bigcap_{n=1}^\infty \phi^nB_r^+\,.
+	\end{equation*}
+	In particular, $B^+$ is the largest subring of $B_\cris^+$ on which $\phi$ is bijective (or, equivalently, surjective, since it's easy to check that $\phi$ is injective on $B_\cris^+$).
+\end{lem}
+\begin{proof}
+	Note that $r=v_C(p)=v_F(p^\flat)$. Hence $B_{pr}^+$ and $B_r^+$ can be described via \cref{lem:Br+Ainfap}. Concretely, we obtain a chain of inclusions
+	\begin{equation*}
+		\IA_\inf\left[\frac{[p^\flat]^p}{p}\right]\subseteq \IA_\inf\left[\frac{[p^\flat]^n}{n!}\st n\in\IN\right]\subseteq \IA_\inf\left[\frac{[p^\flat]}{p}\right]\,.
+	\end{equation*}
+	After $p$-completion and localization at $p$ (both operations preserve inclusions) this becomes $B_{pr}^+\subseteq B_\cris^+\subseteq B_r^+$, as required. This already shows that it doesn't matter whether we take the intersection over $\phi^nB_\cris^+$ or $\phi^nB_r^+$.
+	
+	Moreover, $\phi^n\colon B_r^+\morphism B_r^+$ has image $B_{p^nr}^+$. Using the observation from \cref{rem:Bs+}, we thus obtain
+	\begin{equation*}
+		\bigcap_{n=1}^\infty\phi^nB_r^+=\limit_{n\geq 1}B_{p^nr}=B^+\,,
+	\end{equation*}
+	where the limit in the middle is taken along the canonical inclusions $B_{p^{n+1}r}^+\subseteq B_{p^nr}^+$. This finishes the proof.
+\end{proof}
+\begin{prop}\label{prop:FFandBcris}
+	We have canonical isomorphisms
+	\begin{equation*}
+		P=\bigoplus_{d\geq 0}B^{\phi=p^d}\cong \bigoplus_{d\geq 0}(B^+)^{\phi=p^d}\cong \bigoplus_{d\geq 0} (B_\cris^+)^{\phi=p^d}\,.
+	\end{equation*}
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	One first checks that if $x\in B^{\phi=p^d}$, then $\Newt_{(0,\infty)}(x)\geq 0$. Indeed, since $\phi(x)=p^dx$, scaling $\Newt_{(0,\infty)}$ along the $y$-axis with factor $p$ is the same as a translation by $d$ along the $x$-axis. Now if $\Newt_{(0,\infty)}(x)$ is not always strictly positive, then it has to cross the $x$-axis somewhere. But then it must be identically zero by the above symmetry observation.
+	
+	Moreover, one can show that
+	\begin{equation*}
+		B^+=\left\{x\in B\st\Newt_{(0,\infty)}(x)\geq 0\right\}\,.
+	\end{equation*}
+	Thus $B^{\phi=p^d}=(B^+)^{\phi=p^d}$. Moreover, $B_\cris^+=\IA_\cris\localize{p}$ is $p$-divisible, hence $\phi$ is bijective on the subring $\bigoplus_{d\geq 0}(B_\cris^+)^{\smash{\phi=p^d}}$. But since $B^+$ is the largest subring with this property by \cref{lem:B+}, hence it contains all $(B_\cris^+)^{\phi=p^d}$. This shows $(B^+)^{\phi=p^d}=(B_\cris^+)^{\phi=p^d}$ and we are done.
+\end{proof}
+\begin{rem}
+	Let $\epsilon=(1,\zeta_p,\zeta_{p^2},\dotsc)\in \Oo_C^\flat\cong \Oo_F$ and $t=\log{[\epsilon]}$ as in \cref{lem:Qp}. Put $B_\cris=B_\cris^+\localize{t}$ and let $B_e=(B_\cris)^{\phi=1}$. Then on underlying topological spaces we can write
+	\begin{equation*}
+		X=\text{\enquote{$\Spec B_e\cup_{\Spec B_\dR}\Spec B_\dR^+$}}\,.
+	\end{equation*}
+	That is, the Fargues--Fontaine curve is obtained by \enquote{gluing} the open subset $D_+(t)$ together with the spectrum of the DVR $B_\dR^+=B_{\dR,\infty_t}^+$ (which has only two points) along their generic points.
+\end{rem}
+\begin{center}
+	\Large\bfseries Merry $\IA_\cris$mas!
+\end{center}
+
 
 \appendix
 
