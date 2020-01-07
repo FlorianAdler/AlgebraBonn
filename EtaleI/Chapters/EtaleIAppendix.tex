@@ -26,16 +26,48 @@ In the following, all references refer to \cite{stacks-project} and $\colimit$ a
 	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a colimit as above, then already $f_\beta$ is étale for some $\beta\geq \alpha$.
 \end{alphanumerate}
 \section{The Conditions \texorpdfstring{$R_k$}{Rk} and \texorpdfstring{$S_k$}{Sk}}
-I plan to add more material here once I find the time to work out the proofs in Lecture~7. Recall the following notions:
-\begin{defi*}
-	Let $X$ be a locally notherian scheme and $\Ff$ a coherent $\Oo_X$-module.
+Serre's conditions $R_k$ and $S_k$ have shown up a few times: first in the proof of the Zariski--Nagata purity theorem (\cref{thm:Zariski-Nagata}) in Lecture~7 and then again in the construction of henselizations in Lecture~11. So I decided to write down proofs of the facts we have used.
+
+Naturally, depth of modules will occur, together with some local cohomology. The standard reference for this is of course \cite{sga2}, but I also find \cite{LocalCohomology} quite readable (not least because it is in English).
+\begin{defi*}\label{def*:RkSk}
+	Let $X$ be a locally notherian scheme.
 	\begin{alphanumerate}
-		\item We say \emph{$X$ satisfies $R_k$} at the point $x\in X$ if $\Oo_{X,x}$ is regular or  $\dim\Oo_{X,x}> k$. In case $X$ satisfies $R_k$ at all $x\in X$, we just say $X$ satisfies $R_k$.
-		\item We say \emph{$\Ff$ satisfies $S_k$} at the point $x\in X$ if $\depth \Ff_x\geq \min\{k,\dim(\supp \Ff_x)\}$. In case $\Oo_X$ satisfies $S_k$ at all $x\in X$, we often just say \defemph{$X$ satisfies $S_k$}.
+		\item We say \emph{$X$ satisfies $R_k$} at the point $x\in X$ if $\Oo_{X,x}$ is regular or  $\dim\Oo_{X,x}> k$. In case $X$ satisfies $R_k$ at all $x\in X$, we just say \defemph{$X$ satisfies $R_k$}.
+		\item If $\Ff$ is a coherent $\Oo_X$-module, we say \defemph{$\Ff$ satisfies $S_k$} at the point $x\in X$ if we have $\depth \Ff_x\geq \min\{k,\dim(\supp \Ff_x)\}$. In case $\Oo_X$ satisfies $S_k$ at all points $x\in X$, we often just say \defemph{$X$ satisfies $S_k$}.
+		\item If $\Ff$ is coherent and satisfies $\depth \Ff_x\geq \min\{k,\dim \Oo_{X,x}\}$ at some $x\in X$, then we say \defemph{$\Ff$ satisfies $S_k'$ at $x$}. As usual, if this is true for all $x\in X$, we just say \defemph{$\Ff$ satisfies $S_k'$}.
 	\end{alphanumerate}
 \end{defi*}
+\begin{warn*}\label{warn*:SkFail}
+	Beware that \cref{def*:RkSk} is \emph{non-standard terminology}! But we need it for \cref{lem*:S1S2} below. Note that this lemma wouldn't be true if $S_1'$, $S_2'$ were replaced by $S_1$, $S_2$ respectively. For example, part~\itememph{a} is false when $U=\Spec A$ where $A$ is a DVR with maximal ideal $\mm$, $V=U\setminus\{\mm\}$ (which is dense), and $\Ff$ is the coherent module associated to $A/\mm$.
+	
+	However, at least in the case $\Ff=\Oo_X$, and more generally for vector bundles, the conditions $S_k$ and $S_k'$ coincide.
+\end{warn*}
+\begin{lem*}\label{lem*:S1S2}
+	Let $X$ be a locally noetherian scheme and $\Ff$ a coherent $\Oo_X$-module.
+	\begin{alphanumerate}
+			\item $\Ff$ satisfies $S_1'$ iff $\Global(U,\Ff)\monomorphism\Global(V,\Ff)$ is injective whenever $V$ is a dense open subset of the open subset $U\subseteq X$.
+			\item $\Ff$ satisfies $S_2'$ iff it satisfies $S_1$ and $\Global(U,\Ff)\isomorphism\Global(V,\Ff)$ whenever $V\subseteq U$ are open subsets of $X$ such that $\codim(Z,U)\geq 2$ for every connected component $Z$ of $U\setminus V$.
+	\end{alphanumerate}
+\end{lem*}
+\begin{proof*}
+	Recall the following characterization of depth via local cohomology: let $A$ be a local ring with maximal ideal $\mm$ and $M$ a finite module over $A$. Then $\depth M$ is the smallest non-negative integer $d\geq 0$ such that
+	\begin{equation*}
+		0\neq H_\mm^d(M)=\colimit_{n\in\IN}\Ext_A^d(A/\mm^n,M)\,.
+	\end{equation*}
+	See e.g.\ \cite[Theorem~3.8]{LocalCohomology} for a proof. Now let $V\subseteq U\subseteq X$ be open subsets, let $Z=U\setminus V$ and consider the local cohomology sequence
+	\begin{equation*}
+		0\morphism H_Z^0(U,\Ff)\morphism \Global(U,\Ff)\morphism \Global(V,\Ff)\morphism H^1_Z(U,\Ff)\morphism H^1(U,\Ff)\morphism\dotso\,.
+	\end{equation*}
+	For every point $x\in Z$ we have $\Hh_Z^p(\Ff)_x\cong H_{\mm_{X,x}}^p(\Ff_x)$. In particular, the above shows that $\depth \Ff_x\geq 1$ holds iff $\Hh_Z^0(\Ff)_x=0$ and $\depth \Ff_x\geq 2$ iff $\Hh_Z^0(\Ff)_x=\Hh_Z^1(\Ff)=0$. If $\Ff$ satisfies $S_1'$, then $\depth \Ff_x=0$ can only happen if $\dim\Oo_{X,x}=0$. But if $V$ is dense in $U$, then every $x\in Z$ has codimension at least $1$, so we obtain $\Hh_Z^0(\Ff)=0$ in this case. Then also $H_Z^0(U,\Ff)=0$ and $\Global(U,\Ff)\monomorphism \Global(V,\Ff)$ is indeed injective.
+	
+	In a similar manner, $\Ff$ having $S_2'$ implies that $H_Z^1(U,\Ff)=0$ whenever $\codim (Z,U)\geq 2$, so the long exact local cohomology sequence shows that $\Global(U,\Ff)\isomorphism \Global(V,\Ff)$ is an isomorphism, as claimed.
+	
+	Conversely, assume that $\Ff$ satisfies the condition from \itememph{a}. We need to show that $\Ff$ is $S_1'$. The only critical case is when $x\in X$ is a point such that $\depth \Ff_x=0$. In this case, we have $H_{\mm_{X,x}}^0(\Ff_x)\neq 0$. Thus, if $U$ is an affine open neighbourhood of $x$ and $Z=\ov{\{x\}}$, then $H_Z^0(U,\Ff)\neq 0$ because $\Hh_Z^0(\Ff)$ is the quasi-coherent sheaf associated to $H_Z^0(U,\Ff)$ and its stalk at $x$ is non-vanishing. Putting $V=U\setminus U\setminus \ov{\{x\}}$, we see that $\Global(U,\Ff)\morphism \Global(V,\Ff)$ can't be injective. Thus $V$ can't be dense in $U$, whence $x$ must have codimension $0$. So $S_1'$ still holds at $x$.
+	
+	In the same way we see that the condition from \itememph{b} implies that $\Ff$ is $S_2'$; the only additional ingredient is that $H^1(U,\Ff)=0$ if $U$ is affine.
+\end{proof*}
 \begin{lem*}\label{lem:EtaleRkSk}
-	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian schemes. Let $x\in X$ and $y=f(x)$ such that $f$ is étale at $x$. Then the following hold:
+	Let $f\colon X\morphism Y$ be a morphism of locally finite type between locally noetherian schemes. Let $x\in X$ and $y=f(x)$ such that $f$ is étale at $x$. Then:
 	\begin{alphanumerate}
 		\item $X$ satisfies $R_k$ at $x$ iff $Y$ satisfies $R_k$ at $y$.
 		\item $X$ satisfies $S_k$ at $x$ iff $Y$ satisfies $S_k$ at $y$.
@@ -149,7 +181,7 @@ The first step is to prove the assertion for complete noetherian local domains, 
 	\begin{equation*}
 	B\otimes_A\roof{A}\morphism\prod_{i=1}^n\kappa(\qq_i)
 	\end{equation*}
-	is injective. But $B\otimes_A\roof{A}$ is clearly contained in the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ as noted above, this shows that $B\otimes_A\roof{A}$ is finite over $\roof{A}$. Then $B$ is finite over $A$ (if $\big\{\sum_ib_{i,j}\otimes a_i\big\}$ are generators of $B\otimes_A\roof{A}$, then $\{b_{i,j}\}$ are generators of $B$, using that $\roof{A}$ is faithfully flat over $A$). We are done.
+	is injective. But $B\otimes_A\roof{A}$ is clearly contained in the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ as noted above, this shows that $B\otimes_A\roof{A}$ is finite over $\roof{A}$. Then $B$ is finite over $A$ (if $\big\{\sum_ib_{i,j}\otimes a_i\big\}$ are generators of $B\otimes_A\roof{A}$, then $\{b_{i,j}\}$ are generators of $B$, using that $\roof{A}$ is faithfully flat over $A$). We are done. K\"ahler
 	
 	\emph{Step~4.} We show that $\roof{A}$ is indeed reduced. Using the younger sibling of Serre's normality criterion, what we have to show is that $\roof{A}$ is $R_0$ and $S_1$. Note that this is fulfilled for $A$ since $A$ is a domain, hence reduced. Moreover, the fibres of $A\morphism\roof{A}$ are regular (even geometrically regular), hence the fibres are $R_n$ and $S_n$ for every $n\geq 0$. Now both $R_0$ and $S_1$ are \enquote{ascending} conditions in the sense that if they hold for the source and the fibres, then they hold for the target as well as long as the morphism in question is flat (see \stackstag{0336}, but in these particular cases everything is easily checkable by hand). This shows that $\roof{A}$ is indeed reduced and this rather lengthy proof has finally come to an end.
 \end{proof}

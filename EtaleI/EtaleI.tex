@@ -80,8 +80,8 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 \include{./Chapters/EtaleI164to17}
 
 \chapter{Cohomology}
-\section{Definitions and Basic Facts}
-\lecture[]{2019-12-16}Étale cohomology of schemes and morphisms between them will be constructed using the machinery of \defemph{right-derived functors}. We assume familiarity with the construction of the functors $R^iF$ for any left-exact functor $F$ between abelian categories. Since the $R^iF$ are usually computed via injective resolutions (provided such resolutions exist), it is useful to have the following proposition.
+\section{Definitions and Basic Facts}\label{sec:CohoBasics}
+\lecture[Injective objects in $\cat{Ab}(X_\et)$. Étale cohomology of schemes and morphisms. Some Leray spectral sequences.]{2019-12-16}Étale cohomology of schemes and morphisms between them will be constructed using the machinery of \defemph{right-derived functors}. We assume familiarity with the construction of the functors $R^iF$ for any left-exact functor $F$ between abelian categories. Since the $R^iF$ are usually computed via injective resolutions (provided such resolutions exist), it is useful to have the following proposition.
 \begin{prop}\label{prop:enoughInjectives}
 	Let $X$ be an arbitrary scheme.
 	\begin{alphanumerate}
@@ -90,15 +90,15 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 	\end{alphanumerate}
 \end{prop}
 \begin{proof}
-	The general way to do this is to use Grothendieck's [TODO], but for this lecture Professor Franke prefers a down-to-the-earth approach.
+	The general way to do this is to use Grothendieck's \cite[Théorème~1.10.1]{tohoku}, but for this lecture Professor Franke prefers a down-to-the-earth approach.
 	
-	We begin with \itememph{a}. For a geometric point $x$ of $X$, the functor $x_*\colon \cat{Ab}\morphism \cat{Ab}(X_\et)$ of forming a \enquote{skyscraper sheaf} has the exact left-adjoint $(-)_x\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$ of forming the stalk at $x$. Thus $x_*$ preserves injective objects, i.e., if $I$ is an injective abelian group, then $x_*I$ is injective in $\cat{Ab}(X_\et)$. Also recall $(x_*I)\cong I$. Now let $\Ff$ be an arbitrary abelian sheaf on $X_\et$. For every geometric point $x$ choose an embedding $\Ff_x\monomorphism I_x$ into an injective abelian group, using that $\cat{Ab}$ has enough injectives. By the stalk-skyscraper adjunction, we get a morphism $\Ff\morphism x_*I_x$. Now consider
+	We begin with \itememph{a}. For a geometric point $\ov{x}$ of $X$, the functor $\ov{x}_*\colon \cat{Ab}\morphism \cat{Ab}(X_\et)$ of forming a \enquote{skyscraper sheaf} has the exact left-adjoint $(-)_{\ov{x}}\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$ of forming the stalk at $\ov{x}$. Thus $\ov{x}_*$ preserves injective objects, i.e., if $I$ is an injective abelian group, then $\ov{x}_*I$ is injective in $\cat{Ab}(X_\et)$. Also recall $(\ov{x}_*I)_{\ov{x}}\cong I$. Now let $\Ff$ be an arbitrary abelian sheaf on $X_\et$. For every geometric point $\ov{x}$ choose an embedding $\Ff_{\ov{x}}\monomorphism I_{\ov{x}}$ into an injective abelian group, using that $\cat{Ab}$ has enough injectives. By the stalk-skyscraper adjunction, we get a morphism $\Ff\morphism \ov{x}_*I_{\ov{x}}$. Now consider
 	\begin{equation*}
-		\Ff\morphism\prod_{x}x_*I_x\,,
+		\Ff\morphism\prod_{\ov{x}}\ov{x}_*I_{\ov{x}}\,,
 	\end{equation*}
-	where the product is taken over \enquote{all} (in the sense if \cref{rem:setTheory}) geometric points of $X$. The product on the right-hand side is a product of injective objects, hence injective itself. It remains to show that the morphism is injective. So let $\Kk$ be its kernel. Composing with the projection to the $x\ordinalth$ factor, we see that $\Kk$ lies in the kernel of $\Ff\morphism x_*I_x$. This kernel, however, vanishes at $x$, hence $\Kk_x=0$ for all chosen $x$, proving that $\Kk=0$.
+	where the product is taken over \enquote{all} (in the sense if \cref{rem:setTheory}) geometric points of $X$. The product on the right-hand side is a product of injective objects, hence injective itself. It remains to show that the morphism is injective. So let $\Kk$ be its kernel. Composing with the projection to the $x\ordinalth$ factor, we see that $\Kk$ lies in the kernel of $\Ff\morphism \ov{x}_*I_{\ov{x}}$. This kernel, however, vanishes at $\ov{x}$, hence $\Kk_{\ov{x}}=0$ for all chosen $\ov{x}$, proving that $\Kk=0$.
 	
-	For \itememph{b}, there are two approaches, which are both important on their own. One can use the fact that $j^*x_*I\cong \bigoplus_uu_*I$, where the sum is taken over the preimages (in the sense of \cref{rem:WTFlyingOver}\itememph{1}) of $x$ in $U$. In particular, this is a finite direct sum as $j$ is quasi-finite, so the right-hand side stays injective if $I$ is an injective abelian group. Then one may apply \cref{lem:injectiveStuff} below, using $\XX=\left\{\Ii\in\cat{Ab}(X_\et)\st j^*\Ii\text{ is injective in }\cat{Ab}(U_\et)\right\}$. Another proof uses \cref{prop:j!} and the fact that every functor having an exact left-adjoint preserves injectivity.
+	For \itememph{b}, there are two approaches, which are both important on their own. One can use the fact that $j^*\ov{x}_*I\cong \bigoplus_{\ov{u}}\ov{u}_*I$, where the sum is taken over the preimages (in the sense of \cref{rem:WTFlyingOver}\itememph{1}) of $\ov{x}$ in $U$. In particular, this is a finite direct sum as $j$ is quasi-finite, so the right-hand side stays injective if $I$ is an injective abelian group. Then one may apply \cref{lem:injectiveStuff} below, using $\XX=\left\{\Ii\in\cat{Ab}(X_\et)\st j^*\Ii\text{ is injective in }\cat{Ab}(U_\et)\right\}$. Another proof uses \cref{prop:j!} and the fact that every functor having an exact left-adjoint preserves injectivity.
 \end{proof}
 \begin{lem}\label{lem:injectiveStuff}
 	Let $\Aa$ be an abelian category and $\XX$ a class of objects of $\Aa$ such that the following two conditions are satisfied.
@@ -116,7 +116,7 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 	\begin{equation*}
 		j_!\colon \cat{Ab}(U_\et)\morphism\cat{Ab}(X_\et)\,.
 	\end{equation*}
-	Concretely, if $x$ is a geometric point of $X$ and $\Ff\in\cat{Ab}(U_\et)$, then $(j_!\Ff)_x\cong \bigoplus_u\Ff_u$, the sum being taken over all preimages of $x$ in $U$.
+	Concretely, if $\ov{x}$ is a geometric point of $X$ and $\Ff\in\cat{Ab}(U_\et)$, then $(j_!\Ff)_{\ov{x}}\cong \bigoplus_{\ov{u}}\Ff_{\ov{u}}$, the sum being taken over all preimages of $\ov{x}$ in $U$.
 \end{prop}
 \begin{proof}[Sketch of a proof]
 	We first construct a functor $j_\sharp$ between the presheaf categories, which is left-adjoint to $j^\sharp$ from \cref{con:f^*}. If $V\morphism X$ is étale, we put
@@ -132,31 +132,31 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 	\end{alphanumerate}
 \end{rem}
 \begin{defi}[\textsc{Finally!}]
-	Let $X$ be an arbitraty scheme.
+	Let $X$ be an arbitrary scheme.
 	\begin{alphanumerate}
 		\item We denote by $H^i(X_\et,-)$ the $i\ordinalth$ right-derived functor of the global sections functor $\Global(X,-)\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$.
-		\item For a morphism $f\colon X\morphism Y$ of schemes, let $R^if_*$ denote the $i\ordinalth$ right-derived functor of $f_*\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\et)$.
+		\item For a morphism $f\colon X\morphism Y$ of schemes, let $R^if_*$ denote the $i\ordinalth$ right-derived functor of $f_*\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\et)$. In case of ambiguity, we use subscripts $R^if_{\et,*}$ and $R^if_{\Zar,*}$ to distinguish between derived pushforward on étale and Zariski sites.
 		\item Let $\zeta_{X,*}\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(X_\Zar)$ denote the restriction to the Zariski site, i.e., for $\Ff\in\cat{Ab}(X_\et)$, the sheaf $\zeta_{X,*}\Ff$ is obtained by restricting $\Ff$ to Zariski opens of $X$. We let $R^i\zeta_{X,*}$ denote its right-derived functors.
 	\end{alphanumerate}
 \end{defi}
 \begin{rem}
-	By \cref{prop:enoughInjectives}\itememph{b}, the functors $H^i(U_\et,j^*(-))\colon \cat{Ab}(X_\et)\morphism \cat{Ab}$ are the derived functors $\Global(U,-)\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$ taking sections over $U$.
+	By \cref{prop:enoughInjectives}\itememph{b}, the functors $H^i(U_\et,j^*(-))\colon \cat{Ab}(X_\et)\morphism \cat{Ab}$ are the derived functors of $\Global(U,-)\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$, the functor of taking sections over $U$.
 \end{rem}
 \begin{rem}
-	If $\Rr$ is a sheaf of rings on $X_\et$, then $H^i(X_\et,-)$ are also the (underlying abelian groups of the) derived functors of $\Global(X,-)\colon \cat{Mod}_\Rr\morphism \cat{Mod}_{\Global(X,\Rr)}$. [TODO: Why?]
+	If $\Oo$ is a sheaf of rings on $X_\et$, then $H^i(X_\et,-)$ are also the (underlying abelian groups of the) derived functors of $\Global(X,-)\colon \cat{Mod}_\Oo\morphism \cat{Mod}_{\Global(X,\Oo)}$. I have no idea how to prove this---as far as I can see, the argument via flabby sheaves doesn't work any more---so please enlighten me or I will ask Franke next year.
 \end{rem}
 \begin{rem}
-	For $\Ff\in\cat{Ab}(X_\et)$, the sheaf $R^if_*\Ff$ is the sheafification of the presheaf $V\mapsto H^i((X\times_YV)_\et,\Ff)$ for $V\morphism Y$ étale. Here $\Ff$ should actually be replaced by the pullback of $\Ff$ to $X\times_VY$, but such abuse of notation is very convenient and we will use it often.
+	For $\Ff\in\cat{Ab}(X_\et)$, the sheaf $R^if_*\Ff$ is the sheafification of the presheaf $V\mapsto H^i((X\times_YV)_\et,\Ff)$ for $V\morphism Y$ étale. Here $\Ff$ should actually be replaced by the pullback of $\Ff$ to $X\times_VY$, but such abuse of notation is very convenient and we will use it frequently.
 	
-	To see why the assertion is true, let $\Phi^i$ denote the functors described above. Then the sequence $(\Phi^i)_{i\geq 0}$ forms a cohomological functor (i.e., takes short exact sequences to a long exact sequence), $\Phi^0$ agrees with $R^0f_*$, and $\Phi^i$ kills injective objects of $\cat{Ab}(X_\et)$ for all $i>0$ by \cref{prop:enoughInjectives}\itememph{b}. It is a well-known fact that in such a situation the $\Phi^i$ are indeed the derived functors of $f_*$. For some reason, we write down this fact in \cref{prop:effacable} below.
+	To see why the assertion is true, let $\Phi^i$ denote the functors described above. Then the sequence $(\Phi^i)_{i\geq 0}$ forms a cohomological functor (i.e., takes short exact sequences to a long exact sequence), $\Phi^0$ agrees with $R^0f_*$, and $\Phi^i$ kills injective objects of $\cat{Ab}(X_\et)$ for all $i>0$ by \cref{prop:enoughInjectives}\itememph{b}. It is a well-known fact that in such a situation the $\Phi^i$ are indeed the derived functors of $f_*$. For some reason, Professor Franke decided to write down a very general version of said fact in \cref{prop:effacable} below.
 \end{rem}
 \begin{prop}\label{prop:effacable}
 	Let $\Aa$ and $\Bb$ be abelian categories.
 	\begin{alphanumerate}
-		\item Let $(\Phi^i)_{i\geq 0}\colon \Aa\morphism\Bb$ be a cohomological functor. Then the $\Phi^i$ are the derived functors of $F=\Phi^0$ if one of the following \enquote{effacability conditions} holds:
+		\item Let $(\Phi^i)_{i\geq 0}\colon \Aa\morphism\Bb$ be a cohomological functor. Then the $\Phi^i$ are the derived functors of $F=\Phi^0$ if one of the following \enquote{effaceability conditions} holds:
 		\begin{numerate}
 			\item If $\Bb=\cat{Mod}_R$ is the category of modules over a ring, then it is sufficient that for every $i>0$, all $a\in\Aa$, and all $f\in \Phi^i(a)$, there is a monomorphism $j\colon a\monomorphism b$ in $\Aa$ such that $\Phi^i(j)(f)=0$.
-			\item If $\Bb=\cat{Mod}_\Rr$ is the category of modules over a sheaf of rings on a topological space $X$ or on $X_\et$, then it suffices that for every (geometric) point $x$ of $X$, all $i>0$, every $a\in \Aa$, and every $f\in \Phi^i(a)_x$, there is a monomorphism $j\colon a\monomorphism b$ in $\Aa$ such that $\Phi^i(j)(f)=0$.
+			\item If $\Bb=\cat{Mod}_\Oo$ is the category of modules over a sheaf of rings $\Oo$ on a topological space $X$ or on $X_\et$, then it suffices that for every (geometric) point $x$ of $X$, all $i>0$, every $a\in \Aa$, and every $f\in \Phi^i(a)_x$, there is a monomorphism $j\colon a\monomorphism b$ in $\Aa$ such that $\Phi^i(j)(f)=0$.
 			\item If $\Bb$ is arbitrary, we need that for every $i>0$ and all $a\in\Aa$ there is a monomorphism $j\colon a\monomorphism b$ such that $\Phi^i(j)=0$.
 			\item If $\Bb$ is arbitrary and $\Aa$ has enough injectives, it suffices to have $\Phi^i(a)=0$ whenever $a\in \Aa$ is injective.
 		\end{numerate}
@@ -167,15 +167,31 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 		Then every injective object of $\Aa$ is in $\XX$ and $R^iF(x)=0$ for $x\in \XX$.
 	\end{alphanumerate}
 \end{prop}
+\begin{proof*}[Sketch of a proof]
+	Conditions \itememph{3} and \itememph{4} of \itememph{a} are well-known effaceability criteria from \cite[Chapitre~II]{tohoku}. To see that the weaker criteria \itememph{1} and \itememph{2} hold, go through the proof of \itememph{3} in this particular special case and generalize where necessary.
+	
+	For \itememph{b}, we already know that $\XX$ contains all injective objects since we proved this in \cref{lem:injectiveStuff}. Now let $x\in \XX$. We can choose a short exact sequence $0\morphism x\morphism t\morphism c\morphism 0$ with $t$ injective. By \itememph{*} we have $c\in \XX$ as well, and since $t$ is injective, we get $R^iF(c)\cong R^{i+1}F(x)$ for all $i>0$ from the long exact derived functor sequence. Thus it suffices to prove $R^1F(x)=0$. But $F(t)\morphism F(c)$ is an epimorphism \itememph{*}, hence $R^1F(t)=0$ and the long exact sequence show $R^1F(x)=0$, as required.
+\end{proof*}
 \begin{prop}
-	If $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ are morphisms of schemes, then we have four Leray spectral sequences
-	\begin{align*}
-		E_2^{p,q}=H^p(Y_\et,R^qf_*\Ff)&\converge H^{p+q}(X_\et,\Ff)\\ E_2^{p,q}=H^p(X_\Zar,R^q\zeta_{X,*}\Ff)&\converge H^{p+q}(X_\et,\Ff)\\
-		E_2^{p,q}=R^pg_*R^qf_*\Ff&\converge R^{p+q}(gf)_*\Ff\\
-		E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff&\converge \zeta_{Y,*}R^{p+q}f_*\Ff
-	\end{align*}
+	If $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ are morphisms of schemes, then we have three Leray spectral sequences
+	\begin{gather*}
+		E_2^{p,q}=H^p(Y_\et,R^qf_*\Ff)\converge H^{p+q}(X_\et,\Ff)\,,  \quad E_2^{p,q}=R^pg_*R^qf_*\Ff\converge R^{p+q}(gf)_*\Ff\,,\\
+		E_2^{p,q}=H^p(X_\Zar,R^q\zeta_{X,*}\Ff)\converge H^{p+q}(X_\et,\Ff)\,.
+	\end{gather*}
+	Moreover, if $F\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\Zar)$ denotes the \enquote{forgetful pushforward} functor, then there are two spectral sequences\footnote{In the lecture, we had a single spectral sequence $E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge \zeta_{Y,*}R^{p+q}f_{\et,*}\Ff$, but I have some serious doubts about that. Again, I will ask Professor Franke for clarification next year.}
+	\begin{equation*}
+		E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge R^{p+q}F(\Ff)\,,\quad E_2^{p,q}=R^p\zeta_{Y,*}R^qf_{\et,*}\Ff\converge R^{p+q}F(\Ff)\,.
+	\end{equation*}
 \end{prop}
-
+\begin{proof*}
+	All of these are instances of the Grothendieck spectral sequence for the derivatives of a composite functor. But for this we need to check that $f_*$ and $\zeta_{X,*}$ map injective objects to acyclic ones. In fact, they both even preserve injective objects! The reason is that they both have exact left-adjoints. For $f_*$ this is just $f^*$, which is exact by the explicit description of stalks in \cref{rem:f^*}\itememph{c}.
+	
+	For $\zeta_{X,*}$, we would expect that one can construct a left-adjoint in a similar fashion to the construction of $f^*$. In fact, the construction becomes much easier due to the fact that every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}. Thus, we may define a functor $\zeta_X^\sharp\colon \cat{PAb}(X_\Zar)\morphism\cat{PAb}(X_\et)$ via
+	\begin{equation*}
+		\Global(U,\zeta_X^\sharp\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
+	\end{equation*}
+	It's easy to see that $\zeta_X^\sharp$ is left-adjoint to the forgetful functor $\cat{PAb}(X_\et)\morphism\cat{PAb}(X_\Zar)$. Now we can define $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ to obtain a left-adjoint of $\zeta_{X,*}$. This functor is exact, as can be seen by examining the stalks of $\zeta_{X,*}\Gg$ at geometric points.
+\end{proof*}
 
 \appendix
 \include{./Chapters/EtaleIAppendix}

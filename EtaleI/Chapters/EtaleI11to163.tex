@@ -1,6 +1,7 @@
 \chapter{Motivation and Basic Definitions}
 \section{Motivation}
-\numpar{Problem} \lecture[Weil cohomology theories: some motivation, some (counter-)examples. Flatness, flat base change, faithfully flat descent.]{2019-10-18}For a scheme $X$, we would like to have cohomology groups $H^*(X,\IZ)$ with properties similar to the ones familiar from algebraic topology. For example, if $f\colon X\morphism X$ is a continuous map of a topological space into itself, then (under some sensible conditions) the \emph{Lefschetz trace formula} says
+\lecture[Weil cohomology theories: some motivation, some (counter-)examples. Flatness, flat base change, faithfully flat descent.]{2019-10-18}\numpar{Problem}
+For a scheme $X$, we would like to have cohomology groups $H^*(X,\IZ)$ with properties similar to the ones familiar from algebraic topology. For example, if $f\colon X\morphism X$ is a continuous map of a topological space into itself, then (under some sensible conditions) the \emph{Lefschetz trace formula} says
 \begin{equation*}
 	\#\left\{\text{fixed points of }f\text{, counted with multiplicity}\right\}=\sum_{i=0}^{\dim(X)}(-1)^i\Tr\left(f^ *\middle| H^i(X,\IQ)\right)\,.
 \end{equation*}
@@ -15,9 +16,9 @@ Such a mystery cohomology theory with sufficiently nice properties is called a \
 \begin{cntx}
 A natural candidate for a Weil cohomology theory is \emph{de Rham cohomology}. For a variety $X$ over a field $k$ it is defined as 
 \begin{equation*}
-	H_\dR^*(X)\coloneqq H^*(X,\Omega_{X/k}^\bullet)\,,
+	H_\dR^*(X/k)\coloneqq H^*(X,\Omega_{X/k}^\bullet)\,,
 \end{equation*}
-i.e., as the (hyper-)cohomology of the de Rham complex $\Omega_{X/k}^\bullet$.	By de Rham's famous theorem, the de Rham cohomology of a real manifold coincides with its singular cohomology over $\IR$, so it makes sense to hope that $H_\dR^*(X)$ still works as a replacement of singular cohomology for varieties over an arbitrary field $k$. But on second glance, this can't be true: even if we are lucky and a Lefschetz-like equation holds for de Rham cohomology in characteristic $p >0$, then it would still only be a congruence modulo $p$, since the $H_\dR^*(X)$ are $\IF_p$-vector spaces in this case, so the traces take values in $\IF_p$ as well.
+i.e., as the (hyper-)cohomology of the de Rham complex $\Omega_{X/k}^\bullet$.	By de Rham's famous theorem, the de Rham cohomology of a real manifold coincides with its singular cohomology over $\IR$, so it makes sense to hope that $H_\dR^*(X/k)$ still works as a replacement of singular cohomology for varieties over an arbitrary field $k$. But on second glance, this can't be true: even if we are lucky and a Lefschetz-like equation holds for de Rham cohomology in characteristic $p >0$, then it would still only be a congruence modulo $p$, since the $H_\dR^*(X/k)$ are $\IF_p$-vector spaces in this case, so the traces take values in $\IF_p$ as well.
 \end{cntx}
 \begin{cntx}
 It is also impossible to find a Weil cohomology with coefficients in $\IQ$, nor in $\IZ$, nor in $\IZ_p$ if we work in characteristic $p$. Professor Franke sketched a counterexample, which I'm trying my best to reproduce here (but it may well be I got it wrong---however, this won't be needed for the lecture). For a \emph{supersingular elliptic curve} $E$ the endomorphism ring $\End(E)$ can have the property that $D=\End(E)\otimes \IQ$ is a quaternion algebra over $\IQ$ with the properties that
@@ -386,6 +387,7 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	But then again this is equivalent to $X'\morphism X$ being an effective epimorphism, which we proved in \cref{prop:fpqcEffectiveEpi}.
 \end{exm}
 \section{Étale Morphisms}
+\subsection{Basic Definitions and Properties}
 \lecture[Unramified and étale morphisms: definitions, basic properties. Étale coverings. Pullback of Kähler differentials under étale morphisms.]{2019-10-28}Most of the results of this section have already been featured in Professor Franke's lecture on Jacobians of curves. So check out \cite[Section~2.7]{jacobians} for more detailed proofs.
 \begin{prop}\label{prop:unramified}
 	Let $f\colon X\morphism Y$ be a morphism of locally finite type between arbitrary schemes. Then the following conditions are equivalent for all points $x\in X$:
@@ -434,7 +436,7 @@ sending a morphism $\phi\colon I/I^2\morphism M$ to the $A$-linear derivation $d
 	\begin{alphanumerate}
 		\item If the equivalent properties of \cref{prop:unramified} are satisfied, the morphism $f$ is called \defemph{unramified at $x$}. If $f$ is unramified at every $x\in X$, we call $f$ \defemph{unramified}.
 		\item Suppose $f$ is of locally finite presentation and flat at $x$. Then $f$ is called \defemph{étale at $x$}. If $f$ is étale at every $x\in X$, we call $f$ \defemph{étale}.
-		\item The morphism $f$ is called an \defemph{étale covering} if it is finite and étale.
+		\item The morphism $f$ is called an \defemph{étale covering} if it is finite and étale (see \cref{lem*:technicalFEt/X} to justify this terminology).
 	\end{alphanumerate}
 \end{defi}
 \begin{fact}\label{fact:etaleProperties}
@@ -489,7 +491,7 @@ sending a morphism $\phi\colon I/I^2\morphism M$ to the $A$-linear derivation $d
 	If $\ell/k$ is a finite field extension, then a well-known assertion from classical field theory shows that $\Tr_{\ell/k}\colon \ell\times\ell\morphism k$ is perfect iff $\ell/k$ is separable. This immediately shows \itememph{b} $\Rightarrow$ \itememph{c}. For the converse, we only need to verify that all $A_{\mm_i}$ are fields. But if $x\in\mm_iA_{\mm_i}$, then $x$ is nilpotent in $A_{\mm_i}$, hence $a\mapsto \Tr_{A_{\mm_i}/k}(ax)$ is identically $0$ as nilpotent maps have vanishing trace. Thus $x=0$ as the trace pairing $\Tr_{A/k}$ is assumed perfect.
 \end{proof*}
 \begin{prop}\label{prop:finiteEtale}
-	Let $f\colon X\morphism Y$ be a finite flat morphism between locally noetherian schemes, so $\Bb=f_*\Oo_X$ is a vector bundle on $Y$ in addition to being an $\Oo_Y$-algebra, and $X=\SPEC \Bb$. Then the following are equivalent:
+	Let $f\colon X\morphism Y$ be a finite and finitely presented flat morphism of schemes; so $\Bb=f_*\Oo_X$ is a vector bundle on $Y$ in addition to being an $\Oo_Y$-algebra, and $X=\SPEC \Bb$. Then the following are equivalent:
 	\begin{alphanumerate}
 		\item $f$ is étale.
 		\item The trace pairing $\Tr_{\Bb/Y}\colon \Bb\times\Bb\morphism\Oo_Y$, which is \enquote{locally} (i.e., on small enough affine open subsets)  given by $(a,b)\mapsto \Tr_{\Global(U,\Bb)/\Global(U,\Oo_Y)}(ab)$, is perfect.
@@ -498,13 +500,15 @@ sending a morphism $\phi\colon I/I^2\morphism M$ to the $A$-linear derivation $d
 \begin{proof}[Sketch of a proof\textup{*}]
 	Since both assertions are local, we may assume that $X=\Spec B$ and $Y=\Spec A$ are affine, and moreover that $B$ is a finite free $A$-module. The trick is---of course---to reduce everything to fibres and apply \cref{lem:etaleTrace}. For condition \itememph{a} this is straightforward: since $B$ is already flat (even free) over $A$, étaleness can be checked on fibres by \cref{fact:etaleFibres}. So it suffices to transform \itememph{b} into a fibre-wise condition. To show that the map $B\morphism\Hom_A(B,A)$ induced by $\Tr_{B/A}$ is an isomorphism, it suffices to check that it is a locally split injection, since both sides are free $A$-modules of the same rank. But being a locally split injection in a neighbourhood of a prime $\pp\in\Spec A$ can be tested after tensoring with $\kappa(\pp)$. This is a very nice lemma that can be found in \cite[Ch.\:0 (19.1.12)]{egaIV1}. Thus also \itememph{b} can be tested on fibres, so everything reduces to \cref{lem:etaleTrace}. For more details, check out \cite[Proposition~2.7.2]{jacobians}.
 \end{proof}
-An interesting consequence is \cref{cor:etaleCodim2}. In fact, something much stronger is true: by a theorem of Zariski--Nagata, the étale fundamental group of a scheme doesn't change when a closed subscheme of codimension $\geq2$ is removed. Professor Franke hinted that we might sketch a proof of this in one of the upcoming lectures.
 \begin{cor}\label{cor:etaleCodim2}
-	In the situation of \cref{prop:finiteEtale}, let $U\subseteq Y$ be an open subset such that every irreducible component of $Y\setminus U$ has codimension $\geq 2$. If the restriction $f|_{f^{-1}(U)}\colon f^{-1}(U)\morphism U$ is étale, then also $f$ is étale.
+	In the situation of \cref{prop:finiteEtale}, suppose $X$ and $Y$ are locally noetherian and let $U\subseteq Y$ be an open subset such that every irreducible component of $Y\setminus U$ has codimension $\geq 2$. If the restriction $f|_{f^{-1}(U)}\colon f^{-1}(U)\morphism U$ is étale, then also $f$ is étale.
 \end{cor}
 \begin{proof*}
 	Working locally, we may assume that $X=\Spec B$ and $Y=\Spec A$ are affine and $B$ is a finite free $A$-module. By \cref{prop:finiteEtale} it suffices to show that $\Tr_{B/A}$ induces an isomorphism $B\isomorphism \Hom_A(B,A)$. Since $B$ and $\Hom_A(B,A)$ are finite free $A$-modules of the same rank, this morphism is given by some square matrix $C$ with coefficients in $A$. Thus is suffices to show that $\det C$ is invertible in $A$. Since $B\morphism\Hom_A(B,A)$ is an isomorphism over $U$ by assumption, we see that $V(\det C)$ must be contained in $Y\setminus U$. But every irreducible component of $V(\det C)$ has codimension $\leq 1$ by Krull's principal ideal theorem. Thus $V(\det C)=\emptyset$, whence $\det C$ is indeed invertible.
 \end{proof*}
+\begin{rem}
+	In the case of a separated noetherian regular scheme, something much stronger is true: by a theorem of Zariski--Nagata, the \emph{étale fundamental group} of a scheme doesn't change when a closed subscheme of codimension $\geq2$ is removed. We will sketch the proof in \cref{thm:Zariski-Nagata}.
+\end{rem}
 \begin{prop}
 	Let $f\colon X\morphism Y$ be an étale morphism between locally noetherian $S$-schemes. Then we have a canonical isomorphism
 	\begin{align*}
@@ -555,6 +559,7 @@ An interesting consequence is \cref{cor:etaleCodim2}. In fact, something much st
 	\end{equation*}
 	is actually an equality as $\Oo_{X,x}$ is flat over $\Oo_{Y,y}$. Moreover, $X_y\morphism \Spec \kappa(y)$ is étale at $x$, hence $\dim \Oo_{X_y,x}=0$ by \cref{exm:embeddings}\itememph{a}. This shows $\dim \Oo_{X,x}=\dim\Oo_{Y,y}$ and we conclude as above.
 \end{rem*}
+\subsection{The Lifting Criterion and the Jacobian Criterion}
 The formulation of the following \cref{prop:formallyEtale} was a bit messy in the lecture. I tried my best to fix the presentation conditions in \itememph{c} and \itememph{f} and make them as strong as possible (also please tell me if I got something wrong). This results in some minor changes in the proof.
 \begin{prop}[{\cite[Arcata II Def.\ (1.1)]{sga4.5}}]\label{prop:formallyEtale}
 	Let $R\morphism S$ be a map of finite type between noetherian rings (or, more generally, a map of finite presentation between arbitrary rings). Then the following conditions are equivalent:
@@ -720,6 +725,7 @@ The cool thing about universal homeomorphisms is that they allow a striking gene
 	
 	Likewise, if $X$ is a projective variety over a field $k/\IF_q$, then we have the \defemph{relative Frobenius} sending projective coordinates $[x_1,\dotsc,x_n]$ to $[x_1^q,\dotsc,x_n^q]$. This too is a universal homeomorphism.
 \end{rem}
+\subsection{The Étale Topology and the Pro-Étale Topology}
 \lecture[A messy flatness proof. The small and the big étale site. Some hints on the pro-étale site. The étale fundamental groupoid and the étale fundamental group.]{2019-11-08}Finally we are ready to define the étale topology on a scheme!
 \begin{defi}\label{def:etaleTopology}
 	Let $X$ be an arbitrary scheme. 
@@ -755,283 +761,525 @@ To finish the section, Professor Franke would like to give some hints on the \de
 \end{defi}
 
 \section{The Étale Fundamental Group}
+\subsection{Geometric Points and the Fundamental Group}
 \begin{defi}
-	Let $X$ be a scheme. A \defemph{geometric point} of $X$ is a morphism $\Spec k\morphism X$, where $k$ is a separably closed field.
+	Let $X$ be a scheme. A \defemph{geometric point} $\ov{x}$ of $X$ is a morphism $\ov{x}\colon \Spec k\morphism X$, where $k$ is a separably closed field. In other words, a geometric point is an ordinary point $x\in X$ together with an embedding $\kappa(x)\monomorphism k$ of its residue field into a separably closed field $k$.
 \end{defi}
-In other words, a geometric point is an ordinary point $x\in X$ together with an embedding $\kappa(x)\monomorphism k$ of its residue field into a separably closed field $k$. We consider geometric points since the étale cohomology group will, of course, have to depend on a choice of base point.
+We consider geometric points since as in Algebraic Topology, the étale fundamental group will of course depend on a choice of base point.
 \begin{defi}
-	Let $\pi\colon Y\morphism X$ be an étale covering in the sense of \cref{def:etale}\itememph{c}, and let $x\colon \Spec k\morphism X$ be a geometric point.
+	Let $\pi\colon Y\morphism X$ be an étale covering in the sense of \cref{def:etale}\itememph{c}, and let $\ov{x}\colon \Spec k\morphism X$ be a geometric point.
 	\begin{alphanumerate}
-		\item We define the \defemph{fibre over $x$} as
+		\item We define the \defemph{fibre over $\ov{x}$} as
 		\begin{equation*}
-		\Fib_x(Y)=\left\{y\colon \Spec k\rightarrow Y\st \pi y=x\right\}\,.
+		\Fib_{\ov{x}}(Y)=\left\{\ov{y}\colon \Spec k\rightarrow Y\st \pi (\ov{y})=\ov{x}\right\}\,.
 		\end{equation*}
-		\item Consider $\Fib_x$ as a functor $\left\{\text{étale coverings of $X$}\right\}\morphism\cat{Set}$, where the left-hand side is considered as a full subcategory of $\Et/X$. The \defemph{étale fundamental groupoid} $\Pi_1^\et(X)$ is defined as follows: its objects are the geometric points $x$ of $X$, and its morphisms are functor isomorphisms $\Fib_x\isomorphism\Fib_{x'}$ for geometric point $x,x'\in\Pi_1^\et(X)$.
-		\item The automorphism group of $x$ in $\Pi_1^\et(X)$ is denoted $\pi_1^\et(X,x)$ and called \defemph{étale fundamental group of $X$ with basepoint $x$}.
+		\item Consider $\Fib_{\ov{x}}$ as a functor $\left\{\text{étale coverings of $X$}\right\}\morphism\cat{Set}$, where the left-hand side is considered as a full subcategory of $\Et/X$. The \defemph{étale fundamental groupoid} $\Pi_1^\et(X)$ is defined as follows: its objects are the geometric points $\ov{x}$ of $X$, and its morphisms are functor isomorphisms $\Fib_{\ov{x}}\isomorphism\Fib_{\ov{y}}$ for geometric points $\ov{x},\ov{y}\in\Pi_1^\et(X)$.
+		\item The automorphism group of $\ov{x}$ in $\Pi_1^\et(X)$ is denoted $\pi_1^\et(X,\ov{x})$ and called \defemph{étale fundamental group of $X$ with basepoint $x$}.
 	\end{alphanumerate}
 \end{defi}
 \begin{rem}
-	 The étale fundamental group $\pi_1^\et(X,x)$ can be given a canonical topology (generalizing the Krull topology on infinite Galois groups) as follows: for an étale covering $Y\morphism X$ put
+	 The étale fundamental group $\pi_1^\et(X,\ov{x})$ can be given a canonical topology (generalizing the Krull topology on infinite Galois groups) as follows: for an étale covering $Y\morphism X$ put
 	\begin{equation*}
-	\Omega_Y=\left\{\sigma\in\pi_1^\et(X,x)\st\sigma\text{ acts identically on }\Fib_x(Y)\right\}
+	\Omega_Y=\left\{\sigma\in\pi_1^\et(X,\ov{x})\st\sigma\text{ acts identically on }\Fib_{\ov{x}}(Y)\right\}
 	\end{equation*}
-	Then a neighbourhood basis of the $\id_x\in\pi_1^\et(X,x)$ is given by
+	Then a neighbourhood basis of the $\id_{\ov{x}}\in\pi_1^\et(X,\ov{x})$ is given by
 	\begin{equation*}
 	\left\{\Omega_Y\st Y\rightarrow X\text{ is an étale covering}\right\}\,.
 	\end{equation*}
-	General morphism sets $\Hom_{\Pi_1^\et(X)}(x,y)$ are given a topology such that composition is continuous. It can be shown that $\pi_1^\et(X,x)$ is a pro-finite set in the given topology, but for this we would need to show that there are \enquote{enough normal coverings $Y\morphism X$} in the sense that $\Omega_Y$ is a normal subgroup of $\pi_1^\et(X,x)$.
+	General morphism sets $\Hom_{\Pi_1^\et(X)}(\ov{x},\ov{y})$ are given a topology such that composition is continuous.
 	
-	A lot of the theory of $\pi_1^\et(X,x)$ is developed in \cite[Exposé~V]{sga1}. For example, it can be shown that $\Pi_1^\et(X)$ is connected (as a groupoid) if $X$ is connected.
+	The topology on $\pi_1^\et(X,\ov{x})$ turns it into a \emph{profinite group} (to prove this we would need to show that there are \enquote{enough normal coverings $Y\morphism X$} in the sense that $\Omega_Y$ is a normal subgroup of $\pi_1^\et(X,\ov{x})$). Moreover, $\Pi_1^\et(X)$ is connected (as a groupoid) if $X$ is connected---in other words, if $X$ is connected, then $\pi_1^\et(X,\ov{x})$ doesn't depend (up to non-canonical isomorphism) on the choice of base point $\ov{x}$. Proofs can be found in \cite[Exposé~V]{sga1}; we will give detailed references and sketch some of the proofs in \cref{thm:GrothendieckGalois} below.
 \end{rem}
 \begin{rem}
-	For smooth proper varieties over a field of characteristic $0$, you could consider the set of pairs $(\Vv,\nabla)$, where $\Vv$ is a vector bundle on $X$ and $\nabla$ a connection on $\Vv$ with vanishing curvature (this actually gives a \defemph{Tannakian category}). Then instead of $\Fib_x$ one could consider the functor $\Vv\mapsto\Vv(x)$ for $x\in X$.
+	For smooth proper varieties over a field of characteristic $0$, you could consider the set of pairs $(\Vv,\nabla)$, where $\Vv$ is a vector bundle on $X$ and $\nabla$ a connection on $\Vv$ with vanishing curvature (this actually gives a \defemph{Tannakian category}). Then instead of $\Fib_{\ov{x}}$ one could consider the functor $\Vv\mapsto\Vv(x)$ for $x\in X$.
 \end{rem}
-\begin{deflem}\label{deflem:prinG}
-	\lecture[$G$-principal homogeneous spaces. Some properties of étale fundamental groups. Sketch of proof of the Zariski--Nagata theorem.]{2019-11-11}
-	Let $G$ be a finite group acting (over $X$) on an étale covering $\snake{X}\morphism X$. We say that $\snake{X}$ is a \defemph{$G$-principal homogeneous space} if the following equivalent conditions hold.
+\subsection{\enquote{Étale Covering Theory} and \texorpdfstring{$G$}{G}-Principal Bundles}
+\lecture[$G$-principal homogeneous spaces. Some properties of étale fundamental groups. Sketch of proof of the Zariski--Nagata theorem.]{2019-11-11}
+This lecture was a bit of a special one. Despite our limited time, Professor Franke tried to at least mention the most important facts about étale fundamental groups, ultimately culminating in a sketch of the proof of the Zariski--Nagata theorem. I tried my best to provide the missing proofs where possible (we will use results from \cref{sec:Stalks,sec:CohoBasics} freely), and to give references where not. 
+
+We start with a technical lemma (that was not in the lecture) to gain a better understanding of étale coverings.
+\begin{lem*}\label{lem*:technicalFEt/X}
+	Let $X$ be a scheme and $\cat{F}\Et/X$ the category of étale coverings of $X$ in the sense of \cref{def:etale}\itememph{c}.
 	\begin{alphanumerate}
-		\item Fppf-locally (or fpqc-locally) on $X$ there is a $G$-equivariant isomorphism $\snake{X}\cong X\times G$ of $X$-schemes.
-		\item The canonical mophism $\snake{X}\times G\morphism\snake{X}\times_X\snake{X}$ given by $(x,g)\mapsto (x,gx)$ is an isomorphism, and $\snake{X}\morphism X$ is faithfully flat (i.e., $\snake{X}$ is non-empty as long as $X$ is).
+		\item A morphism $Y\morphism X$ is an étale covering iff there is an étale cover (without \enquote{-ing}) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is isomorphic to the canonical projection $S_i\times U_i\morphism U_i$ where $S_i$ is a finite discrete set. In other words, étale coverings are precisely the \enquote{covering spaces in the étale topology}.
+		\item The category $\cat{F}\Et/X$ has all finite limits and colimits.
+		\item Every morphism $Y\morphism Y'$ in $\cat{F}\Et/X$ has a factorization into $Y\epimorphism Y''\monomorphism Y'$, where $Y\epimorphism Y''$ is an effective epimorphism and $Y''\monomorphism Y'$ the inclusion of an open-closed subscheme. Moreover, a morphism $Y\morphism Y'$ is an epimorphism iff it is surjective.
+	\end{alphanumerate}
+\end{lem*}
+\begin{proof*}
+	We start with \itememph{a}. The proof uses the étale structure sheaf and strictly henselian rings, so you might want to read \cref{sec:Stalks} first. Suppose $Y\morphism X$ is an étale covering. Let $\ov{x}$ be a geometric point of $X$. Then as $\Oo_{X_\et,\ov{x}}$ is strictly henselian and any base change of $Y\morphism X$ is still finite étale, we see that
+	\begin{equation*}
+		Y\times_X\Spec \Oo_{X_\et,\ov{x}}\cong \coprod_{i=1}^n\Spec \Oo_{X_\et,\ov{x}}
+	\end{equation*}
+	is isomorphic to a finite disjoint union of copies of $\Spec \Oo_{X_\et,\ov{x}}$, or equivalently, isomorphic to $S_{\ov{x}}\times \Spec \Oo_{X_\et,\ov{x}}$ for some discrete $n$-element set $S_{\ov{x}}$. Also note that $n$ is necessarily the degree of the finite locally free morphism $Y\morphism X$ at the ordinary point $x\in X$ underlying $\ov{x}$. Let $e_1,\ldots,e_n$ be the idempotent global sections of $Y\times_X\Spec\Oo_{X_\et,\ov{x}}$ corresponding to the $n$ copies of the second factor. Since 
+	\begin{equation*}
+		\Oo_{X_\et,\ov{x}}=\colimit_{(U,\ov{u})}\Global(U,\Oo_U)
+	\end{equation*}
+	can be written as a filtered colimit over affine étale neighbourhoods $(U,\ov{u})$ of $\ov{x}$, the $e_i$ must already occur as idempotent global sections of some $Y\times_XU$. Thus
+	\begin{equation*}
+		Y\times_XU\cong Y_0\sqcup\coprod_{i=1}^nY_i\,,
+	\end{equation*}
+	where $Y_i$ corresponds to $e_i$. However, $Y\times_XU\morphism U$ is still finite locally free, and its degree must be equal to $n$. Thus, restricting $U$ to some suitable open subset (still containing the underlying point of $\ov{u}$) if necessary, we obtain $Y_i\cong U$ for all $i=1,\dotsc,n$ and $Y_0=\emptyset$.
+	
+	As $\ov{x}$ varies, let $U_{\ov{x}}$ denote the étale $X$-scheme $U$ constructed as above. Then $\{U_{\ov{x}}\morphism X\}_{\ov{x}}$ with $\ov{x}$ ranging over all geometric points is an étale cover of $X$ (see \cref{prop:etaleStalks}\itememph{a}). Moreover, every $Y\times_XU_{\ov{x}}\morphism U_{\ov{x}}$ is, by construction, isomorphic to the canonical projection $S_{\ov{x}}\times U_{\ov{x}}\morphism U_{\ov{x}}$ for some finite discrete set $S_{\ov{x}}$. This proves the first half of \itememph{a}.
+	
+	Conversely, assume $Y\morphism X$ is a morphism of schemes for which there is an étale cover (in fact, an fpqc cover would suffice) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is a \defemph{split étale covering}, i.e., isomorphic to $S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$. Then $Y\morphism X$ is finite flat and finitely presented, because all these properties can be checked fpqc-locally. Now $Y\morphism X$ is an étale covering iff the trace pairing from \cref{prop:finiteEtale}\itememph{b} is perfect, which is a question about a certain morphism of quasi-coherent modules being an isomorphism, which again can be checked fpqc-locally by faithfully flat descent.
+	
+	Now for \itememph{b}. To have finite limits in $\cat{F}\Et/X$, it suffices to construct products and equalizers. It's straightforward to see that for étale coverings $Y\morphism X$ and $Y'\morphism X$ the fibre product $Y\times_XY'\morphism X$ is an étale covering again. For equalizers, let $f,f'\colon Y\morphism Y'$ be a pair of parallel morphism between étale coverings. As in the proof of \cref{prop:universalHomeo}, $\Eq(f,f')$ is an open subscheme of $Y$. But it is also closed because $Y'\morphism X$ is finite, hence separated. Hence $\Eq(f,f')$ is an open-closed subscheme of $Y$ and therefore an étale covering of $X$ as well.
+	
+	Analogously, to construct finite colimits it suffices to have finite disjoint unions (which is trivial) and coequalizers. We omit the construction of the latter (but see \cite[\stackstag{0BN9}]{stacks-project}), since we only need the special case of the quotient by a finite group action, which is in \cref{prop:Galois} below.
+	
+	Finally, we prove \itememph{c}. As noted before, every morphism $Y\morphism Y'$ in $\cat{F}\Et/X$ is étale, hence an open map on underlying topological spaces. But $Y\morphism Y'$ is also clearly finite, hence proper, hence closed. Thus, it's image $Y''$ is an open-closed subscheme of $Y'$. Moreover, $Y\morphism Y''$ is finite étale and surjective, hence fpqc, hence an effective epimorphism by \cref{prop:fpqcEffectiveEpi}. This yields a factorization $Y\epimorphism Y''\monomorphism Y'$ as required. 
+	
+	Conversely, suppose $Y\morphism Y'$ is an epimorphism. Write $Y'=Y''\sqcup Y'_0$ with $Y''$ as above. If $Y'_0\neq \emptyset$, then the two natural inclusions $j_1,j_2\colon Y''\sqcup Y'_0\monomorphism Y''\sqcup Y'_0\sqcup Y'_0$ would be distinct from each other. However, they become equal after composing with $Y\morphism Y'$, contradicting the fact that this is an epimorphism.
+\end{proof*}
+\begin{deflem}\label{deflem:prinG}
+	Let $G$ be a finite group acting on an étale covering $Y\morphism X$ (i.e., $G$ acts on $Y$ by morphisms of $X$-schemes). We say that $Y$ is a \defemph{$G$-principal homogeneous space} if the following equivalent conditions hold.
+	\begin{alphanumerate}
+		\item Fppf-locally (or fpqc-locally) on $X$ there is a $G$-equivariant isomorphism $Y\cong X\times G$ of $X$-schemes.
+		\item The canonical mophism $Y\times G\morphism Y\times_XY$ given by $(y,g)\mapsto (y,gy)$ is an isomorphism, and $Y\morphism X$ is faithfully flat (i.e., $Y$ is non-empty as long as $X$ is).
 	\end{alphanumerate}
 \end{deflem}
-\begin{prop}\label{prop:Galois}
-	Let $X$ be connected and let $p\colon \snake{X}\morphism X$ be a connected étale covering. Suppose $G$ acts fixed-point free on $\snake{X}$, i.e., the equalizer $\Eq(\id_{\snake{X}},g)=\emptyset$ for all $g\in G\setminus\{1\}$. Let $d$ be the degree of the finite morphism $p$, then $\# G\leq d$ and the following conditions are equivalent.
-	\begin{alphanumerate}
-		\item $\# G=d$.
-		\item The canonical morphism $\snake{X}/G\morphism X$ is an isomorphism.
-		\item $\snake{X}$ is a $G$-principal homogeneous space in the sense of \cref{deflem:prinG}
-	\end{alphanumerate}
-\end{prop}
-\begin{defi}\label{def:Galois}
-	A connected étale covering $\snake{X}\morphism X$ is called a \defemph{Galois covering} if it satisfies the equivalent conditions from \cref{prop:Galois} with $G=\Aut(\snake{X}/X)$.
-\end{defi}
-\begin{thm}
-	If $X$ is a locally noetherian scheme, then there is an equivalence of categories
-	\begin{align*}
-		\left\{\text{étale coverings $\snake{X}\morphism X$}\right\}&\isomorphism\left\{\begin{tabular}{c}
-		functors $F\colon \Pi_1^\et(X)\rightarrow\{\text{finite discrete sets}\}$ s.th.\\
-		$F(x)\times \Hom_{\Pi_1^\et(X)}(x,y)\rightarrow F(y)$ is continuous
-		\end{tabular}\right\}\\
-		\snake{X}&\longmapsto \Fib(\snake{X})\,,
-	\end{align*}
-	where $\Fib(\snake{X})=\Fib_{(-)}(\snake{X})$ is given by $\Fib(\snake{X})(x)=\Fib_x(\snake{X})$.
-\end{thm}
-\begin{proof}[Sketch of a proof]
-	Without losing generality $X$ is connected. First, we establish this for étale coverings $\snake{X}\morphism X$ split by some Galois coverings $\Xi\morphism X$, and the functors $F$ on which $\pi_1^\et(X,x)$ acts through its quotient $\Gal(\Xi/X)$. Then, show that every connected étale covering is a quotient of some Galois covering and pass to some limit. See \cite[Exposé~V]{sga1} for this.
-\end{proof}
-\begin{prop}\label{prop:etaleLineBundles}
-	Let $X$ be a locally noetherian scheme on which $n\in\IN$ is invertible and there is a primitive $n\ordinalth$ root of unity $\zeta\in\Global(X,\mu_n)$. Let $\Ll$ be a line bundle on $X$ and $\tau\colon \Ll^{\otimes n}\isomorphism \Oo_X$ be a trivialization. Consider the functor
-	\begin{align*}
-		\cat{Sch}/X&\morphism\cat{Set}\\
-		(f\colon Y\morphism X)&\longmapsto \left\{\lambda\in\Global(Y,\Ll)\st \tau(\lambda^{\otimes n})=1\right\}\,.
-	\end{align*}
-	Here we put $\Global(Y,\Ll)=\Global(Y,f^*\Ll)$ for convenience. Also note that $\IZ/n\IZ$ acts on that functor via $\lambda\mapsto \zeta^k\lambda$. Then this functor is representable by an étale covering $\Lambda\morphism X$ which is a $\IZ/n\IZ$-principal homogeneous space. Moreover, every $\IZ/n\IZ$-principal homogeneous space has this form, and $(\Ll,\tau)$ is determined by $\Lambda$ up to isomorphism and we have a long exact sequence
-	\begin{multline*}
-		0\morphism \Global(X,\mu_n)\morphism\Global(X,\Oo_X^\times)\morphism[n]\Global(X,\Oo_X^\times)\morphism\\
-		\morphism\Hom(\pi_1^\et(X,x),\IZ/n\IZ)\morphism\Pic(X)\morphism[n]\Pic(X)\morphism\dotso
-	\end{multline*}
-	when $X$ is connected.
-\end{prop}
-\begin{proof}
-	Lagrange resolvents???
-\end{proof}
-\begin{prop}\label{prop:etaleTorsors}
-	Let $p$ be a prime and $X$ a noetherian scheme over $\IF_p$. Let $\Tt$ be an $\Oo_X$-torsor for the Zariski topology. Let $\phi$ denote the absolute Frobenius on $X$ and let $\tau\colon \phi_*\Tt\isomorphism\Tt$ be an isomorphism. Then the functor
-	\begin{align*}
-		\cat{Sch}/X&\morphism\cat{Set}\\
-		(f\colon Y\morphism X)&\longmapsto \left\{t\in\Global(Y,\Tt)\st f^*\tau(t)=t\right\}\,,
-	\end{align*}
-	on which $\IZ/p\IZ$ acts via $t\mapsto k+t$, is representable by a $\IZ/p\IZ$-principal homogeneous space, one has a bijection of isomorphism classes as in \cref{prop:etaleLineBundles}, and there is an exact sequence
-	\begin{multline*}
-		0\morphism \IZ/n\IZ\morphism\Global(X,\Oo_X)\xrightarrow{\phi-\id}\Global(X,\Oo_X)\morphism\\
-		\morphism\Hom(\pi_1^\et(X,x),\IZ/p\IZ)\morphism H^1(X_\Zar,\Oo_X)\xrightarrow{\phi-\id}H^1(X_\Zar,\Oo_X)\morphism\dotso
-	\end{multline*}
-	when $X$ is connected.
-\end{prop}
-\begin{rem}
-	Thus, in characteristic $p>0$ over an algebraically closed field $k$, one has $\pi_1^\et(\IA_k^n,x)\neq 1$ for any base point, as there are Artin--Schreier coverings.
-\end{rem}
-\begin{prop}
-	\begin{alphanumerate}
-		\item $\pi_1^\et(\IP_k^n)=1$ for all base points.
-		\item If $X$ is regular and $\pi\colon\snake{X}\morphism X$ the blow-up of a closed point, then $\pi_*\colon\pi_1^\et(\snake{X})\isomorphism\pi_1^\et(X)$ for all base points.
-	\end{alphanumerate}
-\end{prop}
-\begin{proof}[Sketch of a proof]
-	We prove \itememph{a} and \itememph{b} simultaneously by induction on the dimension. Part~\itememph{a} is equivalent to the condition that all étale coverings of $\IP_k^n$ split, and this is equivalent to the condition that all étale coverings $\SPEC\Aa\morphism\IP_k^n$ have $\Aa\cong \Oo_{\IP^n}^{\oplus d}$ for some $d$. For $n=1$ we have
-	\begin{equation*}
-		\Aa\cong \bigoplus_{i=1}^d\Oo_{\IP^n}(d_i)
-	\end{equation*}
-	by the Grothendieck--Birkhoff theorem. There are no positive $d_i$ as the corresponding summand would be in $\nil(\Aa)$, and no negative $d_i$ as $\Aa$ is self-dual by \cref{prop:finiteEtale}. Alternatively one can use the Hurwitz formula.
+\begin{proof*}
+	Let's suppose \itememph{a}, i.e., there is an fppf or fpqc cover $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i$ is $G$-equivariantly isomorphic to $U_i\times G$. Checking that $Y\times G\morphism Y\times_XY$ is an isomorphism can be done fpqc-locally. But $(Y\times G)\times_XU_i\cong U_i\times G\times G$ and likewise $(Y\times_XY)\times_XU_i\cong U_i\times G\times G$, so the morphism in question is indeed fpqc-locally an isomorphism. This proves \itememph{a} $\Rightarrow$ \itememph{b}.
 	
-	Part~\itememph{b} is trivial when $\dim(X)=1$. Now assume \itememph{a} holds in dimension $n$. Then \itememph{b} for dimension $n+1$ can be established by the theorem of formal functions. Let $\snake{X}_0$ be the unique non-trivial fibre, and $\snake{X}_n$ its infinitesimal thickenings. Let $\SPEC\Aa\morphism\snake{X}$ be an étale covering of $\snake{X}$. Then $\Aa|_{\snake{X}_0}$ is split by the induction assumption, then $\Aa|_{\snake{X}_n}$ are split by \cref{prop:thickeningEtaleEquivalence}. Thus the vector bundles $\Aa|_{\snake{X}_n}$ are trivial, thus $\Aa\isomorphism\pi^*\pi_*\Aa$ and $\pi_*\Aa$ is a vector bundle on $X$ by the theorem of formal functions. Thus,
+	The reverse implication \itememph{b} $\Rightarrow$ \itememph{a} is trivial: indeed, if $Y\morphism X$ is finite étale and surjective, then it is fpqc, hence $\{Y\morphism X\}$ is already an fpqc cover with the required property.
+\end{proof*}
+\begin{prop}\label{prop:Galois}
+	Let $G$ be a finite group acting on an étale covering $Y\morphism X$ (where \enquote{acting on} means the same as in \cref{deflem:prinG}).
+	\begin{alphanumerate}
+		\item The quotient $Y/G$ exists and $Y/G\morphism X$ is an étale covering again.
+		\item Suppose $Y$ has constant degree $n$ over $X$ and $G$ acts fixed-point free on $Y$, i.e., $\Eq(\id_Y,g)=\emptyset$ for all $g\in G\setminus\{1\}$. Then $\# G\leq n$ and the following conditions are equivalent.
+		\begin{numerate}
+			\item $\# G=n$.
+			\item The canonical morphism $Y/G\morphism X$ is an isomorphism.
+			\item $Y$ is a $G$-principal homogeneous space in the sense of \cref{deflem:prinG}
+		\end{numerate}
+	\end{alphanumerate}
+\end{prop}
+\begin{proof*}
+	We start with \itememph{a} (which was not in the lecture). For $Y/G$ to exist we need that every $G$-orbit is contained in an $G$-invariant affine open subset (see e.g.\ \cite[Theorem~11]{jacobians}). But $G$ acts by morphisms of $X$-schemes, hence every $G$-orbit is contained in a single fibre over some point $x\in X$. Now take any affine open neighbourhood $U$ of $x$, then its preimage in $Y$ is the required $G$-invariant affine open subset.
+	
+	It remains to prove that $Y/G\morphism X$ is an étale covering again. This can be checked étale-locally (even fpqc-locally, but we won't need that). In fact, we will construct an étale cover $\{U_i\morphism X\}$ with the following property:
+	\begin{alphanumerate}
+		\item[\itememph{*}] $Y\morphism X$ \emph{splits $G$-equivariantly} over $\{U_i\morphism X\}$. That is, every $Y\times_XU_i\morphism U_i$ is isomorphic to $S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$, and $G$ acts on $Y\times_XU_i$ via $S_i$, i.e., the $G$-action on $S_i\times U_i$ only permutes the copies of $U_i$.
+	\end{alphanumerate}
+	Let's first see how \itememph{*} implies \itememph{a}. Since $-/G$ is a finite colimit, it commutes with flat base change, so $(Y\times_XU_i)/G\cong Y/G\times_XU_i$. But since $G$ acts on $Y\times_XU_i\cong S_i\times U_i$  through $S_i$, we see $Y/G\times_XU_i\cong S_i/G\times U_i$. Hence $Y/G\times_XU_i\morphism U_i$ is an étale covering for trivial reasons, finishing the proof of \itememph{a}.
+	
+	For \itememph{*}, we refine the method from \cref{lem*:technicalFEt/X}. Let $\ov{x}$ be a geometric point of $X$. As seen before, $Y\times_X\Spec \Oo_{X_\et,\ov{x}}\cong \coprod_{i=1}^n\Spec \Oo_{X_\et,\ov{x}}$. We claim that $G$ only permutes the copies of $\Spec \Oo_{X_\et,\ov{x}}$. Indeed, let $e_1,\ldots,e_n$ be the idempotent global sections corresponding to the $n$ copies. Since the action of $g\in G$ is uniquely determined by $(g^*(e_1),\dotsc,g^*(e_n))$, it suffices to show this sequence is a permutation of $(e_1,\dotsc,e_n)$. Observe that the $e_i$ are \enquote{orthogonal} in the sense that $e_ie_j=0$ for $i\neq j$. Since $g\in G$ acts as a ring automorphism, we see that $g^*(e_1),\dotsc,g^*(e_n)$ is a collection of non-zero orthogonal idempotents again. But since the local ring $\Oo_{X_\et,\ov{x}}$ has no non-trivial idempotents, the idempotent global sections of $\coprod_{i=1}^n\Spec \Oo_{X_\et,\ov{x}}$ are precisely those of the form $\varepsilon_1e_1+\dotsb+\varepsilon_ne_n$ with $\varepsilon_i\in\{0,1\}$. Thus, a set of non-zero orthogonal idempotents can have cardinality at most $n$, since each $e_i$ can occur as a summand at most once; and in particular, equality holds precisely for $\{e_1,\dotsc,e_n\}$. Thus, the sequence $(g^*(e_1),\dotsc,g^*(e_n))$ is indeed a permutation of $(e_1,\dotsc,e_n)$.
+	
+	Choosing a sufficiently small étale neighbourhood $(U,\ov{u})$ of $\ov{x}$, we deduce as in the proof of \cref{lem*:technicalFEt/X} that $Y\times_XU\cong \coprod_{i=1}^n U$, with the $n$ copies of $U$ corresponding to $e_1,\dotsc,e_n$. Choosing $U$ even smaller, we may moreover achieve that $g^*$ only permutes the $e_i$ for all $g\in G$, since this is true after taking the colimit, as seen above, and $G$ is finite. Thus, $G$ only permutes the copies of $U$ in $\coprod_{i=1}^nU$. Therefore, denoting $U$ by $U_{\ov{x}}$ and letting $\ov{x}$ vary, we obtain an étale covering $\{U_{\ov{x}}\morphism X\}_{\ov{x}}$ satisfying the property from \itememph{*}.
+	
+	Having proved \itememph{*}, the proof of \itememph{b} becomes pretty easy. Throughout we fix an étale cover $\{U_i\morphism X\}_{i\in I}$ as in \itememph{*}. Then $G$ acts still fixed-point free on $Y\times_XU_i\cong S_i\times U_i$ since equalizers commute with base change. If $\#G>\#S_i$, then the $G$-action on $S_i$ would necessarily have a fixed point for some $g\in G\setminus\{1\}$, hence $\# G\leq \#S_i=n$, as claimed. Moreover, equality holds iff the $G$-action on $S_i$ is simply transitive. This is equivalent to $S_i\times U_i\cong G\times U_i$, which immediately shows \itememph{1} $\Leftrightarrow$ \itememph{3}. Moreover, since we already know that $G$ acts fixed-point free on $S_i$, the action is simply transitive iff $S_i/G=\{*\}$ is a single point. Since checking whether $Y/G\morphism X$ is an isomorphism can be done étale-locally and $Y/G\times_XU_i\cong S_i/G\times U_i$, we finally see that \itememph{2} is equivalent to \itememph{1}, \itememph{3} as well.
+\end{proof*}
+\begin{defi}\label{def:Galois}
+	An étale covering $Y\morphism X$ in which $X$ and $Y$ are both connected is called a \defemph{Galois covering} if it satisfies the equivalent conditions from \cref{prop:Galois}\itememph{b} with $G=\Aut(Y/X)$.
+\end{defi}
+\begin{rem*}
+	Note that if $X$ and $Y$ are connected, then $\Aut(Y/X)$ acts fixed-point free on $Y$, so the assumptions of \cref{prop:Galois}\itememph{b} are met. Indeed, as was noted in the proof of \cref{lem*:technicalFEt/X}\itememph{b}, the equalizer $\Eq(\id_Y,g)$ is always an open-closed subscheme of $Y$, hence either $\emptyset$ or $Y$ if $Y$ is connected.
+\end{rem*}
+\begin{thm}\label{thm:GrothendieckGalois}
+	Let $X$ be a scheme which is the disjoint union of its connected components (in other words, $X$ is locally connected, which holds for example when $X$ is locally noetherian).
+	\begin{alphanumerate}
+		\item Suppose moreover that $X$ is connected. Then for every geometric point $\ov{x}$ there is an equivalence of categories
+		\begin{align*}
+			\cat{F}\Et/X&\isomorphism \left\{\text{finite discrete sets with a continuous $\pi_1^\et(X,\ov{x})$-action}\right\}\\
+			Y&\longmapsto \Fib_{\ov{x}}(Y)\,.
+		\end{align*}
+		\item In general, there is an equivalence of categories
+		\begin{align*}
+		\cat{F}\Et/X&\isomorphism\left\{\begin{tabular}{c}
+		functors $F\colon \Pi_1^\et(X)\rightarrow\{\text{finite discrete sets}\}$ s.th.\\
+		$F(\ov{x})\times \Hom_{\Pi_1^\et(X)}(\ov{x},\ov{y})\rightarrow F(\ov{y})$ is continuous
+		\end{tabular}\right\}\\
+		Y&\longmapsto \Fib(Y)\,,
+		\end{align*}
+		where $\Fib(Y)=\Fib_{(-)}(Y)$ is given by $\Fib(Y)(\ov{x})=\Fib_{\ov{x}}(Y)$.
+	\end{alphanumerate}
+	Moreover, under the above conditions $\pi_1^\et(X,\ov{x})$ is a pro-finite group and the connected components of $\Pi_1^\et(X)$ correspond to the connected components of $X$.
+\end{thm}
+\begin{proof*}[Sketch of a proof]
+	Part~\itememph{a} was not mentioned in the lecture, but it shouldn't be missing in a theorem about \emph{Grothendieck's Galois theory} (and we will need it later). We will only roughly outline the proof of \itememph{a}; a full proof is in \cite[Exposé~V.4]{sga1}.\footnote{In case you decide to read Grothendieck's original proof---which I absolutely recommend, it is really beautiful---beware that there is a mistake in the second paragraph of \itememph{e}. It is claimed that $F(P_j)\morphism F(P_i)$ is surjective because $P_j\morphism P_i$ is an epimorphism; however, the functor $F$ is only assumed to transform \emph{effective} epimorphisms (or \emph{épimorphismes stricts} in French) into surjections. This issue can be fixed as follows: we already know that $P_j\morphism P_i=A\sqcup B$ factors over $A$. In particular, $P_j\morphism P_i$ equalizes the two canonical morphisms $j_1,j_2\colon P_i\morphism A\sqcup B\sqcup B$. Then $j_1=j_2$ as $P_j\morphism P_i$ is an epimorphism. However, this implies $F(j_1)=F(j_2)$, which can only happen if $F(B)=\emptyset$, hence $B=\emptyset_\Cc$ by the argument from the first paragraph.} Grothendieck's approach is, of course, to prove a vast generalization of \itememph{a}. He proves that given a category $\Cc$ equipped with a functor $F\colon \Cc\morphism\cat{Set}$ satisfying a certain list of six properties, one can construct a pro-finite group $\pi=\Aut(F)$ (the \enquote{fundamental group}) such that $F$ defines an equivalence of categories between $\Cc$ and the category of finite discrete sets with a continuous $\pi$-action. The proof proceeds as follows: one first shows that $F$ is \emph{strictly pro-representable}, i.e., there is a cofiltered system $\snake{X}=(\snake{X}_i)_{i\in I}$ (the \enquote{universal covering}) in $\Cc$ whose transition maps are epimorphisms, such that
 	\begin{equation*}
-		\pi^*\colon\left\{\text{étale coverings of $X$}\right\}\isomorphism\left\{\text{étale coverings of $\snake{X}$}\right\}\,.
+		F(Y)=\Hom_{\cat{Pro}(\Cc)}\big(\snake{X},Y\big)=\colimit_{i\in I}\Hom_\Cc\big(\snake{X}_i,Y\big)\,.
 	\end{equation*}
-	For \itememph{a} with $n\geq 2$ we may replace $X=\IP_k^n$ by the blow-up $\snake{X}$ of a closed point, and have $\pi\colon \snake{X}\morphism\IP_k^{n-1}$ with fibres isomorphic to $\IP_k^1$ and
+	Next, one shows that $\snake{X}$ has a cofinal subsystem of $\snake{X}_i$ which are \defemph{Galois} in the sense that $F(\snake{X}_i)=\Hom_{\cat{Pro}(\Cc)}(\snake{X},\snake{X}_i)=\Aut_\Cc(\snake{X}_i)$. After that, one can finally construct an inverse functor $\snake{X}\times_\pi-$ from finite discrete $\pi$-sets to $\Cc$. One can show that $\snake{X}\times_\pi-$ is an adjoint of $F$ and an equivalence of categories, so $F$ is an equivalence of categories as well.
+	
+	In the concrete situation of \itememph{a}, this is applied to $\Cc=\cat{F}\Et/X$ and $F=\Fib_{\ov{x}}$. It is either trivial or follows rather easily from \cref{lem*:technicalFEt/X} that these satisfy Grothendieck's six properties, so \itememph{a} follows as a special case.
+	
+	To prove \itememph{b} and the additional assertions, first note that if $\ov{x}$ and $\ov{y}$ are geometric points belonging to distinct connected components of $X$, then there is no functor isomorphism $\Fib_{\ov{x}}\cong \Fib_{\ov{y}}$, or in other words, $\Hom_{\Pi_1^\et(X)}(\ov{x},\ov{y})=\emptyset$. Indeed, we can find an étale covering $Y\morphism X$ which is, say, one-sheeted on the connected component of $\ov{x}$ and two-sheeted on the connected component of $\ov{y}$, so $\Fib_{\ov{x}}(Y)\not\cong\Fib_{\ov{y}}(Y)$. Conversely, if $\ov{x}$ and $\ov{y}$ belong to the same connected component, then $\Fib_{\ov{x}}$ and $\Fib_{\ov{y}}$ are isomorphic; in fact, \cite[Exposé~V Corollaire~5.7]{sga1} shows that any two \emph{fundamental functors} $F$ and $F'$ of a \emph{Galois category} $\Cc$ are isomorphic. This shows that the connected components of $X$ and $\Pi_1^\et(X)$ are in canonical correspondence. 
+	
+	Now write $X=\coprod_{i\in I}X_i$, choose geometric points $\ov{x}_i$ in $X_i$, and put $\pi_i=\pi_1^\et(X,\ov{x}_i)$. From part~\itememph{a} we get $\cat{F}\Et/X\cong \prod_{i\in I}\cat{F}\Et/X_i\cong \prod_{i\in I}\pi_i\cat{\text{-}FSet}$, where $\pi_i\cat{\text{-}FSet}$ is the category of finite discrete sets with a continuous $\pi_i$-action. Note that $\pi_i\cat{\text{-}FSet}$ is equivalent to the category of functors from $\pi_i$, considered as a groupoid with only one object, to the category of finite sets, such that a continuity condition similar to the one in \itememph{b} holds. Thus, it's easy to see that $\pi_i\cat{\text{-}FSet}$ is equivalent to functors from $\Pi_1^\et(X_i)$ to finite sets with the desired continuity condition. This proves \itememph{b}, more or less.
+\end{proof*}
+\subsection{\enquote{Kummer Coverings} and \enquote{Artin--Schreier Coverings}}
+The next point on our agenda is to study \enquote{cyclic coverings}, i.e., étale coverings which are $\IZ/n\IZ$-principal homogeneous spaces for some $n\in\IN$. A particular special case is the case of cyclic Galois extensions in Galois theory. As is well-known from the classical theory, there are two basic types of them:
+\begin{numerate}
+	\item \emph{Kummer extensions}, i.e., extensions of the form $K\left(\sqrt[n]{a}\right)/K$ for some $a\in K$, provided that $K$ contains a primitive $n\ordinalth$ root of unity and that the characteristic $\cha K$ does not divide $n$.
+	\item In characteristic $p>0$, the Kummer extensions are accompanied by \emph{Artin--Schreier extensions}, i.e., extensions of the form $K(\alpha)/K$, where $\alpha$ satisfies $\alpha^p-\alpha+a=0$ for some $a\in K$.
+\end{numerate}
+It turns out that a similar pattern can be found at a global scale.
+
+\begin{prop}[\enquote{Kummer coverings}]\label{prop:Kummer}
+	Let $X$ be a scheme on which $n\in\IN$ is invertible and such that there is a primitive $n\ordinalth$ root of unity $\zeta\in\Global(X,\mu_n)$. Let $\Ll$ be a line bundle on $X$ and $\tau\colon \Ll^{\otimes n}\isomorphism \Oo_X$ be a trivialization. Consider the functor
+	\begin{align*}
+		F\colon (\cat{Sch}/X)^\op&\morphism\cat{Set}\\
+		(f\colon Y\rightarrow X)&\longmapsto \left\{\lambda\in\Global(Y,f^*\Ll)\st f^*\tau(\lambda^{\otimes n})=1\right\}\,.
+	\end{align*}
+	We construct a $\IZ/n\IZ$-action on $F$ as follows: write $\IZ/n\IZ$ multiplicatively and fix once and for all a generator $\sigma\in\IZ/n\IZ$. Then $\sigma^k$ acts via $\sigma^{k,*}(\lambda)\coloneqq\zeta^k\lambda$.
+	\begin{alphanumerate}
+		\item $F$ is representable by an étale covering $\Lambda\morphism X$ which is a $\IZ/n\IZ$-principal homogeneous space. Moreover, every $\IZ/n\IZ$-principal homogeneous space has this form, and $(\Ll,\tau)$ is determined by $\Lambda$ up to isomorphism.
+		\item If $X$ is connected, then for any geometric  point $\ov{x}$ there is a long exact sequence
+		\begin{multline*}
+		0\morphism \Global(X_\Zar,\mu_n)\morphism\Global(X_\Zar,\Oo_X^\times)\xrightarrow{(-)^n}\Global(X_\Zar,\Oo_X^\times)\morphism\\
+		\morphism\Hom_{\cat{cont}}\big(\pi_1^\et(X,\ov{x}),\IZ/n\IZ\big)\morphism\Pic(X)\xrightarrow{(-)^{\otimes n}}\Pic(X)\morphism\dotso\,.
+		\end{multline*}
+	\end{alphanumerate}
+\end{prop}
+\begin{proof*}
+	\emph{Step~1.} We first construct $\Lambda$ and prove that it represents $F$. Put $\Aa=\bigoplus_{l=0}^{n-1}\Ll^{\otimes l}$. Identifying $\Ll^{\otimes n}$ with $\Oo_X$ via $\tau$, we can introduce a multiplication on $\Aa$, given by $-\otimes -$. Under this multiplication, $\Aa$ becomes a coherent $\Oo_X$-algebra. Put $\Lambda=\SPEC\Aa$. We will show that $\Hom_{\cat{Sch}/X}(-,\Lambda)$ is isomorphic to the given functor $F$.
+	
+	Let $f\colon Y\morphism X$ be an $X$-scheme. By the universal property of the $\SPEC$ functor, we find that
+	\begin{equation*}
+		\Hom_{\cat{Sch}/X}(Y,\Lambda)\cong \Hom_{\cat{Alg}_{\Oo_X}}(\Aa,f_*\Oo_Y)\,.
+	\end{equation*}
+	Fix a (Zariski-)open cover $X=\bigcup_{i\in I}U_i$ such that each $\Ll|_{U_i}$ trivializes, say, with a generator $\lambda_i\in \Global(U_i,\Ll)$. Suppose we are given a morphism $Y\morphism\Lambda$, or equivalently, a morphism $\Aa\morphism f_*\Oo_Y$. Let $\alpha_i$ be the image of $\lambda_i$. By construction, $\alpha_i^n=\tau(\lambda_i^{\otimes n})$ is given by some section $\epsilon_i\in \Global(U_i,\Oo_X)$. Note that $\epsilon_i$ and thus $\alpha_i$ must be invertible, as $\lambda_i^{\otimes n}$ is a local generator of $\Ll^{\otimes n}$ and $\tau$ is an isomorphism. Now consider $\alpha_i^{-1}\otimes \lambda_i\in \Global(f^{-1}(U_i),f^*\Ll)$. Since $\lambda_i$ and $\lambda_j$ only differ by a unit $\epsilon_{i,j}\in \Global(U_i\cap U_j,\Oo_X^\times)$, and sections from $\Oo_X$ can be moved around in a tensor product, we see that $\alpha_i^{-1}\otimes \lambda_i$ and $\alpha_j^{-1}\otimes\lambda_j$ coincide on $f^{-1}(U_i\cap U_j)$. Thus, these elements define a unique global section $\lambda\in \Global(Y,f^*\Ll)$, and by construction it's clear that $f^*\tau(\lambda^{\otimes n})=1$. This defines a map $\Hom_{\cat{Sch}/X}(Y,\Lambda)\morphism F(Y)$.
+	
+	Conversely, let $\lambda\in F(Y)$. Since $f^*\tau(\lambda^{\otimes n})=1$, we see that $\lambda$ must be a global generator of $f^*\Ll$. Since $\lambda_i$ is a local generator of $f^*\Ll$ on $f^{-1}(U_i)$, we can write $\lambda|_{f^{-1}(U_i)}=\alpha_i^{-1}\otimes \lambda_i$. Now define $\Aa\morphism f_*\Oo_Y$ by mapping $\lambda_i$ to $\alpha_i\in \Global(f^{-1}(U_i),\Oo_Y)=\Global(U_i,f_*\Oo_Y)$. Reading the above argument backwards, we obtain that this induces a well-defined morphism of $\Oo_X$-algebras. Thus, we obtain a map $F(Y)\morphism \Hom_{\cat{Sch}/X}(Y,\Lambda)$ which is, by construction, inverse to the map constructed in the previous paragraph. Up to checking functoriality (which we gladly omit), this shows that $\Lambda$ represents $F$.
+	
+	\emph{Step~2.} We check that $\Lambda$ is a $\IZ/n\IZ$-principal homogeneous space. With notation as before, have 
+	\begin{equation*}
+		\Aa|_{U_i}\cong \Oo_{U_i}\big[\sqrt[n]{\epsilon_i}\big]\cong \Oo_X[T]/(T^n-\epsilon_i)\,.
+	\end{equation*}
+	This is a finite étale $\Oo_X$-algebra, which can be seen for example via \cref{prop:formallyEtale}\itememph{e}: indeed, the derivative $\partial(T^n-\epsilon_i)/\partial T=n T^{n-1}$ is mapped to $n\lambda_i^{\otimes(n-1)}\in \Global(U_i,\Aa)$, which is a unit as $n$ is invertible on $X$ by assumption and $\lambda_i^{\otimes (n-1)}$ has the inverse $\epsilon_i^{-1}\lambda_i$. This shows that $\Lambda\morphism X$ is an étale covering.
+	
+	Let $\sigma^{k,*}\colon \Aa\morphism\Aa$ be the automorphism of $\Aa$, which is defined on the $l\ordinalth$ component as the multiplication map $\zeta^{kl}\colon \Ll^{\otimes l}\morphism \Ll^{\otimes l}$. This $\sigma^{k,*}$ defines a morphism $\sigma^k\colon \Lambda\morphism\Lambda$. Thus we have constructed a $\IZ/n\IZ$-action on $\Lambda$. If $k\neq 0$, then the coequalizer of the two morphisms $\id_\Aa,\sigma^{k,*}\colon \Aa\morphism\Aa$ is $0$. Indeed, the ideal quotiented out contains the sections $(1-\zeta^k)\lambda_i$, and these are units in $\Aa$ because $\lambda_i$ is a unit and $\prod_{k\neq 0}(1-\zeta^k)=n$ is invertible too, using that $\zeta$ is a primitive $n\ordinalth$ root of unity. Thus $\Eq(\id_X,\sigma^k)=\emptyset$ and $\IZ/n\IZ$ acts fixed-point free. Moreover, $\Aa$ has rank $n=\#\IZ/n\IZ$ over $\Oo_X$, so \cref{prop:Galois}\itememph{b} shows that $\Lambda$ is indeed a $\IZ/n\IZ$-principal homogeneous space.
+	
+	\emph{Step~3.} We show that all $\IZ/n\IZ$-principal homogeneous spaces $\Lambda=\SPEC\Aa$ arise in the form constructed in Step~1. To this end, we will construct a suitable line bundle $\Ll$ via faithfully flat descent (or actually \emph{étale descent}, if you want). Let $\{V_j\morphism X\}_{j\in J}$ be an étale covering such that there is a $\IZ/n\IZ$-equivariant isomorphism $\Lambda\times_XV_j\cong \IZ/n\IZ\times V_j$. Equivalently, if $\Aa_j$ denotes the pullback of $\Aa$ to $V_j$, we have
+	\begin{equation*}
+		\Aa_j\cong \prod_{l=0}^{n-1}\Oo_{V_j}\,,
+	\end{equation*}
+	and $\sigma^{k,*}$ acts by a cyclic shift of factors. Let $e_l\in \Global(V_j,\Aa_j)$ be the idempotent global section corresponding to the $l\ordinalth$ factor. Then $e_{k+l}=\sigma^{k,*}(e_l)$. For all $\sigma^k\in \IZ/n\IZ$ consider the element\footnote{In case you wondered: Professor Franke's intent when he gave the cryptic hint to use \enquote{Lagrange resolvents} was to look at expressions of that form.}
+	\begin{equation*}
+		R_k\coloneqq\sum_{l=0}^{n-1}\zeta^{k-l}e_l=\sum_{l=0}^{n-1}\zeta^{k-l}\sigma^{l,*}(e_0)\,.
+	\end{equation*}
+	Let $\Ll_j\subseteq \Aa_j$ be the $\Oo_{V_j}$-submodule generated by the elements $R_k$. Then $\Ll_j$ is actually free of rank $1$. Indeed, the $R_k$ are invertible (in fact, so is every coefficient $\zeta^{k-l}$ in their vector expression), and $R_{k+l}=\zeta^lR_k$, so they differ only by a unit. Moreover, $\Ll_i$ and $\Ll_j$ coincide after pullback to $V_i\times_XV_j$. The reason is that $R_{k+l}=\sigma^{l,*}(R_k)$, so the \emph{set} $\{R_0,\dotsc, R_{n-1}\}$ (but not its particular order) only depends on the $\IZ/n\IZ$-action and no other choices. Thus, by faithfully flat descent, the $\Ll_j$ define an $\Oo_X$-submodule $\Ll\subseteq \Aa$ which is a line bundle. Since $R_k^n=1$ for all $k$ (again, this is clear from their vector expressions), we can further construct an isomorphism  $\tau\colon\Ll^{\otimes n}\isomorphism \Oo_X$ via faithfully flat descent again. Finally, we claim that the canonical morphism $\bigoplus_{l=0}^{n-1}\Ll^{\otimes l}\isomorphism \Aa$ is an isomorphism. Again, this can be checked on the locally on the étale cover $\{V_j\morphism X\}_{j\in J}$. Since $\Ll_j$ is generated by $R_0$, what we need to prove is that $(1,R_0,R_0^2,\dotsc,R_0^{n-1})$ is a basis of $\Aa_j$. But this is---literally (!)---just a discrete Fourier transformation of the standard basis $(e_0,\dotsc,e_{n-1})$, hence a indeed a basis too (here we use again that $n$ is invertible on $X$, because a wild $n^{-1}$ occurs in the inverse discrete Fourier transformation).
+	
+	\emph{Step~4.} We verify that $(\Ll,\tau)$ is determined by $\Lambda$ up to isomorphism. In fact, Step~3 provides a way to reconstruct a suitable pair $(\Ll,\tau)$, so we only need to check that this procedure is inverse to $(\Ll,\tau)\mapsto \Aa=\bigoplus_{l=0}^{n-1}\Ll^{\otimes l}$. We have already seen in Step~3 that starting with $\Aa$ and constructing $(\Ll,\tau)$ as described gives us $\Aa$ again. Conversely, let's start with $(\Ll,\tau)$ and verify that the pair $(\Ll',\tau')$ constructed from $\Aa=\bigoplus_{l=0}^{n-1}\Ll^{\otimes l}$ is isomorphic to the original pair $(\Ll,\tau)$. Let $\Aa_j$, $(\Ll_j,\tau_j)$, and $(\Ll'_j,\tau'_j)$ denote the respective pullbacks to $V_j$. We would like to show that $\Ll_j$ is generated by the $R_k$. Since $V_j\times_X\Lambda\cong \IZ/n\IZ \times V_j$, we get an embedding $V_j\monomorphism V_j\times_X\Lambda$ identifying $V_j$ with $\{\sigma^0\}\times V_j$. Thus, after composition with the natural projection to $\Lambda$ we obtain a morphism $V_j\morphism \Lambda$. By definition of $F$, this defines an element $\lambda_j\in F(V_j)$, which is a global generator of $\Ll_j$ satisfying $\smash{\lambda_j^{\otimes n}=1}$ in $\Aa_j$. In particular, the sequence $(1,\lambda_j,\dotsc,\lambda_j^{\otimes(n-1)})$ is a basis of $\Aa_j$. Moreover, we have $\sigma^{k,*}(\lambda_j)=\zeta^k\lambda_j$ for all $k$.\footnote{This looks like a triviality, but that's the result of carefully chosen abuse of notation. By definition of the $\IZ/n\IZ$-action on $F$, the element $\zeta^k\lambda_j$ is the image of $\lambda_j$ under the action of $\sigma^k$, which luckily coincides with the image under $\sigma^{k,*}\colon \Aa_j\morphism \Aa_j$, because the image of $\lambda_j$ under the action of $\sigma^k$ corresponds to the morphism $V_j\morphism \Lambda$ coming from $\{\sigma^k\}\times V_j\monomorphism V_j\times_X\Lambda$.} Now consider the elements
+	\begin{equation*}
+		e_k'=\sum_{l=0}^{n-1}\zeta^{kl}\lambda_j^{\otimes l}\in \Global(V_j,\Aa_j)\,.
+	\end{equation*}
+	We claim that $n^{-1}e_0',\dotsc,n^{-1}e_{n-1}'$ are equal to $e_0,\dotsc,e_{n-1}$ from Step~3 (not necessarily in that order though, but the order is at most off by a cyclic shift). To prove this, first note that $\sigma^{k,*}(e_l')=e_{k+l}'$ by our above observation. Moreover, we calculate
+	\begin{equation*}
+		e_{k_1}'e_{k_2}'=\sum_{l=0}^{n-1}\sum_{l_1+l_2=l}\zeta^{k_1l_1+k_2l_2}\lambda_j^{\otimes l}=\sum_{l=0}^{n-1}\sum_{l_1=0}^{n-1}\zeta^{k_1l}\zeta^{(k_1-k_2)l_1}\lambda_j^{\otimes l}=\begin{cases*}
+		n e_{k_1}' & if $k_1=k_2$\\
+		0 & else
+		\end{cases*}\,.
+	\end{equation*}
+	Thus, the $n^{-1}e_k'$ are mutually \enquote{orthogonal} idempotents. But then they must coincide (up to cyclic shift) with the $e_k$! Indeed, the $e_k$ are mutually orthogonal idempotents too, and satisfy $\sigma^{k,*}(e_l)=e_{k+l}$, and by the classification of idempotents of $\Lambda\times_X\Spec \Oo_{X_\et,\ov{x}}$ for any geometric point $\ov{x}$ of $X$ (see the proof of \itememph{*} in \cref{prop:Galois}), there's only one such set of idempotents.
+	
+	Now, by construction, the sequence $\smash{(n^{-1}e_0,\dotsc,n^{-1}e_{n-1})}$ is the inverse Fourier transformation of the sequence $(1,\lambda_j,\dotsc,\lambda_j^{\otimes(n-1)})$. Likewise, by construction, the sequence $(1,R_0,\dotsc,R_0^{n-1})$ is the Fourier transformation of the sequence $(e_0,\dotsc,e_{n-1})$, which coincides with $(n^{-1}e_0,\dotsc,n^{-1}e_{n-1})$ up to cyclic shift, i.e., up to some $\sigma^{l,*}$. Thus, $R_0=\sigma^{l,*}(\lambda_j)=\zeta^l\lambda_j$. So $\Ll_j$ is indeed generated by $R_0$, and we get an identification $\Ll_j\cong \Ll_j'$. Observe that this also identifies $\tau_j$ and $\tau_j'$ since they are defined via $R_0^n=1$ and $\lambda_j^{\otimes n}=1$ respectively. Thus, $(\Ll_j,\tau_j)$ and $(\Ll_j',\tau_j')$ are isomorphic. By faithfully flat descent, this shows that the pairs $(\Ll,\tau)$ and $(\Ll',\tau')$ are isomorphic, and we have finally proved \itememph{a}.
+	
+	\emph{Step~5.} For \itememph{b}, recall that by \cref{thm:GrothendieckGalois}\itememph{a} the functor $\Fib_{\ov{x}}$ defines an equivalence between $\cat{F}\Et/X$ and the category of finite discrete continuous $\pi_1^\et(X,\ov{x})$-sets. By \cref{prop:Galois}\itememph{b}, the $\IZ/n\IZ$-principal bundles correspond precisely to those sets $S$ with an additional simply transitive $\IZ/n\IZ$-action (so that $S$ becomes isomorphic to $\IZ/n\IZ$), which, by functoriality, must commute with the $\pi_1^\et(X,\ov{x})$-action. Since $\IZ/n\IZ$ is cyclic, this entails that $\pi_1^\et(X,\ov{x})$ acts through $\IZ/n\IZ$ on $S$. Thus, the set $\Hom_{\cat{cont}}(\pi_1^\et(X,\ov{x}),\IZ/n\IZ)$ of continuous group homomorphisms is in bijection with the set of isomorphism classes of $\IZ/n\IZ$-principal bundles. Using \itememph{a}, we thereby obtain a bijection
+	\begin{equation*}
+		\Hom_{\cat{cont}}\big(\pi_1^\et(X,\ov{x}),\IZ/n\IZ\big)\cong \left\{\text{isomorphism classes of }(\Ll,\tau)\right\}\,.
+	\end{equation*}
+	But moreover, both sides come equipped with a group structure: the one on the left is given by addition of two group homomorphisms, on the right it is induced by the tensor product. We claim that then the above bijection is even a group isomorphism.
+	
+	Indeed, the identity element $(\Oo_X,\id_{\Oo_X})$ on the right-hand side corresponds to the étale covering
+	\begin{equation*}
+		\Lambda_0=\SPEC \big(\Oo_X[T]/(T^n-1)\big)\cong \coprod_{k=0}^{n-1}\SPEC\big(\Oo_X[T]/\left(T-\zeta^k\right)\big)\,,
+	\end{equation*}
+	which is split. Split coverings correspond to finite discrete sets $S$ with trivial $\pi_1^\et(X,\ov{x})$-action (because there is a section $X\monomorphism \Lambda_0$ for every sheet of $\Lambda_0$, hence for every point $s\in S$ there is a $\pi_1^\et(X,\ov{x})$-equivariant map $\{s\}\monomorphism S$), thus $(\Oo_X,\id_{\Oo_X})$ is sent to the $0$-morphism $0\colon \pi_1^\et(X,\ov{x})\morphism \IZ/n\IZ$, which is exactly what we want.
+	
+	Now consider two elements $(\Ll',\tau')$ and $(\Ll'',\tau'')$ and let $(\Ll,\tau)=(\Ll'\otimes \Ll'',\tau'\otimes \tau'')$; also let $\Aa'$, $\Aa''$, and $\Aa$ be as in Step~1. Then $\Aa$ is a direct summand of 
+	\begin{equation*}
+		\Aa'\otimes_{\Oo_X} \Aa''\cong \bigoplus_{k,l=0}^{n-1}\left(\Ll'^{\otimes k}\otimes_{\Oo_X}\Ll''^{\otimes l}\right)
+	\end{equation*}
+	In particular, if we define $\Lambda=\SPEC \Aa$ and $\Lambda'$, $\Lambda''$ similarly, then we obtain a natural morphism $\Lambda'\times_X\Lambda''\morphism \Lambda$. Moreover, it's straightforward to check that for every $k$ and $l$, the automorphism $\sigma^{k,*}\otimes \sigma^{l,*}$ on $\Aa'\otimes \Aa''$ restricts to an automorphism of $\Aa$, which coincides with $\sigma^{k+l,*}\colon \Aa\morphism\Aa$. Since the group $\pi_1^\et(X,\ov{x})$ acts through $\IZ/n\IZ$ as noted above, this shows that $\Lambda$ indeed corresponds to the sum of the two continuous morphisms $\pi_1^\et(X,\ov{x})\morphism \IZ/n\IZ$ given by $\Lambda'$ and $\Lambda''$. Therefore we get a group isomorphism, as claimed.
+	
+	\emph{Step~6.} We put the pieces together: the morphism $\Hom_{\cat{cont}}(\pi_1^\et(X,\ov{x}),\IZ/n\IZ)\morphism \Pic(X)$ sends a pair $(\Ll,\tau)$ to $\Ll$. It is immediately clear that its image coincides with the kernel of $(-)^{\otimes n}\colon \Pic(X)\morphism \Pic(X)$, so the sequence is exact at the first $\Pic(X)$. Given $\Ll$, the isomorphism $\tau\colon \Ll^{\otimes n}\isomorphism \Oo_X$ is unique up to a global section of $\Oo_X^\times$, whence we get exactness at $\Hom_{\cat{cont}}(\pi_1^\et(X,\ov{x}),\IZ/n\IZ)$. But $\Ll$ too is only determined up to isomorphism, i.e., up to a global section of $\Oo_X^\times$, and scaling $\Ll$ by $\epsilon\in \Global(X_\Zar,\Oo_X^\times)$ means scaling $\tau$ by $\epsilon^n$. Hence the sequence is exact at the second $\Global(X_\Zar,\Oo_X^\times)$, and thus it is exact after all. This finishes the proof of \itememph{b}.
+\end{proof*}
+\begin{prop}[\enquote{Artin--Schreier coverings}]\label{prop:ArtinSchreier}
+	Let $p$ be a prime and $X$ a scheme over $\IF_p$. Let $\Tt$ be an $\Oo_X$-torsor (in the Zariski topology). Let $\phi=\Frob_X$ denote the absolute Frobenius on $X$ and let $\tau\colon \phi^*\Tt\isomorphism\Tt$ be an isomorphism. Consider the functor
+	\begin{align*}
+		F\colon (\cat{Sch}/X)^\op&\morphism\cat{Set}\\
+		(f\colon Y\rightarrow X)&\longmapsto \left\{t\in\Global(Y,\Tt)\st f^*\tau(t)=t\right\}\,,
+	\end{align*}
+	and note that $\IZ/p\IZ$ acts on $F$ via $t\mapsto k+t$ for $k\in \IZ/p\IZ$.
+	\begin{alphanumerate}
+		\item $F$ is representable by a $\IZ/p\IZ$-principal homogeneous space $\Lambda$. Moreover, there is a bijection between isomorphism classes of $\IZ/p\IZ$-principal homogeneous spaces and isomorphism classes as of $(\Tt,\tau)$ similar to \cref{prop:Kummer}.
+		\item If $X$ is connected, then for any geometric point $\ov{x}$ there is a long exact sequence
+		\begin{multline*}
+		0\morphism \IZ/p\IZ\morphism\Global(X_\Zar,\Oo_X)\xrightarrow{\phi^*-\id}\Global(X_\Zar,\Oo_X)\morphism\\
+		\morphism\Hom_{\cat{cont}}\big(\pi_1^\et(X,\ov{x}),\IZ/p\IZ\big)\morphism H^1(X_\Zar,\Oo_X)\xrightarrow{\phi^*-\id}H^1(X_\Zar,\Oo_X)\morphism\dotso\,.
+		\end{multline*}
+	\end{alphanumerate}
+\end{prop}
+\begin{proof*}[Sketch of a proof]
+	Since the proof is very similar to \cref{prop:Kummer}, we will only highlight the differences. We begin with a somewhat subtle one: at the heart of the proof of \cref{prop:Kummer} was the theorem of faithfully flat descent, allowing us to work locally in the étale topology. But faithfully flat descent is a statement about quasi-coherent modules, not about torsors. However, we are lucky, and étale descent still works for $\Oo_X$-torsors. In fact, Zariski $\Oo_X$-torsors are parametrized by $\check{H}^1(X_\Zar,\Oo_X)$. Likewise, étale $\Oo_{X_\et}$-torsors are parametrized by the first \emph{étale \v Cech cohomology} $\check{H}^1(X_\et,\Oo_{X_\et})$. And these two cohomology groups happen to be isomorphic! Indeed, \v Cech cohomology coincides with sheaf cohomology in degree $1$ (both in the Zariski and the étale topology), and for quasi-coherent sheaves, Zariski and étale cohomology coincide (see \cite[\stackstag{03OY}]{stacks-project} for a proof). Thus we do indeed have étale descent for $\Oo_X$-torsors.
+	
+	Next, given $(\Tt,\tau)$, we construct $\Lambda=\SPEC\Aa$ as follows: let $\Oo_X[\Tt]$ be the polynomial algebra generated by the sections of $\Tt$ as free variables, modulo the \enquote{obvious relations}. That is, if $U\subseteq X$ is open, $t,t'\in \Global(U,\Tt)$ and $a\in \Global(U,\Oo_X)$ are sections over $U$ such that $t+a=t'$, then the same relation should hold in $\Oo_X[\Tt]$. Define $\theta\colon \Tt\morphism \Oo_X$ via $\theta(t)=\tau(t)-t$ and let $\Ii\subseteq \Oo_X[\Tt]$ be the ideal generated by $t^p-t-\theta(t)$ for all sections $t$ of $\Tt$ (here $t^p$ is to be read as the $p\ordinalth$ power of the formal variable $t$). Then we put $\Aa=\Oo_X[\Tt]/\Ii$. Thus, on small enough affine open subsets $U\subseteq X$ (such that $\Tt$ trivializes) we have $\Aa|_U\cong \Oo_U[\alpha]$, where $\alpha$ satisfies $\alpha^p-\alpha-a=0$ for some $a\in \Global(U,\Oo_X)$. So $\Lambda=\SPEC\Aa\morphism X$ is finite étale by \cref{prop:formallyEtale}\itememph{e}.
+	
+	To show that $\Lambda$ really represents $F$, we use a similar construction as in Step~1 of the proof of \cref{prop:Kummer}. To reconstruct $(\Tt,\tau)$ from $\Lambda$, we proceed as in Step~3 and~4, but this time we replace the \enquote{Lagrange resolvents} by
+	\begin{equation*}
+		R_k=\sum_{l=0}^{p-1}(l-k)e_l=\sum_{l=0}^{p-1}(l-k)\sigma^{l,*}(e_0)\,.
+	\end{equation*}
+	Then $R_k+l=\sigma^{l,*}(R_k)=R_{k+l}$. To show that $(1,R_0,\dotsc,R_0^{p-1})$ is a basis, we use that the Vandermonde determinant doesn't vanish instead of the discrete Fourier transform being invertible. 
+	
+	Finally, to prove \itememph{b}, we first identify $\Hom_{\cat{cont}}(\pi_1^\et(X,\ov{x}),\IZ/p\IZ)$ with the set of isomorphism classes of $(\Tt,\tau)$ and an argument analogous to Step~6 works. However, some extra care is needed to ensure exactness at $\IZ/p\IZ$, since this becomes wrong if $X$ is not connected (in contrast to $\Global(X,\mu_n)\morphism \Global(X,\Oo_X^\times)$ from \cref{prop:Kummer}\itememph{b}, which is still injective for non-connected $X$). So suppose $a\in \Global(X,\Oo_X)$ is in the kernel of $\phi^*-\id$, i.e., $a^p-a=0$. Then
+	\begin{equation*}
+		X=V(a^p-a)=V\Bigg(\prod_{k\in \IF_p}(a-k)\Bigg)=\bigcup_{k\in\IF_p}V(a-k)\,.
+	\end{equation*}
+	Observe that $V(a-k)\cap V(a-l)\subseteq V(k-l)=\emptyset$ for $k\neq l$, since then $k-l$ is invertible in $\IF_p$. Thus the union above is a disjoint union, which can only happen if $V(a-k)=X$ for some $k$ and $V(a-l)=\emptyset$ for all $l\neq k$. But then all $(a-l)$ are units, hence $0=a^p-a=(a-k)\prod_{l\neq k}(a-l)$ shows $a=k$. Thus the kernel of $\phi^*-\id$ is indeed given by $\IZ/p\IZ$.
+\end{proof*}
+\begin{rem}
+	The long exact sequences from \cref{prop:Kummer}\itememph{b} and \cref{prop:ArtinSchreier}\itememph{b} are, in fact, long exact sequences of étale cohomology groups, associated to the short exact sequences
+	\begin{gather*}
+		0\morphism \mu_n\morphism \Oo_{X_\et}^\times\morphism[(-)^n]\Oo_{X_\et}^\times\morphism 0\\
+		0\morphism \IZ/p\IZ\morphism \Oo_{X_\et}\xrightarrow{\phi^*-\id}\Oo_{X_\et}\morphism 0\,.
+	\end{gather*}
+	They are not exact as sequences of Zariski sheaves, but as étale sheaves they are. As a side effect, we find that $H^1(X,\Oo_X^\times)\cong\Pic(X)\cong H^1(X_\et,\Oo_{X_\et}^\times)$ and $H^1(X,\Oo_X)=H^1(X_\et,\Oo_{X_\et})$. The first chain of isomorphisms is basically equivalent to the fact that étale descent works for line bundles. The second chain of isomorphism says the same about étale descent of torsors, as noted in the proof of \cref{prop:ArtinSchreier}.
+\end{rem}
+\begin{rem}\label{rem:pi1An}
+	If $k$ is a field of characteristic $p>0$, one has  $\pi_1^\et(\IA_k^n,\ov{x})\neq 1$ for any base point $x$, which comes perhaps a bit counterintuitive. This holds even in the case where $k$ is separably or even algebraically closed (for non-separably closed $k$ we shouldn't expect $\pi_1^\et(\IA_k^1,\ov{x})$ to be trivial, since the absolute Galois group $\Gal(k^\sep/k)=\pi_1^\et(\Spec k)$ should somehow come into play); the reason is that there are Artin--Schreier coverings.
+\end{rem}
+\subsection{The Zariski--Nagata Purity Theorem}
+Before we give a rough sketch of the proof of the theorem in the title, we prove a proposition that supplements \cref{rem:pi1An}.
+\begin{prop}
+	Let $k$ be an algebraically (or just separably) closed field.
+	\begin{alphanumerate}
+		\item $\pi_1^\et(\IP_k^n,\ov{x})=1$ for all base points.
+		\item If $X$ is a regular scheme of finite type over $k$, and $\pi\colon\snake{X}\morphism X$ the blow-up of a closed point, then $\pi_*\colon\pi_1^\et(\snake{X},\ov{x})\isomorphism\pi_1^\et(X,\ov{x})$ is an isomorphism for all base points.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	We prove \itememph{a} and \itememph{b} simultaneously by induction on the dimension. Part~\itememph{a} is equivalent to the condition that all étale coverings of $\smash{\IP_k^n}$ split, and this is equivalent to the condition that all étale coverings $\SPEC\Aa\morphism\IP_k^n$ have $\Aa\cong \prod_{i=1}^d\Oo_{\IP^n}$ for some $d$. For $n=1$ we have
+	\begin{equation*}
+		\Aa\cong \bigoplus_{i=1}^d\Oo(d_i)
+	\end{equation*}
+	by the Grothendieck--Birkhoff theorem. We first claim that there are no positive $d_i$. Indeed, let $\Aa_{\geq n}=\bigoplus_{d_i\geq n}\Oo(d_i)$ and consider the multiplication map $\mu\colon \Aa\otimes\Aa\morphism \Aa$ given by the $\Oo_X$-algebra structure. Since $\Oo(n)\otimes \Oo(m)\cong \Oo(n+m)$ and for $i>j$ there is no non-zero morphism $\Oo(i)\morphism \Oo(j)$, we see that $\mu$ maps $\Aa_{\geq n}\otimes \Aa_{\geq m}\morphism \Aa_{\geq n+m}$. In particular, all $\Oo(d_i)$ with $d_i>0$ must be contained in $\nil(\Aa)$. But $\SPEC \Aa$ is regular by \cref{prop:etaleRegular}, hence $\nil(\Aa)=0$. 
+	
+	So there are no positive $d_i$. Since $\Aa$ is self-dual by \cref{prop:finiteEtale}, there are no negative $d_i$ as well, hence $\Aa\cong \Oo_{\IP^1}^{\oplus d}$. We are not done yet, since this is just an isomorphism of \emph{modules} over $\Oo_{\IP^1}$, not of algebras. Let $x\in \IP^1$ be any $k$-rational point (e.g., the point at infinity). Since $\Global(\IP^1,\Oo_{\IP^1})=k=\kappa(x)$ and $\Aa$ is a trivial vector bundle, we see that the canonical morphism $\Global(\IP^1,\Aa)\morphism \Aa_x\otimes \kappa(x)$ is an isomorphism of $k$-algebras. But $\Aa_x\otimes \kappa(x)$ is étale over $\kappa(x)=k$, which is separably closed, hence $\Aa_x\otimes \kappa(x)$ is a product of $d$ copies of $k$ by \cref{lem:etaleTrace}\itememph{b}. Then the same is true for $\Global(\IP^1,\Oo_{\IP^1})$, so we can find $d$ non-zero orthogonal idempotent global sections $e_1,\dotsc,e_d$. Thus $\Aa\cong \prod_{i=1}^de_i\Aa\cong \prod_{i=1}^d\Oo_{\IP^1}$ holds as algebras too. An alternative proof of the $\IP_k^1$ case uses the Hurwitz formula.
+	
+	Part~\itememph{b} is trivial when $\dim X=1$, since then blowing up a closed point doesn't change anything. Now assume \itememph{a} holds in dimension $n$. To prove \itememph{b} in dimension $n+1$, we would like to show that the functor
+	\begin{align*}
+	\pi^*\colon\left\{\text{étale coverings of $X$}\right\}&\isomorphism\left\{\text{étale coverings of $\snake{X}$}\right\}\\
+	\big(\SPEC\Bb\rightarrow X\big)&\longmapsto \big(\SPEC \pi^*\Bb\rightarrow \snake{X}\big)
+	\end{align*}
+	is an equivalence of categories. Our strategy is to show that $\Aa\mapsto \pi_*\Aa$ is a quasi-inverse. So let $\SPEC\Aa\morphism\snake{X}$ be an étale covering of $\snake{X}$ and let $d$ be its degree. Since $\pi$ is proper, $\pi_*\Aa$ is at least a coherent $\Oo_X$-module. Moreover, if $\snake{X}_0$ denotes the unique non-trivial fibre of $\pi$, and $\snake{X}_m$ its infinitesimal thickenings, then $\Aa|_{\snake{X}_0}$ is split by the induction assumption because $\snake{X}_0\cong \IP_{\kappa(x)}^n$, hence the $\Aa|_{\snake{X}_m}$ are split by \cref{prop:thickeningEtaleEquivalence}. In other words, $\Aa|_{\snake{X}_m}\cong \smash{\prod_{i=1}^d\Oo_{\snake{X}_m}}$. Let $y\in X$ be the blown-up point. Then the theorem of formal functions shows
+	\begin{equation*}
+		(\pi_*\Aa)_y^\complete\cong \limit_{m\in\IN}\Global\big(\snake{X}_m,\Aa|_{\snake{X}_m}\big)\cong \prod_{i=1}^d\limit_{m\in\IN}\Global\big(\snake{X}_m,\Oo_{\snake{X}_m}\big)\cong \prod_{i=1}^d\limit_{m\in\IN}\Oo_{X,y}/\mm_{X,y}^{m+1}\cong \prod_{i=1}^d\roof{\Oo}_{X,y}\,.
+	\end{equation*}
+	Note that the third isomorphism is actually not that trivial since for $m>0$ the thickened fibres $\snake{X}_m$  are no longer isomorphic to the projective space $\IP_R^n$ over the ring $R=\Oo_{X,y}/\mm_{X,y}^{m+1}$; see \cref{lem*:thickenedFibres} below.
+	
+	The above calculation shows that $(\pi_*\Aa)_y$ is flat over $\Oo_{X,y}$. Moreover, it's clear that $\pi_*\Aa$ is a vector bundle on $X\setminus\{x\}$ since $\pi$ is just the identity on that open subset. Thus $\pi_*\Aa$ is indeed a vector bundle. Finally, $\SPEC \pi_*\Aa\morphism X$ is an étale covering because it's restriction to $X\setminus\{x\}$ is finite étale for obvious reasons, and the closed point $\{x\}$ has codimension $\geq 2$ as $\dim X\geq 2$, so \cref{cor:etaleCodim2} can be applied.
+	
+	This shows that $\pi_*\colon \cat{F}\Et/\snake{X}\morphism \cat{F}\Et/X$ is a functor in the reverse direction. To show that $\pi^*$ and $\pi_*$ are quasi-inverse, we must show that the canonical morphisms $\alpha\colon \pi^*\pi_*\Aa\morphism \Aa$ and $\beta\colon \Bb\morphism \pi_*\pi^*\Bb$ are isomorphisms. We will only prove this for $\alpha$; the argument for $\beta$ is very similar. It's clear that $\alpha$ is a morphism of vector bundles of the same rank, so it suffices to prove that it is an epimorphism. This is obvious over $X\setminus\{x\}$ since $\pi$ is just the identity there. It remains show that $\alpha$ is an epimorphism at every point lying over the blown-up point $y$. Since we are only interested in having an epimorphism, this can be tested after pullback to the fibre $\snake{X}_0$. But $\Aa|_{\snake{X}_0}$ is a trivial vector bundle as noted before, and $\pi^*\pi_*\Aa|_{\snake{X}_0}$ must be trivial as well, hence the pullback of $\alpha$ is an isomorphism, hence $\alpha$ is an epimorphism and thus an isomorphism as well. This proves the inductive step for \itememph{b}.
+	
+	For \itememph{a} with $n\geq 2$ we may replace $X=\IP_k^n$ by the blow-up $\snake{X}$ of a $k$-rational point, since \itememph{b} has already been established in dimension $n$. Now we claim that there is a morphism $\pi\colon \snake{X}\morphism\IP_k^{n-1}$ whose fibres over $k$-rational points are isomorphic to $\IP_k^1$. We will only sketch how $\pi$ looks like on $k$-rational points and leave it to the reader to work out the scheme-theoretic construction. Without restriction let $0=[0:\dotsc:0:1]$ be the blown-up point. Then we obtain a morphism $X\setminus\{0\}\morphism \IP_k^{n-1}$ by sending $k$-rational points $0\neq [t_0:\dotsc:t_n]$ to $[t_0:\dotsc:t_{n-1}]$. It's easy to see that fibres over $k$-rational points are isomorphic to $\IA_k^1$. Now the fibre $\snake{X}_0$ over the blown-up point $0$ is isomorphic to $\IP_k^{n-1}$. Mapping $\snake{X}_0$ identically to $\IP_k^{n-1}$ induces the map $\pi\colon \snake{X}\morphism \IP_k^{n-1}$. Its fibres over $k$-rational points are $\IP_k^1$ because they comprise the fibre $\IA_k^1$ of $X\setminus\{0\}\morphism \IP_k^{n-1}$ plus one additional point from $\snake{X}_0$.
+	
+	Now that $\pi\colon \snake{X}\morphism \IP_k^{n-1}$ has been constructed, we can show via the formal function theorem as in \itememph{b} that
 	\begin{equation*}
 	\pi^*\colon\left\{\text{étale coverings of $\IP_k^{n-1}$}\right\}\isomorphism\left\{\text{étale coverings of $\snake{X}$}\right\}
 	\end{equation*}
-	by the same argument, thus $\pi_1^\et(\IP_k^n)\cong \pi_1^\et(\snake{X})\cong \pi_1^\et(\IP_k^{n-1})$.
+	is an equivalence of categories, with quasi-inverse $\pi_*$.
+	So $\pi_1^\et(\IP_k^n,\ov{x})\cong \pi_1^\et(\snake{X},\ov{x})\cong \pi_1^\et(\IP_k^{n-1},\ov{y})$ for some base point $\ov{x}$ that is mapped to $\ov{y}$. There's one caveat though: this time we can't use \cref{cor:etaleCodim2} to show that $\SPEC\pi_*\Aa\morphism \IP_k^{n-1}$ is étale again. Instead we can do an argument as in the proof of \cref{prop:finiteEtale} to reduce this to a question on fibres, and then use that the fibres over $k$-rational points look like $\IP_k^1$ and that the $k$-rational points are dense in $\IP_k^{n-1}$.
 \end{proof}
-\begin{rem}
-	For $X\morphism Y$ satisfying some suitable assumptions and compatible geometric points $x\morphism X$ and $y\morphism Y$ there is an exact sequence
+\begin{lem*}\label{lem*:thickenedFibres}
+	Let $X$ be a noetherian scheme and $y\in X$ a regular closed point. Let $\pi\colon \snake{X}\morphism X$ be the blow-up of $y$, $\snake{X}_0$ the fibre over $y$, and $\snake{X}_m$ its infinitesimal thickenings. Then, for all $m\geq 0$,
 	\begin{equation*}
-		\pi_1^\et(X_y,x)\morphism\pi_1^\et(X,x)\morphism\pi_1^\et(Y,y)\morphism\pi_0(X_y)\,,
+		\Global\big(\snake{X}_m,\Oo_{\snake{X}_m}\big)\cong \Oo_{X,y}/\mm_{X,y}^{m+1}\,.
+	\end{equation*}
+\end{lem*}
+\begin{proof*}[Sketch of a proof]
+	Our strategy is to mimic the calculation of cohomology of twisting sheaves on $\IP^n$ via comparison of the \v Cech complex and the Koszul complex (see \cite[Theorem~2]{alggeo2} for example). Fix $m\geq 0$ and let $R=\bigoplus_{i\geq 0}\mm_{X,y}^i/\mm_{X,y}^{i+m+1}$. It's straightforward to check that $\snake{X}_m\cong \Proj R$. Since $\Oo_{X,y}$ is regular, its maximal ideal $\mm_{X,y}$ can be generated by a regular sequence $(t_1,\dotsc,t_n)$. In particular, every quotient $\Oo_{X,y}/(t_1,\dotsc,t_i)$ is regular again. Henceforth, the sequence $(t_1,\dotsc,t_n)$ will be considered as elements $R$ that have homogeneous degree $1$, i.e., as elements of $R_1=\mm_{X,y}/\mm_{X,y}^{m+1}$!!! We first claim that $(t_1,\dotsc,t_n)$ is again a regular sequence in $R$. Using induction on $n=\dim \Oo_{X,y}$, we only need to check that multiplication with $t_1$ is injective on $R$. For $m=0$ this is trivial because $R\cong \gr_{\mm_{X,y}}(\Oo_{X,y})\cong k[t_1,\dotsc,t_n]$ by a well-known result about regular rings. The general case can be deduced by another induction.
+	
+	Now let $\Uu\colon \Proj R=\bigcup_{i=1}^nD_+(t_i)$ be the standard affine open cover associated to the generators $t_i$ of $R_1$. As for every graded ring $R$ that is generated by $R_0$ and $R_1$, we have sheaves $\Oo(d)$ on $\Proj R$ for all $d\in \IZ$. Consider $\Oo=\bigoplus_{d\in \IZ}\Oo(d)$. For all $1\leq i_0<\dotsb<i_l\leq n$ we have
+	\begin{equation*}
+		\Global\big(D_+(t_{i_0}\dotsm t_{i_l}),\Oo\big)\cong R\big[(t_{i_0}\dotsm t_{i_l})^{-1}\big]\cong \colimit\Big( R\xrightarrow{t_{i_0}\dotsm t_{i_l}}R\xrightarrow{t_{i_0}\dotsm t_{i_l}}\dotso\Big)\,.
+	\end{equation*}
+	For all $j\geq 1$ let $t^j=(t_1^j,\dotsc,t_n^j)$ and let $K^\bullet(t^j,R)$ denote the corresponding cohomological Koszul complex. Moreover, let $\check{C}_\alt^\bullet(\Uu,\Oo)$ be the alternating \v Cech complex associated to the open cover $\Uu$. Then there is a canonical map
+	\begin{equation*}
+		K^{l+1}(t^j,R)\cong \bigwedge^{l+1}R^n\morphism \prod_{1\leq i_0<\dotsb<i_l\leq n}R\big[(t_{i_0}\dotsm t_{i_l})^{-1}\big]\cong \check{C}_\alt^l(\Uu,\Oo)
+	\end{equation*}
+	sending the basis vectors $e_{i_0}\wedge\dotsb\wedge e_{i_l}$ of $\bigwedge^{l+1}R^n$ to $(0,\dotsc,(t_{i_0}\dotsm t_{i_l})^{-j},\dotsc, 0)$. Up to checking various compatibilities, these maps assemble into an isomorphism of complexes
+	\begin{equation*}
+		\colimit_{j\geq 1}K^\bullet(t^j,R)[-1]\isomorphism \Big(R\rightarrow \check{C}^\bullet(\Uu,\Oo)\Big)
+	\end{equation*}
+	(the $R$ on the right-hand side is placed in degree $-1$). But $t$ is a regular sequence as shown above, hence the sequences $t^j$ are regular too, thus the colimit of Koszul complexes is exact in low degrees. Therefore, $R\morphism\check{C}^\bullet(\Uu,\Oo)$ is exact in low degrees too, hence $H^0(\check{C}^\bullet(\Uu,\Oo))\cong R$. After some unraveling, this proves the assertion.
+\end{proof*}
+\begin{rem}
+	If $X\morphism Y$ is a morphism satisfying some suitable assumptions, and if $\ov{x}$ is a geometric point of $X$ that is mapped to a geometric point $\ov{y}$ of $Y$, and $y\morphism Y$ there is an exact sequence
+	\begin{equation*}
+		\pi_1^\et(X_y,\ov{x})\morphism\pi_1^\et(X,\ov{x})\morphism\pi_1^\et(Y,\ov{y})\morphism\pi_0(X_y)\,,
 	\end{equation*}
 	which can be established by a similar application of the formal function theorem.
 \end{rem}
-\begin{thm}[Zariski/Nagata]
-	Let $X$ be a regular separated noetherian scheme and $U\subseteq X$ an open subscheme such that every irreducible component of $X\setminus U$ has codimension $\geq 2$. Then restriction to $U$ is an equivalence of categories
+We now reach the highlight of this section about the étale fundamental group: the Zariski--Nagata purity theorem (or actually a version of it). A full proof is in \cite[Exposé~X Corollaire~3.3]{sga1}
+\begin{thm}[Zariski/Nagata]\label{thm:Zariski-Nagata}
+	Let $X$ be a separated noetherian regular scheme and $j\colon U\monomorphism X$ an open subscheme such that every irreducible component of $X\setminus U$ has codimension $\geq 2$. Then restriction to $U$ is an equivalence of categories
 	\begin{equation*}
-		\left\{\text{étale coverings of $X$}\right\}\isomorphism\left\{\text{étale coverings of $U$}\right\}\,.
+		j^*\colon\left\{\text{étale coverings of $X$}\right\}\isomorphism\left\{\text{étale coverings of $U$}\right\}\,.
 	\end{equation*}
+	In particular, there is an isomorphism $j_*\colon \pi_1^\et(U,\ov{x})\isomorphism \pi_1^\et(X,\ov{x})$ for every base point $\ov{x}$.
 \end{thm}
-\begin{proof}[Sketch of a proof]
-	The full proof can be found in \cite[Exposé~X Théorème~3.4]{sga1}. The idea is to construct an inverse functor. Suppose $\SPEC\Aa\morphism U$ is an étale covering. Then $\SPEC j_*\Aa\morphism X$ is a straightforward candidate for an extension, $j\colon U\monomorphism X$ denoting the embedding of $U$. By elementary scheme theory, $j_*\Aa$ is at least a quasi-coherent $\Oo_X$-algebra. If we could show that it is a vector bundle, then \cref{cor:etaleCodim2} automatically shows that $\SPEC j_*\Aa\morphism X$ is étale.
-	
-	By  a finiteness theorem for the cohomology of open subsets (see \cite{sga2}, but only a rather trivial special case is used), $j_*\Aa$ is coherent. It is still hard to show that it is a vector bundle, but in dimension $2$ this is somehow easier than in general.
-	
-	For a coherent $\Oo_X$-module $\Ff$, recall that \defemph{$\Ff$ satisfies condition $S_k$} if for all $x\in X$ we have $\depth\Ff_x\geq \min\{k,\dim\Oo_{X,x}\}$. For small $k$ we have some nice equivalent reformulations:
+\begin{rem}\label{rem:RkSk}
+	Before we start with the proof, let's recall the conditions $R_k$ and $S_k$, since they are going to be used in the proof. For a coherent $\Oo_X$-module $\Ff$ on a locally noetherian scheme $X$, we say \defemph{$\Ff$ satisfies condition $S_k'$} if for all $x\in X$ we have $\depth\Ff_x\geq \min\{k,\dim\Oo_x\}$.\footnote{In the lecture, Professor Franke just called this \emph{condition $S_k$}, but this doesn't seem to be the standard definition (see \cref{def*:RkSk}\itememph{b} instead), However, with the standard definition, \itememph{1} becomes wrong: see \cref{warn*:SkFail}.} For small $k$ we have some nice equivalent reformulations:
 	\begin{numerate}
-		\item $\Ff$ satisfies $S_1$ iff $\Gamma(U,\Ff)\monomorphism\Gamma(V,\Ff)$ is injective whenever $V$ is a dense open subset of the open subset $U\subseteq X$.
-		\item $\Ff$ satisfies $S_2$ iff it satisfies $S_1$ and $\Gamma(U,\Ff)\isomorphism\Gamma(V,\Ff)$ whenever $V\subseteq U$ are open subsets of $X$ such that $\codim(Z,U)\geq 2$ for every connected component $Z$ of $U\setminus V$.
+		\item $\Ff$ satisfies $S_1'$ iff $\Gamma(U,\Ff)\monomorphism\Global(V,\Ff)$ is injective whenever $V$ is a dense open subset of the open subset $U\subseteq X$.
+		\item $\Ff$ satisfies $S_2'$ iff it satisfies $S_1'$ and $\Global(U,\Ff)\isomorphism\Global(V,\Ff)$ whenever $V\subseteq U$ are open subsets of $X$ such that $\codim(Z,U)\geq 2$ for every connected component $Z$ of $U\setminus V$.
 	\end{numerate}
-	In dimension $\leq 2$ and for $X$ regular, $\Ff$ is locally free iff it has $S_2$ by Auslander--Buchsbaum. For $\Ff=j_*\Aa$ this is trivial by the above reformulation of $S_2$ and the fact that $\Aa$ has $S_2$.
-	
-	The general case of $j_*\Aa$ being a vector bundle is dealt with by induction. One can assume that $X\setminus U$ is a discrete set, say, $X\setminus U=\{x\}$ by locality. Using the flat base change $\Spec \roof{\Oo}_{X,x}\morphism X$ one may assume $X=\Spec A$ and $x=\mm_A$, where $A$ is a complete noetherian local ring with maximal ideal $\mm_A$. Let $t\in\mm_A\setminus \mm_A^2$ and let $X_n=V(t^n)$, $U_n=V(t^n|_U)$. When $\dim(A)\geq 3$ and $\Vv$ is a vector bundle on $U$, then \cite{sga2} shows 
-	\begin{equation}\label{eq:FF}
-		\Global(U,\Vv)\isomorphism\limit_{n\in\IN}\Global(U_n,\Vv|_{U_n})\,.
-	\end{equation}
-	But $\Aa|_{U_1}$ splits by the induction assumption and thus $\Aa|_{U_n}$ by \cref{prop:thickeningEtaleEquivalence}. Thus there are isomorphisms
-	\begin{equation*}
-		\begin{tikzcd}
-			\Global(U_n,\Aa|_{U_n})\rar\dar[iso]&\Global(U_m,\Aa|_{U_m})\dar[iso]\\
-			(A/t^n)^{\oplus d}\rar & (A/t^m)^{\oplus d}
-		\end{tikzcd}
-	\end{equation*}
-	for $n\geq m$, showing that the limit on the right-hand side of \cref{eq:FF} is a free $A$-module. [TODO: There's something wrong with this proof, as Franke explained in the next lecture.]
-\end{proof}
-\begin{rem}\lecture[Erratum to the last lecture. An example of étale and pro-étale fundamental groups. Stalks at geometric points, sheafification in the étale topology.]{2019-11-15}
-	We say a (locally noetherian) scheme $X$ \defemph{satisfies $S_k$} if $\Oo_X$ satisfies $S_k$. Moreover, we say $X$ \defemph{satisfies $R_k$} iff $\Oo_{X,x}$ is regular whenever $\dim\Oo_{X,x}\leq k$. There are some famous criteria:
+	For proofs, see the appendix, \cref{lem*:S1S2}. Moreover, we say $X$ \defemph{satisfies $R_k$} iff $\Oo_{X,x}$ is regular whenever $\dim\Oo_{X,x}\leq k$. Again, for small $k$ there are some famous reformulations:
 	\begin{alphanumerate}
 		\item $X$ is reduced iff it satisfies $R_0$ and $S_1$.
 		\item $X$ is normal iff it satisfies $R_1$ and $S_2$. This is known as \emph{Serre's normality criterion}.
 	\end{alphanumerate}
 \end{rem}
-In the pro-étale topology of Bhatt/Scholze (see \cite{proetale}), there is actually a \emph{pro-étale fundamental group} $\pi_1^\proet(X,x)$ defined in the same way as $\pi_1^\et(X,x)$, for schemes $X$ whose underlying topological space is locally noetherian. They consider locally constant sheaves of sets on the pro-étale site, and also étale $X$-schemes satisfying the valuation criterion for properness. %Their discussion of pro-étale coverings is in, where $X$ is assumed to have a locally noetherian underlying topological space. 
+\begin{proof}[Sketch of a proof of \cref{thm:Zariski-Nagata}]
+	The idea is to construct a quasi-inverse functor. Suppose $\SPEC\Aa\morphism U$ is an étale covering of $U$. We need to extend it to all of $X$. A straightforward candidate for an extension is $\SPEC j_*\Aa\morphism X$. By elementary scheme theory, $j_*\Aa$ is at least a quasi-coherent $\Oo_X$-algebra. If we could show that it is a vector bundle, then \cref{cor:etaleCodim2} would automatically imply that $\SPEC j_*\Aa\morphism X$ is étale. To prove that the ensuing functor $j_*$ is a quasi-inverse of $j^*$, it suffices to prove that the natural morphisms $j^*j_*\Aa\morphism \Aa$ and $\Bb\morphism j_*j^*\Bb$ are isomorphisms when $\Aa$ and $\Bb$ are vector bundles over $U$ and $X$ respectively. The former is trivial, and the latter follows from \cref{rem:RkSk}\itememph{2} as vector bundles over a regular scheme satisfy $S_2'$ for trivial reasons.
+	
+	By  a finiteness theorem for the cohomology of open subsets (see \cite[Exposé~VIII Proposition~3.2]{sga2}, but only a rather trivial special case is used), $j_*\Aa$ is coherent. It is still hard to show that it is a vector bundle.
+	
+	If dimension $\dim X\leq 2$ however, this is rather easy. Note that $\Ff$ is locally free iff every $\Ff_x$ has projective dimension $0$. By the Auslander--Buchsbaum formula (which is applicable because regular rings local rings have finite projective dimension) we have
+	\begin{equation*}
+		\pdim \Ff_x+\depth \Ff_x=\depth \Oo_{X,x}=\dim \Oo_{X,x}\,,
+	\end{equation*}
+	using that $\Oo_{X,x}$ is regular. Since $\dim \Oo_{X,x}\leq 2$, an easy argument shows that $\pdim \Ff_x=0$ iff $\Ff$ has $S_2'$ at $x$. Thus, in dimension $\leq 2$ a coherent module is locally free iff it has $S_2'$. Now $\Ff=j_*\Aa$ has $S_2'$ by \cref{rem:RkSk}\itememph{2} and the fact that $\Aa$ already has $S_2'$ because it is a vector bundle over the regular scheme $U$.
+	
+	The general case of $j_*\Aa$ being a vector bundle (or equivalently being flat) is dealt with by noetherian and ordinary induction. Using noetherian induction, we may assume the assertion is true for all proper closed subsets $Z'\subsetneq Z$. Let $\eta$ be a generic point of an irreducible component of $Z$. If we can show that $j_*\Aa$ is flat at $\eta$, then it is flat over some neighbourhood $U'$ of $\eta$ too. Then $U$ and $Z$ may be replaced by $U\cup U'$ and $Z\setminus U'$ and we can apply the induction hypothesis.
+	
+	To show that $j_*\Aa$ is flat at $\eta$, it suffices that $(j_*\Aa)_\eta^\complete$ is flat over $\roof{\Oo}_{X,\eta}$. Thus, we may replace $j\colon U\monomorphism X$ by the flat base change
+	$U\times_X\Spec \Oo_{X,\eta}\monomorphism \Spec \Oo_{X,\eta}$
+	(flatness is crucial to make $j_*$ commute with pullbacks). Thus, we may assume that $X=\Spec A$ is a complete regular local ring with maximal ideal $\mm=\mm_{X,\eta}$, and $U=X\setminus \{\mm\}$. Let $t\in\mm\setminus \mm^2$ and let $X_n=V(t^n)$, $U_n=V(t^n|_U)$. Now comes a rather strange argument: since $\dim A\geq 3$ and $\Aa$ is a vector bundle on $U$, we may apply \cite[Exposé~IX Proposition~1.4]{sga2} to get 
+	\begin{equation}\label{eq:FF}
+		\Global(U,\Aa)\isomorphism\limit_{n\in\IN}\Global(U_n,\Aa|_{U_n})\,.
+	\end{equation}
+	Where does this \enquote{$\dim A\geq 3$} come from? Conditions \itememph{a} and \itememph{c} from \emph{loc.\ cit.}\ are trivially satisfied, so we only need to check \itememph{b}. Since we are only interested in global sections, i.e., $H^0$, what we need to check is $\depth (j_*\Aa)_x\geq 2$ for all $x\in X$ satisfying $\codim (\ov{\{x\}}\cap \{\mm\},\ov{\{x\}})=1$. Since every closed subset contains $\{\mm\}$, such points $x$ correspond to prime ideals $\pp\in \Spec A$ satisfying $1=\codim(\{\mm\},V(\pp))=\dim A/\pp$. Since $A$ is regular, thus catenary, we get $\dim A_\pp=\dim A-1\geq 2$. But $j_*\Aa$ satisfies $S_2'$ as noted before, hence $\dim A_\pp\geq 2$ implies $\depth (j_*\Aa)_x\geq 2$, as needed. So in some sense we are lucky that we found an argument that works precisely for $\dim X\leq 2$ and one that works only for $\dim X\geq 3$.
+	
+	Since $t\in \mm\setminus \mm^2$, the ring $A/tA$ is regular again, and has dimension $\dim A-1$. Using induction on the dimension, we may thus assume that the theorem is true for $X_1$ and $U_1$ as above. Thus, $\SPEC \Aa|_{U_1}\morphism U_1$ can be extended to a finite étale covering $\SPEC \Bb_1\morphism X_1$. Using \cref{prop:thickeningEtaleEquivalence}, we obtain étale coverings $\SPEC \Bb_n\morphism X_n$ for all $n\geq 1$, and these guys satisfy $\Bb_n|_{X_{n-1}}=\Bb_{n-1}$ and $\Bb_n|_{U_n}=\Aa_n\coloneqq \Aa|_{U_n}$ by functoriality. The thickenings $X_n$ for $n\geq 2$ are no longer regular, but it's quite easy to see that they are still $S_2$; in fact they are even Cohen--Macaulay. Then $\Bb_n$ has property $S_2$ (or $S_2'$, equivalently). Therefore we may apply \enquote{Hartog's theorem} (this is a fancy name for \cref{rem:RkSk}\itememph{2}) to get $\Global(U_n,\Aa_n)\cong \Global(X_n,\Bb_n)$. But since finite projective modules over the local ring $A/t^nA$ are free, we see that $\Global(X_n,\Bb_n)\cong (A/t^nA)^{\oplus d}$ for some $d\geq 0$. Moreover, we have $\Global(X_n,\Bb_n)/t\Global(X_n,\Bb_n)\cong \Global(X_{n-1},\Bb_{n-1})$ by compatibility of the $\Bb_n$. Then all of this is still true for the $\Global(U_n,\Aa_n)$; more precisely, there are isomorphisms
+	\begin{equation*}
+		\begin{tikzcd}
+			\Global(U_n,\Aa_n)\rar\dar[iso]&\Global(U_m,\Aa_m)\dar[iso]\\
+			(A/t^nA)^{\oplus d}\rar & (A/t^mA)^{\oplus d}
+		\end{tikzcd}
+	\end{equation*}
+	for $n\geq m$. This shows that the limit on the right-hand side of \cref{eq:FF} is a finite free $A$-module. Thus $\Global(U,\Aa)=\Global(X,j_*\Aa)$ is finite free as well, which finally proves that $j_*\Aa$ is a vector bundle. We are done!
+\end{proof}
+\begin{rem}
+	\lecture[Erratum to the last lecture. An example of étale and pro-étale fundamental groups. Stalks at geometric points, sheafification in the étale topology.]{2019-11-15}In the pro-étale topology of Bhatt/Scholze (see \cite{proetale}), there is actually a \emph{pro-étale fundamental group} $\pi_1^\proet(X,\ov{x})$ defined in the same way as $\pi_1^\et(X,\ov{x})$, for schemes $X$ whose underlying topological space is locally noetherian. They consider locally constant sheaves of sets on the pro-étale site, and also étale $X$-schemes satisfying the valuation criterion for properness. %Their discussion of pro-étale coverings is in, where $X$ is assumed to have a locally noetherian underlying topological space. 
+\end{rem}
 \begin{exm}
 	For most cases (like $\IC\setminus\{0\}$, elliptic curves $\IC/\Gamma$ for some lattice $\Gamma$, or curves $\IH/\Gamma$) the topological universal covering admits no algebraic definition.
 	
-	Let $k$ be an algebraically closed field, and $X$ be the topological space obtained from $\IP_k^1$ by identifying $0$ and $\infty$. Let $\IP_k^1\epimorphism X$ be the canonical projection. We can make $X$ into a scheme via the structure sheaf $\Oo_X$ defined via
+	Let $k$ be an algebraically closed field, and $X$ be the topological space obtained from $\IP_k^1$ by identifying $0$ and $\infty$. Let $\IP_k^1\epimorphism X$ be the canonical projection. We can make $X$ into a scheme with structure sheaf $\Oo_X$ defined via
 	\begin{equation*}
 		\Global(U,\Oo_X)=\left\{f\in\Global(\pi^{-1}(U),\Oo_{\IP^1})\st f(0)=f(\infty)\text{ if }0\in\pi^{-1}(U)\right\}
 	\end{equation*}
-	(note that if $0\in\pi^{-1}(U)$ then also $\infty\in\pi^{-1}(U)$). This is an example of a \defemph{non-unibranch} scheme. Here we call a local ring $R$ \defemph{unibranch} if $R/\nil(R)$ is a domain whose normalization $S$ is local. $R$ is called \defemph{geometrically unibranch} if in addition the residue field extension $\kappa(\mm_S)/\kappa(\mm_R)$ is inseparable. A scheme being unibranch then means the obvious thing, i.e., that all its local rings are unibranch.
+	(note that if $0\in\pi^{-1}(U)$ then also $\infty\in\pi^{-1}(U)$). This is an example of a \defemph{non-unibranch} scheme. Here we call a local ring $R$ \defemph{unibranch} if $R/\nil(R)$ is a domain whose normalization $S$ is local. $R$ is called \defemph{geometrically unibranch} if in addition the residue field extension $\kappa(\mm_S)/\kappa(\mm_R)$ is purely inseparable. A scheme being unibranch then means the obvious thing, i.e., that all its local rings are unibranch.
 	
-	Our $X$ fails to be unibranch at its singular point $\ov{0}=\ov{\infty}\in X$. There are étale coverings
+	Our $X$ fails to be unibranch at its singular point $[0]=[\infty]\in X$. There are étale coverings
 	\begin{equation*}
 		X_N\morphism X\,,
 	\end{equation*}
-	where $X_N$ is the quotient of $\coprod_{i\in\IZ/N\IZ}\IP_k^1$ upon identifying $(i,0)$ with $(i+1,\infty)$ for all $i\in\IZ/N\IZ$. The cyclic group $\IZ/N\IZ$ acts on $X_N$ by permuting the components of the disjoint union. This defines morphisms $\pi_1^\et(X,x)\morphism\IZ/N\IZ$. Since it can be shown that every étale covering of $X$ is a finite disjoint union of $X_N$ (use that $k$ is algebraically closed), these morphisms assemble to an isomorphism
+	where $X_N$ is the quotient of $\coprod_{i\in\IZ/N\IZ}\IP_k^1$ upon identifying $(i,0)$ with $(i+1,\infty)$ for all $i\in\IZ/N\IZ$. The cyclic group $\IZ/N\IZ$ acts on $X_N$ by permuting the components of the disjoint union. This defines morphisms $\pi_1^\et(X,\ov{x})\morphism\IZ/N\IZ$. Since it can be shown that every étale covering of $X$ is a finite disjoint union of $X_N$ (use that $k$ is algebraically closed), these morphisms assemble to an isomorphism
 	\begin{equation*}
-		\pi_1^\et(X,x)\isomorphism\roof{\IZ}\coloneqq\limit_{N\in\IN}\IZ/N\IZ\,.
+		\pi_1^\et(X,\ov{x})\isomorphism\roof{\IZ}\coloneqq\limit_{N\in\IN}\IZ/N\IZ\,.
 	\end{equation*}
 	But in the pro-étale topology, we can also form an \enquote{infinite cyclic covering} $X_\infty$ by replacing $\IZ/N\IZ$ by $\IZ$. This defines an isomorphism
 	\begin{equation*}
-		\pi_1^\proet(X,x)\isomorphism \IZ\,.
+		\pi_1^\proet(X,\ov{x})\isomorphism \IZ\,.
 	\end{equation*}
 	Note that for $k=\IC$, in fact, $X_\infty(\IC)$ happens to be a universal covering for $X(\IC)$.
 	
-	Bhatt/Scholze give the pro-étale fundamental group a topology that makes it a \defemph{Noohi group} (see \cite[Definition~7.1.1]{proetale}). Moreover, by Lemma~7.4.3 and 7.4.10 of \emph{loc.\ cit.}, the pro-finite completion of $\pi_1^\proet(X,x)$ gives back the good old $\pi_1^\et(X,x)$, and for schemes $X$ which are geometrically unibranch there is an isomorphism $\pi_1^\proet(X,x)\cong \pi_1^\et(X,x)$.
+	Bhatt/Scholze give the pro-étale fundamental group a topology that makes it a \defemph{Noohi group} (see \cite[Definition~7.1.1]{proetale}). Moreover, by Lemma~7.4.3 and 7.4.10 of \emph{loc.\ cit.}, the pro-finite completion of $\pi_1^\proet(X,\ov{x})$ gives back the good old $\pi_1^\et(X,\ov{x})$, and for schemes $X$ which are geometrically unibranch there is an isomorphism $\pi_1^\proet(X,\ov{x})\cong \pi_1^\et(X,\ov{x})$.
 \end{exm}
-\section{Stalks at Geometric Points and Henselian Rings}
+\section{Stalks at Geometric Points and Henselian Rings}\label{sec:Stalks}
 \subsection{Stalks of Sheaves on \texorpdfstring{$X_\et$}{Xet}}
 In general, there is no good notion of \enquote{stalks of sheaves on arbitrary sites}. This makes stuff like sheafification harder to understand in general. But for the étale site over a scheme, we are lucky and a suitable notion of stalks does exist!
 
 %Unless specified otherwise, $X$ is always a (locally) noetherian scheme in this section.
 \begin{defi}\label{def:etaleStalk}
-	Let $x\colon \Spec k\morphism X$ be a geometric point of $X$. An \defemph{étale neighbourhood} of $x$ is a pair $(U,u)$, where $U\morphism X$ is étale and the diagram
+	Let $\ov{x}\colon \Spec k\morphism X$ be a geometric point of $X$. An \defemph{étale neighbourhood} of $x$ is a pair $(U,\ov{u})$, where $U\morphism X$ is étale and the diagram
 	\begin{equation*}
 		\begin{tikzcd}
-			\Spec k\rar["u"]\drar["x"{swap}]& U\dar\\
+			\Spec k\rar["\ov{u}"]\drar["\ov{x}"{swap}]& U\dar\\
 			 & X\end{tikzcd}
 	\end{equation*}
-	commutes. A \defemph{morphism of étale neighbourhoods} $(U,u)\morphism(V,v)$ is a morphism $U\morphism V$ of $X$-schemes that makes $(U,u)$ into an étale neighbourhood of the geometric point $v$ of $V$. Finally, if $\Ff$ is a presheaf on $X_\et$ one puts
+	commutes. A \defemph{morphism of étale neighbourhoods} $(U,\ov{u})\morphism(V,\ov{v})$ is a morphism $U\morphism V$ of $X$-schemes that makes $(U,\ov{u})$ into an étale neighbourhood of the geometric point $\ov{v}$ of $V$. Finally, if $\Ff$ is a presheaf on $X_\et$ one puts
 	\begin{equation*}
-		\Ff_x\coloneqq \colimit_{(U,u)}\Global(U,\Ff)\,,
+		\Ff_{\ov{x}}\coloneqq \colimit_{(U,\ov{u})}\Global(U,\Ff)\,,
 	\end{equation*}
-	where the colimit is taken over all étale neighbourhoods $(U,u)$ of $x$. This is called the \defemph{stalk of $\Ff$ at $x$}.
+	where the colimit is taken over all étale neighbourhoods $(U,\ov{u})$ of $x$. This is called the \defemph{stalk of $\Ff$ at $\ov{x}$}.
 \end{defi}
 \begin{fact}\label{fact:filtered}
 	The colimit in \cref{def:etaleStalk} is in fact a filtered colimit.
 \end{fact}
 \begin{proof}
-	It is clear that the category of étale neighbourhoods of $x$ is non-empty, as $(X,x)$ is trivially an element. It remains to check the other conditions of cofilteredness (and keep in mind that $\Global(-,\Ff)$ is contravariant, so the category needs to be cofiltered for the colimit to be filtered).
+	It is clear that the category of étale neighbourhoods of $\ov{x}$ is non-empty, as $(X,\ov{x})$ is trivially an element. It remains to check the other conditions of cofilteredness (and keep in mind that $\Global(-,\Ff)$ is contravariant, so the category needs to be cofiltered for the colimit to be filtered).
 	\begin{alphanumerate}
-		\item For all étale neighbourhoods $(U,u)$ and $(V,v)$, there is an étale neighbourhood $(W,w)$ with morphisms $(W,w)\morphism (U,u)$ and $(W,w)\morphism (V,v)$.
-		\item If $\alpha,\beta\colon (U,u)\morphism (V,v)$ is a pair of parallel morphisms, there is an étale neighbourhood $(W,w)$ with a  morphism $(W,w)\morphism (U,u)$ equalizing $\alpha$ and $\beta$.
+		\item For all étale neighbourhoods $(U,\ov{u})$ and $(V,\ov{v})$, there is an étale neighbourhood $(W,\ov{w})$ with morphisms $(W,\ov{w})\morphism (U,\ov{u})$ and $(W,\ov{w})\morphism (V,\ov{v})$.
+		\item If $\alpha,\beta\colon (U,\ov{u})\morphism (V,\ov{v})$ is a pair of parallel morphisms, there is an étale neighbourhood $(W,\ov{w})$ with a  morphism $(W,\ov{w})\morphism (U,\ov{u})$ equalizing $\alpha$ and $\beta$.
 	\end{alphanumerate}
-	For \itememph{a}, consider $W=U\times_XV$ with its geometric point $w=(u,v)$. For \itememph{b}, take $W=\Eq(\alpha,\beta)$. The equalizer is an open subscheme of $U$ by the argument from \cref{prop:universalHomeo}, hence étale over $X$, and $u\colon \Spec k\morphism U$ factors over $W$.
+	For \itememph{a}, consider $W=U\times_XV$ with its geometric point $w=(u,v)$. For \itememph{b}, take $W=\Eq(\alpha,\beta)$. The equalizer is an open subscheme of $U$ by the argument from \cref{prop:universalHomeo}, hence étale over $X$, and $\ov{u}\colon \Spec k\morphism U$ factors over $W$.
 \end{proof}
 In the following we will tacitly work with $X_\et$, but the big étale site $(\cat{Sch}/X)_\et$ would work as well. Also we silently assume that all sheaves we consider are sheaves of sets, (abelian) groups, rings, or modules.
 \begin{prop}\label{prop:etaleStalks}
 	Let $U\morphism X$ be an étale $X$-scheme and $\Ff$ a presheaf on $X_\et$.
 	\begin{alphanumerate}
-		\item A sieve $\Ss$ over $U$ is covering iff for every geometric point $x$ of $U$ there is some $(V\morphism U)\in\Ss$ over which $x$ factors.
-		\item The presheaf $\Ff$ is separated iff the canonical map $\Global(U,\Ff)\morphism\prod_u\Ff_u$ is injective for all $U$, the product being taken over all geometric points of $U$.
+		\item A sieve $\Ss$ over $U$ is covering iff for every geometric point $\ov{u}$ of $U$ there is some $(V\morphism U)\in\Ss$ over which $\ov{u}$ factors.
+		\item The presheaf $\Ff$ is separated iff the canonical map $\Global(U,\Ff)\morphism\prod_{\ov{u}}\Ff_{\ov{u}}$ is injective for all $U$, the product being taken over all geometric points of $U$.
 		\item Define a presheaf $\Ff^\Sh$ on $X_\et$ by
 		\begin{equation*}
-			\Gamma\big(U,\Ff^\Sh\big)=\left\{(f_u)\in\prod_{u}\Ff_u\st\begin{tabular}{c}
-			the sieve of all $i\colon V\rightarrow U$, for which there exists\\
-			$f_V\in\Global(V,\Ff)$ such that $f_{i (v)}$ is
-			the image of $f_V$\\in $\Ff_v$ for all geometric points $v$ of $V$, is covering
+			\Gamma\big(U,\Ff^\Sh\big)=\left\{(f_{\ov{u}})\in\prod_{\ov{u}}\Ff_{\ov{u}}\st\begin{tabular}{c}
+			the sieve of all $j\colon V\rightarrow U$, for which there exists\\
+			$f_V\in\Global(V,\Ff)$ such that $f_{j (\ov{v})}$ is
+			the image of $f_V$\\in $\Ff_v$ for all geometric points $\ov{v}$ of $V$, is covering
 			\end{tabular}\right\}.
 		\end{equation*}
 		Then $\Ff^\Sh$ is a sheaf and $(-)^\Sh\colon \cat{PSh}(X_\et)\morphism \cat{Sh}(X_\et)$ is a left-adjoint of the forgetful functor $\cat{Sh}(X_\et)\morphism \cat{PSh}(X_\et)$.
 		\item The unit $\Ff\morphism\Ff^\Sh$ of the adjunction induces an isomorphism on stalks.
-		\item When $\Ff$ and $\Gg$ are sheaves on $X_\et$, a morphism $\Ff\morphism\Gg$ is an isomorphism iff $\Ff_x\morphism\Gg_x$ is an isomorphism at all geometric points $x$.
+		\item When $\Ff$ and $\Gg$ are sheaves on $X_\et$, a morphism $\Ff\morphism\Gg$ is an isomorphism iff $\Ff_{\ov{x}}\morphism\Gg_{\ov{x}}$ is an isomorphism at all geometric points $\ov{x}$.
 	\end{alphanumerate}
 \end{prop}
 \begin{rem}\label{rem:Jacobson}
-	If $X$ is Jacobson, it suffices to check the conditions from \cref{prop:etaleStalks} on geometric points $u$ whose \defemph{support} $|u|$ (i.e., the unique point in the image of $u\colon \Spec k\morphism U$) is closed. This is proved in the proof of \cref{def:etaleTopology}.
+	If $X$ is Jacobson, it suffices to check the conditions from \cref{prop:etaleStalks} on geometric points $\ov{u}$ whose \defemph{support} $u=|\ov{u}|$ (i.e., the unique point in the image of $\ov{u}\colon \Spec k\morphism U$) is closed. This is proved in the proof of \cref{def:etaleTopology}.
 \end{rem}
 \begin{rem}\lecture[Set-theoretic issues with geometric points, proof of \cref{prop:etaleStalks}. Henselian rings.]{2019-11-18}
 	In \cref{prop:etaleStalks}\itememph{c} we have implicitly used the diagram
 	\begin{equation*}
 		\begin{tikzcd}
-			\Global(U,\Ff)\rar\dar& \Ff_{\pi v}\dar\\
-			\Global(V,\Ff)\rar & \Ff_v
+			\Global(U,\Ff)\rar\dar& \Ff_{\pi (\ov{v})}\dar\\
+			\Global(V,\Ff)\rar & \Ff_{\ov{v}}
 		\end{tikzcd}\,.
 	\end{equation*}
-	This uses the fact that the étale neighbourhoods of $\pi v$ in $U$ (resp.\ $v$ in $V$) are cofinal in the étale neighbourhoods of $\sigma v$, where $\sigma\colon V\morphism X$ denotes the structure morphism of the $X$-scheme $V$.
+	This uses the fact that the étale neighbourhoods of $\pi (\ov{v})$ in $U$ (resp.\ $\ov{v}$ in $V$) are cofinal in the étale neighbourhoods of $\sigma \ov{v}$, where $\sigma\colon V\morphism X$ denotes the structure morphism of the $X$-scheme $V$.
 \end{rem}
 \begin{rem}\label{rem:setTheory}
-	So far we considered general geometric points $x\colon \Spec k\morphism X$. From now on, let $\kappa(x)$ denote that $k$. Let $x_0=|x|$. Let $k'$ be the separable closure of the residue field $\kappa(x_0)$ of $\Oo_{X,x_0}$ in $\kappa(x)$ and $x'\colon \Spec k'\morphism X$ denote the corresponding morphism.
+	So far we considered general geometric points $\ov{x}\colon \Spec k\morphism X$. From now on, let $\kappa(\ov{x})$ denote that $k$. Let $x=|\ov{x}|$. Let $k'$ be the separable closure of the residue field $\kappa(x)$ of $\Oo_{X,x}$ in $\kappa(\ov{x})$ and $\ov{x}'\colon \Spec k'\morphism X$ denote the corresponding morphism.
 	
-	If $\rho\colon U\morphism X$ is étale and $u_0\in U$ such that $\rho(u)=x_0$, then $\kappa(u_0)$ is a finite separable extension of $\kappa(x_0)$. Therefore, if $u\colon \Spec \kappa(x)\morphism U$ is a geometric point of $U$ such that $\rho u=x$, thus turning $(U,u)$ into an étale neighbourhood of $x$, then the image of $\kappa(u_0)\morphism \kappa(x)=\kappa(u)$ is contained in $k'$. Thus, there is a unique $u'\colon \Spec k'\morphism U$ such that $\rho u'=x'$ and such that
+	If $\rho\colon U\morphism X$ is étale and $u\in U$ such that $\rho(u)=x$, then $\kappa(u)$ is a finite separable extension of $\kappa(x)$. Therefore, if $\ov{u}\colon \Spec \kappa(\ov{x})\morphism U$ is a geometric point of $U$ such that $\rho \ov{u}=\ov{x}$, thus turning $(U,\ov{u})$ into an étale neighbourhood of $\ov{x}$, then the image of $\kappa(u)\morphism \kappa(\ov{x})=\kappa(\ov{u})$ is contained in $k'$. Thus, there is a unique $\ov{u}'\colon \Spec k'\morphism U$ such that $\rho \ov{u}'=\ov{x}'$ and such that
 	\begin{equation*}
 		\begin{tikzcd}
 			& U\\
-			\Spec \kappa(x)\rar\urar["u"] & \Spec k'\uar["u'"{swap}]
+			\Spec \kappa(x)\rar\urar["\ov{u}"] & \Spec k'\uar["\ov{u}'"{swap}]
 		\end{tikzcd}
 	\end{equation*}
-	commutes. Thus, $x$ and $x'$ have the same étale neighbourhoods, in the sense that there is a canonical equivalence of categories. Therefore we can replace $x$ by $x'$ without changing the statements and constructions of the proposition.
+	commutes. Thus, $\ov{x}$ and $\ov{x}'$ have the same étale neighbourhoods, in the sense that there is a canonical equivalence of categories. Therefore we can replace $\ov{x}$ by $\ov{x}'$ without changing the statements and constructions of the proposition.
 	
-	This is actually crucial to avoid set-theoretical difficulties! Indeed, if we took the product $\prod_{u}\Ff_u$ from \cref{prop:etaleStalks} at face value, this would be a monstrous abomination, due to the fact that the set of geometric points of $U$ is no set, but a proper class. The above arguments solve one half of that problem: the half that is caused by separably closed extensions of $\kappa(x_0)$ becoming arbitrarily large. The other half is that there is a full class of field extensions of $\kappa(x_0)$ that are isomorphic to $k'$. To fix this issue, we fix a choice of separable closure $\kappa(x_0)^\sep$ and allow only those geometric points $x$ with $|x|=x_0$ that satisfy $\kappa(x)=\kappa(x_0)^\sep$.
+	This is actually crucial to avoid set-theoretical difficulties! Indeed, if we took the product $\prod_{\ov{u}}\Ff_{\ov{u}}$ from \cref{prop:etaleStalks} at face value, this would be a monstrous abomination, due to the fact that the set of geometric points of $U$ is no set, but a proper class. The above arguments solve one half of that problem: the half that is caused by separably closed extensions of $\kappa(x)$ becoming arbitrarily large. The other half is that there is a full class of field extensions of $\kappa(x)$ that are isomorphic to $k'$. To fix this issue, we fix a choice of separable closure $\kappa(x)^\sep$ and allow only those geometric points $\ov{x}$ with $|\ov{x}|=x$ that satisfy $\kappa(\ov{x})=\kappa(x)^\sep$.
 \end{rem}
 \begin{proof}[Sketch of a proof of \cref{prop:etaleStalks}]
 	Once the characterization of covering sieves is shown, the proofs from ordinary sheaf theory can be copied, so we show \itememph{a}, and then very briefly sketch the rest.
 	
-	If $\Ss$ is a covering sieve over $U\in X_\et$, then the members of $\Ss$ are jointly surjective just by \cref{def:etaleTopology}\itememph{a}. For a geometric point $u$ of $U$, there are thus a morphism $(\sigma\colon V\morphism U)\in\Ss$ and an ordinary point $v_0\in V$ such that $\sigma(v)=u_0=|u|$. Then $\kappa(v_0)$ is a finite separable extension of $\kappa(u_0)$. But $\kappa(u)$ is separably closed, so there exists a (not necessarily unique) extension $\kappa(v_0)\morphism \kappa(u)$ of $\kappa(u_0)\morphism \kappa(u)$. This defines a geometric point $v$ of $V$ such that $\sigma v=u$.
+	If $\Ss$ is a covering sieve over $U\in X_\et$, then the members of $\Ss$ are jointly surjective just by \cref{def:etaleTopology}\itememph{a}. For a geometric point $\ov{u}$ of $U$, there are thus a morphism $(\sigma\colon V\morphism U)\in\Ss$ and an ordinary point $v\in V$ such that $\sigma(v)=u=|\ov{u}|$. Then $\kappa(v)$ is a finite separable extension of $\kappa(u)$. But $\kappa(\ov{u})$ is separably closed, so there exists a (not necessarily unique) extension $\kappa(v)\morphism \kappa(\ov{u})$ of $\kappa(u)\morphism \kappa(\ov{u})$. This defines a geometric point $\ov{v}$ of $V$ such that $\sigma (\ov{v})=\ov{u}$.
 	
-	The opposite direction is merely trivial: if a geometric point $x$ factors over some morphism $(V\morphism U)\in \Ss$, then its support $|x|$ is in the image of $V\morphism U$. Since this is to be true for every geometric point, we see that the maps from $\Ss$ are jointly surjective, hence $\Ss$ is covering straight from \cref{def:etaleTopology}. This shows \itememph{a}.
+	The opposite direction is merely trivial: if a geometric point $\ov{u}$ factors over some morphism $(V\morphism U)\in \Ss$, then its support $u$ is in the image of $V\morphism U$. Since this is to be true for every geometric point, we see that the maps from $\Ss$ are jointly surjective, hence $\Ss$ is covering straight from \cref{def:etaleTopology}. This shows \itememph{a}.
 	
 	Adressing \cref{rem:Jacobson}: if $X$ is Jacobson, then so is $U$ as it is of finite type over $X$. Hence the closed points of $U$ are dense in any closed subset. But the joint image of the maps from $\Ss$ is open by \cref{prop:ppfOpen}, thus it is $U$ if it contains all closed points.
 	
-	For \itememph{b}, assume there are $f,f'\in\Global(U,\Ff)$ whose images in $\Ff_u$ coincide for every geometric point $u$ of $U$. By \cref{def:etaleStalk} and \cref{fact:filtered}, for every such $u$, there is an étale neighbourhood $(V_u,v_u)$ such that the restrictions of $f$ and $f'$ coincide in $\Global(V_u,\Ff)$. By \itememph{a}, the sieve generated by all such $V_u\morphism U$ is covering. As $\Ff$ was assumed separated, this shows $f=f'$ and thus \itememph{b}.
+	For \itememph{b}, assume there are $f,f'\in\Global(U,\Ff)$ whose images in $\Ff_{\ov{u}}$ coincide for every geometric point $\ov{u}$ of $U$. By \cref{def:etaleStalk} and \cref{fact:filtered}, for every such $\ov{u}$, there is an étale neighbourhood $(V_{\ov{u}},\ov{v}_{\ov{u}})$ such that the restrictions of $f$ and $f'$ coincide in $\Global(V_{\ov{u}},\Ff)$. By \itememph{a}, the sieve generated by all such $V_{\ov{u}}\morphism U$ is covering. As $\Ff$ was assumed separated, this shows $f=f'$ and thus \itememph{b}.
 	
-	For \itememph{d}, we have an obvious morphism $\Ff\morphism\Ff^\Sh$ of presheaves. Let $x$ be a geometric point of $U\in X_\et$, let $(V,y)$ be an étale neighbourhood of $x$, and let $f=(f_v)\in\Global(V,\Ff^\Sh)$. Put $\res_{V,y}(f)=f_y\in\Ff_y\cong \Ff_x$. It is easy to see that the $\res_{V,y}$ induce a unique map $\Ff_x^\Sh\morphism \Ff_x$ via the universal property of colimits. This map is inverse to the previous map $\Ff_x\morphism\Ff_x^\Sh$.
+	For \itememph{d}, we have an obvious morphism $\Ff\morphism\Ff^\Sh$ of presheaves. Let $\ov{x}$ be a geometric point of $U\in X_\et$, let $(V,\ov{y})$ be an étale neighbourhood of $\ov{x}$, and let $f=(f_{\ov{v}})\in\Global(V,\Ff^\Sh)$. Put $\res_{V,\ov{y}}(f)=f_{\ov{y}}\in\Ff_{\ov{y}}\cong \Ff_{\ov{x}}$. It is easy to see that the $\res_{V,\ov{y}}$ induce a unique map $\Ff_{\ov{x}}^\Sh\morphism \Ff_x$ via the universal property of colimits. This map is inverse to the previous map $\Ff_{\ov{x}}\morphism\Ff_{\ov{x}}^\Sh$.
 	
 	It is also easy to see that $\Ff^\Sh$ is an étale sheaf, and if $\Ff\morphism\Gg$ is a morphism of presheaves inducing isomorphisms on stalks, then $\Ff^\Sh\morphism\Gg^\Sh$ is an isomorphism. Also $\Ff\isomorphism\Ff^\Sh$ in the case where $\Ff$ is already a sheaf is not hard: apply the sheaf axiom to the sieve occuring in the coherence condition in the definition of $\Ff^\Sh$ in \cref{prop:etaleStalks}\itememph{c}, using \itememph{b} to show that the $f_V$ are unique and assemble to an element of $\limit_\Ss\Global(V,\Ff)\cong\Global(U,\Ff)$.
 	
@@ -1125,15 +1373,15 @@ There is also a notion of being \defemph{henselian in an ideal $I$}, which only 
 \begin{cor}
 	Assume we are in the situation of \cref{prop:pi1Henselian}.
 	\begin{alphanumerate}
-		\item For every geometric point $x\morphism X_0$, we have isomorphisms
+		\item For every geometric point $\ov{x}$ of $X_0$, we have isomorphisms
 		\begin{equation*}
-			\Gal(k^\sep/k)\cong \pi_1^\et(X_0,x)\cong \pi_1^\et(X,x)\,.
+			\Gal(k^\sep/k)\cong \pi_1^\et(X_0,\ov{x})\cong \pi_1^\et(X,\ov{x})\,.
 		\end{equation*}
 		\item The following conditions are equivalent:
 		\begin{numerate}
 			\item $A$ is strictly henselian.
 			\item Every étale covering of $X$ splits (i.e., is a disjoint union of copies of $X$).
-			\item $\pi_1^\et(X,x)=1$.
+			\item $\pi_1^\et(X,\ov{x})=1$.
 			\item If $Y\morphism X$ is a surjective étale morphism (or equivalently, by \cref{prop:henselian}\itememph{d}, an étale morphism with the closed point in its image), then there is a section $Y\morphism X$ of this morphism.
 		\end{numerate}
 	\end{alphanumerate}
@@ -1168,7 +1416,7 @@ commutes. Morphisms in this category are morphisms of $A$-algebras $S\morphism S
 		\item If $B$ is a finite local $A$-algebra, then $B^\h\cong A^\h\otimes_AB$. Moreover, $B^\sh$ is a direct summand of $A^\sh\otimes_AB$. In particular, if $I\subseteq A$ is an ideal, then $(A/I)^\h\cong A^\h/IA^\h$ and $(A/I)^\sh\cong A^\sh/IA^\sh$.
 		\item If $A$ is noetherian, then $A^\h$ and $A^\sh$ are also noetherian, and $\roof{A}\cong (A^\h)^\complete$. Moreover, $\dim A=\dim A^\h=\dim A^\sh$.
 		\item If $k$ is separably closed, then $A^\h\cong A^\sh$.
-		\item If $x\morphism X$ is a geometric point, then $\Oo_{X,|x|}^\sh\cong \Oo_{X_\et,x}$, where the strict henselization is taken with respect to $\kappa(|x|)\morphism \kappa(x)$.
+		\item If $\ov{x}$ is a geometric point of $X$, then $\Oo_{X,x}^\sh\cong \Oo_{X_\et,\ov{x}}$, where the strict henselization is taken with respect to $\kappa(x)\morphism \kappa(\ov{x})$.
 	\end{alphanumerate}
 \end{prop}
 \begin{rem}
@@ -1196,27 +1444,27 @@ To prove noetherianness in \cref{prop:henselization}\itememph{e}, the strategy i
 	
 	\emph{Proof of \itememph{c}.} We construct $A^\h$ and $A^\sh$ as colimits
 	\begin{equation}\label{eq:AhColim1}
-		A^\h=\colimit_{(U,u)\in \Lambda_0}\Oo_{U,|u|}\quad\text{and}\quad A^\sh=\colimit_{(U,u)\in\Lambda} \Oo_{U,|u|}\,.
+		A^\h=\colimit_{(U,\ov{u})\in \Lambda_0}\Oo_{U,u}\quad\text{and}\quad A^\sh=\colimit_{(U,\ov{u})\in\Lambda} \Oo_{U,u}\,.
 	\end{equation}
-	For $A^\sh$, the colimit is taken over the system $\Lambda$ of all affine étale neighbourhoods $(U,u)$ of the geometric point $x\colon \Spec k^\sep\morphism \Spec A$; as usual, $|u|$ denotes the underlying ordinary point. For $A^\h$ we restrict to the subsystem $\Lambda_0\subseteq \Lambda$ of of affine étale neighbourhoods with trivial residue field extension $\kappa(|u|)/k$. It follows from \cref{fact:filtered} that $\Lambda$ is indeed a filtered system. Tweaking the arguments a bit shows that $\Lambda_0$ is filtered too. Moreover, we may equivalently write 
+	For $A^\sh$, the colimit is taken over the system $\Lambda$ of all affine étale neighbourhoods $(U,\ov{u})$ of the geometric point $\ov{x}\colon \Spec k^\sep\morphism \Spec A$; as usual, $u$ denotes the underlying ordinary point of $\ov{u}$. For $A^\h$ we restrict to the subsystem $\Lambda_0\subseteq \Lambda$ of of affine étale neighbourhoods with trivial residue field extension $\kappa(u)/k$. It follows from \cref{fact:filtered} that $\Lambda$ is indeed a filtered system. Tweaking the arguments a bit shows that $\Lambda_0$ is filtered too. Moreover, we may equivalently write 
 	\begin{equation}\label{eq:AhColim2}
-		A^\h=\colimit_{(U,u)\in\Lambda_0}\Global(U,\Oo_U)\quad\text{and}\quad A^\sh=\colimit_{(U,u)\in\Lambda}\Global(U,\Oo_U)\,,
+		A^\h=\colimit_{(U,\ov{u})\in\Lambda_0}\Global(U,\Oo_U)\quad\text{and}\quad A^\sh=\colimit_{(U,\ov{u})\in\Lambda}\Global(U,\Oo_U)\,,
 	\end{equation}
-	since the stalk $\Oo_{U,|u|}\cong \colimit_{|u|\in U'}\Global(U',\Oo_U)$ is itself a colimit over the sections on its affine open neighbourhoods $U'$, and the $U'$ are étale over $X$ again. So much for the constructions, now we are going to prove that the universal properties are satisfied!
+	since the stalk $\Oo_{U,u}\cong \colimit_{u\in U'}\Global(U',\Oo_U)$ is itself a colimit over the sections on its affine open neighbourhoods $U'$, and the $U'$ are étale over $X$ again. So much for the constructions, now we are going to prove that the universal properties are satisfied!
 	
-	First of all, $A^\h$ and $A^\sh$ are local rings because they are filtered colimits of local rings along local ring maps. Moreover its clear that $\kappa(A^\h)\cong k$, since all local rings $\Oo_{U,|u|}$ in the colimit defining $A^\h$ have residue field $k$. To determine $\kappa(A^\sh)$, note that in this case for all local rings $\Oo_{U,|u|}$ the residue field is a finite separable extension of $k$, hence $\kappa(A^\sh)\subseteq k^\sep$. To get $k^\sep\subseteq \kappa(A^\sh)$, we need to check that every finite separable of $k$ does occur as the residue field of some $\Oo_{U,|u|}$. So let $\ell/k$ be finite separable. Then $\ell$ is generated by a single monic separable irreducible polynomial $\phi\in k[T]$. Let $f\in A[T]$ be a monic lift and put $B=A[T]/(f)$. By \cref{prop:formallyEtale}\itememph{e} the localization $B[(f')^{-1}]$ is étale over $A$, which easily provides an étale neighbourhood with the required properties.
+	First of all, $A^\h$ and $A^\sh$ are local rings because they are filtered colimits of local rings along local ring maps. Moreover its clear that $\kappa(A^\h)\cong k$, since all local rings $\Oo_{U,u}$ in the colimit defining $A^\h$ have residue field $k$. To determine $\kappa(A^\sh)$, note that in this case for all local rings $\Oo_{U,u}$ the residue field is a finite separable extension of $k$, hence $\kappa(A^\sh)\subseteq k^\sep$. To get $k^\sep\subseteq \kappa(A^\sh)$, we need to check that every finite separable of $k$ does occur as the residue field of some $\Oo_{U,u}$. So let $\ell/k$ be finite separable. Then $\ell$ is generated by a single monic separable irreducible polynomial $\phi\in k[T]$. Let $f\in A[T]$ be a monic lift and put $B=A[T]/(f)$. By \cref{prop:formallyEtale}\itememph{e} the localization $B[(f')^{-1}]$ is étale over $A$, which easily provides an étale neighbourhood with the required properties.
 	
-	Now we show that $A^\h$ is henselian, verifying \cref{prop:henselian}\itememph{e}. Let $A^\h=\colimit_{\lambda\in\Lambda_0}B_\lambda$ be the colimit \cref{eq:AhColim2}, i.e., $\Lambda_0$ is the filtered system of affine étale neighbourhoods $(U,u)$ of $x$ with trivial residue field extension $\kappa(|u|)/k$ and $B_\lambda=\Global(U,\Oo_U)$. Let $\phi\colon A^\h\morphism S$ be an étale $A^\h$-algebra.\footnote{The $U$ in \cref{prop:henselian}\itememph{e} need not be affine, but the proof shows that it suffices to consider the affine case $U=\Spec S$.} Then $S$ is finitely presented over $A^\h$. In particular, $\phi$ is already defined over some \enquote{finite stage}, i.e., it is the base change of some $\phi_\lambda\colon B_\lambda\morphism S_\lambda$. Moreover, using the characterization from \cref{prop:formallyEtale}\itememph{e} we may even assume that $\phi_\lambda$ is already étale. Thus, restricting $\Lambda_0$ to a suitable cofinal subsystem $\Lambda_0^+$, we obtain that 
+	Now we show that $A^\h$ is henselian, verifying \cref{prop:henselian}\itememph{e}. Let $A^\h=\colimit_{\lambda\in\Lambda_0}B_\lambda$ be the colimit \cref{eq:AhColim2}, i.e., $\Lambda_0$ is the filtered system of affine étale neighbourhoods $(U,\ov{u})$ of $\ov{x}$ with trivial residue field extension $\kappa(u)/k$ and $B_\lambda=\Global(U,\Oo_U)$. Let $\phi\colon A^\h\morphism S$ be an étale $A^\h$-algebra.\footnote{The $U$ in \cref{prop:henselian}\itememph{e} need not be affine, but the proof shows that it suffices to consider the affine case $U=\Spec S$.} Then $S$ is finitely presented over $A^\h$. In particular, $\phi$ is already defined over some \enquote{finite stage}, i.e., it is the base change of some $\phi_\lambda\colon B_\lambda\morphism S_\lambda$. Moreover, using the characterization from \cref{prop:formallyEtale}\itememph{e} we may even assume that $\phi_\lambda$ is already étale. Thus, restricting $\Lambda_0$ to a suitable cofinal subsystem $\Lambda_0^+$, we obtain that 
 	\begin{equation*}
 		\left(\phi\colon A^\h\morphism S\right)=\colimit_{\lambda\in\Lambda_0^+}\big(\phi_\lambda\colon B_\lambda\morphism S_\lambda\big)
 	\end{equation*}
-	is the colimit of étale ring morphisms $\phi_\lambda$ such that $\phi_\mu$ is the base change of $\phi_\lambda$ for all $\lambda\leq \mu$. Assume there is a section $\Spec k\morphism \Spec S$, or equivalently, a compatible system of maps $S_\lambda\morphism k$. These maps define geometric points $s_\lambda\colon \Spec k^\sep \morphism\Spec S_\lambda$ for all $\lambda$ in such a way that $(\Spec S_\lambda,s_\lambda)$ is an étale neighbourhood of $x$ and the residue field $\kappa(|s_\lambda|)$ is isomorphic to $k$. In particular, every $S_\lambda$ actually occurs as some $B_\mu$ in the colimit $A^\h=\colimit_{\mu\in\Lambda_0}B_\mu$! Identifying each $S_\lambda$ with the corresponding $B_\mu$ gives a canonical morphism
+	is the colimit of étale ring morphisms $\phi_\lambda$ such that $\phi_\mu$ is the base change of $\phi_\lambda$ for all $\lambda\leq \mu$. Assume there is a section $\Spec k\morphism \Spec S$, or equivalently, a compatible system of maps $S_\lambda\morphism k$. These maps define geometric points $\ov{s}_\lambda\colon \Spec k^\sep \morphism\Spec S_\lambda$ for all $\lambda$ in such a way that $(\Spec S_\lambda,\ov{s}_\lambda)$ is an étale neighbourhood of $\ov{x}$ and the residue field $\kappa(s_\lambda)$ of the underlying point $s_\lambda$ is isomorphic to $k$. In particular, every $S_\lambda$ actually occurs as some $B_\mu$ in the colimit $A^\h=\colimit_{\mu\in\Lambda_0}B_\mu$! Identifying each $S_\lambda$ with the corresponding $B_\mu$ gives a canonical morphism
 	\begin{equation*}
 		\colimit_{\lambda\in\Lambda_0^+}S_\lambda \morphism \colimit_{\mu\in\Lambda_0}B_\mu\,.
 	\end{equation*}
 	It's straightforward to check that the ensuing morphism $S\morphism A^\h$ is a section of $\phi\colon A^\h\morphism S$, and moreover that this section is unique. This proves that $A^\h$ is henselian by \cref{prop:formallyEtale}\itememph{e}. In the exact same way one can prove that $A^\sh$ is henselian; moreover its residue field $\kappa(A^\sh)=k^\sep$ is separably closed, so $A^\sh$ is indeed strictly henselian.
 	
-	It remains to show that $A^\h$ and $A^\sh$ are initial in their respective categories. Let $(U,u)=\lambda\in\Lambda$ with $U\cong \Spec B_\lambda$ be an affine étale neighbourhood of $x$. Since $B_\lambda$ occurs in the colimit \cref{eq:AhColim1}, we have a morphism $\kappa(B_\lambda)\morphism \kappa(A^\sh)=k^\sep$. Now let $A\morphism S$ be a local morphism into a strictly henselian ring together with a morphism $k^\sep\morphism \kappa(S)$. To show that $A^\sh$ is initial, we need to construct a unique morphism $B_\lambda\morphism S$; then taking the colimit will give the required unique morphism $A^\sh=\colimit_{\lambda\in\Lambda}B_\lambda\morphism S$. To construct this, note that $\kappa(B_\lambda)\morphism k^\sep\morphism \kappa(S)$ gives a morphism $B_\lambda\otimes_AS\morphism \kappa(S)$. Using \cref{prop:henselian}\itememph{e} this lifts uniquely to an $S$-algebra morphism $B_\lambda\otimes_AS\morphism S$. From the adjunction 
+	It remains to show that $A^\h$ and $A^\sh$ are initial in their respective categories. Let $(U,\ov{u})=\lambda\in\Lambda$ with $U\cong \Spec B_\lambda$ be an affine étale neighbourhood of $x$. Since $B_\lambda$ occurs in the colimit \cref{eq:AhColim1}, we have a morphism $\kappa(B_\lambda)\morphism \kappa(A^\sh)=k^\sep$. Now let $A\morphism S$ be a local morphism into a strictly henselian ring together with a morphism $k^\sep\morphism \kappa(S)$. To show that $A^\sh$ is initial, we need to construct a unique morphism $B_\lambda\morphism S$; then taking the colimit will give the required unique morphism $A^\sh=\colimit_{\lambda\in\Lambda}B_\lambda\morphism S$. To construct this, note that $\kappa(B_\lambda)\morphism k^\sep\morphism \kappa(S)$ gives a morphism $B_\lambda\otimes_AS\morphism \kappa(S)$. Using \cref{prop:henselian}\itememph{e} this lifts uniquely to an $S$-algebra morphism $B_\lambda\otimes_AS\morphism S$. From the adjunction 
 	\begin{equation*}
 		\Hom_{\cat{Alg}_S}(B_\lambda\otimes_AS,S)\cong \Hom_{\cat{Alg}_A}(B_\lambda,S)
 	\end{equation*}
@@ -1230,11 +1478,11 @@ To prove noetherianness in \cref{prop:henselization}\itememph{e}, the strategy i
 	
 	The additional assertion $(A/I)^\h\cong A^\h/IA^\h$ is now clear. For $(A/I)^\sh\cong A^\sh/IA^\sh$, observe that $A^\sh/IA^\sh$ is already a local ring, since the same is true for $A^\sh$. So every factor of $A^\sh/IA^\sh$ is already the ring itself.
 	
-	\emph{Proof of \itememph{e}.} Let $A$ be noetherian. We first show that $A^\h$ is noetherian. By \cref{lem:flat}\itememph{a} it's enough to show that $(A^\h)^\complete$ noetherian and flat over $A^\h$ (since then it's automatically faithfully flat, as both are local rings). We claim that the canonical morphism
+	\emph{Proof of \itememph{e}.} Let $A$ be noetherian. We first show $A^\h$ is noetherian. By \cref{lem:flat}\itememph{a} it's enough to show that $(A^\h)^\complete$ noetherian and flat over $A^\h$ (since then it's automatically faithfully flat, as both are local rings). We claim that the canonical morphism
 	\begin{equation}\label{eq:AhComplete}
 		\roof{A}\isomorphism(A^\h)^\complete
 	\end{equation}
-	is an isomorphism! Indeed, let $B_\lambda=\Oo_{U,|u|}$ be a term in the first colimit defining $A^\h$, where $\lambda=(U,u)\in\Lambda$ is an affine étale neighbourhood of $x\colon \Spec k^\sep\morphism A$. Since $A$ and $B_\lambda$ have the same residue field and $B_\lambda$ is étale over $A$, we have $A/\mm^n\cong B_\lambda/\mm^nB_\lambda$ for all $n\geq 1$ (this is a quite well-known property; see \cite[Lemma~A.4.2]{jacobians} for example). Taking colimits shows $A/\mm^n\cong A^\h/\mm^nA^\h$, thus their completions do indeed coincide. In particular, $(A^\h)^\complete$ is noetherian. Moreover, the above argument moreover shows $(A^\h)^\complete\cong \roof{B}_\lambda$. Since each $B_\lambda$ is noetherian, this shows that $(A^\h)^\complete$ is flat over $B_\lambda$, and thus also flat over $A^\h$ by \cref{lem:flat}\itememph{c}. This finishes the proof that $A^\h$ is noetherian. Moreover, we see $\dim A=\dim A^\h$ since the dimension stays invariant under completion.
+	is an isomorphism! Indeed, let $B_\lambda=\Oo_{U,u}$ be a term in the first colimit defining $A^\h$, where $\lambda=(U,\ov{u})\in\Lambda$ is an affine étale neighbourhood of $x\colon \Spec k^\sep\morphism A$. Since $A$ and $B_\lambda$ have the same residue field and $B_\lambda$ is étale over $A$, we have $A/\mm^n\cong B_\lambda/\mm^nB_\lambda$ for all $n\geq 1$ (this is a quite well-known property; see \cite[Lemma~A.4.2]{jacobians} for example). Taking colimits shows $A/\mm^n\cong A^\h/\mm^nA^\h$, thus their completions do indeed coincide. In particular, $(A^\h)^\complete$ is noetherian. Moreover, the above argument moreover shows $(A^\h)^\complete\cong \roof{B}_\lambda$. Since each $B_\lambda$ is noetherian, this shows that $(A^\h)^\complete$ is flat over $B_\lambda$, and thus also flat over $A^\h$ by \cref{lem:flat}\itememph{c}. This finishes the proof that $A^\h$ is noetherian. Moreover, we see $\dim A=\dim A^\h$ since the dimension stays invariant under completion.
 	
 	The proof that $A^\sh$ is noetherian is more involved. The first step is to see that it suffices to prove the assertion in the case where $A$ is complete. Indeed, suppose we already know this special case. As above, our goal is to show that $(A^\sh)^\complete$ is noetherian and (faithfully) flat over $A^\sh$. Observe that the canonical map
 	\begin{equation}\label{eq:AshComplete}
