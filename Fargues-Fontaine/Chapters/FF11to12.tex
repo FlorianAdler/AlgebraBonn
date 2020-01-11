@@ -389,7 +389,7 @@ Finally we have everything together to prove \cref{prop:FqAlgebrasEquivalence}.
 		W_{\Oo_E}(R)&\morphism A\\
 		\sum_{n=0}^\infty[x_n]\pi^n&\longmapsto\sum_{n=0}^\infty[x_n]\pi^n\,.
 	\end{align*}
-	By \cref{lem:TeichmüllerRep} and \cref{lem:W_OEpi}, it is a natural bijection. By \cref{cor:snpn} it is $\Oo_E$-linear. We are done.
+	By \cref{lem:TeichmullerRep} and \cref{lem:W_OEpi}, it is a natural bijection. By \cref{cor:snpn} it is $\Oo_E$-linear. We are done.
 \end{proof}
 \begin{cor}\label{cor:unramifiedWitt}
 	Let $E_0$ be the maximal unramified subextension of $E/\IQ_p$ (or in other words, the unique unramified extension of $\IQ_p$ with residue field $\IF_q$). Then there is a natural isomorphism
@@ -666,7 +666,7 @@ The following fact wasn't mentioned in the lecture, making it hard for me to rea
 
 \cref{rem:perfectoid}\itememph{4} suggests the following definition.
 \begin{defi}
-	Let $R$ be a perfect $\IF_q$-algebra. An \defemph{untilt} of $R$ is a pair $(A,\iota)$, where $A$ is a perfectoid $\Oo_E$-algebra and $\iota$ an isomorphism $\iota\colon R\morphism A^\flat$.
+	Let $R$ be a perfect $\IF_q$-algebra. An \defemph{untilt} of $R$ is a pair $(A,\iota)$, where $A$ is a perfectoid $\Oo_E$-algebra and $\iota$ an isomorphism $\iota\colon R\isomorphism A^\flat$.
 \end{defi}
 Again by \cref{rem:perfectoid}\itememph{4} we get a bijection
 \begin{equation*}
@@ -790,9 +790,10 @@ We put $k=\Oo_F/\mm_F$ for convenience. We will see next time that $\Spec\IA_\in
 	B_\dR^+=\IA_\inf\left[\textstyle \frac 1\pi\right]_\xi^\complete\,.
 \end{equation*}
 Then $B_\dR^+$ is always a DVR and the same is true for $\IA_{\inf,(\pi-[\pi^\flat])}$ (see \cref{lem:BdR+DVR} below). Moreover, in the lecture after the next one we will show that all $(\pi-[a])$ for $a\in\mm_F\setminus\{0\}$ are prime ideals, and in fact $\IA_\inf/(\pi-[a])$ is isomorphic to another untilt $\Oo_{C'}$ of $\Oo_F$ (as indicated in the left picture), with $C'/E$ an algebraically closed non-archimedean extension.
+
 \numpar{Side remark}
-\lecture[$B_\dR^+$ is a DVR. A universal property for $\IA_\inf$. $p$-adic PD-thickenings and $\IA_\cris$.]{2019-11-06}
-Why this setup? Let $K/\IQ_p$ be a discretely valued non-archime-dean field extension with perfect residue field and let $X/K$ be a smooth proper scheme.  The objects of interest in $p$-adic hodge theory are the $p$-adic cohomology groups $H_\et^*(X_{\ov{K}},\IQ_p)$. We will replace $\IQ_p$ by $E$ and $\ov{K}$ by $C=\roof{\ov{K}}$, with $F=C^\flat=\Frac(\Oo_C^\flat)$.
+Why this setup? Let $K/\IQ_p$ be a discretely valued non-archime-\lecture[$B_\dR^+$ is a DVR. A universal property for $\IA_\inf$. $p$-adic PD-thickenings and $\IA_\cris$.]{2019-11-06}
+dean field extension with perfect residue field and let $X/K$ be a smooth proper scheme.  The objects of interest in $p$-adic hodge theory are the $p$-adic cohomology groups $H_\et^*(X_{\ov{K}},\IQ_p)$. We will replace $\IQ_p$ by $E$ and $\ov{K}$ by $C=\roof{\ov{K}}$, with $F=C^\flat=\Frac(\Oo_C^\flat)$.
 \begin{defi}
 	An element $x=\sum_{n=0}^\infty [x_n]\pi^n$ of $\IA_\inf$ is called \defemph{primitive} if $x_0\neq 0$ and there exists a $d\geq 0$ such that $x_d\in \Oo_F^\times$. If $x$ is primitive, the smallest such $d$ is called the \defemph{degree} of $x$. The set primitive elements of degree $d$ is denoted $\Prim_d$.
 \end{defi}
