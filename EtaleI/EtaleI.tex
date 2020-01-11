@@ -39,6 +39,7 @@ University of Bonn}
 
 %\includeonly{nothingtoseehere}
 %\includeonly{./Chapters/EtaleIAppendix}
+%\includeonly{./Chapters/EtaleI164to17}
 \begin{document}
 \frontmatter
 \KOMAoption{chapterprefix}{false}
@@ -63,7 +64,7 @@ Nevertheless, Professor Franke promised to give a quick reminder on flat and ét
 
 The goal of this lecture is to study the \emph{$\ell$-adic cohomology} of a scheme $X$, where $\ell\neq p$ is a prime different from the characteristic $p$ of $X$. These groups will be constructed as
 \begin{align*}
-	H_\et^i(X,\IZ_\ell)\coloneqq\limit_{n\geq 1}H^i(X_\et,\IZ/\ell^n\IZ)\,.
+	H^i(X_\et,\IZ_\ell)\coloneqq\limit_{n\geq 1}H^i(X_\et,\IZ/\ell^n\IZ)\,.
 \end{align*}
 Along the way, we will come across sheaves on the étale site, the relation between étale and Galois cohomology, cohomology of curves, and proper base change.
 
@@ -72,8 +73,8 @@ In these notes, the modern meaning of the word \emph{scheme} is used. That is, a
 
 Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say, numbering \emph{prescheme}.}, as I believe this document is easier to navigate if propositions/lemmas/etc.\ are numbered consecutively rather than independent of each other. 
 
-\numpar*{\Attention\ Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}
-This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
+%\numpar*{\Attention\ Important note}\textbf{I won't be in Bonn on the 20th and 23rd Decembre, so I'm going to miss the last two Étale lectures in 2019!}
+%This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I would very much appreciate if one of you could share their notes with me. You can just send a photo to my e-mail address \href{mailto:ferdinand.wagner@uni-bonn.de}{\texttt{ferdinand.wagner@uni-bonn.de}}. Of course you can also send me \TeX\ code or even a pull request (well, less work for me), but I'm perfectly happy with \sout{any handwritten notes} readable handwritten notes. Merry Christmas!
 
 \mainmatter\KOMAoption{chapterprefix}{true}
 \include{./Chapters/EtaleI11to163}
@@ -81,7 +82,7 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 
 \chapter{Cohomology}
 \section{Definitions and Basic Facts}\label{sec:CohoBasics}
-\lecture[Injective objects in $\cat{Ab}(X_\et)$. Étale cohomology of schemes and morphisms. Some Leray spectral sequences.]{2019-12-16}Étale cohomology of schemes and morphisms between them will be constructed using the machinery of \defemph{right-derived functors}. We assume familiarity with the construction of the functors $R^iF$ for any left-exact functor $F$ between abelian categories. Since the $R^iF$ are usually computed via injective resolutions (provided such resolutions exist), it is useful to have the following proposition.
+\lecture[Injective objects in $\cat{Ab}(X_\et)$. Étale cohomology of schemes and morphisms. Some Leray-type spectral sequences.]{2019-12-16}Étale cohomology of schemes and morphisms between them will be constructed using the machinery of \defemph{right-derived functors}. We assume familiarity with the construction of the functors $R^iF$ for any left-exact functor $F$ between abelian categories. Since the $R^iF$ are usually computed via injective resolutions (provided such resolutions exist), it is useful to have the following proposition.
 \begin{prop}\label{prop:enoughInjectives}
 	Let $X$ be an arbitrary scheme.
 	\begin{alphanumerate}
@@ -143,7 +144,11 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 	By \cref{prop:enoughInjectives}\itememph{b}, the functors $H^i(U_\et,j^*(-))\colon \cat{Ab}(X_\et)\morphism \cat{Ab}$ are the derived functors of $\Global(U,-)\colon \cat{Ab}(X_\et)\morphism\cat{Ab}$, the functor of taking sections over $U$.
 \end{rem}
 \begin{rem}
-	If $\Oo$ is a sheaf of rings on $X_\et$, then $H^i(X_\et,-)$ are also the (underlying abelian groups of the) derived functors of $\Global(X,-)\colon \cat{Mod}_\Oo\morphism \cat{Mod}_{\Global(X,\Oo)}$. I have no idea how to prove this---as far as I can see, the argument via flabby sheaves doesn't work any more---so please enlighten me or I will ask Franke next year.
+	If $\Oo$ is a sheaf of rings on $X_\et$, then $H^i(X_\et,-)$ are also the (underlying abelian groups of the) derived functors of $\Global(X,-)\colon \cat{Mod}_\Oo\morphism \cat{Mod}_{\Global(X,\Oo)}$. In the case of sheaves on topological spaces this is usually proved via \emph{flabby sheaves}, i.e., those $\Ff$ for which $\Global(U,\Ff)\epimorphism \Global(V,\Ff)$ is surjective whenever $V\subseteq U$ are open subsets. One shows that cohomology can be computed via flabby resolutions and then everything is clear since being flabby is preserved under the forgetful functor $\cat{Mod}_\Oo\morphism\cat{Ab}(X)$.
+	
+	However, this argument no longer works. For example, injective sheaves $\Ii$ on $X_\et$ are no longer \enquote{flabby} (in the naive sense that $\Global(U,\Ii)\epimorphism \Global(V,\Ii)$ is surjective when $V\morphism U$ is étale), the problem being that $j_!\IZ_U\morphism \IZ_X$ is no longer a monomorphism (which is the essential ingredient in \cite[\stackstag{01EA}]{stacks-project}) because there can be more than one geometric point of $U$ over a given geometric point of $X$.
+	
+	Instead, the proof in \cite[\stackstag{03FA}]{stacks-project} uses \v Cech cohomology arguments. As Robin pointed out, there is better notion of \enquote{flabby sheaves} that works for arbitrary sites, called \defemph{limp sheaves} by The Stacks Project and \defemph{flasque sheaves} by \cite[Exposé~V.4]{sga4.2}.
 \end{rem}
 \begin{rem}
 	For $\Ff\in\cat{Ab}(X_\et)$, the sheaf $R^if_*\Ff$ is the sheafification of the presheaf $V\mapsto H^i((X\times_YV)_\et,\Ff)$ for $V\morphism Y$ étale. Here $\Ff$ should actually be replaced by the pullback of $\Ff$ to $X\times_VY$, but such abuse of notation is very convenient and we will use it frequently.
@@ -172,26 +177,243 @@ This means \textbf{no lecture notes} \dotso unless \emph{you} help me out! I wou
 	
 	For \itememph{b}, we already know that $\XX$ contains all injective objects since we proved this in \cref{lem:injectiveStuff}. Now let $x\in \XX$. We can choose a short exact sequence $0\morphism x\morphism t\morphism c\morphism 0$ with $t$ injective. By \itememph{*} we have $c\in \XX$ as well, and since $t$ is injective, we get $R^iF(c)\cong R^{i+1}F(x)$ for all $i>0$ from the long exact derived functor sequence. Thus it suffices to prove $R^1F(x)=0$. But $F(t)\morphism F(c)$ is an epimorphism \itememph{*}, hence $R^1F(t)=0$ and the long exact sequence show $R^1F(x)=0$, as required.
 \end{proof*}
-\begin{prop}
+\begin{prop}\label{prop:etaleLeray}
 	If $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ are morphisms of schemes, then we have three Leray spectral sequences
 	\begin{gather*}
 		E_2^{p,q}=H^p(Y_\et,R^qf_*\Ff)\converge H^{p+q}(X_\et,\Ff)\,,  \quad E_2^{p,q}=R^pg_*R^qf_*\Ff\converge R^{p+q}(gf)_*\Ff\,,\\
 		E_2^{p,q}=H^p(X_\Zar,R^q\zeta_{X,*}\Ff)\converge H^{p+q}(X_\et,\Ff)\,.
 	\end{gather*}
-	Moreover, if $F\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\Zar)$ denotes the \enquote{forgetful pushforward} functor, then there are two spectral sequences\footnote{In the lecture, we had a single spectral sequence $E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge \zeta_{Y,*}R^{p+q}f_{\et,*}\Ff$, but I have some serious doubts about that. Again, I will ask Professor Franke for clarification next year.}
+	Moreover, if $F\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\Zar)$ denotes the \enquote{forgetful pushforward} functor, then there are two spectral sequences\footnote{In the lecture we had a single spectral sequence $E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge \zeta_{Y,*}R^{p+q}f_{\et,*}\Ff$, suggesting that the second of the above spectral sequences collapses. Unfortunately, this is not true (I asked Professor Franke).}
 	\begin{equation*}
 		E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge R^{p+q}F(\Ff)\,,\quad E_2^{p,q}=R^p\zeta_{Y,*}R^qf_{\et,*}\Ff\converge R^{p+q}F(\Ff)\,.
 	\end{equation*}
 \end{prop}
-\begin{proof*}
-	All of these are instances of the Grothendieck spectral sequence for the derivatives of a composite functor. But for this we need to check that $f_*$ and $\zeta_{X,*}$ map injective objects to acyclic ones. In fact, they both even preserve injective objects! The reason is that they both have exact left-adjoints. For $f_*$ this is just $f^*$, which is exact by the explicit description of stalks in \cref{rem:f^*}\itememph{c}.
-	
-	For $\zeta_{X,*}$, we would expect that one can construct a left-adjoint in a similar fashion to the construction of $f^*$. In fact, the construction becomes much easier due to the fact that every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}. Thus, we may define a functor $\zeta_X^\sharp\colon \cat{PAb}(X_\Zar)\morphism\cat{PAb}(X_\et)$ via
+\noindent\emph{Proof.}\lecture[Proof of \cref{prop:etaleLeray}. Étale cohomology and Galois cohomology. Thanks to Konrad for sharing his lecture notes!]{2019-12-20}All of these become instances of the Grothendieck spectral sequence once we show that $f_*$ and $\zeta_{X,*}$ map injective objects to acyclic ones (with respect to the respective second functor). In fact, both $f_*$ and $\zeta_{X,*}$ even preserve injective objects! For $f_*$ the reason is that it has the exact left-adjoint $f^*\colon \cat{Ab}(Y_\et)\morphism \cat{Ab}(X_\et)$. For $\zeta_{X,*}$, there are at least two possible approaches:
+	\begin{alphanumerate}
+		\item Construct an exact left-adjoint $\zeta_X^*\colon \cat{Ab}(X_\Zar)\morphism \cat{Ab}(X_\et)$. To do so, we first define an adjoint $\zeta_X^\sharp\colon \cat{PAb}(X_\Zar)\morphism\cat{PAb}(X_\et)$ of the forgetful functor $\cat{PAb}(X_\et)\morphism\cat{PAb}(X_\Zar)$. Similar to \cref{con:f^*} we define it via
+		\begin{equation*}
+		\Global(U,\zeta_X^\sharp\Gg)\coloneqq \colimit_V\Global(V,\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
+		\end{equation*}
+		The colimit in the middle is taken over all Zariski-open subsets $V\subseteq X$ containing the image of $U\morphism X$. But since every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}, we get the equality on the right (and thus a much simpler description of $\zeta_X^\sharp$). It's easy to see that $\zeta_X^\sharp$ has the required property. Then $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ is a left-adjoint of $\zeta_{X,*}$. If $\ov{x}$ is a geometric point of $X$ with underlying point $x$, then $(\zeta_X^*\Gg)_{\ov{x}}\cong (\zeta_X^\sharp\Gg)_{\ov{x}}\cong \Gg_x$, so $\zeta_X^*$ is indeed exact.
+		\item If $\ov{x}$ and $x$ are as above, show that $\zeta_{X,*}\ov{x}_*I\cong x_*I$ for injective abelian groups $I$. Thus $\zeta_{X,*}\Ii$ stays injective if $\Ii$ is one of the injective objects from the proof of \cref{prop:enoughInjectives}. Since there are sufficiently many of them, this suffices to provide us with the required spectral sequence.
+	\end{alphanumerate}
+	Whichever approach you prefer, this finishes the proof.\qed
+\begin{prop}
+	If $f\colon X\morphism Y$ is a finite morphism of schemes, then $R^pf_*\Ff=0$ for all $p>0$ and all sheaves $\Ff$ on $X_\et$.
+\end{prop}
+\begin{proof}
+	For geometric points $\ov{y}$ of $Y$ we have $(f_*\Ff)_{\ov{y}}\cong \prod_{\ov{x}}\Ff_{\ov{x}}$ by \cref{cor:(f_*F)_y} (with notation as explained there). Since exactness can be checked on stalks at geometric points, this shows that $f_*$ is an exact functor, whence its higher derived functors vanish.
+\end{proof}
+\section{The Relation with Galois Cohomology}
+\begin{rem}\label{rem:GaloisAction}
+	Let $X$ be an arbitrary scheme and $\ov{x}\colon \Spec \kappa(\ov{x})\morphism X$ a geometric point with underlying point $x\in X$. We may identify $\kappa(x)$ with its image in $\kappa(\ov{x})$. Moreover, we have seen in \cref{rem:setTheory} that replacing $\kappa(\ov{x})$ by the separable closure $\kappa(x)^\sep$ of $\kappa(x)$ in it neither changes stalks nor étale neighbourhoods, so we may assume $\kappa(\ov{x})=\kappa(x)^\sep$. If $\sigma\in G_x\coloneqq \Gal(\kappa(\ov{x})/\kappa(x))$ and $(U,\ov{u})$ is an étale neighbourhood of $\ov{x}$, then also $(U,\ov{u}\circ \Spec(\sigma))$ is also a preimage of $\ov{x}$ in $U$. We thus get an action of $G_x$ on the category of étale neighbourhoods of $\ov{x}$ via
 	\begin{equation*}
-		\Global(U,\zeta_X^\sharp\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
+		\sigma\colon (U,\ov{u})\longmapsto \big(U,\ov{u}\circ \Spec(\sigma)\big)\,!
 	\end{equation*}
-	It's easy to see that $\zeta_X^\sharp$ is left-adjoint to the forgetful functor $\cat{PAb}(X_\et)\morphism\cat{PAb}(X_\Zar)$. Now we can define $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ to obtain a left-adjoint of $\zeta_{X,*}$. This functor is exact, as can be seen by examining the stalks of $\zeta_{X,*}\Gg$ at geometric points.
+	Now if $\Ff$ is a sheaf on $X_\et$, then the action of $G_x$ on the étale neighbourhoods induces an action on the stalk $\Ff_{\ov{x}}$, sending the image of $\phi\in \Global(U,\Ff)$ via $\ov{u}$ to the image of $\phi$ via $\ov{u}\circ \Spec(\sigma)$. It follows that the image of $\Global(X,\Ff)$ is contained in the subset of $G_x$-invariants $\Ff_{\ov{x}}^{G_x}\subseteq \Ff_{\ov{x}}$.
+	
+	This action of $G_x$ on the set of lifts $\ov{u}$ of $\ov{x}$ to an étale $X$-scheme $U$ is compatible with morphisms $f\colon U\morphism U'$ in $X_\et$ in the sense that $\sigma f(\ov{u})=f(\sigma \ov{u})$, and if $j\colon U\morphism X$ is étale, then the image of $\Global(U,\Ff)$ in $\prod_{j(\ov{u})=\ov{x}}\Ff_{\ov{x}}$ (the product is taken over all lifts of $\ov{x}$ to $U$) is contained in the subset $\big\{(\phi_{\ov{u}})\in \prod_{\ov{u}}\Ff_{\ov{x}}\ \big|\ \phi_{\sigma \ov{u}}=\sigma \phi_{\ov{u}}\big\}$ (here $\sigma$ denotes both the action on geometric points and on $\Ff_{\ov{x}}$ by abuse of notation).
+\end{rem}
+\begin{prop}\label{prop:etaleGalois}
+	Let $X=\Spec k$ be the spectrum of a field and consider the geometric point $\ov{x}\colon \Spec k^\sep\morphism X$. Let $G=\Gal(k^\sep/k)$ be the absolute Galois group of $k$ and let $G\cat{\mhyph Mod}$ be the category of discrete abelian groups with a continuous $G$-action.
+	\begin{alphanumerate}
+		\item We have an equivalence of categories
+		\begin{align*}
+			\cat{Ab}(X_\et)&\isomorphism G\cat{\mhyph Mod}\\
+			\Ff&\longmapsto \Ff_{\ov{x}}\,.
+		\end{align*}
+		\item Similarly, there are equivalences of categories $\cat{Sh}(X_\et)\cong G\cat{\mhyph Set}$ and $\cat{Grp}(X_\et)\cong G\cat{\mhyph Grp}$ between the categories of sheaves of sets/groups on $X_\et$ and the categories of discrete sets/groups with a continuous $G$-action.
+		\item There is a canonical isomorphism $H^i(X_\et,\Ff)\cong H^i(G,\Ff_{\ov{x}})$ of cohomological functors on $\cat{Ab}(X_\et)$. Here $H^i(G,-)$ denotes the right-derived functor of $(-)^G\colon G\cat{\mhyph Mod}\morphism G\cat{\mhyph Mod}$ (also known as \enquote{group cohomology}).
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	We prove \itememph{a} and \itememph{b} by constructing a quasi-inverse functor in each of these cases. If $F$ is a discrete set or (abelian) group with a continuous $G$-action, let $\Ff_F$ be the sheaf given by
+	\begin{equation*}
+		\Global(U,\Ff_F)=\left\{(\phi_{\ov{u}})\in \prod_{\ov{u}}F\st \phi_{\sigma\ov{u}}=\sigma \phi_{\ov{u}}\right\}\,,
+	\end{equation*}
+	where $\ov{u}$ ranges over the lifts of $\ov{x}$ to $U$. If $j\colon V\morphism U$ is a morphism in $X_\et$ then the restriction of $\phi\in \Global(U,\Ff)$ to $V$ is given by $\phi|_V=(\phi_{j(\ov{v})})$ where $\ov{v}$ ranges over the lifts of $\ov{x}$ to $V$.
+	
+	This sheaf satisfies $(\Ff)_{\ov{x}}$. Indeed, the category of étale neighbourhoods of $\ov{x}$ has a cofinal subsystem of objects $(U,\ov{u})$, where $U=\Spec \ell$. In this case $G$ acts transitively on the lifts of $\ov{x}$ to $U$. Thus, projecting to the $\ov{u}\ordinalth$ factor provides an isomorphism $\Global(U,\Ff_F)\cong F$ in this case, and then the same follows for the stalk $\Ff_{\ov{x}}$ after taking colimits.
+	
+	Conversely, if $F=\Ff_{\ov{x}}$, then \cref{rem:GaloisAction} gives a canonical morphism $\Ff\morphism \Ff_F$. As we have just seen, this induces an isomorphism $\Ff_{\ov{x}}=F\cong(\Ff_F)_{\ov{x}}$ on stalks at $\ov{x}$. But $\ov{x}$ is the only geometric point of $X=\Spec k$, hence $\Ff\isomorphism\Ff_F$ must be an isomorphism by \cref{prop:etaleStalks}\itememph{e}. This proves \itememph{a} and \itememph{b}.
+	
+	For \itememph{c}, it suffices to show that the equivalence of categories $\cat{Ab}(X_\et)\cong G\cat{\mhyph Mod}$ from \itememph{a} identifies the functors $\Global(X,-)$ and $(-)^G$. Indeed, if $F\in G\cat{\mhyph Mod}$, then 
+	\begin{equation*}
+		\Global(X,\Ff_F)=\left\{\phi\in F\st \phi=\sigma \phi\right\}=F^G\,,
+	\end{equation*}
+	because $G=\Gal(k^\sep/k)$ acts trivially on the lifts of $\ov{x}$ to $X$ (because, well, there's only one). This proves \itememph{c}.
+\end{proof}
+\cref{prop:etaleGalois} shows that the étale cohomology of a point can be computed by Galois cohomology. Thus, in the rest of this section we compute some Galois cohomology groups.
+\begin{prop}
+	Let $L/K$ be a Galois extension.
+	\begin{alphanumerate}
+		\item We have $H^1(\Gal(L/K),L^\times)=0$ (this is famously known as \enquote{Hilbert's theorem 90}).
+		\item We have $H^2(\Gal(L/K),L^\times)=\left\{[A]\in\operatorname{Br}(K)\st A\text{ splits over }L\right\}$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}
+	Omitted.
+\end{proof}
+\section{The Relation between \texorpdfstring{$H^1$}{H1} and Torsors}\label{sec:torsors}
+\lecture[Unsuccessful attempts on switching off a beamer. Torsors on sites. The \v Cech complex.]{2020-01-10}
+\begin{defi}\label{def:torsor}
+	Let $\Cc$ be a site and $\Gg$ a sheaf of groups on $\Cc$. A \defemph{$\Gg$-torsor} is a sheaf of sets $\Tt$ together with a morphism $\alpha\colon \Gg\times \Tt\morphism \Tt$ of sheaves of sets satisfying the usual axioms for a left $\Gg$-action as well as the following conditions:
+	\begin{alphanumerate}
+		\item For every object $x$ of $\Cc$, the class $\left\{y\morphism x\st \Tt(x)\neq \emptyset\right\}$ is a covering sieve of $x$.
+		\item With $p_2$ denoting the projection to the second factor, the morphism
+		\begin{equation*}
+			(\alpha,\id_\Tt\circ p_2)\colon \Gg\times \Tt\morphism \Tt\times\Tt
+		\end{equation*}
+		is an isomorphism.
+	\end{alphanumerate}
+	A \defemph{morphism of $\Gg$-torsors} is a morphism $\tau\colon \Tt\morphism \Tt'$ of sheaves of sets compatible with the $\Gg$-action, i.e., such that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Gg\times \Tt\dar["\alpha"'] \rar["{(\id_\Gg,\tau)}"] &[1em] \Gg\times \Tt\dar["\smash{\alpha'}\vphantom{\alpha}"]\\
+			\Tt\rar["\tau"] &[1em] \Tt'
+		\end{tikzcd}
+	\end{equation*}
+	commutes. A torsor is called \defemph{trivial} if $\limit_{x\in \Cc}\Tt(x)\neq \emptyset$, or equivalently, if there is an isomorphism $\Gg\isomorphism \Tt$ of $\Gg$-torsors.
+\end{defi}
+\begin{rem}
+	The equivalence at the end of \cref{def:torsor} can be seen as follows: it's clear that $\Gg$ and thus every torsor isomorphic to it are trivial. Conversely, if we find compatible elements $t_x\in \Tt(x)$ defining an element of $\limit_{\Cc}\Tt$, then we have an isomorphism $\Gg\isomorphism \Tt$ sending $g\in \Gg(x)$ to $gt_x$ (this is abuse of notation for $\alpha(g,t_x)$, of course). This is an isomorphism, because an inverse is given by sending $t\in \Tt(x)$ to the unique section $g\in \Gg(x)$ satisfying $t=gt_x$.
+\end{rem}
+\begin{lem}\label{lem:easyTorsorStuff}
+	\begin{alphanumerate}
+		\item The category of $\Gg$-torsors on $\Cc$ is a groupoid.
+		\item Let $\Ii$ be an injective object of the category of $\cat{Ab}(\Cc)$ of sheaves of abelian groups on $\Cc$, then every $\Ii$-torsor is trivial.
+	\end{alphanumerate}
+\end{lem}
+\begin{proof}
+	Part \itememph{a}. Let $\tau\colon \Tt\morphism \Tt'$ be an arbitrary morphism of torsors. We need to show that $\Tt(x)\morphism \Tt'(x)$ is an isomorphism. First suppose $\Tt(x)$, and choose an element $t\in \Tt(x)$. By $\Gg$-equivariance, $\Tt(x)\morphism \Tt'(x)$ is given by $\tau(gt)=g\tau(t)$, hence an isomorphism since the $\Gg(x)$-action is simply transitive on both sides. In general, $x$ can be covered by objects $y\in \Cc$ such that $\Tt(y)\neq \emptyset$, and the sheaf axiom shows that $\Tt(x)\morphism \Tt'(x)$ is an isomorphism in the general case as well.
+	
+	Part \itememph{b}. Since $\Ii$ is abelian, we will use additive notation. Define the \enquote{internal $\Hom$} presheaf $\Jj\coloneqq \Hhom_\Cc(\Tt,\Ii)$ on $\Cc$ by $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$. It's easy to check that $\Jj$ is in fact a sheaf of abelian groups, the group structure given by addition on $\Ii$. Moreover, there is a canonical morphism $\iota\colon \Ii\morphism \Jj$ given by sending a section $i\in \Ii(x)$ to the constant $i$-valued morphism in $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$, i.e., the morphism sending any $t\in \Tt(y)$ to the image of $i$ in $\Ii(y)$. This $\iota$ is clearly a monomorphism. Thus, since $\Ii$ is injective, it must have a split $\pi\colon \Jj\morphism \Ii$.
+	
+	We also have a morphism $\kappa\colon \Tt\morphism \Jj$ sending $t\in \Tt(x)$ to $(-)-t\in \Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$. Here the morphism of sheaves $(-)-t$ sends any $t'\in \Tt(y)$ to the unique $i\in \Ii(y)$ such that $t'-i$ equals the image of $t$ in $\Tt(y)$. Now its easy to see that
+	\begin{equation*}
+		\Tt\morphism[\kappa]\Jj\morphism[\pi]\Ii
+	\end{equation*}
+	is not only a morphism of sheaves, but also a morphism of $\Ii$-torsors. Hence $\Tt\cong \Ii$ by part~\itememph{a}.
+\end{proof}
+\begin{defi}\label{def:i-splitting}
+	Let $i\colon \Gg\morphism\Hh$ be a morphism of sheaves of groups on $\Cc$ and $\Tt$ a $\Gg$-torsor. An \defemph{$i$-splitting} of $\Tt$ is a morphism $\sigma\colon \Tt\morphism \Hh$ such that $\sigma(gt)=i(g)\sigma(t)$ for all $g\in \Gg(x)$, $t\in \Tt(x)$.
+\end{defi}
+\begin{rem}\label{rem:i_*T}
+	An $i$-splitting of $\Tt$ as defined in \cref{def:i-splitting} is obviously equivalent to giving a trivialization of the $\Hh$-torsor $i_*\Tt\coloneqq(\Tt\times \Hh)/\Gg$. However, Professor Franke does not intend to define pushforwards of torsors in general.
+\end{rem}
+\numpar{}From now on, all sheaves of groups will be abelian and we will use additive notation for convenience (except for the sheaf $\Oo_{X_\et}^\times$ considered in \cref{fact:H1Pic} below). Consider a short exact sequence
+\begin{equation*}
+	0\morphism \Gg\morphism[i]\Hh\morphism[\pi]\Qq\morphism 0
+\end{equation*}
+in $\cat{Ab}(\Cc)$ and let $(\Tt,\sigma)$ be a $\Gg$-torsor equipped with an $i$-splitting $\sigma$. If $\Tt(x)\neq \emptyset$, then $q_x\coloneqq \pi(\sigma(t))$ does not depend on the choice of $t\in \Tt(x)$, as
+\begin{equation*}
+	\pi\big(\sigma(g+t)\big)=\pi\big(i(g)+\sigma(t)\big)=0+\pi\big(\sigma(t)\big)\,.
+\end{equation*}
+If $x$ is arbitrary, then the sheaf axiom provides us with a unique element $q_x\in \Qq(x)$ such that $v^*q_x=q_y$ whenever $v\colon y\morphism x$ is an $x$-object satisfying $\Tt(y)\neq \emptyset$. By compatibility, the $q_x$ define an element $q\in \limit_{\Cc}\Qq$.
+
+It is easy to see that this $q$ only depends on the isomorphism class of $(\Tt,\sigma)$; we denote it by $q(\Tt,\sigma)$ from now on. Moreover, if $h\in \limit_{\Cc}\Hh$ and $h+\sigma\colon \Tt\morphism \Hh$ is defined in the obvious way as $(h+\sigma)(t)\coloneqq h+\sigma(t)$, then $q(\Tt,h+\sigma)=\pi(h)+q(\Tt,\sigma)$.
+
+Conversely, suppose $q\in \limit_\Cc\Qq$ is given. We put $\Tt_q(x)\coloneqq \left\{h\in\Hh(x)\st \pi(h)=q\right\}$ and let $\sigma_q\colon \Tt_q\morphism \Hh$ be the obvious embedding. Then $\Tt_q$ is a $\Gg$-torsor and $\sigma_q$ an $i$-splitting. One easily checks $q(\Tt_q,\sigma_q)=q$ and that $\sigma\colon \Tt\morphism \Hh$ restricts to an isomorphism $\Tt\isomorphism \Tt_{q(\Tt,\sigma)}$. Thus we obtain: 
+\begin{lem}
+	The association $(\Tt,\sigma)\mapsto q(\Tt,\sigma)$ defines a bijection
+	\begin{equation*}
+		\left\{\Gg\text{-torsors with an $i$-splitting}\right\}\isomorphism \limit_\Cc\Qq\,,
+	\end{equation*}
+	compatible with the action of $\limit_\Cc\Hh$ on both sides.
+\end{lem}
+\begin{rem}\label{rem:iSplittingsExist}
+	If $\Hh=\Ii$ is injective, then $i$-splittings always exist as $i_*\Tt$ from \cref{rem:i_*T} is trivial by \cref{lem:easyTorsorStuff}\itememph{b}. Since we didn't and won't define pushforward of torsors, Professor Franke suggest alternatively to copy the proof of said result \emph{mutatis mutandis}.
+\end{rem}
+\begin{prop}\label{prop:TorsorsH1}
+	Let $\Cc$ be a site. We denote by $H^i(-)$ the $i\ordinalth$ right-derived functor of $\Global(-)\colon \cat{Ab}(\Cc)\morphism \cat{Ab}$ defined by $\Global(\Gg)=\limit_\Cc\Gg$. Then for any $\Gg$ one has a bijection
+	\begin{align*}
+		\left\{\text{iso.\ classes of $\Ff$-torsors}\right\}&\isomorphism H^1(\Gg)\\
+		\Tt&\longmapsto \big(q(T,\sigma)\bmod \pi\Global(\Ii)\big)\\
+		\Tt_q&\longmapsfrom \big(q \bmod \pi\Global(\Ii)\big)\,.
+	\end{align*}
+	Here we have chosen an arbitrary resolution $0\morphism \Gg\morphism[i]\Ii\morphism[\pi]\Qq\morphism 0$ with $\Ii$ injective, so that $H^1(\Ff)\cong \Global(\Qq)/\Global(\Ii)$, and $\sigma$ is any $\Ii$-splitting (which exists by \cref{rem:iSplittingsExist}).
+\end{prop}
+\begin{proof}[Sketch of a proof]
+	This follows from the above and a few calculations. Also note that $\cat{Ab}(\Cc)$ has enough injectives: this follows from \cite[Théorème~1.10.1]{tohoku}, but we are only going to use \cref{prop:TorsorsH1} in cases where we already know the existence of sufficiently many injectives. 
+\end{proof}
+\begin{rem*}\label{rem*:groupStructureOnTorsors}
+	The identification with $H^1(\Gg)$ suggests that there should be a canonical group structure on the set of isomorphism classes of $\Gg$-torsors. It can be explicitly described as follows: for torsors $\Tt$ and $\Tt'$, consider the sheaf
+	\begin{equation*}
+		\Tt\times_\Gg\Tt\coloneqq (\Tt\times \Tt')/\Gg\,.
+	\end{equation*}
+	Here \enquote{modding out $\Gg$} is abuse of notation for modding out the equivalence relation given by $(g+t,t')\sim (t,g+t')$ for all $g\in \Gg(x)$, $t\in \Tt(x)$, $t'\in \Tt'(x)$. Then $\Tt\times_\Gg\Tt'$ becomes a $\Gg$-torsor again in a canonical way.
+	
+	We claim that $-\times_\Gg-$ corresponds to the addition in the group $H^1(\Gg)$. By \cref{prop:TorsorsH1} it suffices to show that $\Tt_0\cong \Gg$ is the neutral element (which is straightforward) and that $\Tt_{q+q'}\cong \Tt_q\times_G\Tt_{q'}$. Upon inspection, sections of $\Tt_q\times_G\Tt_{q'}$ are equivalence classes of pairs $(h,h')$ such that $\pi(h)=q$ and $\pi(h')=q'$. Then its easy to check that $[h,h']\mapsto h+h'$ is well-defined and induces the required isomorphism $\Tt_q\times_G\Tt_{q'}\isomorphism \Tt_{q+q'}$.
+\end{rem*}
+The main application of the theory of torsors to étale cohomology comes through $\Oo_{X_\et}^\times$-torsors, which happen to be just line bundles over $X$.
+\begin{fact}\label{fact:H1Pic}
+	Let $X$ be a scheme. There is an equivalence of groupoids
+	\begin{equation*}
+		\left\{\begin{tabular}{c}
+		line bundles $\Ll$ on $X$,\\
+		isomorphisms of line bundles
+		\end{tabular}\right\}\isomorphism \left\{\Oo_{X_\et}^\times\text{-torsors}\right\}\,.
+	\end{equation*}
+\end{fact}
+\begin{proof}[Sketch of a proof]
+	If $\Ll$ is a line bundle on $X$, we can construct an $\Oo_{X_\et}^\times$-torsor $\Tt_\Ll$ as follows: if $j\colon U\morphism X$ is an étale $X$-scheme, we put
+	\begin{equation*}
+		\Global(U,\Tt_\Ll)=\big\{\lambda\in \Global(U,j^*\Ll)\ \big|\ \lambda\colon \Oo_U\isomorphism \Ll\text{ is an isomorphism}\big\}\,,
+	\end{equation*}
+	which has a natural $\Global(U,\Oo_{X_\et}^\times)$-action given by multiplication. This defines a functor $\Ll\mapsto \Tt_\Ll$ from the left-hand side to the right-hand side.
+	
+	Conversely let $\Tt$ be an $\Oo_{X_\et}^\times$-torsor. We wish to construct a corresponding line bundle $\Ll_\Tt$ via faithfully flat descent (in the form of étale descent of course). Let's first assume $\Tt$ is trivial over $X$, i.e., $\Global(X,\Tt)\neq \emptyset$. We define $\Ll_\Tt$ as a sheaf of sets first: for open subsets $U\subseteq X$, put
+	\begin{equation*}
+		\Global(U,\Ll_\Tt)=\left\{(t,f)\st t\in \Global(U,\Tt)\text{ and }f\in\Global(U,\Oo_X^\times)\right\}/_\sim\,,
+	\end{equation*}
+	where $\sim$ is the equivalence relation defined as $(t,f)\sim (t',f')$ iff there is a $\lambda\in \Global(U,\Oo_X^\times)$ such that $t'=\lambda t$ and $f'=\lambda f$. Thus, fixing $t$, every equivalence class has a unique representative of the form $(t,f)$. It's easy to check that addition and scalar multiplication on equivalence classes defined by $[t,f]+[t,f']\coloneqq [t,f+f']$ and $\lambda[t,f]\coloneqq [t,\lambda f]$ are independent of the choice of $t$ and turn $\Ll_\Tt$ into a line bundle over $\Oo_X$ (in fact, even a trivial one).
+	
+	For arbitrary $X$, we always find an étale cover $\{U_i\morphism X\}_{i\in I}$ such that $\Tt$ is trivial over each $U_i$. Then the above construction gives line bundles $\Ll_i$ over $U_i$ corresponding to $\Tt|_{U_i}$. It can be checked immediately that the $\Ll_i$ form a descent datum, hence define a line bundle $\Ll_\Tt$ on $X$ via faithfully flat descent. We leave it to the reader to verify that the functors $\Ll\mapsto \Tt_\Ll$ and $\Tt\mapsto \Ll_\Tt$ are indeed quasi-inverse to each other.
+\end{proof}
+\begin{cor}\label{cor:H1Pic}
+	For any scheme $X$, we have $H^1(X_\et,\Oo_{X_\et}^\times)\cong \Pic(X)$.
+\end{cor}
+\begin{proof*}[Sketch of a proof]
+	We get from \cref{prop:TorsorsH1} and \cref{fact:H1Pic} that both sides are in canonical bijection as sets. It remains to check that this is an isomorphism of abelian groups as well. To this end, we check that for line bundles $\Ll$ and $\Ll'$ the canonical map $\Global(U,\Tt_{\Ll})\times \Global(U,\Tt_{\Ll'})\morphism \Global(U,\Tt_{\Ll\otimes\Ll'})$ sending $(\lambda,\lambda')$ to $\lambda\otimes \lambda'$ induces an isomorphism
+	\begin{equation*}
+		\Tt_{\Ll}\times_{\Oo_{X_\et}}\Tt_{\Ll'}\isomorphism \Tt_{\Ll\otimes \Ll'}\,.
+	\end{equation*}
+	Then \cref{rem*:groupStructureOnTorsors} shows that the group structures on both sides coincide.
 \end{proof*}
+\begin{cor}[Version of Hilbert's theorem~90]
+	If $k$ is any field, then
+	\begin{equation*}
+		H^1\big(\Gal (k^\sep/k),k^{\sep,\times}\big)=0\,.
+	\end{equation*}
+\end{cor}
+\begin{proof*}
+	Let $X=\Spec k$ and $\ov{x}\colon \Spec k^\sep\morphism X$. Then $k^{\sep,\times}\cong \Oo_{X_\et,\ov{x}}^\times$. Hence \cref{prop:etaleGalois}\itememph{c} and \cref{cor:H1Pic} show
+	\begin{equation*}
+		H^1\big(\Gal (k^\sep/k),k^{\sep,\times}\big)\cong H^1\big(X_\et,\Oo_{X_\et}^\times\big)\cong \Pic(X)\,.
+	\end{equation*}
+	But the right-hand side is trivial because $X$ is just a point.
+\end{proof*}
+\section{Applications of \texorpdfstring{\v C}{C}ech Cohomology}
+\begin{con}
+	Let $\Cc$ be an arbitary category admitting fibre products and let $\Ff\in \cat{PAb}(\Cc)$ be a presheaf of abelian groups. For any morphism $u\morphism x$ in $\Cc$ put
+	\begin{equation*}
+		\check{C}^n\big(\{u\rightarrow x\},\Ff\big)=\Ff(\underbrace{u\times_x\dotsb\times_x u}_{n+1\text{ factors}})\,.
+	\end{equation*}
+	For $0\leq j\leq n+1$ let $d_j\colon \check{C}^n(\{u\morphism x\},\Ff)\morphism\check{C}^{n+1}(\{u\morphism x\},\Ff)$ be the morphism induced by 
+	\begin{equation*}
+		\underbrace{u\times_x\dotsb\times_xu}_{n+2\text{ factors}}\morphism \underbrace{u\times_x\dotsb\times_xu}_{n+1\text{ factors}}
+	\end{equation*}
+	omitting the $j\ordinalth$ factor (the numbering of factors starts at $0$). This gives a cochain complex
+	\begin{equation*}
+		\check{C}^\bullet\big(\{u\rightarrow x\},\Ff\big)=\Big( \check{C}^0\big(\{u\rightarrow x\},\Ff\big)\morphism[d]\check{C}^1\big(\{u\rightarrow x\},\Ff\big)\morphism[d]\dotso\Big)
+	\end{equation*}
+	with differential $d=\sum_{j=0}^{n+1}(-1)^jd_j$ in degree $n$, called the \defemph{\v Cech complex} of $\{u\morphism x\}$ with coefficients in $\Ff$. It's cohomology
+	\begin{equation*}
+		\check{H}^i\big(\{u\rightarrow x\},\Ff\big)\coloneqq H^i\check{C}^\bullet\big(\{u\rightarrow x\},\Ff\big)
+	\end{equation*}
+	is called the \defemph{\v Cech cohomology} of $\Ff$.
+\end{con}
+
 
 \appendix
 \include{./Chapters/EtaleIAppendix}
