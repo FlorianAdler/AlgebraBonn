@@ -252,8 +252,30 @@ Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say,
 	\end{alphanumerate}
 \end{prop}
 \begin{proof}
-	Omitted.
+	Part~\itememph{a} is proved in \cref{cor:Hilbert90} assuming the special case that $L=L^\sep$ is separably closed (and thus a separable closure of $K$). The general case can be deduced as follows: putting $G=\Gal(L^\sep/K)$, we see that $H=\Gal(L^\sep/L)$ is a closed subgroup of the pro-finite group $G$ and $G/H\cong \Gal(L/K)$. Consider the Hochschild--Serre spectral sequence
+	\begin{equation*}
+		E_2^{p,q}=H^p\big(G/H,H^q(H,L^{\sep,\times})\big)\converge H^{p+q}\big(G,L^{\sep,\times}\big)\,.
+	\end{equation*}
+	From \cref{cor:Hilbert90} we know $H^1(G,L^{\sep,\times})=0=H^1(H,L^{\sep,\times})$. Thus $E_2^{0,1}=0$. Hence the above spectral sequence shows $H^1(\Gal(L/K),L^\times)=E_2^{1,0}\cong H^1(G,L^{\sep,\times})=0$, as claimed. We omit the proof of part~\itememph{b}.
 \end{proof}
+\begin{defi}
+	We say a field $k$ \defemph{has property $C_n$} if any homogeneous polynomial $f\in k[X_1,\dotsc,X_m]$ of degree $0<d<\sqrt[n]{m}$ has a non-trivial zero in $k^m$.
+\end{defi}
+\begin{rem}
+	We are only interested in $C_1$ since the properties $C_n$ for $n>1$ seem to be quite useless.
+\end{rem}
+To finish the section, we state two classical results on $C_1$ fields without proofs.
+\begin{prop}
+	Let $K$ be a field having property $C_1$.
+	\begin{alphanumerate}
+		\item Every algebraic extension of $K$ is $C_1$ again.
+		\item For all Galois extensions $L/K$ and all $p>0$ we have $H^p(\Gal(L/K),L^{\times})=0$.
+		\item More generally, the absolute Galois group $G=\Gal(K^\sep/K)$ has cohomological dimension $\leq 1$. That is, for any discrete continuous $G$-module $T$ and all $p>1$ we have $H^p(G,T)=0$.
+	\end{alphanumerate}
+\end{prop}
+\begin{prop}[Tsen]
+	If $K$ is of transcendence degree $1$ over a separably closed field, then $K$ is $C_1$.
+\end{prop}
 \section{The Relation between \texorpdfstring{$H^1$}{H1} and Torsors}\label{sec:torsors}
 \lecture[Unsuccessful attempts on switching off a beamer. Torsors on sites. The \v Cech complex.]{2020-01-10}
 \begin{defi}\label{def:torsor}
@@ -380,7 +402,7 @@ The main application of the theory of torsors to étale cohomology comes through
 	\end{equation*}
 	Then \cref{rem*:groupStructureOnTorsors} shows that the group structures on both sides coincide.
 \end{proof*}
-\begin{cor}[Version of Hilbert's theorem~90]
+\begin{cor}[Hilbert's theorem~90]\label{cor:Hilbert90}
 	If $k$ is any field, then
 	\begin{equation*}
 		H^1\big(\Gal (k^\sep/k),k^{\sep,\times}\big)=0\,.
@@ -399,7 +421,7 @@ The main application of the theory of torsors to étale cohomology comes through
 	\begin{equation*}
 		\check{C}^n\big(\{u\rightarrow x\},\Ff\big)=\Ff(\underbrace{u\times_x\dotsb\times_x u}_{n+1\text{ factors}})\,.
 	\end{equation*}
-	For $0\leq j\leq n+1$ let $d_j\colon \check{C}^n(\{u\morphism x\},\Ff)\morphism\check{C}^{n+1}(\{u\morphism x\},\Ff)$ be the morphism induced by 
+	For $0\leq j\leq n+1$ let $d_j\colon \check{C}^n(\{u\morphism x\},\Ff)\morphism\check{C}^{n+1}(\{u\morphism x\},\Ff)$ be the morphism induced by the projection
 	\begin{equation*}
 		\underbrace{u\times_x\dotsb\times_xu}_{n+2\text{ factors}}\morphism \underbrace{u\times_x\dotsb\times_xu}_{n+1\text{ factors}}
 	\end{equation*}

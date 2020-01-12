@@ -1,0 +1,436 @@
+
+\subsection{\texorpdfstring{$G$}{G}-Rings, Excellent Rings, and Universally Japanese Rings}
+\lecture[More properties of henselization. $G$-, excellent, and universally Japanese Rings. The Artin approximation property. Some counterexamples.]{2019-11-29}In the rest of the section we collect some more properties of (strict) henselization and relate them to the notions of \emph{excellent} and \emph{universally Japanese} rings. Along the way we will stumble upon Artin's famous \emph{approximation theorem} and some more pieces of advanced commutative algebra.
+\begin{fact}\label{fact:moarHenselization}
+	The henselization and strict henselization of a local ring $A$ has the following properties.
+	\begin{alphanumerate}
+		\item $A^\h$ and $A^\sh$ are faithfully flat $A$-algebras.
+		\item If $A$ is noetherian, then $A$ has the property $R_k$ iff $A^\h$ has $R_k$ iff $A^\sh$ has $R_k$. The same is true for property $S_k$.
+		\item If $A$ is noetherian and $\pp\in \Spec A^\h$ or $\pp\in\Spec A^\sh$, then $\pp\cap A$ is an associated prime of $A$ iff $\pp$ is already an associated prime ideal of $A^\h$ resp.\ $A^\sh$.
+		\item The fibres of $\Spec A^\h\morphism \Spec A$ and $\Spec A^\sh\morphism \Spec A$ over some $\pp\in \Spec A$ are disjoint unions of spectra of separable field extensions of $\kappa(\pp)$.
+		\item Henselization and strict henselization commute with filtered colimits of local rings along local ring morphisms.
+		\item If $A$ is noetherian and universally catenary, then the same is true for $A^\h$ and $A^\sh$.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}[Sketch of a proof]
+	Part \itememph{a} is easy: both $A^\h$ and $A^\sh$ are filtered colimits of flat $A$-algebras, hence flat themselves. Moreover, $A\morphism A^\h$ and $A\morphism A^\sh$ are local morphisms, hence even faithfully flat. We omit the proofs of \itememph{b} to \itememph{e}, but refer to \cite[(18.6)~and~(18.8)]{egaIV4}.
+	
+	For \itememph{f}, we verify the criterion from \cref{thm:universallyCatenary}\itememph{c} below. In the case of $A^\h$ and $\pp=0$ we can use the fact that $\roof{A}$ and $(A^\h)^\complete$ are isomorphic (see \cref{eq:AhComplete}). For general $\pp$, one uses the fact that $\pp$ already \enquote{comes from} some étale $A$-algebra $B_\lambda$ in the colimit $A^\h=\colimit_{\lambda\in\Lambda_0}B_\lambda$, i.e., there is some $\pp_\lambda\in\Spec B_\lambda$ such that $\pp=\pp_\lambda A^\h$. Indeed, $\pp$ is finitely generated as $A^\h$ is noetherian (\cref{prop:henselization}\itememph{e}), so all generators are already contained in some $B_\lambda$. The generated ideal $\pp_\lambda$ is necessarily prime. Indeed, $A^\h/\pp_\lambda A^\h\cong B_\lambda^h/\pp_\lambda B_\lambda ^\h\cong (B_\lambda/\pp_\lambda)^\h$ (using \cref{prop:henselization}\itememph{c}) is a domain and faithfully flat over $B_\lambda/\pp_\lambda$ by \itememph{a}. Now if $b\in B_\lambda/\pp_\lambda$ is a zero divisor and $I$ is the kernel of the multiplication map $b\colon B_\lambda/\pp_\lambda\morphism B_\lambda/\pp_\lambda$, then $I\otimes_{B_\lambda/\pp_\lambda}(B_\lambda/\pp_\lambda)^\h$ is the kernel of $b\colon (B_\lambda/\pp_\lambda)^\h\morphism (B_\lambda/\pp_\lambda)^\h$, which is nonzero as $(B_\lambda/\pp_\lambda)^\h$ is faithfully flat. Thus $b=0$ in $(B_\lambda/\pp_\lambda)^\h$. But then $(b)\otimes_{B_\lambda/\pp_\lambda}(B_\lambda/\pp_\lambda)^\h$ vanishes as well, proving $b=0$ since $(B_\lambda/\pp_\lambda)^\h$ is faithfully flat. This reduces the general case to the special case $\pp=0$ above.
+	
+	For the strict henselization, one can again reduce to the case $\pp=0$. Moreover, we use $(A^\sh)^\complete\cong (\roof{A}^\sh)^\complete$ (by \cref{eq:AshComplete}) to reduce to the case where $A$ is a complete domain. By Cohen's structure theorem (see \cite[\stackstag{032A}]{stacks-project}), $A$ is a quotient of a complete regular local ring $C$, hence $A^\sh$ is a quotient of $C^\sh$. Now $C^\sh$ is regular by \itememph{b}, hence universally catenary, thus $A^\sh$ is universally catenary too. Applying \cref{thm:universallyCatenary} backwards, we see that all irreducible components of $(A^\sh)^\complete$ have the same dimension, as required.
+\end{proof}
+\begin{thm}[Ratliff]\label{thm:universallyCatenary}
+	For a noetherian local ring $A$, the following are equivalent:
+	\begin{alphanumerate}
+		\item $A$ is universally catenary, i.e., every $A$-algebra of finite type is catenary.
+		\item $A[T]$ is catenary.
+		\item For every prime ideal $\pp$, the irreducible components of $\Spec \big((A/\pp)^\complete\big)$ are all of the same dimension.
+	\end{alphanumerate}
+\end{thm}
+\begin{proof}
+	Omitted. See \cite[Theorem~31.7]{matsumuraCRT} or \cite[\stackstag{0AW1}]{stacks-project}.
+\end{proof}
+\begin{defi}\label{def:excellent}
+	Recall the following notions from commutative algebra.
+	\begin{alphanumerate}
+		\item A noetherian local ring $A$ is a \defemph{$G$-ring} if the geometric fibres $\roof{A}\otimes_A\ov{\kappa(\pp)}$ of the ring map $A\morphism \roof{A}$ are regular for every $\pp\in\Spec A$.
+		\item A ring $A$ is called \defemph{excellent} if it is noetherian and universally catenary, all its local rings are $G$-rings, and for every $A$-algebra $B$ of finite type the regular locus $\left\{\pp\in\Spec B\st B_\pp\text{ is regular}\right\}$ is open in $\Spec B$ (rings with this property are called \enquote{$J$-2 rings}).
+		\item A noetherian $A$ is \defemph{universally Japanese} if for every prime ideal $\pp\in\Spec A$ and any finite field extension $\ell$ of $\kappa(\pp)$ the normalization of $A/\pp$ in $\ell$ is a finitely generated $A$-module.
+	\end{alphanumerate}
+\end{defi}
+If $A$ is a local ring, then the last condition in \cref{def:excellent}\itememph{b}, i.e.\ $A$ being $J$-2, is an automatic consequence if $A$ is a $G$-ring (see the appendix, \cref{prop*:GJ-2} for a proof). Hence if $A$ is local, one only has to verify that $A$ is a $G$-ring and universally catenary.
+
+In \cref{def:excellent}\itememph{c}, a hard theorem of Nagata shows that every $A$-algebra of finite type is universally Japanese too. A proof can be found in \cite[\stackstag{032E}]{stacks-project} (note that The Stacks Project calls rings with the property from \cref{def:excellent}\itememph{c} \defemph{Nagata rings}, so what they show is that \enquote{every Nagata ring is universally Japanese}). Moreover, if $A$ is excellent, then $A$ is universally Japanese (we prove this in \cref{prop*:quasi-excellentUniversallyJapanese}) and every $A$-algebra of finite type is excellent too.
+\begin{exm}
+	If $A$ is a DVR with quotient field $K$, then $A$ is regular, hence universally Japanese. As remarked above, for the local ring $A$ to be excellent it is necessary and sufficient that $A$ is a $G$-ring. The fibre over the special point $\mm\in\Spec A$ is trivial, so $\roof{A}\otimes_A\ov{K}$ is regular, hence only the generic fibre matters and we conclude that $A$ is excellent iff $\roof{A}\otimes_A\ov{K}$ is regular!
+	
+	If $\roof{K}$ denotes the quotient field of $\roof{A}$, then $\roof{A}\otimes_A\ov{K}\cong \roof{K}\otimes_K\ov{K}$ (because tensoring with $K$ is the same as localizing at a uniformizer $\pi\in A$). The latter is regular iff $\roof{K}$ contains no inseparable field extension of $K$, which is trivial in characteristic $0$. Being universally Japanese in this case is also equivalent to the same condition. Indeed, if you really dive into the proof of \cref{prop*:quasi-excellentUniversallyJapanese}, you find out that being universally Japanese is equivalent to $\roof{A}\otimes_AK\cong \roof{K}$ being geometrically reduced over $K$, which is pretty much the above condition. But honestly, I'm too lazy to work this out.
+\end{exm}
+The following fact has actually been given in the $13\ordinalth$ lecture, but I decided to relocate it since it seemed quite out of place (and Professor Franke likely just forgot to mention this).
+\begin{fact}\label{fact:G-ringStuff}
+	Let $A$ be a noetherian local ring.
+	\begin{alphanumerate}
+		\item $A$ is universally Japanese iff $A^\h$ is universally Japanese.
+		\item $A$ is a $G$-ring iff $A^\h$ is a $G$-ring. In this case $A^\sh$ is a $G$-ring as well.
+		\item If $A$ is excellent, then so is $A^\h$.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}
+	All but the second assertion of \itememph{b} are in \cite[(18.7)]{egaIV4}. Said second assertion is proved in \cite[\stackstag{07QR}]{stacks-project} or \cite[end of I.1]{kiehlfreitag}.
+\end{proof}
+
+\subsection{The Artin Approximation Property}
+\begin{deflem}\label{deflem:AAP}
+	A noetherian local ring has the \defemph{Artin approximation property} (AAP for short) if it satisfies the following equivalent conditions:
+	\begin{alphanumerate}
+		\item If $f_1,\dotsc,f_n\in A[X_1,\dotsc,X_m]$ and $\alpha\in \roof{A}^m$ satisfy $f_i(\alpha)=0$ for all $i=1,\dotsc,n$, then for every $s\in\IN$ there is an $a_s\in A^m$ such that $f_i(a_s)=0$ for all $i=1,\dotsc,n$ and such that the images of $a_s$ and $\alpha$ in $A/\mm^s\cong \roof{A}/\mm^s\roof{A}$ coincide.
+		\item If $F\colon \cat{Alg}_A\morphism\cat{Set}$ is a functor that comits with filtered colimits, and if $\phi\in F(\roof{A})$, then for every $s\in\IN$ there is an $f_s\in F(A)$ such that the images of $f$ and $\phi$ in $F(A/\mm^s)\cong F(\roof{A}/\mm^s\roof{A})$ coincide.
+	\end{alphanumerate}
+\end{deflem}
+\begin{proof}
+	We start with \itememph{a} $\Rightarrow$ \itememph{b}. Since $\roof{A}$ is a filtered colimit of its subalgebras $B$ of finite type over $A$, there is such a subalgebra $B\cong A[X_1,\dotsc,X_m]/(f_1,\dotsc,f_n)$ and an element $\phi'\in F(B)$ whose image in $F(\roof{A})$ equals $\phi$. The ring morphism $B\morphism A$ is given by an element $\alpha\in \roof{A}^m$ satisfying $f_i(\alpha)=0$ for $i=1,\dotsc,n$. By \itememph{a} there is an element $a_s\in A^m$ such that $f_i(a_s)=0$ and $a_s\equiv \alpha\mod \mm^s$. Let $\beta_s\colon B\morphism A$ be the morphism defined by $a$. Then $f=F(\beta_s)(\phi')\in F(A)$ satisfies the desired conditions.
+	
+	For \itememph{b} $\Rightarrow$ \itememph{a}, all we need to do is to consider the functor $F\colon \cat{Alg}_A\morphism\cat{Set}$ given by $F(B)=\left\{b\in B\st f_i(b)=0\text{ for all }i=1,\dotsc,n\right\}$. It's easy to check that this indeed commutes with filtered colimits.
+\end{proof}
+There is also a more general notion of having the AAP with respect to an ideal $I\subseteq A$. For more information, check out Guillaume Rond's paper \cite{Rond}. In the next few remarks we will derive some properties of rings having the AAP, construct some counterexamples, and finally link the AAP to the property of being excellent.
+\begin{rem}\label{rem:AAPproperties}
+	Let $A$ be a noetherian local ring with the AAP.
+	\begin{alphanumerate}
+		\item $A$ is henselian. To see this, use the separatedness of the $\mm$-adic topology on $A$ to deduce \cref{prop:henselian}\itememph{f} from \cref{deflem:AAP}\itememph{a} and the fact that $\roof{A}$ is already henselian.
+		\item If $A$ is reduced, then so is $\roof{A}$ (this follows immediately from \cref{deflem:AAP}\itememph{a}). Note that for $A^\h$ and $A^\sh$ this doesn't need the AAP, since it follows from \cref{fact:moarHenselization}\itememph{b} and Serre's criterion that a ring is reduced iff it is $R_0$ and $S_1$.
+		\item If $\roof{A}$ is a domain, then $A$ is algebraically closed in $\roof{A}$ (this is just straightforward from \cref{deflem:AAP}\itememph{a}). \emph{Yes}, \emph{algebraically} and not just integrally! The polynomials in question need not be monic.
+	\end{alphanumerate}
+\end{rem}
+\begin{exm}
+	Here are some examples of very well-behaved rings that yet do not have the AAP.
+	\begin{alphanumerate}
+		\item This counterexample is due to Nagata. Or maybe F.K.\ Schmidt. Whatever the case, you should have a look at \cite{BGR}. Let $k$ be a field of characteristic $p>0$ such that $[k:k^p]$ is infinite. Consider the ring
+		\begin{equation*}
+			A=\left\{\sum_{i=0}^\infty a_iT^i\st
+			\begin{tabular}{c}
+				$a_i\in k$, and the subfield of $k$ generated by $k^p$\\
+				and the $a_i$ is a finite field extension of $k^p$
+			\end{tabular}\right\}\,.
+		\end{equation*}
+		Then $\roof{A}=k\llbracket T\rrbracket$ and $\roof{A}^p\subseteq A$, so \cref{rem:AAPproperties}\itememph{c} fails. This shows that $A$ is a DVR without the AAP. In this case the normalization of $A$ in $K(f)$ fails to be a finitely generated $A$ module for all $f\in k\llbracket T\rrbracket\setminus A$, where $K$ denotes the quotient field of $A$ (note that $f$ is integral over $K$ as $f^q\in K$).
+		\item Let $x\in \IQ_p$ be transcendental over $\IQ$ and consider the ring
+		\begin{equation*}
+			A=\left\{f\in\IQ(T)\st f(x)\in\IZ_p\text{ and }f'(x)\in\IZ_p\right\}\,.
+		\end{equation*}
+		Then $A$ is a noetherian local ring and one has an isomorphism $\roof{A}\cong \IZ_p[T]/(T^2)$ sending $f\in \IQ[T]$ to the image of $f(x)+f'(x)T$. In this case, \cref{rem:AAPproperties}\itememph{b} fails, and the same holds after passing to $A^\h$ as $(A^\h)^\complete\cong \roof{A}$. Note that the normalization of $A$ in its field of quotients $\IQ(T)$ is $\left\{f\in\IQ(T)\st f(x)\in\IZ_p\right\}$, which is no finitely generated $A$-algebra.
+	\end{alphanumerate}
+\end{exm}
+\begin{rem}\label{rem:Popescu}\lecture[The Artin approximation theorem and its generalizations. The étale fundamental group of proper schemes over henselian noetherian local rings.]{2019-12-02}
+	\emph{Popescu's theorem} is a celebrated result, which implies that every henselian noetherian local $G$-ring has the AAP (see \cite{Rond} or \cite[\stackstag{07BW}]{stacks-project} for proofs). Conversely, if a noetherian local ring has the AAP, then it is excellent, as proved by Rotthaus in \cite{Rotthaus}. In particular, a henselian $G$-ring is excellent, hence universally catenary (in fact, the latter is not that hard to show directly).
+	
+	Artin's original paper shows that if $A$ is the henselization (at an arbitrary prime ideal) of an algebra of finite type over a field or an excellent DVR, then $A$ has the AAP (see \cite[Theorem~(1.10)]{artinApprox}). This result is known as \emph{Artin's approximation theorem}.
+\end{rem}
+\begin{cor}
+	Let $A$ be a local $G$-ring.
+	\begin{alphanumerate}
+		\item $A^\h$ is a domain iff $\roof{A}$ is a domain.
+		\item When $\roof{A}$ is a domain, $A^\h$ is the algebraic closure of $A$ in $\roof{A}$ (no, we are not talking about the integral closure here).
+	\end{alphanumerate}
+\end{cor}
+\begin{proof}
+	Recall that $\roof{A}\cong (A^\h)^\complete$ by \cref{eq:AhComplete}. Thus if $\roof{A}$ is a domain, then so is $A^\h$ by faithful flatness. Conversely, assume $A^\h$ is a domain. By \cref{fact:G-ringStuff}\itememph{b}, $A^\h$ is a $G$-ring again, hence it has the AAP by Popescu's theorem. Consider the functor $F\colon\cat{Alg}_{A^\h}\morphism\cat{Set}$ given by
+	\begin{equation*}
+		F(B)=\left\{(b,b')\in B^2\st bb'=0\right\}\,.
+	\end{equation*}
+	It's clear that $F$ commutes with filtered colimits: if $(b,b')\in F(B)$, where $B=\colimit_{\lambda\in\Lambda}B_\lambda$ is a filtered colimit, then $b$ and $b$ are already contained in some $B_\lambda$, and their product must vanish in some $B_\mu$ for $\lambda\leq \mu$. So the AAP is applicable. Now if $F(\roof{A})$ contains a non-trivial element $(\alpha,\alpha')$ with $\alpha,\alpha'\neq 0$, then by the AAP there are elements $(a_s,a_s')\in F(A^\h)$ satisfying $a_sa_s'=0$. Moreover, for sufficiently large $s$ we have $a_s,a_s'\neq 0$, contradicting the assumption that $A^\h$ is a domain. This proves \itememph{a}.
+	
+	For \itememph{b}, note that étale $A$-algebras are quasi-finite, hence algebraic over $A$ (albeit not necessarily integral). Hence $A^\h$ is algebraic over $A$. Since $A^\h$ has the AAP by Popescu's theorem, \cref{rem:AAPproperties}\itememph{c} shows that it is algebraically closed in $\roof{A}$. This proves \itememph{b}.
+\end{proof}
+The most important application of Artin's approximation theorem to étale cohomology is the following corollary.
+\begin{cor}\label{cor:pi1Proper}
+	Let $A$ be a henselian noetherian local ring with residue field $k$ and let $X$ be a proper scheme over $S=\Spec A$. Further let $S_0=\Spec k$ and $X_0=X\times_SS_0$. Then the functor
+	\begin{align*}
+		\left\{\text{finite étale $X$-schemes}\right\}&\isomorphism \left\{\text{finite étale $X_0$-schemes}\right\}\\
+		Y&\longmapsto Y_0=Y\times_XX_0
+	\end{align*}
+	is an equivalence of categories, and $\pi_0(X_0)\morphism\pi_0(X)$ is a bijection. Consequently, for all geometric points $\ov{x}$ of $X_0$ we have an isomorphism $\pi_1^\et(X_0,\ov{x})\isomorphism\pi_1^\et(X,\ov{x})$.
+\end{cor}
+\begin{rem}
+	\begin{alphanumerate}
+		\item A heuristic reason why the proof of \cref{cor:pi1Proper} is relatively complicated (in that it uses heavy machinery like Artin's approximation theorem) is the following. Assuming there is a suitable \enquote{étale homotopy theory}, we would look at the exact sequence
+		\begin{equation*}
+		\pi_2^\et(S,\ov{x})\morphism\pi_1^\et(X_0,\ov{x})\morphism\pi_1^\et(X,\ov{x})\morphism\pi_1^\et(S,\ov{x})\,,
+		\end{equation*}
+		so we would need to investigate $\pi_2^\et(S,\ov{x})$, whatever that may be. At least so much can be said: $\pi_2^\et$ is even worse than in Algebraic Topology.
+		\item A full proof of \cref{cor:pi1Proper} can be found in \cite[Arcata IV Prop.\:4.1]{sga4.5} or \cite[\stackstag{0A48}]{stacks-project}. In the case where the dimensions of the fibres of $X\morphism S$ are $\leq 1$, the use of the AAP may be bypassed; see \cite[Exposé~XIII Prop.\:2.1]{sga4.3}. Professor Franke does not know whether the AAP can be avoided in general.
+		\item \cref{cor:pi1Proper} is a vast generalization of \cref{prop:pi1Henselian}, which is in fact the special case $X=S$.
+	\end{alphanumerate}
+\end{rem}
+\begin{proof}[Proof of \cref{cor:pi1Proper}]
+	After filling in some details that Professor Franke (intentionally) left out, the proof has become quite long, so I decided to split it into five steps.
+	
+	\emph{Step~1.} We establish the assertion about connected components first. Recall that for a noetherian scheme $Y$, the set of connected components $\pi_0(Y)$ are encoded in $\Global(Y,\Oo_Y)$ as the \enquote{minimal} idempotents, i.e., those that do not divide any other idempotent. Let $X_n=X\times_S\Spec (A/\mm^{n+1})$ be the $n\ordinalth$ infinitesimal thickening of $X_0$. Using the baby case of Hensel's lemma for nilpotent ideals, we see that the idempotents of $\Global(X_0,\Oo_{X_0})$ are in canonical bijection with the idempotents of $\Global(X_n,\Oo_{X_n})$. By the theorem about formal functions, they are also in canonical bijection with the idempotents of
+	\begin{equation}\label{eq:GlobalGlobalGlobal}
+		\Global(X,\Oo_X)\otimes_A\roof{A}\cong \Global(X,\Oo_X)^\complete\cong \limit_{n\in\IN}\Global(X_n,\Oo_{X_n})\,.\tag{$*$}
+	\end{equation}
+	Since $X$ is proper over $S$, the ring of global sections $B=\Global(X,\Oo_X)$ is a finite $A$-algebra, hence a finite product of finite local $A$-algebras by \cref{prop:henselian}\itememph{c}, and its idempotents are in canonical bijection with the idempotents of $B/\mm B$. Since $\roof{A}$ is still henselian, ring $\roof{B}\cong B\otimes_A\roof{A}$ is likewise a product of local $\roof{A}$-algebras, and its idempotents of $\roof{B}$ are in canonical bijection with those of $\roof{B}/\mm\roof{B}\cong B/\mm B$. Now \cref{eq:GlobalGlobalGlobal} and the arguments before conclude the proof that $\pi_0(X_0)\isomorphism\pi_0(X)$ is an isomorphism.
+	
+	\emph{Step~2.} To show that the functor in question is fully faithful we would like to invoke \cref{lem:pi0}. Thus we only need to check that for finite étale $X$-schemes $Y$ the map $\pi_0(Y_0)\morphism\pi_0(Y)$ is bijective. But such a $Y$ is again proper over $S$, so the above argument can be applied again.
+	
+	\emph{Step~3.} For essential surjectivity, let $Y_0\morphism X_0$ be finite étale. By \cref{prop:thickeningEtaleEquivalence}, there are unique (up to unique isomorphism) finite étale $X_n$-schemes $Y_n$ such that $Y_n\times_{X_n}X_0\cong Y_0$. Uniqueness moreover tells us $Y_n\times_{X_n}X_{n-1}\cong Y_{n-1}$. Thus, $Y_n\cong \SPEC\Aa_n$, where $\Aa_n$ is a flat coherent $\Oo_{X_n}$-algebra, and $\Aa_n|_{X_{n-1}}\cong \Aa_{n-1}$. By Grothendieck's famous \emph{existence theorem} (see \cite[Théorème~(5.1.4)]{egaIII} for the concrete statement) the sequence $(\Aa_n)_{n\in\IN}$ gives rise to a unique coherent algebra $\roof{\Aa}$ on $\roof{X}=X\times_S\Spec \roof{A}$ satisfying $\Aa_n\cong \roof{\Aa}|_{X_n}$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] In our case, the coherent algebra $\roof{\Aa}$ is flat (hence locally free) and $\roof{Y}=\SPEC\roof{\Aa}$ is a finite étale $\roof{X}$-scheme.
+	\end{alphanumerate}
+	For the proof of flatness, it suffices to see that tensoring with $\roof{\Aa}$ preserves monomorphisms of coherent modules on $\roof{X}$. So let $\Ff\monomorphism \Gg$ be a monomorphism of coherent modules over $\roof{X}$ and consider $\phi\colon \Ff\otimes\roof{\Aa}\morphism \Gg\otimes\roof{\Aa}$. Since the $\Aa_n$ are flat over $X_n$ by assumption, pulling back to $X_n$ shows
+	\begin{equation*}
+		\ker\phi\subseteq\bigcap_{n\geq 1}\mm^n(\Ff\otimes\roof{\Aa})
+	\end{equation*}
+	By Krull's intersection theorem, this implies that the support $Z$ of $\ker\phi$ doesn't intersect the closed subset of $\roof{X}$ defined by $X_0$. But $\roof{X}\morphism \Spec\roof{A}$ is proper, so the image of $Z$ is closed because $Z$ is closed, hence the image contains the unique closed point $\mm\in\Spec \roof{A}$ unless $Z$ is empty. As $Z$ doesn't intersect $X_0$, this shows that $Z$ must be indeed empty. To get that $\roof{Y}$ is étale, we must show (\cref{prop:finiteEtale}) that the trace induces a perfect pairing
+	\begin{equation*}
+		\Tr_{\roof{\Aa}/\roof{X}}\colon \roof{\Aa}\times \roof{\Aa}\morphism\Oo_{\roof{X}}\,.
+	\end{equation*}
+	Knowing that $\roof{\Aa}$ is a vector bundle on $\roof{X}$, we may apply a similar argument as above to the kernel and cokernel of the induced map $\roof{\Aa}\morphism\Hhom_{\roof{X}}(\roof{\Aa},\Oo_{\roof{X}})$ to see that this is indeed an isomorphism. This shows \itememph{\boxtimes}.
+	
+	\emph{Step~4.} In the case where $A$ is complete, $X=\roof{X}$ and the proof of essential surjectivity is finished. Otherwise we must find a way to \enquote{descend} $\roof{Y}$ to a finite étale $X$-scheme $Y$. If $A$ already has the AAP (i.e., if $A$ is a $G$-ring by Popescu's theorem, see \cref{rem:Popescu}), this is easily done: consider the functor $F\colon \cat{Alg}_A\morphism\cat{Set}$ defined by
+	\begin{equation*}
+		F(B)=\left\{\text{isomorphism classes of étale coverings of $X_B=X\times_S\Spec B$}\right\}\,.
+	\end{equation*}
+	 If $F$ would commute with filtered colimits, then we could apply the AAP in the form of \cref{deflem:AAP}\itememph{b}, which straight up provides the desired étale covering of $X$. Proving that $F$ indeed commutes with filtered colimits is relatively easy but quite technical, so we give only a sketch: suppose we have $B=\colimit_{\lambda\in\Lambda}B_\lambda$ and $\Ss$ is a flat coherent $\Oo_{X_B}$-algebra such that $\SPEC\Ss\morphism X_B$ is an étale covering. Then $\Ss$ is a vector bundle, so by \cref{par:descendingFinPres}\itememph{d} it is the pullback of some vector bundle $\Ss_\lambda$ on $X_\lambda$. Choose finitely many local generators. Taking $\mu\geq \lambda$ large enough, we can achieve that the finitely many products (taken in $\Ss$) of these generators are already contained in the pullback $\Ss_\mu$ to $X_\mu$ and that $\Ss_\mu$ contains a global section that acts as a unit on all the chosen local generators. Then $\Ss_\mu$ has already an $\Oo_{X_\mu}$-algebra structure compatible with that of $\Ss$. Applying similar considerations to the kernel and cokernel of $\Ss\morphism\Hhom_{X_B}(\Ss,\Oo_{X_B})$ induced by the trace pairing, we see that these already vanish for $\Ss_\mu$ if $\mu$ is chosen large enough. So every étale covering of $X_B$ comes from an étale covering of some $X_\mu$. By similar arguments, every isomorphism between étale coverings of $X_B$ already exists on some \enquote{finite stage} (i.e., comes from some $X_\mu$). This more or less proves commutativity with filtered colimits.
+	 
+	 \emph{Step~5.} To remove the assumption that $A$ has the AAP, one applies a similar reduction as in our (sketched) proof that $F$ commutes with filtered colimits. Write $A=\colimit A_\alpha$ as a filtered colimit over its subalgebras $A_\alpha\subseteq A$ which are of finite type over $\IZ$. Using \cref{par:descendingFinPres}\itememph{e}, both $X\morphism S$ and $Y_0\morphism X_0$ may be written as limits over $X_\alpha\morphism S_\alpha$ and $(Y_\alpha)_0\morphism (X_\alpha)_0$ if $\alpha$ is large enough. By \cref{par:descendingFinPres}\itememph{e} and \itememph{f}, we may chose $\alpha$ even larger in order to achieve that both $X_\alpha\morphism S_\alpha$ and $(Y_\alpha)_0\morphism (X_\alpha)_0$ are proper resp.\ finite étale. Put $X'=X_\alpha$, $A'=A_\alpha$ and so one. Now have $A'$ of finite type over $\IZ$, together with a proper morphism $X'\morphism S'=\Spec A'$ and a finite étale morphism $Y_0'\morphism X_0'$ such that our original situation is the base change of our new situation along $S\morphism S'$. Let $\pp=\mm\cap A'$ and let $A''=(A'_{\pp})^\h$ be the henselization of $A'$  with respect to its prime ideal $\pp$. Define $X''$, $S''$ etc.\ accordingly. Since $A'_{\pp}$ is an algebra of essentially finite type over $\IQ$ or $\IZ_{(p)}$ (depending on whether $\mm\cap \IZ=(0)$ or $\mm\cap \IZ=(p)$) and $A''$ is its henselization, we see that $A''$ has the AAP by Artin's approximation theorem \cite[Theorem~(1.10)]{artinApprox}. So the argument from Step~4 is applicable and shows that $Y_0''\morphism X_0''$ comes from some finite étale morphism $Y''\morphism X''$. Since $A'\morphism A$ factors through $A''$ by naturality of henselization, we may base change $Y''$ along $S\morphism S''$ back to get $Y=Y''\times_{S''}S\morphism X$, which is an étale covering satisfying $Y\times_XX_0\cong Y_0$, as required.
+\end{proof}
+\begin{cor}\label{cor:PicEpi}\lecture[Line bundles on proper curves over henselian noetherian local rings. Pushforward and pullback for étale sheaves.]{2019-12-06}
+	Let $A$ be a henselian noetherian local ring with residue field $k$. Let $S=\Spec A$, $S_0=\Spec k$, and $X\morphism S$ a proper morphism such that the dimension of $X_0=X\times_SS_0$ is $\leq 1$. Then the canonical morphism
+	\begin{equation*}
+		\Pic(X)\epimorphism \Pic(X_0)
+	\end{equation*}
+	(given by pullback) is surjective.
+\end{cor}
+\begin{rem}
+	\begin{alphanumerate}
+		\item Here, $\Pic(X)$ denotes the set of isomorphism classes of line bundles on $X$, equipped with its canonical group structure given by the tensor product.
+		\item Without the restriction that $\dim X_0\leq 1$, the assertion is wrong. For instance, $X\morphism S$ could be derived from $\xi\colon \XX\morphism \SS$, a universal surface over some moduli space of algebraic surfaces. Then the Hodge structure on $(R^2\xi_*\IZ)_s$ vanishes on complex points $s\in\SS(\IC)$, and if $S=\Spec \Oo_{\SS,s_0}^\h$ is the spectrum of the henselization of the local ring at some $s_0\in\SS$, one may be able to choose $c=c_1(\Ll_0)\in (R^2\xi_*\IZ)_{s_0}$ in such a way that it is a Hodge cycle at $s_0$ but there is no neighbourhood $U$ of $s_0$ such that $c$ is a Hodge cycle in $(R^2\xi_*\IZ)_s$ for $s\in U$. In that case, $\Ll_0$ is not in the image of $\Pic(X)\morphism\Pic(X_0)$.
+		\item See \cite[Arcata~IV Prop.\:4.1]{sga4.5} for a proof that doesn't use the AAP and works already for morphisms $X\morphism S$ that are only separated and satisfy $\dim X_0\leq 1$.
+	\end{alphanumerate}
+\end{rem}
+\begin{proof}[Proof of \cref{cor:PicEpi}]
+	Let $\roof{S}=\Spec \roof{A}$ and $\roof{X}=X\times_S\roof{S}$. Recall that we may identify $\Pic(Y)\cong H^1(Y_\Zar,\Oo_Y^\times)$ for all schemes $Y$.\footnote{Professor Franke required $Y$ to be quasi-compact and separated, so that \v Cech cohomology and sheaf cohomology coincide. This restriction doesn't make sense for two reasons: \itememph{1} even on quasi-compact separated schemes, $H^*$ and $\check{H}^*$ coincide only for quasi-coherent sheaves, which $\Oo_Y^\times$ is not; \itememph{2} however, $H^1$ and $\check{H}^1$ always coincide, on arbitrary spaces and for arbitrary sheaves!} Let $S_n=\Spec (A/\mm^{n+1})$ and $X_n=X\times_SS_n$ be the $n\ordinalth$ infinitesimal thickening of $X_0$. Topologically the $X_n$ all coincide; algebraically, for all $n\geq 1$ there is a coherent ideal $\Jj_n\subseteq \Oo_{X_n}$ defining $X_{n-1}$ as a closed subscheme of $X_n$. We have a short exact sequence
+	\begin{equation*}
+		1\morphism 1+\Jj_n\morphism \Oo_{X_n}^\times\morphism \Oo_{X_{n-1}}^\times\morphism 1\,.
+	\end{equation*}
+	As $\Jj_n^2=0$, the sheaf $1+\Jj_n$ (as a sheaf of abelian groups under multiplication) is isomorphic to $\Jj_n$ (as a sheaf of abelian groups via addition). Since sheaf cohomology only cares for the underlying topological space and the isomorphism class of the sheaf, we thus get an exact sequence
+	\begin{equation*}
+		\Pic(X_n)\morphism\Pic(X_{n-1})\morphism H^2(X_0,\Jj_n)
+	\end{equation*}
+	as part of the long exact sheaf cohomology sequence. Since $\dim X_0\leq 1$, Grothendieck's theorem on cohomological dimension shows $H^2(X_0,\Jj_n)=0$. Hence $\Pic(X_n)\morphism \Pic(X_{n-1})$ is surjective. Therefore, for every line bundle $\Ll_0$ on $X_0$ there is a sequence $(\Ll_n)_{n\in\IN}$ of line bundles $\Ll_n$ on $X_n$ satisfying $\Ll_n|_{X_{n-1}}\cong \Ll_{n-1}$. Using Grothendieck's existence theorem \cite[Théorème~(5.1.4)]{egaIII} we see that there is a line bundle $\roof{\Ll}$ on $\roof{X}$ with compatible isomorphisms $\roof{\Ll}|_{X_n}\cong \Ll_n$ (a priori $\roof{\Ll}$ is only coherent, but an argument as in Step~3 of the proof of \cref{cor:pi1Proper} shows that $\roof{\Ll}$ is automatically a line bundle).
+	
+	This immediately settles the case where $A$ is already complete. The case where $A$ has the AAP is only slightly harder: consider the functor $F\colon\cat{Alg}_A\morphism\cat{Set}$ given by
+	\begin{equation*}
+		F(B)=\Pic(X\times_S\Spec B)\,.
+	\end{equation*}
+	By a similar technical argument as in the proof of \cref{cor:pi1Proper}, $F$ commutes with filtered colimits. Therefore the AAP is applicable and we are done. For the general case we construct $A'$ and $A''$ as above, where $A'\subseteq A$ is a finite type $\IZ$-algebra and $A''$ its henselization at $\pp=\mm\cap A'$. Then $A''$ has the AAP by Artin's approximation theorem, so the previous argument applies, and to finish the proof we just base change back to $A$.
+\end{proof}
+\section{Direct and Inverse Images of Étale Sheaves}
+\begin{con}\label{con:f_*}
+	Let $f\colon X\morphism Y$ be a morphism of schemes. For any presheaf $\Ff$ on $X_\et$, let $f_*\Ff$ be the presheaf on $Y_\et$ defined by
+	\begin{equation*}
+		\Global(V,f_*\Ff)=\Global(X\times_YV,\Ff)
+	\end{equation*}
+	for étale $Y$-schemes $V$. This $f_*\Ff$ is called the \defemph{direct image} or \defemph{pushforward} of $\Ff$ under $f$, and it's easy to check that $f_*\colon \cat{PSh}(X_\et)\morphism \cat{PSh}(Y_\et)$ defines a functor between the presheaf categories.
+	
+	Note that $f_*$ restricts to a functor $f_*\colon \cat{Sh}(X_\et)\morphism\cat{Sh}(Y_\et)$. Indeed, let $\Ff$ be a sheaf, $V\morphism Y$ an étale morphism and $\{V_i\morphism V\}_{i\in I}$ an étale cover. We must show that
+	\begin{equation*}
+		\Global(V,f_*\Ff)\morphism\prod_{i\in I}\Global(V_i,f_*\Ff)\doublemorphism[p_1^*][p_2^*]\prod_{i,j\in I}\Global(V_i\times_VV_j,f_*\Ff)
+	\end{equation*}
+	is an equalizer diagram (I know, \cref{def:sheaf}\itememph{b} has a somewhat different condition, but we've seen---more or less---in the proof of \cref{prop:fpqcSheaf} that the sheaf axiom in the covering sieves formalism is equivalent to the above; also this is where covering families really become easier). Observe that $X\times_YV\morphism X$ is étale and $\{X\times_YV_i\morphism X\times_YV\}_{i\in I}$ is an étale cover again, because being étale and being jointly surjective is preserved under base change. Now plugging in the definition, the above diagram becomes a similar diagram for $\Ff$ and the chosen étale cover of $X\times_YV$, hence it is indeed an equalizer diagram by the sheaf axiom for $\Ff$.
+\end{con}
+\begin{rem}
+	Pushforward of (pre)sheaves on larger étale sites might be studied in the same way. However, if you insist on working in a noetherian setting (as we do in the lecture), you should take some care to make sure that $X\times_YV$ stays (locally) noetherian.
+\end{rem}
+\begin{exm}
+	If $\ov{x}\colon \Spec \kappa(x)\morphism X$ is a geometric point of $X$ and $M$ is any set, there is a constant sheaf $M$ (this is some abuse of notation) on $\Spec \kappa(\ov{x})_\et$ given by the sheafification of the constant $M$-valued presheaf. But $M$ can is also explicitly describable: since $\kappa(\ov{x})$ is separably closed, any étale $\kappa(\ov{x})$-scheme $U$ is just a disjoint union of copies of $\Spec \kappa(\ov{x})$. Thus, 
+	\begin{equation*}
+		\Global(U,M)=M^{\#U}\,.
+	\end{equation*}
+	Now $\ov{x}_*M$ is a \enquote{skyscraper sheaf} on $X_\et$. That is, for any étale $X$-scheme $U$ we have
+	\begin{equation*}
+		\Global(U,\ov{x}_*M)=\prod_{\ov{u}}M\,,
+	\end{equation*}
+	where the product is taken over all geometric points $\ov{u}\colon \Spec \kappa(\ov{x})\morphism U$ lifting $\ov{x}$. One easily checks that $\Ff\mapsto\Ff_{\ov{x}}$ as a functor $\cat{Sh}(X_\et) \morphism\cat{Set}$ is left-adjoint to $M\mapsto \ov{x}_*M$ as a functor $\cat{Set}\morphism\cat{Sh}(X_\et)$.
+\end{exm}
+\begin{con}\label{con:f^*}
+	In the situation of \cref{con:f_*}, let $\Gg$ be a presheaf on $Y_\et$. Define a presheaf $f^\sharp\Ff$ on $X_\et$ by
+	\begin{equation*}
+		\Global(U,f^\sharp\Gg)=\colimit_{V\in\Cc_U}\Global(V,\Ff)\,,
+	\end{equation*}
+	where the colimit is taken over the following category $\Cc_U$: the objects of $\Cc_U$ are commutative diagrams of the form
+	\begin{equation*}
+		\begin{tikzcd}
+			U\rar[dotted]\dar & V\dar[dotted]\\
+			X\rar["f"] & Y
+		\end{tikzcd}\,,
+	\end{equation*}
+	where $V\morphism Y$ is étale. The morphisms of $\Cc_U$ are morphisms $V\morphism V'$ of étale $Y$-schemes such that
+	\begin{equation*}
+		\begin{tikzcd}
+			& V\dar\\
+			U \urar\rar & V'
+		\end{tikzcd}
+	\end{equation*}
+	commutes. If $U\morphism U'$ is a morphism of étale $X$-schemes, we have a functor $\Cc_{U'}\morphism\Cc_U$ sending any $(U'\morphism V\morphism Y)\in \Cc_{U'}$ to its composition with $U\morphism U'$. By the universal property of colimits, this gives a canonical morphism $\Global(U',f^\sharp \Gg)\morphism\Global(U,f^\sharp \Ff)$, turning $f^\sharp\Gg$ indeed into a presheaf on $X_\et$.
+	
+	In case $\Gg$ is already a sheaf, let $f^*\Gg=(f^\sharp\Gg)^\Sh$ be the sheafification of $f^\sharp\Gg$. This sheaf is called the \defemph{inverse image} or \defemph{pullback} of $\Gg$ under $f$.
+\end{con}
+\begin{fact}\label{fact:CUcofiltered}
+	The category $\Cc_U$ is cofiltered. Therefore, the colimit defining $\Global(U,f^\sharp\Gg)$ is indeed a filtered colimit.
+\end{fact}
+\begin{proof}
+	The arguments from the proof of \cref{fact:filtered} can be copied verbatim.
+\end{proof}
+\begin{rem}\label{rem:f^*}
+	\begin{alphanumerate}
+		\item Our construction of stalks is a special case of \cref{con:f^*}: if $\ov{x}\colon \Spec\kappa(\ov{x})\morphism X$ is a geometric point of $X$, then there is a canonical isomorphism $\Global(\Spec \kappa(\ov{x}),\ov{x}^\sharp\Ff)\cong \Ff_{\ov{x}}$.
+		\item From the universal property of colimits, one derives a functorial bijection
+		\begin{equation*}
+			\Hom_{\cat{PSh}(X_\et)}(f^\sharp\Gg,\Ff)\cong \Hom_{\cat{PSh}(Y_\et)}(\Gg,f_*\Ff)
+		\end{equation*}
+		for presheaves $\Ff$ and $\Gg$. In other words, $f^\sharp\colon \cat{PSh}(Y_\et)\doublelrmorphism\cat{PSh}(X_\et)\noloc f_*$ is an adjoint pair of functors. In particular, there is a canonical isomorphism $g^\sharp f^\sharp\cong (fg)^\sharp$. Indeed, this is a formal consequence of the fact that $f_*g_*\cong (fg)_*$, which is easily verified.
+		\item Since $f_*$ restricts to a functor $\cat{Sh}(X_\et)\morphism\cat{Sh}(Y_\et)$ and sheafification is left-adjoint to the forgetful functor from sheaves to presheaves, it's a formal consequence that
+		\begin{equation*}
+			\Hom_{\cat{Sh}(X_\et)}(f^*\Gg,\Ff)\cong \Hom_{\cat{Sh}(Y_\et)}(\Gg,f_*\Ff)
+		\end{equation*}
+		for sheaves $\Ff$ and $\Gg$, i.e., $f^*\colon \cat{Sh}(Y_\et)\doublelrmorphism\cat{Sh}(X_\et)\noloc f_*$ are adjoint functors as well. As in \itememph{b}, this formally implies that $g^*f^*\cong (fg)^*$ canonically. Thus, we have isomorphisms
+		\begin{equation*}
+			(f^\sharp \Gg)_{\ov{x}}\cong \Gg_{f(\ov{x})}\cong (f^*\Gg)_{\ov{x}}
+		\end{equation*}
+		for all geometric points $\ov{x}$ of $X$. Here $f(\ov{x})$ denotes the composition $f\circ \ov{x}\colon \Spec\kappa(\ov{x})\morphism Y$.
+		\item For those of you who get off on coherence conditions, here is an explicit description of $f^*\Gg$: if $U\morphism X$ is étale, we have
+		\begin{equation*}
+			\Gamma(U,f^*\Gg)=\left\{(g_{\ov{u}})\in\prod_{\ov{u}}\Gg_{f(\ov{u})}\st(g_{\ov{u}})\text{ fulfills the coherence condition\texttrademark}\right\}.
+		\end{equation*}
+		Herein, the coherence condition\texttrademark\ is the condition that the sieve of all étale morphisms $j\colon V\morphism U$ for which there exists an étale morphism $W\morphism Y$ fitting into a commutative diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				V\dar["j"']\ar[rr, "\phi"] & & W\dar\\
+				U \rar& X\rar["f"] & Y 
+			\end{tikzcd}\,,
+		\end{equation*}
+		together with an element $g_V\in \Global(W,\Gg)$ with the property that $g_{j(\ov{v})}$ equals the image of $g_V$ in $\Gg_{\phi(\ov{v})}$ for all geometric points $\ov{v}$ of $V$, is a covering sieve. In particular, for all étale $U\morphism X$, the canonical morphism
+		\begin{equation*}
+		\Global(U,f^*\Gg)\monomorphism \prod_{\ov{u}}\Gg_{f(\ov{u})}
+		\end{equation*}
+		is injective, with $\ov{u}$ running over all geometric points of $U$.
+		\item If $g\in\Global(Y,\Gg)$, then the element $(\text{image of $g$ in $\Gg_{f(\ov{u})}$})_{\ov{u}}\in\prod_{\ov{u}}\Gg_{f(\ov{u})}$ satisfies the coherence condition from \itememph{e}. This particular element will be denoted $f^*(g)\in \Global(X,f^*\Gg)$. Another way to think of $f^*(g)$ is as the image of $g$ in the colimit defining $\Global(X,f^\sharp\Gg)$ (see \cref{con:f^*}), which is then mapped to an element of $\Global(X,f^*\Gg)$ via the sheafification map $f^\sharp\Gg\morphism f^*\Gg$.
+		\item In case $f\colon X\morphism Y$ is étale itself, $f^*\Gg$ and $f^*(g)$ are just the restrictions to $X$.
+	\end{alphanumerate}
+\end{rem}
+\begin{prop}\label{prop:etaleInverseLimit}\lecture[Interlude on inverse limits of schemes. Étale sheaves defined over an inverse limit.]{2019-12-09}
+	Let $(\xi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha)_{\alpha\leq \beta}$ be an inverse system of affine morphisms between noetherian (in particular, quasi-compact and quasi-separated) schemes. Put $X=\limit X_\alpha$, with structure morphisms $\xi_\alpha\colon X\morphism X_\alpha$. For some fixed $\alpha$, let $\Ff_\alpha$ be a sheaf on $(X_\alpha)_\et$ and $\Ff$ resp.\ $\Ff_\beta$ for $\beta\geq \alpha$ be its inverse images on $X$ resp.\ $X_\beta$. Then
+	\begin{align*}
+		\colimit_{\beta\geq \alpha}\Global(X_\beta,\Ff_\beta)&\isomorphism \Global(X,\Ff)\\
+		\big(\text{image of }f_\beta\in\Global(X_\beta,\Ff_\beta)\big)&\longmapsto \xi_\beta^*(f_\beta)
+	\end{align*}
+	is a bijection. Here we use notation from using notation from \cref{rem:f^*}\itememph{e}.
+\end{prop}
+\begin{proof}
+	\emph{Step~1.} We show injectivity. Let $f\in\Global(X_\beta,\Ff_\beta)$ and $f\in \Global(X_{\beta'},\Ff_{\beta'})$ have the same image in $\Global(X,\Ff)$ (note that we can't just check for an element with image $0$ since we want to prove the assertion for sheaves of sets actually). We must show that there is some $\gamma\geq \beta,\beta'$ such that the images of $f$ and $f'$ in $\Global(X_\gamma,\Ff_\gamma)$ already coincide. Replacing $f$ and $f'$ by their images in $\Global(X_{\beta''},\Ff_{\beta''})$ for some $\beta''\geq \beta,\beta'$, we may assume $\beta=\beta'$. Let $\ov{x}$ be a geometric point of $X_\beta$ whose underlying point $x$ is in the image of $|X|\morphism |X_\beta|$. Then there is a geometric point $\ov{y}$ of $X$ such that
+	\begin{equation*}
+		\begin{tikzcd}
+			\Spec \kappa(y)\dar\rar["\ov{y}"] & X\dar["\xi_\beta"]\\
+			\Spec \kappa(x) \rar["\ov{x}"] & X_\beta
+		\end{tikzcd} 
+	\end{equation*}
+	commutes. Hence the images of $f$ and $f'$ in $(\Ff_\beta)_{\ov{x}}\cong \Ff_{\xi_\beta(\ov{y})}\cong \Ff_{\ov{y}}$ coincide, as they are identified with the image of $\xi_\beta^*(f)=\xi_\beta^*(f')$ in $\Ff_{\ov{y}}$. Thus, by definition of the stalk $(\Ff_\beta)_{\ov{x}}$ as a filtered colimit, there is an étale neighbourhood $V\morphism X_\beta$ of $\ov{x}$ such that $f|_V=f'|_V$. The image $U_x$ of $V\morphism X_\beta$ is open in $X_\beta$ by \cref{prop:ppfOpen}, and satisfies $f|_{U_x}=f'|_{U_x}$ because $V\morphism U_x$ is surjective, hence generates an étale covering sieve of $U_x$. Let $U\subseteq X_\beta$ be the union of all $U_x$ constructed in that fashion. Then the (Zariski-)sheaf axiom shows $f|_U=f'|_U$. Moreover $\xi_\beta\colon X\morphism X_\beta$ factors over $U$. Let $Z=X_\beta\setminus U$ equipped with any closed subscheme structure. Combining \itememph{a} and \itememph{b} from \cref{par:schemesInverseLimit} we see that $Z\times_{X_\beta}X\cong \limit_{\gamma\geq \beta} (Z\times_{X_\beta}X_\gamma)$ is empty, hence some $Z\times_{X_\beta}X_\gamma$ must be empty, so $X_\gamma\morphism X_\beta$ already factors through $U$. Then $f$ and $f'$ have the same image in $\Global(X_\gamma,\Ff_\gamma)$, as required.
+	
+	\emph{Step~2.} We show surjectivity. Let $f\in\Global(X,\Ff)$ be given. By construction of $\Ff$ as a pullback of $\Ff_\alpha$, there is
+	\begin{numerate}
+		\item an étale cover $\{U^{(i)}\morphism X\}_{i\in I}$, in which $I$ may be assumed to be finite since $X$ is quasi-compact by \cref{par:schemesInverseLimit}\itememph{b},
+		\item together with étale morphisms $W^{(i)}\morphism X_\alpha$ that fit into a commutative diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				U^{(i)}\dar\rar & X\dar["\xi_\alpha"]\\
+				W^{(i)}\rar & X_\alpha
+			\end{tikzcd}\,,
+		\end{equation*}
+		\item together with elements $f^{(i)}\in \Global(W^{(i)},\Ff_\alpha)$,
+	\end{numerate}
+	such that $f|_{U^{(i)}}$ is the inverse image of $f^{(i)}$ under the map explained in \cref{rem:f^*}\itememph{e}. By \cref{par:descendingFinPres}\itememph{e}, all $U^{(i)}\morphism X$ are base changes of étale morphisms $U^{(i)}_{\beta_i}\morphism X_{\beta_i}$. Since there are only finitely many $i$, we may replace the $\beta_i$ by some $\beta\geq\beta_i$ for all $i\in I$. We are also free to increase $\alpha$. Thus we may assume all $U^{(i)}\morphism X$ are base changes of étale morphisms $U_\alpha^{(i)}\morphism X_\alpha$ with respect to $\xi_\alpha\colon X\morphism X_\alpha$. Applying a similar argument to the morphisms $U^{(i)}\morphism W^{(i)}\times_{X_\alpha}X$ obtained from the above diagram (observe that these morphisms are étale by \cref{fact:etaleProperties}\itememph{b}), we may assume that these already come from étale morphisms $U_\alpha^{(i)}\morphism W^{(i)}\times_{X_\alpha}X_\alpha\cong W^{(i)}$. Then $W^{(i)}$ may be replaced by $U_\alpha^{(i)}$ and the $f^{(i)}$ with their restrictions $f^{(i)}|_{U_\alpha^{(i)}}$ accordingly, so that we may finally assume
+	\begin{equation*}
+		U^{(i)}=W^{(i)}\times_{X_\alpha}X\,,
+	\end{equation*}
+	and the morphism $U^{(i)}\morphism W^{(i)}$ from the above diagram is just the projection to the first factor.
+	
+	For $i,j\in I$, let $p_1$ and $p_2$ be the projections from $W^{(i)}\times_{X_\alpha}W^{(j)}$ to its two factors. Then the preimages of $p_1^*(f^{(i)}),p_2^*(f^{(j)})\in \Global(W^{(i)}\times_{X_\alpha}W^{(j)},\Ff_\alpha)$ in the set $\Global(U^{(i)}\times_XU^{(j)},\Ff)$ coincide as they are both equal to the restriction of $f\in\Global(X,\Ff)$ along the étale morphism $U^{(i)}\times_XU^{(j)}\morphism X$. Applying the injectivity assertion that was proved in Step~1 with $X_\alpha$ replaced by $W^{(i)}\times_{X_\alpha}W^{(j)}$, we get some $\beta_{i,j}\geq \alpha$ with the property that $p_1^*(f^{(i)})$ and $p_2^*(f^{(j)})$ already coincide in $\Global(X_{\beta_{i,j}}\times_{X_\alpha}W^{(i)}\times_{X_\alpha}W^{(j)},\Ff_{\beta_{i,j}})$. Again, increasing $\alpha$  sufficiently much, we may assume without restriction that $\alpha=\beta_{i,j}$ for all $i,j\in I$. Thus $p_1^*(f^{(i)})=p_2^*(f^{(j)})$ for all $i,j\in I$, i.e., the elements $f^{(i)}\in \Global (W^{(i)},\Ff_\alpha)$ and $f^{(j)}\in \Global (W^{(j)},\Ff_\alpha)$ become equal upon restriction to $W^{(i)}\times_{X_\alpha}W^{(j)}$. Thus, by the sheaf axiom the elements $f^{(i)}$ may be pasted together to an element $f_\alpha\in\Global(U,\Ff_\alpha)$, where $U$ is the union over the images of $W^{(i)}\morphism X_\alpha$ (so $U$ is open by \cref{prop:ppfOpen}). Clearly $\xi_\alpha\colon X\morphism X_\alpha$ factors over $U$, hence so does $\xi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha$ for some $\beta\geq \alpha$ by the argument from Step~1. Now the preimage $f_\beta=\xi_{\beta,\alpha}^*(f_\alpha)$ is an element of $\Global(X_\beta,\Ff_\beta)$, and it maps to $f$ by construction. This shows surjectivity.
+\end{proof}
+\begin{rem}\lecture[Pushforward and pullback in the pro-étale topology.]{2019-12-13}
+	For the sake of simplicity, we have formulated \cref{prop:etaleInverseLimit} for a partially ordered indexing set, but it remains valid for arbitrary cofiltered indexing categories $\Ii$ (in fact, we remarked in \cref{sec:inverseLimits} that these two notions are more or less interchangeable). In this case, the set $\left\{\beta\st \beta\geq \alpha\right\}$ needs to be replaced by the \defemph{comma category} $\Ii/\alpha$ over $\alpha$.
+\end{rem}
+\begin{cor}\label{cor:(f_*F)_y}
+	Let $f\colon X\morphism Y$ be a morphism of schemes and $\ov{y}$ be a geometric point of $Y$. Put $X_{\ov{y}}=X\times_Y\Spec\Oo_{Y_\et,\ov{y}}$. Then
+	\begin{equation*}
+		(f_*\Ff)_{\ov{y}}\cong \Global(X_{\ov{y}},\Ff)
+	\end{equation*}
+	canonically. Here $\Global(X_{\ov{y}},\Ff)$ is abuse of notation for $\Global(X_{\ov{y}},p_1^*\Ff)$, where $p_1\colon X_{\ov{y}}\morphism X$ denotes the projection to the first factor.
+\end{cor}
+\begin{proof}
+	By \cref{prop:henselization}\itememph{g} and the construction \cref{eq:AhColim2} in its proof, we can write $\Oo_{Y_\et,\ov{y}}\cong \Oo_{Y,y}^\sh\cong \colimit_{(V,\ov{v})}\Global(V,\Oo_V)$, where $(V,\ov{v})$ ranges through the affine étale neighbourhoods of the geometric point $\ov{y}$. Thus $X_{\ov{y}}\cong \limit_{(V,\ov{v})}X\times_YV$. Applying \cref{prop:etaleInverseLimit} hence gives
+	\begin{equation*}
+		\Global(X_{\ov{y}},\Ff)\cong \colimit_{(V,\ov{v})}\Global(X\times_YV,\Ff)\cong \colimit_{(V,\ov{v})}\Global(V,f_*\Ff)\,.
+	\end{equation*}
+	The colimit on the right-hand side is precisely $(f_*\Ff)_{\ov{y}}$ (up to an easy cofinality argument to amend the fact that we only consider affine étale neighbourhoods here).
+\end{proof}
+The following \cref{fact:StrictlyHenselianTrivialCoho} should have been given earlier, but Professor Franke forgot about it. It becomes particularly interesting by the fact that the functor $(-)_x$ of taking stalks at a geometric point is exact, whereas taking global sections $\Global(X,-)$ is not. So \cref{fact:StrictlyHenselianTrivialCoho} essentially says that strictly henselian rings have trivial higher étale cohomology!
+\begin{fact}\label{fact:StrictlyHenselianTrivialCoho}
+	Let $X=\Spec A$ where $A$ is a strictly henselian ring (some people call these \enquote{strictly local rings}) and $\Ff$ a sheaf on $X_\et$. Then
+	\begin{equation*}
+		\Global(X,\Ff)\isomorphism \Ff_{\ov{x}}
+	\end{equation*}
+	is an isomorphism for any geometric point $\ov{x}$ whose underlying point $x$ is the unique closed point of $A$.
+\end{fact}
+\begin{proof}
+	As every étale morphism with $x$ in its image has a section by \cref{prop:henselian}\itememph{e}, we see that $(X,\ov{x})$ is cofinal in the category of étale neighbourhoods of $\ov{x}$.
+\end{proof}
+\begin{cor}\label{cor:finiteStalks}
+	If $f\colon X\morphism Y$ is finite and $\ov{y}$ a geometric point of $Y$, then there is a canonical isomorphism
+	\begin{equation*}
+		(f_*\Ff)_{\ov{y}}\isomorphism\prod_{\ov{x}}\Ff_{\ov{x}}\,,
+	\end{equation*}
+	where the product is taken over \enquote{all} geometric points $\ov{x}\colon \Spec \kappa(\ov{x})\morphism X$ \enquote{lying over} $\ov{y}$.
+\end{cor}
+\begin{rem*}\label{rem:WTFlyingOver}
+	In the lecture we were talking about \enquote{lifts} of $\ov{y}$ to $X$, but this is definitely not what we want. For example, $Y=\Spec k$ could be the spectrum of a separably closed field and $X=\Spec \ell$ for $\ell/k$ a non-trivial purely inseparable extension. Then the identity on $Y$ is a geometric point, but admits no lift to $X$. So instead I wrote $\ov{x}$ \enquote{lying over} $\ov{y}$, but this too needs some explanation: obviously, $\ov{x}$ lying over $\ov{y}$ should include the condition that a diagram
+	\begin{equation*}
+		\begin{tikzcd}
+		\Spec \kappa(x)\rar["\ov{x}"]\dar & X\dar["f"]\\
+		\Spec \kappa(y)\rar["\ov{y}"] & Y
+		\end{tikzcd}
+	\end{equation*}
+	commutes. Still we get into set-theoretic trouble since there is a whole proper class of such $\ov{x}$, and we would rather have a (finite) set of them! There are essentially two ways out of this:
+	\begin{numerate}
+		\item We could demand that $\kappa(\ov{y})$ and $\kappa(\ov{x})$ both equal some chosen separable closures $\kappa(y)^\sep$ and $\kappa(x)^\sep$ of their underlying ordinary points. We have seen in \cref{rem:setTheory} that this loses no information.
+		\item We could define a preorder on the class of all $\ov{x}$ as above, with $\ov{x}'\leq x$ iff $\ov{x}\colon\Spec \kappa(x)\morphism X$ can be factored over $\ov{x}'\colon \Spec \kappa(x')\morphism X$. Note that $\ov{x}'\leq \ov{x}$ and $\ov{x}\leq \ov{x}'$ implies that the fields $\kappa(\ov{x})$ and $\kappa(\ov{x}')$ are isomorphic. Then we can take the finite set of isomorphism classes of $\ov{x}$ that are minimal with respect to \enquote{$\leq$} (it will become clear from the proof below that such a finite set indeed exists).
+	\end{numerate}
+\end{rem*}
+\begin{proof}[Proof of \cref{cor:finiteStalks}]
+	The question is local on $Y$, whence we may assume $Y=\Spec A$, $X=\Spec B$, such that $B$ is finite over $A$. Observe that $\Oo_{Y_\et,\ov{y}}$ is strictly henselian by \cref{prop:henselization}\itememph{g}. By \cref{prop:henselian}\itememph{c} thus, the finite $\Oo_{Y_\et,\ov{y}}$-algebra $S=B\otimes_A\Oo_{Y_\et,\ov{y}}$ may be decomposed as
+	\begin{equation*}
+		S=\prod_{i=1}^nS_i\,,
+	\end{equation*}
+	where the $S_i$ are local and finite over $\Oo_{Y_\et,\ov{y}}$. Moreover, if $\mm$ and $k$ denote the maximal ideal and the residue field of $\Oo_{Y_\et,\ov{y}}$, then the $S_i/\mm S_i$ are finite over $k$, hence artinian local rings. If $\mm_i$ denotes the unique prime ideal of $S_i$, then $\kappa(\mm_i)$ is finite over the searably closed field $k$, hence $\kappa(\mm_i)$ is separably closed itself. Thus, every $\ov{x}_i\colon \Spec \kappa(\mm_i)\morphism X$ is a geometric point lying over $y$. Moreover, for any $\ov{x}$ as in \cref{rem:WTFlyingOver}, the morphism $B\morphism\kappa(\ov{x})$ factors over $B\otimes_Ak\cong \prod_{i=1}^nS_i/\mm S_i$, which is artinian with maximal ideals $\mm_1,\dotsc,\mm_n$. Thus, the $\ov{x}_i$ are indeed \enquote{the} geometric points lying over $\ov{y}$ (in the sense of either one of \itememph{1} or \itememph{2}). Now we compute
+	\begin{equation*}
+		(f_*\Ff)_{\ov{x}}\cong \Global(\Spec S,\Ff)\cong \prod_{i=1}^n\Global(\Spec S_i,\Ff)\cong \prod_{i=1}^n\Ff_{\ov{x}_i}\,.
+	\end{equation*}
+	Here the first isomorphism follows from \cref{cor:(f_*F)_y} as $X_{\ov{y}}=\Spec S$ in this case, the second follows from $\Spec S=\coprod_{i=1}^n\Spec S_i$ and the sheaf axiom, and the third isomorphism follows from \cref{fact:StrictlyHenselianTrivialCoho}, using that the $S_i$ are finite over $\Oo_{Y_\et,\ov{y}}$, hence strictly henselian too by \cref{prop:henselization}\itememph{b}.
+\end{proof}
+\begin{cor}
+	If $f\colon X\morphism Y$ is a finite, radiciel, and surjective morphism (thus a universal homeomorphism, see \cref{rem:universalHomeo}), then $f_*$ and $f^*$ are mutually inverse equivalences of categories between $\cat{Sh}(X_\et)$ and $\cat{Sh}(Y_\et)$.
+\end{cor}
+\begin{proof}
+	This can be derived from \cref{prop:universalHomeo}, or using the previous \cref{cor:finiteStalks} and verifying that the isomorphisms $(f^*\Gg)_{\ov{x}}\cong \Gg_{f(\ov{x})}$ and $(f_*\Ff)_{\ov{y}}\cong \Ff_{f^{-1}(\ov{y})}$ become inverse to each other when applied with $\Ff=f^*\Gg$ or $\Gg=f_*\Ff$.
+\end{proof}
+In the rest of this section Professor Franke gives some hints about how pushforward and pullback work in the pro-étale topology. Recall that $U\morphism X$ is weakly étale if it is flat and the diagonal $U\morphism U\times_XU$ is flat as well (\cref{def:weaklyEtale}). The latter condition is automatic when $U\morphism X$ is a monomorphism, as in this case $U\cong U\times_XU$. Combining this observation with an argument analogous to the proof of \cref{prop:universalHomeo}, we see that for any pair $f,f'\colon U\morphism U'$ of morphisms of weakly étale $X$-schemes, the equalizer $\Eq(f,f')\morphism U$ is weakly étale. Clearly being weakly étale is preserved under base change, so all in all the proofs of \cref{fact:filtered} and \cref{fact:CUcofiltered} still work, and stalks at geometric points as well as inverse and direct images may be defined as we did in this lecture.
+
+The \emph{big} difference, however, is that while the category of weakly étale sheaves of sets as sufficiently many \emph{topos points} (see \cite[\stackstag{00Y3}]{stacks-project}), the topos points given by stalks at geometric points are \emph{not} sufficiently many! For instance, if $X=\Spec A$ is the spectrum of a Dedekind domain, then the morphism
+\begin{equation*}
+	U\coloneqq\coprod_{\mm\neq 0}\Spec A_\mm\morphism X
+\end{equation*}
+is weakly étale, where the disjoint union is taken over all non-zero (and thus maximal) prime ideals of $A$. Moreover, every geometric point of $X$ lifts to $U$. However, the sieve generated by $U$ is no covering sieve, as faithfully flat descent \emph{fails} for $U\morphism X$.
+
+For the pro-étale topology, what mostly replaces stalks at geometric points are evaluations (i.e., taking sections, not stalks!) at $\Spec A$, where $\Spec A\morphism X$ is weakly étale and $A$ is \defemph{strictly $w$-local}. For instance, if $\ov{x}$ is a geometric point of $X$,  then $\Spec \Oo_{X_\et,\ov{x}}\morphism X$ is weakly étale (being a filtered limit over étale morphisms to $X$) and one has $\Ff_{\ov{x}}=\Global(\Spec \Oo_{X_\et,\ov{x}},\Ff)$ for weakly étale sheaves $\Ff$.
+
+We now sketch the definition of what a $w$-local ring is supposed to be. Recall that a topological space $X$ is \defemph{spectral} if it is sober and the quasi-compact open subsets form a topology base closed under arbitrary finite intersections (allowing the empty intersection, so $X$ itself is quasi-compact). A theorem of Hochster says that  spectral spaces are precisely the underlying spaces of spectra of rings. Bhatt/Scholze now call a spectral space $X$ \defemph{$w$-local} if the closed points form a closed subset and the following equivalent conditions (\cite[Lemma~2.1.4]{proetale}) are satisfied:
+\begin{alphanumerate}
+	\item Every open cover of $X$ splits, i.e., if $X=\bigcup_{i\in I}$ is an open cover, then $\coprod_{i\in I}U_i\morphism X$ has a section. Note that this is \emph{not} the original condition from the lecture; Professor Franke explained to me afterwards that he made a mistake and will probably correct this in the next lecture.
+	\item The closed points of $X$ map homeomorphically to the set $\pi_0(X)$ of connected components (equipped with a suitable Zariski topology).
+\end{alphanumerate}
+Also note that \itememph{a} implies that $X$ has no higher cohomology, i.e., $H^i(X,\Ff)=0$ for $i>0$ and all (abelian) sheaves $\Ff$ on $X$.
+
+A ring $A$ is called \defemph{$w$-local} if $\Spec A$ is $w$-local, and \defemph{strictly $w$-local} if it is $w$-local and satisfies the following equivalent conditions (\cite[Definition~2.2.1 and Lemma~2.2.9]{proetale}):
+\begin{numerate}
+	\item Every weakly étale faithfully flat $U\morphism \Spec A$ has a section.
+	\item $A_\mm$ is strictly henselian for every maximal ideal $\mm$ of $A$.
+\end{numerate}
+One then shows that the inclusion of the (non-full) subcategory $\left\{w\text{-local rings}\right\}\subseteq\cat{Rings}$ has a left-adjoint $A\mapsto A^Z$ (see \cite[Lemma~2.2.4]{proetale}). This construction shall be sketched now. Recall that the \defemph{constructive topology} $X_\mathrm{const}$ on a spectral space $X$ is the coarsest topology for which the quasi-compact open subsets of $X$ are open-closed in $X_\mathrm{const}$. Then $X_\mathrm{const}$ is spectral and compact Hausdorff. When $X$ is noetherian, it has the description that $U\subseteq X_\mathrm{const}$ is open iff for all $x\in U$ the intersection $U\cap \ov{\{x\}}$ contains an open dense subset; the closure being taken in $X$. Then
+\begin{equation*}
+	A^Z=\left\{(a_\pp)\in\prod_{\pp\in\Spec A}A_\pp\st \begin{tabular}{c}
+	there are a decomposition $(\Spec A)_\mathrm{const}=\coprod_{i=1}^nU_i$\\
+	into disjoint open subsets and $f_i\in A$, $a_i\in A_{f_i}$ s.th.\\
+	$V(f_i)\cap U_i=\emptyset$ and $a_\pp$ is the image of $a_i$ for all $x\in U_i$
+	\end{tabular}\right\}
+\end{equation*}
+In particular, $\IZ^Z$ is the set of all families $(a_p)\in\prod_p\IZ_{(p)}$, $p$ running over the prime numbers, such that there is an $r\in \IQ$ such that $a_p=r$ in $\IQ$ for almost all $p$.
