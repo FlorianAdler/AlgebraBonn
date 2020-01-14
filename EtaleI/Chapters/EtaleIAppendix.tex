@@ -2,14 +2,14 @@
 
 \section{On Inverse Limits of Schemes}\label{sec:inverseLimits}
 In the following, all references refer to \cite{stacks-project} and $\colimit$ always denotes a colimit over filtered partially ordered set. Note that colimits over filtered categories may, with some care, be reduced to colimits over filtered posets (\stackstag{0032}).
-\numpar{}\label{par:schemesInverseLimit}Let $\{S_\alpha\}$ be a cofiltered system of schemes. We investigate whether the limit over this system exists, and list some properties:
+\numpar{}\label{par:schemesInverseLimit}Let $(S_\alpha)$ be a cofiltered system of schemes. We investigate whether the limit over this system exists, and list some properties:
 \begin{alphanumerate}
 	\item By \stackstag{01YX}, the cofiltered limit $\limit S_\alpha$ exists if all transition morphisms are affine. Moreover, if $0$ is an initial object in the (surpressed) index poset and $U_0\subseteq S_0$ is an open subscheme (or a closed one, or actually any $S_0$-scheme), then
 	\begin{equation*}
 	\limit_\alpha \left(U_0\times_{S_0}S_\alpha\right)\cong U_0\times_{S_0}\limit_\alpha S_\alpha
 	\end{equation*}
-	(since fibre products are limits too, this follows from abstract nonsense). In fact, we can describe $S=\limit S_\alpha$ explicitly. If $0$ is initial as above, then $S_\alpha\cong \SPEC_{S_0}\Ss_\alpha$ for some quasi-coherent $\Oo_{S_0}$-algebras $\Ss_\alpha$. Then $\Ss=\colimit_\alpha S_\alpha$ is quasi-coherent again and $S\cong \SPEC_{S_0}\Ss$.
-	\item In \stackstag{01Z2} it is proved that if all $S_\alpha$ are non-empty and quasi-compact, then $S$ is non-empty. Actually $S$ is also quasi-compact again, as follows from \itememph{c} and Tychonoff's theorem. Using this assertion together with \itememph{a}, we see that moreover that if all $S_\alpha$ are quasi-separated, then the same is true for $S$.
+	(since fibre products are limits too, this follows from abstract nonsense). In fact, we can describe $S=\limit S_\alpha$ explicitly. If $0$ is initial as above, then $S_\alpha\cong \SPEC_{S_0}\Ss_\alpha$ for some quasi-coherent $\Oo_{S_0}$-algebras $\Ss_\alpha$. Then $\Ss=\colimit_\alpha \Ss_\alpha$ is quasi-coherent again and $S\cong \SPEC_{S_0}\Ss$.
+	\item In \stackstag{01Z2} it is proved that if all $S_\alpha$ are non-empty and quasi-compact, then $S$ is non-empty. Actually $S$ is also quasi-compact again, as follows from \itememph{c} and Tychonoff's theorem. Using this assertion together with \itememph{a}, we see moreover that if all $S_\alpha$ are quasi-separated, then the same is true for $S$.
 	\item By \stackstag{0CUF} we have a homeomorphism $|S|\cong \limit |S_\alpha|$ on underlying topological spaces.
 \end{alphanumerate}
 \numpar{}\label{par:descendingFinPres} From now on, all occurring schemes are quasi-compact and quasi-coherent. It is often a useful fact to know that a certain property of an inverse limit of schemes or morphisms of schemes is already satisfied by a \enquote{finite stage} of the limit. For example, it is a standard strategy to use arguments of this kind to prove assertions about non-noetherian schemes by reduction to the noetherian case.
@@ -22,9 +22,21 @@ In the following, all references refer to \cite{stacks-project} and $\colimit$ a
 	\colimit_{\beta\geq\alpha}\Hom_{\cat{Sch}/S_\beta}(X_\beta,Y_\beta)\cong \Hom_{\cat{Sch}/S}(X,Y)\,.
 	\end{equation*}
 	In this fashion, every finitely presented morphism of schemes can be written as a cofiltered limit of morphisms between schemes of finite type over $\IZ$.
-	\item By \stackstag{0204}, if $f\colon X\morphism S$ is proper morphism and written as a colimit over finite type morphisms $f_\beta\colon X_\beta\morphism S_\beta$ as in \itememph{e}, then already $f_\beta$ is proper for some $\beta\geq \alpha$. The idea is to use Chow's lemma to reduce everything to a similar question about projective morphisms, which is easier to treat.
-	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a colimit as above, then already $f_\beta$ is étale for some $\beta\geq \alpha$.
+	\item By \stackstag{0204}, if $f\colon X\morphism S$ is proper morphism and written as a cofiltered limit over finite type morphisms $f_\beta\colon X_\beta\morphism S_\beta$ as in \itememph{e}, then already $f_\beta$ is proper for some $\beta\geq \alpha$. The idea is to use Chow's lemma to reduce everything to a similar question about projective morphisms, which is easier to treat.
+	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a cofiltered limit as above, then already $f_\beta$ is étale for some $\beta\geq \alpha$.
+	\item Let $X=\limit_\alpha X_\alpha$ and denote by $\pi_\alpha\colon X\morphism X_\alpha$ the canonical projections. If all $X_\alpha$ are quasi-separated, then so is $X$. Moreover, every quasi-compact open subset $U\subseteq X$ is of the form $U=\pi_\alpha^{-1}(U_\alpha)$ for some $\alpha$ and some quasi-compact open subset $U_\alpha\subseteq X_\alpha$. Since Professor Franke couldn't find a Stacks Project reference, he gave a proof himself.
 \end{alphanumerate}
+\begin{proof}[Proof of \itememph{h}]
+	Without restriction the index category has a final object $0$ (we can always pass to the cofinal subcategory of all $\alpha$-objects). Since $\pi_0\colon X\morphism X_0$ is affine and $X_0$ is quasi-separated, $X$ is quasi-separated as well (alternatively we could have used \cref{par:schemesInverseLimit}\itememph{b}). Write $X_0=\bigcup_{j=1}^nU_j$ as a finite union of affine open subschemes $U_j$, using that $X_0$ is quasi-compact. Then the $\pi_0^{-1}(U_j)$ are affine and the $U\cap \pi_0^{-1}(U_j)$ are still quasi-compact as $X$ is quasi-separated.
+	
+	It suffices to show that all $U\cap \pi_0^{-1}(U_j)$ are of the form $\pi_{\alpha_j}^{-1}(U_{\alpha_j})$ for some $\alpha_j$ and some quasi-compact open $U_{\alpha_j}\subseteq X_{\alpha_j}\times_{X_0}U_j$. Indeed, if we choose $\alpha\geq \alpha_1,\dotsc,\alpha_n$, then the open subscheme
+	\begin{equation*}
+		U_\alpha\coloneqq \bigcup_{j=1}^nU_{\alpha_j}\times_{X_{\alpha_j}}X_\alpha\subseteq X_\alpha
+	\end{equation*}
+	will satisfy the desired condition.
+	
+	Thus, we may assume that $X_0=U_j$ and thus all $X_\alpha$ and $X$ are affine. Say $X_\alpha=\Spec R_\alpha$ and $X=\Spec R=\Spec(\colimit_\alpha R_\alpha)$. As $U$ is quasi-compact, it has a finite open cover $U=\bigcup_{k=1}^m\Spec R\setminus V(f_k)$. Since $f_1,\dotsc,f_m$ are finitely many elements, they must already be contained in some $R_\alpha$. Now $U_\alpha\coloneqq \Spec R_\alpha\setminus V(f_1,\dotsc,f_m)$ does the job.
+\end{proof}
 \section{The Conditions \texorpdfstring{$R_k$}{Rk} and \texorpdfstring{$S_k$}{Sk}}
 Serre's conditions $R_k$ and $S_k$ have shown up a few times: first in the proof of the Zariski--Nagata purity theorem (\cref{thm:Zariski-Nagata}) in Lecture~7 and then again in the construction of henselizations in Lecture~11. So I decided to write down proofs of the facts we have used.
 

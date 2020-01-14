@@ -3,7 +3,7 @@
 \usepackage{ShortcutsEtaleI}
 \usepackage{halloweenmath}
 \usetikzlibrary{shapes.geometric}
-\usepackage{tikzducks}
+\usepackage{tikzducks,tikzsymbols}
 \usepackage[normalem]{ulem}
 
 \DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
@@ -124,7 +124,7 @@ Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say,
 	\begin{equation*}
 		\Global(V,j_\sharp \Ff)=\bigoplus_{\phi\colon V\morphism U}\Global(V,\Ff)\,,
 	\end{equation*}
-	where the sum is taken over all factorizations $\phi\colon V\morphism U$ of $V\morphism X$ over $j$. The left-adjointness to $j^\sharp$ (which is a straightforward restriction functor in our case) as well as the formula for the stalks are verified by an easy calculation. Now define $j_!\Ff=(j_\sharp\Ff)^\Sh$. If follows that $j_!$ is indeed a left-adjoint of $j^*$. Exactness can be seen from the calculation of stalks.
+	where the sum is taken over all factorizations $\phi\colon V\morphism U$ of $V\morphism X$ over $j$. The left-adjointness to $j^\sharp$ (which is a straightforward restriction functor in our case) as well as the formula for the stalks are verified by an easy calculation. Now define $j_!\Ff=(j_\sharp\Ff)^\Sh$. If follows that $j_!$ is indeed a left-adjoint of $j^*$. Exactness can be seen from the calculation of stalks (but it holds even if we don't have a suitable notion of \enquote{stalks}, see \cite[\stackstag{03DJ}]{stacks-project}).
 \end{proof}
 \begin{rem}
 	\begin{alphanumerate}
@@ -167,15 +167,15 @@ Also I will not follow Franke's numbering scheme\footnote{\ldots\ if not to say,
 		\end{numerate}
 		\item Assume $\Aa$ has sufficiently many injectives. Let $F\colon \Aa\morphism \Bb$ be a left-exact functor and $\XX\subseteq \Aa$ a class of objects satisfying the conditions from \cref{lem:injectiveStuff} and in addition
 		\begin{alphanumerate}
-			\item[\itememph{*}] If $0\morphism x'\morphism x\morphism x''\morphism 0$ is exact in $\Aa$ and $x',x\in \XX$, then also $x''\in \XX$ and $Fx\morphism Fx'$ is an epimorphism.
+			\item[\itememph{*}] If $0\morphism x'\morphism x\morphism x''\morphism 0$ is exact in $\Aa$ and $x',x\in \XX$, then also $x''\in \XX$ and $Fx\morphism Fx''$ is an epimorphism.
 		\end{alphanumerate}
-		Then every injective object of $\Aa$ is in $\XX$ and $R^iF(x)=0$ for $x\in \XX$.
+		Then every injective object of $\Aa$ is in $\XX$ and $R^iF(x)=0$ for $i>0$ and all $x\in \XX$.
 	\end{alphanumerate}
 \end{prop}
 \begin{proof*}[Sketch of a proof]
 	Conditions \itememph{3} and \itememph{4} of \itememph{a} are well-known effaceability criteria from \cite[Chapitre~II]{tohoku}. To see that the weaker criteria \itememph{1} and \itememph{2} hold, go through the proof of \itememph{3} in this particular special case and generalize where necessary.
 	
-	For \itememph{b}, we already know that $\XX$ contains all injective objects since we proved this in \cref{lem:injectiveStuff}. Now let $x\in \XX$. We can choose a short exact sequence $0\morphism x\morphism t\morphism c\morphism 0$ with $t$ injective. By \itememph{*} we have $c\in \XX$ as well, and since $t$ is injective, we get $R^iF(c)\cong R^{i+1}F(x)$ for all $i>0$ from the long exact derived functor sequence. Thus it suffices to prove $R^1F(x)=0$. But $F(t)\morphism F(c)$ is an epimorphism \itememph{*}, hence $R^1F(t)=0$ and the long exact sequence show $R^1F(x)=0$, as required.
+	For \itememph{b}, we already know that $\XX$ contains all injective objects since we proved this in \cref{lem:injectiveStuff}. Now let $x\in \XX$. We can choose a short exact sequence $0\morphism x\morphism t\morphism c\morphism 0$ with $t$ injective. By \itememph{*} we have $c\in \XX$ as well, and since $t$ is injective, we get $R^iF(c)\cong R^{i+1}F(x)$ for all $i>0$ from the long exact derived functor sequence. Thus it suffices to prove $R^1F(x)=0$. But $F(t)\morphism F(c)$ is an epimorphism by \itememph{*}, hence the long exact sequence together with $R^1F(t)=0$ show $R^1F(x)=0$, as required.
 \end{proof*}
 \begin{prop}\label{prop:etaleLeray}
 	If $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ are morphisms of schemes, then we have three Leray spectral sequences
@@ -274,7 +274,7 @@ To finish the section, we state two classical results on $C_1$ fields without pr
 	\end{alphanumerate}
 \end{prop}
 \begin{prop}[Tsen]
-	If $K$ is of transcendence degree $1$ over a separably closed field, then $K$ is $C_1$.
+	If $K$ is a field of transcendence degree $1$ over a separably closed field, then $K$ is $C_1$.
 \end{prop}
 \section{The Relation between \texorpdfstring{$H^1$}{H1} and Torsors}\label{sec:torsors}
 \lecture[Unsuccessful attempts on switching off a beamer. Torsors on sites. The \v Cech complex.]{2020-01-10}
@@ -282,9 +282,9 @@ To finish the section, we state two classical results on $C_1$ fields without pr
 	Let $\Cc$ be a site and $\Gg$ a sheaf of groups on $\Cc$. A \defemph{$\Gg$-torsor} is a sheaf of sets $\Tt$ together with a morphism $\alpha\colon \Gg\times \Tt\morphism \Tt$ of sheaves of sets satisfying the usual axioms for a left $\Gg$-action as well as the following conditions:
 	\begin{alphanumerate}
 		\item For every object $x$ of $\Cc$, the class $\left\{y\morphism x\st \Tt(x)\neq \emptyset\right\}$ is a covering sieve of $x$.
-		\item With $p_2$ denoting the projection to the second factor, the morphism
+		\item With $\pr_2$ denoting the projection to the second factor, the morphism
 		\begin{equation*}
-			(\alpha,\id_\Tt\circ p_2)\colon \Gg\times \Tt\morphism \Tt\times\Tt
+			(\alpha,\id_\Tt\circ \pr_2)\colon \Gg\times \Tt\morphism \Tt\times\Tt
 		\end{equation*}
 		is an isomorphism.
 	\end{alphanumerate}
@@ -416,26 +416,162 @@ The main application of the theory of torsors to étale cohomology comes through
 	But the right-hand side is trivial because $X$ is just a point.
 \end{proof*}
 \section{Applications of \texorpdfstring{\v C}{C}ech Cohomology}
+Even though \v Cech cohomology usually does not compute sheaf cohomology in general, it is still a powerful tool, especially for comparing cohomology of sheaves on different sites. For example, we will show that the étale cohomology of quasi-coherent sheaves coincides with their ordinary Zariski cohomology.
 \begin{con}
-	Let $\Cc$ be an arbitary category admitting fibre products and let $\Ff\in \cat{PAb}(\Cc)$ be a presheaf of abelian groups. For any morphism $u\morphism x$ in $\Cc$ put
+	Let $\Ff\in \cat{PAb}(X_\et)$ be a presheaf of abelian groups on the étale site over $X$ (in fact, the construction that follows would work for arbitrary categories $\Cc$ admitting fibre products, but we will stick with $X_\et$ for convenience). For any $U\morphism X$ in $X_\et$ put
 	\begin{equation*}
-		\check{C}^n\big(\{u\rightarrow x\},\Ff\big)=\Ff(\underbrace{u\times_x\dotsb\times_x u}_{n+1\text{ factors}})\,.
+		\check{C}^n\big(\{U\rightarrow X\},\Ff\big)=\Global(\underbrace{U\times_X\dotsb\times_X U}_{n+1\text{ factors}},\Ff)\,.
 	\end{equation*}
-	For $0\leq j\leq n+1$ let $d_j\colon \check{C}^n(\{u\morphism x\},\Ff)\morphism\check{C}^{n+1}(\{u\morphism x\},\Ff)$ be the morphism induced by the projection
+	For $0\leq i\leq n+1$ let $d_i\colon \check{C}^n(\{U\morphism X\},\Ff)\morphism\check{C}^{n+1}(\{U\morphism X\},\Ff)$ be the morphism induced by
 	\begin{equation*}
-		\underbrace{u\times_x\dotsb\times_xu}_{n+2\text{ factors}}\morphism \underbrace{u\times_x\dotsb\times_xu}_{n+1\text{ factors}}
+		\pr_{0,\dotsc,\hat{i},\dotsc,n+1}\colon \underbrace{U\times_X\dotsb\times_XU}_{n+2\text{ factors}}\morphism \underbrace{U\times_X\dotsb\times_xU}_{n+1\text{ factors}}
 	\end{equation*}
-	omitting the $j\ordinalth$ factor (the numbering of factors starts at $0$). This gives a cochain complex
+	omitting the $i\ordinalth$ factor (and the numbering of factors starts at $0$). This gives a cochain complex, called the \defemph{\v Cech complex} of $\{U\morphism X\}$ with coefficients in $\Ff$,
 	\begin{equation*}
-		\check{C}^\bullet\big(\{u\rightarrow x\},\Ff\big)=\Big( \check{C}^0\big(\{u\rightarrow x\},\Ff\big)\morphism[d]\check{C}^1\big(\{u\rightarrow x\},\Ff\big)\morphism[d]\dotso\Big)
+		\check{C}^\bullet\big(\{U\rightarrow X\},\Ff\big)=\Big( \check{C}^0\big(\{U\rightarrow X\},\Ff\big)\morphism[\check{d}]\check{C}^1\big(\{U\rightarrow X\},\Ff\big)\morphism[\check{d}]\dotso\Big)\,.
 	\end{equation*}
-	with differential $d=\sum_{j=0}^{n+1}(-1)^jd_j$ in degree $n$, called the \defemph{\v Cech complex} of $\{u\morphism x\}$ with coefficients in $\Ff$. It's cohomology
+	Its differential is $\check{d}=\sum_{i=0}^{n+1}(-1)^id_j$ in degree $n$. The cohomology groups
 	\begin{equation*}
-		\check{H}^i\big(\{u\rightarrow x\},\Ff\big)\coloneqq H^i\check{C}^\bullet\big(\{u\rightarrow x\},\Ff\big)
+		\check{H}^i\big(\{U\rightarrow X\},\Ff\big)\coloneqq H^i\check{C}^\bullet\big(\{U\rightarrow X\},\Ff\big)
 	\end{equation*}
-	is called the \defemph{\v Cech cohomology} of $\Ff$.
+	are called the \defemph{\v Cech cohomology groups} of $\Ff$.
 \end{con}
-
+\begin{rem}\lecture[Properties of the \v Cech complex. Vanishing of \v Cech cohomology. Étale and Zariski cohomology of quasi-coherent modules coincide.]{2020-01-13}\label{rem:technicalCech}
+	If $f\colon V\morphism U$ is a morphism of étale $X$-schemes, then we have an induced morphism
+	\begin{equation*}
+		\check{f}^\bullet\colon \check{C}^\bullet\big(\{U\rightarrow X\},\Ff\big)\morphism \check{C}^\bullet\big(\{V\rightarrow X\},\Ff\big)
+	\end{equation*}
+	of \v Cech complexes. The map $\check{f}^n\colon \check{C}^n(\{U\morphism X\},\Ff)\morphism \check{C}^n(\{V\morphism X\},\Ff)$ in degree $n$ is the one induced by $(f\pr_0,\dotsc,f\pr_n)\colon V\times_X\dotsb\times_XV\morphism U\times_X\dotsb\times_XU$ (there are $n+1$ factors everywhere).
+	
+	If $g\colon V\morphism U$ is another morphism in $X_\et$, then $\check{f}^\bullet$ and $\check{g}^\bullet$ are cochain homotopic. In particular, they induce the same maps on \v Cech cohomology. A cochain homotopy can be constructed as follows: for all $0\leq l\leq n-1$, let $h_l\colon \check{C}^n(\{U\morphism X\},\Ff)\morphism \check{C}^{n-1}(\{V\morphism X\},\Ff)$ be the map induced by
+	\begin{equation*}
+		(f\pr_0,\dotsc,f\pr_l,g\pr_l,\dotsc, g\pr_{n-1})\colon \underbrace{V\times_X\dotsb\times_X V}_{n\text{ factors}}\morphism \underbrace{U\times_X\dotsb\times_X U}_{n+1\text{ factors}}
+	\end{equation*}
+	(observe that $\pr_l$ occurs twice). One can verify that $\check{h}^\bullet$ given by $\check{h}^n\coloneqq \sum_{l=0}^{n-1}(-1)^lh_l$ in degree $n$ is a cochain homotopy. See \cite[Lemma~1.2.1]{alggeo2} for more details; this also contains Professor Franke's computation of $h_ld_k$ via a sweet six-fold case distinction, which I am certainly not going to include in these notes.
+\end{rem}
+\begin{lem}\label{lem:sectionAcyclic}
+	Suppose $j\colon U\morphism X$ is étale and admits a section $s\colon X\morphism U$. Then the \v Cech complex $\check{C}^\bullet(\{U\morphism X\},\Ff)$ is acyclic in positive degrees for every $\Ff\in \cat{PAb}(X_\et)$.
+\end{lem}
+\begin{proof}
+	Let's first consider the special case $j=\id_X\colon X\morphism X$. In this case we easily compute
+	\begin{equation*}
+		\check{C}^\bullet\big(\{X= X\},\Ff\big)=\Big(\Global(X,\Ff)\morphism[0]\Global(X,\Ff)\morphism[\id]\Global(X,\Ff)\morphism[0]\Global(X,\Ff)\morphism[\id]\dotso\Big)\,,
+	\end{equation*}
+	and the assertion is clear. In general, the endomorphisms of $\check{C}^\bullet(\{U\morphism X\},\Ff)$ induced by $\id_U$ and $s\circ j$ are cochain homotopic by \cref{rem:technicalCech}. But the map induced by $s\circ j$ factors over $\check{C}^\bullet(\{X=X\},\Ff)$, which has vanishing cohomology in positive degrees, hence the same must be true for $\check{C}^n(\{U\morphism X\},\Ff)$.
+\end{proof}
+\begin{prop}\label{prop:technicalCech}
+	Let $X$ be a scheme. If $\Uu\colon U=\bigcup_{j\in J}U_j$ is a Zariski-open cover of some $X$-scheme $U$, then $\check{H}^i(\Uu,-)$ denotes the ordinary \v Cech cohomology.
+	\begin{alphanumerate}
+		\item Let $\XX$ be the class of all $\Ff\in \cat{Ab}(X_\et)$ such that $\check{H}^i(\{V'\morphism V\},\Ff)=0$ for all $i>0$ whenever $V'\morphism V$ is a surjective morphism of affine étale $X$-schemes. Then $\XX$ satisfies the assumptions of \cref{prop:effacable}\itememph{b} for each of the functors $\zeta_{U,*}$, $U\in X_\et$.
+		\item Let $\YY$ be the class of all $\Ff\in \XX$ that also satisfy $\check{H}^i(\Vv,\Ff)=0$ for all $i>0$, whenever $\Vv\colon V=\bigcup_{j=1}^nV_j$ is a finite cover of a quasi-compact and quasi-separated $V\in X_\et$ by quasi-compact Zariski-open subsets $V_j$. Then $\YY$ satisfies the assumptions of \cref{prop:effacable}\itememph{b} for each of the functors $\Global(U,-)$, where $U\in X_\et$ is quasi-compact and quasi-separated.
+		\item Let $\YY'$ be the class of all $\Ff\in \XX$ that also satisfy $\check{H}^i(\Vv,\Ff)=0$ for all $i>0$ whenever $\Vv\colon V=\bigcup_{j\in J}V_i$ is any Zariski-open cover of an arbitrary $V\in X_\et$. Then $\YY$ satisfies the assumptions of \cref{prop:effacable}\itememph{b} for each of the functors $\Global(U,-)$, $U\in X_\et$.
+	\end{alphanumerate}
+\end{prop}
+\begin{rem}
+	\begin{alphanumerate}
+		\item All assertions of \cref{prop:technicalCech} remain true if we replace $X_\et$ by $X_\fppf$ or $X_\fpqc$ (and \enquote{surjective étale} in \itememph{a} by \enquote{fppf} or \enquote{fpqc} respectively). This will become apparent during the proof.
+		\item Professor Franke assumed $X$ to be locally noetherian in \cref{prop:technicalCech}\itememph{b} (or at least stressed that $X$ may be arbitrary in \itememph{b}), but I don't quite see why that restriction should be necessary. Please correct me if I'm wrong!
+		\item If every finite subset points of $X$ is contained in an affine open subset, then \cite{milne} shows that the canonical map
+		\begin{equation*}
+			\check{H}^i(X_\et,\Ff)\coloneqq \colimit_{\Uu}\check{H}^i(\Uu,\Ff)\isomorphism H^i(X_\et,\Ff)
+		\end{equation*}
+		(the colimit is taken over all étale covers $\Uu=\left\{U_j\morphism X\right\}_{j\in J}$ of $X$) is an isomorphism.
+	\end{alphanumerate}
+\end{rem}
+\begin{proof}[Proof of \cref{prop:technicalCech}]
+	We begin with \itememph{a}. We first show that every $\Ff$ has a monomorphism $\Ff\monomorphism \Gg$ for some $\Gg\in \XX$. There are two possible approaches. One could either show directly that all injective objects of $\cat{Ab}(X_\et)$ are in $\XX$. This is what \cite[\stackstag{03AW}]{stacks-project} does, and their proof works for arbitrary sites (in particular, for $X_\fppf$ and $X_\fpqc$ as well).
+	
+	Alternatively, we could take $\Gg=\prod_{\ov{x}}\ov{x}_*I_{\ov{x}}$ as in the proof of \cref{prop:enoughInjectives}\itememph{a}. This is easier and more down-to-the-earth, but it only works for $X_\et$. To see that $\Gg\in \XX$, it suffices to consider the special case $\Gg=\ov{x}_*I$ because the \v Cech complex and thus also \v Cech cohomology commute with products. Now its easy to check that 
+	\begin{equation*}
+		\check{C}^\bullet\big(\{V'\rightarrow V\},\ov{x}_*I\big)\cong \check{C}^\bullet\big(\{V'\times_X\Spec \kappa(\ov{x})\rightarrow V\times_X\Spec \kappa(\ov{x})\},I\big)\,.
+	\end{equation*}
+	But $V'\times_X\Spec \kappa(\ov{x})$ and $V\times_X\Spec \kappa(\ov{x})$ are both finite disjoint unions of copies of $\Spec \kappa(\ov{x})$ by \cref{lem:etaleTrace}\itememph{b}, hence this morphism has a section. Thus both \v Cech complexes above must be acyclic in positive degrees by \cref{lem:sectionAcyclic}, proving $\ov{x}_*I\in \XX$.
+	
+	It is clear that direct summands of objects in $\XX$ are in $\XX$ again, because direct summands of acyclic complexes stay acyclic. It remains to show that for any short exact sequence $0\morphism\Ff'\morphism \Ff\morphism\Ff''\morphism 0$ with $\Ff,\Ff'\in \XX$, we also have $\Ff''\in \XX$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] For any surjective morphism $V'\morphism V$ of affine étale $X$-schemes, we get a short exact sequence of \v Cech complexes
+		\begin{equation*}
+			0\morphism\check{C}^\bullet\big(\{V'\rightarrow V\},\Ff'\big)\morphism \check{C}^\bullet\big(\{V'\rightarrow V\},\Ff\big)\morphism \check{C}^\bullet\big(\{V'\rightarrow V\},\Ff''\big)\morphism 0
+		\end{equation*}
+	\end{alphanumerate}
+	Let's first see how \itememph{*} implies \itememph{a}. Taking the long exact cohomology sequence of the above short exact sequence of complexes, we get $\check{H}^i(\{V'\morphism V\},\Ff'')=0$ for all $i>0$, hence $\Ff''\in \XX$. Moreover, we obtain that $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective (because $\{V'\morphism V\}$ is an étale cover, we have $\check{H}^0(\{V'\morphism V\},-)= \Global(V,-)$ by the sheaf axiom). Now let $U\in X_\et$ be arbitrary. As seen above $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective for all affine open subsets $V\subseteq U$, hence $\zeta_{U,*}\Ff\morphism\zeta_{U,*}\Ff''$ is indeed an epimorphism of sheaves. This shows \itememph{*} $\Rightarrow$ \itememph{a}.
+	
+	To prove \itememph{*}, observe that it suffices to show that $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective for all affine étale $X$-schemes $V$, because the $V'\times_V\dotsb\times_VV'$ occuring in the \v Cech complex above are affine étale $X$-schemes again. So let $f''\in \Global(V,\Ff'')$. We need to construct a preimage in $\Global(V,\Ff)$. Since $\Ff\morphism\Ff''$ is an epimorphism of sheaves, we find an étale cover $\{V_j\morphism V\}_{j\in J}$ such that $f''|_{V_j}$ has a preimage in $\Global(V_j,\Ff)$ for all $j\in J$. Without restriction, all $V_j$ are affine. Moreover, since $V$ is affine, it is quasi-compact, hence we may assume that the indexing set $J$ is finite. Then $\pi\colon V'\morphism V$, where $V'\coloneqq\coprod_{j\in J}V_j$, is an affine étale cover of $V$ with the same properties.
+	
+	In particular, $\pi^*f''=f''|_{V'}$ has a preimage $f\in \Global(V',\Ff)$. Now consider the \v Cech complexes of $\{V'\morphism V\}$ with coefficients in $\Ff'$, $\Ff$, and $\Ff''$ respectively. We abbreviate them as $'\check{C}^\bullet$, $\check{C}^\bullet$, and $''\check{C}^\bullet$ for convenience. Consider the element the image of the element $\check{d}(f)=(\pr_1^*-\pr_2^*)f\in \check{C}^1=\Global(V'\times_VV',\Ff)$ under $\check{C}^1\morphism {''\check{C}^1}$. This vanishes, because $\pr_1^*\pi^*f''=f''|_{V'\times_VV'}=\pr_2^*\pi^*f''$. Hence $\check{d}(f)$ must be the image of some $f'\in {'\check{C}^1}$. Note that $\check{d}(f')=\check{d}^2(f)=0$. But $''\check{C}^\bullet$ is acyclic in positive degrees because $\Ff'\in \XX$, so we can write $f'=\check{d}(\phi')$ for some $\phi'\in {'\check{C}^0}$. By construction, $\check{d}(f-\phi)=0$. Hence $f-\phi'$ defines a global section $\phi\in \Global(V,\Ff)$, whose image is $f''$. This proves surjectivity and thus \itememph{*}.
+	
+	The proof of \itememph{b} and \itememph{c} is pretty much the same: we first show that every $\Ff$ has a monomorphism $\Ff\monomorphism \Gg$ for some $\Gg\in \YY$ or $\Gg\in \YY'$ respectively and $\YY$, $\YY'$ are closed under taking direct summands. This can be done just as in \itememph{a}. Now let $0\morphism \Ff'\morphism \Ff\morphism \Ff''\morphism 0$ be a short exact sequence with $\Ff,\Ff'\in \YY$ resp.\ $\Ff,\Ff'\in \YY'$. We claim
+	\begin{alphanumerate}
+		\item[\itememph{*'}] Let $\Vv\colon V=\bigcup_{j\in J}V_j$ be a finite/arbitrary cover of a quasi-compact quasi-separated/arbi-trary $V\in X_\et$ by quasi-compact/arbitrary Zariski-open subsets $V_j$. Then we get a short exact sequence of \v Cech complexes
+		\begin{equation*}
+			0\morphism \check{C}^\bullet(\Vv,\Ff')\morphism \check{C}^\bullet(\Vv,\Ff)\morphism \check{C}^\bullet(\Vv,\Ff'')\morphism 0\,.
+		\end{equation*}
+	\end{alphanumerate}
+	As in \itememph{a}, \itememph{*'} immediately implies $\Ff''\in \YY$ resp.\ $\Ff''\in \YY'$ via the long exact cohomology sequence. Moreover, it is clear that $\Global(U,\Ff)\morphism \Global(U,\Ff'')$ is surjective for all quasi-compact quasi-separated/arbitrary $U\in X_\et$, because we can just take $U=V$ in \itememph{*'}. Thus \itememph{*'} implies \itememph{b} and \itememph{c}.
+	
+	To prove \itememph{*'}, it suffices to show that $\Global(V,\Ff)\morphism \Global(V,\Ff'')$ is surjective, because the intersections $\bigcap_{l=0}^nV_{j_l}$ occuring in the \v Cech complex are again quasi-compact quasi-separated/arbi-trary. Also note that $0\morphism \zeta_{V,*}\Ff'\morphism \zeta_{V,*}\Ff\morphism \zeta_{V,*}\Ff''\morphism 0$ is a short exact sequence of Zariski sheaves, since $R^1\zeta_{V,*}\Ff'=0$ by \itememph{a} and \cref{prop:effacable}\itememph{b}. Thus, if $f''\in \Global(V,\Ff'')$ is given, then we can find a Zariski-open cover $\Vv\colon V=\bigcup_{j\in J}V_j$ such that each $f''|_{V_j}$ has a preimage in $\Global(V_j,\Ff)$ (a priori, we would only have found an étale cover $\{V_j\morphism V\}_{j\in J}$ with that property). Without restriction all $V_j$ are affine. In the case of \itememph{b}, we may moreover assume that $J$ is finite, as $V$ is quasi-compact. Now the rest of the proof of \itememph{a} can be copied.
+\end{proof}
+\begin{defi}
+	For the purpose of this lecture, let an $\Oo_{X_\et}$-module $\Ff$ be called \defemph{quasi-coherent} if all $\zeta_{U,*}\Ff$ for $U\in X_\et$ are quasi-coherent, and for every morphism $f\colon V\morphism U$ in $X_\et$ the canonical morphism $f^*\zeta_{U,*}\Ff\isomorphism \zeta_{V,*}\Ff$ is an isomorphism.%We denote by $\cat{QCoh}(X_\et)\subseteq \cat{Mod}_{\Oo_{X_\et}}$ the full subcategory of quasi-coherent modules.
+\end{defi}
+\begin{prop}\label{prop:Rizeta=0}
+	Let $X$ be any scheme. If $\Ff$ is a quasi-coherent $\Oo_{X_\et}$-module, then $R^i\zeta_{U,*}\Ff=0$ for all $i>0$, $U\in X_\et$. Moreover, $\zeta_{X,*}$ induces an equivalence of categories
+	\begin{equation*}
+		\zeta_{X,*}\colon \left\{\text{quasi-coherent $\Oo_{X_\et}$-modules}\right\}\isomorphism \left\{\text{quasi-coherent $\Oo_{X_\Zar}$-modules}\right\}\,.
+	\end{equation*}
+\end{prop}
+\begin{proof}
+	The first assertion follows from \cref{prop:technicalCech}\itememph{a} and \cref{prop:effacable}\itememph{b}, once we show that all quasi-coherent modules are contained in $\XX$. Thus, let $\Ff$ be quasi-coherent and let $V'\morphism V$ be a surjective morphism of affine étale $X$-schemes. We need to show that $\check{C}^\bullet(\{V'\morphism V\},\Ff)$ is acyclic in positive degrees. This can be checked after faithfully flat base change. Write $V=\Spec A$ and $V'=\Spec A'$, then $A'$ happens to be faithfully flat over $A$. Thus, it suffices to show that
+	\begin{equation*}
+		\check{C}^\bullet\big(\{V'\rightarrow V\},\Ff\big)\otimes_AA'\cong \check{C}^\bullet\big(\{V'\times_VV'\rightarrow V'\},\Ff\big)
+	\end{equation*}
+	is acyclic. But $V'\times_VV'\morphism V'$ has a section given by the diagonal $\Delta_{V'/V}\colon V'\morphism V'\times_VV'$, hence the complex on the right-hand side is acyclic by \cref{lem:sectionAcyclic}. This proves the first assertion.
+	
+	The second assertion is basically just a consequence of faithfully flat descent. More precisely, we can construct a quasi-inverse functor $\iota$ as follows: if $\Gg$ is a quasi-coherent $\Oo_{X_\Zar}$-module and $j\colon U\morphism X$ is étale, put $\Global(U,\iota(\Gg))\coloneqq \Global(U,j^*\Gg)$. Here $j^*\colon \cat{QCoh}_X\morphism\cat{QCoh}_U$ indicates the usual pullback of quasi-coherent modules in the Zariski-topology. Using \cref{prop:fpqcDescent}, it's easy to check that $\zeta_{X,*}$ and $\iota$ are indeed quasi-inverse functors.
+\end{proof}
+\begin{cor}\label{cor:etaleCoho=ZariskiCoho}
+	Let $X$ be an arbitrary scheme.
+	\begin{alphanumerate}
+		\item If $\Ff$ is a quasi-coherent $\Oo_{X_\et}$-module, then $H^p(X_\et,\Ff)\cong H^p(X_\Zar,\zeta_{X,*}\Ff)$ for all $p\geq 0$.
+		\item If $X$ is a noetherian scheme over $\IF_p$, then $H^i(X_\et,\IZ/p\IZ)=0$ for all $i>\dim X+1$.
+	\end{alphanumerate}
+\end{cor}
+\begin{proof}
+	Part~\itememph{a} follows from \cref{prop:Rizeta=0} and \cref{prop:etaleLeray}: the spectral sequence $E_2^{i,j}=H^i(X_\Zar,R^j\zeta_{X,*}\Ff)\converge H^{i+j}(X_\et,\Ff)$ collapses as $R^j\zeta_{X,*}\Ff=0$ for $j>0$. For \itememph{b}, we use the short exact sequence
+	\begin{equation*}
+		0\morphism \IZ/p\IZ\morphism \Oo_{X_\et}\xrightarrow{\phi^*-\id}\Oo_{X_\et}\morphism 0
+	\end{equation*}
+	of étale sheaves, where $\phi\colon X\morphism X$ denotes the absolute Frobenius. This sequence is exact as there are Artin--Schreier coverings (see \cref{prop:ArtinSchreier}). In the corresponding long exact sequence we see that $H^i(X_\et,\Oo_{X_\et})=H^i(X,\Oo_X)=0$ for $i>\dim X$ by \itememph{a} and Grothendieck's dimension theorem \cite[Théorème~3.6.5]{tohoku}. Hence $H^i(X_\et,\IZ/p\IZ)=0$ for $i>\dim X+1$.
+\end{proof}
+We finish this section with a comparison theorem for étale cohomology of inverse limits of schemes. This will be a generalization of \cref{prop:etaleInverseLimit}.
+\numpar{Situation}\label{sit:limit}
+Let $\Ii$ be a cofiltered index category. Suppose we are given the following bunch of data:
+\begin{numerate}
+	\item A system $(X_\alpha)_{\alpha\in \Ii}$ of quasi-compact and quasi-separated schemes with affine transition maps $\pi_\mu\colon X_\beta\morphism X_\alpha$ for all $\mu\in \Hom_\Ii(\beta,\alpha)$. We denote $X=\limit_\Ii X_\alpha$ (this exists by \cref{par:schemesInverseLimit}) with structure maps $\pi_\alpha\colon X\morphism X_\alpha$.
+	\item Let $(\Ff_\alpha,\phi_\mu)$ be a system of sheaves $\Ff_\alpha\in \cat{Ab}(X_{\alpha,\et})$ together with morphisms $\phi_\mu\colon \pi_\mu^*\Ff_\alpha\morphism \Ff_\beta$ such that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\pi_{\mu\nu}^*\Ff_\alpha \rar[iso] \drar["\phi_{\mu\nu}"']& \pi_\nu^*\pi_\mu^*\Ff_\alpha\rar["\pi_\nu^*(\phi_\mu)"]& \pi_\nu^*\Ff_\beta\dlar["\phi_\nu"]\\
+			& \Ff_\gamma &
+		\end{tikzcd}
+	\end{equation*}
+	commutes for all composable morphisms $\mu\in \Hom_\Ii(\beta,\alpha)$ and $\nu\in \Hom_\Ii(\gamma,\beta)$. We denote the category of all such systems by $\Cc$.
+\end{numerate}
+For $\alpha \in \Ii$ we denote by $\Ii/\alpha$ the slice category of $\alpha$-objects. For every object $\beta\in \Ii/\alpha$ (which is actually a morphism $\mu\colon \beta\morphism \alpha$), the set of homomorphisms $\Hom_{\Ii/\alpha}(\beta,\alpha)$ has precisely one element (corresponding to $\mu$). We write $\pi_{\beta,\alpha}\colon X_\beta\morphism X_\alpha$ for the corresponding morphism.
+\begin{prop}
+	Suppose we are in \cref{sit:limit}. Then for all $i\geq 0$ there is a canonical isomorphism
+	\begin{equation*}
+		\colimit_\Ii H^i\big(X_{\alpha,\et},\Ff_\alpha\big)\isomorphism H^i\Big(X_\et,\colimit_\Ii \pi_\alpha^*\Ff_\alpha\Big)\,.
+	\end{equation*}
+	For $i=0$ this morphism fits (as the dashed arrow) into a commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\colimit\limits_{\Ii/\alpha}\Global\big(X_\beta,\pi_{\beta,\alpha}^*\Ff_\alpha\big)\ar[rr, iso, "\text{\cref{prop:etaleInverseLimit}}"']\dar & & \Global\big(X,\pi_\alpha^*\Ff_\alpha\big)\dar \\
+			\colimit\limit_{\Ii/\alpha}\Global(X_\beta,\Ff_\beta) \rar[iso] & \colimit\limits_\Ii \Global(X_\beta,\Ff_\beta) \rar[iso, dashed] & \Global\Big(X,\colimit\limits_\Ii\pi_\beta^*\Ff_\beta\Big)
+		\end{tikzcd}\,.
+	\end{equation*}
+	In this diagram top arrow is the isomorphism from \cref{prop:etaleInverseLimit}.
+\end{prop}
 
 \appendix
 \include{./Chapters/EtaleIAppendix}

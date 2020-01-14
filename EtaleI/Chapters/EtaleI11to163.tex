@@ -106,30 +106,30 @@ This section is really just a crash course. Professor Franke gave a much more de
 \begin{defi}
 	A morphism $f\colon X\morphism Y$ is called \emph{faithfully flat} if it is flat and surjective (as a map on underlying sets).
 \end{defi}
-Before we give the next definition, let's fix the following notation: we denote by
-\begin{align*}
-	p_i\colon X\times_YX&\morphism X\,,\\
-	\quad q_i\colon X\times_YX\times_YX&\morphism X\,,\\
-	\quad q_{k,l}\colon X\times_YX\times_YX&\morphism X\times_YX
-\end{align*}
-the canonical projections to the $i\ordinalth$ factor, to the $j\ordinalth$ factor, and to the $k\ordinalth$ and $l\ordinalth$ factor respectively. Here $i\in \{1,2\}$ and $j,k,l\in\{1,2,3\}$.
+\begin{nota}\label{nota:pr}
+	Before we give the next definition, let's fix once and for all the following notation. Let morphisms $X_i\morphism Y$ for $i=1,\dotsc,n$ be given (usually, they will all be the same). Then for all $i_1,\dotsc,i_k\in\{1,\dotsc,n\}$,
+	\begin{equation*}
+		\pr_{i_1,\dotsc,i_k/n}\colon \underbrace{X_1\times_Y\dotsb\times_YX_n\vphantom{X_{i_k}}}_{n\text{ factors}}\morphism \underbrace{X_{i_1}\times_Y\dotsb\times_YX_{i_k}}_{k\text{ factors}}
+	\end{equation*}
+	denotes the canonical projection to the $i_1\ordinalth,\dotsc,i_k\ordinalth$ factors. If no ambiguities can occur (in other words, everywhere except in \cref{def:descent} \Tongey), we drop the subscript $_{-/n}$ and just write $\pr_{i_1,\dotsc,i_k}$.
+\end{nota}
 \begin{defi}\label{def:descent}
 	Let $f\colon X\morphism Y$ be a morphism of schemes. A \defemph{descent datum} for $f$ is a pair $(\Ff,\mu)$, where $\Ff$ is a quasi-coherent $\Oo_X$-module and $\mu$ is an isomorphism
 	\begin{equation*}
-		\mu\colon p_1^*\Ff\isomorphism p_2^*\Ff\,,
+		\mu\colon \pr_{1/2}^*\Ff\isomorphism \pr_{2/2}^*\Ff\,,
 	\end{equation*}
 	such that the following diagram commutes:
 	\begin{equation}\label{diag:cocycle}
 		\begin{tikzcd}
-			q_1^*\Ff \drar[iso,"q_{1,3}^*(\mu)"{swap}]\ar[rr,iso,"q_{1,2}^*(\mu)"{swap}]& & q_2^*\Ff\dlar[iso,"q_{2,3}^*(\mu)"]\\
-			& q_3^*\Ff &
+			\pr_{1/3}^*\Ff \drar[iso,"\pr_{1,3/3}^*(\mu)"{swap}]\ar[rr,iso,"\pr_{1,2/3}^*(\mu)"{swap}]& & \pr_{2/3}^*\Ff\dlar[iso,"\pr_{2,3/3}^*(\mu)"]\\
+			& \pr_{3/3}^*\Ff &
 		\end{tikzcd}\,.
 	\end{equation}
 	A \defemph{morphism of descent data} $\phi\colon (\Ff,\mu)\morphism(\Ff',\mu')$ is a morphism of $\Oo_X$-modules $\phi\colon \Ff\morphism\Ff'$ such that the diagram
 	\begin{equation*}
 		\begin{tikzcd}
-			p_1^*\Ff\rar[iso,"\mu"{swap}]\dar["p_1^*(\phi)"{swap}] & p_2^*\Ff\dar["p_2^*(\phi)"]\\
-			p_1^*\Ff'\rar[iso,"\mu'"{swap}]& p_2^*\Ff'
+			\pr_{1/2}^*\Ff\rar[iso,"\mu"{swap}]\dar["\pr_{1/2}^*(\phi)"{swap}] & \pr_{2/2}^*\Ff\dar["\pr_{2/2}^*(\phi)"]\\
+			\pr_{1/2}^*\Ff'\rar[iso,"\mu'"{swap}]& \pr_{2/2}^*\Ff'
 		\end{tikzcd}
 	\end{equation*}
 	commutes. One thus obtains a \defemph{category of descent data} for $f$, which is denoted $\cat{Desc}_{X/Y}$.
@@ -142,7 +142,7 @@ the canonical projections to the $i\ordinalth$ factor, to the $j\ordinalth$ fact
 		\item The notion of a \emph{descent datum} can be defined in a purely abstract way, as soon as one has suitable \enquote{pullback functors} $f^*$. The abstract framework to do are \defemph{fibred categories}. See \cite[Exposé~VI]{sga1}.
 		\item There is a functor $f^*\colon \cat{QCoh}_{\Oo_Y}\morphism\cat{Desc}_{X/Y}$ that assigns to a quasi-coherent $\Oo_Y$-module $\Gg$ the pair $(f^*\Gg,\mu_\Gg)$, where $\mu_\Gg$ is the canonical isomorphism
 		\begin{equation*}
-			\mu_\Gg\colon p_1^*f^*\Gg\isomorphism(fp_1)^*\Gg=(fp_2)^*\isomorphism p_2^*f^*\Gg\,.
+			\mu_\Gg\colon \pr_{1/2}^*f^*\Gg\isomorphism(f\pr_{1/2})^*\Gg=(f\pr_{2/2})^*\isomorphism \pr_{2/2}^*f^*\Gg\,.
 		\end{equation*}
 	\end{alphanumerate}
 \end{rem}
@@ -158,9 +158,9 @@ the canonical projections to the $i\ordinalth$ factor, to the $j\ordinalth$ fact
 	\lecture[Properties of fpqc morphisms. Grothendieck topologies.]{2019-10-21}
 	If $f\colon X\morphism Y$ is fpqc, then for all open subset $U\subseteq Y$ we have a natural isomorphism
 	\begin{equation*}
-		\Global(U,\Oo_Y)\isomorphism\left\{\lambda\in \Global(f^{-1}(U),\Oo_X)\st p_1^*\lambda =p_2^*\lambda\text{ in }\Global(p^{-1}(U),\Oo_{X\times_YX})\right\}\,.
+		\Global(U,\Oo_Y)\isomorphism\left\{\lambda\in \Global(f^{-1}(U),\Oo_X)\st \pr_1^*\lambda =\pr_2^*\lambda\text{ in }\Global(p^{-1}(U),\Oo_{X\times_YX})\right\}\,.
 	\end{equation*}
-	Here, $p\colon X\times_YX\morphism Y$ denotes the natural morphism (and $p=fp_1=fp_2$).
+	Here, $p\colon X\times_YX\morphism Y$ denotes the natural morphism, so that $p=f\pr_1=f\pr_2$.
 \end{cor}
 At this point, Professor Franke recalls the notion of mono-/epimorphism and their \defemph{effective} variants. We refer to \cite[Appendix~A.1]{alggeo2} for the relevant definitions and to \cite[Subsection~1.3.1]{alggeo1} for a construction of equalizers in the category of schemes.
 \begin{prop}\label{prop:fpqcEffectiveEpi}
@@ -337,9 +337,9 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 \begin{prop}\label{prop:fpqcSheaf}
 	For the Grothendieck topologies of \cref{prop:technicalAF}, a presheaf $\Ff$ on $(\cat{Sch}/S)^\Pp$ is a sheaf iff its restriction to Zariski-open subsets of any $X\in (\cat{Sch}/S)^\Pp$ is an ordinary sheaf on $X$, and for every morphism $(X'\morphism X)\in\Cc$ the sequence
 	\begin{equation*}
-		\Ff(X)\morphism\Ff(X')\doublemorphism[p_1^*][p_2^*]\Ff(X'\times_XX')
+		\Ff(X)\morphism\Ff(X')\doublemorphism[\pr_1^*][\pr_2^*]\Ff(X'\times_XX')
 	\end{equation*}
-	establishes the left arrow as an equalizer of the double arrow on the right. Here, we denote by $p_1,p_2\colon X'\times_XX'\morphism X'$ the canonical projections.
+	establishes the left arrow as an equalizer of the double arrow on the right. Here we denote by $\pr_1,\pr_2\colon X'\times_XX'\morphism X'$ the canonical projections, as introduced in \cref{nota:pr}.
 \end{prop}
 \begin{proof}[Sketch of a proof*]
 	Let's first assume that $\Ff$ is a sheaf. Since every sieve over $X$ generated by a Zariski-open cover is indeed a covering sieve (since the condition from \cref{prop:technicalAF}\itememph{2} is obviously satisfied), we see that $\Ff$ restricts to a Zariski-sheaf on $X$. Moreover, if the morphism $X'\morphism X$ is in $\Cc$, then the sieve $\Ss$ of all morphisms $v\colon U\morphism X$ that factor through $X'$ is a covering sieve. Indeed, the condition from \cref{prop:technicalAF}\itememph{1} is clearly satisfied. Hence
@@ -348,9 +348,9 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	\end{equation*}
 	Now every $\Ff(X)\morphism \Ff(U)$ factors through $\Ff(X)\morphism\Ff(X')$. Moreover, if $U\morphism X$ factors in two different ways through $X'$, then this induces a unique map $U\morphism X'\times_XX'$, and thus a map $\Ff(X'\times_XX')\morphism\Ff(U)$. If you think about it, this shows that
 	\begin{equation*}
-		\Ff(X')\doublemorphism[p_1^*][p_2^*]\Ff(X'\times_XX')
+		\Ff(X')\doublemorphism[\pr_1^*][\pr_2^*]\Ff(X'\times_XX')
 	\end{equation*}
-	is a coinitial subdiagram of the diagram given by $\{\Ff(U)\}_{v\in\Ss}$. Hence the limit over the latter diagram is the same as the equalizer of $p_1^*$ and $p_2^*$, so $\Ff(X)$ mapping isomorphically to that limit means that $\Ff(X)$ is said equalizer, as claimed.
+	is a coinitial subdiagram of the diagram given by $\{\Ff(U)\}_{v\in\Ss}$. Hence the limit over the latter diagram is the same as the equalizer of $\pr_1^*$ and $\pr_2^*$, so $\Ff(X)$ mapping isomorphically to that limit means that $\Ff(X)$ is said equalizer, as claimed.
 	
 	Now for the converse. Assume that $\Ff$ is a presheaf with the required property and let $\Ss$ be a covering sieve over $X$. Let $X=\bigcup_{i\in I}U_i$, $J_i$, and $U_{i,j}\morphism U_i$ be the associated data. For all $i\in I$, let $\Ss_i\subseteq \Ss$ be the subsieve of all morphisms $(v\colon U\morphism X)$ that factor through some $U_{i,j}$. We first show that we have an isomorphism
 	\begin{equation*}
@@ -358,7 +358,7 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	\end{equation*}
 	To see this, note that the subdiagram spanned by all $\Ff(U_{i,j})$ and all $\Ff(U_{i,j}\times_X U_{i,k})$ for $j,k\in J_i$, together with the projection morphisms between them, is a coinitial subdiagram of the whole $\{\Ff(U)\}_{v\in\Ss_i}$. Indeed, that's basically the same argument as in the proof above (if $U\morphism X$ factors through $U_{i,j}$ and $U_{i,k}$, then also through $U_{i,j}\times U_{i,k}$). So we may as well take the limit over that subdiagram. But taking into account that $\Ff$ takes disjoint unions to products (because it restricts to an ordinary Zariski sheaf), the limit over said subdiagram is given by the equalizer of
 	\begin{equation*}
-		\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\Bigg)\doublemorphism[p_1^*][p_2^*]\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\times_X\coprod_{k\in J_i}U_{i,k}\Bigg)\,.
+		\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\Bigg)\doublemorphism[\pr_1^*][\pr_2^*]\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\times_X\coprod_{k\in J_i}U_{i,k}\Bigg)\,.
 	\end{equation*}
 	Since $\coprod_{j\in J_i}U_{i,j}\morphism U_i$ is in $\Cc$, our assumption on $\Ff$ shows that the above equalizer is just $\Ff(U_i)$, as claimed.
 	
@@ -368,7 +368,7 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	\end{equation*}
 	Now let $\Ss'\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through $U_{i,j}$ for some $i\in I$, $j\in J_i$. By the above considerations, we find that the limit over the diagram $\{\Ff(U)\}_{v\in\Ss'}$ is the same as the limit over
 	\begin{align*}
-		\prod_{i\in I}\Ff(U_i)\doublemorphism[p_1^*][p_2^*]\prod_{i,i'\in I}\Ff(U_i\times_XU_{i'})\,,
+		\prod_{i\in I}\Ff(U_i)\doublemorphism[\pr_1^*][\pr_2^*]\prod_{i,i'\in I}\Ff(U_i\times_XU_{i'})\,,
 	\end{align*}
 	which is just $\Ff(X)$ by the usual Zariski sheaf axiom for $X$. So it remains to show that replacing $\Ss$ by $\Ss'$ doesn't change the limit. To see this, let $p\colon Y\morphism X$ be an element of $\Ss$ and let $V_i=Y\times_XU_i$, $V_{i,j}=Y\times_XU_{i,j}$. Repeating the above steps with $Y$ instead of $X$, we see that $\Ff(Y)$ is already determined by the $\Ff(V_{i,j})$. However, each $V_{i,j}\morphism X$ factors over $U_{i,j}$, i.e., lies in $\Ss'$. This shows that indeed it doesn't matter whether the limit is taken over all $v\in \Ss$ are all $v\in \Ss'$.
 \end{proof}
@@ -378,11 +378,11 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 	
 	To prove this, we use \cref{prop:fpqcSheaf} of course. It is easy to see that $\Hom_{\cat{Sch}/S}(-,F)$ is a sheaf in the Zariski topology (since morphisms can be glued). So it's left to check the second condition, i.e.,
 	\begin{equation*}
-		\Hom_{\cat{Sch}/S}(X,F)\isomorphism\left\{\phi\in\Hom_{\cat{Sch}/S}(X',F)\st \phi p_1=\phi p_2\text{ in }\Hom_{\cat{Sch}/S}(X'\times_XX',F)\right\}
+		\Hom_{\cat{Sch}/S}(X,F)\isomorphism\left\{\phi\in\Hom_{\cat{Sch}/S}(X',F)\st \phi \pr_1=\phi \pr_2\text{ in }\Hom_{\cat{Sch}/S}(X'\times_XX',F)\right\}
 	\end{equation*}
 	whenever $X'\morphism X$ is an fpqc morphism. For fixed $X'\morphism X$, the condition that this holds for all $F$ is precisely the definition for $X'\morphism X$ being the coequalizer
 	\begin{equation*}
-		\Coeq\Big(X'\times_XX'\doublemorphism[p_1][p_2]X'\Big)\,.
+		\Coeq\Big(X'\times_XX'\doublemorphism[\pr_1][\pr_2]X'\Big)\,.
 	\end{equation*}
 	But then again this is equivalent to $X'\morphism X$ being an effective epimorphism, which we proved in \cref{prop:fpqcEffectiveEpi}.
 \end{exm}
@@ -1362,7 +1362,7 @@ There is also a notion of being \defemph{henselian in an ideal $I$}, which only 
 \begin{proof}
 	If $f,f'\colon Y\morphism Y'$ are morphisms between finite étale $X$-schemes, then $\Eq(f,f')$ is an open-closed subscheme of $Y$ (to see that it's open, use the argument from the proof of \cref{prop:universalHomeo}, to see closedness, use that $f$ and $f'$ are necessarily separated). Thus the equalizer equals $Y$ iff it contains $Y_0$, since $Y_0$ intersects all  connected components of $Y$ by assumptions. This shows that the functor in question is faithful.
 	
-	For fullness, let $f\colon Y\morphism Y'$ be a morphism of finite étale $X$-schemes. Let $\Gamma_f$ be the \emph{graph} of $f$, i.e., the image of the open-closed immersion $(\id_Y,f)\colon Y\morphism Y\times_XY'$ (this is open-closed since it is the equalizer of the two morphisms $Y\times_XY'\morphism Y\times_XY'$ given by $\id_Y$ and $(p_1,fp_1)$). The association $f\mapsto \Gamma_f$ defines a bijection between $\Hom_{\Et/X}(Y,Y')$ and the set of open-closed subschemes $\Gamma\subseteq Y\times_XY'$ such that the projection restricts to an isomorphism $p_1\colon \Gamma\isomorphism Y$. Since that projection is finite étale, it is an isomorphism iff it has degree $1$ (see \cref{fact:degree1} below). The set of all open-closed subschemes of $Y\times_XY'$ is precisely the set of all subsets of $\pi_0(Y\times_XY')$. By assumption, $\pi_0(Y_0\times_{X_0}Y'_0)\isomorphism \pi_0(Y\times_XY')$. Moreover, $Y_0$ meets every connected component of $Y$, hence $\Gamma\morphism Y$ has degree $1$ iff the same is true for $\Gamma_0\morphism Y_0$. These consideration show that the set of $\Gamma\subseteq Y\times_XY'$ with the required properties is in canonical bijection with the set of $\Gamma_0\subseteq Y_0\times_{X_0}Y_0'$ with the same properties. This shows fullness.
+	For fullness, let $f\colon Y\morphism Y'$ be a morphism of finite étale $X$-schemes. Let $\Gamma_f$ be the \emph{graph} of $f$, i.e., the image of the open-closed immersion $(\id_Y,f)\colon Y\morphism Y\times_XY'$ (this is open-closed since it is the equalizer of the two morphisms $Y\times_XY'\morphism Y\times_XY'$ given by $\id_Y$ and $(\pr_1,f\pr_1)$). The association $f\mapsto \Gamma_f$ defines a bijection between $\Hom_{\Et/X}(Y,Y')$ and the set of open-closed subschemes $\Gamma\subseteq Y\times_XY'$ such that the projection restricts to an isomorphism $\pr_1\colon \Gamma\isomorphism Y$. Since that projection is finite étale, it is an isomorphism iff it has degree $1$ (see \cref{fact:degree1} below). The set of all open-closed subschemes of $Y\times_XY'$ is precisely the set of all subsets of $\pi_0(Y\times_XY')$. By assumption, $\pi_0(Y_0\times_{X_0}Y'_0)\isomorphism \pi_0(Y\times_XY')$. Moreover, $Y_0$ meets every connected component of $Y$, hence $\Gamma\morphism Y$ has degree $1$ iff the same is true for $\Gamma_0\morphism Y_0$. These consideration show that the set of $\Gamma\subseteq Y\times_XY'$ with the required properties is in canonical bijection with the set of $\Gamma_0\subseteq Y_0\times_{X_0}Y_0'$ with the same properties. This shows fullness.
 \end{proof}
 \begin{fact}\label{fact:degree1}
 	A finite étale morphism (in fact, any finite and finitely presented flat morphism) is an isomorphism iff it has degree $1$.
