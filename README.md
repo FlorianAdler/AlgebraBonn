@@ -1,4 +1,4 @@
-# Notes for Algebra Lectures in Bonn [![Build Status](https://travis-ci.com/FlorianAdler/AlgebraBonn.svg?branch=master)](https://travis-ci.com/FlorianAdler/AlgebraBonn)
+# Notes for Algebra Lectures in Bonn 
 
 This repository contains my (unofficial) notes to selected lectures on Algebra and Algebraic Geometry, held at the University of Bonn.
 
