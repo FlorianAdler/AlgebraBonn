@@ -2,7 +2,7 @@
 
 \section{On Inverse Limits of Schemes}\label{sec:inverseLimits}
 In the following, all references refer to \cite{stacks-project} and $\colimit$ always denotes a colimit over filtered partially ordered set. Note that colimits over filtered categories may, with some care, be reduced to colimits over filtered posets (\stackstag{0032}).
-\numpar{}\label{par:schemesInverseLimit}Let $(S_\alpha)$ be a cofiltered system of schemes. We investigate whether the limit over this system exists, and list some properties:
+\numpar{Ascending properties}\label{par:schemesInverseLimit}Let $(S_\alpha)$ be a cofiltered system of schemes. We investigate whether the limit over this system exists, and list some properties:
 \begin{alphanumerate}
 	\item By \stackstag{01YX}, the cofiltered limit $\limit S_\alpha$ exists if all transition morphisms are affine. Moreover, if $0$ is an initial object in the (surpressed) index poset and $U_0\subseteq S_0$ is an open subscheme (or a closed one, or actually any $S_0$-scheme), then
 	\begin{equation*}
@@ -12,31 +12,38 @@ In the following, all references refer to \cite{stacks-project} and $\colimit$ a
 	\item In \stackstag{01Z2} it is proved that if all $S_\alpha$ are non-empty and quasi-compact, then $S$ is non-empty. Actually $S$ is also quasi-compact again, as follows from \itememph{c} and Tychonoff's theorem. Using this assertion together with \itememph{a}, we see moreover that if all $S_\alpha$ are quasi-separated, then the same is true for $S$.
 	\item By \stackstag{0CUF} we have a homeomorphism $|S|\cong \limit |S_\alpha|$ on underlying topological spaces.
 \end{alphanumerate}
-\numpar{}\label{par:descendingFinPres} From now on, all occurring schemes are quasi-compact and quasi-coherent. It is often a useful fact to know that a certain property of an inverse limit of schemes or morphisms of schemes is already satisfied by a \enquote{finite stage} of the limit. For example, it is a standard strategy to use arguments of this kind to prove assertions about non-noetherian schemes by reduction to the noetherian case.
+\numpar{Descending properties of (sub-)objects}\label{par:descendingObjects}It is often a useful fact to know that if $S=\limit S_\alpha$ has a certain property $\Pp$, then also all \enquote{sufficiently large} $S_\beta$ (i.e., all $\beta\geq \alpha$ for some fixed $\alpha$) have $\Pp$. In combination with \itememph{d}, this is a standard procedure to reduce assertions about arbitrary schemes to the noetherian case.
 \begin{alphanumerate}\setcounter{enumi}{3}
-	\item By \stackstag{01ZR}, every finitely presented $\Oo_S$-module $\Ff$ (in particular, every coherent module if $S$ is noetherian) can be written as the pullback of a finitely presented $\Ff_\alpha$ over $S_\alpha$ for some suitable $\alpha$. If $\Ff=\Vv$ is a vector bundle, then by \stackstag{0B8W} we may even assume that $\Vv_\alpha$ is already a vector bundle too by.
-	\item Let $f\colon X\morphism S$ be a finitely presented morphism. By \stackstag{01ZM}, there is an $\alpha$ such that $f$ can be written as a cofiltered limit over finitely presented morphisms $f_\beta\colon X_\beta\morphism S_\beta$ for all $\beta\geq \alpha$ in such a way that $f$ is the base change of $f_\alpha$ along $S\morphism S_\alpha$, and $f_\beta$ is the base change of $f_\alpha$ along $S_\beta\morphism S_\alpha$ for all $\beta\geq \alpha$.
-	
-	Moreover, if $g\colon Y\morphism S$ is another finitely presented morphism and written as a limit over $g_\beta\colon Y_\beta\morphism S_\beta$ as above, then
-	\begin{equation*}
-	\colimit_{\beta\geq\alpha}\Hom_{\cat{Sch}/S_\beta}(X_\beta,Y_\beta)\cong \Hom_{\cat{Sch}/S}(X,Y)\,.
-	\end{equation*}
-	In this fashion, every finitely presented morphism of schemes can be written as a cofiltered limit of morphisms between schemes of finite type over $\IZ$.
-	\item By \stackstag{0204}, if $f\colon X\morphism S$ is proper morphism and written as a cofiltered limit over finite type morphisms $f_\beta\colon X_\beta\morphism S_\beta$ as in \itememph{e}, then already $f_\beta$ is proper for some $\beta\geq \alpha$. The idea is to use Chow's lemma to reduce everything to a similar question about projective morphisms, which is easier to treat.
-	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a cofiltered limit as above, then already $f_\beta$ is étale for some $\beta\geq \alpha$.
-	\item Let $X=\limit_\alpha X_\alpha$ and denote by $\pi_\alpha\colon X\morphism X_\alpha$ the canonical projections. If all $X_\alpha$ are quasi-separated, then so is $X$. Moreover, every quasi-compact open subset $U\subseteq X$ is of the form $U=\pi_\alpha^{-1}(U_\alpha)$ for some $\alpha$ and some quasi-compact open subset $U_\alpha\subseteq X_\alpha$. Since Professor Franke couldn't find a Stacks Project reference, he gave a proof himself.
+	\item By \stackstag{01ZA}, every quasi-compact and quasi-separated scheme $S$ can be written as a limit $S=\limit S_\alpha$, where the $S_\alpha$ are of finite type over $\IZ$, all transition maps are affine, and the index category can be chosen to be a directed poset.
+	\item Suppose $S=\limit S_\alpha$, where all $S_\alpha$ (and thus $S$ by \itememph{b}) are quasi-compact and quasi-separated. By \stackstag{01ZR}, every finitely presented $\Oo_S$-module $\Ff$ (in particular, every coherent module if $S$ is noetherian) can be written as the pullback of a finitely presented $\Ff_\alpha$ over $S_\alpha$ for some suitable $\alpha$. If $\Ff=\Vv$ is a vector bundle, then by \stackstag{0B8W} we may even assume that $\Vv_\alpha$ is already a vector bundle too by.
+	\item Suppose $S=\limit S_\alpha$, where all $S_\alpha$ are quasi-compact and quasi-separated. If $S$ is quasi-affine, then \stackstag{O1Z6} shows that there exists an $\alpha$ such that all $S_\beta$ are quasi-affine for $\beta\geq \alpha$.
+	\item Suppose $S=\limit S_\alpha$, where all $S_\alpha$ are quasi-compact and quasi-separated. If $S$ is affine, then \stackstag{O1Z7} shows that there exists an $\alpha$ such that all $S_\beta$ are affine for $\beta\geq \alpha$.
+	\item Suppose $S=\limit S_\alpha$, where all $S_\alpha$ are quasi-compact and quasi-separated, and denote by $\pi_\alpha\colon S\morphism S_\alpha$ the canonical projections. Then every quasi-compact open subset $U\subseteq S$ is of the form $U=\pi_\alpha^{-1}(U_\alpha)$ for some $\alpha$ and some quasi-compact open subset $U_\alpha\subseteq S_\alpha$. Since Professor Franke couldn't find a Stacks Project reference (it would have been \stackstag{01Z4}), the proof below is his own.
 \end{alphanumerate}
 \begin{proof}[Proof of \itememph{h}]
-	Without restriction the index category has a final object $0$ (we can always pass to the cofinal subcategory of all $\alpha$-objects). Since $\pi_0\colon X\morphism X_0$ is affine and $X_0$ is quasi-separated, $X$ is quasi-separated as well (alternatively we could have used \cref{par:schemesInverseLimit}\itememph{b}). Write $X_0=\bigcup_{j=1}^nU_j$ as a finite union of affine open subschemes $U_j$, using that $X_0$ is quasi-compact. Then the $\pi_0^{-1}(U_j)$ are affine and the $U\cap \pi_0^{-1}(U_j)$ are still quasi-compact as $X$ is quasi-separated.
+	Without restriction the index category has a final object $0$ (we can always pass to the cofinal subcategory of all $\alpha$-objects). Since $\pi_0\colon S\morphism S_0$ is affine and $S_0$ is quasi-separated, $S$ is quasi-separated as well (alternatively we could have used \cref{par:schemesInverseLimit}\itememph{b}). Write $S_0=\bigcup_{j=1}^nU_j$ as a finite union of affine open subschemes $U_j$, using that $S_0$ is quasi-compact. Then the $\pi_0^{-1}(U_j)$ are affine and the $U\cap \pi_0^{-1}(U_j)$ are still quasi-compact as $S$ is quasi-separated.
 	
-	It suffices to show that all $U\cap \pi_0^{-1}(U_j)$ are of the form $\pi_{\alpha_j}^{-1}(U_{\alpha_j})$ for some $\alpha_j$ and some quasi-compact open $U_{\alpha_j}\subseteq X_{\alpha_j}\times_{X_0}U_j$. Indeed, if we choose $\alpha\geq \alpha_1,\dotsc,\alpha_n$, then the open subscheme
+	It suffices to show that all $U\cap \pi_0^{-1}(U_j)$ are of the form $\pi_{\alpha_j}^{-1}(U_{\alpha_j})$ for some $\alpha_j$ and some quasi-compact open $U_{\alpha_j}\subseteq S_{\alpha_j}\times_{S_0}U_j$. Indeed, if we choose $\alpha\geq \alpha_1,\dotsc,\alpha_n$, then the open subscheme
 	\begin{equation*}
-		U_\alpha\coloneqq \bigcup_{j=1}^nU_{\alpha_j}\times_{X_{\alpha_j}}X_\alpha\subseteq X_\alpha
+	U_\alpha\coloneqq \bigcup_{j=1}^nU_{\alpha_j}\times_{S_{\alpha_j}}S_\alpha\subseteq S_\alpha
 	\end{equation*}
 	will satisfy the desired condition.
 	
-	Thus, we may assume that $X_0=U_j$ and thus all $X_\alpha$ and $X$ are affine. Say $X_\alpha=\Spec R_\alpha$ and $X=\Spec R=\Spec(\colimit_\alpha R_\alpha)$. As $U$ is quasi-compact, it has a finite open cover $U=\bigcup_{k=1}^m\Spec R\setminus V(f_k)$. Since $f_1,\dotsc,f_m$ are finitely many elements, they must already be contained in some $R_\alpha$. Now $U_\alpha\coloneqq \Spec R_\alpha\setminus V(f_1,\dotsc,f_m)$ does the job.
+	Thus, we may assume that $S_0=U_j$ and thus all $S_\alpha$ and $S$ are affine. Say $S_\alpha=\Spec R_\alpha$ and $S=\Spec R=\Spec(\colimit_\alpha R_\alpha)$. As $U$ is quasi-compact, it has a finite open cover $U=\bigcup_{k=1}^m\Spec R\setminus V(f_k)$. Since $f_1,\dotsc,f_m$ are finitely many elements, they must already be contained in some $R_\alpha$. Now $U_\alpha\coloneqq \Spec R_\alpha\setminus V(f_1,\dotsc,f_m)$ does the job.
 \end{proof}
+\numpar{Descending properties of morphisms}\label{par:descendingMorphisms}
+Same as for objects, we would like to know that if a morphism $f\colon X\morphism S$ has some property $\Pp$ and can be written as a limit over $f_\alpha\colon X_\alpha\morphism S_\alpha$, then already some $f_\alpha$ has property $\Pp$. Together with \itememph{i} below, this often allows to prove results about morphisms of finite type between noetherian schemes also for morphisms of finite presentation between arbitary schemes.
+\begin{alphanumerate}\setcounter{enumi}{8}
+	\item Let $f\colon X\morphism S$ be a finitely presented morphism, and assume $S=\limit S_\alpha$, where all $S_\alpha$ are quasi-compact and quasi-separated and all transition morphisms are affine. By \stackstag{01ZM}, there exists an index $\alpha$ for which there is a scheme $X_\alpha$ and a finitely presented morphism $f_\alpha\colon X_\alpha\morphism S_\alpha$ such that $X=X_\alpha\times_{S_\alpha}S$ and $f$ is the base change of $f_\alpha$. In particular, writing $X_\beta=X_\alpha\times_{S_\alpha}S_\beta$ for all $\beta\geq \alpha$, we see that $f$ can be written as a cofiltered limit over finitely presented morphisms $f_\beta\colon X_\beta\morphism S_\beta$ for $\beta\geq \alpha$.
+	
+	Moreover, if $g\colon Y\morphism S$ is another finitely presented morphism and written as a limit over $g_\beta\colon Y_\beta\morphism S_\beta$ for $\beta\geq \alpha$ as above, then
+	\begin{equation*}
+	\colimit_{\beta\geq\alpha}\Hom_{\cat{Sch}/S_\beta}(X_\beta,Y_\beta)\cong \Hom_{\cat{Sch}/S}(X,Y)\,.
+	\end{equation*}
+	Combining this result with \itememph{d}, we see that every finitely presented morphism between quasi-compact quasi-separated schemes can be written as a cofiltered limit of morphisms between schemes of finite type over $\IZ$.
+	\item By \stackstag{0204}, if $f\colon X\morphism S$ is proper morphism and written as a cofiltered limit over finitely presented morphisms $f_\beta\colon X_\beta\morphism S_\beta$ as in \itememph{i}, then already $f_\beta$ is proper for some $\beta\geq \alpha$. The idea is to use Chow's lemma to reduce everything to a similar question about projective morphisms, which is easier to treat.
+	\item By \stackstag{07RP}, if $f\colon X\morphism S$ is étale and written as a cofiltered limit as in \itememph{i}, then already $f_\beta$ is étale for some $\beta\geq \alpha$. \item The same conclusion holds for a variety of properties. A comprehensive list can be found in \cite[Théorème~(8.10.5)]{egaIV3}; but let us mention that being quasi-finite is one of these properties since we have to apply Zariski's main theorem in a non-noetherian situation to prove \cref{prop:henselian}.
+\end{alphanumerate}
 \section{The Conditions \texorpdfstring{$R_k$}{Rk} and \texorpdfstring{$S_k$}{Sk}}
 Serre's conditions $R_k$ and $S_k$ have shown up a few times: first in the proof of the Zariski--Nagata purity theorem (\cref{thm:Zariski-Nagata}) in Lecture~7 and then again in the construction of henselizations in Lecture~11. So I decided to write down proofs of the facts we have used.
 
@@ -193,7 +200,7 @@ The first step is to prove the assertion for complete noetherian local domains, 
 	\begin{equation*}
 	B\otimes_A\roof{A}\morphism\prod_{i=1}^n\kappa(\qq_i)
 	\end{equation*}
-	is injective. But $B\otimes_A\roof{A}$ is clearly contained in the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ as noted above, this shows that $B\otimes_A\roof{A}$ is finite over $\roof{A}$. Then $B$ is finite over $A$ (if $\big\{\sum_ib_{i,j}\otimes a_i\big\}$ are generators of $B\otimes_A\roof{A}$, then $\{b_{i,j}\}$ are generators of $B$, using that $\roof{A}$ is faithfully flat over $A$). We are done. K\"ahler
+	is injective. But $B\otimes_A\roof{A}$ is clearly contained in the integral closure of $\roof{A}$ in $\prod_{i=1}^n\kappa(\qq_i)$ as noted above, this shows that $B\otimes_A\roof{A}$ is finite over $\roof{A}$. Then $B$ is finite over $A$ (if $\big\{\sum_ib_{i,j}\otimes a_i\big\}$ are generators of $B\otimes_A\roof{A}$, then $\{b_{i,j}\}$ are generators of $B$, using that $\roof{A}$ is faithfully flat over $A$). We are done.
 	
 	\emph{Step~4.} We show that $\roof{A}$ is indeed reduced. Using the younger sibling of Serre's normality criterion, what we have to show is that $\roof{A}$ is $R_0$ and $S_1$. Note that this is fulfilled for $A$ since $A$ is a domain, hence reduced. Moreover, the fibres of $A\morphism\roof{A}$ are regular (even geometrically regular), hence the fibres are $R_n$ and $S_n$ for every $n\geq 0$. Now both $R_0$ and $S_1$ are \enquote{ascending} conditions in the sense that if they hold for the source and the fibres, then they hold for the target as well as long as the morphism in question is flat (see \stackstag{0336}, but in these particular cases everything is easily checkable by hand). This shows that $\roof{A}$ is indeed reduced and this rather lengthy proof has finally come to an end.
 \end{proof}
