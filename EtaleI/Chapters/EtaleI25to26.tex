@@ -1,0 +1,617 @@
+\section{Constructible Sheaves}
+Unfortunately, before we can get into the fun business of proving the proper base change theorem, we need to discuss yet another technical notion. The reason is as follows: to construct $\ell$-adic cohomology eventually, we would like to consider étale cohomology with coefficients in a constant sheaf associated to a finite abelian group. However, the category of such sheaves is very badly behaved: it is far from being abelian, and being a constant sheaf is neither preserved under pushforward nor under extension by zero. So the goal for this section is to construct a category of sheaves with better properties.
+\subsection{Noetherian Sheaves}
+\begin{deflem}\label{def:noetherian}
+	An object $x$ of an arbitrary category $\Cc$ is called \defemph{noetherian} if the following equivalent %\footnote{Professor Franke would like to point out that this depends on your belief in the axiom of choice.}
+	 conditions are satisfied:
+	\begin{alphanumerate}
+		\item Any ascending sequence $x_0\monomorphism x_1\monomorphism \dotso\monomorphism x_n\monomorphism \dotso\monomorphism x$ of subobjects of $x$ stabilizes.
+		\item Any set $\SS$ of subobjects of $x$ has a \defemph{maximal} element $s^*\in \SS$ in the following sense: any monomorphism $s^*\monomorphism s$ of subobjects of $x$ into an object $s\in \SS$ is already an isomorphism.
+	\end{alphanumerate}
+\end{deflem}
+\begin{proof*}[Proof of equivalence]
+	\itememph{b} $\Rightarrow$ \itememph{a} is trivial, and \itememph{a} $\Rightarrow$ \itememph{b} follows from Zorn's lemma.
+\end{proof*}
+\begin{fact}\label{fact:noetherian}
+	\begin{alphanumerate}
+		\item Noetherianness of objects of an abelian category is preserved under taking subobjects, quotients, extensions, and finite direct sums.
+		\item If $\{j_k\colon Z_k\morphism X\}$, $k=1,\dotsc,m$, is a finite jointly surjective set of locally closed immersions of schemes and $\Ff\in\cat{Ab}(X_\et)$ is a sheaf such that all $j_k^*\Ff$ are noetherian in $\cat{Ab}(X_{k,\et})$, then $\Ff$ is noetherian.
+		\item If $\Phi$ is a finite abelian group and $X$ is a noetherian scheme, then the constant sheaf $\Phi_X$ on $X_\et$ is noetherian in $\cat{Ab}(X_\et)$.
+		\item If $X$ is quasi-compact, then for $\Ff\in \cat{Ab}(X_\et)$ to be noetherian is local with respect to $X_\et$. That is, if $\{U_i\morphism X\}_{i\in I}$ is an étale cover such that each $\Ff|_{U_{i,\et}}$ is noetherian, then $X$ is noetherian as well.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}
+	Part~\itememph{a} can be proved as in the special case where the abelian category under consideration is $\cat{Mod}_R$ for some ring $R$. For \itememph{b}, let $(\Ff_n)_{n\in \IN}$ be an ascending sequence of subsheaves of $\Ff$. Since $j_k^*\colon\cat{Ab}(X_\et)\morphism \cat{Ab}(Z_{k,\et})$ is exact, $(j_k^*\Ff_n)_{n\in \IN}$ is an ascending sequence of subsheaves of $j_k^*\Ff$, hence stabilizes for $n\geq N_i$. Since the morphisms $j_k$ are jointly surjective, every geometric point $\ov{x}$ of $X$ factors over some $Z_k$. Since $(\Ff_n)_{\ov{x}}=(j_k^*\Ff_n)_{\ov{x}}$ (see \cref{rem:f^*}), the sequence $((\Ff_n)_{\ov{x}})_{n\in \IN}$ stabilizes for $n\geq N_k$. Thus $(\Ff_n)_{n\in \IN}$ stabilizes for $n\geq \max N_k$, proving that $\Ff$ is noetherian.
+	
+	In \itememph{c}, we may assume that $\Phi=\IZ/p\IZ$ for some prime $p$, using \itememph{a} and the fact that every abelian group $\Phi$ has a filtration $0=\Phi_0\subseteq \Phi_1\subseteq \dotsb\subseteq \Phi_n=\Phi$ such that all subquotients $\Phi_i/\Phi_{i-1}$ are isomorphic to $\IZ/p\IZ$ for some prime $p$. Now let $\Ff$ be a subsheaf of the constant sheaf $\Phi_X=\IZ/p\IZ_X$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] There is an open subset $U\subseteq X$ such that $\Ff_{\ov{x}}\neq 0$ iff the geometric point $\ov{x}$ factors over $U$. Moreover, if $V\in X_\et$ is a connected étale $X$-scheme, then
+		\begin{equation*}
+			\Global(V,\Ff)=\begin{cases*}
+				\IZ/p\IZ & if $V\rightarrow X$ factors over $U$\\
+				0 & else
+			\end{cases*}\,.
+		\end{equation*}
+	\end{alphanumerate}
+	Since $X$ is noetherian, hence has finitely many connected components, so we may reduce \itememph{*} to the case that $X$ is connected. In particular, $\Global(X,\IZ/p\IZ_X)=\IZ/p\IZ$. Thus, if $\ov{x}$ is a geometric point of $X$, then $\Ff_{\ov{x}}$ is non-zero iff it contains the image of the global section $1\in \Global(X,\IZ/p\IZ_X)$. In this case, $1$ is also contained in $\Global(V,\Ff)$ for some étale neighbourhood $(V,\ov{v})$ of $\ov{x}$. Let $U_{\ov{x}}$ be the image of $V\morphism X$. Then $U_{\ov{x}}$ is open by \cref{prop:ppfOpen}. Moreover, $\Global(U_{\ov{x}},\Ff)$ is the equalizer of $\pr_1^*,\pr_2^*\colon \Global(V,\Ff)\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\smallmorphismlength-0.04em}]%
+	\vphantom{x}\rar[shift left=0.45ex]\rar[shift right=0.45ex] \& \vphantom{x}%
+	\end{tikzcd} \Global(V\times_{U_{\ov{x}}}V,\Ff)$ by the sheaf axiom, hence contains the image of $1\in \Global(X,\IZ/p\IZ_X)$ as well.
+	
+	Now let $U$ be the union of all $U_{\ov{x}}$ as above.  $\Global(U,\Ff)$ contains $1$ too, and it's straightforward to check that $U$ has the property from \itememph{*}. Moreover, if $V\morphism X$ is étale and factors over $U$, then also $1\in \Global(V,\Ff)$, hence $\Global(V,\Ff)=\IZ/p\IZ$ if $V$ is connected. Conversely, if $V\morphism X$ doesn't factor over $U$, then there is some geometric point $\ov{x}$ of $X$ that factors over $V$ but not over $U$, so that $\Ff_{\ov{x}}=0$. Then $\Global(V,\Ff)$ cannot contain the image of $1\in \Global(X,\IZ/p\IZ_X)$, or $1$ would also be contained in $\Ff_{\ov{x}}$. Then $\Global(V,\Ff)=0$ if $V$ is connected. This shows \itememph{*}.
+	
+	In particular, $\Ff$ is uniquely determined by the open subset $U$ from \itememph{*}. Now let $(\Ff_n)_{n\in \IN}$ be a ascending sequence of subsheaves of $\IZ/p\IZ_X$. Then the corresponding sequence $(U_n)_{n\in \IN}$ of open subsets of $X$ is descending, hence stabilizes for $n\geq N$ as $X$ is noetherian. Thus $(\Ff_n)_{n\in \IN}$ stabilizes for $n\geq N$ and $\IZ/p\IZ$ is indeed noetherian.
+	
+	For \itememph{d}, if $\{U_i\morphism X\}_{i\in I}$ is as above, then we may find a finite subset $J\subseteq I$ such that $\{U_i\morphism X\}_{i\in J}$ is already an étale cover, because $X$ is quasi-compact. If $(\Ff_n)_{n\in \IN}$ is an ascending sequence of subsheaves, then each sequence $(\Ff_n|_{U_i,\et})_{n\in \IN}$ for $i\in J$ stabilizes for $n\geq N_i$ by assumption. Hence the original sequence stabilizes for $n\geq \max N_i$.
+\end{proof}
+\begin{lem}\label{lem:NoetherianGenericVanishing}
+	Let $X$ be an arbitrary scheme. Let $\Ff\in \cat{Ab}(X_\et)$ be noetherian and $\ov{\eta}$ a geometric point of $X$ such that the closure $\ov{\{\eta\}}$ of the underlying point $\eta$ contains an open neighbourhood of $\eta$. If $\Ff_{\ov{\eta}}=0$, then there is an open neighbourhood $U\subseteq X$ of $\eta$ such that the restriction $\Ff|_{U_\et}=0$.
+\end{lem}
+\begin{proof}
+	As Robin pointed out, the proof becomes a bit clearer if we use the characterization from \cref{def:noetherian}\itememph{b} rather than \itememph{a}. Let
+	\begin{equation*}
+		\SS=\left\{\Ff'\subseteq \Ff\st \Ff'|_{U_\et}=0\text{ for some open neighbourhood $U$ of $\eta$}\right\}\,.
+	\end{equation*}
+	Since $\Ff$ is noetherian, $\SS$ contains a $\subseteq$-maximal element $\Ff^*$. Let $U^*$ be the corresponding open neighbourhood of $\eta$. Without restriction, we may assume that $U^*$ is contained in $\ov{\{\eta\}}$. If $\Ff|_{U_\et^*}\neq 0$, then there exists an étale $U^*$-scheme $V\in U_\et^*$ and a non-zero section $0\neq s\in \Global(V,\Ff)$. The geometric point $\ov{\eta}$ can be lifted to $V$ because the image of $V$ is open and contained in $\ov{\{\eta\}}$, hence contains the generic point $\eta$. However, $\Ff_{\ov{\eta}}=0$, hence there must be an étale $V$-scheme $W$ such that $s$ vanishes in $\Global(W,\Ff)$. Let $U$ denote the image of $j\colon W\morphism X$ and let $\Ff_0$ be the subsheaf generated by the section $s$. That is, $\Ff_0$ is the image of $s\colon j_!\IZ_W\morphism \Ff$ (which is adjoint to $s\colon \IZ_W\morphism \Ff|_{W_\et}$). Then $\Global(W,\Ff_0)=0$, hence also $\Ff_0|_{U_\et}=0$ by the sheaf axiom and the fact that $\Ff_0$ is generated by $s$. In particular, $\Ff^*+\Ff_0$ (the sum is taken as subsheaves of $\Ff$) is an element of $\SS$, since it vanishes on $(U^*\cap U)_\et$. But also $\Ff^*\subsetneq (\Ff^*+\Ff_0)$ $\Ff^*|_{U_\et^*}=0$ but $s$ is a non-zero section over $U_\et^*$. This contradicts maximality of $\Ff^*$.
+\end{proof}
+\numpar{Counterexample*}
+The original statement of \cref{lem:NoetherianGenericVanishing} came without the condition that $\ov{\{\eta\}}$ contains an open neighbourhood of $\eta$. This version is wrong though. For example, suppose $X$ is a connected noetherian scheme of dimension $\dim X\geq 1$, $x\in X$ is a closed point, and $\ov{x}$ a geometric point lifting $x$. Let $U=X\setminus \{x\}$ and $j\colon U\monomorphism X$ its open embedding. Then $j_!(\IZ/p\IZ_U)$ is a subsheaf of $\IZ/p\IZ_X$ (beware that this is only true for open embeddings, not for arbitrary étale $j\colon V\morphism X$) and satisfies $j_!(\IZ/p\IZ_U)_{\ov{x}}=0$. However, $\Global (V,j_!(\IZ/p\IZ_U))\neq 0$ for all $V\in X_\et$ whose image in $X$ does not contain $x$.
+\subsection{LCC Sheaves and Constructible Sheaves}\label{subsec:constructible}
+\begin{deflem}\lecture[Locally constant constructible and constructible sheaves. \enquote{Constructible} is equivalent to \enquote{noetherian and torsion}. A heap of technical proofs.]{2020-01-20}\label{def:lcc}Let $X$ be a noetherian scheme.
+	An object $\Ff\in \cat{Ab}(X_\et)$ is \defemph{locally constant constructible} (\enquote{lcc} for short) if it satisfies the following equivalent conditions:
+	\begin{alphanumerate}
+		\item The sheaf $\Ff$ is representable by a finite étale (commutative) group scheme $F$ over $X$. That is, $\Ff$ is isomorphic to $\Hom_{\cat{Sch}/X}(-,F)$, which is an étale sheaf (even an fpqc sheaf) by \cref{exm:HomSheaf}.
+		\item For every connected component $Y$ of $X$ there is a finite surjective étale morphism $Y'\morphism Y$ such that $\Ff|_{Y'_\et}$ is a constant sheaf given by a finite abelian group.
+		\item The sieve $\Ss=\left\{U\in X_\et\st \Ff|_{U_\et}\text{ is a constant sheaf, given by a finite abelian group}\right\}$ is a covering sieve.
+	\end{alphanumerate}
+\end{deflem}
+\begin{proof}[Proof of equivalence]
+	Throughout the proof we may assume that $X$ is connected. We start with \itememph{a} $\Rightarrow$ \itememph{b}. Let $\ov{x}$ be a chosen geometric point of $X$. If $\Ff$ is represented by the finite étale $X$-group scheme $F$, then $F$ is given by a finite group $\Phi=\Fib_{\ov{x}}(F)=\Ff_{\ov{x}}$ with a continuous $\pi_1^\et(X,\ov{x})$-action. Put $K=\ker(\pi_1^\et(X,\ov{x})\morphism \Aut(\Phi))$ and let $X'\morphism X$ be the Galois covering with Galois group $G\coloneqq\pi_1^\et(X,\ov{x})/K$ (if these arguments seem mysterious to you, have a look at \cref{thm:GrothendieckGalois}\itememph{a} again). Then $\Ff|_{X'_\et}$ is constant, given by $\Phi$. Indeed, for $\Ff|_{X'_\et}$ to be constant it suffices to check $\Phi\times_XX'\cong F\times_XX'$ (this is not hard to see). Since the fibre functor $\Fib_{\ov{x}}\colon \cat{F}\Et/X\isomorphism \pi_1^\et(X,\ov{x})\cat{\mhyph FSet}$ is an equivalence, it suffices to construct a $\pi_1^\et(X,\ov{x})$-equivariant bijection
+	\begin{equation*}
+		\coprod_{\phi\in \Phi}G\isomorphism\Phi\times G
+	\end{equation*}
+	(both sides are equal to $\Phi\times G$ as sets, but the $\pi_1^\et(X,\ov{x})$-action is the diagonal action on the right-hand side and induced by $G$ on the left-hand side). By construction, $G$ comes with a morphism $G\morphism \Aut(\Phi)$, and then $(\phi,g)\mapsto (g\phi,g)$ gives the required $\pi_1^\et(X,\ov{x})$-equivariant bijection. This finishes the proof of \itememph{a} $\Rightarrow$ \itememph{b}.
+	
+	The implication \itememph{b} $\Rightarrow$ \itememph{c} is trivial. For \itememph{c} $\Rightarrow$ \itememph{a} we use faithfully flat descent (with some care) as follows: choose an étale cover $\{U_i\morphism X\}_{i\in I}$ such that $\Ff|_{U_{i,\et}}$ is constant with value $\Phi_i$. Put $F_i\coloneqq \Phi_i\times U_i$, equipped with the obvious group scheme structure. It's straightforward to check $\Ff|_{U_{i,\et}}\cong \Hom_{\cat{Sch}/U_i}(-,F_i)$. By Yoneda's lemma, the $F_i$ form a descent datum for surjective finite étale $F\morphism X$. It is clear that $F$ is a commutative group scheme. Indeed, being a group scheme over $X$ can be completely described in terms of morphisms between $X$, $F$, $F\times_X F$, and $F\times_XF\times_XF$. Since faithfully flat descent is an assertion about an equivalence of categories, these morphisms can be obtained from the corresponding morphisms for the $F_i$. 
+\end{proof}
+\begin{fact}\label{fact:lccFiniteEtale}
+	The property of being lcc is preserved under pushforward along finite étale morphisms between noetherian schemes.
+\end{fact}
+\begin{proof*}
+	Let $f\colon X'\morphism X$ be a finite étale between noetherian schemes, and $\Ff$ an lcc sheaf on $X'_\et$. The property of being lcc is local with respect to the étale topology (this is easy to see from \cref{def:lcc}\itememph{c}). Since étale coverings are étale-locally split by \cref{lem*:technicalFEt/X}\itememph{a}, we may assume that $X$ is connected, $X'=S\times X$ for some finite discrete $S$, and $f=\pr_2$ is the projection to $X$. Now let $\{U_i\morphism X'\}_{i\in I}$ be an étale cover of $X'$ such that each $\Ff|_{U_{i,\et}}$ is a constant sheaf with value $\Phi_i$. Since $X'\morphism X$ is surjective (or $X'=\emptyset$ as $X$ is connected, but this case is trivial anyway), we see that $\{U_i\morphism X\}_{i\in I}$ is an étale cover of $X$ too. Using $X'=S\times X$, it's straightforward to check that $f_*\Ff|_{U_{i,\et}}$ is a constant sheaf with value $\Phi_i^{\oplus S}$. This proves that $f_*\Ff$ is lcc by \cref{def:lcc}.
+\end{proof*}
+\begin{lem}\label{lem:noetherianLCC}
+	Let $X$ be noetherian. If $\Ff\in\cat{Ab}(X_\et)$ is a noetherian torsion sheaf, then there is an non-empty open subset $\emptyset\neq U\subseteq X$ such that $\Ff|_U$ is lcc.
+\end{lem}
+\begin{rem*}\label{rem*:torsion}
+	An étale sheaf being \emph{torsion} could reasonably mean one of the following three conditions:
+	\begin{alphanumerate}
+		\item There is an integer $N\neq 0$ such that $N\Ff=0$.
+		\item For every section $s$ of $\Ff$ there is an integer $N\neq 0$ such that $Ns=0$.
+		\item For every geometric point $\ov{x}$ of $X$ and all $s\in \Ff_{\ov{x}}$ there is an integer $N\neq 0$ such that $Ns=0$.
+	\end{alphanumerate}
+	Clearly \itememph{c} is the weakest condition. Since $X$ is noetherian, every $V\in X_\et$ is quasi-compact, which implies \itememph{c} $\Rightarrow$ \itememph{b} by a standard argument. Finally \itememph{b} $\Rightarrow$ \itememph{a} follows immediately from $\Ff$ being noetherian. So there's no ambiguity.
+\end{rem*}
+\begin{proof}[Proof of \cref{lem:noetherianLCC}]
+	First note that it suffices to find an étale $X$-scheme $V$ such that $\Ff|_{V_\et}$ is lcc. Indeed, if $U$ denotes the image of the étale morphism $V\morphism X$, then $U$ is Zariski-open and by \cref{def:lcc}\itememph{c} we see immediately that $\Ff|_{U_\et}$ is lcc as well, as claimed. In particular, we are free to replace $X$ by any $V\in X_\et$.
+	
+	Let $\ov{\eta}$ be a geometric point of $X$ whose underlying point $\eta$ is the generic point of an irreducible component of $X$. Let $\Phi=\Ff_{\ov{\eta}}$. Our goal is to show that
+	\begin{numerate}
+		\item $\Phi$ is a finite abelian group,
+		\item and after replacing $X$ by some \enquote{suitably small} étale neighbourhood of $\ov{\eta}$, there exists a morphism $\sigma\colon \Phi_X\morphism \Ff$ of sheaves inducing an isomorphism on stalks at $\ov{\eta}$.
+	\end{numerate}
+	In \itememph{2}, there's actually a technical details that is easy to miss: if we replace $X$ by some étale neighbourhood $(X',\ov{\eta}')$ of $\ov{\eta}$, we must ensure that the new underlying point $\eta'$ is still the generic point of some irreducible component of $X'$ (otherwise we couldn't apply \cref{lem:NoetherianGenericVanishing}). This is true because $0=\dim \Oo_{X,\eta}=\dim \Oo_{X',\eta'}$ by \cref{rem*:dimension}. So there's nothing to worry about.
+	
+	Let's first see how \itememph{1} and \itememph{2} finish the proof. Note that $\Phi_X$ is noetherian by \itememph{1} and \cref{fact:noetherian}\itememph{c}, hence $\ker\sigma$ and $\coker\sigma$ are noetherian by \cref{fact:noetherian}\itememph{a}. Since both vanish at $\ov{\eta}$ by \itememph{2}, \cref{lem:NoetherianGenericVanishing} shows that $\ker\sigma$ and $\coker\sigma$ vanish on $U_\et$ for some Zariski-open neighbourhood $U$ of $\eta$. Hence $\sigma$ is an isomorphism on $U_\et$ and we are done.
+	
+	To show \itememph{1}, we claim that there exist finitely many étale neighbourhoods $V_i$, $i=1,\dotsc,n$, of $\ov{\eta}$, and sections $s_i\in \Global(V_i,\Ff)$, such that the images of $s_i$ in $\Ff_{\ov{\eta}}$ generate this abelian group. Indeed, otherwise we could find an infinite sequence $(V_i,s_i)_{i\in \IN}$ such that each $s_j$ is not contained in the subgroup of $\Ff_{\ov{\eta}}$ generated by $s_1,\dotsc,s_{j-1}$. Let $\Ff_j$ be the subsheaf of $\Ff$ generated by the sections $s_1,\dotsc,s_j$, as in the proof of \cref{lem:NoetherianGenericVanishing}. Then $\Ff_1\subsetneq \Ff_2\subsetneq \dotsb$ is an infinite properly ascending sequence of subobjects of $\Ff$ (as can be seen from the stalks at $\ov{\eta}$), contradicting the assumption that $\Ff$ be noetherian. This shows \itememph{1}: indeed, since $\Ff$ is torsion, $\Phi=\Ff_{\ov{\eta}}$ is a finitely generated torsion abelian group, hence finite.
+	
+	Choose $N$ such that $N\Ff=0$ and let $K$ be the kernel of the map $(\IZ/N\IZ)^{\oplus n}\morphism \Phi$ induced by $s_1,\dotsc,s_n$. Since there are only finitely many $V_i$ and the category of étale neighbourhoods is filtered (\cref{fact:filtered}), we may assume $V_1=\dotsb=V_n=V$. As argued above, we can put $V=X$ without restriction. Then $s_1,\dotsc,s_n\in \Global(X,\Ff)$ are global sections and thus define a map $(\IZ/N\IZ)_X^{\oplus n}\morphism \Ff$. To prove \itememph{2}, it suffices to show that $K_X\monomorphism (\IZ/N\IZ)_X^{\oplus n}\morphism \Ff$ vanishes after replacing $X$ by a sufficiently small étale neighbourhood of $\ov{\eta}$. Note that the image of $K_X$ in $\Ff$ is noetherian by \cref{fact:noetherian}\itememph{a}, \itememph{c}, and vanishes at $\ov{\eta}$ by construction, hence it vanishes over $U_\et$ for some Zariski-neighbourhood $U$ of $\eta$, using \cref{lem:NoetherianGenericVanishing}. Therefore replacing $X$ by $U$ does the trick.
+\end{proof}
+\begin{defi}\label{def:constructible}
+	Let $X$ be a noetherian scheme. We call a sheaf $\Ff\in \cat{Ab}(X_\et)$ \defemph{constructible} if it satisfies the following equivalent (by \cref{prop:constructible} and the discussion below) conditions:
+	\begin{alphanumerate}
+		\item[\itememph{c_1}] There is an ascending sequence $\emptyset =U_0\subseteq U_1\subseteq\dotsb\subseteq U_n=X$ (a \defemph{stratification}) of open subsets such that the restriction $\Ff|_{(U_k\setminus U_{k-1})_\et}$ to the reduced closed subscheme $U_k\setminus U_{k-1}$ of $U_k$ is lcc for all $k=1,\dotsc,n$.
+		\item[\itememph{c_1^-}] There is a finite jointly surjective family $\{j_k\colon X_k\monomorphism X\}$, $k=1,\dotsc,n$, of locally closed immersions such that all $j_k^*\Ff$ are lcc.
+		\item[\itememph{c_2}] There are finitely many finite morphisms $\{p_k\colon X_k\morphism X\}$, $k=1,\dotsc,n$, together with finite abelian groups $\Phi_k$, such that there exists a monomorphism
+		\begin{equation*}
+			\Ff\monomorphism \bigoplus_{k=1}^np_{k,*}\Phi_k\,.
+		\end{equation*}
+		\item[\itememph{c_3}] $\Ff$ is noetherian and torsion.
+	\end{alphanumerate}
+\end{defi}
+The proof of equivalence of the four conditions is by no means easy and covers the rest of the section. We will chop it up into a series of lemmas and facts.
+\begin{lem}\label{lem:c1<=>c3}
+	Conditions \itememph{c_1} and \itememph{c_3} are equivalent. In particular, a locally constant constructible sheaf is noetherian.
+\end{lem}
+\begin{proof}
+	We start with \itememph{c_1} $\Rightarrow$ \itememph{c_3}. Let $\emptyset =U_0\subseteq U_1\subseteq\dotsb\subseteq U_n=X$ be as in \itememph{c_1}. Put $Z_k=U_k\setminus U_{k-1}$, equipped with its reduced subscheme structure inherited from $U_k$, and let $j_k\colon Z_k\monomorphism X$ be the corresponding locally closed immersion. Then all $j_k^*\Ff$ are locally constant constructible, hence noetherian by \cref{fact:noetherian}\itememph{c}, \itememph{d}. Thus \cref{fact:noetherian}\itememph{b} shows that $\Ff$ is noetherian. To show that $\Ff$ is torsion, it suffices to check that every stalk is torsion (\cref{rem*:torsion}). But stalks are preserved under $j_k^*$ and every $j_k^*\Ff$ is lcc, hence its stalks are torsion. This ultimately proves that $\Ff$ is torsion too.
+	
+	It remains to show \itememph{c_3} $\Rightarrow$ \itememph{c_1}. Let $\Ff$ be noetherian torsion sheaf. Put $U_0=\emptyset$, choose $U_1$ as in \cref{lem:noetherianLCC}, and let $Z=X\setminus U_1$ (equipped with its reduced closed subscheme structure). Let $i\colon Z\monomorphism X$ denote the corresponding closed immersion. Once we show that $i^*\Ff$ is a noetherian torsion sheaf again, the assertion will follow immediately by noetherian induction. If $\Gg$ is any sheaf on $Z_\et$ and $\ov{x}$ a geometric point of $X$, then
+	\begin{equation*}
+		(i_*\Gg)_{\ov{x}}=\begin{cases*}
+		\Gg_{\ov{x}} & if $\ov{x}$ factors over $Z$\\
+		0 & else
+		\end{cases*}\,,
+	\end{equation*}
+	as follows from \cref{cor:finiteStalks}. In particular, since $i^*$ preserve stalks, we get that the canonical map $\Ff\morphism i_*i^*\Ff$ is an epimorphism. Thus $i_*i^*\Ff$ is noetherian again by \cref{fact:noetherian}\itememph{a}. Moreover, if $(\Gg_n)_{n\in \IN}$ is a strictly ascending sequence of subsheaves of $i^*\Ff$, then our calculation of stalks shows that $(i_*\Gg_n)_{n\in \IN}$ is a strictly ascending sequence of subsheaves of $i_*i^*\Ff$, contradicting the fact that the latter is noetherian. Thus $i^*\Ff$ must be noetherian too. It's torsion for trivial reasons, whence the proof is complete.
+\end{proof}
+\begin{fact}\label{fact:c2}
+	\begin{alphanumerate}
+		\item Condition \itememph{c_2} is stable under taking subsheaves, finite direct sums, pushforward $p_*$ along finite morphisms $p$, and arbitrary pullbacks $f^*$. Moreover, every lcc sheaf satisfies \itememph{c_2}.
+		\item If $\{i_k\colon X_k\monomorphism X\}$, $k=1,\dotsc,n$, are the irreducible components of $X$ and all restrictions $i_k^*\Ff$ satisfy \itememph{c_2}, then $\Ff$ satisfies \itememph{c_2}.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}
+	In \itememph{a}, stability under taking subobjects is trivial. The same goes for finite direct sums. For the other two stability assertions, let $X$ be noetherian, $\Ff$ a sheaf on $X_\et$ satisfying \itememph{c_2}, and let $(p_k\colon X_i\morphism X,\Phi_k)$ be as in \itememph{c_2}. If $p\colon X\morphism X'$ is a finite morphism of noetherian schemes, then the $p\circ p_k\colon X_k\morphism X'$ are still finite morphisms and $p_*\Ff\monomorphism \bigoplus_{i=1}^n(p\circ p_k)_*\Phi_k$ is still a monomorphism. Similarly, let $f\colon X'\morphism X$ be an arbitrary morphism between noetherian schemes. Put $X_k'\coloneqq X'\times_XX_k$ and let $f_k\colon X_k'\morphism X_k$ and $p_k'\colon X_k'\morphism X'$ be the base changes of $f$ and $p_k$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] The canonical morphism $f^*p_{k,*}\Phi_k\isomorphism p'_{k,*}f_k^*\Phi_k$ is an isomorphism.
+	\end{alphanumerate}
+	In fact, \itememph{*} is a special case of a much more general assertion about finite base change of étale sheaves; see \cref{fact*:finiteBaseChange}\itememph{a} below.
+	
+	Now \itememph{*} immediately implies that $f^*\Ff$ satisfies \itememph{c_2} again: indeed, since $f^*$ is exact, the morphism $f^*\Ff\monomorphism\bigoplus_{i=1}^nf^*p_{k,*}\Phi_k$ is still injective, and by \itememph{*} the right-hand side maps injectively into $\bigoplus_{k=1}^np'_{k,*}\Phi_k$.
+	
+	It remains to show that every lcc sheaf satisfies \itememph{c_2}. Let $X_k'$ be étale coverings of the connected components of $X$ as in \cref{def:lcc}\itememph{b}. Then $p_k\colon X_k'\morphism X$ is still finite and $p_k^*\Ff$ is a constant sheaf by assumption. Moreover, an inspection of stalks, using \cref{cor:finiteStalks} as in the proof of \itememph{*}, shows that the canonical morphism $\Ff\monomorphism \bigoplus_{k=1}^np_{k,*}q_k^*\Ff$ is injective. This finishes the proof of \itememph{a}. In the situation of \itememph{b}, a similar argument shows that $\Ff\monomorphism\bigoplus_{k=1}^ni_{k,*}i_k^*\Ff$ is injective, and \itememph{b} follows at once.
+\end{proof}
+\begin{fact*}\label{fact*:finiteBaseChange}
+	Consider a pullback square
+	\begin{equation*}
+		\begin{tikzcd}
+			Y'\rar["j'"]\drar[pullback]\dar["p'"'] & Y\dar["p"]\\
+			X'\rar["j"] & X
+		\end{tikzcd}
+	\end{equation*}
+	of arbitrary (in particular, not necessarily noetherian) schemes.
+	\begin{alphanumerate}
+		\item If $p$, and thus $p'$, are finite, then the base change morphism $j^*p_*\Ff\isomorphism p'_*j'^*\Ff$ is a natural isomorphism for all sheaves $\Ff\in \cat{Ab}(Y_\et)$.
+		\item If $j$, and thus $j'$, are étale, then the other base change morphism $j'_!p'^*\Ff\isomorphism p^*j_!\Ff$ is a natural isomorphism  for all sheaves $\Ff\in \cat{Ab}(X'_\et)$.
+		\item If both cases occur simultaneously, i.e., if $p$, $p'$ are finite and $j$, $j'$ are étale, then there is a natural isomorphism $p_*j'_!\Ff\isomorphism j_!p'_*\Ff$ for all $\Ff\in \cat{Ab}(Y'_\et)$.
+	\end{alphanumerate}
+\end{fact*}
+\begin{proof*}
+	Part~\itememph{a}. It suffices to check this on stalks. Let $\ov{x}'$ be a geometric point of $X'$ and $\ov{x}=j(\ov{x}')$. We may assume that $\kappa(\ov{x}')=\kappa(\ov{x})$ are algebraically closed. Using that stalks are preserved under pullback, together with \cref{cor:finiteStalks} and \cref{rem:WTFlyingOver}\itememph{3}, we get
+	\begin{equation*}
+		(j^*p_*\Ff)_{\ov{x}'}=\prod_{\ov{y}}\Ff_{\ov{y}}\quad\text{and}\quad (p'_*j'^*\Ff)_{\ov{x}'}=\prod_{\ov{y}'}\Ff_{j'(\ov{y}')}\,,
+	\end{equation*}
+	where $\{\ov{y}\}$ is the set of lifts of $\ov{x}\colon \Spec \kappa(\ov{x})\morphism X$ to $Y$, and $\{\ov{y}'\}$ is the set of lifts of $\ov{x}'\colon \Spec \kappa(\ov{x}')\morphism X'$ to $Y'$. Thus it suffices to show that $j'\colon \{\ov{y}'\}\isomorphism \{\ov{y}\}$ is a bijection. But this follows immediately from $Y'=X'\times_XY$ and the universal property of fibre products. This shows \itememph{a}.
+	
+	Part~\itememph{b} is similar. Let $\ov{y}$ be a geometric point of $Y$ and $\ov{x}=p(\ov{y})$ (this time $\kappa(\ov{y})$ doesn't need to be algebraically closed). We can express $(j'_!p'^*\Ff)_{\ov{y}}$ and $(p^*j_!\Ff)_{\ov{y}}$ using \cref{prop:j!}, and again the assertion reduces to the fact that $p'\colon \{\ov{y}'\}\isomorphism \{\ov{x}'\}$ is bijective, where the left-hand side is the set of lifts of $\ov{y}$ to $Y'$ and the right-hand side is the set of lifts of $\ov{x}$ to $X'$. This is clear again.
+	
+	Part~\itememph{c}. There are two ways to construct this isomorphism. First, we can start with the unit $\id\morphism j'^*j_!$ of the $j'_!$-$j'^*$-adjunction. Applying $p'_*$ and \itememph{a} gives a morphism $p'_*\Ff\morphism p'_*j'^*j'_!\Ff\cong j^*p_*p'_!\Ff$. Via the $j_!$-$j^*$ adjunction we get $j_!p'_*\Ff \morphism p_*j'_!\Ff$ as required. Alternatively, we could start with the counit $p'^*p'_*\morphism \id$ and use \itememph{b}. Investigating stalks as before, we see that both constructions are mutually inverse, and \itememph{c} follows.
+\end{proof*}
+\begin{rem}\label{rem:wouldLikeQuasiFinite}
+	If we could generalize \cref{fact:c2}\itememph{a} to show that condition \itememph{c_2} is preserved under pushforward $q_*$ along \emph{quasi-finite} morphisms $q$ rather than just finite morphisms, then \itememph{c_1} $\Rightarrow$ \itememph{c_2} would easily follow. However, the straightforward strategy to prove this fails: if we factor a quasi-finite morphism $q\colon Y\morphism X$ as
+	\begin{equation*}
+		\begin{tikzcd}
+			 & \ov{Y}\drar["\ov{q}"] & \\
+			 Y\urar[mono, "j"] \ar[rr,"q"] & & X
+		\end{tikzcd}
+	\end{equation*}
+	according to Zariski's main theorem, such that $\ov{q}$ is finite and $j$ is an open embedding, then $j_*\Phi_Y$ may fail to be a constant sheaf again (see \cref{cntx:nonNormal} below). This is a major obstacle in the proof, and will eventually force us to do (slightly) messy reductions to universally Japanese schemes.
+\end{rem}
+\begin{lem}\label{lem:normal}
+	Let $X$ be a noetherian normal scheme and $j\colon U\monomorphism X$ an open embedding. If $\Phi$ is any group or even just a set, then $j_*\Phi_U\cong \Phi_X$ holds as sheaves of groups or sets on $X_\et$. 
+\end{lem}
+\begin{proof}
+	Without loss of generality let $X$ be connected, hence irreducible (as $X$ is noetherian). Let $\pi_0$ denote the connected components of a scheme. Since $\Global(V,\Phi_X)=\Phi^{\oplus \pi_0(V)}$ holds for all $V\in X_\et$, what we need to show is $\pi_0(U\times_XV)\cong \pi_0(V)$ for all $V$. Without loss of generality let $V$ by connected. Using Serre's normality criterion and \cref{lem:EtaleRkSk}, we see that $V$ is normal again, hence irreducible if it is connected. In particular, all open subschemes of $V$ are irreducible again. This shows that $U\times_XV$ and $V$ are both connected and we are done.
+\end{proof}
+\begin{cntx}\label{cntx:nonNormal}
+	The assumption that $X$ be normal may not be dropped in \cref{lem:normal}. For example, let $X$ be the scheme from \cref{exm:crippledP1} and $X_2\morphism X$ the étale covering of degree $2$ constructed there. If $U=X\setminus \{[0]=[\infty]\}$, then $U\times_XX_2$ has two connected components, whereas $X_2$ is connected. In particular, $\Global(X_2,\Phi_{X_2})\cong \Phi$, but $\Global(X_2,j_*\Phi_U)\cong \Global(U\times_XX_2,\Phi_U)\cong \Phi^{\oplus 2}$. This shows that $j_*\Phi_U$ is no constant sheaf, providing a counterexample as promised in \cref{rem:wouldLikeQuasiFinite}.
+\end{cntx}
+\begin{lem}\label{lem:q_*PhiUniJapanese}
+	Let $q\colon Y\morphism X$ be a quasi-finite quasi-compact morphism, where $X$ is a noetherian and universally Japanese scheme. Then for any finite group $\Phi$, the sheaf $q_*\Phi_Y$ on $X$ satisfies \itememph{c_2}.
+\end{lem}
+\begin{proof}
+	We never really defined what it means for a scheme to be universally Japanese, but it's really just the obvious thing, i.e., that every point $x\in X$ has an affine open universally Japanese neighbourhood in the sense of \cref{def:excellent}\itememph{c} (also see \cite[\stackstag{033S}]{stacks-project}). The proof proceeds in several reduction steps, to eventually end up in a situation where \cref{lem:normal} can be applied. The assumption that $X$ is universally Japanese is needed to ensure that normalization behaves nicely.
+	
+	\emph{Step~1.} We reduce to the case where $X$ and $Y$ are integral. Let $X_1,\dotsc,X_n$ be the irreducible components of $X$ (equipped with their reduced closed subscheme structure) and put $Y_k\coloneqq Y\times_XX_k$. Let $q_k\colon Y_k\morphism X$ and $i_k\colon Y_k\monomorphism Y$ be the canonical morphisms, so that $q_k=q\circ i_k$. As argued in the proof of \cref{fact:c2}, $\Phi_Y\monomorphism \bigoplus_{k=1}^ni_{k,*}\Phi_{Y_k}$ is injective. Hence so is $q_*\Phi_Y\monomorphism \bigoplus_{k=1}^nq_{k,*}\Phi_{Y_k}$. Hence it suffices to treat the case where $X=X_k$ is irreducible. We should also remark that $X_k$ is still universally Japanese, since being universally Japanese is preserved under morphisms of finite type.
+	
+	Similarly, let $Y_1,\dotsc,Y_m$ be the irreducible components of $Y$, and let $q_k\colon Y_k\morphism X$ be the restriction of $q$. As before, $q_*\Phi_Y\monomorphism \bigoplus_{k=1}^mq_{k,*}\Phi_{Y_k}$, so without restriction $Y=Y_k$ is irreducible. Thus, $X$ and $Y$ are irreducible. Moreover, if $X^\red$ denotes the reduction of $X$, then $X_\et$ and $X_\et^\red$ are equivalent as sites by \cref{prop:thickeningEtaleEquivalence} (here we use that the nilradical $\nil(\Oo_X)$ is nilpotent as $X$ is noetherian). Thus replacing $X$ by $X^\red$ does not affect the category $\cat{Ab}(X_\et)$. The same is true for replacing $Y$ by $Y^\red$. Therefore we may assume that $X$ and $Y$ are integral.
+	
+	\emph{Step~2.} We reduce to the case where $Y$ is normal. Since $X$ is universally Japanese and $Y$ is of finite type over $X$, $Y$ is universally Japanese too. Hence the normalization $p\colon \snake{Y}\morphism Y$ is a finite surjective morphism. Then the canonical morphism $\Phi_Y\monomorphism p_*p^*\Phi_Y=p_*\Phi_{\snake{Y}}$ is injective, which can be seen by an investigation of stalks via \cref{cor:finiteStalks}. Thus we may replace $Y$ by $\snake{Y}$ without restriction.
+	
+	\emph{Step~3.} Now we get to business and start with the actual proof. Our goal is to show that there exists a factorization
+	\begin{equation*}
+		\begin{tikzcd}
+		& \ov{Y}\drar["\ov{q}"] & \\
+		Y\urar[mono, "j"] \ar[rr,"q"] & & X
+		\end{tikzcd}
+	\end{equation*}
+	such that $j$ is an open embedding (up to some technical detail, see below), $\ov{q}$ is finite, and $\ov{Y}$ is a \emph{normal} scheme, i.e., we want to invoke a somewhat stronger version of Zariski's main theorem (the upside is that this version is actually explicit). Let $\ov{Y}$ be the \emph{normalization of $X$ in $Y$}. This means the following: let $L$ be the function field of $Y$, i.e., the stalk at the generic point of the integral scheme $Y$. Let $\Aa$ be the subsheaf of the constant sheaf $L_X$ on $X$, consisting of those sections that are integral over $\Oo_X$. Then we put $\ov{Y}\coloneqq\SPEC\Aa$. Clearly $\ov{Y}$ is a connected normal scheme. Moreover, $\ov{q}\colon \ov{Y}\morphism X$ is a finite morphism. This follows  since $X$ is universally Japanese, $L$ is a finite extension of the function field $K$, because the base change $Y\times_X\Spec K\morphism \Spec K$ is quasi-finite with target a field, hence finite.\footnote{It would have sufficed to have $L/K$ a finitely generated field extension (which we get for free as $Y$ has finite type over $X$), since in that case the algebraic closure of $K$ in $L$ is always finite over $L$ (this fact is not so well-known and not entirely trivial either; see \cite[\S14.7 Corollary~1]{BourbakiAlgII}).}
+	
+	Since $Y$ is normal itself, it factors over $j\colon Y\morphism \ov{Y}$. Applying Zariski's main theorem in the version of \cite[\stackstag{00Q9}]{stacks-project} does \emph{not quite} show that $j$ is an open embedding, but at least we can find a finite affine Zariski-open cover $Y=\bigcup_{k=1^n}U_k$ such that each $j_k=j|_{U_k}\colon U_k\monomorphism \ov{Y}$ is an open embedding. Thus we obtain \enquote{almost} the desired factorization of $q$. But in fact, what we got is enough: $j_*\Phi_Y\monomorphism \bigoplus_{k=1}^nj_{k,*}\Phi_{U_k}$ is injective by the sheaf axiom, and $j_{k,*}\Phi_{U_k}=\Phi_{\ov{Y}}$ by \cref{lem:normal}, hence $q_*\Phi_Y\monomorphism \bigoplus_{k=1}^n\ov{q}_*\Phi_{\ov{Y}}$. The right-hand side satisfies \itememph{c_2} straight by definition and we win.
+\end{proof}
+\begin{lem}\label{lem:c1c2UniJapanese}
+	Let $q\colon Y\morphism X$ be a quasi-finite quasi-compact morphisms, where $X$ is a universally Japanese noetherian scheme. Then condition \itememph{c_2} is preserved under the pushforward $q_*$. In particular, \itememph{c_1} implies \itememph{c_2} in this case.
+\end{lem}
+\begin{proof}
+	Suppose $\Ff$ satisfies \itememph{c_2} and let $\Ff\monomorphism\bigoplus_{k=1}^np_{k,*}(\Phi_k)_{X_s}$ be the associated monomorphism. Since pushforward is left-exact, $q_*\Ff\monomorphism (q\circ p_k)_*(\Phi_k)_{X_k}$ is still injective, and since $q\circ p_k$ is quasi-finite, the summands on the right-hand side all satisfy \itememph{c_2} by \cref{lem:q_*PhiUniJapanese}. Hence so does $q_*\Ff$ by \cref{fact:c2}\itememph{a}, proving the first assertion.
+	
+	For the second one, let $\emptyset=U_0\subseteq U_1\subseteq\dotsb\subseteq U_n=X$ be a stratification as in \itememph{c_1}. Let $Z_k\coloneqq U_k\setminus U_{k-1}$, carrying the the reduced closed subscheme structure inherited from $U_k$, and let $i_k\colon Z_k\monomorphism X$ denote the corresponding locally closed immersion. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] The canonical morphism $\Ff\monomorphism \bigoplus_{k=1}^ni_{k,*}i_k^*\Ff$ is injective.
+	\end{alphanumerate}
+	This was just claimed in the lecture, but is not quite trivial, so we give it a proper proof. As usual, injectivity can be checked on stalks. Let $\ov{x}$ be a geometric point of $X$ and choose $k$ such that $\ov{x}$ is contained in $Z_k$. Let $Z$ be the connected component of $Z_k$ containing $\ov{x}$, $Z'\coloneqq Z_k\setminus Z$, and $i\colon Z\monomorphism X$, $i'\colon Z'\monomorphism X$ the respective restrictions of $i_k$. Then $i_{k,*}i_k^*\Ff\cong i_*i^*\Ff\oplus i'_*i'^*\Ff$, so it suffices to show that $\Ff\morphism i_*i^*\Ff$ is injective at $\ov{x}$.
+	
+	Since $i^*\Ff$ is lcc and $Z$ is connected, we find a surjective finite étale morphism $V\morphism Z$ such that $i^*\Ff|_{V_\et}$ is constant, given by a finite abelian group $\Phi$ (using \cref{def:lcc}\itememph{c}). In particular, $\Ff_{\ov{x}}\cong (i^*\Ff)_{\ov{x}}\cong \Phi$. So we must show that $\Phi\morphism (i_*i^*\Ff)_{\ov{x}}$ is injective. Using \cref{cor:(f_*F)_y}, we find
+	\begin{equation*}
+		(i_*i^*\Ff)_{\ov{x}}\cong \Global\big(Z_{\ov{x}},\pr_1^*i^*\Ff\big)\,,
+	\end{equation*}
+	where $Z_{\ov{x}}\coloneqq Z\times_X\Spec \Oo_{X_\et,\ov{x}}$. We wish to compute the right-hand side via the étale cover $\{V\times_ZZ_{\ov{x}}\morphism Z_{\ov{x}}\}$. Note that the pullback of $\pr_1^*i^*\Ff$ to $V\times_ZZ_{\ov{x}}$ is the constant $\Phi$-valued sheaf, because it coincides with the pullback of $i^*\Ff$ along $V\times_ZZ_{\ov{x}}\morphism V\morphism Z$. Thus,  the sheaf axiom yields
+	\begin{equation*}
+		\Global\big(Z_{\ov{x}},\pr_1^*i^*\Ff\big)\cong \Eq\bigg(\Global\big(V\times_ZZ_{\ov{x}},\Phi\big)\doublemorphism[\pr_1^*][\pr_2^*]\Global\big(V\times_ZV\times_ZZ_{\ov{x}},\Phi\big)\bigg)\,.
+	\end{equation*}
+	Note that $V\times_ZZ_{\ov{x}}$ is non-empty, because $V\morphism Z$ is surjective and $Z_{\ov{x}}\neq \emptyset$ (because it contains $\ov{x}$). Hence $\Global(V\times_ZZ_{\ov{x}},\Phi)\cong \Phi^{\oplus m}$ is a finite non-empty direct sum of copies of $\Phi$, according to the number $m$ of connected components of $V\times_ZZ_{\ov{x}}$. Clearly the diagonal morphism $\Delta\colon \Phi\monomorphism \Phi^{\oplus m}$ equalizes $\pr_1^*$ and $\pr_2^*$. This shows that $\Phi\monomorphism \Global(Z_{\ov{x}},\pr_1^*i^*\Ff)$ is injective, as required. We thus proved \itememph{*}.
+	
+	The rest is easy: each $i_k^*\Ff$ is lcc, hence satisfies \itememph{c_2} by \cref{fact:c2}\itememph{a}, hence $i_{k,*}i_k^*\Ff$ satisfies \itememph{c_2} because $i_{k,*}$ is quasi-finite. Thus $\Ff$ satisfies \itememph{c_2} as well.
+\end{proof}
+\begin{rem*}\label{rem*:scepticism}
+	In the lecture it was claimed that $q_*$ preserves \itememph{c_2} for arbitrary $X$, so \cref{lem:c1c2UniJapanese} (and later \cref{prop:constructible}\itememph{b}) would be true without the hypothesis that $X$ is universally Japanese. I'm somewhat sceptical though. The crucial part in the proof presented in the lecture was to show that for every finite abelian group $\Phi$, the pushforward $q_*\Phi_Y$ satisfies property \itememph{c_2} again. To deduce the general case, we wrote $q$ as a base change
+	\begin{equation*}
+	\begin{tikzcd}
+	Y\dar["\pi_Y"']\rar["q"]\drar[pullback] & X\dar["\pi_X"]\\
+	Y'\rar["q'"] & X'
+	\end{tikzcd}\,,
+	\end{equation*}
+	in which $q'\colon Y'\morphism X'$ is a quasi-finite morphism between schemes of finite type over $\IZ$. This is always possible, combining \itememph{d}, \itememph{i}, and \itememph{l} from \cref{sec:inverseLimits}. Since schemes of finite type over $\IZ$ are universally Japanese, we know that $q'_*\Phi_{Y'}$ satisfies \itememph{c_2}. The problem, however, is that the base change morphism
+	\begin{equation*}
+	\pi_X^*q'_*\Phi_{Y'}\morphism q_*\pi_Y^*\Phi_{Y'}\cong q_*\Phi_{Y}
+	\end{equation*}
+	is not necessarily an isomorphism, unless $q$ is finite (\cref{fact*:finiteBaseChange}). And I don't see either why this should be true after choosing $X'$ and $Y'$ \enquote{large enough}. In fact, I bet there's an open embedding $j\colon U\monomorphism X$ of noetherian schemes such that $j_*\Phi_U$ is not even a noetherian sheaf on $X$; but I'm no Nagata, so I didn't succeed in constructing one.
+\end{rem*}
+\begin{lem*}\label{lem*:c1=>c2}
+	Despite \cref{rem*:scepticism}, it's still true that \itememph{c_1} implies \itememph{c_2} for arbitrary noetherian schemes $X$. Moreover, if $j\colon V\monomorphism X$ is étale and $\Phi$ is a finite abelian group, then $j_!\Phi_V$ satisfies \itememph{c_1}.
+\end{lem*}
+\begin{proof*}
+	We start with the second assertion. We may cover $V$ by finitely many Zariski-open subsets $V_1,\dotsc,V_n$, such that each $j_k=j|_{V_k}\colon V_k\morphism X$ is étale and separated. Using the universal property of extension by zero, we get a canonical morphism $\bigoplus_{k=1}^nj_{k,!}\Phi_{V_k}\morphism j_!\Phi_V$. Since the $V_k$ cover $V$, an inspection of stalks (using \cref{prop:j!}) shows that this morphism is an epimorphism. In particular, it suffices to prove that each $j_{k,!}\Phi_{V_k}$ satisfies \itememph{c_1}, because \itememph{c_1} is equivalent to \itememph{c_3} by \cref{lem:c1<=>c3}, and quotients of noetherian torsion sheaves are clearly noetherian torsion again. 
+	
+	Replacing $j$ by $j_k$, we may thus assume that $j$ is separated. What we are actually going to show is that $j_!\Phi_V$ satisfies \itememph{c_2}; the implication \itememph{c_2} $\Rightarrow$ \itememph{c_1} will be shown later in the proof of \cref{prop:constructible} (and there's no circular reasoning involved). Since $j$ is quasi-finite and separated, Zariski's main theorem shows that $j$ may be factored as $j=p\circ i$, where $p\colon \ov{V}\morphism X$ is finite and $i\colon V\monomorphism \ov{V}$ is an open embedding. Our next claim is that $j_!\Ff\cong p_*i_!\Ff$ for any sheaf $\Ff\in \cat{Ab}(V_\et)$. Indeed, using the explicit construction in the proof of \cref{prop:j!}, one easily constructs a functorial morphism $j_\sharp\Ff\morphism p_*i_\sharp\Ff$ on the level of presheaves. Sheafifying gives the desired canonical morphism. To see that it is an isomorphism, we use the descriptions of stalks from \cref{cor:finiteStalks} and \cref{prop:j!} (we omit the details since this is just straightforward).
+	
+	In particular, $j_!\Phi_V\cong p_*i_!\Phi_V$. Note that the counit of the $i_!$-$i^*$ provides a canonical morphism $i_!\Phi_V\cong i_!i^*\Phi_{\ov{V}}\monomorphism \Phi_{\ov{V}}$, which is injective as one can see on stalks. Thus we get an injective morphism $j_!\Phi_V\cong p_*i_!\Phi_V\monomorphism p_*\Phi_{\ov{V}}$, which proves that $j_!\Phi_V$ satisfies \itememph{c_2}. This shows the second assertion.
+	
+	The first assertion can be proved by reduction to the universally Japanese case. Suppose we find a morphism $\pi\colon X\morphism X'$, such that $X'$ is of finite type over $\IZ$ and $\Ff=\pi^*\Ff'$ for some sheaf $\Ff'\in \cat{Ab}(X'_\et)$ satisfying condition \itememph{c_1}. By \cref{lem:c1c2UniJapanese}, we know that $\Ff'$ also satisfies \itememph{c_2}. So we find pairs $(p_k'\colon X_k'\morphism X,\Phi_k)$ consisting of finite morphisms $p_k'$ and finite abelian groups $\Phi_k$, together with an injective morphism $\Ff'\monomorphism\bigoplus_{k=1}^np'_{k,*}\Phi_k$. Since $\pi^*$ is exact, we thus get $\Ff=\pi^*\Ff'\monomorphism \bigoplus_{k=1}^n\pi^*p'_{k,*}\Phi_k$. Now let $X_k\coloneqq X_k'\times_{X'}X$ and let $p_k\colon X_k\morphism X$ be the base change of $p_k'$. Then \cref{fact*:finiteBaseChange}\itememph{a} shows $\pi^*p'_{k,*}\Phi_k\cong p_{k,*}\Phi_k$, hence $\Ff$ satisfies \itememph{c_2} as well.
+	
+	It remains to construct $X'$ and $\Ff'$ with the required properties. By \itememph{d} in \cref{sec:inverseLimits}, we may write $X=\limit X_\alpha$ as a cofiltered limit over schemes $X_\alpha$ of finite type over $\IZ$, and let $\pi_\alpha\colon X\morphism X_\alpha$ be the structure morphisms. We would like to show that any $\Ff$ satisfying \itememph{c_1} can be written as $\pi_\alpha^*\Ff_\alpha$ for some $\Ff_\alpha\in \cat{Ab}(X_{\alpha,\et})$ satisfying \itememph{c_1}. To this end we claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] Every $\Ff$ satisfying property \itememph{c_1} can be written as
+		\begin{equation*}
+			\Ff\cong \coker\Bigg(\bigoplus_{l=1}^m j_{l,!}\big(\IZ/M_l\IZ_{V_l}\big)\morphism[\phi] \bigoplus_{k=1}^ni_{k,!}\big(\IZ/N_k\IZ_{U_k}\big)\Bigg)\,,
+		\end{equation*}
+		where $i_k\colon U_k\morphism X$ and $j_l\colon V_l\morphism X$ are étale morphisms, $\Phi_k$, $\Psi_l$ are finite abelian groups, and $\phi$ is any morphism of sheaves (this is stolen from \cite[\stackstag{095N}]{stacks-project} by the way).
+	\end{alphanumerate}
+	Let's first describe how \itememph{*} finishes the proof. By \itememph{l} from \cref{sec:inverseLimits}, we may choose $\alpha$ large enough such that all $i_k$ and $j_l$ are base changes of étale morphisms $i_{k,\alpha}\colon U_{k,\alpha}\morphism X_\alpha$ and $j_{l,\alpha}\colon V_{l,\alpha}\morphism X_\alpha$. For all $\beta\geq \alpha$ let $i_{k,\beta}\colon U_{k,\beta}\morphism X_\beta$ and $j_{l,\beta}\colon V_{l,\beta}\morphism X_\beta$ be the base changes of $i_{k,\alpha}$ and $j_{l,\alpha}$. Using \cref{fact*:finiteBaseChange}\itememph{b} we see $i_{k,!}(\IZ/N_k\IZ)\cong \pi_\beta^*i_{k,\beta,!}(\IZ/N_k\IZ)$ and similar for $j_{l,!}(\IZ/M_l\IZ)$. Thus it suffices to show that $\phi$ can be written as a pullback $\pi_\beta^*(\phi_\beta)$ of some $\phi_\beta\colon \bigoplus j_{l,\beta,!}(\IZ/M_l\IZ)\morphism \bigoplus i_{k,\beta,!}(\IZ/N_k\IZ)$ for $\beta\geq \alpha$ sufficiently large.
+	
+	Let $\Gg=\bigoplus i_{k,!}(\IZ/N_k\IZ)$ and $\Gg_\beta=\bigoplus i_{k,\beta,!}(\IZ/N_k\IZ)$ denote the sheaves on the right-hand side. Observe that
+	\begin{equation*}
+		\Hom_{\cat{Ab}(X_\et)}\big(j_{l,*}(\IZ/M_l\IZ),\Gg\big)\cong \Hom_{\cat{Ab}(V_{l,\et})}\big(\IZ/M_l\IZ,j_l^*\Gg\big)\cong \Global\big(V_l,j_l^*\Gg)[M_l]\,,
+	\end{equation*}
+	where $(-)[M_l]$ denotes the $M_l$-torsion part, and a similar isomorphism holds for $\Gg_\beta$. Using \cref{prop:etaleInverseLimit} together with the fact that taking $M_l$-torsion commutes with filtered colimits, we can write
+	\begin{equation*}
+		\Global\big(V_l,j_l^*\Gg)[M_l]\cong \colimit_{\beta\geq \alpha}\Global\big(V_{l,\beta},j_{l,\beta}^*\Gg\big)[M_l]\,.
+	\end{equation*}
+	In particular, any morphism $j_{l,!}(\IZ/M_l\IZ)\morphism \Gg$ comes from some \enquote{finite stage}, i.e., is the base change of some $j_{l,\beta,!}(\IZ/M_l\IZ)\morphism \Gg_\beta$ for sufficiently large $\beta\geq \alpha$. This shows that $\phi$ can be written as $\pi_\beta^*(\phi_\beta)$ for some large enough $\beta\geq \alpha$.
+	
+	It remains to prove \itememph{*}. Note that every sheaf of the form $\bigoplus i_{k,\beta,!}(\IZ/N_k\IZ)$ satisfies \itememph{c_1} by the first part. Since property \itememph{c_1} is inherited by subobjects (because it is equivalent to \itememph{c_3} by \cref{lem:c1<=>c3}, and for \itememph{c_3} this is trivial), it suffices to show that every $\Ff$ admits an epimorphism $\bigoplus i_{k,\beta,!}(\IZ/N_k\IZ)\epimorphism \Ff$. In fact, allow arbitrary indexing sets $K$ rather than just finite sets $K=\{1,\dotsc,n\}$, then such an epimorphism $\bigoplus_{k\in K} i_{k,\beta,!}(\IZ/N_k\IZ)\epimorphism \Ff$ exists for every sheaf $\Ff$ whose stalks are torsion abelian groups, without any finiteness conditions. Indeed, we can just take $K=\coprod_{\ov{x}}\Ff_{\ov{x}}$, where $\ov{x}$ ranges over all geometric points of $X$, and choose $(V_k,N_k)$ accordingly. But in our situation $\Ff$ is noetherian in addition to being torsion, so an easy argument shows that there exists a finite subset $K'\subseteq K$ such that $\bigoplus_{k\in K'} i_{k,\beta,!}(\IZ/N_k\IZ)\epimorphism \Ff$ is already an isomorphism. This finishes the proof of \itememph{*}.
+\end{proof*}
+
+
+\begin{prop}\label{prop:constructible}
+	Let $X$ be a noetherian scheme.
+	\begin{alphanumerate}
+		\item The conditions \itememph{c_1}, \itememph{c_1^-}, \itememph{c_2}, and \itememph{c_3} are equivalent. The full subcategory of constructible sheaves is stable under subobjects, quotients, extensions, and finite direct sums (in particular, it is abelian). Moreover, the image of a constructible sheaf under $f^*$ for arbitrary morphisms $f$, $p_*$ for finite morphisms $p$, and $j_!$ for étale morphisms $j$, stays constructible.
+		\item If $q\colon Y\morphism X$ is quasi-finite morphism and $X$ is universally Japanese, then the image of constructible sheaves under $q_*$ stays constructible as well.
+		\item Every torsion sheaf on $X_\et$ in the sense of \cref{rem*:torsion}\itememph{c} is the filtered colimit of its constructible subsheaves.
+	\end{alphanumerate}
+\end{prop}
+We postpone the proof of \cref{prop:constructible} until after one corollary and two remaining preparatory lemmas.
+\begin{cor}
+	Let $X$ be a noetherian scheme. Then the cohomological functor $H^\bullet(X_\et,-)$ is effaceable on the category of constructible sheaves in the sense of \itememph{1} from \cref{prop:effaceable}\itememph{a}.
+\end{cor}
+\begin{proof}
+	Every sheaf has a monomorphism $\Ff\monomorphism \Gg\coloneqq \prod_{\ov{x}}\ov{x}_*\Ff_{\ov{x}}$, where the sheaf on the right-hand side is acyclic, which can be seen from \cref{prop:technicalCech}\itememph{b} and its proof. If $\Ff$ is constructible, then it is a noetherian torsion sheaf, hence annihilated by some integer $N\neq 0$. Then clearly also $N\Gg=0$, so $\Gg$ is a torsion sheaf as well (albeit probably not constructible). By \cref{prop:constructible}\itememph{c}, we can write $\Gg=\colimit \Hh_\alpha$, where the colimit is taken over the filtered system of all constructible subsheaves $\Ff\subseteq \Hh_\alpha\subseteq \Gg$. Thus, by \cref{prop:cohoInverseLimit} (together with the fact that noetherian schemes are always quasi-compact quasi-separated),
+	\begin{equation*}
+		0=H^i(X_\et,\Gg)=\colimit_\alpha H^i(X_\et,\Hh_\alpha).
+	\end{equation*}
+	for all $i>0$. In particular, for every $\eta\in H^i(X_\et,\Ff)$ there is an $\alpha$ such that $\eta$ is mapped to $0$ under $H^i(X_\et,\Ff)\morphism H^i(X_\et,\Hh_\alpha)$. This shows effaceability in the sense of \itememph{1} from \cref{prop:effaceable}\itememph{a}.
+\end{proof}
+\begin{lem}\label{lem:finiteLCC}
+	Let $p\colon Y\morphism X$ be a finite morphism of noetherian schemes, and $\Ff$ an lcc sheaf in $\cat{Ab}(Y_\et)$. There exists a dense open subset $Y\subseteq X$ such that $p_*\Ff|_{U_\et}$ is lcc again.
+\end{lem}
+\begin{proof}
+	We first reduce everything to a sufficiently simple situation. The assertion is local on $X$, so we may also assume that $X=\Spec A$ is affine. Then $Y=\Spec B$ is affine as well. Doing induction on the number of generators of $B$ over $A$, we may assume $B=A[T]/I$ for some ideal $I$. We may further assume that $X$ and $Y$ are reduced, because replacing them by their reductions $X^\red$ and $Y^\red$ does not affect the categories $\cat{Ab}(X_\et)$ and $\cat{Ab}(Y_\et)$ by \cref{prop:thickeningEtaleEquivalence}. Let $\eta_1,\dotsc,\eta_n$ denote the generic points of the irreducible components of $X$. An open subset $U\subseteq X$ is dense iff it contains all $\eta_i$. Thus we may replace $X=\Spec A$ by an affine open subset containing $\eta_1$ but none of $\eta_2,\dotsc,\eta_n$ to reduce to the case where $\Spec A$ is irreducible and reduced, hence $A$ is a domain. Moreover, we may assume that $I=(f)$ is a principal ideal generated by a monic polynomial $f\in A[T]$. Indeed, let $K$ be the fraction field of $A$ and $f_1,\dotsc,f_m\in A[T]$ generators of $I$. The ideal $IK[T]\subseteq K[T]$ is principal, hence generated by some $f\in K[T]$, which thus divides $f_1,\dotsc,f_m$. Then there is an $\alpha\in A$ such that $f$ is already contained in the localization $A_\alpha[T]$ and divides $f_1,\dotsc,f_m$ in $A_\alpha[T]$. Then $IA_\alpha[T]$ is the principal ideal generated by $f$, as required.
+	
+	If the derivative $f'\neq 0$, then $A\morphism A[T]/(f)$ is étale at the generic point $0\in \Spec A$. Hence, using \cref{prop:formallyEtale}\itememph{e} there is an $\alpha\in A$ such that $A_\alpha\morphism A_\alpha[T]/(f)$ is étale. Thus we may assume that $p\colon Y\morphism X$ is finite étale. In this case $p_*\Ff$ is lcc by \cref{fact:lccFiniteEtale}.
+	
+	In particular, this settles the case where $K$ has characteristic $0$. If $K$ has positive characteristic, we may write $f(T)=g(T^q)$, where $q$ is a power of the characteristic and $g'\neq 0$. Put $C\coloneqq A[T]/(g)$, so that $C$ can be obtained from $B=A[T]/(f)$ as $C\cong B[T^{1/q}]$. Thus, putting $Y'\coloneqq\Spec C$, we obtain that $r\colon Y'\morphism Y$ is finite, bijective, and radiciel in the sense of \cref{rem:universalHomeo}. Hence it is a universal homeomorphism and thus $r_*\colon\cat{Ab}(Y_\et')\morphism \cat{Ab}(Y_\et)$ is an equivalence of categories, using \cref{prop:universalHomeo}. Therefore we may replace $p\colon Y\morphism X$ by $p\circ r\colon Y'\morphism X$ and apply the previous argument.
+\end{proof}
+\begin{lem}\label{lem:finiteLCC2}
+	Let $p\colon Y\morphism X$ be a finite morphism of noetherian schemes and $\Ff\in \cat{Ab}(Y_\et)$ be a sheaf satisfying property \itememph{c_1}. Then $p_*\Ff$ is noetherian.
+\end{lem}
+\begin{proof}
+	In the lecture we just said \enquote{\cref{lem:finiteLCC} and noetherian induction}, but actually there's quite some technical stuff to do. Before we start, let's state for the record that property \itememph{c_1} is preserved under pullbacks along closed immersions. Indeed, \itememph{c_1} and \itememph{c_3} are equivalent by \cref{lem:c1<=>c3}. Moreover, we have seen in the proof of that lemma that being noetherian is preserved under pullbacks along closed immersions. The same is true for being torsion for obvious reasons, thus proving the claim. We will use this property several times throughout the proof.
+	
+	\emph{Step~1.} We reduce to the case where $X$ and $Y$ are affine and integral. As usual, \cref{prop:thickeningEtaleEquivalence} allows us to replace $X$ and $Y$ by their reductions $X^\red$ and $Y^\red$. Since being noetherian can be checked Zariski-locally by \cref{fact:noetherian}\itememph{b}, we may assume that $X=\Spec A$ and $Y=\Spec B$ are affine. Moreover, we may assume that $X$ is irreducible. Indeed, let $X_1,\dotsc,X_n$ be the irreducible components of $X$ and $i_k\colon X_k\monomorphism X$. Put $Y_k\coloneqq Y\times_XX_k$, and let $p_k\colon Y_k\morphism X_k$ and $j_k\colon Y_k\monomorphism Y$ be the base changes of $p$ and $i_k$. Then $j_k^*\Ff$ satisfy \itememph{c_1} again (as argued above) and $\Ff\monomorphism \bigoplus_{k=1}^nj_{k,*}j_k^*\Ff$ is a monomorphism (such an argument already occured in the proof of \cref{fact:c2}\itememph{b}). Hence $p_*\Ff\monomorphism \bigoplus_{k=1}^ni_{k,*}p_{k,*}j_k^*\Ff$ and thus it suffices to show that $p_{k,*}j_k^*\Ff$ is noetherian. Therefore we may assume that $X$ is irreducible, hence $A$ is a domain.
+	
+	Similarly, let $Y_1,\dotsc,Y_m$ be the irreducible components of $Y$, and $j_k\colon Y_k\monomorphism Y$. Then $\Ff\monomorphism \bigoplus_{k=1}^mj_{k,*}j_k^*\Ff$ is injective, hence so is $p_*\Ff\monomorphism \bigoplus_{k=1}^m(p\circ j_k)_*j_k^*\Ff$, hence it suffices to proof the assertion with $p\colon Y\morphism X$ replaced by $p\circ j_k\colon Y_k\morphism X$. Therefore we may also assume that $B$ is a domain.
+	
+	\emph{Step~2.} We reduce to the case where $\Ff$ is lcc. Let $\emptyset=V_0\subseteq V_1\subseteq \dotsb \subseteq V_n=Y$ be a stratification according to \itememph{c_1} and put $Z_1=Y\setminus V_1$. Since $p$ is finite, $X'\coloneqq p(Z_1)$ is a closed subset. Observe that since $B$ is finite over $A$ and both are domains, every $\beta\in B$ satisfies an equation of the form $\beta^n+a_{n-1}\beta^{n-1}+\dotsb+a_0=0$ for some $a_k\in A$ and $a_0\neq 0$. Thus, every non-zero prime ideal $0\neq \qq\in \Spec B$ has a non-zero preimage in $A$. This proves that $X'$ does not contain the generic point $0\in \Spec A$, hence $U=X\setminus X'$ is non-empty open. Equip $X'$ with its reduced closed subscheme structure and let $i\colon X'\monomorphism X$. Put $Y'\coloneqq Y\times_XX'$ and let $p'\colon Y'\morphism X'$, $j\colon Y\monomorphism Y$ be the base changes of $p$ and $i$. By the noetherian induction hypothesis and \cref{fact*:finiteBaseChange}\itememph{a}, we know that $p'_*f^*\Ff\cong i^*p_*\Ff$ is noetherian. Using \cref{fact:noetherian}\itememph{b}, it thus remains to check that $p_*\Ff|_{U_\et}$ is noetherian. Put $V=p^{-1}(U)$. Then $V\subseteq V_1$, hence $\Ff|_{V_\et}$ is lcc. Replacing $p\colon Y\morphism X$ by $p|_V\colon V\morphism U$ finishes the second reduction step.
+	
+	\emph{Step~3.} We finish the noetherian induction. By Step~2, we may assume that $\Ff$ is lcc. By \cref{lem:finiteLCC} there is a dense open $U\subseteq X$ such that $p_*\Ff|_{U_\et}$ is noetherian. Put $X'\coloneqq X\setminus U$ (equipped with its reduced closed subscheme structure) and $Y'\coloneqq Y\times_XX'$ and let $i$, $p'$, and $j$ be as above. By the noetherian induction hypothesis and \cref{fact*:finiteBaseChange}\itememph{a}, we know that $p'_*j^*\Ff\cong i^*p_*\Ff$ is noetherian too. Then \cref{fact:noetherian}\itememph{b} shows that $p_*\Ff$ is noetherian too, and the proof is finally complete.
+\end{proof}
+\begin{proof}[Proof of \cref{prop:constructible}]
+	We already know \itememph{c_3} $\Leftrightarrow$ \itememph{c_1} $\Rightarrow$ \itememph{c_2} from \cref{lem:c1<=>c3} and \cref{lem*:c1=>c2}. For \itememph{c_2} $\Rightarrow$ \itememph{c_3}, we must show that for finite abelian groups $\Phi$ and finite morphisms $p\colon Y\morphism X$, the sheaf $p_*\Phi_Y$ is noetherian and torsion. The latter is trivial, and noetherianness follows from \cref{lem:finiteLCC2}. Finally, \itememph{c_1} $\Rightarrow$ \itememph{c_1^-} is obvious, and \itememph{c_1^-} $\Rightarrow$ \itememph{c_3} follows from the fact that lcc sheaves are noetherian and torsion by \cref{lem:c1<=>c3} together with \cref{fact:noetherian}\itememph{b}. This shows equivalence of the four conditions.
+	
+	The stability assertions under $f^*$ and $p_*$ follow from immediately from \cref{fact:c2}\itememph{a}, and the stability assertion under $q_*$ from part~\itememph{b} is proved in \cref{lem:c1c2UniJapanese}. It remains to show stability under $j_!$, where $j\colon U\morphism X$ is étale. Using characterization \itememph{c_2} and exactness of $j_!$, we see that it suffices to show that for finite morphisms $p\colon V\morphism U$ and finite abelian groups $\Phi$, the sheaf $j_!p_*\Phi_V$ satisfies the equivalent conditions again. By an argument as in the proof* of \cref{lem*:c1=>c2}, we may reduce to the case where $j$ is separated. Then $j\circ p\colon V\morphism X$ is separated as well, hence Zariski's main theorem allows us to construct a factorization $V\monomorphism \ov{V}\morphism X$. Now consider the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			V \ar[ddr, bend right, "p"']\drar["p'"]\ar[drr, bend left, mono, "i"']& & \\
+			& U\times_X\ov{V}\rar["j'"]\dar["\smash{\ov{p}'}\vphantom{\ov{p}}"']\drar[pullback, pos=0.4] & \ov{V}\dar["\ov{p}"]\\
+			& U \rar["j"]& X
+		\end{tikzcd}\,.
+	\end{equation*}
+	The base changes $j'$ and $\ov{p}'$ are étale resp.\ finite again. Hence $p$ is finite too. Since $i=j'\circ p$ is an open embedding, hence étale, \cref{fact:etaleProperties}\itememph{b} shows that $p'$ is also étale. In particular, $p'_*\Ff\cong p'_!\Ff$ for any étale sheaf $\Ff\in \cat{Ab}(V_\et)$. Indeed, this is obvious if the finite étale morphism is a split étale covering. But every finite étale morphism is étale-locally a split étale covering by \cref{lem*:technicalFEt/X}\itememph{a}, and whether two étale sheaves are equal can be tested étale-locally. Thus $i_!\Phi_V\cong j'_!p'_!\Phi_V\cong j'_!p_*\Phi_V$. Therefore, we compute
+	\begin{equation*}
+		j_!p_*\Phi_V\cong j_!\ov{p}'_*p'_*\Phi_V\cong \ov{p}_*j'_!p'_*\Phi_V\cong \ov{p}_*i_!\Phi_V\,,
+	\end{equation*}
+	where \cref{fact*:finiteBaseChange}\itememph{c} was used for the middle isomorphism. Now \cref{lem*:c1=>c2} shows that $i_!\Phi_V$ satisfies \itememph{c_1} again, hence so does $\ov{p}_*i_!\Phi_V$ by stability under pushforward along finite morphisms. This finishes the proof of \itememph{a} and \itememph{b}.
+	
+	Part~\itememph{c} is basically trivial: every sheaf on $X_\et$ is the filtered colimit of its finitely generated subsheaves (i.e., those subsheaves generated by finitely many sections). If $\Gg$ is torsion, then every subsheaf generated by finitely many sections is the image of $\bigoplus_{k=1}^nj_{k,!}(\IZ/N_k\IZ_{V_k})\morphism \Gg$ for some étale morphisms $j_k\colon V_k\morphism X$ and some integers $N_k\neq 0$. By \itememph{a}, the left-hand side is constructible, hence so is its image in $\Gg$.
+\end{proof}
+\begin{rem}
+	To finish this section on constructible sheaves, Professor Franke mentions two results from \cite[Section~I, Proposition~4.17 and~4.18]{kiehlfreitag}.
+	\begin{alphanumerate}
+		\item Let $X$ be noetherian and write $X=\limit X_\alpha$ as a limit of noetherian schemes $X_\alpha$ along affine transition maps. Let $\pi_\alpha\colon X\morphism X_\alpha$ be the structure morphisms. If $\Ff$ is a constructible sheaf in $\cat{Ab}(X_\et)$, then there exists an index $\alpha$ and a constructible sheaf $\Ff_\alpha\in \cat{Ab}(X_{\alpha,\et})$ such that $\Ff\cong \pi_\alpha^*\Ff_\alpha$. We proved this essentially in the proof of \cref{lem*:c1=>c2}.
+		\item Let $\Ff=\pi_\alpha^*\Ff_\alpha$ and $\Gg=\pi_\alpha^*\Gg_\alpha$ be constructible sheaves which are $N$-torsion for some integer $N\neq 0$ (in other words, they are modules over the constant $\IZ/N\IZ$-valued sheaf). For all $\beta\geq \alpha$ let $\Ff_\beta$ and $\Gg_\beta$ denote the pullbacks of $\Ff_\alpha$ and $\Gg_\alpha$ to $X_\beta$. Then for all $i\geq 0$ there is an isomorphism
+		\begin{equation*}
+			\colimit_{\beta\geq \alpha}\Eext_{\IZ/N\IZ_{X_\beta}}^i(\Ff_\beta,\Gg_\beta)\isomorphism \Eext_{\IZ/N\IZ_X}^i(\Ff,\Gg)\,.
+		\end{equation*}
+	\end{alphanumerate}
+\end{rem}
+
+\section{Cohomology of Curves}
+\lecture[Cohomology of $\Oo_{C_\et}^\times$ and $\mu_n$. Méthode de la trace. Cohomology of torsion sheaves on curves.]{2020-01-24}
+\numpar{Disclaimer}\label{par:algebraicClosure}
+Throughout this section, $k$ will be a separably closed field, and all results are valid in this case. However, for some of the proofs it will be convenient to assume that $k$ is even algebraically closed. This is made possible by the following observation: let $X$ be a quasi-compact quasi-separated scheme over $k$, which is separably closed. Let $\Ff\in \cat{Ab}(X_\et)$. For all field extensions $K/k$ let $X_K\coloneqq X\times_k\Spec K$, let $\pi_{K/k}\colon X_K\morphism X$ be the canonical projection, and put $\Ff_K\coloneqq \pi_{K/k}^*\Ff$. In the special case $K=\ov{k}$, we have $X_{\ov{k}}\cong \limit_{\ell/k}X_\ell$, where the limit is taken over all finite extensions $\ell/k$. Thus, \cref{prop:cohoInverseLimit} implies
+\begin{equation*}
+	H^i\big(X_{\ov{k},\et},\Ff_{\ov{k}}\big)\cong\colimit_{\ell/k}H^i\big(X_{\ell,\et},\Ff_\ell\big)
+\end{equation*}
+for all $i\geq 0$. Since $k$ is separably closed, every finite extension $\ell/k$ is purely inseparable. Thus, $\Spec \ell\morphism \Spec k$ is finite, radiciel, and surjective, thus a universal homeomorphism by \cref{rem:universalHomeo}. Therefore, we can use \cref{prop:universalHomeo} to show that $\pi_{\ell/k,*}$ and $\pi_{\ell/k}^*$ are mutually quasi-inverse equivalences of categories between $\cat{Ab}(X_\et)$ and $\cat{Ab}(X_{\ell,\et})$. In particular, all $H^i(X_{\ell,\et},\Ff_\ell)$ in the above colimit are isomorphic to $H^i(X_\et,\Ff)$, and we obtain a single isomorphism
+\begin{equation*}
+	H^i\big(X_{\ov{k},\et},\Ff_{\ov{k}}\big)\cong H^i(X_\et,\Ff)
+\end{equation*}
+in this case. This usually allows us to reduce to the case where $\ov{k}$ is algebraically closed. Not always though; see \cref{warn*:pullbackOfStructureSheaf}.
+
+
+\numpar{Terminology}\label{par:curve}
+In this lecture, a \defemph{curve} is a one-dimensional scheme $C$ of finite type over $k$ (note: no connectedness, smoothness, or properness assumptions). Whenever a point of $C$ is called $x$, it is assumed to be a closed point unless otherwise specified. If $x$ is a closed point, then $\kappa(x)$ is finite over $k$ by Hilbert's Nullstellensatz, hence separably closed too. Thus, every closed point is a geometric point as well. By abuse of notation, we also denote $x\colon \Spec \kappa(x)\morphism X$.
+\begin{prop}\label{prop:CurveCohoOXtimes}
+	Let $C$ be a smooth curve over the separably closed field $k$. Then
+	\begin{equation*}
+		H^i\big(C_\et,\Oo_{C_\et}^\times\big)\cong \begin{cases*}
+		\Global(C,\Oo_C)^\times & if $i=0$\\
+		\Pic(C) & if $i=1$\\
+		0 & else
+		\end{cases*}\,.
+	\end{equation*}
+\end{prop}
+\begin{proof}
+	Without losing generality $C$ is connected, hence integral (using smoothness). Let $K$ be the function field of $C$ and $\eta\colon V=\Spec K\morphism C$ the generic point of $C$. Using \cref{prop:FunctionFieldC1} together with \cref{prop:etaleGalois}\itememph{c} and \cref{prop:C1GaloisCoho}\itememph{b} shows $H^i(V_\et,\Oo_{V_\et}^\times)=0$ for $i>0$, because $K$ is a $C_1$ field. Moreover, we claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] The higher derived direct images $R^i\eta_*\Oo_{V_\et}^\times$ vanish for $i>0$.
+	\end{alphanumerate}
+	 Indeed, if $x$ is any closed point geometric point of $C$, or equivalently, a closed point (see \cref{par:curve}) then \cref{lem*:pullbackOfStructureSheaf} shows
+	\begin{equation*}
+		\big(R^i\eta_*\Oo_{V_\et}^\times\big)_x\cong H^i\big(V_{x,\et},\Oo_{V_{x,\et}}^\times\big)\,,
+	\end{equation*}
+	where $V_x\coloneqq U\times_C\Spec \Oo_{C_\et,x}\cong \Spec (K\otimes_{\Oo_{C,x}} \Oo_{C,x}^\sh)$. We claim that $K_x\coloneqq K\otimes_{\Oo_{C,x}} \Oo_{C,x}^\sh$ is a $C_1$ field. To see this, first note that $\Oo_{C,x}^\sh$ is a filtered colimit of domains. In fact, because $C$ is smooth, hence normal, every $\Oo_{U,u}$ occuring in \cref{eq:AhColim1} is a normal domain by \cref{lem:EtaleRkSk} and Serre's normality criterion. Therefore $\Oo_{C,x}^\sh$ is a domain, and thus its localization $K_x$ is one as well. Moreover, by \cref{eq:AhColim1} we may also write $K_x\cong \colimit K\otimes \Global(U,\Oo_U)$. Every $K\otimes \Global(U,\Oo_U)$ is étale over $K$, hence finite, proving that every element of $K_x$ is integral over $K$. Hence $K_x$ is an algebraic field extension of $K$ (Professor Franke even claimed that $K_x$ is the maximal extension of $K$ that is unramified at $x$) and thus $C_1$ by \cref{prop:C1GaloisCoho}\itememph{a}. In particular, we have $H^i(V_{x,\et},\Oo_{V_{x,\et}}^\times)=0$ for $i>0$. Thus $R^i\eta_*\Oo_{V_\et}^\times$ vanishes at all closed points $x$, which is enough to prove \itememph{*} because $C$ is Jacobson (see \cref{rem:Jacobson}).
+	
+	
+	Using \itememph{*} and the Leray spectral sequence (\cref{prop:etaleLeray}) we obtain
+	\begin{equation*}
+		H^i\big(C_\et,\eta_*\Oo_{V_\et}^\times\big)\cong H^i\big(V_\et,\Oo_{V_\et}^\times\big)\cong\begin{cases*}
+			K^\times & if $i=0$\\
+			0 & else
+		\end{cases*}\,.
+	\end{equation*}
+	To compute the cohomology of $\Oo_{C_\et}^\times$, we consider the following sequence of étale sheaves
+	\begin{equation*}
+		0\morphism \Oo_{C_\et}^\times\morphism \eta_*\Oo_{V_\et}^\times\morphism[\div]\bigoplus_{x\in C}x_*\IZ\morphism 0\,.
+	\end{equation*}
+	We would like to show it is exact. Let $U\in C_\et$ be an affine connected étale $C$-scheme. Then $U$ is a connected smooth curve and one easily checks that $\Global(U,\eta_*\Oo_{V_\et}^\times)\cong K_U^\times$, where $K_U$ is the function field of $U$. Moreover, $\Global(U,x_*\IZ)=\bigoplus_u\IZ$, where the direct sum is taken over all closed points $u\in U$ lying over $x$. Since a direct sum can be written as a filtered colimit and $U$ is quasi-compact and quasi-separated, \cref{cor:cohoInverseLimit} thus shows 
+	\begin{equation*}
+		\Global\Bigg(U,\bigoplus_{x\in C}x_*\IZ\Bigg)\cong \bigoplus_{x\in C}\Global(U,x_*\IZ)\cong \Div U\,,
+	\end{equation*}
+	where $\Div U$ denotes the group of divisors on $U$, as usual. Now exactness of the sequence in question follows from the fact that a similar sequence of sheaves is exact in the Zariski topology by some well-known facts about divisors.
+	
+	
+	This allows us to compute the required cohomology groups using the long exact cohomology sequence! We have $\Global(C,x_*\IZ)\cong \IZ$ and $H^i(C_\et,x_*\IZ)=0$ for $i>0$. The latter assertion follows either from the fact that $x\colon \Spec \kappa(x)\morphism X$ is finite together with \cref{prop:Rifinite=0} and the Leray spectral sequence, or from \v Cech cohomology and \cref{prop:technicalCech}\itememph{b}. Since $C$ is quasi-compact and quasi-separated, we can thus apply \cref{cor:cohoInverseLimit} to obtain 
+	\begin{equation*}
+		H^i\Bigg(C_\et,\bigoplus_{x\in C}x_*\IZ\Bigg)\cong \bigoplus_{x\in X}H^i(C_\et,x_*\IZ)=\begin{cases*}
+			\Div C & if $i=0$\\
+			0 & else
+		\end{cases*}\,.
+	\end{equation*}
+	And the assertion follows from the long exact cohomology sequence and our calculation of $H^i(C_\et,\eta_*\Oo_{V_\et}^\times)$ above. In particular, we get a reproof of \cref{cor:H1Pic} in the special case where $X$ is a smooth curve.
+\end{proof}
+\numpar{}\label{par:mu}
+Recall that for any scheme $S$ there's a sheaf $\mu_n=\mu_{n,S}$ of \defemph{$n\ordinalth$ roots of unity} on $S_\et$, given as the kernel of the $n\ordinalth$ power map $(-)^n\colon \Oo_{S_\et}^\times\morphism \Oo_{S_\et}^\times$. If $n$ is invertible on $S$, then $\mu_n$ fits into a short exact sequence
+\begin{equation*}
+	0\morphism \mu_n\morphism \Oo_{S_\et}^\times\xrightarrow{(-)^n}\Oo_{S_\et}^\times\morphism 0
+\end{equation*}
+(exactness follows more or less from the existence of Kummer coverings, see \cref{prop:Kummer}). Also note that in this case $f^*\mu_{n,S}\cong \mu_{n,X}$ for any morphism $f\colon X\morphism S$, despite \cref{warn*:pullbackOfStructureSheaf}. The reason is that $\mu_{n,S}$ is representable by the scheme $\SPEC \Oo_S[T]/(T^n-1)$, which is étale over $S$ if $n$ is invertible on $S$. Then an abstract nonsense argument (using the $f^*$-$f_*$ adjunction and the Yoneda lemma) shows that $f^*\mu_{n,S}$ is representable by the base change $\SPEC \Oo_X[T]/(T^n-1)$, i.e., is isomorphic to $\mu_{n,X}$, as claimed. In particular, the argument from \cref{par:algebraicClosure} works and you may assume that $k$ is algebraically closed in the proof of \cref{cor:cohoOfmu} below if that makes you feel better (it isn't needed though).
+
+Also, in case you wonder: yes, $\Oo_{S_\et}$ and $\Oo_{S_\et}^\times$ are representable too; the representing object are the \emph{additive group} $\IG_{a,S}\coloneqq \IA_S^1$ and the \emph{multiplicative group} $\IG_{m,S}\coloneqq \SPEC \Oo_S[T,T^{-1}]$ respectively. No, this doesn't contradict \cref{warn*:pullbackOfStructureSheaf}, because $\IG_{a,S}$ and $\IG_{m,S}$ are no elements of $S_\et$, hence the Yoneda argument doesn't work any more. So good thing our proof of \cref{prop:CurveCohoOXtimes} works for arbitrary separably closed $k$.
+\begin{cor}\label{cor:cohoOfmu}
+	If $C$ is a proper smooth connected curve of genus $g$ over the separably closed field $k$ and $\ell$ a prime number different from $\cha k$, then
+	\begin{equation*}
+		H^i\big(C_\et,\mu_{\ell^n}\big)\cong \begin{cases*}
+			\mu_{\ell^n}(k) & if $i=0$\\
+			\Pic^0(C)_{\ell^n} & if $i=1$\\
+			\IZ/\ell^n\IZ & if $i=2$ \\
+			0 & else
+		\end{cases*}\,.
+	\end{equation*}
+ 	The group $\Pic^0(C)_{\ell^n}$ of $\ell^n$-torsion in $\Pic^0(C)$ is non-canonically isomorphic to $(\IZ/\ell^n\IZ)^{\oplus2g}$.
+\end{cor}
+\begin{rem}\label{rem:AlgTopo}
+	\begin{alphanumerate}
+		\item The same result, but non-canonically, holds for $H^\bullet(C_\et,\IZ/\ell^n\IZ_C)$, as $\mu_{\ell^n}\cong \IZ/\ell^n\IZ_C$ after choosing a primitive $(\ell^n)\ordinalth$ root of unity in $k$ (which exists, as $k$ is separably closed).
+		\item Professor Franke points out that \cref{cor:cohoOfmu} must have been a special moment for the guys inventing étale cohomology: for the first time, we see that étale cohomology with coefficients in $\IZ/\ell^n\IZ_C$ behaves like singular cohomology of surfaces of genus $g$ (which we think of as curves over $\IC$, that's why the $\IR$-dimension is $2$).
+		\item If the characteristic of $k$ is $p>0$, then we have a short exact sequence
+		\begin{equation*}
+			0\morphism \IZ/p\IZ_C\morphism \Oo_{C_\et}\xrightarrow{\phi^*-\id}\Oo_{C_\et}\morphism 0\,,
+		\end{equation*}
+		where $\phi^*=(-)^p\colon \Oo_{C_\et}\morphism \Oo_{C_\et}$ is the Frobenius. Exactness of this sequence follows more or less from the existence of Artin--Schreier coverings, see \cref{prop:ArtinSchreier}. In combination with \cref{cor:etaleCoho=ZariskiCoho}\itememph{a} this can be used to compute
+		\begin{equation*}
+			H^i\big(\IP_k^1,\IZ/p\IZ\big)\cong \begin{cases*}
+				\IZ/p\IZ & if $i=0$\\
+				0 & else
+			\end{cases*}\,.
+		\end{equation*}
+		In particular, this is not what algebraic topology predicts for $H_\mathrm{sing}^\bullet(\IC\IP^1,\IZ/p\IZ)$. Thus étale cohomology with $p$-torsion coefficients does not give the \enquote{correct answer} (and thus \emph{crystalline cohomology} was born).
+	\end{alphanumerate}
+\end{rem}
+\begin{proof}[Sketch of a proof of \cref{cor:cohoOfmu}]
+	Observe that $\ell^n$ is invertible in $k$. Of course we use the short exact sequence
+	\begin{equation*}
+		0\morphism \mu_{\ell^n}\morphism \Oo_{C_\et}^\times\xrightarrow{(-)^{\ell^n}}\Oo_{C_\et}^\times\morphism 0
+	\end{equation*}
+	from \cref{par:mu} to compute the required cohomology groups. Since $H^i(C_\et,\Oo_{C_\et}^\times)=0$ for $i>1$ by \cref{prop:CurveCohoOXtimes}, it's clear that $H^1(C_\et,\mu_{\ell^n})=0$ for $i>2$. In degrees $0$ and $1$ we get an exact sequence 
+	\begin{equation*}
+		0\morphism \Global\big(C,\mu_{\ell^n}\big)\morphism\Global(C,\Oo_C)^\times\xrightarrow{(-)^{\ell^n}} \Global(C,\Oo_C)^\times \morphism H^1\big(C_\et,\mu_{\ell^n}\big)\,.
+	\end{equation*}
+	Because $C$ is integral and proper, $\Global(C,\Oo_C)$ is a finite field extension of $k$. But $\mu_{\ell^n}(k)=\mu_{\ell^n}(\ov{k})$ since $k$ is separably closed, hence $\Global(C,\mu_{\ell^n})\cong \mu_{\ell^n}(k)$ as claimed. Moreover, our argument shows that $\Global(C,\Oo_C)$ is a separably closed field itself, hence the morphism in the middle is surjective. Thus, the remaining two cohomology groups fit into an exact sequence
+	\begin{equation*}
+		0\morphism H^1\big(C_\et,\mu_{\ell^n}\big)\morphism \Pic(C)\xrightarrow{(-)^{\otimes \ell^n}}\Pic(C)\morphism H^2\big(C_\et,\mu_{\ell^n}\big)\morphism 0\,.
+	\end{equation*}
+	It is a classical theorem that the Picard functor $\Pic_{C/k}$ is representable by a scheme $\PIC_C$, the \defemph{Picard scheme} of $C$. It has a decomposition $\PIC_C=\coprod_{d\in \IZ}\PIC^d_C$, where $\PIC^d_C$ parametrizes line bundles of degree $d$. The $0\ordinalth$ component $\JAC_C\coloneqq \PIC^0_C$ is called the \defemph{Jacobian of $C$}. It is an abelian variety of dimension $g$ over $k$.
+	
+	In particular, we may write $\PIC(C)\cong \JAC_C(k)\times \IZ$, and the morphism $(-)^{\otimes \ell^n}$ in question is given by multiplication by $\ell^n$. A classical theorem about abelian varieties $A$ of dimension $g$ over $k$ states that for $N\neq 0$ the morphism $N\colon A\morphism A$ is finite flat of degree $N^{2g}$. In particular, $A(k)$ is divisible. See \cite[Theorem~10\itememph{b}]{jacobians} for instance (the proof given there is a bit lengthy). This shows that $\ell^n\colon \JAC_C(k)\morphism\JAC_C(k)$ is surjective with kernel $\Pic^0(C)_{\ell^n}$. Hence 
+	\begin{equation*}
+		\ell^n\colon \JAC_C(k)\times \IZ\morphism\JAC_C(k)\times \IZ
+	\end{equation*}
+	has kernel $\Pic^0(C)_{\ell^n}$ and cokernel $\IZ/\ell^n\IZ$, as claimed.
+	
+	It remains to identify $\Pic^0(C)_{\ell^n}\cong (\IZ/\ell^n\IZ)^{\oplus 2g}$. If $N$ is invertible in $k$, then $N\colon A\morphism A$ is even étale (indeed, this can be checked after base change to $\ov{k}$; in this case the proof of \cite[Corollary~3.2.4]{jacobians} shows that the sheaf of relative Kähler differentials associated to $N\colon A\morphism A$ vanishes at the origin $0\in A(k)$, hence at all closed points, hence everywhere as $A$ is Jacobson). In our concrete situation, we obtain that the kernel $\JAC_C[\ell^n]$ of $\ell^n\colon \JAC_C\morphism\JAC_C$, i.e., the fibre over the zero section $0\colon \Spec k\morphism \JAC_C(k)$, is a finite étale scheme of degree $\ell^{2gn}$ over $k$. But $k$ is separably closed, hence such a scheme must be a disjoint union of $\ell^{2ng}$ copies of $k$. Thus $\JAC_C[\ell^n](k)$ is a group of order $\ell^{2ng}$. It is clearly annihilated by $\ell^n$. Moreover, its subgroup $\JAC_C[\ell^{n-1}](k)$ of $\ell^{n-1}$-torsion elements has order $\ell^{2(n-1)g}$ by the same argument. By the classification of finite abelian groups, the only possibility is $\JAC_C[\ell^n](k)\cong (\IZ/\ell^n\IZ)^{\oplus 2g}$, as claimed
+\end{proof}
+For the rest of the section we now work towards a very general vanishing result for étale cohomology of torsion sheaves on curves over $k$.
+\begin{fact}\label{fact:genericCohomologyVanishing}
+	Let $C$ be a curve over $k$ and $\Ff$ a torsion sheaf on $C$. Moreover, let $\ov{\eta}_1,\dotsc,\ov{\eta}_n$ be geometric points whose underlying points $\eta_1,\dotsc,\eta_n$ are the generic point of the irreducible components of $C$. 
+	\begin{alphanumerate}
+		\item If $\Ff_{\ov{\eta}_j}=0$ for all $j$, then $H^i(C_\et,\Ff)=0$ for $i>0$.
+		\item If $\phi\colon \Ff\morphism \Gg$ is a morphism of torsion sheaves which induces isomorphisms at all geometric points $\ov{\eta}_1,\dotsc,\ov{\eta}_n$, then $\phi_*\colon H^i(C_\et,\Ff)\isomorphism H^i(C_\et,\Gg)$ is an isomorphism for all $i>1$. If $\phi$ is an epimorphism, then $\phi_*$ is an isomorphism for $i=1$ too.
+	\end{alphanumerate}
+\end{fact}
+\begin{proof}
+	Part~\itememph{a}. By \cref{prop:constructible}\itememph{c} and \cref{cor:cohoInverseLimit} we may assume that $\Ff$ is constructible. Then \cref{lem:NoetherianGenericVanishing} implies $\Ff|_{U_\et}=0$ for some open dense subset $U\subseteq C$. The rest $C\setminus U$ consists of only finitely many points. Hence the canonical morphism $\bigoplus_{x\in C\setminus U}x_*\Ff_x\morphism \Ff$ is an isomorphism (as can be seen on stalks). Now \cref{prop:technicalCech}\itememph{b} and the arguments in its proof show that $H^i(C_\et,\Ff)=0$ for $i>0$, as required.
+	
+	For part~\itememph{b}, we split $\phi$ into two short exact sequences $0\morphism \Kk\morphism \Ff\morphism \Bb\morphism 0$ and $0\morphism \Bb\morphism \Gg\morphism \Qq\morphism 0$ in which all occuring sheaves are torsion and $\Kk_{\ov{\eta}_j}=0=\Qq_{\ov{\eta}_j}$ for all $j$. Taking long exact cohomology sequences and applying \itememph{a} twice proves the assertion.
+\end{proof}
+\begin{lem}\label{lem:affineConstantSheaf}
+	Let $C$ be a smooth affine curve over $k$ and $\Phi$ a finite abelian group. Then $H^i(C_\et,\Phi_C)=0$ for $i>1$.
+\end{lem}
+\begin{proof*}
+	In this proof we may assume that $k$ is algebraically closed by \cref{par:algebraicClosure}. Every finite abelian group has a filtration  $0=\Phi_0\subseteq \Phi_1\subseteq \dotsb\subseteq \Phi_n=\Phi$ such that all subquotients $\Phi_j/\Phi_{j-1}$ are isomorphic to $\IZ/\ell\IZ$ for some prime $\ell$. By induction and the long exact cohomology sequence, it thus suffices to deal with the case $\Phi\cong \IZ/\ell\IZ$. If $\ell\neq \cha k$, we can copy the proof of \cref{cor:cohoOfmu}, with the following two modifications:
+	\begin{numerate}
+		\item The $\ell\ordinalth$ power map $(-)^\ell\colon \Global(C,\Oo_C)^\times\morphism \Global(C,\Oo_C)^\times$ may well fail to be surjective, producing additional $H^1(C_\et,\IZ/\ell\IZ_C)$, but we don't care.
+		\item To get $H^2(C_\et,\IZ/\ell\IZ_C)=0$, we must show that $(-)^{\otimes \ell}\colon \Pic(C)\morphism \Pic(C)$ is surjective. Since $k$ is algebraically closed, $C$ admits a unique \emph{compactification}, i.e., an open embedding $C\monomorphism\ov{C}$ into a smooth proper curve (see \cite[Section~I.6]{hartshorne} for instance). Note that the restriction morphism $\Pic^0(\ov{C})\epimorphism \Pic(C)$ is surjective. Indeed, every line bundle on $C$ is given by some (non-unique) divisor $D\in \Div C$, and we can always choose integer coefficients for the remaining points $x\in \ov{C}\setminus C$ to obtain a divisor $\ov{D}\in \Div \ov{C}$ satisfying $\ov{D}|_C=D$ and $\deg \ov{D}=0$. It follows from the arguments in \cref{cor:cohoOfmu} that $(-)^\ell\colon \Pic^0(\ov{C})\epimorphism \Pic^0(\ov{C})$ is surjective. Hence the same is true for $\Pic(C)$.
+	\end{numerate}
+	If $\ell=p=\cha k$, we need a different argument. In this case we have a short exact sequence $0\morphism \IZ/p\IZ_C\morphism \Oo_{C_\et}\morphism\Oo_{C_\et}\morphism 0$ as in \cref{rem:AlgTopo}\itememph{c}. By \cref{cor:etaleCoho=ZariskiCoho}\itememph{a} we know $H^i(C_\et,\Oo_{C_\et})\cong H^i(C_\Zar,\Oo_C)$ . But $C$ is affine, so $H^i(C_\Zar,\Oo_C)=0$ for $i>0$. Thus, by the long exact cohomology sequence, the assertion holds in this case as well.
+\end{proof*}
+\numpar{Situation}\label{sit:UandCandF}
+From now on, until the end of proof of \cref{lem:Hij_*F=0}, we will usually assume that we are in the following situation:
+\begin{numerate}
+	\item $C$ is an affine (this condition was missing in the lecture) irreducible curve over the algebraically closed field $k$, and $j\colon U\monomorphism C$ is an open embedding such that $U$ is smooth over $k$.
+	\item $\Ff$ is a sheaf on $U_\et$.
+	\item We fix a closed point $x\in U$. In the special case where $\Ff$ is an lcc sheaf, we denote $K=\ker(\pi_1^\et(U,x)\morphism \Aut(\Ff_x))$ (see the proof of \cref{lem:indexl^n} for some justification where this morphism comes from).
+\end{numerate}
+Our goal is eventually to show that $H^i(C_\et,j_*\Ff)=0$ for all $i>1$ if $\Ff$ is torsion and lcc. This is done by a beautiful trick, called \emph{méthode de la trace} (which was a well-known technique in Galois cohomology even before people used it in étale cohomology). Here, \enquote{trace} refers to the counit morphism $p_!p^*\morphism \id$ appearing in the proof of \cref{lem:MethodeDeLaTrace} below. See \cite[Exposé~IX.5]{sga4.3} for more information.
+\begin{lem}\label{lem:MethodeDeLaTrace}
+	Assume we are in Situation~\cref{sit:UandCandF}. Let $p\colon U'\morphism U$ be a finite étale morphism. Since $U'\morphism X$ is still étale, we may choose a diagram (according to Zariski's main theorem)
+	\begin{equation*}
+		\begin{tikzcd}
+			U'\rar[mono, "j'"]\dar["p"'] & C'\dar["p'"]\\
+			U \rar[mono, "j"]& C
+		\end{tikzcd}
+	\end{equation*}
+	such that $p'$ is finite and $j'$ an open embedding. If $H^i(C'_\et,j'_*p^*\Ff)=0$ for some $i\geq 0$, then the degree $[U':U]$ of $U'$ over $U$ annihilates $H^i(C_\et,j_*\Ff)$.
+\end{lem}
+\begin{proof}
+	Since $p$ is finite étale, the functor $p^*$ has both a left-adjoint $p_!$ and a right-adjoint $p_*$. In fact, one has a functor isomorphism $p_!\isomorphism p_*$. This is obvious if $p$ is a split étale covering. But every finite étale morphism is étale-locally a split étale covering by \cref{lem*:technicalFEt/X}\itememph{a}, so in general the isomorphism can be defined étale-locally. In particular, composing unit and counit morphisms, we obtain a canonical morphism $\Ff\morphism p_*p^*\Ff\cong p_!p^*\Ff\morphism \Ff$, which equals multiplication by $[U':U]$ (this can be checked on stalks).
+	
+	Thus, it suffices to show $H^i(C_\et,j_*p_*p^*\Ff)=0$. But the above diagram shows $j_*p_*\cong p'_*j'_*$, hence
+	\begin{equation*}
+		H^i(C_\et,j_*p_*p^*\Ff)\cong H^i(C_\et,p'_*j'_*p^*\Ff)\cong H^i(C_\et,j'_*p^*\Ff)=0
+	\end{equation*}
+	by assumption. The second isomorphism uses the fact that the Leray spectral sequence (\cref{prop:etaleLeray}) collapses for the finite morphism $p'$ by \cref{prop:Rifinite=0}.
+\end{proof}
+\begin{lem}\label{lem:torsionSES}
+	In Situation~\cref{sit:UandCandF}, if $0\morphism \Ff'\morphism \Ff\morphism \Ff''\morphism 0$ is a short exact sequence of torsion sheaves in $\cat{Ab}(U_\et)$ and $H^i(C_\et,j_*\Ff')=0=H^i(C_\et,j_*\Ff'')$ for all $i>1$, then also
+	\begin{equation*}
+		H^i(C_\et,j_*\Ff)=0\quad \text{for all }i>1\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Since $j_*$ is left-exact, we have a short exact sequence $0\morphism j_*\Ff'\morphism j_*\Ff\morphism \Qq\morphism 0$, where $\Qq=\ker(j_*\Ff''\morphism R^1j_*\Ff')$. By the long exact cohomology sequence it suffices to show $H^i(C_\et,\Qq)=0$ for $i>1$. But since $U$ is dense in $C$, \cref{fact:genericCohomologyVanishing}\itememph{b} is clearly applicable to $\Qq\monomorphism j_*\Ff''$, hence the claim.
+\end{proof}
+\begin{lem}\label{lem:indexl^n}
+	In Situation~\cref{sit:UandCandF}, assume that $\Ff$ is an $\ell^m$-torsion lcc sheaf for some prime $\ell$, and that the open subgroup $K$ has index $\ell^n$ in $\pi_1^\et(U,x)$. Then
+	\begin{equation*}
+		H^i(C_\et,j_*\Ff)=0\quad\text{for all }i>1\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	We do induction on $\# \Ff_x$. The first task is to check that this stalk is indeed a finite set. Since $\Ff$ is lcc, there is a surjective étale covering $U'\morphism U$ such that $\Ff|_{U'_\et}$ is a constant sheaf given by some finite abelian group $\Phi$ (that's \cref{def:lcc}\itememph{b}). Then $\Ff_x=\Phi$ is finite. Moreover, if $\#\Ff_x<\ell$, then $\Phi=0$ because $\Phi$ must be $\ell^m$-torsion for some $m\geq 0$. Thus $\Ff=0$ and the assertion is trivial.
+	
+	In general, observe that if $F$ denotes the finite étale $U$-group scheme representing $\Ff$ (that's \cref{def:lcc}\itememph{a}), then $\Fib_x(F)=\Phi= \Ff_x$. In particular, $\pi_1^\et(U,x)$ acts on $\Ff_x$ via \cref{thm:GrothendieckGalois}\itememph{a}, and for functoriality reasons, the action must be via group automorphisms on $\Ff_x$. All $\pi_1^\et(U,x)$-orbits in $\Ff_x$ have cardinality a divisor of $\#\Ff_x=\ell^m$, hence their cardinality is an integral power of $\ell$. Since there is an orbit (the orbit of $0\in \Ff_x$) of cardinality $1$, but $\#\Ff_x$ is divisible by $\ell$, we deduce that there must be more one-point orbits. In other words, the subgroup $G\subseteq \Ff_x$ of fixed points of $\pi_1^\et(U,x)$ must be non-zero.
+	
+	If $G\subsetneq \Ff_x$ is a proper subgroup, consider the short exact sequence
+	\begin{equation*}
+	0\morphism G_U\morphism \Ff\morphism \Ff/G_U\morphism 0
+	\end{equation*}
+	on $U_\et$. In this case the induction hypothesis is applicable to $G_U$ and $\Ff/G_U$, and the conclusion follows from \cref{lem:torsionSES}.
+	
+	It remains to deal with the case where $G=\Ff_x$, so that $\Ff_x=\Fib_x(F)$ is a discrete $\pi_1^\et(U,x)$-module. Then \cref{thm:GrothendieckGalois}\itememph{a} shows that $F\cong \Phi\times U$ is a split group scheme, thus $\Ff\cong \Phi_U$ is a constant sheaf. Applying \cref{fact:genericCohomologyVanishing}\itememph{b} to $\Phi_C\morphism \Phi_U$ shows $H^i(C_\et,j_*\Phi_U)\cong H^i(C_\et,\Phi_C)$ for $i>1$. Now it seems like \cref{lem:affineConstantSheaf} should do the trick, but we need yet another technical argument to circumvent the fact that $C$ is not smooth. As always, \cref{prop:thickeningEtaleEquivalence} allows us to replace $C$ by its reduction $C^\red$, so without restriction the irreducible curve $C$ is integral. Consider its normalization $p\colon \snake{C}\morphism C$. Then $p$ is finite because schemes of finite type over a field are universally Japanese, and $\snake{C}$ is a normal scheme of dimension $1$ over the algebraically closed field $k$, hence smooth. Using \cref{lem:affineConstantSheaf} and \cref{prop:Rifinite=0} we thus get $0=H^i(\snake{C}_\et,\Phi_{\snake{C}})\cong H^i(C_\et,p_*\Phi_{\snake{C}})$ for $i>1$. But the restriction $p^{-1}(U)\isomorphism U$ is an isomorphism because $U$ is already smooth, hence $\Phi_C\morphism p_*\Phi_{\snake{C}}$ is an isomorphism over $U_\et$, and \cref{fact:genericCohomologyVanishing}\itememph{b} finally seals the deal. 
+\end{proof}
+\begin{lem}\label{lem:Hij_*F=0}
+	In Situation~\cref{sit:UandCandF}, assume that $\Ff$ is an $\ell^m$-torsion lcc sheaf for some prime $\ell$. Then we always have
+	\begin{equation*}
+		H^i(C_\et,j_*\Ff)=0\quad\text{for all }i>1\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	If $\pi_1^\et(U,x)/K$ is an $\ell$-group, then \cref{lem:indexl^n} does it. Otherwise let $K'\subseteq \pi_1^\et(U,x)$ be the inverse image of an $\ell$-Sylow subgroup of $\pi_1^\et(U,x)/K$. Then the index $(\pi_1^\et(U,x):K')$ is coprime to $\ell$. The left cosets $\pi_1^\et(U,x)/K'$ form a finite set (but not a group in general) equipped with a natural continuous $\pi_1^\et(U,x)$-action. Hence it defines an étale covering $p\colon U'\morphism U$ via \cref{thm:GrothendieckGalois}\itememph{a}. Also note that $U'$ is connected because the action of $\pi_1^\et(U,x)$ on $\pi_1^\et(U,x)/K'$ is transitive, and if $x'\in U'$ is a lift of $x$, then $\pi_1^\et(U',x')=K'$.
+	
+	Choose $j'\colon U'\monomorphism C'$ and $p'\colon C'\morphism C$ as in \cref{lem:MethodeDeLaTrace}. Since being lcc is an étale-local property by \cref{def:lcc}\itememph{c}, $\Ff'\coloneqq p^*\Ff$ is lcc again, and satisfies $\Ff'_{x'}=\Ff_x$ because $p^*$ preserves stalks. Thus, the kernel of $K'=\pi_1^\et(U',x')\morphism \Aut(\Ff'_{x'})=\Aut(\Ff_x)$ is given by $K$ again, and by construction of $K'$, the index $(K':K)$ is a power of $\ell$. Thus \cref{lem:indexl^n} is applicable and shows $H^i(C'_\et,j'_*\Ff')=0$ for $i>1$. And now comes the trick! \cref{lem:MethodeDeLaTrace} shows that $H^i(C_\et,j_*\Ff)$ is annihilated by $[U':U]$. By construction, $[U':U]=(\pi_1^\et(U,x):K')$ is coprime to $\ell$. But since $\Ff$ is an $\ell^m$-torsion sheaf, $H^i(C_\et,j_*\Ff)$ is also annihilated by $\ell^m$. Thus $H^i(C_\et,j_*\Ff)$ is annihilated by $\gcd(\ell^m,[U':U])=1$ for $i>1$, hence vanishes, as required.
+\end{proof}
+\begin{lem}\label{lem:HiCtorsion=0}
+	If $C$ is an affine irreducible curve over an algebraically closed field $k$, and $\Ff$ a constructible sheaf on $C$, then
+	\begin{equation*}
+		H^i(C_\et,\Ff)=0\quad\text{for all }i>1\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	As usual, \cref{prop:thickeningEtaleEquivalence} allows us to replace $C$ by $C^\red$, hence we may assume that $C$ is integral. Since constructible sheaves are noetherian and torsion, we find a filtration $0=\Ff_0\subseteq \Ff_1\subseteq \dotsb\subseteq \Ff_n=\Ff$ such that all $\Ff_j/\Ff_{j-1}$ are $\ell^m$-torsion for some prime $\ell$. By induction and the long exact cohomology sequence, it thus suffices to consider the case where $\Ff$ is $\ell^m$-torsion itself.
+	
+	Since $C$ is integral and $k$ is a perfect field by assumption, Grothendieck's generic freeness theorem shows that $C$ is \emph{generically smooth}, i.e., there is a non-empty open subset $U\subseteq C$ such that $U$ is smooth over $k$. Since $\Ff$ is constructible, we find another non-empty open subset $U_1\subseteq C$ such that $\Ff|_{U_{1,\et}}$ is lcc. Replace $U$ by $U\cap U_1$, which is non-empty as $C$ is irreducible. Put $j\colon U\monomorphism C$. Then $\Ff|_{U_\et}$ is lcc and we are in a situation where \cref{lem:Hij_*F=0} is applicable. Thus $H^i(C_\et,j_*\Ff|_{U_\et})=0$. But $\Ff\morphism j_*\Ff|_{U_\et}$ is an isomorphism over $U_\et$, hence \cref{fact:genericCohomologyVanishing}\itememph{b} proves $H^i(C_\et,\Ff)\cong H^i(C_\et,j_*\Ff|_{U_\et})$ for $i>1$. This finishes the proof.
+\end{proof}
+After all these special cases, we can finally prove the desired result in full generality.
+\begin{prop}
+	Let $C$ be a curve over a separably closed field $k$ and $\Ff$ a torsion sheaf on $C_\et$.
+	\begin{alphanumerate}
+		\item If $C$ is affine, we have $H^i(C_\et,\Ff)=0$ for $i>1$.
+		\item If $C$ is arbitrary, we have $R^i\zeta_{C,*}\Ff=0$ for $i>1$, and $H^i(C_\et,\Ff)=0$ for $i>2$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}
+	In \itememph{a}, we may assume that $\Ff$ is constructible, because of \cref{prop:constructible}\itememph{c} and \cref{cor:cohoInverseLimit}. Moreover, since pullbacks of constructible sheaves are constructible again by \cref{prop:constructible}\itememph{a}, it's safe to apply \cref{par:algebraicClosure}, whence we may assume that $k$ is algebraically closed. Let $C_1,\dotsc,C_n$ be the irreducible components of $C$ (equipped with their reduced closed subscheme structures) and $i_j\colon C_j\monomorphism C$ their closed embeddings. Then $\Ff\monomorphism \bigoplus_{j=1}^ni_{j,*}i_j^*\Ff$ is a monomorphism, and induces isomorphisms on stalks at geometric points lying over the generic points of $C_1,\dotsc,C_n$. Thus \cref{fact:genericCohomologyVanishing}\itememph{b} is applicable and we obtain
+	\begin{equation*}
+		H^i(C_\et,\Ff)\cong \bigoplus_{j=1}^nH^i\big(C_\et,i_{j,*}i_j^*\Ff\big)\cong \bigoplus_{j=0}^nH^i\big(C_{j,\et},i_j^*\Ff\big)=0
+	\end{equation*}
+	for all $i>0$. Here we used \cref{prop:Rifinite=0} for the second isomorphism and \cref{lem:HiCtorsion=0} to get $0$ on the right-hand side.
+	
+	The first assertion of \itememph{b} follows from \itememph{a} after sheafification. For the second assertion, consider the Leray-type spectral sequence from \cref{prop:etaleLeray}
+	\begin{equation*}
+		E_2^{p,q}=H^p\big(C_\Zar,R^q\zeta_{C,*}\Ff\big)\converge H^{p+q}(C_\et,\Ff)\,.
+	\end{equation*}
+	Part~\itememph{a} shows that $E_2^{p,q}=0$ for $q>1$. Also $C_\Zar$ is a one-dimensional noetherian topological space, hence $E_2^{p,q}=0$ for $p>1$ by Grothendieck's theorem on cohomological dimension. Thus $E_2^{p,q}=0$ if $p+q>2$, which proves that the limit $H^i(C_\et,\Ff)$ vanishes for $i>2$, as claimed. This finishes the proof, the lecture, and the section.
+\end{proof}

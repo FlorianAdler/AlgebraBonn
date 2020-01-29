@@ -39,7 +39,7 @@ Fix a prime $p$ and a finite extension $K/\IQ_p$. Let $C$ be the completion of a
 	Let $H_\cts^*(G_K,-)$ denote continous group cohomology/Galois cohomology. With notation as above, we have
 	\begin{numerate}
 		\item $H_\cts^*(G_K,C(j))=0$ for all $j\neq 0$.
-		\item $K\cong H_\cts^0(G_K,C)\cong H_\cts^1(G_K,C)$. In particular, $K\cong C^{G_K}$ (and not even this is trivial).
+		\item $K\cong H_\cts^0(G_K,C)\cong H_\cts^1(G_K,C)$. In particular, $K\cong C^{G_K}$ (and not even this is trivial to prove).
 	\end{numerate}
 \end{thm}
 \begin{cor}\label{cor:etKnowsHodge}
@@ -163,13 +163,13 @@ From now on, we will talk about stuff that will be the actual contents of the le
 		\end{equation*}
 		with a Frobenius action $\phi$ on it. Put $B_\cris^+\coloneqq \IA_\cris\big[\frac1p\big]$. Then $B_\cris^+$ is actually a $G_K$-stable subring of $B_\dR^+$, and it contains $t=\log{}[\epsilon]$ from \cref{rem:deRhamComp}\itememph{3}. Then we can finally define $B_\cris=B_\cris^+\big[\frac1t\big]$. Also note that $\phi(t)=pt$.
 		
-		One cool feature of the Fargues--Fontaine curve is that all these strange period rings appear as rings of functions on it.
+		One cool feature of the Fargues--Fontaine curve is that all these strange period rings appear as rings of functions on it!
 		\item \cref{thm:crystallineStuff} is analogous to the following statement in $\ell$-adic cohomology (where $\ell\neq p$ is a prime). Let $\XX\morphism\Spec \Oo_K$ be smooth proper, and $s,\eta\in\Spec \Oo_K$ the special resp.\ the generic point. Then there exists a $G_K$-equivariant isomorphism
 		\begin{equation*}
 			H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)\cong H_\et^*(\XX_{\ov{s}},\IQ_\ell)\,.
 		\end{equation*}
 		In particular, $H_\et^*(\XX_{\ov{\eta}},\IQ_\ell)$ is unramified.
-		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})\big[\frac1p\big]$ contain the \enquote{same information}. More mysterious, however, is the question how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces to $K_0$-vector spaces with Frobenius and a filtration over $K$? This became known as \enquote{Grothendieck's question on the \emph{mysterious functor}}. This was resolved by Fontaine: There are functors
+		\item By Grothendieck's philosophy of \enquote{motives} we should expect that $H_\et^n(X_{\ov{K}},\IQ_p)$ and $H_\cris^n(\XX_0/\Oo_{K_0})\big[\frac1p\big]$ contain the \enquote{same information}. Which raises the question, how to pass from $G_K$ representations on finite-dimensional $\IQ_p$-vector spaces (that's what étale cohomology is) to $K_0$-vector spaces with Frobenius and a filtration over $K$ (that's the crystalline side of things)? This question became famously known as \enquote{Grothendieck's question about the \emph{mysterious functor}}, and was eventually resolved by Fontaine as follows: there are functors
 		\begin{equation*}
 			D_\cris\colon \Rep_{\IQ_p}G_K \doublelrmorphism \left\{\text{filtered }\phi\text{-modules}\right\}\noloc V_\cris
 		\end{equation*} 

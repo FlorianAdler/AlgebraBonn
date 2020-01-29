@@ -1,24 +1,24 @@
 \chapter{Motivation and Basic Definitions}
 \section{Motivation}
 \lecture[Weil cohomology theories: some motivation, some (counter-)examples. Flatness, flat base change, faithfully flat descent.]{2019-10-18}\numpar{Problem}
-For a scheme $X$, we would like to have cohomology groups $H^*(X,\IZ)$ with properties similar to the ones familiar from algebraic topology. For example, if $f\colon X\morphism X$ is a continuous map of a topological space into itself, then (under some sensible conditions) the \emph{Lefschetz trace formula} says
+For a scheme $X$, we would like to have cohomology groups $H^\bullet(X,\IZ)$ with properties similar to the ones familiar from algebraic topology. For example, if $f\colon X\morphism X$ is a continuous map of a topological space into itself, then (under some sensible conditions) the \emph{Lefschetz trace formula} says
 \begin{equation*}
-	\#\left\{\text{fixed points of }f\text{, counted with multiplicity}\right\}=\sum_{i=0}^{\dim(X)}(-1)^i\Tr\left(f^ *\middle| H^i(X,\IQ)\right)\,.
+	\#\left\{\text{fixed points of }f\text{, counted with multiplicity}\right\}=\sum_{i=0}^{\dim X}(-1)^i\Tr\left(f^ *\middle| H^i(X,\IQ)\right)\,.
 \end{equation*}
-Now assume that $X$ is some variety $X$ over $k=\IF_q$, where $q=p^n$, and $f=\Frob_q$ is the Frobenius on $X$. Then the fixed points of $f$ are precisely the $k$-valued points of $X$. As the \enquote{derivative} $\d f$ vanishes, $(\id{}-\d f)$ should be invertible, so all fixed points of $f$ ought to have multiplicity one (bear in mind that all of this is purely motivational and has no ambition of being a formal argument). Hence we could hope that
+Now assume that $X$ is some variety over $k=\IF_q$, where $q=p^n$, and $f=\Frob_q$ is the Frobenius on $X$. Then the fixed points of $f$ are precisely the $k$-valued points of $X$. As the \enquote{derivative} $\d f$ vanishes, $(\id{}-\d f)$ should be invertible, so all fixed points of $f$ ought to have multiplicity one (bear in mind that all of this is purely motivational and has no ambition of being a formal argument). Hence we could hope that
 \begin{equation*}
-	\# X(k)=\sum_{i=0}^{2\dim(X)}(-1)^i\Tr\big(f^*\big| H^i(X_{\ov{k}},\magic)\big)\,,
+	\# X(k)=\sum_{i=0}^{2\dim X}(-1)^i\Tr\big(f^*\big| H^i(X_{\ov{k}},\magic)\big)\,,
 \end{equation*}
-where $H^i(X_{\ov{k}},\magic)$ is a mysterious cohomology group of the base change of $X$ to an algebraic closure of $k$. Also the sum ranging up to $2\dim(X)$ accounts for the fact that the \enquote{cohomological dimension} of $X$ should be twice its Krull dimension, same as the topological dimension of a complex manifold is twice its $\IC$-dimension.
+where $H^i(X_{\ov{k}},\magic)$ is a mysterious cohomology group of the base change of $X$ to an algebraic closure of $k$. Also the sum ranging up to $2\dim X$ accounts for the fact that the \enquote{cohomological dimension} of $X$ should be twice its Krull dimension, same as the topological dimension of a complex manifold is twice its $\IC$-dimension.
 
 Such a mystery cohomology theory with sufficiently nice properties is called a \defemph{Weil cohomology theory}\footnote{In fact, one can formulate a series of axioms to properly define the notion of \defemph{Weil cohomology theory}, but we didn't do that in the lecture.}, named after André Weil, who noticed that such a cohomology theory would solve most of his conjectures on varieties over finite fields, that became famously known as the \emph{Weil conjectures}.
 
 \begin{cntx}
 A natural candidate for a Weil cohomology theory is \emph{de Rham cohomology}. For a variety $X$ over a field $k$ it is defined as 
 \begin{equation*}
-	H_\dR^*(X/k)\coloneqq H^*(X,\Omega_{X/k}^\bullet)\,,
+	H_\dR^ \bullet(X/k)\coloneqq H^ \bullet(X,\Omega_{X/k}^\bullet)\,,
 \end{equation*}
-i.e., as the (hyper-)cohomology of the de Rham complex $\Omega_{X/k}^\bullet$.	By de Rham's famous theorem, the de Rham cohomology of a real manifold coincides with its singular cohomology over $\IR$, so it makes sense to hope that $H_\dR^*(X/k)$ still works as a replacement of singular cohomology for varieties over an arbitrary field $k$. But on second glance, this can't be true: even if we are lucky and a Lefschetz-like equation holds for de Rham cohomology in characteristic $p >0$, then it would still only be a congruence modulo $p$, since the $H_\dR^*(X/k)$ are $\IF_p$-vector spaces in this case, so the traces take values in $\IF_p$ as well.
+i.e., as the (hyper-)cohomology of the de Rham complex $\Omega_{X/k}^\bullet$.	By de Rham's famous theorem, the de Rham cohomology of a real manifold coincides with its singular cohomology over $\IR$, so it makes sense to hope that $H_\dR^ \bullet(X/k)$ still works as a replacement of singular cohomology for varieties over an arbitrary field $k$. But on second glance, this can't be true: even if we are lucky and a Lefschetz-like equation holds for de Rham cohomology in characteristic $p >0$, then it would still only be a congruence modulo $p$, since the $H_\dR^*(X/k)$ are $\IF_p$-vector spaces in this case, so the traces take values in $\IF_p$ as well.
 \end{cntx}
 \begin{cntx}
 It is also impossible to find a Weil cohomology with coefficients in $\IQ$, nor in $\IZ$, nor in $\IZ_p$ if we work in characteristic $p$. Professor Franke sketched a counterexample, which I'm trying my best to reproduce here (but it may well be I got it wrong---however, this won't be needed for the lecture). For a \emph{supersingular elliptic curve} $E$ the endomorphism ring $\End(E)$ can have the property that $D=\End(E)\otimes \IQ$ is a quaternion algebra over $\IQ$ with the properties that
@@ -111,7 +111,7 @@ This section is really just a crash course. Professor Franke gave a much more de
 	\begin{equation*}
 		\pr_{i_1,\dotsc,i_k/n}\colon \underbrace{X_1\times_Y\dotsb\times_YX_n\vphantom{X_{i_k}}}_{n\text{ factors}}\morphism \underbrace{X_{i_1}\times_Y\dotsb\times_YX_{i_k}}_{k\text{ factors}}
 	\end{equation*}
-	denotes the canonical projection to the $i_1\ordinalth,\dotsc,i_k\ordinalth$ factors. If no ambiguities can occur (in other words, everywhere except in \cref{def:descent} \Tongey), we drop the subscript $_{-/n}$ and just write $\pr_{i_1,\dotsc,i_k}$.
+	denotes the canonical projection. If no ambiguities can occur (in other words, everywhere except in \cref{def:descent} \Tongey), we drop the subscript $_{-/n}$ and just write $\pr_{i_1,\dotsc,i_k}$.
 \end{nota}
 \begin{defi}\label{def:descent}
 	Let $f\colon X\morphism Y$ be a morphism of schemes. A \defemph{descent datum} for $f$ is a pair $(\Ff,\mu)$, where $\Ff$ is a quasi-coherent $\Oo_X$-module and $\mu$ is an isomorphism
@@ -332,45 +332,46 @@ Having defined Grothendieck topologies and seen some examples, the next step is 
 				 that $v=v'\pi$, then $f_v=\pi^*f_{v'}$
 			\end{tabular}\right\}
 		\end{equation*}
+		\item I usually write $\Global(u,\Ff)$ instead of $\Ff(u)$ to avoid awkward notation (believe me, you wouldn't want to write stuff like \enquote{$(\colimit_{\Ii/\alpha}\pi_\beta^*\Ff_\beta)(X_\beta)$} in \cref{prop:cohoInverseLimit}).
 	\end{alphanumerate}
 \end{rem}
 \begin{prop}\label{prop:fpqcSheaf}
 	For the Grothendieck topologies of \cref{prop:technicalAF}, a presheaf $\Ff$ on $(\cat{Sch}/S)^\Pp$ is a sheaf iff its restriction to Zariski-open subsets of any $X\in (\cat{Sch}/S)^\Pp$ is an ordinary sheaf on $X$, and for every morphism $(X'\morphism X)\in\Cc$ the sequence
 	\begin{equation*}
-		\Ff(X)\morphism\Ff(X')\doublemorphism[\pr_1^*][\pr_2^*]\Ff(X'\times_XX')
+		\Global(X,\Ff)\morphism\Global(X',\Ff)\doublemorphism[\pr_1^*][\pr_2^*]\Global(X'\times_XX',\Ff)
 	\end{equation*}
 	establishes the left arrow as an equalizer of the double arrow on the right. Here we denote by $\pr_1,\pr_2\colon X'\times_XX'\morphism X'$ the canonical projections, as introduced in \cref{nota:pr}.
 \end{prop}
 \begin{proof}[Sketch of a proof*]
 	Let's first assume that $\Ff$ is a sheaf. Since every sieve over $X$ generated by a Zariski-open cover is indeed a covering sieve (since the condition from \cref{prop:technicalAF}\itememph{2} is obviously satisfied), we see that $\Ff$ restricts to a Zariski-sheaf on $X$. Moreover, if the morphism $X'\morphism X$ is in $\Cc$, then the sieve $\Ss$ of all morphisms $v\colon U\morphism X$ that factor through $X'$ is a covering sieve. Indeed, the condition from \cref{prop:technicalAF}\itememph{1} is clearly satisfied. Hence
 	\begin{equation*}
-		\Ff(X)\isomorphism\limit_{v\in \Ss}\Ff(U)\,.
+		\Global(X,\Ff)\isomorphism\limit_{v\in \Ss}\Global(U,\Ff)\,.
 	\end{equation*}
-	Now every $\Ff(X)\morphism \Ff(U)$ factors through $\Ff(X)\morphism\Ff(X')$. Moreover, if $U\morphism X$ factors in two different ways through $X'$, then this induces a unique map $U\morphism X'\times_XX'$, and thus a map $\Ff(X'\times_XX')\morphism\Ff(U)$. If you think about it, this shows that
+	Now every $\Global(X,\Ff)\morphism \Global(U,\Ff)$ factors through $\Global(X,\Ff)\morphism\Global(X',\Ff)$. Moreover, if $U\morphism X$ factors in two different ways through $X'$, then this induces a unique map $U\morphism X'\times_XX'$, and thus a map $\Ff(X'\times_XX')\morphism\Global(U,\Ff)$. If you think about it, this shows that
 	\begin{equation*}
-		\Ff(X')\doublemorphism[\pr_1^*][\pr_2^*]\Ff(X'\times_XX')
+		\Global(X',\Ff)\doublemorphism[\pr_1^*][\pr_2^*]\Global(X'\times_XX',\Ff)
 	\end{equation*}
-	is a coinitial subdiagram of the diagram given by $\{\Ff(U)\}_{v\in\Ss}$. Hence the limit over the latter diagram is the same as the equalizer of $\pr_1^*$ and $\pr_2^*$, so $\Ff(X)$ mapping isomorphically to that limit means that $\Ff(X)$ is said equalizer, as claimed.
+	is a coinitial subdiagram of the diagram given by $\{\Global(U,\Ff)\}_{v\in\Ss}$. Hence the limit over the latter diagram is the same as the equalizer of $\pr_1^*$ and $\pr_2^*$, so $\Global(X,\Ff)$ mapping isomorphically to that limit means that $\Global(X,\Ff)$ is said equalizer, as claimed.
 	
 	Now for the converse. Assume that $\Ff$ is a presheaf with the required property and let $\Ss$ be a covering sieve over $X$. Let $X=\bigcup_{i\in I}U_i$, $J_i$, and $U_{i,j}\morphism U_i$ be the associated data. For all $i\in I$, let $\Ss_i\subseteq \Ss$ be the subsieve of all morphisms $(v\colon U\morphism X)$ that factor through some $U_{i,j}$. We first show that we have an isomorphism
 	\begin{equation*}
-		\Ff(U_i)\isomorphism \limit_{v\in\Ss_i}\Ff(U)
+		\Global(U_i,\Ff)\isomorphism \limit_{v\in\Ss_i}\Global(U,\Ff)
 	\end{equation*}
-	To see this, note that the subdiagram spanned by all $\Ff(U_{i,j})$ and all $\Ff(U_{i,j}\times_X U_{i,k})$ for $j,k\in J_i$, together with the projection morphisms between them, is a coinitial subdiagram of the whole $\{\Ff(U)\}_{v\in\Ss_i}$. Indeed, that's basically the same argument as in the proof above (if $U\morphism X$ factors through $U_{i,j}$ and $U_{i,k}$, then also through $U_{i,j}\times U_{i,k}$). So we may as well take the limit over that subdiagram. But taking into account that $\Ff$ takes disjoint unions to products (because it restricts to an ordinary Zariski sheaf), the limit over said subdiagram is given by the equalizer of
+	To see this, note that the subdiagram spanned by all $\Global(U_{i,j},\Ff)$ and all $\Global(U_{i,j}\times_X U_{i,k},\Ff)$ for $j,k\in J_i$, together with the projection morphisms between them, is a coinitial subdiagram of the whole $\{\Global(U,\Ff)\}_{v\in\Ss_i}$. Indeed, that's basically the same argument as in the proof above (if $U\morphism X$ factors through $U_{i,j}$ and $U_{i,k}$, then also through $U_{i,j}\times U_{i,k}$). So we may as well take the limit over that subdiagram. But taking into account that $\Ff$ takes disjoint unions to products (because it restricts to an ordinary Zariski sheaf), the limit over said subdiagram is given by the equalizer of
 	\begin{equation*}
-		\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\Bigg)\doublemorphism[\pr_1^*][\pr_2^*]\Ff\Bigg(\coprod_{j\in J_i}U_{i,j}\times_X\coprod_{k\in J_i}U_{i,k}\Bigg)\,.
+		\Global\Bigg(\coprod_{j\in J_i}U_{i,j},\Ff\Bigg)\doublemorphism[\pr_1^*][\pr_2^*]\Global\Bigg(\coprod_{j\in J_i}U_{i,j}\times_X\coprod_{k\in J_i}U_{i,k},\Ff\Bigg)\,.
 	\end{equation*}
-	Since $\coprod_{j\in J_i}U_{i,j}\morphism U_i$ is in $\Cc$, our assumption on $\Ff$ shows that the above equalizer is just $\Ff(U_i)$, as claimed.
+	Since $\coprod_{j\in J_i}U_{i,j}\morphism U_i$ is in $\Cc$, our assumption on $\Ff$ shows that the above equalizer is just $\Global(U_i,\Ff)$, as claimed.
 	
 	For $i,i'\in I$ let $\Ss_{i,i'}\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through some $U_{i,j}\times_XU_{i',j'}$ for $j\in J_i$, $j'\in J_{i'}$. In the same way as above we find an isomorphism
 	\begin{equation*}
-		\Ff(U_i\times_XU_{i'})\isomorphism \limit_{v\in\Ss_{i,i'}}\Ff(U)\,.
+		\Global(U_i\times_XU_{i'},\Ff)\isomorphism \limit_{v\in\Ss_{i,i'}}\Global(U,\Ff)\,.
 	\end{equation*}
-	Now let $\Ss'\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through $U_{i,j}$ for some $i\in I$, $j\in J_i$. By the above considerations, we find that the limit over the diagram $\{\Ff(U)\}_{v\in\Ss'}$ is the same as the limit over
+	Now let $\Ss'\subseteq \Ss$ be the subsieve of all $U\morphism X$ that factor through $U_{i,j}$ for some $i\in I$, $j\in J_i$. By the above considerations, we find that the limit over the diagram $\{\Global(U,\Ff)\}_{v\in\Ss'}$ is the same as the limit over
 	\begin{align*}
-		\prod_{i\in I}\Ff(U_i)\doublemorphism[\pr_1^*][\pr_2^*]\prod_{i,i'\in I}\Ff(U_i\times_XU_{i'})\,,
+		\prod_{i\in I}\Global(U_i,\Ff)\doublemorphism[\pr_1^*][\pr_2^*]\prod_{i,i'\in I}\Global(U_i\times_XU_{i'},\Ff)\,,
 	\end{align*}
-	which is just $\Ff(X)$ by the usual Zariski sheaf axiom for $X$. So it remains to show that replacing $\Ss$ by $\Ss'$ doesn't change the limit. To see this, let $p\colon Y\morphism X$ be an element of $\Ss$ and let $V_i=Y\times_XU_i$, $V_{i,j}=Y\times_XU_{i,j}$. Repeating the above steps with $Y$ instead of $X$, we see that $\Ff(Y)$ is already determined by the $\Ff(V_{i,j})$. However, each $V_{i,j}\morphism X$ factors over $U_{i,j}$, i.e., lies in $\Ss'$. This shows that indeed it doesn't matter whether the limit is taken over all $v\in \Ss$ are all $v\in \Ss'$.
+	which is just $\Global(X,\Ff)$ by the usual Zariski sheaf axiom for $X$. So it remains to show that replacing $\Ss$ by $\Ss'$ doesn't change the limit. To see this, let $p\colon Y\morphism X$ be an element of $\Ss$ and let $V_i=Y\times_XU_i$, $V_{i,j}=Y\times_XU_{i,j}$. Repeating the above steps with $Y$ instead of $X$, we see that $\Global(Y,\Ff)$ is already determined by the $\Global(V_{i,j},\Ff)$. However, each $V_{i,j}\morphism X$ factors over $U_{i,j}$, i.e., lies in $\Ss'$. This shows that indeed it doesn't matter whether the limit is taken over all $v\in \Ss$ are all $v\in \Ss'$.
 \end{proof}
 
 \begin{exm}\label{exm:HomSheaf}
@@ -443,7 +444,7 @@ sending a morphism $\phi\colon I/I^2\morphism M$ to the $A$-linear derivation $d
 	Let $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ be morphisms of schemes.
 	\begin{alphanumerate}
 		\item The class of étale morphisms is stable under composition and base change, and being étale is a local property on source and target. The same holds for unramified morphisms.
-		\item If $gf$ is étale and $g$ is unramified, then $f$ is étale.
+		\item If $g\circ f$ is étale and $g$ is unramified, then $f$ is étale.
 		\item If $f$ is étale and a closed embedding, then $f$ is also an open embedding. In fact, this holds already when $f$ is flat and locally of finite presentation.
 	\end{alphanumerate}
 \end{fact}
@@ -552,7 +553,7 @@ sending a morphism $\phi\colon I/I^2\morphism M$ to the $A$-linear derivation $d
 	This immediately shows that $\Oo_{X,x}$ is regular iff so is $\Oo_{Y,y}$.
 \end{proof}
 
-\begin{rem*}
+\begin{rem*}\label{rem*:dimension}
 	Another (slightly more general) way to see $\dim \Oo_{X,x}=\dim\Oo_{Y,y}$ is as follows: let $X_y=f^{-1}\{y\}\morphism\Spec \kappa(y)$ be the fibre of $f$ over $y$. By \cite[\stackstag{00ON}]{stacks-project}, the inequality
 	\begin{equation*}
 		\dim\Oo_{X,x}\leq\dim\Oo_{Y,y}+\dim\Oo_{X_y,x}\,,
@@ -801,7 +802,7 @@ We start with a technical lemma (that was not in the lecture) to gain a better u
 \begin{lem*}\label{lem*:technicalFEt/X}
 	Let $X$ be a scheme and $\cat{F}\Et/X$ the category of étale coverings of $X$ in the sense of \cref{def:etale}\itememph{c}.
 	\begin{alphanumerate}
-		\item A morphism $Y\morphism X$ is an étale covering iff there is an étale cover (without \enquote{-ing}) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is isomorphic to the canonical projection $S_i\times U_i\morphism U_i$ where $S_i$ is a finite discrete set. In other words, étale coverings are precisely the \enquote{covering spaces in the étale topology}.
+		\item A morphism $Y\morphism X$ is an étale covering iff there is an étale cover (without \enquote{-ing}) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is isomorphic to the canonical projection $\pr_2\colon S_i\times U_i\morphism U_i$ where $S_i$ is a finite discrete set. In other words, étale coverings are precisely the \enquote{covering spaces in the étale topology}.
 		\item The category $\cat{F}\Et/X$ has all finite limits and colimits.
 		\item Every morphism $Y\morphism Y'$ in $\cat{F}\Et/X$ has a factorization into $Y\epimorphism Y''\monomorphism Y'$, where $Y\epimorphism Y''$ is an effective epimorphism and $Y''\monomorphism Y'$ the inclusion of an open-closed subscheme. Moreover, a morphism $Y\morphism Y'$ is an epimorphism iff it is surjective.
 	\end{alphanumerate}
@@ -821,9 +822,9 @@ We start with a technical lemma (that was not in the lecture) to gain a better u
 	\end{equation*}
 	where $Y_i$ corresponds to $e_i$. However, $Y\times_XU\morphism U$ is still finite locally free, and its degree must be equal to $n$. Thus, restricting $U$ to some suitable open subset (still containing the underlying point of $\ov{u}$) if necessary, we obtain $Y_i\cong U$ for all $i=1,\dotsc,n$ and $Y_0=\emptyset$.
 	
-	As $\ov{x}$ varies, let $U_{\ov{x}}$ denote the étale $X$-scheme $U$ constructed as above. Then $\{U_{\ov{x}}\morphism X\}_{\ov{x}}$ with $\ov{x}$ ranging over all geometric points is an étale cover of $X$ (see \cref{prop:etaleStalks}\itememph{a}). Moreover, every $Y\times_XU_{\ov{x}}\morphism U_{\ov{x}}$ is, by construction, isomorphic to the canonical projection $S_{\ov{x}}\times U_{\ov{x}}\morphism U_{\ov{x}}$ for some finite discrete set $S_{\ov{x}}$. This proves the first half of \itememph{a}.
+	As $\ov{x}$ varies, let $U_{\ov{x}}$ denote the étale $X$-scheme $U$ constructed as above. Then $\{U_{\ov{x}}\morphism X\}_{\ov{x}}$ with $\ov{x}$ ranging over all geometric points is an étale cover of $X$ (see \cref{prop:etaleStalks}\itememph{a}). Moreover, every $Y\times_XU_{\ov{x}}\morphism U_{\ov{x}}$ is, by construction, isomorphic to the canonical projection $\pr_2\colon S_{\ov{x}}\times U_{\ov{x}}\morphism U_{\ov{x}}$ for some finite discrete set $S_{\ov{x}}$. This proves the first half of \itememph{a}.
 	
-	Conversely, assume $Y\morphism X$ is a morphism of schemes for which there is an étale cover (in fact, an fpqc cover would suffice) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is a \defemph{split étale covering}, i.e., isomorphic to $S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$. Then $Y\morphism X$ is finite flat and finitely presented, because all these properties can be checked fpqc-locally. Now $Y\morphism X$ is an étale covering iff the trace pairing from \cref{prop:finiteEtale}\itememph{b} is perfect, which is a question about a certain morphism of quasi-coherent modules being an isomorphism, which again can be checked fpqc-locally by faithfully flat descent.
+	Conversely, assume $Y\morphism X$ is a morphism of schemes for which there is an étale cover (in fact, an fpqc cover would suffice) $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i\morphism U_i$ is a \defemph{split étale covering}, i.e., isomorphic to $\pr_2\colon S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$. Then $Y\morphism X$ is finite flat and finitely presented, because all these properties can be checked fpqc-locally. Now $Y\morphism X$ is an étale covering iff the trace pairing from \cref{prop:finiteEtale}\itememph{b} is perfect, which is a question about a certain morphism of quasi-coherent modules being an isomorphism, which again can be checked fpqc-locally by faithfully flat descent.
 	
 	Now for \itememph{b}. To have finite limits in $\cat{F}\Et/X$, it suffices to construct products and equalizers. It's straightforward to see that for étale coverings $Y\morphism X$ and $Y'\morphism X$ the fibre product $Y\times_XY'\morphism X$ is an étale covering again. For equalizers, let $f,f'\colon Y\morphism Y'$ be a pair of parallel morphism between étale coverings. As in the proof of \cref{prop:universalHomeo}, $\Eq(f,f')$ is an open subscheme of $Y$. But it is also closed because $Y'\morphism X$ is finite, hence separated. Hence $\Eq(f,f')$ is an open-closed subscheme of $Y$ and therefore an étale covering of $X$ as well.
 	
@@ -840,8 +841,8 @@ We start with a technical lemma (that was not in the lecture) to gain a better u
 		\item The canonical mophism $Y\times G\morphism Y\times_XY$ given by $(y,g)\mapsto (y,gy)$ is an isomorphism, and $Y\morphism X$ is faithfully flat (i.e., $Y$ is non-empty as long as $X$ is).
 	\end{alphanumerate}
 \end{deflem}
-\begin{proof*}
-	Let's suppose \itememph{a}, i.e., there is an fppf or fpqc cover $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i$ is $G$-equivariantly isomorphic to $U_i\times G$. Checking that $Y\times G\morphism Y\times_XY$ is an isomorphism can be done fpqc-locally. But $(Y\times G)\times_XU_i\cong U_i\times G\times G$ and likewise $(Y\times_XY)\times_XU_i\cong U_i\times G\times G$, so the morphism in question is indeed fpqc-locally an isomorphism. This proves \itememph{a} $\Rightarrow$ \itememph{b}.
+\begin{proof*}[Proof of equivalence]
+	Let's suppose \itememph{a}, i.e., there is an fppf or fpqc cover $\{U_i\morphism X\}_{i\in I}$ such that each $Y\times_XU_i$ is $G$-equivariantly isomorphic to $U_i\times G$. Checking that $Y\times G\morphism Y\times_XY$ is an isomorphism can be done fpqc-locally. But $(Y\times G)\times_XU_i\cong U_i\times G\times G$ and likewise $(Y\times_XY)\times_XU_i\cong U_i\times G\times G$, so the morphism in question is indeed fpqc-locally an isomorphism. This proves the implication \itememph{a} $\Rightarrow$ \itememph{b}.
 	
 	The reverse implication \itememph{b} $\Rightarrow$ \itememph{a} is trivial: indeed, if $Y\morphism X$ is finite étale and surjective, then it is fpqc, hence $\{Y\morphism X\}$ is already an fpqc cover with the required property.
 \end{proof*}
@@ -862,7 +863,7 @@ We start with a technical lemma (that was not in the lecture) to gain a better u
 	
 	It remains to prove that $Y/G\morphism X$ is an étale covering again. This can be checked étale-locally (even fpqc-locally, but we won't need that). In fact, we will construct an étale cover $\{U_i\morphism X\}$ with the following property:
 	\begin{alphanumerate}
-		\item[\itememph{*}] $Y\morphism X$ \emph{splits $G$-equivariantly} over $\{U_i\morphism X\}$. That is, every $Y\times_XU_i\morphism U_i$ is isomorphic to $S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$, and $G$ acts on $Y\times_XU_i$ via $S_i$, i.e., the $G$-action on $S_i\times U_i$ only permutes the copies of $U_i$.
+		\item[\itememph{*}] $Y\morphism X$ \emph{splits $G$-equivariantly} over $\{U_i\morphism X\}$. That is, every $Y\times_XU_i\morphism U_i$ is isomorphic to $\pr_2\colon S_i\times U_i\morphism U_i$ for some finite discrete set $S_i$, and $G$ acts on $Y\times_XU_i$ via $S_i$, i.e., the $G$-action on $S_i\times U_i$ only permutes the copies of $U_i$.
 	\end{alphanumerate}
 	Let's first see how \itememph{*} implies \itememph{a}. Since $-/G$ is a finite colimit, it commutes with flat base change, so $(Y\times_XU_i)/G\cong Y/G\times_XU_i$. But since $G$ acts on $Y\times_XU_i\cong S_i\times U_i$  through $S_i$, we see $Y/G\times_XU_i\cong S_i/G\times U_i$. Hence $Y/G\times_XU_i\morphism U_i$ is an étale covering for trivial reasons, finishing the proof of \itememph{a}.
 	
@@ -883,12 +884,12 @@ We start with a technical lemma (that was not in the lecture) to gain a better u
 	\begin{alphanumerate}
 		\item Suppose moreover that $X$ is connected. Then for every geometric point $\ov{x}$ there is an equivalence of categories
 		\begin{align*}
-			\cat{F}\Et/X&\isomorphism \left\{\text{finite discrete sets with a continuous $\pi_1^\et(X,\ov{x})$-action}\right\}\\
+			\left\{\text{étale coverings of $X$}\right\}&\isomorphism \left\{\text{finite discrete sets with a continuous $\pi_1^\et(X,\ov{x})$-action}\right\}\\
 			Y&\longmapsto \Fib_{\ov{x}}(Y)\,.
 		\end{align*}
 		\item In general, there is an equivalence of categories
 		\begin{align*}
-		\cat{F}\Et/X&\isomorphism\left\{\begin{tabular}{c}
+		\left\{\text{étale coverings of $X$}\right\}&\isomorphism\left\{\begin{tabular}{c}
 		functors $F\colon \Pi_1^\et(X)\rightarrow\{\text{finite discrete sets}\}$ s.th.\\
 		$F(\ov{x})\times \Hom_{\Pi_1^\et(X)}(\ov{x},\ov{y})\rightarrow F(\ov{y})$ is continuous
 		\end{tabular}\right\}\\
@@ -1168,7 +1169,7 @@ We now reach the highlight of this section about the étale fundamental group: t
 \begin{rem}
 	\lecture[Erratum to the last lecture. An example of étale and pro-étale fundamental groups. Stalks at geometric points, sheafification in the étale topology.]{2019-11-15}In the pro-étale topology of Bhatt/Scholze (see \cite{proetale}), there is actually a \emph{pro-étale fundamental group} $\pi_1^\proet(X,\ov{x})$ defined in the same way as $\pi_1^\et(X,\ov{x})$, for schemes $X$ whose underlying topological space is locally noetherian. They consider locally constant sheaves of sets on the pro-étale site, and also étale $X$-schemes satisfying the valuation criterion for properness. %Their discussion of pro-étale coverings is in, where $X$ is assumed to have a locally noetherian underlying topological space. 
 \end{rem}
-\begin{exm}
+\begin{exm}\label{exm:crippledP1}
 	For most cases (like $\IC\setminus\{0\}$, elliptic curves $\IC/\Gamma$ for some lattice $\Gamma$, or curves $\IH/\Gamma$) the topological universal covering admits no algebraic definition.
 	
 	Let $k$ be an algebraically closed field, and $X$ be the topological space obtained from $\IP_k^1$ by identifying $0$ and $\infty$. Let $\IP_k^1\epimorphism X$ be the canonical projection. We can make $X$ into a scheme with structure sheaf $\Oo_X$ defined via
@@ -1233,7 +1234,7 @@ In the following we will tacitly work with $X_\et$, but the big étale site $(\c
 			\Gamma\big(U,\Ff^\Sh\big)=\left\{(f_{\ov{u}})\in\prod_{\ov{u}}\Ff_{\ov{u}}\st\begin{tabular}{c}
 			the sieve of all $j\colon V\rightarrow U$, for which there exists\\
 			$f_V\in\Global(V,\Ff)$ such that $f_{j (\ov{v})}$ is
-			the image of $f_V$\\in $\Ff_v$ for all geometric points $\ov{v}$ of $V$, is covering
+			the image of $f_V$\\in $\Ff_{\ov{v}}$ for all geometric points $\ov{v}$ of $V$, is covering
 			\end{tabular}\right\}.
 		\end{equation*}
 		Then $\Ff^\Sh$ is a sheaf and $(-)^\Sh\colon \cat{PSh}(X_\et)\morphism \cat{Sh}(X_\et)$ is a left-adjoint of the forgetful functor $\cat{Sh}(X_\et)\morphism \cat{PSh}(X_\et)$.
@@ -1454,7 +1455,7 @@ To prove noetherianness in \cref{prop:henselization}\itememph{e}, the strategy i
 	
 	First of all, $A^\h$ and $A^\sh$ are local rings because they are filtered colimits of local rings along local ring maps. Moreover its clear that $\kappa(A^\h)\cong k$, since all local rings $\Oo_{U,u}$ in the colimit defining $A^\h$ have residue field $k$. To determine $\kappa(A^\sh)$, note that in this case for all local rings $\Oo_{U,u}$ the residue field is a finite separable extension of $k$, hence $\kappa(A^\sh)\subseteq k^\sep$. To get $k^\sep\subseteq \kappa(A^\sh)$, we need to check that every finite separable of $k$ does occur as the residue field of some $\Oo_{U,u}$. So let $\ell/k$ be finite separable. Then $\ell$ is generated by a single monic separable irreducible polynomial $\phi\in k[T]$. Let $f\in A[T]$ be a monic lift and put $B=A[T]/(f)$. By \cref{prop:formallyEtale}\itememph{e} the localization $B[(f')^{-1}]$ is étale over $A$, which easily provides an étale neighbourhood with the required properties.
 	
-	Now we show that $A^\h$ is henselian, verifying \cref{prop:henselian}\itememph{e}. Let $A^\h=\colimit_{\lambda\in\Lambda_0}B_\lambda$ be the colimit \cref{eq:AhColim2}, i.e., $\Lambda_0$ is the filtered system of affine étale neighbourhoods $(U,\ov{u})$ of $\ov{x}$ with trivial residue field extension $\kappa(u)/k$ and $B_\lambda=\Global(U,\Oo_U)$. Let $\phi\colon A^\h\morphism S$ be an étale $A^\h$-algebra.\footnote{The $U$ in \cref{prop:henselian}\itememph{e} need not be affine, but the proof shows that it suffices to consider the affine case $U=\Spec S$.} Then $S$ is finitely presented over $A^\h$. In particular, $\phi$ is already defined over some \enquote{finite stage}, i.e., it is the base change of some $\phi_\lambda\colon B_\lambda\morphism S_\lambda$. Moreover, using the characterization from \cref{prop:formallyEtale}\itememph{e} we may even assume that $\phi_\lambda$ is already étale. Thus, restricting $\Lambda_0$ to a suitable cofinal subsystem $\Lambda_0^+$, we obtain that 
+	Now we show that $A^\h$ is henselian, verifying \cref{prop:henselian}\itememph{e}. Let $A^\h=\colimit_{\lambda\in\Lambda_0}B_\lambda$ be the colimit \cref{eq:AhColim2}, i.e., $\Lambda_0$ is the filtered system of affine étale neighbourhoods $(U,\ov{u})$ of $\ov{x}$ with trivial residue field extension $\kappa(u)/k$ and $B_\lambda=\Global(U,\Oo_U)$. Let $\phi\colon A^\h\morphism S$ be an étale $A^\h$-algebra.\footnote{The $U$ in \cref{prop:henselian}\itememph{e} need not be affine, but the proof shows that it suffices to consider the affine case $U=\Spec S$.} Then $S$ is finitely presented over $A^\h$. In particular, $\phi$ is already defined over some \enquote{finite stage}, i.e., it is the base change of some $\phi_\lambda\colon B_\lambda\morphism S_\lambda$. Moreover, using the characterization from \cref{prop:formallyEtale}\itememph{e} we may even assume that $\phi_\lambda$ is already étale (you might want to have a look \cref{sec:inverseLimits}). Thus, restricting $\Lambda_0$ to a suitable cofinal subsystem $\Lambda_0^+$, we obtain that 
 	\begin{equation*}
 		\left(\phi\colon A^\h\morphism S\right)=\colimit_{\lambda\in\Lambda_0^+}\big(\phi_\lambda\colon B_\lambda\morphism S_\lambda\big)
 	\end{equation*}

@@ -188,6 +188,8 @@
 \newoperator{sgn}
 \DeclareMathOperator{\SPEC}{\underline{\smash{\mathrm{Spec}}}}%{\mathbf{Spec}}
 \DeclareMathOperator{\PROJ}{\underline{\smash{\mathrm{Proj}}}}%{\mathbf{Proj}}
+\DeclareMathOperator{\PIC}{\underline{\smash{\mathrm{Pic}}}}
+\DeclareMathOperator{\JAC}{\underline{\smash{\mathrm{Jac}}}}
 \newcommand{\nil}{\operatorname{nil}}
 \newcommand{\Spec}{\operatorname{Spec}}
 \newoperator{Proj}
@@ -281,6 +283,8 @@
 	{\IsArgEmpty{#1}{\twoheadleftarrow}{\overset{#1}{\mathrel{\smash{\longtwoheadleftarrow}\vphantom{\rightarrow}}}}}%
 }
 
+\newlength{\smallmorphismlength}
+\settowidth{\smallmorphismlength}{$\rightarrow$}
 \newlength{\morphismlength}
 \settowidth{\morphismlength}{$\longrightarrow$}
 

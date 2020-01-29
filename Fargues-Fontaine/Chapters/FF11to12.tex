@@ -46,7 +46,7 @@ We will see $W(\IF_p)=\IZ_p$ and $W(\IF_q)=\Oo_{E_0}$ where $E_0$ is the maximal
 	\end{equation*}
 	As $\pi\mid p$, the assertions follows.
 \end{proof}
-\begin{deflem}\label{deflem:Teichmüller}
+\begin{deflem}\label{deflem:Teichmuller}
 	Let $A$ be a $p$-adically complete $\Oo_E$-algebra with $R=A/\pi A$ perfect. Let $a\in R$. Choose any sequence of lifts $\alpha_n\in A$ of $a^{1/q^n}\in R$. Then the sequence $(\alpha_n^{q^n})_{n\in \IN}$ converges in $A$ to a lift of $a$, which is independent of the choices of $\alpha_n$. The map
 	\begin{align*}
 		[-]\colon R&\morphism A\\
@@ -111,7 +111,7 @@ The idea behind the $W_n$ is that
 \end{equation*}
 \end{urem}
 \begin{prop}\label{prop:WittPolynomials}
-	There are unique sequences of polynomials $(S_n)_{n\in \IN}$, $(P_n)_{n\in\IN}$ in the polynomial ring $\Oo_E[X_0,\ldots,X_n,Y_0,\ldots,Y_n]$, such that
+	There are unique sequences of polynomials $(S_n)_{n\in \IN}$, $(P_n)_{n\in\IN}$ in the polynomial ring $\Oo_E[X_0,\dotsc,X_n,Y_0,\dotsc,Y_n]$, such that
 	\begin{align*}
 		W_n(X_0,\dotsc,X_n)+W_n(Y_0,\dotsc,Y_n)&=W_n(S_0,\dotsc,S_n)\\
 		W_n(X_0,\dotsc,X_n)\cdot W_n(Y_0,\dotsc,Y_n)&=W_n(P_0,\dotsc,P_n)\,.
@@ -204,7 +204,7 @@ The upshot is that we can now reconstruct $A$ as a ring from $R=A/\pi A$. The ne
 	\begin{equation*}
 		s_n=S_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\quad\text{and}\quad p_n=P_n(x_0,\dotsc,x_n,y_0,\dotsc,y_n)\,.
 	\end{equation*}
-	To see that this is determines a ring structure, the crucial thing to notice is that the proof of \cref{prop:WittPolynomials} works just the same if $\Phi\in\Oo_E[X_1,\ldots,X_N]$ is a polynomial in arbitrary many variables instead of just $N=2$. So by choosing suitable $\Phi$, we can verify all ring axioms. For example, $\Phi=-X_1$ constructs additive inverses, $\Phi=(X_1+X_2)+X_3=X_1+(X_2+X_3)$ shows the associativity law of addition, $\Phi=X_1(X_2+X_3)=X_1X_2+X_1X_3$ shows distributivity, and so on. Also, if $\alpha\in\Oo_E$, then $\Phi=\alpha X_1$ defines multiplication by $\alpha$ on $W_{\Oo_E}(R)$, turning it into an $\Oo_E$-algebra.
+	To see that this is determines a ring structure, the crucial thing to notice is that the proof of \cref{prop:WittPolynomials} works just the same if $\Phi\in\Oo_E[X_1,\dotsc,X_N]$ is a polynomial in arbitrary many variables instead of just $N=2$. So by choosing suitable $\Phi$, we can verify all ring axioms. For example, $\Phi=-X_1$ constructs additive inverses, $\Phi=(X_1+X_2)+X_3=X_1+(X_2+X_3)$ shows the associativity law of addition, $\Phi=X_1(X_2+X_3)=X_1X_2+X_1X_3$ shows distributivity, and so on. Also, if $\alpha\in\Oo_E$, then $\Phi=\alpha X_1$ defines multiplication by $\alpha$ on $W_{\Oo_E}(R)$, turning it into an $\Oo_E$-algebra.
 	
 	This provides a factorization through $\cat{Alg}_{\Oo_E}$. It is clear from the construction that $\Ww_R$ is an $\Oo_E$-algebra morphism. So it remains to show that this factorization is unique. If $R$ is $\pi$-torsionfree, then $\Ww_R\colon W_{\Oo_E}(R)\morphism R^\IN$ is easily seen to be injective, hence the $\Oo_E$-algebra structure on $W_{\Oo_E}(R)$ is uniquely determined by the one on $R^\IN$. In general, every $R$ admits a surjection $R'\epimorphism R$ from a $\pi$-torsionfree $\Oo_E$-algebra; e.g., $R'=\Oo_E\left[T_a\st a\in R\right]$ does it. Then $W_{\Oo_E}(R')\epimorphism W_{\Oo_E}(R)$ uniquely determines the $\Oo_E$-algebra structure on $W_{\Oo_E}(R)$. This shows uniqueness.
 \end{proof}
@@ -215,7 +215,7 @@ The upshot is that we can now reconstruct $A$ as a ring from $R=A/\pi A$. The ne
 		\item Also, \cref{prop:W_OE} gives the functor $W_{\Oo_E}(-)$ the structure of a ring scheme.
 	\end{numerate}
 \end{urem}	
-\begin{lem}\label{lem:W_OETeichmüller}
+\begin{lem}\label{lem:W_OETeichmuller}
 	The natural map (which we will also call \enquote{Teichmüller lift})
 	\begin{align*}
 		[-]\colon R&\morphism W_{\Oo_E}(R)\\
@@ -294,7 +294,7 @@ The letter $V$ stands for the German word \enquote{Verschiebung}. In contrast to
 		\begin{equation*}
 			x=\sum_{n=0}^\infty V^n[x_n]
 		\end{equation*}
-		for some $x_n\in R$, where $[-]\colon R\morphism W_{\Oo_E}(R)$ is the Teichmüller lift from \cref{lem:W_OETeichmüller}. In fact, the $x_n$ are determined by $x=[x_n]_{n\in\IN}$.
+		for some $x_n\in R$, where $[-]\colon R\morphism W_{\Oo_E}(R)$ is the Teichmüller lift from \cref{lem:W_OETeichmuller}. In fact, the $x_n$ are determined by $x=[x_n]_{n\in\IN}$.
 	\end{numerate}
 \end{lem}
 \begin{proof*}
@@ -510,7 +510,7 @@ Another application of \cref{lem:keyLemma} is the following.
 	\begin{equation*}
 		x^\sharp=\lim_{n\to\infty}x_n^{q^n}\,.
 	\end{equation*}
-	As in the proof of \cref{deflem:Teichmüller}, $x^\sharp$ is independent of the choice of lifts and $(-)^\sharp$ is multiplicative. Now it's easy to see that the map
+	As in the proof of \cref{deflem:Teichmuller}, $x^\sharp$ is independent of the choice of lifts and $(-)^\sharp$ is multiplicative. Now it's easy to see that the map
 	\begin{align*}
 		(A/I)^\flat&\morphism \limit_{x\mapsto x^q}A\\
 		x&\longmapsto \big(x^\sharp,(x^{1/q})^\sharp,\dotsc\big)
