@@ -10,11 +10,3 @@ deploy:
   on:
     branch: master
 script:
-- cd ./EtaleI
-- ../latexdockercmd.sh latexmk -pdf EtaleI.tex
-- cd ../Fargues-Fontaine
-- ../latexdockercmd.sh latexmk -pdf FF.tex
-- cd ..
-- mkdir PDFfiles
-- cp ./EtaleI/EtaleI.pdf PDFfiles
-- cp ./Fargues-Fontaine/FF.pdf PDFfiles
