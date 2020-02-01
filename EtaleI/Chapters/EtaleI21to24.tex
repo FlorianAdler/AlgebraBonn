@@ -98,7 +98,7 @@
 \begin{prop}\label{prop:etaleLeray}
 	If $f\colon X\morphism Y$ and $g\colon Y\morphism Z$ are morphisms of schemes, then we have three Leray spectral sequences
 	\begin{gather*}
-		E_2^{p,q}=H^p(Y_\et,R^qf_*\Ff)\converge H^{p+q}(X_\et,\Ff)\,,  \quad E_2^{p,q}=R^pg_*R^qf_*\Ff\converge R^{p+q}(gf)_*\Ff\,,\\
+		E_2^{p,q}=H^p(Y_\et,R^qf_*\Ff)\converge H^{p+q}(X_\et,\Ff)\,,  \quad E_2^{p,q}=R^pg_*R^qf_*\Ff\converge R^{p+q}(g\circ f)_*\Ff\,,\\
 		E_2^{p,q}=H^p(X_\Zar,R^q\zeta_{X,*}\Ff)\converge H^{p+q}(X_\et,\Ff)\,.
 	\end{gather*}
 	Moreover, if $F\colon \cat{Ab}(X_\et)\morphism\cat{Ab}(Y_\Zar)$ denotes the \enquote{forgetful pushforward} functor, then there are two spectral sequences\footnote{In the lecture we had a single spectral sequence $E_2^{p,q}=R^pf_{\Zar,*}R^q\zeta_{X,*}\Ff\converge \zeta_{Y,*}R^{p+q}f_{\et,*}\Ff$, suggesting that the second of the above spectral sequences collapses. Unfortunately, this is not true (I asked Professor Franke).}
@@ -110,7 +110,7 @@
 	\begin{alphanumerate}
 		\item Construct an exact left-adjoint $\zeta_X^*\colon \cat{Ab}(X_\Zar)\morphism \cat{Ab}(X_\et)$. To do so, we first define an adjoint $\zeta_X^\sharp\colon \cat{PAb}(X_\Zar)\morphism\cat{PAb}(X_\et)$ of the forgetful functor $\cat{PAb}(X_\et)\morphism\cat{PAb}(X_\Zar)$. Similar to \cref{con:f^*} we define it via
 		\begin{equation*}
-		\Global(U,\zeta_X^\sharp\Gg)\coloneqq \colimit_V\Global(V,\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
+		\Global(U,\zeta_X^\sharp\Gg)= \colimit_V\Global(V,\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
 		\end{equation*}
 		The colimit in the middle is taken over all Zariski-open subsets $V\subseteq X$ containing the image of $U\morphism X$. But since every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}, we get the equality on the right (and thus a much simpler description of $\zeta_X^\sharp$). It's easy to see that $\zeta_X^\sharp$ has the required property. Then $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ is a left-adjoint of $\zeta_{X,*}$. If $\ov{x}$ is a geometric point of $X$ with underlying point $x$, then $(\zeta_X^*\Gg)_{\ov{x}}\cong (\zeta_X^\sharp\Gg)_{\ov{x}}\cong \Gg_x$, so $\zeta_X^*$ is indeed exact.
 		\item If $\ov{x}$ and $x$ are as above, show that $\zeta_{X,*}\ov{x}_*I\cong x_*I$ for injective abelian groups $I$. Thus $\zeta_{X,*}\Ii$ stays injective if $\Ii$ is one of the injective objects from the proof of \cref{prop:enoughInjectives}. Since there are sufficiently many of them, this suffices to provide us with the required spectral sequence.
@@ -124,7 +124,7 @@
 \end{proof}
 \section{The Relation with Galois Cohomology}
 \begin{rem}\label{rem:GaloisAction}
-	Let $X$ be an arbitrary scheme and $\ov{x}\colon \Spec \kappa(\ov{x})\morphism X$ a geometric point with underlying point $x\in X$. We may identify $\kappa(x)$ with its image in $\kappa(\ov{x})$. Moreover, we have seen in \cref{rem:setTheory} that replacing $\kappa(\ov{x})$ by the separable closure $\kappa(x)^\sep$ of $\kappa(x)$ in it neither changes stalks nor étale neighbourhoods, so we may assume $\kappa(\ov{x})=\kappa(x)^\sep$. If $\sigma\in G_x\coloneqq \Gal(\kappa(\ov{x})/\kappa(x))$ and $(U,\ov{u})$ is an étale neighbourhood of $\ov{x}$, then also $(U,\ov{u}\circ \Spec(\sigma))$ is also a preimage of $\ov{x}$ in $U$. We thus get an action of $G_x$ on the category of étale neighbourhoods of $\ov{x}$ via
+	Let $X$ be an arbitrary scheme and $\ov{x}\colon \Spec \kappa(\ov{x})\morphism X$ a geometric point with underlying point $x\in X$. We may identify $\kappa(x)$ with its image in $\kappa(\ov{x})$. Moreover, we have seen in \cref{rem:setTheory} that replacing $\kappa(\ov{x})$ by the separable closure $\kappa(x)^\sep$ of $\kappa(x)$ in it neither changes stalks nor étale neighbourhoods, so we may assume $\kappa(\ov{x})=\kappa(x)^\sep$. If $\sigma\in G_x= \Gal(\kappa(\ov{x})/\kappa(x))$ and $(U,\ov{u})$ is an étale neighbourhood of $\ov{x}$, then also $(U,\ov{u}\circ \Spec(\sigma))$ is also a preimage of $\ov{x}$ in $U$. We thus get an action of $G_x$ on the category of étale neighbourhoods of $\ov{x}$ via
 	\begin{equation*}
 		\sigma\colon (U,\ov{u})\longmapsto \big(U,\ov{u}\circ \Spec(\sigma)\big)\,!
 	\end{equation*}
@@ -227,7 +227,7 @@ To finish the section, we state two classical results on $C_1$ fields without pr
 \begin{proof}
 	Part \itememph{a}. Let $\tau\colon \Tt\morphism \Tt'$ be an arbitrary morphism of torsors. We need to show that $\Tt(x)\morphism \Tt'(x)$ is an isomorphism. First suppose $\Tt(x)$, and choose an element $t\in \Tt(x)$. By $\Gg$-equivariance, $\Tt(x)\morphism \Tt'(x)$ is given by $\tau(gt)=g\tau(t)$, hence an isomorphism since the $\Gg(x)$-action is simply transitive on both sides. In general, $x$ can be covered by objects $y\in \Cc$ such that $\Tt(y)\neq \emptyset$, and the sheaf axiom shows that $\Tt(x)\morphism \Tt'(x)$ is an isomorphism in the general case as well.
 	
-	Part \itememph{b}. Since $\Ii$ is abelian, we will use additive notation. Define the \enquote{internal $\Hom$} presheaf $\Jj\coloneqq \Hhom_\Cc(\Tt,\Ii)$ on $\Cc$ by $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$. It's easy to check that $\Jj$ is in fact a sheaf of abelian groups, the group structure given by addition on $\Ii$. Moreover, there is a canonical morphism $\iota\colon \Ii\morphism \Jj$ given by sending a section $i\in \Ii(x)$ to the constant $i$-valued morphism in $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$, i.e., the morphism sending any $t\in \Tt(y)$ to the image of $i$ in $\Ii(y)$. This $\iota$ is clearly a monomorphism. Thus, since $\Ii$ is injective, it must have a split $\pi\colon \Jj\morphism \Ii$.
+	Part \itememph{b}. Since $\Ii$ is abelian, we will use additive notation. Define the \enquote{internal $\Hom$} presheaf $\Jj= \Hhom_\Cc(\Tt,\Ii)$ on $\Cc$ by $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$. It's easy to check that $\Jj$ is in fact a sheaf of abelian groups, the group structure given by addition on $\Ii$. Moreover, there is a canonical morphism $\iota\colon \Ii\morphism \Jj$ given by sending a section $i\in \Ii(x)$ to the constant $i$-valued morphism in $\Jj(x)=\Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$, i.e., the morphism sending any $t\in \Tt(y)$ to the image of $i$ in $\Ii(y)$. This $\iota$ is clearly a monomorphism. Thus, since $\Ii$ is injective, it must have a split $\pi\colon \Jj\morphism \Ii$.
 	
 	We also have a morphism $\kappa\colon \Tt\morphism \Jj$ sending $t\in \Tt(x)$ to $(-)-t\in \Hom_{\cat{PSh}(\Cc/x)}(\Tt,\Ii)$. Here the morphism of sheaves $(-)-t$ sends any $t'\in \Tt(y)$ to the unique $i\in \Ii(y)$ such that $t'-i$ equals the image of $t$ in $\Tt(y)$. Now its easy to see that
 	\begin{equation*}
@@ -239,21 +239,21 @@ To finish the section, we state two classical results on $C_1$ fields without pr
 	Let $i\colon \Gg\morphism\Hh$ be a morphism of sheaves of groups on $\Cc$ and $\Tt$ a $\Gg$-torsor. An \defemph{$i$-splitting} of $\Tt$ is a morphism $\sigma\colon \Tt\morphism \Hh$ such that $\sigma(gt)=i(g)\sigma(t)$ for all $g\in \Gg(x)$, $t\in \Tt(x)$.
 \end{defi}
 \begin{rem}\label{rem:i_*T}
-	An $i$-splitting of $\Tt$ as defined in \cref{def:i-splitting} is obviously equivalent to giving a trivialization of the $\Hh$-torsor $i_*\Tt\coloneqq(\Tt\times \Hh)/\Gg$. However, Professor Franke does not intend to define pushforwards of torsors in general.
+	An $i$-splitting of $\Tt$ as defined in \cref{def:i-splitting} is obviously equivalent to giving a trivialization of the $\Hh$-torsor $i_*\Tt=(\Tt\times \Hh)/\Gg$. However, Professor Franke does not intend to define pushforwards of torsors in general.
 \end{rem}
 \numpar{}From now on, all sheaves of groups will be abelian and we will use additive notation for convenience (except for the sheaf $\Oo_{X_\et}^\times$ considered in \cref{fact:H1Pic} below). Consider a short exact sequence
 \begin{equation*}
 	0\morphism \Gg\morphism[i]\Hh\morphism[\pi]\Qq\morphism 0
 \end{equation*}
-in $\cat{Ab}(\Cc)$ and let $(\Tt,\sigma)$ be a $\Gg$-torsor equipped with an $i$-splitting $\sigma$. If $\Tt(x)\neq \emptyset$, then $q_x\coloneqq \pi(\sigma(t))$ does not depend on the choice of $t\in \Tt(x)$, as
+in $\cat{Ab}(\Cc)$ and let $(\Tt,\sigma)$ be a $\Gg$-torsor equipped with an $i$-splitting $\sigma$. If $\Tt(x)\neq \emptyset$, then $q_x= \pi(\sigma(t))$ does not depend on the choice of $t\in \Tt(x)$, as
 \begin{equation*}
 	\pi\big(\sigma(g+t)\big)=\pi\big(i(g)+\sigma(t)\big)=0+\pi\big(\sigma(t)\big)\,.
 \end{equation*}
 If $x$ is arbitrary, then the sheaf axiom provides us with a unique element $q_x\in \Qq(x)$ such that $v^*q_x=q_y$ whenever $v\colon y\morphism x$ is an $x$-object satisfying $\Tt(y)\neq \emptyset$. By compatibility, the $q_x$ define an element $q\in \limit_{\Cc}\Qq$.
 
-It is easy to see that this $q$ only depends on the isomorphism class of $(\Tt,\sigma)$; we denote it by $q(\Tt,\sigma)$ from now on. Moreover, if $h\in \limit_{\Cc}\Hh$ and $h+\sigma\colon \Tt\morphism \Hh$ is defined in the obvious way as $(h+\sigma)(t)\coloneqq h+\sigma(t)$, then $q(\Tt,h+\sigma)=\pi(h)+q(\Tt,\sigma)$.
+It is easy to see that this $q$ only depends on the isomorphism class of $(\Tt,\sigma)$; we denote it by $q(\Tt,\sigma)$ from now on. Moreover, if $h\in \limit_{\Cc}\Hh$ and $h+\sigma\colon \Tt\morphism \Hh$ is defined in the obvious way as $(h+\sigma)(t)= h+\sigma(t)$, then $q(\Tt,h+\sigma)=\pi(h)+q(\Tt,\sigma)$.
 
-Conversely, suppose $q\in \limit_\Cc\Qq$ is given. We put $\Tt_q(x)\coloneqq \left\{h\in\Hh(x)\st \pi(h)=q\right\}$ and let $\sigma_q\colon \Tt_q\morphism \Hh$ be the obvious embedding. Then $\Tt_q$ is a $\Gg$-torsor and $\sigma_q$ an $i$-splitting. One easily checks $q(\Tt_q,\sigma_q)=q$ and that $\sigma\colon \Tt\morphism \Hh$ restricts to an isomorphism $\Tt\isomorphism \Tt_{q(\Tt,\sigma)}$. Thus we obtain: 
+Conversely, suppose $q\in \limit_\Cc\Qq$ is given. We put $\Tt_q(x)= \left\{h\in\Hh(x)\st \pi(h)=q\right\}$ and let $\sigma_q\colon \Tt_q\morphism \Hh$ be the obvious embedding. Then $\Tt_q$ is a $\Gg$-torsor and $\sigma_q$ an $i$-splitting. One easily checks $q(\Tt_q,\sigma_q)=q$ and that $\sigma\colon \Tt\morphism \Hh$ restricts to an isomorphism $\Tt\isomorphism \Tt_{q(\Tt,\sigma)}$. Thus we obtain: 
 \begin{lem}
 	The association $(\Tt,\sigma)\mapsto q(\Tt,\sigma)$ defines a bijection
 	\begin{equation*}
@@ -267,7 +267,7 @@ Conversely, suppose $q\in \limit_\Cc\Qq$ is given. We put $\Tt_q(x)\coloneqq \le
 \begin{prop}\label{prop:TorsorsH1}
 	Let $\Cc$ be a site. We denote by $H^i(-)$ the $i\ordinalth$ right-derived functor of $\Global(-)\colon \cat{Ab}(\Cc)\morphism \cat{Ab}$ defined by $\Global(\Gg)=\limit_\Cc\Gg$. Then for any $\Gg$ one has a bijection
 	\begin{align*}
-		\left\{\text{iso.\ classes of $\Ff$-torsors}\right\}&\isomorphism H^1(\Gg)\\
+		\left\{\text{iso.\ classes of $\Gg$-torsors}\right\}&\isomorphism H^1(\Gg)\\
 		\Tt&\longmapsto \big(q(T,\sigma)\bmod \pi\Global(\Ii)\big)\\
 		\Tt_q&\longmapsfrom \big(q \bmod \pi\Global(\Ii)\big)\,.
 	\end{align*}
@@ -279,7 +279,7 @@ Conversely, suppose $q\in \limit_\Cc\Qq$ is given. We put $\Tt_q(x)\coloneqq \le
 \begin{rem*}\label{rem*:groupStructureOnTorsors}
 	The identification with $H^1(\Gg)$ suggests that there should be a canonical group structure on the set of isomorphism classes of $\Gg$-torsors. It can be explicitly described as follows: for torsors $\Tt$ and $\Tt'$, consider the sheaf
 	\begin{equation*}
-		\Tt\times_\Gg\Tt\coloneqq (\Tt\times \Tt')/\Gg\,.
+		\Tt\times_\Gg\Tt= (\Tt\times \Tt')/\Gg\,.
 	\end{equation*}
 	Here \enquote{modding out $\Gg$} is abuse of notation for modding out the equivalence relation given by $(g+t,t')\sim (t,g+t')$ for all $g\in \Gg(x)$, $t\in \Tt(x)$, $t'\in \Tt'(x)$. Then $\Tt\times_\Gg\Tt'$ becomes a $\Gg$-torsor again in a canonical way.
 	
@@ -306,7 +306,7 @@ The main application of the theory of torsors to étale cohomology comes through
 	\begin{equation*}
 		\Global(U,\Ll_\Tt)=\left\{(t,f)\st t\in \Global(U,\Tt)\text{ and }f\in\Global(U,\Oo_X^\times)\right\}/_\sim\,,
 	\end{equation*}
-	where $\sim$ is the equivalence relation defined as $(t,f)\sim (t',f')$ iff there is a $\lambda\in \Global(U,\Oo_X^\times)$ such that $t'=\lambda t$ and $f'=\lambda f$. Thus, fixing $t$, every equivalence class has a unique representative of the form $(t,f)$. It's easy to check that addition and scalar multiplication on equivalence classes defined by $[t,f]+[t,f']\coloneqq [t,f+f']$ and $\lambda[t,f]\coloneqq [t,\lambda f]$ are independent of the choice of $t$ and turn $\Ll_\Tt$ into a line bundle over $\Oo_X$ (in fact, even a trivial one).
+	where $\sim$ is the equivalence relation defined as $(t,f)\sim (t',f')$ iff there is a $\lambda\in \Global(U,\Oo_X^\times)$ such that $t'=\lambda t$ and $f'=\lambda f$. Thus, fixing $t$, every equivalence class has a unique representative of the form $(t,f)$. It's easy to check that addition and scalar multiplication on equivalence classes defined by $[t,f]+[t,f']= [t,f+f']$ and $\lambda[t,f]= [t,\lambda f]$ are independent of the choice of $t$ and turn $\Ll_\Tt$ into a line bundle over $\Oo_X$ (in fact, even a trivial one).
 	
 	For arbitrary $X$, we always find an étale cover $\{U_i\morphism X\}_{i\in I}$ such that $\Tt$ is trivial over each $U_i$. Then the above construction gives line bundles $\Ll_i$ over $U_i$ corresponding to $\Tt|_{U_i}$. It can be checked immediately that the $\Ll_i$ form a descent datum, hence define a line bundle $\Ll_\Tt$ on $X$ via faithfully flat descent. We leave it to the reader to verify that the functors $\Ll\mapsto \Tt_\Ll$ and $\Tt\mapsto \Ll_\Tt$ are indeed quasi-inverse to each other.
 \end{proof}
@@ -350,7 +350,7 @@ Even though \v Cech cohomology usually does not compute sheaf cohomology in gene
 	\end{equation*}
 	Its differential is $\check{d}=\sum_{i=0}^{n+1}(-1)^id_j$ in degree $n$. The cohomology groups
 	\begin{equation*}
-		\check{H}^i\big(\{U\rightarrow X\},\Ff\big)\coloneqq H^i\check{C}^\bullet\big(\{U\rightarrow X\},\Ff\big)
+		\check{H}^i\big(\{U\rightarrow X\},\Ff\big)= H^i\check{C}^\bullet\big(\{U\rightarrow X\},\Ff\big)
 	\end{equation*}
 	are called the \defemph{\v Cech cohomology groups} of $\Ff$.
 \end{con}
@@ -365,7 +365,7 @@ Even though \v Cech cohomology usually does not compute sheaf cohomology in gene
 	\begin{equation*}
 	(f\pr_0,\dotsc,f\pr_l,g\pr_l,\dotsc, g\pr_{n-1})\colon \underbrace{V\times_X\dotsb\times_X V}_{n\text{ factors}}\morphism \underbrace{U\times_X\dotsb\times_X U}_{n+1\text{ factors}}
 	\end{equation*}
-	(observe that $\pr_l$ occurs twice). One can verify that $\check{h}^\bullet$ given by $\check{h}^n\coloneqq \sum_{l=0}^{n-1}(-1)^lh_l$ in degree $n$ is a cochain homotopy. See \cite[Lemma~1.2.1]{alggeo2} for more details; this also contains Professor Franke's computation of $h_ld_k$ via a sweet six-fold case distinction, which I am certainly not going to include in these notes.
+	(observe that $\pr_l$ occurs twice). One can verify that $\check{h}^\bullet$ given by $\check{h}^n= \sum_{l=0}^{n-1}(-1)^lh_l$ in degree $n$ is a cochain homotopy. See \cite[Lemma~1.2.1]{alggeo2} for more details; this also contains Professor Franke's computation of $h_ld_k$ via a sweet six-fold case distinction, which I am certainly not going to include in these notes.
 \end{rem}
 \begin{lem}\label{lem:sectionAcyclic}
 	Suppose $j\colon U\morphism X$ is étale and admits a section $s\colon X\morphism U$. Then the \v Cech complex $\check{C}^\bullet(\{U\morphism X\},\Ff)$ is acyclic in positive degrees for every $\Ff\in \cat{PAb}(X_\et)$.
@@ -393,7 +393,7 @@ The goal of this subsection is to prove the promised comparison result for étal
 		\item Professor Franke assumed $X$ to be locally noetherian in \cref{prop:technicalCech}\itememph{b} (or at least stressed that $X$ may be arbitrary in \itememph{b}), but I don't quite see why that restriction should be necessary. Please correct me if I'm wrong!
 		\item If every finite subset points of $X$ is contained in an affine open subset, then \cite{milne} shows that the canonical map
 		\begin{equation*}
-		\check{H}^i(X_\et,\Ff)\coloneqq \colimit_{\Uu}\check{H}^i(\Uu,\Ff)\isomorphism H^i(X_\et,\Ff)
+		\check{H}^i(X_\et,\Ff)= \colimit_{\Uu}\check{H}^i(\Uu,\Ff)\isomorphism H^i(X_\et,\Ff)
 		\end{equation*}
 		(the colimit is taken over all étale covers $\Uu=\left\{U_j\morphism X\right\}_{j\in J}$ of $X$) is an isomorphism.
 	\end{alphanumerate}
@@ -409,20 +409,20 @@ The goal of this subsection is to prove the promised comparison result for étal
 	
 	It is clear that direct summands of objects in $\XX$ are in $\XX$ again, because direct summands of acyclic complexes stay acyclic. It remains to show that for any short exact sequence $0\morphism\Ff'\morphism \Ff\morphism\Ff''\morphism 0$ with $\Ff,\Ff'\in \XX$, we also have $\Ff''\in \XX$. We claim:
 	\begin{alphanumerate}
-		\item[\itememph{*}] For any surjective morphism $V'\morphism V$ of affine étale $X$-schemes, we get a short exact sequence of \v Cech complexes
+		\item[\itememph{*}] \itshape For any surjective morphism $V'\morphism V$ of affine étale $X$-schemes, we get a short exact sequence of \v Cech complexes
 		\begin{equation*}
 		0\morphism\check{C}^\bullet\big(\{V'\rightarrow V\},\Ff'\big)\morphism \check{C}^\bullet\big(\{V'\rightarrow V\},\Ff\big)\morphism \check{C}^\bullet\big(\{V'\rightarrow V\},\Ff''\big)\morphism 0
 		\end{equation*}
 	\end{alphanumerate}
 	Let's first see how \itememph{*} implies \itememph{a}. Taking the long exact cohomology sequence of the above short exact sequence of complexes, we get $\check{H}^i(\{V'\morphism V\},\Ff'')=0$ for all $i>0$, hence $\Ff''\in \XX$. Moreover, we obtain that $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective (because $\{V'\morphism V\}$ is an étale cover, we have $\check{H}^0(\{V'\morphism V\},-)= \Global(V,-)$ by the sheaf axiom). Now let $U\in X_\et$ be arbitrary. As seen above $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective for all affine open subsets $V\subseteq U$, hence $\zeta_{U,*}\Ff\morphism\zeta_{U,*}\Ff''$ is indeed an epimorphism of sheaves. This shows \itememph{*} $\Rightarrow$ \itememph{a}.
 	
-	To prove \itememph{*}, observe that it suffices to show that $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective for all affine étale $X$-schemes $V$, because the $V'\times_V\dotsb\times_VV'$ occuring in the \v Cech complex above are affine étale $X$-schemes again. So let $f''\in \Global(V,\Ff'')$. We need to construct a preimage in $\Global(V,\Ff)$. Since $\Ff\morphism\Ff''$ is an epimorphism of sheaves, we find an étale cover $\{V_j\morphism V\}_{j\in J}$ such that $f''|_{V_j}$ has a preimage in $\Global(V_j,\Ff)$ for all $j\in J$. Without restriction, all $V_j$ are affine. Moreover, since $V$ is affine, it is quasi-compact, hence we may assume that the indexing set $J$ is finite. Then $\pi\colon V'\morphism V$, where $V'\coloneqq\coprod_{j\in J}V_j$, is an affine étale cover of $V$ with the same properties.
+	To prove \itememph{*}, observe that it suffices to show that $\Global(V,\Ff)\epimorphism \Global(V,\Ff'')$ is surjective for all affine étale $X$-schemes $V$, because the $V'\times_V\dotsb\times_VV'$ occuring in the \v Cech complex above are affine étale $X$-schemes again. So let $f''\in \Global(V,\Ff'')$. We need to construct a preimage in $\Global(V,\Ff)$. Since $\Ff\morphism\Ff''$ is an epimorphism of sheaves, we find an étale cover $\{V_j\morphism V\}_{j\in J}$ such that $f''|_{V_j}$ has a preimage in $\Global(V_j,\Ff)$ for all $j\in J$. Without restriction, all $V_j$ are affine. Moreover, since $V$ is affine, it is quasi-compact, hence we may assume that the indexing set $J$ is finite. Then $\pi\colon V'\morphism V$, where $V'=\coprod_{j\in J}V_j$, is an affine étale cover of $V$ with the same properties.
 	
 	In particular, $\pi^*f''=f''|_{V'}$ has a preimage $f\in \Global(V',\Ff)$. Now consider the \v Cech complexes of $\{V'\morphism V\}$ with coefficients in $\Ff'$, $\Ff$, and $\Ff''$ respectively. We abbreviate them as $'\check{C}^\bullet$, $\check{C}^\bullet$, and $''\check{C}^\bullet$ for convenience. Consider the element the image of the element $\check{d}(f)=(\pr_1^*-\pr_2^*)f\in \check{C}^1=\Global(V'\times_VV',\Ff)$ under $\check{C}^1\morphism {''\check{C}^1}$. This vanishes, because $\pr_1^*\pi^*f''=f''|_{V'\times_VV'}=\pr_2^*\pi^*f''$. Hence $\check{d}(f)$ must be the image of some $f'\in {'\check{C}^1}$. Note that $\check{d}(f')=\check{d}^2(f)=0$. But $''\check{C}^\bullet$ is acyclic in positive degrees because $\Ff'\in \XX$, so we can write $f'=\check{d}(\phi')$ for some $\phi'\in {'\check{C}^0}$. By construction, $\check{d}(f-\phi)=0$. Hence $f-\phi'$ defines a global section $\phi\in \Global(V,\Ff)$, whose image is $f''$. This proves surjectivity and thus \itememph{*}.
 	
 	The proof of \itememph{b} and \itememph{c} is pretty much the same: we first show that every $\Ff$ has a monomorphism $\Ff\monomorphism \Gg$ for some $\Gg\in \YY$ or $\Gg\in \YY'$ respectively and $\YY$, $\YY'$ are closed under taking direct summands. This can be done just as in \itememph{a}. Now let $0\morphism \Ff'\morphism \Ff\morphism \Ff''\morphism 0$ be a short exact sequence with $\Ff,\Ff'\in \YY$ resp.\ $\Ff,\Ff'\in \YY'$. We claim
 	\begin{alphanumerate}
-		\item[\itememph{*'}] Let $\Vv\colon V=\bigcup_{j\in J}V_j$ be a finite/arbitrary cover of a quasi-compact quasi-separated/arbi-trary $V\in X_\et$ by quasi-compact/arbitrary Zariski-open subsets $V_j$. Then we get a short exact sequence of \v Cech complexes
+		\item[\itememph{*'}] \itshape Let $\Vv\colon V=\bigcup_{j\in J}V_j$ be a finite/arbitrary cover of a quasi-compact quasi-separated/arbi-trary $V\in X_\et$ by quasi-compact/arbitrary Zariski-open subsets $V_j$. Then we get a short exact sequence of \v Cech complexes
 		\begin{equation*}
 		0\morphism \check{C}^\bullet(\Vv,\Ff')\morphism \check{C}^\bullet(\Vv,\Ff)\morphism \check{C}^\bullet(\Vv,\Ff'')\morphism 0\,.
 		\end{equation*}
@@ -450,7 +450,7 @@ The goal of this subsection is to prove the promised comparison result for étal
 	\end{equation*}
 	is acyclic in positive degrees. But $\pr_1\colon V'\times_VV'\morphism V'$ has a section, namely the diagonal $\Delta_{V'/V}\colon V'\morphism V'\times_VV'$, hence the complex on the right-hand side is acyclic by \cref{lem:sectionAcyclic}. This proves the first assertion.
 	
-	The second assertion is basically just a consequence of faithfully flat descent. More precisely, we can construct a quasi-inverse functor $\iota$ as follows: if $\Gg$ is a quasi-coherent $\Oo_{X_\Zar}$-module and $j\colon U\morphism X$ is étale, put $\Global(U,\iota(\Gg))\coloneqq \Global(U,j^*\Gg)$. Here $j^*\colon \cat{QCoh}_X\morphism\cat{QCoh}_U$ indicates the usual pullback of quasi-coherent modules in the Zariski-topology. Using \cref{prop:fpqcDescent}, it's easy to check that $\zeta_{X,*}$ and $\iota$ are indeed quasi-inverse functors.
+	The second assertion is basically just a consequence of faithfully flat descent. More precisely, we can construct a quasi-inverse functor $\iota$ as follows: if $\Gg$ is a quasi-coherent $\Oo_{X_\Zar}$-module and $j\colon U\morphism X$ is étale, put $\Global(U,\iota(\Gg))= \Global(U,j^*\Gg)$. Here $j^*\colon \cat{QCoh}_X\morphism\cat{QCoh}_U$ indicates the usual pullback of quasi-coherent modules in the Zariski-topology. Using \cref{prop:fpqcDescent}, it's easy to check that $\zeta_{X,*}$ and $\iota$ are indeed quasi-inverse functors.
 \end{proof}
 \begin{cor}\label{cor:etaleCoho=ZariskiCoho}
 	Let $X$ be an arbitrary scheme.
@@ -466,7 +466,7 @@ The goal of this subsection is to prove the promised comparison result for étal
 	\end{equation*}
 	of étale sheaves, where $\phi\colon X\morphism X$ denotes the absolute Frobenius. This sequence is exact as there are Artin--Schreier coverings (see \cref{prop:ArtinSchreier}). In the corresponding long exact sequence we see that $H^i(X_\et,\Oo_{X_\et})=H^i(X,\Oo_X)=0$ for $i>\dim X$ by \itememph{a} and Grothendieck's dimension theorem \cite[Théorème~3.6.5]{tohoku}. Hence $H^i(X_\et,\IZ/p\IZ)=0$ for $i>\dim X+1$.
 \end{proof}
-\begin{rem*}
+\begin{rem*}\label{rem*:Z/pZvanishing}
 	If $X$ is separated and of finite type over an algebraically closed extension $k/\IF_p$ (for example, $X$ could be a variety over $\ov{\IF}_p$), then even
 	\begin{equation*}
 	H^{\dim X+1}(X_\et,\IZ/p\IZ)=0
@@ -519,7 +519,7 @@ For $\alpha \in \Ii$ we denote by $\Ii/\alpha$ the slice category of $\alpha$-ob
 \begin{proof}[Proof of \cref{prop:cohoInverseLimit}]
 	Observe that the category $\Aa$ from Situation~\cref{sit:limit} is abelian. In fact, all required categorical constructions---finite biproducts, kernels, cokernels, equality of image and coimage---can be carried out component-wise (here we use that the pullback functor $\pi_\mu^*\colon \cat{Ab}(X_{\alpha,\et})\morphism \cat{Ab}(X_{\beta,\et})$ is exact), so $\Aa$ being abelian follows from the fact that all $\cat{Ab}(X_{\alpha,\et})$ are abelian. For $\Ff=(\Ff_\alpha,\phi_\mu)\in \Aa$, let's denote
 	\begin{equation*}
-	H_\mathrm{left}^i(\Ff)\coloneqq \colimit_\Ii H^i\big(X_{\alpha,\et},\Ff_\alpha\big)\quad\text{and}\quad H_\mathrm{right}^i(\Ff)\coloneqq H^i\Big(X_\et,\colimit_\Ii \pi_\alpha^*\Ff_\alpha\Big)\,.
+	H_\mathrm{left}^i(\Ff)= \colimit_\Ii H^i\big(X_{\alpha,\et},\Ff_\alpha\big)\quad\text{and}\quad H_\mathrm{right}^i(\Ff)= H^i\Big(X_\et,\colimit_\Ii \pi_\alpha^*\Ff_\alpha\Big)\,.
 	\end{equation*}
 	Our strategy is to show that $H_\mathrm{left}^i(-)\colon \Aa\morphism \cat{Ab}$ and $H_\mathrm{right}^i(-)\colon \Aa\morphism\cat{Ab}$ are the respective right-derived functors of $H_\mathrm{left}^0(-)$ and $H_\mathrm{right}^0(-)$, and that $H_\mathrm{left}^0(-)\cong H_\mathrm{right}^0(-)$. By the universal property of right-derived functors, this will immediately settle the proof.
 	
@@ -531,12 +531,12 @@ For $\alpha \in \Ii$ we denote by $\Ii/\alpha$ the slice category of $\alpha$-ob
 	
 	It remains to show that both cohomological functors $H_\mathrm{left}^\bullet(-)$ and $H_\mathrm{right}^\bullet(-)$ are effaceable in the sense of \itememph{3} of \cref{prop:effaceable}\itememph{a}. For arbitrary schemes $S$, let $\YY_S$ denote the class of objects in $\cat{Ab}(S_\et)$ specified in \cref{prop:technicalCech}\itememph{b}. Furthermore, let $\YY$ be the class of all $\Hh=(\Hh_\alpha,\psi_\mu)\in \Aa$ satisfying $\Hh_\alpha\in \YY_{X_\alpha}$ for all $\alpha$. We must show that
 	\begin{numerate}
-		\item for all $\Ff\in \Aa$ there exists a monomorphism $\Ff\monomorphism \Hh$ into some $\Hh\in \YY$, and
+		\item \itshape for all $\Ff\in \Aa$ there exists a monomorphism $\Ff\monomorphism \Hh$ into some $\Hh\in \YY$, and
 		\item for all $\Hh\in \YY$ we have $H_\mathrm{left}^i(\Hh)=0=H_\mathrm{right}^i(\Hh)$ for all $i>0$.
 	\end{numerate}
 	We start with \itememph{2}. If $\Hh\in \YY$, then $H^i(X_{\alpha,\et},\Hh_\alpha)=0$ for all $\alpha$  and all $i>0$ by \cref{prop:technicalCech}\itememph{b}, using that all $X_\alpha$ are quasi-compact and quasi-separated. Hence $H_\mathrm{left}^i(\Hh)=0$ for $i>0$. The fact that $H_\mathrm{right}^i(\Hh)=0$ for all $i>0$ will follows at once from the following claim:
 	\begin{alphanumerate}
-		\item[\itememph{*}] We have $\colimit_\Ii\pi_\alpha^*\Hh_\alpha\in \YY_X$.
+		\item[\itememph{*}] \itshape We have $\colimit_\Ii\pi_\alpha^*\Hh_\alpha\in \YY_X$.
 	\end{alphanumerate}
 	To prove \itememph{*}, we must check the two conditions. So let $V'\morphism V$ be a surjective morphism of affine étale $X$-schemes. Combining \itememph{g}, \itememph{i}, and \itememph{k} from \cref{sec:inverseLimits}, we see that it can be written as a base change of a morphism $V'_\alpha\morphism V_\alpha$ of affine étale $X_\alpha$-schemes for some $\alpha$. Moreover, there is a $\beta\in \Ii/\alpha$ such that $V'_\beta=V'_\alpha\times_{X_\alpha}X_\beta\morphism V_\alpha\times_{X_\alpha}X_\beta=V_\beta$ is surjective. Indeed, $V'_\alpha\morphism V_\alpha$ is étale, hence its image is open. Let $Z_\alpha$ be the complement of its image. Then $Z_\alpha\times_{X_\alpha}X=\emptyset$ since $V'\morphism V$ is surjective, hence already $Z_\alpha\times_{X_\alpha}X_\beta=\emptyset$ for some $\beta\in \Ii/\alpha$ by \cref{par:schemesInverseLimit}\itememph{b}. This shows that $V'_\beta\morphism V_\beta$ is indeed surjective.
 	
