@@ -1,4 +1,4 @@
-\section{Constructible Sheaves}
+\section{Constructible Sheaves}\label{sec:Constructible}
 Unfortunately, before we can get into the fun business of proving the proper base change theorem, we need to discuss yet another technical notion. The reason is as follows: to construct $\ell$-adic cohomology eventually, we would like to consider étale cohomology with coefficients in a constant sheaf associated to a finite abelian group. However, the category of such sheaves is very badly behaved: it is far from being abelian, and being a constant sheaf is neither preserved under pushforward nor under extension by zero. So the goal for this section is to construct a category of sheaves with better properties.
 \subsection{Noetherian Sheaves}
 \begin{deflem}\label{def:noetherian}
@@ -367,7 +367,7 @@ We postpone the proof of \cref{prop:constructible} until after one corollary and
 	\end{alphanumerate}
 \end{rem}
 
-\section{Cohomology of Curves}
+\section{Cohomology of Curves}\label{sec:CohoOfCurves}
 \lecture[Cohomology of $\Oo_{C_\et}^\times$ and $\mu_n$. Méthode de la trace. Cohomology of torsion sheaves on curves.]{2020-01-24}
 \numpar{Disclaimer}\label{par:algebraicClosure}
 Throughout this section, $k$ will be a separably closed field, and all results are valid in this case. However, for some of the proofs it will be convenient to assume that $k$ is even algebraically closed. This is made possible by the following observation: let $X$ be a quasi-compact quasi-separated scheme over $k$, which is separably closed. Let $\Ff\in \cat{Ab}(X_\et)$. For all field extensions $K/k$ let $X_K= X\times_k\Spec K$, let $\pi_{K/k}\colon X_K\morphism X$ be the canonical projection, and put $\Ff_K= \pi_{K/k}^*\Ff$. In the special case $K=\ov{k}$, we have $X_{\ov{k}}\cong \limit_{\ell/k}X_\ell$, where the limit is taken over all finite extensions $\ell/k$. Thus, \cref{prop:cohoInverseLimit} implies
@@ -445,12 +445,12 @@ Also, in case you wonder: yes, $\Oo_{S_\et}$ and $\Oo_{S_\et}^\times$ are repres
 	\begin{equation*}
 		H^i\big(C_\et,\mu_{\ell^n}\big)\cong \begin{cases*}
 			\mu_{\ell^n}(k) & if $i=0$\\
-			\Pic^0(C)_{\ell^n} & if $i=1$\\
+			\Pic^0(C)[\ell^n] & if $i=1$\\
 			\IZ/\ell^n\IZ & if $i=2$ \\
 			0 & else
 		\end{cases*}\,.
 	\end{equation*}
- 	The group $\Pic^0(C)_{\ell^n}$ of $\ell^n$-torsion in $\Pic^0(C)$ is non-canonically isomorphic to $(\IZ/\ell^n\IZ)^{\oplus2g}$.
+ 	The group $\Pic^0(C)[\ell^n]$ of $\ell^n$-torsion in $\Pic^0(C)$ is non-canonically isomorphic to $(\IZ/\ell^n\IZ)^{\oplus2g}$.
 \end{cor}
 \begin{rem}\label{rem:AlgTopo}
 	\begin{alphanumerate}
@@ -485,11 +485,11 @@ Also, in case you wonder: yes, $\Oo_{S_\et}$ and $\Oo_{S_\et}^\times$ are repres
 	\end{equation*}
 	It is a classical theorem that the Picard functor $\Pic_{C/k}$ is representable by a scheme $\PIC_C$, the \defemph{Picard scheme} of $C$. It has a decomposition $\PIC_C=\coprod_{d\in \IZ}\PIC^d_C$, where $\PIC^d_C$ parametrizes line bundles of degree $d$. The $0\ordinalth$ component $\JAC_C= \PIC^0_C$ is called the \defemph{Jacobian of $C$}. It is an abelian variety of dimension $g$ over $k$.
 	
-	In particular, we may write $\PIC(C)\cong \JAC_C(k)\times \IZ$, and the morphism $(-)^{\otimes \ell^n}$ in question is given by multiplication by $\ell^n$. A classical theorem about abelian varieties $A$ of dimension $g$ over $k$ states that for $N\neq 0$ the morphism $N\colon A\morphism A$ is finite flat of degree $N^{2g}$. In particular, $A(k)$ is divisible. See \cite[Theorem~10\itememph{b}]{jacobians} for instance (the proof given there is a bit lengthy). This shows that $\ell^n\colon \JAC_C(k)\morphism\JAC_C(k)$ is surjective with kernel $\Pic^0(C)_{\ell^n}$. Hence 
+	In particular, we may write $\PIC(C)\cong \JAC_C(k)\times \IZ$, and the morphism $(-)^{\otimes \ell^n}$ in question is given by multiplication by $\ell^n$. A classical theorem about abelian varieties $A$ of dimension $g$ over $k$ states that for $N\neq 0$ the morphism $N\colon A\morphism A$ is finite flat of degree $N^{2g}$. In particular, $A(k)$ is divisible. See \cite[Theorem~10\itememph{b}]{jacobians} for instance (the proof given there is a bit lengthy). This shows that $\ell^n\colon \JAC_C(k)\morphism\JAC_C(k)$ is surjective with kernel $\Pic^0(C)[\ell^n]$. Hence 
 	\begin{equation*}
 		\ell^n\colon \JAC_C(k)\times \IZ\morphism\JAC_C(k)\times \IZ
 	\end{equation*}
-	has kernel $\Pic^0(C)_{\ell^n}$ and cokernel $\IZ/\ell^n\IZ$, as claimed.
+	has kernel $\Pic^0(C)[\ell^n]$ and cokernel $\IZ/\ell^n\IZ$, as claimed.
 	
 	It remains to identify $\Pic^0(C)_{\ell^n}\cong (\IZ/\ell^n\IZ)^{\oplus 2g}$. If $N$ is invertible in $k$, then $N\colon A\morphism A$ is even étale (indeed, this can be checked after base change to $\ov{k}$; in this case the proof of \cite[Corollary~3.2.4]{jacobians} shows that the sheaf of relative Kähler differentials associated to $N\colon A\morphism A$ vanishes at the origin $0\in A(k)$, hence at all closed points, hence everywhere as $A$ is Jacobson). In our concrete situation, we obtain that the kernel $\JAC_C[\ell^n]$ of $\ell^n\colon \JAC_C\morphism\JAC_C$, i.e., the fibre over the zero section $0\colon \Spec k\morphism \JAC_C(k)$, is a finite étale scheme of degree $\ell^{2gn}$ over $k$. But $k$ is separably closed, hence such a scheme must be a disjoint union of $\ell^{2ng}$ copies of $k$. Thus $\JAC_C[\ell^n](k)$ is a group of order $\ell^{2ng}$. It is clearly annihilated by $\ell^n$. Moreover, its subgroup $\JAC_C[\ell^{n-1}](k)$ of $\ell^{n-1}$-torsion elements has order $\ell^{2(n-1)g}$ by the same argument. By the classification of finite abelian groups, the only possibility is $\JAC_C[\ell^n](k)\cong (\IZ/\ell^n\IZ)^{\oplus 2g}$, as claimed
 \end{proof}

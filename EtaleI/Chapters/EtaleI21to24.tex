@@ -45,11 +45,11 @@
 	where the sum is taken over all factorizations $\phi\colon V\morphism U$ of $V\morphism X$ over $j$. The left-adjointness to $j^\sharp$ (which is a straightforward restriction functor in our case) as well as the formula for the stalks are verified by an easy calculation. Now define $j_!\Ff=(j_\sharp\Ff)^\Sh$. If follows that $j_!$ is indeed a left-adjoint of $j^*$. Exactness can be seen from the calculation of stalks (but it holds even if we don't have a suitable notion of \enquote{stalks}, see \cite[\stackstag{03DJ}]{stacks-project}).
 \end{proof}
 \begin{rem}
-	\begin{alphanumerate}
-		\item The formula for stalks in \cref{prop:j!} is left-adjoint to $j^*\ov{x}_*I\cong \bigoplus_{\ov{u}}\ov{u}_*I$, which was used earlier in the proof of \cref{prop:enoughInjectives}.
-		\item In the case of an open immersion $j\colon U\monomorphism X$, the formula for stalks shows that $j_!\Ff$ is the usual \enquote{extension by zero}.
-	\end{alphanumerate}
+	The formula for stalks in \cref{prop:j!} is left-adjoint to $j^*\ov{x}_*I\cong \bigoplus_{\ov{u}}\ov{u}_*I$, which was used earlier in the proof of \cref{prop:enoughInjectives}.
 \end{rem}
+\begin{rem*}\label{rem*:j_!Fj_*F}
+	In the case of an open immersion $j\colon U\monomorphism X$, the formula for stalks shows that $j_!\Ff$ is the usual \enquote{extension by zero}. Moreover, in this case $\Global(V,j_\sharp \Ff)$ equals $\Global(V,\Ff)$ iff the image of the étale morphism $V\morphism X$ is contained in $U$, and is $0$ else. In particular, there is a canonical monomorphism $j_\sharp \Ff\monomorphism j_*\Ff$. Sheafifying thus turns $j_!\Ff$ into a subsheaf of $j_*\Ff$. However, beware that this \emph{doesn't work} for arbitrary étale morphisms $j$.
+\end{rem*}
 \begin{defi}[\textsc{Finally!}]
 	Let $X$ be an arbitrary scheme.
 	\begin{alphanumerate}
@@ -107,14 +107,14 @@
 	\end{equation*}
 \end{prop}
 \noindent\emph{Proof.}\lecture[Proof of \cref{prop:etaleLeray}. Étale cohomology and Galois cohomology. Thanks to Konrad for sharing his lecture notes!]{2019-12-20}All of these become instances of the Grothendieck spectral sequence once we show that $f_*$ and $\zeta_{X,*}$ map injective objects to acyclic ones (with respect to the respective second functor). In fact, both $f_*$ and $\zeta_{X,*}$ even preserve injective objects! For $f_*$ the reason is that it has the exact left-adjoint $f^*\colon \cat{Ab}(Y_\et)\morphism \cat{Ab}(X_\et)$. For $\zeta_{X,*}$, there are at least two possible approaches:
-	\begin{alphanumerate}
+	\begin{numerate}
 		\item Construct an exact left-adjoint $\zeta_X^*\colon \cat{Ab}(X_\Zar)\morphism \cat{Ab}(X_\et)$. To do so, we first define an adjoint $\zeta_X^\sharp\colon \cat{PAb}(X_\Zar)\morphism\cat{PAb}(X_\et)$ of the forgetful functor $\cat{PAb}(X_\et)\morphism\cat{PAb}(X_\Zar)$. Similar to \cref{con:f^*} we define it via
 		\begin{equation*}
 		\Global(U,\zeta_X^\sharp\Gg)= \colimit_V\Global(V,\Gg)=\Global(\text{image of $U\rightarrow X$},\Gg)\,.
 		\end{equation*}
-		The colimit in the middle is taken over all Zariski-open subsets $V\subseteq X$ containing the image of $U\morphism X$. But since every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}, we get the equality on the right (and thus a much simpler description of $\zeta_X^\sharp$). It's easy to see that $\zeta_X^\sharp$ has the required property. Then $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ is a left-adjoint of $\zeta_{X,*}$. If $\ov{x}$ is a geometric point of $X$ with underlying point $x$, then $(\zeta_X^*\Gg)_{\ov{x}}\cong (\zeta_X^\sharp\Gg)_{\ov{x}}\cong \Gg_x$, so $\zeta_X^*$ is indeed exact.
+		The colimit in the middle is taken over all Zariski-open subsets $V\subseteq X$ containing the image of $U\morphism X$. But since every étale morphism $U\morphism X$ has open image by \cref{prop:ppfOpen}, we get the equality on the right. It's easy to see that $\zeta_X^\sharp$ has the required property. Then $\zeta_X^*=(\zeta_X^\sharp)^\Sh$ is a left-adjoint of $\zeta_{X,*}$. If $\ov{x}$ is a geometric point of $X$ with underlying point $x$, then $(\zeta_X^*\Gg)_{\ov{x}}\cong (\zeta_X^\sharp\Gg)_{\ov{x}}\cong \Gg_x$, so $\zeta_X^*$ is indeed exact.
 		\item If $\ov{x}$ and $x$ are as above, show that $\zeta_{X,*}\ov{x}_*I\cong x_*I$ for injective abelian groups $I$. Thus $\zeta_{X,*}\Ii$ stays injective if $\Ii$ is one of the injective objects from the proof of \cref{prop:enoughInjectives}. Since there are sufficiently many of them, this suffices to provide us with the required spectral sequence.
-	\end{alphanumerate}
+	\end{numerate}
 	Whichever approach you prefer, this finishes the proof.\qed
 \begin{prop}\label{prop:Rifinite=0}
 	If $f\colon X\morphism Y$ is a finite morphism of schemes, then $R^if_*\Ff=0$ for all $i>0$ and all sheaves $\Ff$ on $X_\et$.

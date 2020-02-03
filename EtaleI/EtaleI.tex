@@ -205,7 +205,7 @@ where the middle isomorphism follows from \cref{cor*:fuckUp} and the outer ones 
 
 Apart from that annoyance, our considerations above can be adapted if we impose one of the following additional restrictions.
 \begin{numerate}
-	\item To prove \cref{thm:properBaseChange} in the special case where the fibres of $p\colon X\morphism S$ have dimension $\leq 1$, it suffices to prove \cref{cor*:fuckUp} and \cref{cor:properBaseChange} in the corresponding special cases. This is particularly nice, because we already know \cref{cor*:fuckUp} in that situation (Proposition~[TODO]).
+	\item To prove \cref{thm:properBaseChange} in the special case where the fibres of $p\colon X\morphism S$ have dimension $\leq 1$, it suffices to prove \cref{cor*:fuckUp} and \cref{cor:properBaseChange} in the corresponding special cases. This is particularly nice, because we already know \cref{cor*:fuckUp} in that situation (\cref{prop:CandCK} for dimension one; the zero-dimensional case is quite trivial).
 	\item To prove \cref{thm:properBaseChange} in the special case where $p\colon X\morphism S$ is not only proper, but locally (on $S$) projective, it suffices to prove \cref{cor*:fuckUp} and \cref{cor:properBaseChange} in the corresponding special cases.
 \end{numerate}
 \end{rem}
@@ -365,7 +365,7 @@ We would like to upgrade \cref{lem:dim0and1} to get a complete proof of \cref{co
 	\begin{equation*}
 	 H^i\Bigg(X_{0,\et},\pr_1^*\bigoplus_{l=1}^np_{l,*}\Phi_l\Bigg)\cong \bigoplus_{l=1}^nH^i\big(X_{l,0,\et},\pr_1^*\Phi_l\big)\,.
 	\end{equation*}
-	Using \cref{lem:dim0and1} on $X_l$ and $X_{l,0}$, we deduce that the condition from \cref{lem:formalLemma}\itememph{b} is indeed satisfied, and we get isomorphisms everywhere. In other words, \cref{cor:properBaseChange} holds for constructible sheaves in the special case where $S$ and $X$ are noetherian and $\dim X_0\leq 1$. Since \cref{cor*:fuckUp} holds in that special case too (Proposition~[TODO]), we conclude using \cref{rem:fuckUp} and \cref{lem*:noetherianIsEnough} that \cref{thm:properBaseChange} holds in full generality for morphisms whose fibres have dimension $\leq 1$.
+	Using \cref{lem:dim0and1} on $X_l$ and $X_{l,0}$, we deduce that the condition from \cref{lem:formalLemma}\itememph{b} is indeed satisfied, and we get isomorphisms everywhere. In other words, \cref{cor:properBaseChange} holds for constructible sheaves in the special case where $S$ and $X$ are noetherian and $\dim X_0\leq 1$. Since \cref{cor*:fuckUp} holds in that special case too (\cref{prop:CandCK}), we conclude using \cref{rem:fuckUp} and \cref{lem*:noetherianIsEnough} that \cref{thm:properBaseChange} holds in full generality for morphisms whose fibres have dimension $\leq 1$.
 \end{proof}
 \begin{lem}\label{lem:PBCprojective}
 	\cref{thm:properBaseChange} is true for all morphisms $p\colon X\morphism S$ of the form $X\monomorphism \IP_S^n\morphism S$, where the first arrow is a closed immersion.
@@ -373,7 +373,7 @@ We would like to upgrade \cref{lem:dim0and1} to get a complete proof of \cref{co
 \begin{proof}[Sketch of a proof]
 	By \cref{lem:dimLeq1}, \cref{thm:properBaseChange} holds when $p$ is a closed immersion, hence by \cref{lem:composition} it suffices to prove the assertion for $X=\IP_S^n$. We do induction on $n$. The case $n=1$ was done above, so let's assume $n>1$ and the assertion is true for $n-1$.
 	
-	Our construction follows \cite[Arcata~III.4]{sga4.5}. Let $u\colon Y\monomorphism \IP_S^n=\PROJ \Oo_S[t_0,\dotsc,t_n]$ be the closed embedding defined by the ideal $(t_0,t_1)$. Let $\pi\colon \snake{X}\morphism \IP_S^n$ be the blow-up of $Y$. The fibres of $\pi$ are isomorphic to $\IP^1$ over $Y$ and trivial everywhere else, hence \cref{thm:properBaseChange} holds for $\pi$ by \cref{lem:dimLeq1}. Moreover, there is a natural morphism $\IP_S^n\setminus Y\morphism \IP_S^1$ sending points $[x_0:\dotsb:x_n]$ to $[x_0:x_1]$ (yes, that's not really a definition; if you want to, work out how that looks as a morphism of schemes). It can be extended to a morphism $\snake{p}\colon \snake{X}\morphism \IP_S^1$. We thus obtain a diagram
+	Our construction follows \cite[Arcata~III.4]{sga4.5}. Let $u\colon Z\monomorphism \IP_S^n=\PROJ \Oo_S[t_0,\dotsc,t_n]$ be the closed embedding defined by the ideal $(t_0,t_1)$. Let $\pi\colon \snake{X}\morphism \IP_S^n$ be the blow-up of $Z$. The fibres of $\pi$ are isomorphic to $\IP^1$ over $Y$ and trivial everywhere else, hence \cref{thm:properBaseChange} holds for $\pi$ by \cref{lem:dimLeq1}. Moreover, there is a natural morphism $\IP_S^n\setminus Z\morphism \IP_S^1$ sending points $[x_0:\dotsb:x_n]$ to $[x_0:x_1]$ (yes, that's not really a definition; if you want to, work out how that looks as a morphism of schemes). It can be extended to a morphism $\snake{p}\colon \snake{X}\morphism \IP_S^1$. We thus obtain a diagram
 	\begin{equation*}
 		\begin{tikzcd}
 			\snake{X}\dar["\snake{p}"',pos=0.57]\rar["\pi"] & \IP_S^n\dar["p"]\\
@@ -386,19 +386,19 @@ We would like to upgrade \cref{lem:dim0and1} to get a complete proof of \cref{co
 	\end{equation*}
 	holds for all $i\geq 0$ and all torsion sheaves $\snake{\Ff}$ on $\snake{X}_\et$.
 	
-	Now let $\Ff$ be a constructible sheaf on $\IP_{S,\et}^n$. The classical approach to prove \cref{thm:properBaseChange} for $\Ff$ would be to look at $\Ff\morphism\pi_*\pi^*\Ff$, whose kernel and cokernel have support in $Y$ since $\pi$ is an isomorphism away from $Y$. An easy argument (see below) shows that \cref{thm:properBaseChange} thus holds for the kernel and the cokernel, so it suffices to prove it for $\pi_*\pi^*\Ff$ as well. This is where things get messy: one looks at the Leray spectral sequences converging to $f^*R^i(p\circ \pi)_*\pi^*\Ff$ and $R^i(p'\circ \pi')_*\snake{g}^*\pi^*\Ff$. Knowing that their limits coincide somehow provides information about their $E_2$-pages, which we are ultimately interested in.
+	Now let $\Ff$ be a constructible sheaf on $\IP_{S,\et}^n$. The classical approach to prove \cref{thm:properBaseChange} for $\Ff$ would be to look at $\Ff\morphism\pi_*\pi^*\Ff$, whose kernel and cokernel have support in $Z$ since $\pi$ is an isomorphism away from $Z$. An easy argument (see below) shows that \cref{thm:properBaseChange} thus holds for the kernel and the cokernel, so it suffices to prove it for $\pi_*\pi^*\Ff$ as well. This is where things get messy: one looks at the Leray spectral sequences converging to $f^*R^i(p\circ \pi)_*\pi^*\Ff$ and $R^i(p'\circ \pi')_*\snake{g}^*\pi^*\Ff$. Knowing that their limits coincide somehow provides information about their $E_2$-pages, which we are ultimately interested in.
 	
 	These arguments become way more cleaner when formulated in the framework of derived categories---which is why we introduced \cref{cor:derived}! We first claim:
 	\begin{alphanumerate}
-		\item[\itememph{*}] \itshape If $\snake{K}^\bullet\in D^+(\snake{X}_\et)$ is a bounded below complex with torsion cohomology, then \cref{cor:derived} holds for $p\colon X\morphism S$ if we plug in the complex $R\pi_*\snake{K}^\bullet$. The same is true for $Ru_*K^\bullet$ if $K^\bullet\in D^+(Y_\et)$ has torsion cohomology.
+		\item[\itememph{*}] \itshape If $\snake{K}^\bullet\in D^+(\snake{X}_\et)$ is a bounded below complex with torsion cohomology, then \cref{cor:derived} holds for $p\colon X\morphism S$ if we plug in the complex $R\pi_*\snake{K}^\bullet$. The same is true for $Ru_*K^\bullet$ if $K^\bullet\in D^+(Z_\et)$ has torsion cohomology.
 	\end{alphanumerate}
 	To prove \itememph{*}, we calculate
 	\begin{equation*}
 		f^*Rp_*R\pi_*\snake{K}^\bullet \cong Rp'_*R\pi'_*\snake{g}^*\snake{K}^\bullet\cong Rp'_*g^*R\pi_*\snake{K}^\bullet\,.
 	\end{equation*}
-	The left isomorphism uses that \cref{cor:derived} holds for $(p\circ \pi)\colon \snake{X}\morphism S$ together with the \enquote{Leray spectral sequence} isomorphisms $Rp_*R\pi_*\cong R(p\circ \pi)_*$ and $Rp'_*R\pi'_*\cong R(p'\circ \pi')_*$. The right isomorphism uses that \cref{cor:derived} holds for $\pi\colon \snake{X}\morphism \IP_S^n$. This proves the claim about $R\pi_*\snake{K}^\bullet$. The claim about $Ru_*K^\bullet$ can be done in the exact same way, using that \cref{cor:derived} holds both for the closed embedding $u\colon Y\monomorphism \IP_S^n$ by \cref{lem:dimLeq1} and for $u\circ p\colon Y\morphism S$ by the induction hypothesis, as $Y\cong \IP_S^{n-2}$. We thus proved \itememph{*}.
+	The left isomorphism uses that \cref{cor:derived} holds for $(p\circ \pi)\colon \snake{X}\morphism S$ together with the \enquote{Leray spectral sequence} isomorphisms $Rp_*R\pi_*\cong R(p\circ \pi)_*$ and $Rp'_*R\pi'_*\cong R(p'\circ \pi')_*$. The right isomorphism uses that \cref{cor:derived} holds for $\pi\colon \snake{X}\morphism \IP_S^n$. This proves the claim about $R\pi_*\snake{K}^\bullet$. The claim about $Ru_*K^\bullet$ can be done in the exact same way, using that \cref{cor:derived} holds both for the closed embedding $u\colon Z\monomorphism \IP_S^n$ by \cref{lem:dimLeq1} and for $u\circ p\colon Z\morphism S$ by the induction hypothesis, as $Z\cong \IP_S^{n-2}$. We thus proved \itememph{*}.
 	
-	Given a constructible sheaf $\Ff$, consider the complex $C^\bullet\in D^+(X_\et)$ given by $\Ff$ placed in degree $-1$ and (any representative of) $R\pi_*$ placed in non-negative degrees. In formulas, $C^\bullet=(\Ff[-1]\morphism R\pi_*\pi^*\Ff)$, where the morphism between degrees $-1$ and $0$ is given by the canonical morphism $\Ff\morphism \pi_*\Ii^0$ for $\pi^*\Ff\morphism \Ii^\bullet$ any injective resolution. Observe that the cohomology sheaves $H^i(C^\bullet)$ have support contained in $Y$. Indeed, in degrees $i>0$ this follows from the fact that $R^i\pi_*\pi^*\Ff$ vanishes outside of $Y$ because $\pi$ is an isomorphism away from $Y$. In degrees $0$ and $-1$, we use the same argument for $\Ff\morphism \pi_*\pi^*\Ff$ which is an isomorphism away from $Y$. Therefore, $C^\bullet\cong Ru_*K^\bullet$ for some complex $K^\bullet\in D^+(Y_\et)$ with torsion cohomology; in fact, the canonical morphism $C^\bullet\morphism Ru_*u^*C^\bullet$ is a quasi-isomorphism (here we also use that $u_*$ is exact because of \cref{prop:Rifinite=0}).
+	Given a constructible sheaf $\Ff$, consider the complex $C^\bullet\in D^+(X_\et)$ given by $\Ff$ placed in degree $-1$ and (any representative of) $R\pi_*$ placed in non-negative degrees. In formulas, $C^\bullet=(\Ff[-1]\morphism R\pi_*\pi^*\Ff)$, where the morphism between degrees $-1$ and $0$ is given by the canonical morphism $\Ff\morphism \pi_*\Ii^0$ for $\pi^*\Ff\morphism \Ii^\bullet$ any injective resolution. Observe that the cohomology sheaves $H^i(C^\bullet)$ have support contained in $Y$. Indeed, in degrees $i>0$ this follows from the fact that $R^i\pi_*\pi^*\Ff$ vanishes outside of $Z$ because $\pi$ is an isomorphism away from $Z$. In degrees $0$ and $-1$, we use the same argument for $\Ff\morphism \pi_*\pi^*\Ff$ which is an isomorphism away from $Y$. Therefore, $C^\bullet\cong Ru_*K^\bullet$ for some complex $K^\bullet\in D^+(Y_\et)$ with torsion cohomology; in fact, the canonical morphism $C^\bullet\morphism Ru_*u^*C^\bullet$ is a quasi-isomorphism (here we also use that $u_*$ is exact because of \cref{prop:Rifinite=0}).
 	
 	Finally, we have an obvious map of complexes $R\pi_*\pi^*\Ff\morphism C^\bullet$. Its mapping cone is quasi-isomorphic to $\Ff[-1]$ because, well, $R\pi_*\pi^*\Ff$ and $C^\bullet$ coincide except in degree $-1$. Thus, we obtain a distinguished triangle
 	\begin{equation*}
@@ -418,53 +418,281 @@ We would like to upgrade \cref{lem:dim0and1} to get a complete proof of \cref{co
 	
 	Let $Z=X\setminus U$, equipped with any closed subscheme structure, and denote $u\colon Z\monomorphism X$. By the principle of noetherian induction, we may assume that \cref{cor:derived} holds for $u\circ p\colon Z\morphism S$. Now, starting from \itememph{*}, the proof of \cref{lem:PBCprojective} can be copied verbatim.
 \end{proof}
-\if0
-\section{Derived Direct Images with Proper Support}
-\lecture[]{2020-01-31}
-\numpar{}\label{par:Nagata}
-Let $f\colon X\morphism S$ be a morphism of finite presentation. If $f$ is separated and $S$ is quasi-compact and quasi-separated. By the famous \emph{Nagata compactification theorem}, there is a factorization
-\begin{equation*}
-	X\monomorphism[j]\ov{X}\morphism[\ov{f}]S\,,
-\end{equation*}
-where $j$ is an open embedding and $\ov{X}$ is proper. If $\Ff$ is a sheaf in $\cat{Ab}(X_\et)$, we put
+
+\section{Derived Direct Images with Compact Support}
+\lecture[Nagata's compactification theorem. Derived direct images and cohomology with compact support. Cohomological dimension. Finiteness theorems.]{2020-01-31}
+To start off todays lecture, we recall the famous \emph{Nagata compactification theorem}.
+\begin{thm}\label{thm:Nagata}
+	Let $f\colon X\morphism S$ be a separated\footnote{This was not mentioned in the lecture, but since proper morphisms and open embeddings are separated, it is clearly a necessary condition} morphism of finite type, and assume $S$ is quasi-compact and quasi-separated. Then there exists a factorization
+	\begin{equation*}
+		X\monomorphism[j]\ov{X}\morphism[\ov{f}]S\,,
+	\end{equation*}
+	in which $j$ is a quasi-compact\footnote{In the lecture we omitted the quasi-compactness condition, since we only worked in a noetherian setting.} open embedding and $\ov{f}$ is a proper morphism.
+\end{thm}
+While Nagata's original proof used the outdated language of varieties, the first scheme-theoretic proof was given by Lütkebohmert in \cite{LutkebohmertNagata}, using a different approach than Nagata. A translation of his original proof into scheme-theoretic language was given by Deligne \cite{DeligneNagata}. Vojta \cite{VojtaNagata} and Conrad \cite{ConradNagata} have written expositions of Deligne's proof. It should be mentioned that Conrad takes extra care to make the arguments work in the non-noetherian case as well. Finally, \cite[\stackstag{0F41}]{stacks-project} has another proof of the non-noetherian case.
+
+\numpar{}
+We would like to get a generalization of \cref{thm:properBaseChange} that drops the condition that $X$ be proper over $S$. This necessarily involves the higher derived direct images by some sort of \enquote{compactly supported cohomology}. We give a tentative definition: suppose $f\colon X\morphism S$ is separated and of finite type, and $S$ is quasi-compact and quasi-separated, so that $f$ admits a \defemph{compactification}, i.e., a factorization as in \cref{thm:Nagata}. If $\Ff$ is a torsion sheaf in $\cat{Ab}(X_\et)$, we put
 \begin{equation*}
 	R^if_!\Ff=R^i\ov{f}_*j_!\Ff
 \end{equation*}
-for all $i\geq 0$. Of course, it is not at all clear why $R^if_!\Ff$ should be independent of the choices of $j$ and $\ov{f}$, which is precisely what we want to show in this section (for torsion sheaves $\Ff$).
+for all $i\geq 0$. Of course, it is not at all clear why $R^if_!\Ff$ should be independent of the choices of $j$ and $\ov{f}$, so that's the first thing to show.
 
-\numpar{}
-We call a \defemph{morphism of compactifications} a commutative diagram
-\begin{equation*}
+\begin{defi}\label{def:compactification}
+	Given $f\colon X\morphism S$ as above, we define a \defemph{category $\Cc$ of compactifications} of $f$ as follows: its objects are factorizations of $f$ as in \cref{thm:Nagata}. A \defemph{morphism of compactifications} is a commutative diagram
+	\begin{equation*}
 	\begin{tikzcd}
-		& \ov{X}'\drar["\ov{f}'"]\dar["\pi"] & \\
-		X\rar[mono, "j"] \urar[mono, "j'"] & \ov{X}\rar["\ov{f}"] & S
+	& \ov{X}'\drar["\ov{f}'"]\dar["\pi"] & \\
+	X\rar[mono, "j"] \urar[mono, "j'"] & \ov{X}\rar["\ov{f}"] & S
 	\end{tikzcd}
-\end{equation*}
-such that $\pi^{-1}(\ov{X}\setminus X)=\ov{X}'\setminus X$. [TODO: Actually no restriction]
-\begin{lem}
+	\end{equation*}
+	such that $\pi^{-1}(\ov{X}\setminus X)=\ov{X}'\setminus X$.
+\end{defi}
+\begin{rem*}\label{rem*:scheme-theoreticallyDense}
+	Actually, the additional condition in \cref{def:compactification} poses no real restriction: the morphism $\pi^{-1}(X)\morphism X$ is proper because it is a base change of $\pi$, and $j'\colon X\monomorphism \pi^{-1}(X)$ defines a section. But sections of separated morphisms are closed immersions, hence the open embedding $j'\colon X\monomorphism \pi^{-1}(X)$ must be the inclusion of an open-closed subscheme. In particular, it is an isomorphism as long as $X$ is scheme-theoretically dense in $\ov{X}'$. Of course this is not satisfied for all compactifications, but at least the class of compactifications with that property is cofinal in $\Cc$, because we can always replace $\ov{X}$ be the scheme theoretic image of $X$ in it (see \cite[\stackstag{01R8}]{stacks-project}).
+\end{rem*}
+\begin{rem*}\label{rem:cofiltered}
+	To show that $R^if_!\Ff$ is independent of the choice of compactification (in the the best possible approximate sense of the word \enquote{independent}) it suffices to prove the following assertion (and I'm afraid Professor Franke didn't really make that point in the lecture).
 	\begin{alphanumerate}
-		\item Suppose we are given a pullback diagram
+		\item[\itememph{\boxtimes}]\itshape Let $f\colon X\morphism S$ be separated of finite type and let $S$ be quasi-compact and quasi-separated. Then the category $\Cc$ from \cref{def:compactification} is cofiltered. Moreover, for any morphism $\pi$ in $\Cc$ and any torsion sheaf $\Ff\in \cat{Ab}(X_\et)$, there are isomorphisms
+		\begin{equation*}
+			\iota_\pi\colon R^i\ov{f}'_*j'_!\Ff\isomorphism R^i\ov{f}_*j_!\Ff
+		\end{equation*}
+		for all $i\geq 0$. These are natural in $\Ff$, assemble into an isomorphism of cohomological functors, and satisfy $\iota_{\pi\circ \pi'}=\iota_\pi\circ \iota_{\pi'}$.
+	\end{alphanumerate}
+	Once \itememph{\boxtimes} is proved, you could define $R^if_!\Ff=\limit_\Cc R^i\ov{f}_*j_!\Ff$, with transition morphisms provided by $\iota_\pi$, to obtain a definition that is truly independent of the choice of compactification (but we will usually omit that technical step).
+	
+	The main part of proving \itememph{\boxtimes} is done by \cref{lem:i_pi} and \cref{lem*:cofiltered} below
+\end{rem*}
+\begin{lem}\label{lem:i_pi}
+	We obtain the following isomorphisms.
+	\begin{alphanumerate}
+		\item Consider a pullback diagram (we only need $\ov{p}^{-1}(\ov{X}\setminus X)=\ov{Y}\setminus Y$, but then the other conditions below imply that the diagram is cartesian)
 		\begin{equation*}
 			\begin{tikzcd}
 				Y\rar[mono,"k"]\dar["p"']\drar[pullback] & \ov{Y}\dar["\ov{p}"]\\
 				X\rar[mono, "j"]&\ov{X}
 			\end{tikzcd}
 		\end{equation*}
-		in which $j$, $k$ are open embeddings and $\ov{p}$, $p$ are proper morphisms. For every torsion sheaf $\Ff$ on $Y_\et$ and all $i\geq 0$, there are unique isomorphisms
+		in which $j$, $k$ are open embeddings and $\ov{p}$, $p$ are a proper morphism. For every torsion sheaf $\Ff$ on $Y_\et$ and all $i\geq 0$, there are unique isomorphisms
 		\begin{equation*}
 			j_!R^i p_*\Ff\isomorphism R^i\ov{p}_*k_!\Ff\,,
 		\end{equation*}
-		which assemble into an isomorphism of cohomological functors and fit, for $i=0$, into a commutative diagram
+		which are natural in $\Ff$, assemble into an isomorphism of cohomological functors, and fit, for $i=0$, into a commutative diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				j_!p_*\Ff\rar[iso]\dar[mono] & \ov{p}_*k_!\Ff\dar[mono]\\
+				j_*p_*\Ff\rar[iso] & \ov{p}_*k_*\Ff
+			\end{tikzcd}\,.
+		\end{equation*}
+		\item If $\pi$ is a morphism of compactifications as in \cref{def:compactification}, one has
+		\begin{equation*}
+			R^i\pi_*j'_!\Ff\cong \begin{cases*}
+				j_!\Ff & if $i=0$\\
+				0 & else
+			\end{cases*}\,.
+		\end{equation*}
 	\end{alphanumerate}
 \end{lem}
-\begin{defi}
-	Let $f\colon X\morphism S$ be a separated morphism of schemes. Fix a choice of Nagata compactification $X\monomorphism \ov{X}\morphism S$ as in \cref{par:Nagata}. Let further $\Ff$ be a torsion sheaf on $X_\et$.
+\begin{proof}
+	Part~\itememph{a}. First recall that $j_!p_*\Ff$ and $\ov{p}_*k_!\Ff$ are subsheaves of $j_*p_*\Ff$ and $\ov{p}_*k_*\Ff$ in a canonical way; see \cref{rem*:j_!Fj_*F}. Thus, to get the desired commutative diagram, we must ensure that the bottom isomorphism identifies the subsheaves under consideration. They clearly coincide over the image of $X$ in $\ov{X}$. Thus it suffices to check whether they coincide on stalks at a geometric point $\ov{x}$ with image in $\ov{X}\setminus X$. Then clearly $(j_!p_*\Ff)_{\ov{x}}=0$ by the description of stalks in \cref{prop:j!}. To compute the stalk of $\ov{p}_*k_!\Ff$, we use \cref{cor:(f_*F)_y} and \cref{cor:properBaseChange} to get more generally
+	\begin{equation*}
+		\big(R^i\ov{p}_*k_!\Ff\big)_{\ov{x}}\cong H^i\big(Y_{\ov{x},\et},\pr_1^*k_!\Ff\big)\cong H^i\big(Y_{0,\et},\pr_1^*k_!\Ff\big)\,,
+	\end{equation*}
+	where $Y_{\ov{x}}=Y\times_X\Spec \Oo_{X_\et,\ov{x}}$ and $Y_0=Y\times_X\Spec \kappa(\ov{x})$. As $\ov{p}^{-1}(\ov{X}\setminus X)=\ov{Y}\setminus Y$, we see that the projection $\pr_1\colon Y_0\morphism Y$ has image inside $\ov{Y}\setminus Y$. Thus $\pr_1^*k_!\Ff=0$, and it's clear that $(\ov{p}_*k_!\Ff)_{\ov{x}}=0$ as well.
+	
+	To construct the required morphism $j_!R^i p_*\Ff\isomorphism R^i\ov{p}_*k_!\Ff$, first observe that both sides are cohomological functors by exactness of $j_!$ and $k_!$. In particular, it suffices to show that $j_!R^i p_*$ are the derived functors of $j_!p_*$. Clearly it will be enough to show that the functors $R^ip_*$ are effaceable for $i>0$ in the sense of \itememph{3} from \cref{prop:effaceable}\itememph{a}. This seems trivial on first glance, but there's a subtlety actually: we would like $R^ip_*$ to be effaceable \emph{when restricted to the full subcategory of torsion sheaves}! There are two ways to fix this.
+	\begin{numerate}
+		\item The natural transformation $j_!p_*\morphism \ov{p}_*k_!$ exists not only for torsion sheaves (but it might only be injective in general). The reason is that $(j_!p_*\Ff)_{\ov{x}}=0$ for $\ov{x}$ with image in $\ov{X}\setminus X$, so nothing can go wrong. In this case there's no trap and $R^ip_*$ is just effaceable.
+		\item It is, in fact, true that $R^ip_*$ is effaceable on the category of torsion sheaves. The argument is similar to \cref{cor:constructibleEffaceable}. Using \cref{prop:technicalCech}, it's quite easy to check that $R^ip_*$ vanishes on $\prod_{\ov{x}}\ov{x}_*\Ff_{\ov{x}}$ for $i>0$. However, this sheaf might not be torsion since stalks of products are weird, unless $\Ff$ is annihilated by some integer $N\neq 0$. To fix this problem, write $\Ff=\colimit_{N\in \IN} \Ff[N]$ as a colimit over its $N$-torsion subsheaves, and consider
+		\begin{equation*}
+			\Ff\monomorphism \colimit_{n\in\IN}\prod_{\ov{x}}\ov{x}_*\Ff[N]_{\ov{x}}\,.
+		\end{equation*}
+		The sheaf on the right-hand side is torsion, and it can be shown that $R^ip_*$ vanishes on it, using \cref{cor:cohoInverseLimit}.
+	\end{numerate}
+	Either way, we get the desired uniquely determined morphism of cohomological functors. To see that it's an isomorphism, first observe that everything is clear over the image of $X$ in $\ov{X}$. Thus, it suffices to check that we get an isomorphism on stalks at $\ov{x}$ with image in $\ov{X}\setminus X$. In this case we have $(j_!R^ip_*\Ff)_{\ov{x}}=0=(R^i\ov{p}_*k_!\Ff)_{\ov{x}}$ by the above calculation.
+	
+	This finishes the proof of \itememph{a}. Part~\itememph{b} is an immediate consequence, because it is just the special case
+	\begin{equation*}
+		\begin{tikzcd}
+			X\eqar[d]\rar[mono,"j'"] & \ov{X}'\dar["\pi"]\\
+			X\rar[mono, "j"] & \ov{X}
+		\end{tikzcd}\,.
+	\end{equation*}
+	We are done.
+\end{proof}
+\begin{lem*}\label{lem*:cofiltered}
+	Let $S$ be quasi-compact quasi-separated, and $f\colon X\morphism S$ a separated morphism of finite type. Then the category $\Cc$ of compactifications of $f$, introduced in \cref{def:compactification}, is cofiltered.
+\end{lem*}
+\begin{proof}
+	Although this lemma was not in the lecture, its proof was (at least partially). First observe that $\Cc$ is non-empty because of \cref{thm:Nagata}. There are two more conditions to check. For the reader's convenience, we first explain the constructions and prove their correctness afterwards, so you can skip these parts if you want.
+	\begin{numerate}
+		\item Let $\ov{f}\colon \ov{X}\morphism S$ and $\ov{f}'\colon \ov{X}'\morphism S$ be compactifications of $f$. We must construct a compactification $\ov{f}''\colon \ov{X}''\morphism S$ that \enquote{dominates both}, i.e., fits into a diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				 & \ov{X}'\drar["\ov{f}'"] & \\
+				X\urar[mono,"j'"]\rar[mono,"j''"]\drar[mono,"j"] & \ov{X}''\uar["\pi'"']\dar["\pi"]\rar["\ov{f}"]& S\\
+				& \ov{X}\urar["\ov{f}"'] &
+			\end{tikzcd}
+		\end{equation*}
+		We can construct $\ov{X}''$ as the scheme-theoretic image of $(j,j')\colon X\morphism\ov{X}\times_S\ov{X}'$, i.e., the \enquote{smallest} closed subscheme over which $(j,j')$ factors (see \cite[\stackstag{01R5}]{stacks-project}). Then $\pi$ and $\pi'$ are induced by $\pr_1$ and $\pr_2$ respectively.
+		\item Let $\pi,\pi'\colon \ov{X}'\morphism X$ be a pair of parallel morphism of compactifications. We must construct a compactification $\ov{f}''\colon \ov{X}''\morphism S$ together with a morphism $\pi''\colon \ov{X}''\morphism \ov{X}'$ such that $\pi\circ \pi''=\pi'\circ \pi''$. To get this, we simply take $\ov{X}''=\Eq(\pi,\pi')$, and $\pi''\colon \ov{X}''\morphism \ov{X}'$ is the canonical morphism.
+	\end{numerate}
+	We start proving that \itememph{1} works. The first step is to show that $j''\colon X\monomorphism\ov{X}''$ is a quasi-compact open embedding again. Since $j$ and $j'$ are quasi-compact and quasi-compactness is preserved under base change, $X\times_SX\monomorphism \ov{X}\times_SX$ and $\ov{X}\times_SX\monomorphism \ov{X}'$ are quasi-compact open immersions. Moreover, the diagonal  $\Delta\colon X\morphism X\times_SX$ is a closed immersion because $X$ is separated over $S$. Hence the composition $(j,j')\colon X\morphism\ov{X}\times_S\ov{X}'$ of these three morphisms is quasi-compact again, so $j''$ is quasi-compact as well. Now \cite[\stackstag{01R8}]{stacks-project} can be applied to see that $\ov{X}''\cap (X\times_SX)$ is the scheme-theoretic image of $\Delta$. Combining this with the fact that $\Delta$ is a closed immersion, hence an isomorphism onto its scheme-theoretic image, we get that $X$ is mapped isomorphically to the open subscheme $\ov{X}''\cap (X\times_SX)$ of $\ov{X}''$, so $j''\colon X\monomorphism\ov{X}''$ is indeed a quasi-compact open immersion. Since $\ov{X}''$ is a closed subscheme of the proper $S$-scheme $\ov{X}\times_S\ov{X}'$, we see that $\ov{f}''\colon\ov{X}''\morphism S$ is proper again, as required.
+	
+	For \itememph{2}, first observe that $\ov{X}''=\Eq(\pi,\pi')$ is a closed subscheme of $\ov{X}$ since $\ov{X}'$ is separated over $S$. Thus $\ov{f}''\colon\ov{X}''\morphism S$ is proper again. Moreover, since $\pi|_X=\pi'|_X=\id_X$, we see that the quasi-compact open embedding $j'\colon X\monomorphism \ov{X}'$ factors over $\ov{X}''$, hence we get $j''\colon X\monomorphism\ov{X}''$ as required.
+\end{proof}
+We are now ready to prove \itememph{\boxtimes} from \cref{rem:cofiltered}, which settles that $R^if_!\Ff$ is independent of the choice of compactification.
+\begin{proof*}[Sketch of proof of \itememph{\boxtimes}]
+	Cofilteredness of $\Cc$ was proved in \cref{lem*:cofiltered} above. To get the isomorphisms
+	\begin{equation*}
+		\iota_\pi\colon R^i\ov{f}'_*j'_!\Ff\isomorphism R^i\ov{f}_*j_!\Ff\,,
+	\end{equation*}
+	apply $R^i\ov{f}_*$ to \cref{lem:i_pi}\itememph{b} and use the Leray spectral sequence (\cref{prop:etaleLeray}), which conveniently collapses. We omit the verification that $\iota_{\pi\circ \pi'}=\iota_\pi\circ \iota_{\pi'}$.
+\end{proof*}
+\begin{defi}\label{def:f_!}
+	Let $f\colon X\morphism S$ be a separated morphism of finite type between arbitrary schemes. Let further $\Ff$ be a torsion sheaf on $X_\et$.
 	\begin{alphanumerate}
-		\item The \defemph{$i\ordinalth$ higher direct image of $\Ff$ with compact support} is defined as $R^if_!\Ff=R^i\ov{f}_*j_!\Ff$.
-		\item If $S$ is the spectrum of a field, the \defemph{$i\ordinalth$ cohomology of $\Ff$ with compact support} is defined as $H_c^i(X_\et,\Ff)=H^i(\ov{X}_\et,j_!\Ff)$.
+		\item The \defemph{$i\ordinalth$ higher direct image of $\Ff$ with compact support} is defined as follows: if $S$ is quasi-compact quasi-separated, let $\ov{f}\colon \ov{X}\morphism S$ be a Nagata compactification as in \cref{thm:Nagata}. Then put $R^if_!\Ff=R^i\ov{f}_*j_!\Ff$. In general, we cover $S$ by quasi-compact quasi-separated open subschemes, on which the above construction may be used, and glue everything together by means of the canonical isomorphisms from \itememph{\boxtimes}.
+		\item If $S$ is the spectrum of a separably closed field, the \defemph{$i\ordinalth$ cohomology of $\Ff$ with compact support} is defined as $H_c^i(X_\et,\Ff)=H^i(\ov{X}_\et,j_!\Ff)$.
 	\end{alphanumerate}
 \end{defi}
-\fi
+\begin{prop}\label{prop:erBaseChange}
+	Let $S$ be an arbitrary scheme.
+	\begin{alphanumerate}
+		\item Suppose $f\colon X\morphism Y$ and $g\colon Y\morphism S$ are separated morphisms of finite type, and $\Ff$ is a torsion sheaf in $\cat{Ab}(X_\et)$. Then there exists a Leray spectral sequence
+		\begin{equation*}
+			E_2^{p,q}=R^pg_!R^qf_!\Ff\converge R^{p+q}(g\circ f)_!\Ff
+		\end{equation*}
+		which is functorial in $\Ff$.
+		\item Let $f\colon X\morphism S$ be separated of finite type. Let $j\colon U\monomorphism X$ be a quasi-compact\footnote{This condition was not in the lecture, since we only worked in a noetherian setting.} open embedding and $i\colon Z\monomorphism X$ be a closed embedding with image $X\setminus U$. Let $u=f\circ j\colon U\morphism S$ and $v=f\circ i\colon Z\morphism S$ denote the structure morphisms. For every torsion sheaf $\Ff$ in $\cat{Ab}(X_\et)$, there is a long exact \enquote{excision sequence}
+		\begin{equation*}
+			\dotso \morphism R^pu_!(\Ff|_{U_\et})\morphism R^pf_!\Ff\morphism R^pv_!(\Ff|_{Z_\et})\morphism R^{p+1}u_!(\Ff|_{U_\et})\morphism\dotso\,.
+		\end{equation*}
+		which is functorial in $\Ff$.
+		\item Suppose we are given a pullback diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				X'\dar["f'"']\drar[pullback]\rar["g'"] & X\dar["f"]\\
+				S'\rar["g"] & S
+			\end{tikzcd}
+		\end{equation*}
+		in which $f$, $f'$ are separated morphisms of finite type, and $g$, $g'$ are arbitrary. Then for all $i\geq 0$ and all torsion sheaves $\Ff$ in $\cat{Ab}(X_\et)$, we get isomorphisms
+		\begin{equation*}
+			g^*R^if_!\Ff\isomorphism R^if'_!g'^*\Ff\,,
+		\end{equation*}
+		which are functorial in $\Ff$ and assemble into an isomorphism of cohomological functors. In particular, for any geometric point $\ov{s}$ of $S$ we get an isomorphism
+		\begin{equation*}
+			\big(R^if_!\Ff\big)_{\ov{s}}\cong H_c^i\big((X\times_S\Spec \kappa(\ov{s}))_\et,\pr_1^*\Ff\big)\,.
+		\end{equation*}
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}
+	All assertions are local on $S$, whence we may assume that $S$ is quasi-compact and quasi-separated throughout the proof. We start with \itememph{a}. Choose a compactification $\ov{g}\colon \ov{Y}\morphism S$ of $g$ according to \cref{thm:Nagata}. Our first goal is to construct a diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			X\rar[mono, "j"]\drar["f"'] & \ov{X}\rar[mono, "j'"]\dar["\ov{f}"']\drar[pullback] & \ov{X}'\dar["\ov{f}'"]\\
+			& Y\rar[mono, "k"] & \ov{Y}
+		\end{tikzcd}
+	\end{equation*}
+	in which the horizontal arrows are quasi-compact open embeddings as indicated, and $\ov{f}$, $\ov{f}'$ are proper. Applying \cref{thm:Nagata} to $g\circ f\colon X\morphism S$, we get a quasi-compact open embedding $j_0\colon X\monomorphism\ov{X}_0$ such that $\ov{X}_0$ is proper over $S$. Let $\ov{X}'$ be the scheme-theoretic image of $(j_0,k\circ f)\colon X\morphism \ov{X}_0\times_S\ov{Y}$. A slight generalization of our arguments in the proof of \cref{lem*:cofiltered} shows that we obtain a quasi-compact open embedding $j''\colon X\monomorphism \ov{X}'$. Moreover, the projection $\pr_2\colon \ov{X}_0\times_S\ov{Y}\morphism \ov{Y}$ induces a proper morphism $\ov{f}'\colon\ov{X}'\morphism \ov{Y}$. Let $\ov{X}=\ov{f}'^{-1}(Y)$ and let $j'\colon \ov{X}\monomorphism \ov{X}'$ and $\ov{f}\colon \ov{X}\morphism Y$ be the base changes of $k$ and $\ov{f}'$ respectively. We see that $\ov{f}$ is proper and $j''$ factors over $j'$, thus $j''=j'\circ j$ for some quasi-compact open embedding $j\colon X\monomorphism \ov{X}$. In particular, $\ov{f}$ is a compactification of $f\colon X\morphism Y$ and we obtain a diagram of the desired kind.
+	
+	Given the above diagram, part~\itememph{a} is a straightforward consequence of the Leray spectral sequence (\cref{prop:etaleLeray}). Consider
+	\begin{equation*}
+		E_2^{p,q}=R^p\ov{g}_*R^q\ov{f}_*(j'\circ j)_!\Ff\converge R^{p+q}(\ov{g}\circ \ov{f}')_*(j'\circ j)_!\Ff
+	\end{equation*}
+	Since $\ov{g}\circ \ov{f}'\colon \ov{X}'\morphism S$ is proper, the limit of the above spectral sequence is nothing else but $R^i(g\circ f)_!\Ff$ by \cref{def:f_!}\itememph{a}. To analyze its $E_2$-page,
+	observe that $(j'\circ j)_!\cong j'_!\circ j_!$. Applying \cref{lem:i_pi}\itememph{a} to the pullback square in the above diagram thus gives
+	\begin{equation*}
+		E_2^{p,q}=R^p\ov{g}_*R^q\ov{f}_*(j'\circ j)_!\Ff\cong R^p\ov{g}_*k_!R^q\ov{f}_*j_!\Ff\cong R^pg_!R^qf_!\Ff\,,
+	\end{equation*}
+	where the isomorphism on the right-hand side follows straight from \cref{def:f_!}\itememph{a} and the fact that $\ov{f}$, $\ov{g}$ are compactifications of $f$, $g$ respectively. We thus obtain a spectral sequence of the desired kind.
+	
+	Part~\itememph{b}. Consider the short exact sequence $0\morphism j_!j^*\Ff\morphism \Ff\morphism i_*i^*\Ff\morphism 0$. Applying the cohomological functor $R^\bullet f_!$ to this sequence certainly produces some long exact sequence, and we only need to verify $R^pf_!j_!j^*\Ff\cong R^pu_!(\Ff|_{U_\et})$ and $R^pf_!i_*i^*\Ff\cong R^pv_!(\Ff|_{Z_\et})$. To see this, we use the spectral sequences from \itememph{a} applied to $u=f\circ j$ and $v=f\circ i$. In both cases it's easy to check that the spectral sequence collapses on its $E_2$-page, providing the desired isomorphisms (also see \cref{lem*:Rquasifinite_!}\itememph{c} below).
+	
+	Part~\itememph{c}. Since we may assume that $S$ is quasi-compact and quasi-separated, we can choose a Nagata-compactification of $f$ by \cref{thm:Nagata}. Base-changing everything to $S'$ thus provides a diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			X'\rar["g'"]\drar[pullback]\dar[mono,"j'"'] & X\dar[mono, "j"]\\
+			\ov{X}'\rar["\ov{g}'"]\drar[pullback]\dar["\ov{f}'"'] & \ov{X}\dar["\ov{f}"]\\
+			S'\rar["g"]&S
+		\end{tikzcd}
+	\end{equation*}
+	Now the required base change isomorphism follows from the computation
+	\begin{equation*}
+		g^*R^if_!\Ff=g^*R^i\ov{f}_*j_!\Ff\cong R^i\ov{f}'_*\ov{g}'^*j_!\Ff\cong R^i\ov{f}'_*j'_!g'^*\Ff=Rf'_!g'^*\Ff\,.
+	\end{equation*}
+	The left isomorphism is just \cref{thm:properBaseChange}, and the right isomorphism follows from \cref{fact*:finiteBaseChange}\itememph{b}. The additional assertion about $(R^if_!\Ff)_{\ov{s}}$ is  the special case $S=\Spec \kappa(\ov{s})$.
+\end{proof}
+The following lemma didn't show up in the lecture (at least not in this form), but it should be mentioned once to be citeable later.
+\begin{lem*}\label{lem*:Rquasifinite_!}
+	Let $f\colon X\morphism S$ be a separated morphism of finite type and let $p\colon Y\morphism X$ be another morphism. Let $\Ff\in \cat{Ab}(Y_\et)$ be a torsion sheaf.
+	\begin{alphanumerate}
+		\item If $f$ is proper, then there's a functor isomorphism $R^if_!\isomorphism R^if_*$ for all $i\geq 0$.
+		\item If $p$ is finite, then $R^if_!(p_*\Ff)\cong R^i(p\circ f)_!$ for all $i\geq 0$.
+		\item If $p$ is quasi-finite and separated, then $R^ip_!\Ff=0$ for $i>0$.
+	\end{alphanumerate}
+\end{lem*}
+\begin{proof*}
+Part~\itememph{a} is trivial. For \itememph{b}, we apply \itememph{a} to the proper morphism $p$ and use \cref{prop:Rifinite=0} to see that the spectral sequence from \cref{prop:erBaseChange}\itememph{a} collapses. For \itememph{c}, everything is local on $S$, whence we may assume that $S$ is quasi-compact and quasi-separated. Applying Zariski's main theorem, we see that the Nagata compactification $\ov{p}\colon \ov{Y}\morphism X$ can be chosen such that $\ov{p}$ is finite. Then everything follows from \itememph{a} and \cref{prop:Rifinite=0}.
+\end{proof*}
+\begin{prop}
+	Let $f\colon X\morphism S$ be a separated morphism of finite type and let $\Ff$ be a torsion sheaf in $\cat{Ab}(X_\et)$.
+	\begin{alphanumerate}
+		\item If $S=\Spec k$ is the spectrum of a separably closed field $k$, then $H_c^i(X_\et,\Ff)=0$ for all $i>2\dim X$.
+		\item If $\ov{s}$ is a geometric point of $S$, then $(R^if_!\Ff)_{\ov{s}}=0$ for all $i>2\dim(X\times_S\Spec \kappa(\ov{s}))$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}
+	Clearly \itememph{b} follows from \itememph{a} and \cref{prop:erBaseChange}\itememph{c}. In particular, \itememph{b} in the special case $X=\IA_S^1$ follows from \itememph{a} in the special case where $X$ is a curve over $k$. But we already know this special case because of \cref{prop:generalCurveVanishing}\itememph{b}---up to the slight subtlety that we need to choose $\ov{X}$ in \cref{def:f_!}\itememph{b} in such a way that it is again a curve over $k$! But that's no problem: in fact, it's always possible to choose $\ov{X}$ such that $X$ is scheme-theoretically dense in it; see \cref{rem*:scheme-theoreticallyDense}. The upshot is that \itememph{b} holds for $X=\IA_S^1$.
+	
+	In particular, if $\pi\colon \IA^d_k\morphism \IA_k^{d-1}$ denotes the canonical projection forgetting the last coordinate, then $R^q\pi_!\Ff=0$ for all $q>2$ and all torsion sheaves $\Ff$. We use this to prove that \itememph{a} holds in the special case $X=\IA_k^d$ via induction on $d$. The cases $d=0$ and $d=1$ are trivial resp.\ treated above. Now assume $d>1$ and the assertion is true for $d-1$. Then the spectral sequence
+	\begin{equation*}
+		E_2^{p,q}=H_c^p\big(\IA_{k,\et}^{d-1},R^q\pi_!\Ff\big)\converge H_c^{p+q}\big(\IA_{k,\et}^d,\Ff\big)
+	\end{equation*}
+	(this is a version of \cref{prop:erBaseChange}\itememph{a}, using that étale sheaves over a separably closed field are uniquely determined by their stalk at the only geometric point) satisfies $E_2^{p,q}=0$ whenever $p>2(d-1)$ or $q>2$, thus the limit $H^{p+q}(\IA_k^d,\Ff)$ vanishes whenever $p+q>2d$, as required. We will reduce the general case to the case of $X=\IA_k^d$.
+	
+	\emph{Step~1.} We reduce the assertion to the case where $X$ is affine. So suppose the affine case is known. Then the general case can be done using induction on the number of affine opens needed to cover $X$. Suppose that number is $n$. Write $X=U\cup X'$, where $U$ is affine and $X'$ can be covered by $n-1$ affine opens. Since intersections of affine opens are affine, using that $X$ is separated, we see that the induction hypothesis is applicable to $U'=U\cap X'$. Now everything follows from the following claim:
+	\begin{alphanumerate}
+		\item[\itememph{*}] \itshape In the situation of \itememph{a}, if $X=U\cup V$ is an open cover, then there exists a natural \enquote{Mayer--Vietoris sequence}
+		\begin{equation*}
+			\dotso\morphism H_c^p\big((U\cap V)_\et,\Ff)\morphism H^p(U_\et,\Ff)\oplus H^p(V_\et,\Ff)\morphism H^p(X_\et,\Ff)\morphism \dotso\,.
+		\end{equation*}
+		More generally, a similar sequence exists for arbitrary $X$, replacing cohomology with compact support $H_c^p(-,\Ff)$ by higher direct images with compact support $R^p(-)_!\Ff$.
+	\end{alphanumerate}
+	Claim~\itememph{*} is a formal consequence of the excision sequence from \cref{prop:erBaseChange}\itememph{b}, applying it twice to $Z=X\setminus U=V\setminus(U\cap V)$. The argument works just as in Algebraic Topology and is perhaps an amusing exercise if you don't know this already.
+	
+	\emph{Step~2.} So now let $X$ be affine. The next step is to reduce things to the case where $X$ is integral. This is done by the method that was used over and over again in \cref{sec:Constructible} and \cref{sec:CohoOfCurves}. As usual, \cref{prop:thickeningEtaleEquivalence} allows us to replace $X$ by its reduction $X^\red$. Now let $X_1,\dotsc,X_n$ be the irreducible components of $X$, equipped with their integral closed subscheme structures, and denote $i_j\colon X_j\monomorphism X$. Consider $\phi\colon \Ff\morphism \bigoplus_{j=1}^ni_{j,*}i_j^*\Ff$. \cref{lem*:Rquasifinite_!}\itememph{b} shows
+	\begin{equation*}
+		H_c^i\Bigg(X_\et,\bigoplus_{j=1}^ni_{j,*}i_j^*\Ff\Bigg)\cong \bigoplus_{j=1}^nH_c^i\big(X_{j,\et},i_j^*\Ff\big)\,.
+	\end{equation*}
+	In particular, if we assume the assertion is true in the affine integral case, then the right-hand side vanishes for $i>2\max \dim X_j=2\dim X$. Moreover, $\phi$ is an isomorphism over $U_\et$ for some dense open subset $U\subseteq X$. In particular, $\ker\phi$ and $\coker \phi$ are of the form $u_*\Kk$ and $u_*\Qq$, where $u\colon Z\monomorphism X$ is any closed subscheme with image $X\setminus U$, and $\Kk,\Qq\in \cat{Ab}(Z_\et)$. Since $\dim Z<\dim X$, we may use induction to assume that the assertion is true for $Z$ as well. Then \cref{lem*:Rquasifinite_!}\itememph{b} again shows
+	\begin{equation*}
+		H_c^i(X_\et,u_*\Kk)\cong H_c^i(Z_\et,\Kk)\quad\text{and}\quad H_c^i(X_\et,u_*\Qq)\cong H_c^i(Z_\et,\Qq)\,,
+	\end{equation*}
+	and the right-hand sides vanish for $i>2\dim Z$ by assumption. Writing down some long exact sequences finally shows $H_c^i(X_\et,\Ff)=0$ for $i>2\dim X$, as required.
+	
+	\emph{Step~3.} We deal with the case where $X$ is affine and integral, thus finishing the proof. By Noether normalization we find a finite morphism $p\colon X\morphism \IA_k^d$, where we necessarily have $d=\dim X$. Using \cref{lem*:Rquasifinite_!}\itememph{b} we get $H_c^i(X_\et,\Ff)\cong H_c^i(\IA_{k,\et}^d,p_*\Ff)=0$ for $i>2d$, as required.
+\end{proof}
+\section{Finiteness Theorems}
+We finish the lecture with two finiteness results, which we don't have the time to prove. But who knows? Maybe we will come to that in Professor Franke's seminar next semester!
+\begin{thm}
+	Let $f\colon C\morphism S$ be a proper smooth relative curve and $n$ a positive integer which is invertible on $S$. Moreover, let $\mu_{n,C}$ and $\mu_{n,S}$ denote the sheaves of $n\ordinalth$ roots of unity on $C_\et$ and $S_\et$ respectively. Then we have isomorphisms
+	\begin{equation*}
+		R^if_*\mu_{n,C}\cong \begin{cases*}
+			\mu_{n,S} & if $i=0$\\
+			\JAC_{C/S}[n] & if $i=1$\\
+			\IZ/n\IZ_S & if $i=2$\\
+			0 & else
+		\end{cases*}\,.
+	\end{equation*}
+\end{thm}
+\begin{thm}
+	If $f\colon X\morphism S$ is a separated morphism of finite type beween noetherian schemes, then for any constructible sheaf $\Ff\in\cat{Ab}(X_\et)$, the higher direct images with compact support $R^if_!\Ff$ are constructible again for all $i\geq 0$.
+\end{thm}
+\begin{cor}
+	If $X$ is a separated scheme of finite type over a separably closed field $k$ and $\Ff\in \cat{Ab}(X_\et)$ is constructible, then the cohomology groups $H_c^i(X,\Ff)$ are finite abelian groups for all $i\geq 0$.
+\end{cor}
 
 \appendix
 \include{./Chapters/EtaleIAppendix}
