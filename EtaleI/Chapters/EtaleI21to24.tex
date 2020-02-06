@@ -378,7 +378,7 @@ Even though \v Cech cohomology usually does not compute sheaf cohomology in gene
 	and the assertion is clear. In general, the endomorphisms of $\check{C}^\bullet(\{U\morphism X\},\Ff)$ induced by $\id_U$ and $s\circ j$ are cochain homotopic by \cref{rem:technicalCech}. But the map induced by $s\circ j$ factors over $\check{C}^\bullet(\{X=X\},\Ff)$, which has vanishing cohomology in positive degrees, hence the same must be true for $\check{C}^n(\{U\morphism X\},\Ff)$.
 \end{proof}
 \subsection{Étale Cohomology of Quasi-Coherent Sheaves}
-The goal of this subsection is to prove the promised comparison result for étale and Zariski cohomology of quasi-coherent sheaves.
+%The goal of this subsection is to prove the promised comparison result for étale and Zariski cohomology of quasi-coherent sheaves.
 \begin{prop}\label{prop:technicalCech}
 	Let $X$ be a scheme. If $\Uu\colon U=\bigcup_{j\in J}U_j$ is a Zariski-open cover of some $X$-scheme $U$, then $\check{H}^i(\Uu,-)$ denotes the ordinary \v Cech cohomology.
 	\begin{alphanumerate}
@@ -452,10 +452,11 @@ The goal of this subsection is to prove the promised comparison result for étal
 	
 	The second assertion is basically just a consequence of faithfully flat descent. More precisely, we can construct a quasi-inverse functor $\iota$ as follows: if $\Gg$ is a quasi-coherent $\Oo_{X_\Zar}$-module and $j\colon U\morphism X$ is étale, put $\Global(U,\iota(\Gg))= \Global(U,j^*\Gg)$. Here $j^*\colon \cat{QCoh}_X\morphism\cat{QCoh}_U$ indicates the usual pullback of quasi-coherent modules in the Zariski-topology. Using \cref{prop:fpqcDescent}, it's easy to check that $\zeta_{X,*}$ and $\iota$ are indeed quasi-inverse functors.
 \end{proof}
+We thus arrive at the promised comparison result for étale and Zariski cohomology of quasi-coherent sheaves.
 \begin{cor}\label{cor:etaleCoho=ZariskiCoho}
 	Let $X$ be an arbitrary scheme.
 	\begin{alphanumerate}
-		\item If $\Ff$ is a quasi-coherent $\Oo_{X_\et}$-module, then $H^p(X_\et,\Ff)\cong H^p(X_\Zar,\zeta_{X,*}\Ff)$ for all $p\geq 0$.
+		\item If $\Ff$ is a quasi-coherent $\Oo_{X_\et}$-module, then $H^i(X_\et,\Ff)\cong H^i(X_\Zar,\zeta_{X,*}\Ff)$ for all $i\geq 0$.
 		\item If $X$ is a noetherian scheme over $\IF_p$, then $H^i(X_\et,\IZ/p\IZ)=0$ for all $i>\dim X+1$.
 	\end{alphanumerate}
 \end{cor}
