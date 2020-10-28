@@ -1,5 +1,0 @@
-sudo: required
-dist: trusty # Ubuntu 14.04
-services: docker # Enables docker
-script:
-- echo "Fuck yoo"
