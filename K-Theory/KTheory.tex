@@ -1,0 +1,426 @@
+\documentclass[a4paper, 10pt, oneside, DIV=9, chapterprefix=true, numbers=enddot,bibliography=totoc]{scrbook}
+\usepackage{StyleK}
+\usepackage{ShortcutsK}
+
+\usetikzlibrary{shapes.geometric,patterns}
+\DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
+
+
+\subject{Lecture Notes for}
+\title{Algebraic and Hermitian $K$-Theory}
+\author{{\normalsize Lecturer}\\
+	Fabian Hebestreit}
+\date{{\normalsize Notes typed by}\\
+	Ferdinand Wagner}
+\publishers{Winter Term 2020/21\\
+	University of Bonn}
+
+%\includeonly{nothingtoseehere}
+\begin{document}
+	\frontmatter
+	\KOMAoption{chapterprefix}{false}
+	\renewcommand{\thedummy}{\arabic{dummy}}
+	\maketitle
+	\noindent This text consists of unofficial notes on the lecture \emph{Advanced Topics in Algebra -- Algebraic and Hermitian $K$-Theory}, taught at the University of
+	Bonn by Fabian Hebestreit in the winter term (Wintersemester) 2020/21.
+	%Some changes and some additions have been made by the author. To distinguish them from the lecture's actual contents, they are labelled with an asterisk. So any \emph{Lemma}* or \emph{Remark}* or \emph{Proof}* that the reader might encounter are wholly the author's responsibility.
+	\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
+	
+	
+	\tableofcontents
+	\listoftoc{lol}
+	\setcounter{llecture}{-1}
+	\mainmatter\KOMAoption{chapterprefix}{true}
+	\renewcommand{\thedummy}{\thechapter.\arabic{dummy}}
+	\setcounter{chapter}{-1}
+	\renewcommand{\thechapter}{\arabic{chapter}}
+	\chapter{Introduction}
+	\section{Organizational Stuff}
+	\lecture[From Riemann--Roch to Quillen's definition of $K$-theory. Outline of the course.]{2020-10-27}
+	Under no circumstances you should call Fabian by his last name! Also there will be oral exams, probably in the first or second week after the end of the lectures. More on that when it comes to that.
+	\numpar*{Disclaimer}
+	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. So why should I bother typing my own notes? This is because of two main reasons. First, while I find Fabian's notes to be an excellent resource (and I really enjoy their elegant purple colour scheme), they do have some unavoidable drawbacks when compared to \TeX ed notes: There are no clickable links, the documents are not searchable, and their file size tends to be considerable (I learned that the hard way when I tried to open Fabian's Straightening/Unstraightening notes on my phone).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
+	
+	\section{A Fairytale}
+	We start with an overview of the mathematical developments that eventually led to the invention of $K$-theory. Don't worry if you're not familiar with the stuff on the next few pages, it is neither a prerequisite for the lecture, nor will it play any prominent role in it.
+	
+	Let's begin in the 1850's: Consider a compact Riemann surface $\Sigma$ and let $D\in\IZ[\Sigma]$ be a divisor on $\Sigma$. That is, $D=\sum D_s\{s\}$ is a formal sum of points $s\in\Sigma$ with coefficients $D_s\in\IZ$, all but finitely many of which are zero. For example, if $f\colon \Sigma\morphism \IC$ is a meromorphic function, one could consider the \emph{principal divisor} $D(f)$ given by
+	\begin{equation*}
+		D(f)_s=\begin{cases*}
+			a & if $f$ has a zero of order $a$ at $s$\\
+			-a & if $f$ has a pole of order $a$ at $s$\\
+			0 & else
+		\end{cases*}\,.
+	\end{equation*}
+	For some divisor $D=\sum D_s\{s\}$, put $\deg D=\sum D_s$ and consider the $\IC$-vector space
+	\begin{equation*}
+		M(D)=\left\{f\colon \Sigma\rightarrow\IC\text{ meromorphic}\st D(f)_s\geq -D_s\text{ for all }s\in\Sigma\right\}\,.
+	\end{equation*}
+	An important problem in the theory of Riemann surfaces is to determine the dimension $\dim M(D)$. Riemann proved the inequality $\dim M(D)\geq \deg D+1-g(\Sigma)$, which was soon improved upon by his student Roch, who obtained what is famously known today as the \emph{Riemann--Roch theorem}.
+	\begin{thm}[Riemann--Roch]\label{thm:RiemannRoch}
+		Let $\Sigma$ be a compact Riemann surface of genus $g(\Sigma)$ and $D$ be a divisor on $\Sigma$. Put $D^\vee=K_\Sigma-D$, where $K_\Sigma$ is the divisor of any $1$-form on $\Sigma$. Then
+		\begin{equation*}
+			\dim M(D)-\dim M(D^\vee)=\deg D+1-g(\Sigma)\,.
+		\end{equation*}
+	\end{thm}
+	Note that $K_\Sigma$, and thus $D^\vee$, are only defined up to a principal divisor---in other words, only their \emph{divisor class} is well-defined---but that's all we need, since both $\dim M(D)$ and $\deg D$ don't change if $D$ is replaced by $D+D(f)$ for some meromorphic $f\colon \Sigma\morphism\IC$. 
+	
+	\begin{exm}
+		Consider $\Sigma=\IC\IP^1=\IC\cup\{\infty\}$ and choose $D=n\{\infty\}$. Then $M(D)$ is the space of all meromorphic functions $f\colon\IC\IP^1\morphism \IC$ whose pole at $\infty$ has order at most $n$. In other words,
+		\begin{equation*}
+			M(D)=\left\{f\colon \IC\rightarrow\IC\text{ holomorphic}\st \begin{tabular}{c}
+				$|f(z)|$ is bounded by $C|z|^n$ for some\\ suitable constant $C\geq 0$ as $|z|\to\infty$
+			\end{tabular}\right\}\,.
+		\end{equation*}
+		To get $K_{\IC\IP^1}$ we can choose the meromorphic $1$-form $\mathrm dz$, which is holomorphic on $\IC$ and has a pole of order $2$ at $\infty$ (because $\mathrm d(z^{-1})=-z^{-2}\mathrm dz$ has a pole of order $2$ at $0$). Thus the divisor class of $K_{\IC\IP^1}$ is that of $-2\{\infty\}$. Plugging in \cref{thm:RiemannRoch} gives
+		\begin{equation*}
+			\dim M(n\{\infty\})-\dim M(-(2+n)\{\infty\})=n+1\,.
+		\end{equation*}
+		For $n=0$ we obtain $M(0)\cong\IC$, since all bounded holomorphic functions on $\IC$ are constant by Liouville's theorem. By the same reason, $M(n\{\infty\})=0$ for $n<0$. Hence
+		\begin{equation*}
+			\dim M(n\{\infty\})=n+1\quad\text{for all }n\geq 0\,,
+		\end{equation*}
+		which makes a lot of sense since we would expect (and have just proved) that $M(n\{\infty\})$ is precisely the space of polynomials of degree $\leq n$ in that case.
+	\end{exm}
+	Now let's try to restate the Riemann--Roch theorem in more modern terms. The first step is to replace divisors by line bundles, which can be done by means of the bijection
+	\begin{equation*}
+		\left\{\text{divisors on }\Sigma\right\}/\left\{\text{principal divisors}\right\}\lisomorphism \left\{\text{isomorphism classes of line bundles on }\Sigma\right\}\,,
+	\end{equation*}
+	which is, in fact, an isomorphism of abelian groups between the \emph{divisor class group} $\Cl(\Sigma)$, whose group structure is inherited from $\IZ[\Sigma]$, and the \emph{Picard group} $\Pic(\Sigma)$, whose group structure is given by the tensor product of line bundles. If a line bundle $L$ corresponds to a divisor $D$ under this isomorphism, then the space $M(D)$ corresponds to the $\IC$-vector space $\Gamma(\Sigma,L)$ of holomorphic sections of $L$. Thus, \cref{thm:RiemannRoch} can be restated as
+	\begin{equation*}
+		\dim\Gamma(\Sigma,L)-\dim \Gamma\left(\Sigma,T^*\Sigma\otimes L^{-1}\right)=\deg L+1-g(\Sigma)
+	\end{equation*}
+	Observe that $\Gamma(\Sigma,L)=H_\mathrm{sheaf}^0(\Sigma,L)$ and $\Gamma(\Sigma,T^*\Sigma\otimes L^{-1})=H_\mathrm{sheaf}^1(\Sigma,L)$ by Serre duality. So the term on the left-hand side can be interpreted as the \enquote{Euler characteristic} $\chi(\Sigma,L)$. This was the starting point for a generalization to arbitrary dimensions found by Hirzebruch, who was not only the founding father of all mathematics in Bonn after the war, but also incredibly good at guessing the correct generalizations.
+	\begin{thm}[Hirzebruch--Riemann--Roch]\label{thm:HirzebruchRiemannRoch}
+		Let $E\morphism X$ be a holomorphic vector bundle over a $d$-dimensional compact complex manifold $X$. Then
+		\begin{equation*}
+			\chi(X,E)=\sum_{i=0}^d\big(c_i(E)\cup \operatorname{Td}_{d-i}(TX)\big)\,.
+		\end{equation*}
+		Here $c_i(E)$ is the $i\ordinalth$ Chern class of $E$ and $\operatorname{Td}_{d-i}(TX)$ is the $(d-i)\ordinalth$ Todd class of $TX$, so that the right-hand side lives in the cohomology group $H^{2d}(X,\IZ)=\IZ$ and the above equation makes sense.
+	\end{thm}
+	Still no sign of $K$-theory though. This is when Grothendieck, the master of them all, entered the stage. 
+	Recall that $H^i(X,E)=R^i\Gamma(X,E)$. Consider the canonical map $f\colon X\morphism *$, so that the global sections functor is canonically isomorphic to the pushforward along $f$. In formulas,  $f_*=\Gamma(X,-)$. Grothendieck's idea was to generalize \cref{thm:HirzebruchRiemannRoch} to arbitrary proper morphisms $f\colon X\morphism Y$ of complex manifolds by replacing the $H^i(X,E)$ (appearing in the definition of $\chi(X,E)$) by $R^if_*E$. This raises an immediate question though: What is $\sum(-1)^iR^if_*E$ supposed to be? The summands are coherent sheaves on $Y$ after all, which we can add (using the direct sum), but surely not subtract one from another. And that brings us straight to $K$-theory!
+	\begin{defi}\label{def:K0X}
+		Let $X$ be a complex manifolds. We define the \emph{$0\ordinalth$ $K$-groups} $K_0(X)$ and $K^0(X)$ as follows:
+		\begin{alphanumerate}
+			\item $K_0(X)$ is the group completion of the monoid of isomorphism classes vector bundles on $X$ (the monoid structure is given by taking direct sums), modulo the relation $[E]=[E']+[E'']$ for every short exact sequence $0\morphism E'\morphism E\morphism E''\morphism 0$ (that's the condition that was missing in the lecture).
+			\item $K^0(X)$ is defined in the same way, with vector bundles replaced by arbitrary coherent sheaves on $X$.
+		\end{alphanumerate}
+	\end{defi}
+	\begin{thm}[Grothendieck--Riemann--Roch]
+		Let $f\colon X\morphism Y$ be a proper morphism of complex manifolds. It induces a morphism $f_!=\sum(-1)^iR^if_*\colon K^0(X)\morphism K^0(Y)$ on $K$-groups which fits into the following hellish commutative diagram:
+		\begin{equation*}
+			\begin{tikzcd}
+				K^0(X)\rar["f_!"]\dar["\operatorname{Td}(X)\operatorname{ch}(-)"'] & K^0(Y)\dar["\operatorname{ch}(-)\operatorname{Td}(Y)"]\\
+				H^*(X,\IZ)\rar["f_*"] & H^*(Y,\IZ)
+			\end{tikzcd}
+		\end{equation*}
+		\begin{center}
+			\vspace{-1.55cm}
+			\hspace{-0.6cm}\begin{pgfpicture}
+				\pgfpathmoveto{\pgfqpoint{6.138cm}{13.264cm}}
+				\pgfpathlineto{\pgfqpoint{14.252cm}{13.264cm}}
+				\pgfpathlineto{\pgfqpoint{14.252cm}{14.676cm}}
+				\pgfpathlineto{\pgfqpoint{6.138cm}{14.676cm}}
+				\pgfpathclose
+				\pgfusepath{clip}
+				\begin{pgfscope}
+					\pgfpathmoveto{\pgfqpoint{6.138cm}{13.264cm}}
+					\pgfpathlineto{\pgfqpoint{14.252cm}{13.264cm}}
+					\pgfpathlineto{\pgfqpoint{14.252cm}{14.676cm}}
+					\pgfpathlineto{\pgfqpoint{6.138cm}{14.676cm}}
+					\pgfpathclose
+					\pgfusepath{clip}
+					\begin{pgfscope}
+						\definecolor{eps2pgf_color}{gray}{0}\pgfsetstrokecolor{eps2pgf_color}\pgfsetfillcolor{eps2pgf_color}
+						\pgfpathmoveto{\pgfqpoint{6.683cm}{13.325cm}}
+						\pgfpathcurveto{\pgfqpoint{6.672cm}{13.331cm}}{\pgfqpoint{6.681cm}{13.373cm}}{\pgfqpoint{6.713cm}{13.399cm}}
+						\pgfpathcurveto{\pgfqpoint{6.772cm}{13.437cm}}{\pgfqpoint{6.756cm}{13.473cm}}{\pgfqpoint{6.805cm}{13.621cm}}
+						\pgfpathcurveto{\pgfqpoint{6.641cm}{13.779cm}}{\pgfqpoint{6.722cm}{13.891cm}}{\pgfqpoint{6.578cm}{13.747cm}}
+						\pgfpathcurveto{\pgfqpoint{6.473cm}{13.629cm}}{\pgfqpoint{6.375cm}{13.693cm}}{\pgfqpoint{6.342cm}{13.825cm}}
+						\pgfpathcurveto{\pgfqpoint{6.291cm}{13.821cm}}{\pgfqpoint{6.204cm}{13.809cm}}{\pgfqpoint{6.193cm}{13.829cm}}
+						\pgfpathcurveto{\pgfqpoint{6.17cm}{13.873cm}}{\pgfqpoint{6.286cm}{13.869cm}}{\pgfqpoint{6.34cm}{13.871cm}}
+						\pgfpathcurveto{\pgfqpoint{6.338cm}{13.923cm}}{\pgfqpoint{6.313cm}{13.994cm}}{\pgfqpoint{6.282cm}{13.991cm}}
+						\pgfpathcurveto{\pgfqpoint{6.233cm}{13.987cm}}{\pgfqpoint{6.156cm}{13.922cm}}{\pgfqpoint{6.152cm}{13.954cm}}
+						\pgfpathcurveto{\pgfqpoint{6.147cm}{13.992cm}}{\pgfqpoint{6.227cm}{14.023cm}}{\pgfqpoint{6.267cm}{14.022cm}}
+						\pgfpathcurveto{\pgfqpoint{6.344cm}{14.021cm}}{\pgfqpoint{6.353cm}{13.955cm}}{\pgfqpoint{6.37cm}{13.876cm}}
+						\pgfpathcurveto{\pgfqpoint{6.598cm}{13.891cm}}{\pgfqpoint{6.648cm}{13.875cm}}{\pgfqpoint{6.692cm}{13.923cm}}
+						\pgfpathcurveto{\pgfqpoint{6.769cm}{14.005cm}}{\pgfqpoint{6.863cm}{14.062cm}}{\pgfqpoint{6.965cm}{14.093cm}}
+						\pgfpathcurveto{\pgfqpoint{7.083cm}{14.128cm}}{\pgfqpoint{7.013cm}{14.196cm}}{\pgfqpoint{7.119cm}{14.199cm}}
+						\pgfpathcurveto{\pgfqpoint{7.155cm}{14.201cm}}{\pgfqpoint{7.154cm}{14.132cm}}{\pgfqpoint{7.206cm}{14.119cm}}
+						\pgfpathcurveto{\pgfqpoint{7.242cm}{14.108cm}}{\pgfqpoint{7.248cm}{14.095cm}}{\pgfqpoint{7.301cm}{14.122cm}}
+						\pgfpathcurveto{\pgfqpoint{7.4cm}{14.172cm}}{\pgfqpoint{7.325cm}{14.147cm}}{\pgfqpoint{7.3cm}{14.185cm}}
+						\pgfpathcurveto{\pgfqpoint{7.278cm}{14.226cm}}{\pgfqpoint{7.382cm}{14.262cm}}{\pgfqpoint{7.421cm}{14.227cm}}
+						\pgfpathcurveto{\pgfqpoint{7.44cm}{14.204cm}}{\pgfqpoint{7.413cm}{14.171cm}}{\pgfqpoint{7.464cm}{14.196cm}}
+						\pgfpathcurveto{\pgfqpoint{7.475cm}{14.226cm}}{\pgfqpoint{7.459cm}{14.26cm}}{\pgfqpoint{7.453cm}{14.29cm}}
+						\pgfpathcurveto{\pgfqpoint{7.447cm}{14.337cm}}{\pgfqpoint{7.455cm}{14.345cm}}{\pgfqpoint{7.487cm}{14.321cm}}
+						\pgfpathcurveto{\pgfqpoint{7.498cm}{14.313cm}}{\pgfqpoint{7.5cm}{14.306cm}}{\pgfqpoint{7.493cm}{14.299cm}}
+						\pgfpathcurveto{\pgfqpoint{7.498cm}{14.2cm}}{\pgfqpoint{7.56cm}{14.227cm}}{\pgfqpoint{7.591cm}{14.16cm}}
+						\pgfpathcurveto{\pgfqpoint{7.601cm}{14.128cm}}{\pgfqpoint{7.661cm}{14.109cm}}{\pgfqpoint{7.73cm}{14.116cm}}
+						\pgfpathcurveto{\pgfqpoint{7.78cm}{14.121cm}}{\pgfqpoint{7.791cm}{14.12cm}}{\pgfqpoint{7.791cm}{14.109cm}}
+						\pgfpathcurveto{\pgfqpoint{7.791cm}{14.086cm}}{\pgfqpoint{7.712cm}{14.075cm}}{\pgfqpoint{7.658cm}{14.081cm}}
+						\pgfpathcurveto{\pgfqpoint{7.532cm}{14.094cm}}{\pgfqpoint{7.531cm}{14.084cm}}{\pgfqpoint{7.546cm}{14.051cm}}
+						\pgfpathcurveto{\pgfqpoint{7.572cm}{13.988cm}}{\pgfqpoint{7.432cm}{13.977cm}}{\pgfqpoint{7.441cm}{14.031cm}}
+						\pgfpathcurveto{\pgfqpoint{7.444cm}{14.054cm}}{\pgfqpoint{7.447cm}{14.054cm}}{\pgfqpoint{7.335cm}{14.043cm}}
+						\pgfpathcurveto{\pgfqpoint{7.266cm}{14.037cm}}{\pgfqpoint{7.25cm}{14.038cm}}{\pgfqpoint{7.23cm}{14.051cm}}
+						\pgfpathcurveto{\pgfqpoint{7.197cm}{14.073cm}}{\pgfqpoint{7.188cm}{14.053cm}}{\pgfqpoint{7.18cm}{13.99cm}}
+						\pgfpathcurveto{\pgfqpoint{7.16cm}{13.892cm}}{\pgfqpoint{7.193cm}{13.919cm}}{\pgfqpoint{7.246cm}{13.905cm}}
+						\pgfpathcurveto{\pgfqpoint{7.287cm}{13.897cm}}{\pgfqpoint{7.283cm}{13.954cm}}{\pgfqpoint{7.325cm}{13.949cm}}
+						\pgfpathcurveto{\pgfqpoint{7.426cm}{13.939cm}}{\pgfqpoint{7.404cm}{13.923cm}}{\pgfqpoint{7.458cm}{13.923cm}}
+						\pgfpathcurveto{\pgfqpoint{7.476cm}{13.927cm}}{\pgfqpoint{7.489cm}{13.923cm}}{\pgfqpoint{7.502cm}{13.909cm}}
+						\pgfpathcurveto{\pgfqpoint{7.52cm}{13.892cm}}{\pgfqpoint{7.531cm}{13.89cm}}{\pgfqpoint{7.694cm}{13.892cm}}
+						\pgfpathcurveto{\pgfqpoint{7.845cm}{13.893cm}}{\pgfqpoint{7.867cm}{13.895cm}}{\pgfqpoint{7.874cm}{13.909cm}}
+						\pgfpathcurveto{\pgfqpoint{7.888cm}{13.934cm}}{\pgfqpoint{7.947cm}{13.952cm}}{\pgfqpoint{8.039cm}{13.959cm}}
+						\pgfpathcurveto{\pgfqpoint{8.111cm}{13.965cm}}{\pgfqpoint{8.124cm}{13.964cm}}{\pgfqpoint{8.124cm}{13.952cm}}
+						\pgfpathcurveto{\pgfqpoint{8.062cm}{13.92cm}}{\pgfqpoint{7.978cm}{13.936cm}}{\pgfqpoint{7.911cm}{13.899cm}}
+						\pgfpathcurveto{\pgfqpoint{7.911cm}{13.893cm}}{\pgfqpoint{8.072cm}{13.903cm}}{\pgfqpoint{8.113cm}{13.912cm}}
+						\pgfpathcurveto{\pgfqpoint{8.172cm}{13.926cm}}{\pgfqpoint{8.182cm}{13.811cm}}{\pgfqpoint{8.129cm}{13.801cm}}
+						\pgfpathcurveto{\pgfqpoint{8.071cm}{13.791cm}}{\pgfqpoint{7.914cm}{13.795cm}}{\pgfqpoint{7.892cm}{13.806cm}}
+						\pgfpathcurveto{\pgfqpoint{7.871cm}{13.821cm}}{\pgfqpoint{7.865cm}{13.839cm}}{\pgfqpoint{7.856cm}{13.862cm}}
+						\pgfpathcurveto{\pgfqpoint{7.748cm}{13.856cm}}{\pgfqpoint{7.468cm}{13.866cm}}{\pgfqpoint{7.395cm}{13.841cm}}
+						\pgfpathcurveto{\pgfqpoint{7.38cm}{13.819cm}}{\pgfqpoint{7.335cm}{13.831cm}}{\pgfqpoint{7.3cm}{13.807cm}}
+						\pgfpathcurveto{\pgfqpoint{7.21cm}{13.74cm}}{\pgfqpoint{7.082cm}{13.752cm}}{\pgfqpoint{7.021cm}{13.825cm}}
+						\pgfpathcurveto{\pgfqpoint{6.985cm}{13.871cm}}{\pgfqpoint{6.989cm}{13.839cm}}{\pgfqpoint{6.843cm}{13.838cm}}
+						\pgfpathcurveto{\pgfqpoint{6.976cm}{13.79cm}}{\pgfqpoint{7.032cm}{13.74cm}}{\pgfqpoint{7.08cm}{13.668cm}}
+						\pgfpathcurveto{\pgfqpoint{7.158cm}{13.532cm}}{\pgfqpoint{7.203cm}{13.502cm}}{\pgfqpoint{7.207cm}{13.426cm}}
+						\pgfpathcurveto{\pgfqpoint{7.207cm}{13.406cm}}{\pgfqpoint{7.169cm}{13.392cm}}{\pgfqpoint{7.119cm}{13.393cm}}
+						\pgfpathcurveto{\pgfqpoint{7.061cm}{13.399cm}}{\pgfqpoint{7.068cm}{13.426cm}}{\pgfqpoint{7.087cm}{13.497cm}}
+						\pgfpathcurveto{\pgfqpoint{7.098cm}{13.542cm}}{\pgfqpoint{7.097cm}{13.545cm}}{\pgfqpoint{7.064cm}{13.612cm}}
+						\pgfpathcurveto{\pgfqpoint{6.94cm}{13.785cm}}{\pgfqpoint{6.931cm}{13.723cm}}{\pgfqpoint{6.756cm}{13.802cm}}
+						\pgfpathcurveto{\pgfqpoint{6.765cm}{13.726cm}}{\pgfqpoint{6.876cm}{13.655cm}}{\pgfqpoint{6.868cm}{13.627cm}}
+						\pgfpathcurveto{\pgfqpoint{6.855cm}{13.573cm}}{\pgfqpoint{6.843cm}{13.524cm}}{\pgfqpoint{6.825cm}{13.473cm}}
+						\pgfpathcurveto{\pgfqpoint{6.801cm}{13.413cm}}{\pgfqpoint{6.838cm}{13.372cm}}{\pgfqpoint{6.82cm}{13.326cm}}
+						\pgfpathcurveto{\pgfqpoint{6.77cm}{13.326cm}}{\pgfqpoint{6.722cm}{13.306cm}}{\pgfqpoint{6.683cm}{13.325cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{6.62cm}{13.83cm}}
+						\pgfpathcurveto{\pgfqpoint{6.586cm}{13.854cm}}{\pgfqpoint{6.515cm}{13.835cm}}{\pgfqpoint{6.38cm}{13.828cm}}
+						\pgfpathcurveto{\pgfqpoint{6.426cm}{13.659cm}}{\pgfqpoint{6.521cm}{13.723cm}}{\pgfqpoint{6.62cm}{13.83cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{7.295cm}{13.861cm}}
+						\pgfpathcurveto{\pgfqpoint{7.212cm}{13.854cm}}{\pgfqpoint{7.138cm}{13.856cm}}{\pgfqpoint{7.055cm}{13.853cm}}
+						\pgfpathcurveto{\pgfqpoint{7.119cm}{13.772cm}}{\pgfqpoint{7.259cm}{13.802cm}}{\pgfqpoint{7.295cm}{13.861cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{8.034cm}{13.842cm}}
+						\pgfpathcurveto{\pgfqpoint{7.911cm}{13.839cm}}{\pgfqpoint{7.89cm}{13.822cm}}{\pgfqpoint{8.006cm}{13.821cm}}
+						\pgfpathcurveto{\pgfqpoint{8.141cm}{13.816cm}}{\pgfqpoint{8.204cm}{13.848cm}}{\pgfqpoint{8.034cm}{13.842cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{8.115cm}{13.885cm}}
+						\pgfpathcurveto{\pgfqpoint{8.051cm}{13.878cm}}{\pgfqpoint{7.992cm}{13.878cm}}{\pgfqpoint{7.93cm}{13.865cm}}
+						\pgfpathcurveto{\pgfqpoint{8.082cm}{13.847cm}}{\pgfqpoint{8.194cm}{13.888cm}}{\pgfqpoint{8.115cm}{13.885cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{6.966cm}{13.888cm}}
+						\pgfpathcurveto{\pgfqpoint{7.015cm}{13.903cm}}{\pgfqpoint{6.983cm}{13.935cm}}{\pgfqpoint{7.019cm}{13.993cm}}
+						\pgfpathcurveto{\pgfqpoint{7.065cm}{14.064cm}}{\pgfqpoint{6.915cm}{13.974cm}}{\pgfqpoint{6.818cm}{13.89cm}}
+						\pgfpathcurveto{\pgfqpoint{6.871cm}{13.889cm}}{\pgfqpoint{6.923cm}{13.879cm}}{\pgfqpoint{6.966cm}{13.888cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{7.152cm}{14.015cm}}
+						\pgfpathcurveto{\pgfqpoint{7.158cm}{14.038cm}}{\pgfqpoint{7.142cm}{14.043cm}}{\pgfqpoint{7.114cm}{14.028cm}}
+						\pgfpathcurveto{\pgfqpoint{7.098cm}{14.02cm}}{\pgfqpoint{7.046cm}{13.919cm}}{\pgfqpoint{7.046cm}{13.899cm}}
+						\pgfpathcurveto{\pgfqpoint{7.153cm}{13.886cm}}{\pgfqpoint{7.12cm}{13.91cm}}{\pgfqpoint{7.152cm}{14.015cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{7.132cm}{14.144cm}}
+						\pgfpathcurveto{\pgfqpoint{7.12cm}{14.17cm}}{\pgfqpoint{7.104cm}{14.174cm}}{\pgfqpoint{7.087cm}{14.154cm}}
+						\pgfpathcurveto{\pgfqpoint{7.072cm}{14.135cm}}{\pgfqpoint{7.057cm}{14.113cm}}{\pgfqpoint{7.1cm}{14.12cm}}
+						\pgfpathcurveto{\pgfqpoint{7.141cm}{14.125cm}}{\pgfqpoint{7.14cm}{14.124cm}}{\pgfqpoint{7.132cm}{14.144cm}}
+						\pgfpathclose
+						\pgfusepath{fill}
+						\pgfpathmoveto{\pgfqpoint{13.244cm}{13.342cm}}
+						\pgfpathcurveto{\pgfqpoint{13.254cm}{13.429cm}}{\pgfqpoint{13.305cm}{13.45cm}}{\pgfqpoint{13.329cm}{13.514cm}}
+						\pgfpathcurveto{\pgfqpoint{13.354cm}{13.586cm}}{\pgfqpoint{13.454cm}{13.695cm}}{\pgfqpoint{13.412cm}{13.699cm}}
+						\pgfpathcurveto{\pgfqpoint{13.364cm}{13.665cm}}{\pgfqpoint{13.372cm}{13.7cm}}{\pgfqpoint{13.352cm}{13.699cm}}
+						\pgfpathcurveto{\pgfqpoint{13.324cm}{13.697cm}}{\pgfqpoint{13.332cm}{13.723cm}}{\pgfqpoint{13.313cm}{13.721cm}}
+						\pgfpathcurveto{\pgfqpoint{13.274cm}{13.715cm}}{\pgfqpoint{13.311cm}{13.752cm}}{\pgfqpoint{13.29cm}{13.754cm}}
+						\pgfpathcurveto{\pgfqpoint{13.285cm}{13.754cm}}{\pgfqpoint{13.283cm}{13.759cm}}{\pgfqpoint{13.285cm}{13.766cm}}
+						\pgfpathcurveto{\pgfqpoint{13.289cm}{13.778cm}}{\pgfqpoint{13.355cm}{13.795cm}}{\pgfqpoint{13.398cm}{13.807cm}}
+						\pgfpathcurveto{\pgfqpoint{13.407cm}{13.876cm}}{\pgfqpoint{13.422cm}{13.927cm}}{\pgfqpoint{13.449cm}{13.987cm}}
+						\pgfpathcurveto{\pgfqpoint{13.46cm}{14.015cm}}{\pgfqpoint{13.652cm}{13.948cm}}{\pgfqpoint{13.653cm}{13.984cm}}
+						\pgfpathcurveto{\pgfqpoint{13.653cm}{14.013cm}}{\pgfqpoint{13.588cm}{14.037cm}}{\pgfqpoint{13.574cm}{14.014cm}}
+						\pgfpathcurveto{\pgfqpoint{13.561cm}{13.992cm}}{\pgfqpoint{13.514cm}{14.019cm}}{\pgfqpoint{13.536cm}{14.055cm}}
+						\pgfpathcurveto{\pgfqpoint{13.554cm}{14.082cm}}{\pgfqpoint{13.555cm}{14.082cm}}{\pgfqpoint{13.471cm}{14.095cm}}
+						\pgfpathcurveto{\pgfqpoint{13.394cm}{14.108cm}}{\pgfqpoint{13.341cm}{14.131cm}}{\pgfqpoint{13.355cm}{14.145cm}}
+						\pgfpathcurveto{\pgfqpoint{13.368cm}{14.157cm}}{\pgfqpoint{13.527cm}{14.115cm}}{\pgfqpoint{13.569cm}{14.176cm}}
+						\pgfpathcurveto{\pgfqpoint{13.612cm}{14.23cm}}{\pgfqpoint{13.706cm}{14.166cm}}{\pgfqpoint{13.759cm}{14.231cm}}
+						\pgfpathcurveto{\pgfqpoint{13.793cm}{14.268cm}}{\pgfqpoint{13.829cm}{14.281cm}}{\pgfqpoint{13.828cm}{14.266cm}}
+						\pgfpathcurveto{\pgfqpoint{13.798cm}{14.223cm}}{\pgfqpoint{13.766cm}{14.193cm}}{\pgfqpoint{13.736cm}{14.149cm}}
+						\pgfpathcurveto{\pgfqpoint{13.746cm}{14.123cm}}{\pgfqpoint{13.81cm}{14.145cm}}{\pgfqpoint{13.818cm}{14.122cm}}
+						\pgfpathcurveto{\pgfqpoint{13.823cm}{14.096cm}}{\pgfqpoint{13.802cm}{14.078cm}}{\pgfqpoint{13.767cm}{14.078cm}}
+						\pgfpathcurveto{\pgfqpoint{13.738cm}{14.078cm}}{\pgfqpoint{13.73cm}{14.069cm}}{\pgfqpoint{13.735cm}{14.039cm}}
+						\pgfpathcurveto{\pgfqpoint{13.736cm}{14.005cm}}{\pgfqpoint{13.672cm}{14.029cm}}{\pgfqpoint{13.732cm}{13.967cm}}
+						\pgfpathcurveto{\pgfqpoint{13.757cm}{13.944cm}}{\pgfqpoint{13.844cm}{13.95cm}}{\pgfqpoint{13.903cm}{13.961cm}}
+						\pgfpathcurveto{\pgfqpoint{14.089cm}{14.002cm}}{\pgfqpoint{14.109cm}{13.98cm}}{\pgfqpoint{14.116cm}{14.072cm}}
+						\pgfpathcurveto{\pgfqpoint{14.119cm}{14.205cm}}{\pgfqpoint{14.121cm}{14.31cm}}{\pgfqpoint{14.125cm}{14.447cm}}
+						\pgfpathcurveto{\pgfqpoint{14.043cm}{14.443cm}}{\pgfqpoint{14.037cm}{14.68cm}}{\pgfqpoint{14.059cm}{14.667cm}}
+						\pgfpathcurveto{\pgfqpoint{14.074cm}{14.657cm}}{\pgfqpoint{14.071cm}{14.509cm}}{\pgfqpoint{14.107cm}{14.486cm}}
+						\pgfpathcurveto{\pgfqpoint{14.126cm}{14.475cm}}{\pgfqpoint{14.102cm}{14.683cm}}{\pgfqpoint{14.126cm}{14.657cm}}
+						\pgfpathcurveto{\pgfqpoint{14.138cm}{14.642cm}}{\pgfqpoint{14.135cm}{14.491cm}}{\pgfqpoint{14.152cm}{14.488cm}}
+						\pgfpathcurveto{\pgfqpoint{14.168cm}{14.484cm}}{\pgfqpoint{14.149cm}{14.658cm}}{\pgfqpoint{14.165cm}{14.65cm}}
+						\pgfpathcurveto{\pgfqpoint{14.185cm}{14.642cm}}{\pgfqpoint{14.175cm}{14.468cm}}{\pgfqpoint{14.191cm}{14.487cm}}
+						\pgfpathcurveto{\pgfqpoint{14.244cm}{14.566cm}}{\pgfqpoint{14.208cm}{14.624cm}}{\pgfqpoint{14.225cm}{14.634cm}}
+						\pgfpathcurveto{\pgfqpoint{14.245cm}{14.642cm}}{\pgfqpoint{14.253cm}{14.476cm}}{\pgfqpoint{14.186cm}{14.441cm}}
+						\pgfpathcurveto{\pgfqpoint{14.168cm}{14.432cm}}{\pgfqpoint{14.161cm}{14.421cm}}{\pgfqpoint{14.16cm}{14.4cm}}
+						\pgfpathcurveto{\pgfqpoint{14.153cm}{14.27cm}}{\pgfqpoint{14.147cm}{14.129cm}}{\pgfqpoint{14.155cm}{14.023cm}}
+						\pgfpathcurveto{\pgfqpoint{14.249cm}{13.978cm}}{\pgfqpoint{14.178cm}{13.932cm}}{\pgfqpoint{14.205cm}{13.925cm}}
+						\pgfpathcurveto{\pgfqpoint{14.234cm}{13.919cm}}{\pgfqpoint{14.216cm}{13.887cm}}{\pgfqpoint{14.162cm}{13.889cm}}
+						\pgfpathcurveto{\pgfqpoint{14.158cm}{13.847cm}}{\pgfqpoint{14.151cm}{13.769cm}}{\pgfqpoint{14.18cm}{13.77cm}}
+						\pgfpathcurveto{\pgfqpoint{14.2cm}{13.765cm}}{\pgfqpoint{14.22cm}{13.724cm}}{\pgfqpoint{14.215cm}{13.7cm}}
+						\pgfpathcurveto{\pgfqpoint{14.205cm}{13.662cm}}{\pgfqpoint{14.162cm}{13.676cm}}{\pgfqpoint{14.162cm}{13.625cm}}
+						\pgfpathcurveto{\pgfqpoint{14.162cm}{13.594cm}}{\pgfqpoint{14.159cm}{13.59cm}}{\pgfqpoint{14.139cm}{13.59cm}}
+						\pgfpathcurveto{\pgfqpoint{14.116cm}{13.59cm}}{\pgfqpoint{14.11cm}{13.61cm}}{\pgfqpoint{14.113cm}{13.647cm}}
+						\pgfpathcurveto{\pgfqpoint{14.01cm}{13.64cm}}{\pgfqpoint{13.973cm}{13.633cm}}{\pgfqpoint{13.865cm}{13.661cm}}
+						\pgfpathcurveto{\pgfqpoint{13.772cm}{13.687cm}}{\pgfqpoint{13.751cm}{13.686cm}}{\pgfqpoint{13.738cm}{13.657cm}}
+						\pgfpathcurveto{\pgfqpoint{13.727cm}{13.635cm}}{\pgfqpoint{13.725cm}{13.634cm}}{\pgfqpoint{13.629cm}{13.634cm}}
+						\pgfpathcurveto{\pgfqpoint{13.581cm}{13.627cm}}{\pgfqpoint{13.411cm}{13.636cm}}{\pgfqpoint{13.48cm}{13.571cm}}
+						\pgfpathcurveto{\pgfqpoint{13.511cm}{13.548cm}}{\pgfqpoint{13.496cm}{13.528cm}}{\pgfqpoint{13.474cm}{13.508cm}}
+						\pgfpathcurveto{\pgfqpoint{13.45cm}{13.488cm}}{\pgfqpoint{13.444cm}{13.52cm}}{\pgfqpoint{13.411cm}{13.52cm}}
+						\pgfpathcurveto{\pgfqpoint{13.374cm}{13.519cm}}{\pgfqpoint{13.37cm}{13.514cm}}{\pgfqpoint{13.362cm}{13.465cm}}
+						\pgfpathcurveto{\pgfqpoint{13.354cm}{13.405cm}}{\pgfqpoint{13.374cm}{13.399cm}}{\pgfqpoint{13.365cm}{13.353cm}}
+						\pgfpathcurveto{\pgfqpoint{13.326cm}{13.344cm}}{\pgfqpoint{13.277cm}{13.327cm}}{\pgfqpoint{13.244cm}{13.342cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{13.581cm}{13.695cm}}
+						\pgfpathlineto{\pgfqpoint{13.533cm}{13.721cm}}
+						\pgfpathcurveto{\pgfqpoint{13.476cm}{13.752cm}}{\pgfqpoint{13.458cm}{13.748cm}}{\pgfqpoint{13.458cm}{13.704cm}}
+						\pgfpathcurveto{\pgfqpoint{13.459cm}{13.652cm}}{\pgfqpoint{13.5cm}{13.698cm}}{\pgfqpoint{13.581cm}{13.695cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{14.116cm}{13.683cm}}
+						\pgfpathcurveto{\pgfqpoint{14.117cm}{13.703cm}}{\pgfqpoint{14.114cm}{13.728cm}}{\pgfqpoint{14.111cm}{13.745cm}}
+						\pgfpathcurveto{\pgfqpoint{14.071cm}{13.74cm}}{\pgfqpoint{14.075cm}{13.684cm}}{\pgfqpoint{14.005cm}{13.689cm}}
+						\pgfpathcurveto{\pgfqpoint{13.904cm}{13.694cm}}{\pgfqpoint{14.024cm}{13.757cm}}{\pgfqpoint{14.119cm}{13.777cm}}
+						\pgfpathcurveto{\pgfqpoint{14.121cm}{13.815cm}}{\pgfqpoint{14.123cm}{13.852cm}}{\pgfqpoint{14.125cm}{13.889cm}}
+						\pgfpathcurveto{\pgfqpoint{14.097cm}{13.908cm}}{\pgfqpoint{14.074cm}{13.923cm}}{\pgfqpoint{14.065cm}{13.952cm}}
+						\pgfpathcurveto{\pgfqpoint{13.989cm}{13.935cm}}{\pgfqpoint{13.9cm}{13.92cm}}{\pgfqpoint{13.782cm}{13.915cm}}
+						\pgfpathcurveto{\pgfqpoint{13.736cm}{13.92cm}}{\pgfqpoint{13.757cm}{13.888cm}}{\pgfqpoint{13.766cm}{13.771cm}}
+						\pgfpathcurveto{\pgfqpoint{13.766cm}{13.722cm}}{\pgfqpoint{13.767cm}{13.719cm}}{\pgfqpoint{13.79cm}{13.714cm}}
+						\pgfpathcurveto{\pgfqpoint{13.93cm}{13.678cm}}{\pgfqpoint{13.958cm}{13.67cm}}{\pgfqpoint{14.116cm}{13.683cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{14.171cm}{13.74cm}}
+						\pgfpathcurveto{\pgfqpoint{14.156cm}{13.744cm}}{\pgfqpoint{14.149cm}{13.681cm}}{\pgfqpoint{14.173cm}{13.696cm}}
+						\pgfpathcurveto{\pgfqpoint{14.193cm}{13.709cm}}{\pgfqpoint{14.186cm}{13.737cm}}{\pgfqpoint{14.171cm}{13.74cm}}
+						\pgfpathclose
+						\pgfpathmoveto{\pgfqpoint{13.512cm}{13.958cm}}
+						\pgfpathcurveto{\pgfqpoint{13.443cm}{13.964cm}}{\pgfqpoint{13.476cm}{13.935cm}}{\pgfqpoint{13.449cm}{13.831cm}}
+						\pgfpathcurveto{\pgfqpoint{13.442cm}{13.801cm}}{\pgfqpoint{13.443cm}{13.801cm}}{\pgfqpoint{13.471cm}{13.801cm}}
+						\pgfpathcurveto{\pgfqpoint{13.512cm}{13.8cm}}{\pgfqpoint{13.558cm}{13.749cm}}{\pgfqpoint{13.64cm}{13.727cm}}
+						\pgfpathcurveto{\pgfqpoint{13.656cm}{13.932cm}}{\pgfqpoint{13.655cm}{13.933cm}}{\pgfqpoint{13.512cm}{13.958cm}}
+						\pgfpathclose
+						\pgfusepath{fill}
+						\pgfpathmoveto{\pgfqpoint{12.962cm}{14.169cm}}
+						\pgfpathcurveto{\pgfqpoint{12.958cm}{14.169cm}}{\pgfqpoint{12.954cm}{14.169cm}}{\pgfqpoint{12.95cm}{14.168cm}}
+						\pgfpathcurveto{\pgfqpoint{12.929cm}{14.165cm}}{\pgfqpoint{12.885cm}{14.135cm}}{\pgfqpoint{12.91cm}{14.128cm}}
+						\pgfpathcurveto{\pgfqpoint{13.109cm}{14.217cm}}{\pgfqpoint{12.737cm}{13.529cm}}{\pgfqpoint{12.776cm}{13.73cm}}
+						\pgfpathcurveto{\pgfqpoint{12.849cm}{14.067cm}}{\pgfqpoint{12.808cm}{14.181cm}}{\pgfqpoint{12.797cm}{14.103cm}}
+						\pgfpathcurveto{\pgfqpoint{12.77cm}{14.036cm}}{\pgfqpoint{12.782cm}{13.905cm}}{\pgfqpoint{12.716cm}{13.878cm}}
+						\pgfpathcurveto{\pgfqpoint{12.721cm}{14.345cm}}{\pgfqpoint{12.68cm}{13.869cm}}{\pgfqpoint{12.651cm}{13.958cm}}
+						\pgfpathcurveto{\pgfqpoint{12.651cm}{14.009cm}}{\pgfqpoint{12.619cm}{14.051cm}}{\pgfqpoint{12.578cm}{14.093cm}}
+						\pgfpathcurveto{\pgfqpoint{12.516cm}{14.146cm}}{\pgfqpoint{12.506cm}{14.153cm}}{\pgfqpoint{12.564cm}{14.042cm}}
+						\pgfpathcurveto{\pgfqpoint{12.68cm}{13.849cm}}{\pgfqpoint{12.456cm}{13.949cm}}{\pgfqpoint{12.544cm}{13.854cm}}
+						\pgfpathcurveto{\pgfqpoint{12.728cm}{13.451cm}}{\pgfqpoint{12.291cm}{13.316cm}}{\pgfqpoint{12.179cm}{13.451cm}}
+						\pgfpathcurveto{\pgfqpoint{11.977cm}{13.451cm}}{\pgfqpoint{11.462cm}{13.347cm}}{\pgfqpoint{11.357cm}{13.489cm}}
+						\pgfpathcurveto{\pgfqpoint{11.266cm}{13.397cm}}{\pgfqpoint{11.093cm}{13.402cm}}{\pgfqpoint{11.013cm}{13.465cm}}
+						\pgfpathcurveto{\pgfqpoint{10.927cm}{13.411cm}}{\pgfqpoint{10.77cm}{13.338cm}}{\pgfqpoint{10.783cm}{13.461cm}}
+						\pgfpathcurveto{\pgfqpoint{10.688cm}{13.492cm}}{\pgfqpoint{10.66cm}{13.309cm}}{\pgfqpoint{10.538cm}{13.397cm}}
+						\pgfpathcurveto{\pgfqpoint{10.45cm}{13.349cm}}{\pgfqpoint{10.356cm}{13.646cm}}{\pgfqpoint{10.207cm}{13.504cm}}
+						\pgfpathcurveto{\pgfqpoint{10.366cm}{13.371cm}}{\pgfqpoint{9.972cm}{13.38cm}}{\pgfqpoint{9.917cm}{13.478cm}}
+						\pgfpathcurveto{\pgfqpoint{9.721cm}{13.319cm}}{\pgfqpoint{9.625cm}{13.505cm}}{\pgfqpoint{9.521cm}{13.43cm}}
+						\pgfpathcurveto{\pgfqpoint{9.401cm}{13.334cm}}{\pgfqpoint{9.373cm}{13.35cm}}{\pgfqpoint{9.18cm}{13.421cm}}
+						\pgfpathcurveto{\pgfqpoint{9.073cm}{13.46cm}}{\pgfqpoint{8.952cm}{13.313cm}}{\pgfqpoint{8.875cm}{13.469cm}}
+						\pgfpathcurveto{\pgfqpoint{8.813cm}{13.396cm}}{\pgfqpoint{8.591cm}{13.372cm}}{\pgfqpoint{8.572cm}{13.514cm}}
+						\pgfpathcurveto{\pgfqpoint{8.472cm}{13.415cm}}{\pgfqpoint{8.383cm}{13.493cm}}{\pgfqpoint{8.327cm}{13.647cm}}
+						\pgfpathcurveto{\pgfqpoint{8.316cm}{13.729cm}}{\pgfqpoint{8.384cm}{13.79cm}}{\pgfqpoint{8.418cm}{13.858cm}}
+						\pgfpathcurveto{\pgfqpoint{8.5cm}{14.022cm}}{\pgfqpoint{8.235cm}{13.713cm}}{\pgfqpoint{8.239cm}{13.634cm}}
+						\pgfpathcurveto{\pgfqpoint{8.172cm}{13.657cm}}{\pgfqpoint{8.206cm}{13.777cm}}{\pgfqpoint{8.218cm}{13.805cm}}
+						\pgfpathcurveto{\pgfqpoint{8.148cm}{13.794cm}}{\pgfqpoint{8.182cm}{13.443cm}}{\pgfqpoint{8.097cm}{13.641cm}}
+						\pgfpathcurveto{\pgfqpoint{8.05cm}{13.944cm}}{\pgfqpoint{8.045cm}{13.887cm}}{\pgfqpoint{8.051cm}{13.594cm}}
+						\pgfpathcurveto{\pgfqpoint{8.054cm}{13.458cm}}{\pgfqpoint{7.921cm}{13.76cm}}{\pgfqpoint{7.931cm}{13.781cm}}
+						\pgfpathcurveto{\pgfqpoint{7.875cm}{13.755cm}}{\pgfqpoint{8.022cm}{13.512cm}}{\pgfqpoint{7.945cm}{13.582cm}}
+						\pgfpathcurveto{\pgfqpoint{7.879cm}{13.69cm}}{\pgfqpoint{7.76cm}{13.795cm}}{\pgfqpoint{7.796cm}{13.917cm}}
+						\pgfpathcurveto{\pgfqpoint{7.826cm}{13.986cm}}{\pgfqpoint{7.871cm}{14.096cm}}{\pgfqpoint{7.782cm}{13.961cm}}
+						\pgfpathcurveto{\pgfqpoint{7.671cm}{13.768cm}}{\pgfqpoint{7.855cm}{13.693cm}}{\pgfqpoint{7.831cm}{13.561cm}}
+						\pgfpathcurveto{\pgfqpoint{7.731cm}{13.602cm}}{\pgfqpoint{7.586cm}{13.808cm}}{\pgfqpoint{7.507cm}{13.759cm}}
+						\pgfpathcurveto{\pgfqpoint{7.662cm}{13.659cm}}{\pgfqpoint{7.76cm}{13.351cm}}{\pgfqpoint{7.964cm}{13.293cm}}
+						\pgfpathcurveto{\pgfqpoint{8.105cm}{13.252cm}}{\pgfqpoint{9.458cm}{13.278cm}}{\pgfqpoint{9.844cm}{13.276cm}}
+						\pgfpathcurveto{\pgfqpoint{10.562cm}{13.272cm}}{\pgfqpoint{11.171cm}{13.278cm}}{\pgfqpoint{11.808cm}{13.292cm}}
+						\pgfpathcurveto{\pgfqpoint{12.19cm}{13.3cm}}{\pgfqpoint{12.62cm}{13.288cm}}{\pgfqpoint{12.959cm}{13.353cm}}
+						\pgfpathcurveto{\pgfqpoint{13.028cm}{13.367cm}}{\pgfqpoint{13.092cm}{13.458cm}}{\pgfqpoint{13.064cm}{13.506cm}}
+						\pgfpathcurveto{\pgfqpoint{13.043cm}{13.459cm}}{\pgfqpoint{13.008cm}{13.449cm}}{\pgfqpoint{12.968cm}{13.461cm}}
+						\pgfpathcurveto{\pgfqpoint{13.015cm}{13.566cm}}{\pgfqpoint{13.366cm}{13.645cm}}{\pgfqpoint{13.255cm}{13.736cm}}
+						\pgfpathcurveto{\pgfqpoint{13.258cm}{13.656cm}}{\pgfqpoint{13.185cm}{13.679cm}}{\pgfqpoint{13.073cm}{13.607cm}}
+						\pgfpathcurveto{\pgfqpoint{13.057cm}{13.588cm}}{\pgfqpoint{12.988cm}{13.581cm}}{\pgfqpoint{13.015cm}{13.628cm}}
+						\pgfpathcurveto{\pgfqpoint{13.08cm}{13.73cm}}{\pgfqpoint{13.314cm}{13.968cm}}{\pgfqpoint{13.329cm}{13.808cm}}
+						\pgfpathcurveto{\pgfqpoint{13.344cm}{13.849cm}}{\pgfqpoint{13.347cm}{13.888cm}}{\pgfqpoint{13.309cm}{13.911cm}}
+						\pgfpathcurveto{\pgfqpoint{13.277cm}{13.931cm}}{\pgfqpoint{13.091cm}{13.796cm}}{\pgfqpoint{13.002cm}{13.75cm}}
+						\pgfpathcurveto{\pgfqpoint{12.957cm}{13.728cm}}{\pgfqpoint{13.008cm}{13.809cm}}{\pgfqpoint{13.016cm}{13.825cm}}
+						\pgfpathcurveto{\pgfqpoint{13.078cm}{13.947cm}}{\pgfqpoint{13.38cm}{14.012cm}}{\pgfqpoint{13.235cm}{14.128cm}}
+						\pgfpathcurveto{\pgfqpoint{13.274cm}{13.996cm}}{\pgfqpoint{13.118cm}{14.082cm}}{\pgfqpoint{13.022cm}{13.931cm}}
+						\pgfpathcurveto{\pgfqpoint{12.996cm}{13.889cm}}{\pgfqpoint{12.971cm}{13.846cm}}{\pgfqpoint{12.942cm}{13.807cm}}
+						\pgfpathcurveto{\pgfqpoint{12.976cm}{13.907cm}}{\pgfqpoint{13.082cm}{14.173cm}}{\pgfqpoint{12.962cm}{14.169cm}}
+						\pgfpathclose
+						\pgfusepath{fill}
+					\end{pgfscope}
+				\end{pgfscope}
+			\end{pgfpicture}
+		\end{center}
+		The bottom line is the usual pushforward in cohomology \textup{(}use Poincaré duality on $X$, then the usual pushforward $f_*\colon H_*(X,\IZ)\morphism H_*(Y,\IZ)$ on homology, and finally use Poincaré duality on $Y$ to get back to cohomology\textup{)}.
+	\end{thm}
+	The theory of $K_0(X)$ (and its higher versions $K_i(X)$) is called \emph{topological $K$-theory} and was developed by Atiyah and Hirzebruch soon after Grothendieck had presented is result at the Arbeitstagung in Bonn. But $K_0(X)$ also has an algebraic analogue.
+	\begin{defi}\label{def:K0R}
+		Let $R$ be a ring. The \emph{$0\ordinalth$ $K$-group} $K_0(R)$ is the group completion of the monoid of finite projective $R$-modules (the monoid structure is given by taking direct sums, as usual).
+	\end{defi}
+	Since every short exact sequence of projective $R$-modules splits, we don't need to divide out the relation from \cref{def:K0X}. The group $K_0(R)$ is an interesting invariant of rings: It is the universal recipient for a \enquote{dimension function} for finite projective $R$-modules.
+	\begin{exm}
+		\begin{alphanumerate}
+			\item If $R=k$ is a field (or more generally a PID), then the usual dimension induces an isomorphism $K_0(k)\isomorphism\IZ$.\setlist{widest=viii}
+			\item In general, the map $\IZ\rightarrow K_0(R)$ induced by $n\mapsto [R^{\oplus n}]$ for $n\geq0$ is injective iff $R$ has the \emph{invariant basis number property}.
+			\item If $R=\IQ[G]$ for some finite group $G$, then $K_0(R)=\bigoplus_{V\in \operatorname{Irr}(G)}\IZ$, where the indexing set $\operatorname{Irr}(G)$ is the set of isomorphism classes of irreducible $G$-representations. Indeed, in this case $\IQ[G]=\prod_{V\in\operatorname{Irr}(G)}\Mat_{n_V}(\End(V))$ for some integers $n_V\geq 0$ holds by the Artin--Wedderburn theorem, which easily gives the above characterization.
+		\end{alphanumerate}
+	\end{exm}
+	We can go one step further and give an ad hoc definition of $K_1(R)$.
+	\begin{defi}
+		The \emph{$1\ordinalst$ $K$-group} $K_1(R)=\GL_\infty(R)^\ab$ is the abelianization of the infinite general linear group $\GL_\infty(R)=\colimit_{n\geq 0}\GL_n(R)$.
+	\end{defi}
+	Moreover, if $I\subseteq R$ is an ideal and $S\subseteq R$ is a multiplicative subset, then one can define $K$-groups $K_0(I)$ and $K_0(R,S)$ fitting into exact sequences
+	\begin{gather*}
+		K_1(R)\morphism K_1(R/I)\morphism[\partial]K_0(I)\morphism K_0(R)\morphism K_0(R/I)\\
+		K_1(R)\morphism K_1\left(R[S^{-1}]\right)\morphism[\partial]K_0(R,S)\morphism K_0(R)\morphism K_0\left(R[S^{-1}]\right)\,,
+	\end{gather*}
+	which look a bit too much like long exact cohomology sequences to be a coincidence. People actually managed to produce an ad hoc definition of $K_2(R)$ fitting into the sequences above, but that was practically the end of the story \dotso until Quillen came! He realized that $K_0(R)$ and $K_1(R)$ could be written as homotopy groups of a certain simplicial group: Let $\Proj^\fg(R)$ denote the symmetric monoidal groupoid of finite projective $R$-modules. Now consider the inclusion
+	\begin{equation*}
+		\left\{\text{Picard groupoids}\right\}\subseteq \left\{\text{symmetric monoidal groupoids}\right\}\,.
+	\end{equation*}
+	Here a symmetric monoidal groupoid $(G,\otimes)$ is a \emph{Picard groupoid} if for all $x\in G$ there exists a $y\in G$ such that $x\otimes y\simeq 1$. The above inclusion has a left adjoint $(-)^\grp$, and using this we can write
+	\begin{equation*}
+		K_i(R)=\pi_iN\big(\Proj^\fg(R)^\grp\big)\quad\text{for }i=1,2\,.
+	\end{equation*}
+	Quillen's suggestion, although he didn't have the words to say that yet, was to do the same, but in the setting of $\infty$-categories. That is, we consider
+	\begin{equation*}
+		\begin{tikzcd}
+			\left\{\text{Picard groupoids}\right\}\rar[symbol=\subseteq]\dar[symbol=\subseteq] & \left\{\text{symmetric monoidal groupoids}\right\}\dar[symbol=\subseteq]\lar[dotted,bend right, start anchor=north west, end anchor=north east,"(-)^\grp"',shorten=0.5em,yshift=-0.5ex]\\
+			\left\{\text{Picard $\infty$-groupoids}\right\} \rar[symbol=\subseteq]& \left\{\text{symmetric monoidal $\infty$-groupoids}\right\}\lar[dotted,bend left, start anchor=south west, end anchor=south east,"(-)^\inftygrp"]
+		\end{tikzcd}
+	\end{equation*}
+	(the objects on the bottom line are also known as \emph{grouplike $\IE_\infty$-spaces} and \emph{$\IE_\infty$-spaces} respectively). In this framework, we can finally define the higher $K$-groups!
+	\begin{defi}
+		The \emph{$i\ordinalth$ $K$-group} of a ring $R$ is defined as $K_i(R)=\pi_i(\Proj^\fg(R)^\inftygrp)$ (these are abelian groups). More importantly, we define $K(R)=\Proj^\fg(R)^\inftygrp$, which is an object of the $\infty$-category of anima.
+	\end{defi}
+	\begin{warn}
+		The functor
+		\begin{equation*}
+			(-)^\inftygrp\colon \left\{\text{symmetric monoidal $\infty$-groupoids}\right\}\morphism \left\{\text{Picard $\infty$-groupoids}\right\}
+		\end{equation*}
+		is bloody complicated. For example, one has $\left\{\text{Finite sets},\sqcup\right\}^\inftygrp=\Omega^\infty\IS=\colimit_{n\geq 0}\Omega^nS^n$, so even in the simplest case---finite sets and disjoint union---the homotopy groups of what comes out are terrifying: they are the stable homotopy groups of spheres.
+	\end{warn}
+	\section{Outline of the Course}
+	The course is planned to consist of three parts, but let's see how far we will actually get.
+	\numpar*{Part 1}
+	\emph{wherein we lay the required $\infty$-categorical foundations.} We will discuss symmetric monoidal structures on $\infty$-categories and anima. In particular, we will analyse $\IE_\infty$-spaces/groups and develop the theory of spectra and stable $\infty$-categories. Important examples of stable $\infty$-categories are the $\infty$-category $\cat{Sp}$ of of spectra and the derived $\infty$-category $\Dd(R)$ of $R$-modules. We will also prove that $\{\text{Picard $\infty$-groupoids}\}\simeq\{\text{connective spectra}\}$, which is a result due to Boardman--Vogt and May.
+	\numpar*{Part 2}
+	\emph{wherein we finally define $K$-theory.} Apart from that, we will do some basic computations, including Quillens computation of $K_*(\IF_q)$. There might also be some guest lectures to get an overview of the landscape.
+	\numpar*{Part 3}
+	\emph{wherein we do some \enquote{modern} $K$-theory.} In particular, we will discuss $K$-theory as a functor $K\colon \cat{Cat}_\infty^\mathrm{st}\morphism \cat{Sp}$ from the $\infty$-category of stable $\infty$-categories to the $\infty$-category of spectra, and prove the basic results of \enquote{localization, resolution, and dévissage}. For this we will follow \cite{LandTamme} as well as the series of papers \cite{9author1,9author2,9author3} that Fabian co-authored. These papers are actually concerned with \emph{Hermitian} $K$-theory, which arises if we replace $\Proj^\fg(R)$ by 
+	\begin{equation*}
+		\operatorname{Unimod}(R)=\left\{(P,q)\st \text{$P$ is finite projective, $q$ is a unimodular form on $R$}\right\}\,.
+	\end{equation*}
+	Fabian hopes to develop the Algebraic and the Hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
+	
+	\backmatter\KOMAoption{chapterprefix}{false}
+	\printbibliography
+\end{document}
