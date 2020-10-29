@@ -5,6 +5,8 @@
 \usetikzlibrary{shapes.geometric,patterns}
 \DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
 
+\newcommand{\embrace}[1]{\textup{(}#1\textup{)}}
+
 
 \subject{Lecture Notes for}
 \title{Algebraic and Hermitian $K$-Theory}
@@ -420,7 +422,189 @@
 		\operatorname{Unimod}(R)=\left\{(P,q)\st \text{$P$ is finite projective, $q$ is a unimodular form on $R$}\right\}\,.
 	\end{equation*}
 	Fabian hopes to develop the Algebraic and the Hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
+	\renewcommand{\thechapter}{\Roman{chapter}}
 	
-	\backmatter\KOMAoption{chapterprefix}{false}
-	\printbibliography
+	\chapter{Recollections and Preliminaries}
+	\lecture[Fabian gives a history lesson. A brief recollection of $\infty$-categories, nerve functors, anima, Joyal's lifting theorem, and $\Hom$ spaces in $\infty$-categories.]{2020-10-29}
+	The plan for today is to give a rapid review of Fabians lectures from the last two semesters. Naturally we won't really prove anything, but give references to Fabians notes \cite{HigherCatsI,HigherCatsII} instead.
+	\begin{defi}
+		The \emph{simplex category} $\IDelta$ is the category of finite totally ordered sets and order preserving maps. For $\Cc$ a category we put $\cat{s}\Cc=\Fun(\IDelta^\op,\Cc)$ and $\cat{c}\Cc=\Fun(\IDelta,\Cc)$ and call this the categories of \emph{simplicial} and \emph{cosimplicial objects} in $\Cc$.
+	\end{defi}
+\begin{thm}\label{thm:2Yoneda}
+	Let $A$ be a small category and let $\Cc$ be a cocomplete category. Then the Yoneda embedding $Y\colon A\morphism\Fun(A^\op,\cat{Set})$ induces an equivalence of categories
+	\begin{equation*}
+		Y^*\colon \Fun^L\big(\Fun(A^\op,\cat{Set}),\Cc\big)\isomorphism \Fun(A,\Cc)\,.
+	\end{equation*}
+	Here $\Fun^L$ denotes the full subcategory of functors who are left adjoints \embrace{and thus admit right adjoints}.
+\end{thm}
+\begin{proof*}
+	In \cite[Theorem~I.41]{HigherCatsI} we proved this statement with $\Fun^L$ replaced by $\Fun^{\colimit}$, the full subcategory of colimit-preserving functors. But every such functor automatically admits a right adjoint by \cite[Proposition~II.18]{HigherCatsI}, so $\Fun^{\colimit}\subseteq \Fun^L$. As all left adjoints preserve colimits, this inclusion is actually an equality.
+\end{proof*}
+In particular, we can apply \cref{thm:2Yoneda} to $A=\IDelta$ and obtain $\Fun^L(\cat{sSet},\Cc)\simeq \Fun(\IDelta,\Cc)$ (and of course the right-hand side is the category $\cat{c}\Cc$ of cosimplicial objects of $\Cc$). Given a functor $F\colon \IDelta\morphism \Cc$, we denote the corresponding adjoint pair by
+\begin{equation*}
+	|\blank|_F\colon \cat{sSet}\doublelrmorphism \Cc\noloc \Sing_F\,.
+\end{equation*}
+In concrete terms, $|\blank|_F$ can be described as the left Kan extension
+\begin{equation*}
+	\begin{tikzcd}
+		\IDelta \rar["F"]\dar["Y"']& \Cc\\
+		\cat{sSet}\urar[dashed,"\operatorname{Lan}_YF=|\blank|_F"'] & 
+	\end{tikzcd}
+\end{equation*}
+of $F$ along the Yoneda embedding $Y\colon \IDelta\morphism \cat{sSet}$. Moreover, as $\Sing_F$ is supposed to be right-adjoint to $|\blank|_F$, it is necessarily given by 
+\begin{equation*}
+	\Sing_F(X)_n=\Hom_{\Cc}\big(|\Delta^n|_F,X\big)=\Hom_{\Cc}\big(F([n]),X\big)\,.
+\end{equation*}
+\begin{exm}
+	The following adjunctions arise in the way explained above.
+	\begin{alphanumerate}
+		\item $\pi_0\colon \cat{sSet}\shortdoublelrmorphism \cat{Set}\noloc \const$, where as usual $\pi_0$ denotes the set of connected components.
+		\item $\pi\colon \cat{sSet}\shortdoublelrmorphism \cat{Cat}\colon \N$. Here $\pi X$ denotes the \emph{homotopy category} of a simplicial set $X$, and $\N(\Cc)$ the \emph{nerve} of a category $\Cc$.
+		\item $|\blank|\colon \cat{sSet}\shortdoublelrmorphism\cat{Top}\noloc\Sing$, the adjunction that motivates the above notation.
+		\item $X\times-\colon \cat{sSet}\shortdoublelrmorphism \cat{sSet}\noloc\F(X,-)$ for any simplicial set $X$. In particular, $\F(X,Y)$ is our notation for the simplicial set of maps between $X$ and $Y$, explicitly given by $\F(X,Y)_n=\Hom_{\cat{sSet}}(X\times\Delta^n,Y)$.
+		\item $\CC[-]\colon \cat{sSet}\shortdoublelrmorphism \cat{Cat}^{\cat{sSet}}\noloc\N^c$, taking a simplicial set $X$ to the simplicially enriched category $\CC[X]$. The right adjoint $\N^c$ is called the \emph{coherent nerve} functor.
+	\end{alphanumerate}
+	You can find the relevant definitions and proofs in \cite{HigherCatsI}.
+\end{exm}
+\begin{defi}[\enquote{Horn filling conditions}]\label{def:qcats}
+	A \emph{quasicategory} or \emph{$\infty$-category} $\Cc$ is a simplicial set such that for all $0<i<n$ and all solid diagrams
+	\begin{equation*}
+		\begin{tikzcd}
+			\Lambda_i^n\rar\dar[mono] & \Cc\\
+			\Delta^n \urar[dashed] & 
+		\end{tikzcd}
+	\end{equation*}
+	there exists a dashed arrow as indicated rendering it commutative. A simplicial set $X$ is a \emph{Kan complex} if it is an $\infty$-category and the above condition holds for $i=0,n$ as well. The full subcategories of $\cat{sSet}$ spanned by quasicategories and Kan complexes are denoted $\cat{qCat}$ and $\cat{Kan}$.
+	
+	If $\Cc$ and $\Dd$ are $\infty$-categories, a \emph{functor} $F\colon \Cc\morphism\Dd$ is a map of simplicial sets, or equivalently a $0$-simplex in the simplicial set $\F(\Cc,\Dd)$, which we usually denote $\Fun(\Cc,\Dd)$ in this case. Similarly, a \emph{natural transformation} $\eta\colon F\Rightarrow G$ between functors $F,G\colon \Cc\morphism\Dd$ is a $1$-simplex $\eta$ in $\Fun(\Cc,\Dd)$ connecting the $0$-simplices $F$ and $G$.
+\end{defi}
+The simplicial set $\Lambda_i^n$ occuring in \cref{def:qcats} is called the \emph{$i\ordinalth$ $n$-horn} and is given by removing the interior of $\Delta^n$ as well as the face opposing its $i\ordinalth$ vertex. For $n=2$, the horns can be pictured as follows:
+
+\begin{figure}[ht]
+	\begin{tabularx}{\textwidth}{X c X c X c X}
+		& \begin{tikzpicture}[line cap=round,line join=round, line width=0.8,decoration={markings,mark=at position 0.5 with {\arrow{to}}}]
+			\draw[postaction={decorate}] (210:1) node[below left] {$0$} to (90:1) node[above] {$1$};
+			\draw[postaction={decorate}] (210:1) to (-30:1) node[below right] {$2$};
+			\draw[postaction={decorate},line width=0.6,dotted] (90:1) to (-30:1);
+			\node at (0,0) {$\Lambda_0^2$};
+		\end{tikzpicture} & & 
+		\begin{tikzpicture}[line cap=round,line join=round, line width=0.8,decoration={markings,mark=at position 0.5 with {\arrow{to}}}]
+			\draw[postaction={decorate}] (210:1) node[below left] {$0$} to 	(90:1) node[above] {$1$};
+			\draw[postaction={decorate},line width=0.6,dotted] (210:1) to (-30:1) node[below right] 	{$2$};
+			\draw[postaction={decorate}] (90:1) to 	(-30:1);
+			\node at (0,0) {$\Lambda_1^2$};
+		\end{tikzpicture} & & 
+		\begin{tikzpicture}[line cap=round,line join=round, line width=0.8,decoration={markings,mark=at position 0.5 with {\arrow{to}}}]
+			\draw[postaction={decorate},line width=0.6,dotted] (210:1) node[below left] {$0$} to 	(90:1) node[above] {$1$};
+			\draw[postaction={decorate}] (210:1) to (-30:1) node[below right] 	{$2$};
+			\draw[postaction={decorate}] (90:1) to 	(-30:1);
+			\node at (0,0) {$\Lambda_2^2$};
+		\end{tikzpicture} & 
+	\end{tabularx}
+\end{figure}
+The connection between $\infty$-categories as defined in \cref{def:qcats} and ordinary categories (\enquote{$1$-categories}) is given by the following theorem.
+\begin{thm}[\enquote{Unique horn filling}]
+	The nerve functor $N\colon \cat{Cat}\morphism\cat{sSet}$ is fully faithful with essential image given by those simplicial sets $X$ such that the dashed arrow in \cref{def:qcats} exists uniquely. In fact, for a simplicial set $X$ the following are equivalent:
+	\begin{alphanumerate}
+		\item $X\cong \N(\Cc)$ for some category $\Cc$.
+		\item For all $0<i<n$, the restriction $\F(\Delta^n,X)\isomorphism \F(\Lambda_i^n,X)$ is an isomorphism.
+		\item For all $n$, the restriction $\F(\Delta^n,X)\morphism\F(I^n,X)$ is an isomorphism. Here $I^n$ denotes the spine of $\Delta^n$, i.e., the union of all edges connecting consecutive vertices.
+	\end{alphanumerate}
+	Moreover, an ordinary category $\Cc$ is a groupoid iff $\N(\Cc)$ is a Kan complex.
+\end{thm}
+\begin{proof*}
+	In \cite[Theorem~II.25]{HigherCatsI} we proved the equivalence of \itememph{a}, \itememph{b}, and \itememph{c}, but with $\Hom_{\cat{sSet}}(-,X)$ instead of $\F(-,X)$. However, the weaker version already implies the stronger one: We have 
+	\begin{equation*}
+		\F(-,X)_n=\Hom_{\cat{sSet}}(-\times \Delta^n,X)=\Hom_{\cat{sSet}}\big(-,\F(\Delta^n,X)\big)\,,
+	\end{equation*}
+	and if $X\cong \N(\Cc)$ is the nerve of a category, then
+	\begin{equation*}
+		\F(\Delta^n,X)=\F\big(\N([n]),\N(\Cc)\big)=\N\Fun([n],\Cc)\,,
+	\end{equation*}
+	so we are mapping into the nerve of a category again. The right equality follows from a straightforward calculation, using that $\N\colon \cat{Cat}\morphism\cat{sSet}$ is fully faithful. The additional assertion about groupoids and Kan complexes is addressed in \cref{thm:JoyalLifting}
+	\end{proof*}
+\begin{exm}
+	\begin{alphanumerate}
+		\item For all topological spaces $X\in\cat{Top}$, the simplicial set $\Sing X$ is a Kan complex, which is pretty easy to check.
+		\item Any simplicial group is a Kan complex. That's not entirely obvious, but not hard. See \cite[\stackstag{08NZ}]{stacks-project} for example.
+		\item If $\Cc$ and $\Dd$ are $1$-categories, then $\N(\Fun(\Cc,\Dd))\cong \Fun(\N(\Cc),\N(\Dd))$.
+	\end{alphanumerate}
+\end{exm}
+\begin{thm}[Kan/Joyal]\label{thm:KanJoyal}
+	Let $\Cc$ be a simplicial set.
+	\begin{alphanumerate}
+		\item If $\Cc$ is a Kan complex or  a $\infty$-category, then the same holds for $\F(X,\Cc)$ for all simplicial sets $X$.
+		\item $\Cc$ is a $\infty$-category iff $\F(\Delta^n,\Cc)\morphism\F(\Lambda_i^n,\Cc)$ is a trivial fibration for all $0<i<n$, which is again equivalent to $\F(\Delta^n,\Cc)\morphism \F(I^n,\Cc)$ being a trivial fibration for all $n$.
+		\item $\Cc$ is a Kan complex iff the conditions from \itememph{b} hold and in addition $\F(\Delta^n,\Cc)\morphism\F(\Lambda_i^n,\Cc)$ are trivial fibrations for $i=0,n$.
+	\end{alphanumerate}
+	Actually, in \itememph{b} and \itememph{c} it suffices to have the respective conditions only for $n=2$.
+\end{thm}
+\begin{proof*}
+	The \enquote{if} parts of \itememph{b} and \itememph{c} follow from the fact that trivial fibrations are surjective. For the rest of \itememph{a}, \itememph{b}, and \itememph{c}, see \cite[Corollary~V.2.23 and Corollary~VI.2.4]{HigherCatsI}. The fact that $\Cc$ is already a $\infty$-category if only $\F(\Delta^2,\Cc)\morphism \F(\Lambda_1^2,\Cc)$ is a trivial fibration was proved in \cite[Corollary~VI.2.5]{HigherCatsI}. This easily implies the corresponding assertion for Kan complexes: If $\F(\Delta^2,\Cc)\morphism\F(\Lambda_i^2,\Cc)$ is surjective for $i=0,2$, then every morphism in $\Cc$ has a left- and right-inverse, hence $\Cc$ is a Kan complex by \cref{thm:JoyalLifting}.
+\end{proof*}
+\numpar{\Attention\ Warning}In view of \cref{thm:KanJoyal}\itememph{b} it seems tempting to define $\infty$-categories as simplicial sets that have lifting against $I^n\subseteq \Delta^n$. But that's \emph{wrong}! The class of simplicial sets obtained in that way, called \emph{composers}, is larger than the class of $\infty$-categories. If you want to replace $\Lambda_i^n$ by $I^n$, you really need the stronger condition that $\F(\Delta^n,\Cc)\morphism\F(I^n,\Cc)$ is a trivial fibration rather than just surjective on $0$-simplices.
+\begin{defi}
+	Let $\Cc$ be a $\infty$-category. For $0$-simplices $a,b\in \Cc_0$, define their \emph{hom space/mapping anima/any combination of these} as the pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_\Cc(a,b)\rar\dar\drar[pullback] & \Fun(\Delta^1,\Cc)\dar["{(s,t)}"]\\
+			\Delta^0\rar["{(a,b)}"] & \Cc\times\Cc
+		\end{tikzcd}
+	\end{equation*}
+	Here $s,t\colon \Fun(\Delta^1,\Cc)$ send a $1$-simplex in $\Cc$ to its source and target respectively. The $\infty$-category $\Fun(\Delta^1,\Cc)$ is also called the \emph{arrow category} of $\Cc$ and denoted $\Ar(\Cc)$.
+\end{defi}
+\begin{exm}
+	\begin{alphanumerate}
+		\item For any $1$-category $\Dd$ one has $\Hom_{\N(\Dd)}(a,b)\cong \const\Hom_\Dd(a,b)$. In other words, $\Hom_{\N(\Dd)}(a,b)$ is a discrete simplicial sets and it corresponds to the $\Hom$ set in the original category.
+		\item If $\Cc$ is a $\infty$-category, then the unit adjunction $\Cc\morphism\N(\pi\Cc)$ of the $(\pi,\N)$ adjunction induces isomorphisms
+		\begin{equation*}
+			\Hom_{\N(\pi\Cc)}(a,b)\cong \const\Hom_{\pi\Cc}(a,b)\cong \const\pi_0\Hom_\Cc(a,b)\,.
+		\end{equation*}
+		In other words, $\pi\Cc$ is the $1$-category having $\Cc_0$ as objects and homotopy classes of $\Cc_1$ as morphisms.
+	\end{alphanumerate}
+\end{exm}
+\begin{defi}
+	A $\infty$-category $\Cc$ is called an \emph{$\infty$-groupoid}---or, in Scholze's fancy new terminology, an \emph{anima}---if $\pi\Cc$ is a groupoid.
+\end{defi}
+\begin{exm}
+	\begin{alphanumerate}
+		\item For a $1$-category $\Dd$ let $\core\Dd$ denote the (usually non-full) subcategory spanned by the isomorphisms in $\Dd$; in particular, $\core\Dd$ is a groupoid. If $\Cc$ is a $\infty$-category, we define $\core\Cc$ by the pullback
+		\begin{equation*}
+			\begin{tikzcd}
+				\core\Cc\rar\dar\drar[pullback] & \Cc\dar\\
+				\N(\core\pi\Cc)\rar& \N(\pi\Cc)
+			\end{tikzcd}
+		\end{equation*}
+		Then $\core\Cc$ is an anima. In fact, one can check that it is the largest anima contained in the $\infty$-category $\Cc$.
+		\item If $\Cc$ is an $\infty$-category, then $\Hom_\Cc(a,b)$ is an anima for all $a,b\in \Cc$ (that's not entirely obvious though).
+	\end{alphanumerate}
+\end{exm}
+It's pretty easy to check that every Kan complex is an anima. Surprisingly, and that was one of the first hard theorems in $\infty$-category theory, the converse holds as well!
+\begin{thm}[Joyal]\label{thm:JoyalLifting}
+	Every $\infty$-groupoid is in fact a Kan complex.
+\end{thm}
+\begin{proof*}
+	This follows from Joyal's lifting theorem, see \cite[Theorem~VI.3.20]{HigherCatsI}.
+\end{proof*}
+By now, we haven't been able to produce any examples of $\infty$-categories yet, safe for nerves of $1$-categories (these guys don't count). The first real source of interesting examples is given by coherent nerves of Kan enriched categories.
+\begin{thm}[Cordier--Porter]
+	If $\Cc\in\cat{Cat}^\cat{Kan}$ is a category enriched in Kan complexes, then its coherent nerve $\N^c(\Cc)$ is a $\infty$-category. Moreover, for all $a,b\in \Cc$ we have canonical homotopy equivalences
+	\begin{equation*}
+		\Hom_{\N^c(\Cc)}(a,b)\simeq \F_\Cc(a,b)\,.
+	\end{equation*}
+	Here $\F_\Cc$ denotes Kan complex of morphisms in the enriched category $\Cc$.
+\end{thm}
+\begin{proof*}
+	See \cite[Theorem~VII.19]{HigherCatsI} (but be warned that stuff gets \emph{technical}).
+\end{proof*}
+\begin{exm}
+	\enquote{My first $\infty$-categories}:
+	\begin{alphanumerate}
+		\item The full subcategory $\cat{Kan}\subseteq \cat{sSet}$ is enriched over itself via $\F_{\cat{Kan}}(X,Y)=\F(X,Y)$. Its coherent nerve $\N^c(\cat{Kan})=\cat{An}$ is called the \emph{$\infty$-category of anima}.
+		\item The full subcategory $\cat{qCat}\subseteq \cat{sSet}$ is enriched over $\cat{Kan}$ via $\F_{\cat{qCat}}(\Cc,\Dd)=\core\F(\Cc,\Dd)$. Its coherent nerve $\N^c(\cat{qCat})=\cat{Cat}_\infty$ is the \emph{$\infty$-category of $\infty$-categories}.
+	\end{alphanumerate}
+\end{exm}
+
+\backmatter\KOMAoption{chapterprefix}{false}
+\printbibliography
 \end{document}

@@ -229,6 +229,15 @@
 \newcommand{\dR}{\mathrm{dR}}
 \newcommand{\cycl}{\mathrm{cycl}}
 \newcommand{\tr}{\operatorname{tr}}
+\newcommand{\N}{\operatorname{N}}
+\newcommand{\F}{\operatorname{F}}
+\newcommand{\IDelta}{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}%{\boldsymbol{\Delta}}
+\newoperator{core}
+\newoperator{const}
+\newoperator{Sing}
+\newoperator{Ex}
+\newoperator{Ar}
+\newoperator{TwAr}
 \newcommand{\cat}[1]{\mathrm{#1}%\StrLen{#1}[\temp]%\temp
 	%\ifnum\temp=1%
 	%\boldsymbol{#1}%\mathsfit{#1}
@@ -325,6 +334,23 @@
 	\vphantom{x}\rar[shift left=0.45ex, "#1"]\& \lar[shift left=0.45ex, "#2"{swap}] \vphantom{x}%
 	\end{tikzcd}%
 }
+
+\newlength{\shortmorphismlength}
+\settowidth{\shortmorphismlength}{$\rightarrow$}
+
+\newcommand{\shortdoublemorphism}{%
+	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\shortmorphismlength-0.04em}]%
+		\vphantom{x}\rar[shift left=0.45ex]\rar[shift right=0.45ex] \& \vphantom{x}%
+	\end{tikzcd}%
+}
+
+%somewhat ugly
+\newcommand{\shortdoublelrmorphism}{%
+	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\shortmorphismlength-0.04em}]%
+		\vphantom{x}\rar[shift left=0.45ex]\& \lar[shift left=0.45ex] \vphantom{x}%
+	\end{tikzcd}%
+}
+
 
 %ugly
 %\newcommand{\doublelrmorphism}{\mathrel{\substack{\textstyle\longrightarrow\\[-0.67ex]\textstyle\longleftarrow}}}
