@@ -30,7 +30,8 @@
 
 %%%% diagrams %%%%
 \usepackage{tikz-cd}
-\usetikzlibrary{arrows,calc,decorations.markings}
+\usetikzlibrary{arrows,calc,decorations.markings,shapes.geometric,patterns}
+\DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
 
 %%%% bibliography %%%%
 \usepackage[backend=biber,style=alphabetic]{biblatex}
@@ -183,8 +184,8 @@ listname={List of Lectures}%
 \newtheorem{nota}[dummy]{Notation}
 \newtheorem{nota*}[smallerdummy]{Notation*}
 \newtheorem{exc}[dummy]{Exercise}
-\newtheorem{warn}[dummy]{Warning}
-\newtheorem{warn*}[smallerdummy]{Warning*}
+\newtheorem{warn}[dummy]{Warning \smash{\Attention}}
+\newtheorem{warn*}[smallerdummy]{Warning* \smash{\Attention}}
 \newtheorem{con}[dummy]{Construction}
 \newtheorem{qst}[dummy]{Question}
 

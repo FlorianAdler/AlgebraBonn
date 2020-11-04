@@ -2,8 +2,6 @@
 \usepackage{StyleK}
 \usepackage{ShortcutsK}
 
-\usetikzlibrary{shapes.geometric,patterns}
-\DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
 
 \newcommand{\embrace}[1]{\textup{(}#1\textup{)}}
 
@@ -25,8 +23,9 @@
 	\maketitle
 	\noindent This text consists of unofficial notes on the lecture \emph{Advanced Topics in Algebra -- Algebraic and Hermitian $K$-Theory}, taught at the University of
 	Bonn by Fabian Hebestreit in the winter term (Wintersemester) 2020/21.
-	%Some changes and some additions have been made by the author. To distinguish them from the lecture's actual contents, they are labelled with an asterisk. So any \emph{Lemma}* or \emph{Remark}* or \emph{Proof}* that the reader might encounter are wholly the author's responsibility.
-	\\[\thmsep]Please report errors, typos etc.\ through the \emph{Issues} feature of GitHub.
+	
+	Some additions have been made by the author. To distinguish them from the lecture's actual contents, they are labelled with an asterisk. So any \emph{Proof}* or \emph{Lemma}* etc.\ that the reader might encounter are wholly the author's responsibility.
+	\\[\thmsep]Please report errors, typos etc.\ through the \href{https://github.com/FlorianAdler/AlgebraBonn/issues/new}{\emph{Issues}} feature of GitHub, or just tell me before or after the lecture.
 	
 	
 	\tableofcontents
@@ -38,12 +37,17 @@
 	\renewcommand{\thechapter}{\arabic{chapter}}
 	\chapter{Introduction}
 	\section{Organizational Stuff}
-	\lecture[From Riemann--Roch to Quillen's definition of $K$-theory. Outline of the course.]{2020-10-27}
 	Under no circumstances you should call Fabian by his last name! Also there will be oral exams, probably in the first or second week after the end of the lectures. More on that when it comes to that.
 	\numpar*{Disclaimer}
-	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. So why should I bother typing my own notes? This is because of two main reasons. First, while I find Fabian's notes to be an excellent resource (and I really enjoy their elegant purple colour scheme), they do have some unavoidable drawbacks when compared to \TeX ed notes: There are no clickable links, the documents are not searchable, and their file size tends to be considerable (I learned that the hard way when I tried to open Fabian's Straightening/Unstraightening notes on my phone).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
+	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. These are an excellent resource and please the eye with their purple colour scheme. So why should I bother typing my own notes? This is because of two main reasons. First, I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
+	
+	I might also take the opportunity to try and work out some skipped details or omitted proofs myself (given the Fabian's ambitious goals for this lecture, there can be no doubt that some cuts will have to be made). \emph{My own additions are marked with an asterisk!} So whenever you encounter a \emph{Proof}* which is not just digging up some references (right now that's all there is), or a \emph{Lemma}*, be extra careful for mistakes. If you happen to spot some, do not hesitate to tell me via \href{https://github.com/FlorianAdler/AlgebraBonn/issues/new}{GitHub} or in person.
+	
+	
 	
 	\section{A Fairytale}
+
+	\lecture[From Riemann--Roch to Quillen's definition of $K$-theory. Outline of the course.]{2020-10-27}
 	We start with an overview of the mathematical developments that eventually led to the invention of $K$-theory. Don't worry if you're not familiar with the stuff on the next few pages, it is neither a prerequisite for the lecture, nor will it play any prominent role in it.
 	
 	Let's begin in the 1850's: Consider a compact Riemann surface $\Sigma$ and let $D\in\IZ[\Sigma]$ be a divisor on $\Sigma$. That is, $D=\sum D_s\{s\}$ is a formal sum of points $s\in\Sigma$ with coefficients $D_s\in\IZ$, all but finitely many of which are zero. For example, if $f\colon \Sigma\morphism \IC$ is a meromorphic function, one could consider the \emph{principal divisor} $D(f)$ given by
@@ -110,7 +114,7 @@
 		\end{alphanumerate}
 	\end{defi}
 	\begin{thm}[Grothendieck--Riemann--Roch]
-		Let $f\colon X\morphism Y$ be a proper morphism of complex manifolds. It induces a morphism $f_!=\sum(-1)^iR^if_*\colon K^0(X)\morphism K^0(Y)$ on $K$-groups which fits into the following hellish commutative diagram:
+		Let $f\colon X\morphism Y$ be a proper morphism of complex manifolds. It induces a morphism $f_!=\sum(-1)^iR^if_*\colon K^0(X)\morphism K^0(Y)$ on $K$-groups which fits into the following \href{https://en.wikipedia.org/wiki/Grothendieck-Riemann-Roch_theorem#/media/File:Grothendieck-Riemann-Roch.jpg}{hellish commutative diagram}:
 		\begin{equation*}
 			\begin{tikzcd}
 				K^0(X)\rar["f_!"]\dar["\operatorname{Td}(X)\operatorname{ch}(-)"'] & K^0(Y)\dar["\operatorname{ch}(-)\operatorname{Td}(Y)"]\\
@@ -424,7 +428,7 @@
 	Fabian hopes to develop the Algebraic and the Hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
 	\renewcommand{\thechapter}{\Roman{chapter}}
 	
-	\chapter{Recollections and Preliminaries}
+	\chapter{Recollections and Preliminaries}\label{chap:preliminaries}
 	\lecture[Fabian gives a history lesson. A brief recollection of $\infty$-categories, nerve functors, anima, Joyal's lifting theorem, and $\Hom$ spaces in $\infty$-categories.]{2020-10-29}
 	The plan for today is to give a rapid review of Fabians lectures from the last two semesters. Naturally we won't really prove anything, but give references to Fabians notes \cite{HigherCatsI,HigherCatsII} instead.
 	\begin{defi}
@@ -464,7 +468,6 @@ of $F$ along the Yoneda embedding $Y\colon \IDelta\morphism \cat{sSet}$. Moreove
 		\item $X\times-\colon \cat{sSet}\shortdoublelrmorphism \cat{sSet}\noloc\F(X,-)$ for any simplicial set $X$. In particular, $\F(X,Y)$ is our notation for the simplicial set of maps between $X$ and $Y$, explicitly given by $\F(X,Y)_n=\Hom_{\cat{sSet}}(X\times\Delta^n,Y)$.
 		\item $\CC[-]\colon \cat{sSet}\shortdoublelrmorphism \cat{Cat}^{\cat{sSet}}\noloc\N^c$, taking a simplicial set $X$ to the simplicially enriched category $\CC[X]$. The right adjoint $\N^c$ is called the \emph{coherent nerve} functor.
 	\end{alphanumerate}
-	You can find the relevant definitions and proofs in \cite{HigherCatsI}.
 \end{exm}
 \begin{defi}[\enquote{Horn filling conditions}]\label{def:qcats}
 	A \emph{quasicategory} or \emph{$\infty$-category} $\Cc$ is a simplicial set such that for all $0<i<n$ and all solid diagrams
@@ -478,7 +481,7 @@ of $F$ along the Yoneda embedding $Y\colon \IDelta\morphism \cat{sSet}$. Moreove
 	
 	If $\Cc$ and $\Dd$ are $\infty$-categories, a \emph{functor} $F\colon \Cc\morphism\Dd$ is a map of simplicial sets, or equivalently a $0$-simplex in the simplicial set $\F(\Cc,\Dd)$, which we usually denote $\Fun(\Cc,\Dd)$ in this case. Similarly, a \emph{natural transformation} $\eta\colon F\Rightarrow G$ between functors $F,G\colon \Cc\morphism\Dd$ is a $1$-simplex $\eta$ in $\Fun(\Cc,\Dd)$ connecting the $0$-simplices $F$ and $G$.
 \end{defi}
-The simplicial set $\Lambda_i^n$ occuring in \cref{def:qcats} is called the \emph{$i\ordinalth$ $n$-horn} and is given by removing the interior of $\Delta^n$ as well as the face opposing its $i\ordinalth$ vertex. For $n=2$, the horns can be pictured as follows:
+The simplicial set $\Lambda_i^n$ in \cref{def:qcats} is called the \emph{$i\ordinalth$ $n$-horn} and is given by removing the interior of $\Delta^n$ as well as the face opposing its $i\ordinalth$ vertex. The $2$-horns look as follows:
 
 \begin{figure}[ht]
 	\begin{tabularx}{\textwidth}{X c X c X c X}
@@ -523,7 +526,7 @@ The connection between $\infty$-categories as defined in \cref{def:qcats} and or
 	\end{equation*}
 	so we are mapping into the nerve of a category again. The right equality follows from a straightforward calculation, using that $\N\colon \cat{Cat}\morphism\cat{sSet}$ is fully faithful. The additional assertion about groupoids and Kan complexes is addressed in \cref{thm:JoyalLifting}
 	\end{proof*}
-\begin{exm}
+\begin{exm}\label{exm:MyFirstKanComplexes}\enquote{My first Kan complexes}:
 	\begin{alphanumerate}
 		\item For all topological spaces $X\in\cat{Top}$, the simplicial set $\Sing X$ is a Kan complex, which is pretty easy to check.
 		\item Any simplicial group is a Kan complex. That's not entirely obvious, but not hard. See \cite[\stackstag{08NZ}]{stacks-project} for example.
@@ -542,8 +545,9 @@ The connection between $\infty$-categories as defined in \cref{def:qcats} and or
 \begin{proof*}
 	The \enquote{if} parts of \itememph{b} and \itememph{c} follow from the fact that trivial fibrations are surjective. For the rest of \itememph{a}, \itememph{b}, and \itememph{c}, see \cite[Corollary~V.2.23 and Corollary~VI.2.4]{HigherCatsI}. The fact that $\Cc$ is already a $\infty$-category if only $\F(\Delta^2,\Cc)\morphism \F(\Lambda_1^2,\Cc)$ is a trivial fibration was proved in \cite[Corollary~VI.2.5]{HigherCatsI}. This easily implies the corresponding assertion for Kan complexes: If $\F(\Delta^2,\Cc)\morphism\F(\Lambda_i^2,\Cc)$ is surjective for $i=0,2$, then every morphism in $\Cc$ has a left- and right-inverse, hence $\Cc$ is a Kan complex by \cref{thm:JoyalLifting}.
 \end{proof*}
-\numpar{\Attention\ Warning}In view of \cref{thm:KanJoyal}\itememph{b} it seems tempting to define $\infty$-categories as simplicial sets that have lifting against $I^n\subseteq \Delta^n$. But that's \emph{wrong}! The class of simplicial sets obtained in that way, called \emph{composers}, is larger than the class of $\infty$-categories. If you want to replace $\Lambda_i^n$ by $I^n$, you really need the stronger condition that $\F(\Delta^n,\Cc)\morphism\F(I^n,\Cc)$ is a trivial fibration rather than just surjective on $0$-simplices.
-\begin{defi}
+\begin{warn}In view of \cref{thm:KanJoyal}\itememph{b} it seems tempting to define $\infty$-categories as simplicial sets that have lifting against $I^n\subseteq \Delta^n$. But that's \emph{wrong}! The class of simplicial sets obtained in that way, called \emph{composers}, is larger than the class of $\infty$-categories. If you want to replace $\Lambda_i^n$ by $I^n$, you really need the stronger condition that $\F(\Delta^n,\Cc)\morphism\F(I^n,\Cc)$ is a trivial fibration rather than just surjective on $0$-simplices.
+\end{warn}
+\begin{defi}\label{def:Hom}
 	Let $\Cc$ be a $\infty$-category. For $0$-simplices $a,b\in \Cc_0$, define their \emph{hom space/mapping anima/any combination of these} as the pullback
 	\begin{equation*}
 		\begin{tikzcd}
@@ -587,7 +591,7 @@ It's pretty easy to check that every Kan complex is an anima. Surprisingly, and 
 	This follows from Joyal's lifting theorem, see \cite[Theorem~VI.3.20]{HigherCatsI}.
 \end{proof*}
 By now, we haven't been able to produce any examples of $\infty$-categories yet, safe for nerves of $1$-categories (these guys don't count). The first real source of interesting examples is given by coherent nerves of Kan enriched categories.
-\begin{thm}[Cordier--Porter]
+\begin{thm}[Cordier--Porter]\label{thm:CordierPorter}
 	If $\Cc\in\cat{Cat}^\cat{Kan}$ is a category enriched in Kan complexes, then its coherent nerve $\N^c(\Cc)$ is a $\infty$-category. Moreover, for all $a,b\in \Cc$ we have canonical homotopy equivalences
 	\begin{equation*}
 		\Hom_{\N^c(\Cc)}(a,b)\simeq \F_\Cc(a,b)\,.
@@ -597,13 +601,231 @@ By now, we haven't been able to produce any examples of $\infty$-categories yet,
 \begin{proof*}
 	See \cite[Theorem~VII.19]{HigherCatsI} (but be warned that stuff gets \emph{technical}).
 \end{proof*}
-\begin{exm}
+\begin{exm}\label{exm:MyFirstInftyCats}
 	\enquote{My first $\infty$-categories}:
 	\begin{alphanumerate}
 		\item The full subcategory $\cat{Kan}\subseteq \cat{sSet}$ is enriched over itself via $\F_{\cat{Kan}}(X,Y)=\F(X,Y)$. Its coherent nerve $\N^c(\cat{Kan})=\cat{An}$ is called the \emph{$\infty$-category of anima}.
-		\item The full subcategory $\cat{qCat}\subseteq \cat{sSet}$ is enriched over $\cat{Kan}$ via $\F_{\cat{qCat}}(\Cc,\Dd)=\core\F(\Cc,\Dd)$. Its coherent nerve $\N^c(\cat{qCat})=\cat{Cat}_\infty$ is the \emph{$\infty$-category of $\infty$-categories}.
+		\item The full subcategory $\cat{qCat}\subseteq \cat{sSet}$ is enriched over $\cat{Kan}$ via $\F_{\cat{qCat}}(\Cc,\Dd)=\core\F(\Cc,\Dd)$. Its coherent nerve $\N^c(\cat{qCat})=\cat{Cat}_\infty$ is the \emph{$\infty$-category of $\infty$-categories}. Note that Fabian will usually write $\cat{Cat}$ instead of $\cat{Cat}_\infty$ to not drag the index $_\infty$ around all the time.
+		\item \lecture[Toast]{2020-11-03}\hspace{-1ex}The category $\cat{Cat}_1$ of all small $1$-categories is canonically enriched in groupoids via $\F_{\cat{Cat}_1}(\Cc,\Dd)=\core\Fun(\Cc,\Dd)$. This enrichment can be upgraded to a Kan enrichment: Namely, taking the nerves of all hom groupoids (which produces Kan complexes by \cref{thm:JoyalLifting}) induces a functor $\N_*\colon \cat{Cat}^{\cat{Grpd}}\morphism\cat{Cat}^{\cat{Kan}}$. We thus obtain an $\infty$-category $\cat{Cat}_1^{(2)}=\N^c(\N_*\cat{Cat}_1)$, called the \emph{$2$-category of $1$-categories}.\footnote{Here \enquote{$2$-category} means that $\pi_i\Hom_{\cat{Cat}_1}(\Cc,\Dd)=0$ for $i\geq 2$. To prove this, use \cref{thm:CordierPorter} and check that nerves of groupoids have vanishing higher homotopy groups.} Similarly one can define a $2$-category $\cat{Grpd}_1^{(2)}$. We end up with a chain of inclusions
+		\begin{equation*}
+			\begin{tikzcd}[row sep=small, column sep=tiny]
+				& & \cat{An}\drar[symbol=\subseteq] & \\
+				\N(\cat{Set})\rar[symbol=\subseteq] & \cat{Grpd}_1^{(2)} \urar[symbol=\subseteq]\drar[symbol=\subseteq] & & \cat{Cat}_\infty\\
+				& & \cat{Cat}_1^{(2)}\urar[symbol=\subseteq]
+			\end{tikzcd}
+		\end{equation*}
+		All of these induce homotopy equivalences on mapping anima. In other words, they are \emph{fully faithful}.
+		\item The category $\cat{Top}$ is Kan enriched via $\F_{\cat{Top}}(X,Y)_n=\Hom_{\cat{Top}}(X\times|\Delta^n|,Y)$, which provides the \emph{$\infty$-category of topological spaces} after taking coherent nerves. However, be warned that $\N^c(\cat{Top})\not\simeq\cat{An}$!!
+		\item Let $R$ be a ring and $\Ch(R)$ the category of chain complexes over $R$. It is enriched over simplicial $R$-modules, and thus Kan-enriched by \cref{exm:MyFirstKanComplexes}, via
+		\begin{equation*}
+			\F_{\Ch(R)}(C,D)_n=\Hom_{\Ch(R)}\big(C\otimes_\IZ C_\bullet^\simp(\Delta^n),D\big)\,.
+		\end{equation*}
+		Here we should recall that if $X$ is a simplicial set, then $C_\bullet^\simp(X)$ is the chain complex given by in degree $m$ by $\IZ[X_m]=\IZ[\{\text{$m$-simplices of $X$}\}]$ and whose differentials are given by $\partial=\sum_{i=0}^m(-1)^id_i\colon \IZ[X_m]\morphism\IZ[X_{m-1}]$, where $d_i\colon \IZ[X_m]\morphism\IZ[X_{m-1}]$ is induced by the corresponding face map (you probably know $C_\bullet^\simp(X)$ as the complex that computes the simplicial homology groups $H_i^\simp(X)$).
+	
+		We let $\Kk(R)=\N^c(\Ch(R))$ be the $\infty$-category of chain complexes (this \enquote{$\Kk$} has nothing to do with \enquote{$K$-theory}) and let $\Kk_{\geq 0}(R),\Kk_{\leq 0}(R)\subseteq \Kk(R)$ the full sub-$\infty$-categories spanned by chain complexes concentrated in nonnegative/nonpositive degrees. Inside $\Kk_{\geq 0}(R)$, there is the full sub-$\infty$-category $\Dd_{\geq 0}(R)\subseteq \Kk_{\geq 0}(R)$ spanned by the degreewise projective chain complexes in concentrated nonnegative degrees. This is called the \emph{bounded below derived category} of $R$. Similarly, there is the \emph{bounded above derived category} $\Dd_{\leq 0}(R)\subseteq\Kk_{\leq 0}(R)$ spanned by degreewise injective chain complexes concentrated in nonpositive degrees.
+		
+		Finally, there is $\Dd^\perf(R)\subseteq \Kk(R)$ which is the full sub-$\infty$-category spanned by bounded complexes of degreewise finite projective modules. We will see that $K(R)=\Proj^\fg(R)^\inftygrp\simeq K(\Dd^\perf(R))$ eventually.
 	\end{alphanumerate}
 \end{exm}
+\begin{exc}
+	For complexes $C,D\in\Ch(R)$ let $\Hhom_R(C,D)$ denote the internal $\Hom$ in $\Ch(R)$, so that $\Hhom_R(C,-)$ is right-adjoint to $C\otimes_R -$ (see the \href{https://ncatlab.org/nlab/show/internal+hom+of+chain+complexes}{$n$Lab article}  for an explicit construction). Show that the Kan enrichment in \cref{exm:MyFirstInftyCats}\itememph{e} satisfies
+	\begin{equation*}
+		\pi_i\F_{\Ch(R)}(C,D)\cong H_i\big(\Hhom(C,D)\big)\quad\text{for all }i\geq 0\,.
+	\end{equation*}
+	In particular, $\pi_0\F_{\Ch(R)}(C,D)$ is the set of chain homotopy classes of maps $C\to D$. 
+\end{exc}
+\begin{thm}[Dold--Kan]\label{thm:DoldKan}
+	By a variant of \cref{thm:2Yoneda}, the cosimplicial object $C_\bullet$ in $\Ch_{\geq 0}(\IZ)$ given by $[n]\mapsto C_\bullet^\simp(\Delta^n)$ gives rise to mutually inverse equivalences of \embrace{ordinary!} categories
+	\begin{equation*}
+		|\blank|_{C_\bullet}\colon \cat{sAb}\doublelrmorphism[\sim][\sim] \Ch_{\geq 0}(\IZ)\noloc \Sing_{C_\bullet}\,.
+	\end{equation*}
+	These equivalences translates homotopy groups into chain homology groups. Moreover, we have $\F_{\Ch(\IZ)}(C,D)=\Sing_{C_\bullet}(\Hhom_\IZ(C,D))$ for all $C,D\in\Ch_{\geq 0}(\IZ)$.
+\end{thm}
+
+\numpar{Philosophical Nonsense~I}
+We obtain a chain of adjunctions
+\begin{equation*}
+	\begin{tikzcd}[column sep=large]
+		\cat{Top}\rar[shift right=0.45ex,"\Sing"'] & \cat{sSet}\lar[shift right=0.45ex,"|\blank|"']\rar[shift left=0.45ex,"\mathrm{forget}"] & \cat{sAb}\lar[shift left=0.45ex,"\IZ{[-]}"]\rar[shift left=0.45ex,"|\blank|_{C_\bullet}"] & \Ch_{\geq 0}(R)\lar[shift left=0.45ex,"\Sing_{C_\bullet}"]
+	\end{tikzcd}
+\end{equation*}
+(all bottom arrows are right-adjoints, that's why the direction of the arrows on the left is swapped). Going from $\cat{Top}$ to $\Ch_{\geq 0}(\IZ)$ sends a topological space $X$ to its singular chain complex $C_\bullet^\sing(X)$. Going in the reverse direction sends a chain complex $C$ to the corresponding generalized Eilenberg--MacLane space. In particular, if $C=A[n]$ is given by an single abelian group $A$ sitting in degree $n$, then it is sent to $K(A,n)$.
+
+\numpar{Philosophical Nonsense~II}
+To describe what an unbounded chain complex is, it suffices to understand bounded below chain complexes. Namely, a chain complex $C\in\Ch(R)$ can be described by the sequence of truncations $\tau_{\geq i}C\in\Ch_{\geq i}(R)$. These are given by
+\begin{equation*}
+	\tau_{\geq i}C=\left(\dotso \xrightarrow{\partial_{i+3}} C_{i+2}\xrightarrow{\partial_{i+2}} C_{i+1} \xrightarrow{\partial_{i+1}}\ker \partial_i\morphism 0\morphism 0\morphism \dotso\right)
+\end{equation*}
+(this is chosen in such a way that the canonical map $\tau_{\geq i}C\morphism C$ induces isomorphisms on homology in degrees $\geq i$). One easily checks the following relation with way to many brackets:
+\begin{equation*}
+	(\tau_{\geq i}C)[-i]\cong \tau_{\geq 0}\Big(\big((\tau_{\geq i-1}C)[-(i-1)]\big)[-1]\Big)\,.
+\end{equation*}
+Note that under the Dold--Kan correspondence (\cref{thm:DoldKan}), the operation $C\mapsto \tau_{\geq 0}(C[-1])$ on $\Ch_{\geq 0}(\IZ)$ corresponds to $X\mapsto \Omega_0X$ on $\cat{sAb}$. Here $\Omega_0$ denotes the simplicial loop space (or at least some model for it) with base point $0\in X_0$, i.e., the neutral element of the simplicial abelian group $X$. So if we write $X_i=|(\tau_{\geq i}C)[-i]|_{C_\bullet}$, then we obtain canonical isomorphisms $X_i\cong \Omega_0X_{i-1}$. I wonder where I've seen that before \dotso
+
+\dotso so let's define an \emph{abelian spectrum} to be a sequence of simplicial abelian groups $X_i$ together with isomorphisms $X_i\cong \Omega_0X_{i-1}$. In that way, \cref{thm:DoldKan} extends to an equivalence $\{\text{abelian spectra}\}\simeq \Ch(\IZ)$. But that's only the beginning of a long story \dotso
+
+\begin{thm}[Joyal]\label{thm:JoyalEquivalence}
+	Let $\Cc$ and $\Dd$ be $\infty$-categories.
+	\begin{alphanumerate}
+		\item A functor $F\colon \Cc\morphism\Dd$ of $\infty$-categories is an equivalence \embrace{i.e.\ there exists $G\colon \Dd\morphism \Cc$ and natural equivalences $F\circ G\simeq \id_\Dd$ and $G\circ F\simeq \id_\Cc$} if and only if it is essentially surjective and fully faithful \embrace{i.e.\ the induced map $F_*\colon \pi_0\core\Cc\morphism\pi_0\core\Dd$ is surjective and $F_*\colon \Hom_\Cc(x,y)\morphism \Hom_\Dd(F(x),F(y))$ is a homotopy equivalence of anima for all $x,y\in \Cc$.}
+		\item A natural transformation $\eta\colon F\Rightarrow G$ of functors $F,G\colon \Cc\morphism\Dd$ is a natural equivalence \embrace{i.e.\ $\eta$ is an isomorphism in the homotopy category $\pi\Fun(\Cc,\Dd)$} if and only if induces equivalences on $0$-simplices, i.e.\ $\eta_x\colon F(x)\morphism G(x)$ is an equivalence for all $x\in \Cc$.
+	\end{alphanumerate}
+\end{thm}
+\begin{proof*}
+	See \cite[Theorem~VII.1, Theorem~VII.8]{HigherCatsI}.
+\end{proof*}
+In $1$-category theory, \cref{thm:JoyalEquivalence} is a triviality (up to axiom of choice business). But in $\infty$-land it is \emph{hard}. An $\infty$-category contains infinitely more data than just a bunch of objects and morphism spaces. All the more surprising, that these actually suffice tu characterize equivalences.
+
+As an application, we get a precise formulation of Grothendieck's conjectural connection between ($\infty$-)groupoids and spaces that became famously known as the \emph{homotopy hypothesis} (at that time, Grothendieck was already way beyond scribbling devils around his diagrams, living somewhere deep in the Pyrenees).
+\begin{cor}[Grothendieck's homotopy hypothesis]
+	Let $\cat{CW}$ denote the category of CW-complexes with its Kan enrichment given by $\F_{\cat{CW}}(X,Y)=\Sing\operatorname{Map}(X,Y)$. The functors
+	\begin{equation*}
+		|\blank|\colon\cat{An}\doublelrmorphism \N^c(\cat{CW})\noloc \Sing
+	\end{equation*}
+	are inverse equivalences.
+\end{cor}
+\begin{proof*}
+	See \cite[Corollary~VII.6]{HigherCatsI}.
+\end{proof*}
+This finishes our recollection of Fabian's Higher Categories~I lecture and we start reviewing the material from Higher Categories~II. The main goal of that lecture was to construct a functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\cat{An}$ (we know what $\Hom_\Cc$ ought to do on $0$-simplices by \cref{def:Hom}, but making it into a functor is incredibly complicated) and prove the $\infty$-analogue of Yoneda's lemma. The key to do this is Lurie's straightening/unstraightening equivalence.
+\begin{thm}[Lurie]\label{thm:StraighteningAn}
+	Let $*/\cat{An}$ denote \embrace{any model for} the slice category of anima under a point. To each functor $F\colon \Cc\morphism\cat{An}$ of $\infty$-categories associate an $\infty$-category $\Un(F)$ via the pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			\Un(F)\rar\dar\drar[pullback]&*/\cat{An}\dar\\
+			\Cc\rar& \cat{An}
+		\end{tikzcd}
+	\end{equation*}
+	This association upgrades to a fully faithful functor $\Un\colon \Fun(\Cc,\cat{An})\morphism\cat{Cat}_\infty/\Cc$ \embrace{the \enquote{unstraightening} functor}, whose essential image is the full subcategory $\Left(\Cc)$ spanned by the left fibrations over $\Cc$ \embrace{to be defined in \cref{def:WeirdCocartesianDefinition}}. We let $\St\colon \Left(\Cc)\morphism\Fun(\Cc,\cat{An})$ \embrace{\enquote{straightening}} denote an inverse.
+\end{thm}
+\begin{proof*}
+	This follows from the combined effort of all we did in Higher Categories~II, so let me randomly choose \cite[Remark~X.57(iii)]{HigherCatsII} as a reference.
+\end{proof*}
+\begin{exm}
+	For any $x\in \Cc$, the straightening of the left fibration $x/\Cc\morphism\Cc$ is defined to be $\Hom_\Cc(x,-)\colon \Cc\morphism\cat{An}$. That this makes sense can be seen as follows. Observe that the fibre of $\Un(F)\morphism \Cc$ over some $y\in \Cc$ is just $F(y)$, since the fibre of $*/\cat{An}\morphism \cat{An}$ over some anima $X$ is just $X$ itself. Conversely, $\St(p\colon \Ee\morphism\Cc)(y)\simeq (\text{fibre of $G$ over $y$})$ holds for all left fibrations $p\colon \Ee\morphism \Cc$. In particular, evaluating $\Hom_\Cc(x,-)$ at $y$ gives the fibre of $x/\Cc$ over $y$, which is indeed $\Hom_\Cc(x,y)$.
+\end{exm}
+\cref{thm:StraighteningAn} generalizes as follows.
+\begin{thm}[Lurie again, of course]\label{thm:StraighteningCat}
+	For any $\infty$-category $\Cc$, the equivalences from \cref{thm:StraighteningAn} extend to inverse equivalences
+	\begin{equation*}
+		\St\colon \Cocart(\Cc)\doublelrmorphism[\sim][\sim] \Fun(\Cc,\cat{Cat}_\infty)\noloc\Un\,,
+	\end{equation*}
+	where $\Cocart(\Cc)$ is the \embrace{non-full!} subcategory of $\cat{Cat}_\infty/\Cc$ spanned by cocartesian fibrations and maps preserving cocartesian edges \embrace{to be defined in \cref{def:WeirdCocartesianDefinition}}.
+\end{thm}
+\begin{defi}\label{def:WeirdCocartesianDefinition}
+	Let $p\colon \Ee\morphism\Cc$ be a functor of $\infty$ categories.
+	\begin{alphanumerate}
+		\item Informally, an edge $f\colon x\morphism y$ in $\Ee$ is called \emph{$p$-cocartesian} if the following condition holds: For all edges $g\colon x\morphism z$ in $\Ee$ and all fillers $\sigma\colon \Delta^2\morphism \Cc$ as depicted in the right diagram below,
+		\begin{equation*}
+			\begin{tikzcd}
+				\vphantom{p(x)}x\rar["g"]\dar["f"']\drar[phantom,pos=0.25,"\scriptscriptstyle/\!/\!/"] & z\\
+				y \urar[dashed,"\exists(!)"'] & \phantom{p(y)}
+			\end{tikzcd}\overset{p}{\longmapsto}\quad
+			\begin{tikzcd}
+				p(x)\rar["p(g)"]\dar["p(f)"']\drar[phantom,pos=0.15,"\scriptstyle\sigma"] & p(z)\\
+				p(y) \urar & \phantom{b}
+			\end{tikzcd}
+		\end{equation*}
+		there exists a unique (up to contractible choice) filler $\tau\colon \Delta^2\morphism\Ee$ satisfying $p(\tau)=\sigma$. In other words, the space of lifts of $\sigma$ is contractible.
+		
+		Somewhat more formally, $f\colon x\morphism y$ is \emph{$p$-cocartesian} if for all $z\in \Ee$ the diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				\Hom_\Ee(y,z)\rar["f^*"]\dar["p_*"'] & \Hom_\Ee(x,z)\dar["p_*"]\\
+				\Hom_\Cc\big(p(y),p(z)\big)\rar["p(f)^*"] & \Hom_\Cc\big(p(x),p(z)\big)
+			\end{tikzcd}
+		\end{equation*}
+		is a \emph{homotopy cartesian} diagram of anima. However, that doesn't mean the above is a pullback diagram taken inside the $1$-category $\cat{Kan}$ (or $\cat{sSet}$)---in fact, it likely doesn't even commute on the nose, but only up to homotopy. And worse: The \enquote{precomposition} maps $f^*$ and $p(f)^*$ are not even canonically defined. To construct $f^*$, one has to choose a \enquote{composition law} in $\Ee$, i.e.\ a section of the trivial fibration $\Fun(\Delta^2,\Ee)\morphism\Fun(\Lambda_1^2,\Ee)$, but there is no canonical one.
+		
+		However, all of these complications go away, and we arrive at a well-defined notion of a diagram being \emph{homotopy} cartesian, if we work in the $\infty$-category $\cat{An}$ instead of the $1$-category $\cat{Kan}$. Then the above condition means that $\Hom_\Ee(y,z)$ is a pullback, taken inside the $\infty$-category $\cat{An}$, of the other three corners. 
+		
+		\item Let $p\mhyph\cat{Cart}\subseteq \Ar(\Ee)$ denote the full subcategory spanned by the cocartesian edges. Then $p$ is called a \emph{cocartesian fibration} if the dashed arrow $q$ in the diagram below is an equivalence of $\infty$-categories.
+		\begin{equation*}
+			\begin{tikzcd}
+				p\mhyph\cat{Cart}\drar[dashed,iso,"q"']\ar[ddr,bend right,"s"]\ar[drr,bend left,"p"] & & \\
+				& P\dar\rar\drar[pullback] & \Ar(\Cc)\dar["s"]\\
+				& \Ee\rar["p"] & \Cc
+			\end{tikzcd}
+		\end{equation*}
+		Informally, the way to think about this is that all edges of $\Cc$ admit a lift with given starting point. Also $p\mhyph\cat{Cart}\morphism P$ is automatically fully faithful, as we'll prove below.
+		\item We call $p$ a \emph{left fibration} if it is a cocartesian fibrations and satisfies the following equivalent conditions.
+		\begin{rmnumerate}
+			\item $\St(p)\colon \Cc\morphism\cat{Cat}_\infty$ factors through $\cat{An}$.
+			\item The \emph{derived fibres} of $p$ are anima. By that we mean the fibres of $\Ee'\morphism\Cc$, where $\Ee\isomorphism \Ee'\epimorphism\Cc$ is any factorization of $p$ into an Joyal equivalence followed by fibration in the Joyal model structure. Or just take the fibres as usual, but with pullbacks inside the $\infty$-category $\cat{Cat}_\infty$.
+			\item $p$ is \emph{conservative}, i.e.\ for all edges $f$ in $\Ee$ we have that $f$ is an equivalence iff $p(f)$ is an equivalence in $\Cc$. 
+		\end{rmnumerate}
+	\end{alphanumerate}
+\end{defi}
+In the lecture we had a brief discussion about how \cref{def:WeirdCocartesianDefinition} relates to the definition that the participants of Fabian's previous lectures would have expected. I'll give an expanded version of that discussion below. To be safe, everything is labelled with an asterisk to indicate it is an addition to the lecture.
+\begin{warn*}
+	\cref{def:WeirdCocartesianDefinition} does not coincide with the way we defined cocartesian and left fibrations in Fabian's previous lectures. The main difference is that we don't require $p$ to be an inner fibration, resulting in the advantage that \cref{def:WeirdCocartesianDefinition} is invariant under Joyal equivalence (Fabian promised that this will save us some headache). Up to replacing $p\colon \Ee\morphism\Cc$ by an isofibration, both definitions agree, as the following \cref{lem*:WeirdCocartesian} shows.
+	
+	Also note that it doesn't suffice to replace $p$ by an inner fibration. In fact, the inclusion $\{0\}\monomorphism J$ of a point into the free-living isomorphism is an inner fibration (as the nerve of a map of $1$-categories) and a Joyal equivalence, hence it satisfies \cref{def:WeirdCocartesianDefinition}\itememph{b}, but it is no isofibration and thus not cocartesian in the old sense by \cite[Proposition~IX.2]{HigherCatsII}.
+\end{warn*}
+\begin{lem*}\label{lem*:WeirdCocartesian}
+	The dashed arrow $q$ in \cref{def:WeirdCocartesianDefinition}\itememph{b} is automatically fully faithful. In particular, for a functor $p\colon \Ee\morphism\Cc$ the following conditions are equivalent:
+	\begin{alphanumerate}
+		\item $p$ is a cocartesian/left fibration in the new sense.
+		\item For all factorizations $\Ee\isomorphism\Ee'\epimorphism\Cc$ into a Joyal equivalence followed by a fibration in the Joyal model structure, $\Ee'\morphism\Cc$ is a cocartesian/left fibration in the old sense.
+		\item The above condition holds for some factorization $\Ee\isomorphism\Ee'\epimorphism\Cc$ as above.
+	\end{alphanumerate}
+	Moreover, the three conditions from \cref{def:WeirdCocartesianDefinition}\itememph{c} are indeed equivalent.
+\end{lem*}
+\begin{proof*}
+	Let $\times^R$ denote derived pullbacks (or homotopy pullbacks, that's the same). Let $f\colon x\morphism y$ and $g\colon x'\morphism y'$ be cocartesian edges. Since $p\mhyph\cat{Cart}\subseteq\Ar(\Ee)$ is a full subcategory, we can use the calculation of $\Hom$ anima in arrow categories from \cite[Proposition~VIII.5]{HigherCatsII} to obtain
+	\begin{equation*}
+		\Hom_{p\mhyph\cat{Cart}}(f,g)\simeq \Hom_\Ee(x,x')\times_{\Hom_\Ee(x,y')}^R\Hom_\Ee(y,y')\,.
+	\end{equation*}
+	Our definition of $\Hom$ anima in \cref{def:Hom} commutes with pullbacks of simplicial sets (as long as the pullback still gives an $\infty$-category), so we get
+	\begin{equation*}
+		\Hom_P\big(q(f),q(g)\big)=\Hom_\Ee(x,x')\times_{\Hom_\Cc(p(x),p(x'))}\Hom_{\Ar(\Cc)}\big(p(f),p(g)\big)\,.
+	\end{equation*}
+	This is a pullback on the nose, but also a homotopy pullback because $s\colon \Ar(\Cc)\morphism \Cc$ is an inner fibration (even a cartesian fibration by the dual of \cref{exm:MyFirstCocartesian}; this also implies that $P$ is an $\infty$-category), hence $s_*\colon \Hom_{\Ar(\Cc)}(p(f),p(g))\morphism\Hom_C(p(x),p(x'))$ is a Kan fibration. Now replacing $\Hom_\Ee(x',y')$ by the homotopy pullback from \cref{def:WeirdCocartesianDefinition}\itememph{a}, $\Hom_{\Ar(\Cc)}(p(f),p(g))$ by its description from \cite[Proposition~VIII.5]{HigherCatsII}, and simplifying the resulting homotopy pullbacks shows that $q_*\colon \Hom_{p\mhyph\cat{Cart}}(f,g)\morphism\Hom_P(q(f),q(g))$ is indeed an equivalence, hence $q$ is fully faithful.
+	
+	To prove equivalence of \itememph{a}, \itememph{b}, \itememph{c}, note that \cref{def:WeirdCocartesianDefinition}\itememph{b} is invariant under Joyal equivalences, so we may assume $p\colon \Ee\morphism\Cc$ is a fibration in the Joyal model structure, or equivalently an isofibration since both are $\infty$-categories. If $p$ is cocartesian in the old sense, then $q\colon p\mhyph\cat{Cart}\morphism P$ is surjective on the nose, hence a Joyal equivalence by what we just proved. This is enough to prove \itememph{b} $\Rightarrow$ \itememph{c} $\Rightarrow$ \itememph{a}. For \itememph{a} $\Rightarrow$ \itememph{b}, we may again assume $p$ is an isofibration and we must show that $q$ is surjective on the nose rather than just essentially surjective. We will even show that $q$ is a trivial fibration. Since $q$ is a Joyal equivalence, it suffices to show that it is an isofibration. Observe that $\Ar(\Ee)\morphism P$ is an isofibration by \cite[Corollary~VII.11]{HigherCatsI}. Hence its restriction $q$ to the full subcategory $p\mhyph\cat{Cart}\subseteq \Ar(\Ee)$ is an inner fibration. But $p\mhyph\cat{Cart}$ is closed under equivalences in $\Ar(\Ee)$ (which is evident from the homotopy pullback condition in \cref{def:WeirdCocartesianDefinition}\itememph{a}), so an easy argument shows that $q$ also inherits lifting agains $\{0\}\monomorphism J$ from the isofibration $\Ar(\Ee)\morphism P$.
+	
+	Now that we know equivalence of \itememph{a}, \itememph{b}, \itememph{c} (except for the assertions about left fibrations, but these will follow immediately), it's easy to show that the conditions in \cref{def:WeirdCocartesianDefinition} are indeed equivalent: Note that the values of $\St(p)$ are given by the (derived) fibers of $p$, hence (i) $\Leftrightarrow$ (ii), and (ii) $\Leftrightarrow$ (iii) follows from \cite[Proposition~IX.3]{HigherCatsII}
+\end{proof*}
+\begin{exm}\label{exm:MyFirstCocartesian}
+	\enquote{My first cocartesian edges/fibrations}:
+	\begin{alphanumerate}
+		\item Any equivalence in $\Ee$ is $p$-cocartesian by Joyal's lifting theorem.
+		\item The \enquote{target morphism} $t\colon \Ar(\Cc)\morphism \Cc$ (given by restriction along $\{1\}\monomorphism\Delta^1$) is a cocartesian fibration (in both the old and new sense since it is an isofibration). Let $f\colon x\morphism x'$ and $g\colon y\morphism y'$ be objects in $\Ar(\Cc)$. Then a morphism $\sigma\colon f\morphism g$ in $\Ar(\Cc)$, i.e.\ a commutative square
+		\begin{equation*}
+			\begin{tikzcd}
+				x\dar["f"']\rar\drar[phantom,"\scriptstyle\sigma"] & y\dar["g"]\\
+				x'\rar & y'
+			\end{tikzcd}
+		\end{equation*}
+		in $\Cc$, is a $t$-cocartesian edge if and only if the induced morphism $\sigma_0\colon x\morphism y$ is an equivalence in $\Cc$. We will prove this in \cref{lem*:Ar(C)toC} below (Fabian gave the idea in the lecture, but some more details can't hurt).
+		
+		This immediately implies that $t$ is a cocartesian fibration, because for every object $f\colon x\morphism x'$ of $\Ar(\Cc)$ and all morphisms $x'\morphism y'$ in $\Cc$, we can take
+		\begin{equation*}
+			\begin{tikzcd}
+				x \eqar[r]\dar["f"'] & x\dar\\
+				x'\rar & y'
+			\end{tikzcd}
+		\end{equation*}
+		as a $t$-cocartesian lift.
+		
+		However, $t$ is usually not a left fibration. The straightening $\St(t)$ is the slice category functor $\Cc/-\colon \Cc\morphism\cat{Cat}_\infty$, which not necessarily factors over $\cat{An}$.
+	\end{alphanumerate}
+\end{exm}
+\begin{lem*}\label{lem*:Ar(C)toC}
+	With notation as in \cref{exm:MyFirstCocartesian}\itememph{b}, $\sigma$ is $t$-cocartesian iff the induced morphism $\sigma_0\colon x\morphism y$ is an equivalence in $\Cc$.
+\end{lem*}
+\begin{proof*}
+	Indeed, if $x\morphism y$ is an equivalence, then an easy calculation involving the characterization of $\Hom$ anima in arrow categories (\cite[Proposition~VIII.5]{HigherCatsII}) shows that $\sigma$ satisfies the homotopy pullback condition from \cref{def:WeirdCocartesianDefinition}\itememph{a}. Conversely, if $\sigma$ is cocartesian, then any diagram
+	\begin{equation*}
+		\begin{tikzcd}[row sep=small]
+			& z\ar[dd,"h",pos=0.65] & \\
+			x\ar[dd,"f"']\urar\ar[rr,crossing over]\drar[phantom,"\scriptscriptstyle /\!/\!/"] & & y\ar[dd,"g"]\ular[dashed]\\
+			& z'\dar[phantom,"\scriptscriptstyle /\!/\!/",pos=0.65] & \\
+			x'\urar\ar[rr] & \phantom{x} & y'\ular
+		\end{tikzcd}
+	\end{equation*}
+	in which the front face is $\sigma$, and only the top and right back face are missing, admits a filler (at least up to equivalence of such diagrams). Choose the left back face $\lambda$ as follows: Put $z=x$ and $z'=y'$, also choose $\lambda_0\colon x\morphism x$ as the identity on $x$, and $\lambda_1\colon x'\morphism y'$ as $\sigma_1\colon x'\morphism y'$, and $h\colon x\morphism y'$ as a composition of $f$ and $\sigma_1$ in $\Cc$. Then a filler of the above diagram provides a left inverse of $x\morphism y$. Moreover, the morphism $\rho\colon g\morphism h$ in $\Ar(\Cc)$ induced by the right back face $\rho$ is again $t$-cocartesian. This is because $\lambda$ is a composition of $\rho$ and $\sigma$, and both $\sigma$ and $\lambda$ are $t$-cocartesian (for $\lambda$ this follows from $x\morphism z$ being the identity on $x$, hence an equivalence), so \cite[Proposition~IX.5]{HigherCatsII} can be applied. Therefore, we may repeat the all the arguments for $\rho$ instead of $\sigma$, which shows that the left inverse of $\sigma_0\colon x\morphism y$ has a left inverse itself, whence $\sigma_0$ must indeed be an equivalence.
+\end{proof*}
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography

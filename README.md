@@ -5,5 +5,4 @@ This repository contains my (unofficial) notes to selected lectures on Algebra a
 | Semester | Lecture | Lecturer | |
 | --- | --- | --- | --- |
 | WS 2019/20 | Advanced Topics in Algebraic Geometry (Étale Cohomology I) | Prof. Dr. Jens Franke | [pdf](https://florianadler.github.io/AlgebraBonn/EtaleI.pdf) |
-| WS 2019/20 | Selected Topics in Algebra (The Fargues-Fontaine Curve) | Dr. Johannes Anschütz | [pdf](https://florianadler.github.io/AlgebraBonn/FF.pdf) |
 | WS 2020/21 | Advanced Topics in Algebra (Algebraic and Hermitian K-Theory) | Dr. Fabian Hebestreit | [pdf](https://florianadler.github.io/AlgebraBonn/KTheory.pdf) |

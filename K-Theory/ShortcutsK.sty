@@ -132,7 +132,7 @@
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Gal}{\operatorname{Gal}}
 \newcommand{\Hom}{\operatorname{Hom}}
-\newcommand{\Hhom}{\mathop{\Hh om}\nolimits}
+\newcommand{\Hhom}{\operatorname{\underline{Hom}}}
 \newcommand{\Eext}{\mathop{\Ee xt}\nolimits}
 \newcommand{\hoehe}{\operatorname{ht}}
 \newcommand{\id}{\operatorname{id}}
@@ -238,6 +238,10 @@
 \newoperator{Ex}
 \newoperator{Ar}
 \newoperator{TwAr}
+\newoperator{Ch}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\simp}{\mathrm{simp}}
+\newcommand{\perf}{\mathrm{perf}}
 \newcommand{\cat}[1]{\mathrm{#1}%\StrLen{#1}[\temp]%\temp
 	%\ifnum\temp=1%
 	%\boldsymbol{#1}%\mathsfit{#1}
@@ -331,7 +335,13 @@
 %somewhat ugly
 \NewDocumentCommand{\doublelrmorphism}{O{} O{}}{%
 	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\morphismlength-0.04em}]%
-	\vphantom{x}\rar[shift left=0.45ex, "#1"]\& \lar[shift left=0.45ex, "#2"{swap}] \vphantom{x}%
+	\vphantom{x}\rar[shift left=0.45ex, "#1"]\& \lar[shift left=0.45ex, "#2"] \vphantom{x}%
+	\end{tikzcd}%
+}
+%somewhat ugly
+\NewDocumentCommand{\doublerlmorphism}{O{} O{}}{%
+	\begin{tikzcd}[ampersand replacement=\&, cramped, column sep={\the\morphismlength-0.04em}]%
+		\vphantom{x}\rar[shift right=0.45ex, "#1"{swap}]\& \lar[shift right=0.45ex, "#2"{swap}] \vphantom{x}%
 	\end{tikzcd}%
 }
 
