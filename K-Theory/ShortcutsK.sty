@@ -182,6 +182,8 @@
 \newoperator{length}
 \newoperator{Rep}
 \newoperator{depth}
+\newoperator{Nat}
+\newoperator{ev}
 \newcommand{\trdeg}{\operatorname{tr.deg}}
 \newcommand{\idim}{\operatorname{inj.dim}}
 \newcommand{\pdim}{\operatorname{pr.dim}}
@@ -199,6 +201,7 @@
 \newoperator{Cart}
 \newoperator{Left}
 \newoperator{Right}
+\newoperator{pr}
 \newcommand{\cocart}{\mathrm{cocart}}
 \newcommand{\cart}{\mathrm{cart}}
 \DeclareMathOperator{\SPEC}{\mathbf{Spec}}
@@ -249,8 +252,19 @@
 	%\mathbf{#1}%\mathsf{#1}
 	%\fi%
 }%style of categories
+\newcommand{\Cat}{\cat{Cat}}
+\newcommand{\An}{\cat{An}}
+\newcommand{\sSet}{\cat{sSet}}
+\newcommand{\Set}{\cat{Set}}
+\newcommand{\Ab}{\cat{Ab}}
+\newcommand{\Grpd}{\cat{Grpd}}
+\newcommand{\Grp}{\cat{Grp}}
+\newcommand{\Kan}{\cat{Kan}}
+\newcommand{\Sp}{\cat{Sp}}
+\newcommand{\sAb}{\cat{sAb}}
 \DeclareMathOperator*{\colimit}{colim}
 \DeclareMathOperator*{\hocolimit}{hocolim}
+\DeclareMathOperator*{\holimit}{holim}
 \DeclareMathOperator*{\limit}{lim}
 \DeclareMathOperator{\Global}{\Gamma}
 \renewcommand*\d{\mathrm{d}}
@@ -405,6 +419,7 @@
 \newcommand{\pushoutsign}{\tikz{\draw (0,0) ++ (-0.75ex,-0.75ex) -- ++(0ex,1.5ex) -- ++ (1.5ex,0ex);\node at (0.6ex,-0.6ex) {.};}}
 \tikzcdset{
 	pullback/.style = {dash, phantom, "\pullbacksign", very near start},
+	hpullback/.style = {dash, phantom, "\pullbacksign_{\,h}", very near start},
 	pushout/.style = {dash, phantom, "\pushoutsign", very near end}
 }
 
