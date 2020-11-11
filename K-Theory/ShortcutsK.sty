@@ -415,12 +415,12 @@
 	diagrams={>=to, line cap=round, line width=rule_thickness}, arrows={line width=rule_thickness}
 }
 
-\newcommand{\pullbacksign}{\tikz{\draw[line width=rule_thickness, line cap=round] (0,0) ++ (-0.75ex,-0.75ex) -- ++(1.5ex,0ex) -- ++ (0ex,1.5ex);\node at (-0.6ex,0.6ex) {.};}}
-\newcommand{\pushoutsign}{\tikz{\draw (0,0) ++ (-0.75ex,-0.75ex) -- ++(0ex,1.5ex) -- ++ (1.5ex,0ex);\node at (0.6ex,-0.6ex) {.};}}
+\newcommand{\pullbacksign}{\hspace{-0.325ex}\tikz[baseline=(pb.base)]{\draw[line width=rule_thickness, line cap=round] (0,0) ++ (-0.75ex,-0.75ex) -- ++(1.5ex,0ex) -- ++ (0ex,1.5ex);\node at (-0.6ex,0.6ex) {.};\node (pb) at (0,0) {\phantom{x}};}}
+\newcommand{\pushoutsign}{\hspace{0.2ex}\tikz[baseline=(po.base)]{\draw (0,0) ++ (-0.75ex,-0.75ex) -- ++(0ex,1.5ex) -- ++ (1.5ex,0ex);\node at (0.6ex,-0.6ex) {.};\node (po) at (0,0) {\phantom{x}};}}
 \tikzcdset{
-	pullback/.style = {dash, phantom, "\pullbacksign", very near start},
-	hpullback/.style = {dash, phantom, "\pullbacksign_{\,h}", very near start},
-	pushout/.style = {dash, phantom, "\pushoutsign", very near end}
+	pullback/.style = {dash, phantom, "\vphantom{x}\smash{\pullbacksign}", start anchor=center, end anchor=center},
+	hpullback/.style = {dash, phantom, "\vphantom{x}\smash{\pullbacksign_{h}}", start anchor=center, end anchor=center},
+	pushout/.style = {dash, phantom, "\vphantom{x}\smash{\pushoutsign}", start anchor=center, end anchor=center}
 }
 
 \tikzcdset{

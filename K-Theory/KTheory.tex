@@ -37,12 +37,14 @@
 	\renewcommand{\thechapter}{\arabic{chapter}}
 	\chapter{Introduction}
 	\section{Organizational Stuff}
-	Under no circumstances you should call Fabian by his last name! Also there will be oral exams, probably in the first or second week after the end of the lectures. More on that when it comes to that.
-	\numpar*{Disclaimer}
-	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. These are an excellent resource and please the eye with their purple colour scheme. So why should I bother typing my own notes? This is because of two main reasons. First, I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
+	%Under no circumstances you should call Fabian by his last name! Also there will be oral exams, probably in the first or second week after the end of the lectures. More on that when it comes to that.
+	\numpar*{Disclaimer \smash{\Attention}}
+	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes \cite{KTheory} (please suggest a better shorthand) to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. These are an excellent resource and please the eye with their purple colour scheme! So why should I bother typing my own notes? This is because of two main reasons. First, I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
 	
 	I might also take the opportunity to try and work out some skipped details or omitted proofs myself (given the Fabian's ambitious goals for this lecture, there can be no doubt that some cuts will have to be made). \emph{My own additions are marked with an asterisk!} So whenever you encounter a \emph{Proof}* which is not just digging up some references (right now that's all there is), or a \emph{Lemma}*, be extra careful for mistakes. If you happen to spot some, do not hesitate to tell me via \href{https://github.com/FlorianAdler/AlgebraBonn/issues/new}{GitHub} or in person.
 	
+	\numpar*{Differences in Numbering \smash{\Attention}}
+	Unfortunately, the numbers in \cref{chap:preliminaries} have diverged from Fabian's notes (and I'm shamelessly blaming Fabian not numbering his theorems in the first four lectures) and now it's too late to fix that. Starting from \cref{exm:Delta0Pushout}, the numbers should be correct again.
 	
 	
 	\section{A Fairytale}
@@ -388,14 +390,18 @@
 		K_1(R)\morphism K_1(R/I)\morphism[\partial]K_0(I)\morphism K_0(R)\morphism K_0(R/I)\\
 		K_1(R)\morphism K_1\left(R[S^{-1}]\right)\morphism[\partial]K_0(R,S)\morphism K_0(R)\morphism K_0\left(R[S^{-1}]\right)\,,
 	\end{gather*}
-	which look a bit too much like long exact cohomology sequences to be a coincidence. People actually managed to produce an ad hoc definition of $K_2(R)$ fitting into the sequences above, but that was practically the end of the story \dotso until Quillen came! He realized that $K_0(R)$ and $K_1(R)$ could be written as homotopy groups of a certain simplicial group: Let $\Proj^\fg(R)$ denote the symmetric monoidal groupoid of finite projective $R$-modules. Now consider the inclusion
+	which look a bit too much like long exact cohomology sequences to be a coincidence. People actually managed to produce an ad hoc definition of $K_2(R)$ fitting into the sequences above, but that was practically the end of the story \dotso 
+	
+	\dotso until Quillen came! He realized that $K_0(R)$ and $K_1(R)$ could be written as homotopy groups of a certain simplicial group: Let $\Proj^\fg(R)$ denote the symmetric monoidal groupoid of finite projective $R$-modules. Now consider the inclusion
 	\begin{equation*}
 		\left\{\text{Picard groupoids}\right\}\subseteq \left\{\text{symmetric monoidal groupoids}\right\}\,.
 	\end{equation*}
 	Here a symmetric monoidal groupoid $(G,\otimes)$ is a \emph{Picard groupoid} if for all $x\in G$ there exists a $y\in G$ such that $x\otimes y\simeq 1$. The above inclusion has a left adjoint $(-)^\grp$, and using this we can write
 	\begin{equation*}
-		K_i(R)=\pi_iN\big(\Proj^\fg(R)^\grp\big)\quad\text{for }i=1,2\,.
+		K_i(R)=\pi_i\N\big(\Proj^\fg(R)^\grp\big)\quad\text{for }i=1,2\,.
 	\end{equation*}
+	Here $\N$ denotes the nerve construction.
+
 	Quillen's suggestion, although he didn't have the words to say that yet, was to do the same, but in the setting of $\infty$-categories. That is, we consider
 	\begin{equation*}
 		\begin{tikzcd}
@@ -429,6 +435,7 @@
 	\renewcommand{\thechapter}{\Roman{chapter}}
 	
 	\chapter{Recollections and Preliminaries}\label{chap:preliminaries}
+	\section{\texorpdfstring{$\infty$}{Infinity}-Categories and Anima}
 	\lecture[Fabian gives a history lesson. A brief recollection of $\infty$-categories, nerve functors, anima, Joyal's lifting theorem, and $\Hom$ spaces in $\infty$-categories.]{2020-10-29}
 	The plan for today is to give a rapid review of Fabians lectures from the last two semesters. Naturally we won't really prove anything, but give references to Fabians notes \cite{HigherCatsI,HigherCatsII} instead.
 	\begin{defi}
@@ -687,7 +694,10 @@ As an application, we get a precise formulation of Grothendieck's conjectural co
 \begin{proof*}
 	See \cite[Corollary~VII.6]{HigherCatsI}.
 \end{proof*}
-This finishes our recollection of Fabian's Higher Categories~I lecture and we start reviewing the material from Higher Categories~II. The main goal of that lecture was to construct a functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\cat{An}$ (we know what $\Hom_\Cc$ ought to do on $0$-simplices by \cref{def:Hom}, but making it into a functor is incredibly complicated) and prove the $\infty$-analogue of Yoneda's lemma. The key to do this is Lurie's straightening/unstraightening equivalence.
+This finishes our recollection of Fabian's Higher Categories~I lecture and we start reviewing the material from Higher Categories~II.
+
+\section{Cocartesian/Left  Fibrations and Lurie's Straightening Equivalence}
+The main goal of Fabian's Higher Categories~II lecture was to construct a functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\cat{An}$ (we know what $\Hom_\Cc$ ought to do on $0$-simplices by \cref{def:Hom}, but making it into a functor is incredibly complicated) and prove the $\infty$-analogue of Yoneda's lemma. The key to do this is Lurie's straightening/unstraightening equivalence.
 \begin{thm}[Lurie]\label{thm:StraighteningAn}
 	Let $*/\cat{An}$ denote \embrace{any model for} the slice category of anima under a point. To each functor $F\colon \Cc\morphism\cat{An}$ of $\infty$-categories associate an $\infty$-category $\Un(F)$ via the pullback
 	\begin{equation*}
@@ -832,10 +842,10 @@ In the lecture we had a brief discussion about how \cref{def:WeirdCocartesianDef
 \begin{exc}\label{exc:tCartesian}
 	Show that if $\Cc$ admits pullbacks, then the cocartesian fibration $t\colon\Ar(\Cc)\morphism \Cc$ is also a cartesian fibration, and the cartesian edges are given precisely by the pullback squares. 
 \end{exc}
-\begin{proof*}[Sketch of a proof]
+\begin{proof*}[Proof sketch]
 	If the claimed characterization of cartesian edges is true, then $t$ is a cartesian fibration because then the lifting condition precisely says that $\Cc$ must have all pullbacks.
 	
-	We'll freely use the yoga of limits in $\infty$-categories which is developed from \cref{exm:MyFirstAdjoints}\itememph{b} onward. By computing $\Nat(F,\const c)$ for $F\colon I\morphism \Cc$ and $c\in \Cc$, one can show that $\Hom_\Cc(z,-)\colon \Cc\morphism\cat{An}$ preserves all limits for every $z\in \Cc$. Also limits in $\cat{An}$ can be computed by homotopy limits thanks to \cref{thm:HomotopyLimits}.
+	We'll freely use the yoga of limits in $\infty$-categories which is developed from \cref{exm:MyFirstAdjoints}\itememph{b} onward. By \cref{cor:HomPreservesColimits}, $\Hom_\Cc(z,-)\colon \Cc\morphism\cat{An}$ preserves all limits for every $z\in \Cc$. Also limits in $\cat{An}$ can be computed by homotopy limits thanks to \cref{thm:HomotopyLimits} below.
 	
 	Now let $f\colon x\morphism x'$ and $g\colon y\morphism y'$ be objects of $\Ar(\Cc)$ and let $\sigma\colon f\morphism g$ be an edge in $\Ar(\Cc)$. Then $\sigma$ is cartesian iff for all $h\colon z\morphism z'$ we can compute $\Hom_{\Ar(\Cc)}(h,f)$ by a certain homotopy pullback dual to that in \cref{def:WeirdCocartesianDefinition}\itememph{a}. Writing that condition out explicitly and simplifying using the description of $\Hom$ anima in arrow categories given in \cite[Proposition~VIII.5]{HigherCatsII}, we obtain the condition
 	\begin{equation*}
@@ -858,7 +868,7 @@ There are at least four equivalent ways to do so.
 	\begin{equation*}
 		\TwAr(\Cc)\morphism\Cc\,,
 	\end{equation*}
-	which turns out to be a left fibration with the correct fibres. See \cite[\S5.2.1]{HA} for proofs.
+	which turns out to be a left fibration with the correct fibres. See \cite[\S5.2.1]{HA} for proofs. Also note that the twisted arrow category construction of 
 	\item Fabian's favourite construction considers the commutative diagram
 	\begin{equation*}
 		\begin{tikzcd}[column sep=small]
@@ -919,7 +929,7 @@ where the bottom arrow sends $(m_s,m_t)\mapsto m_t\circ f\circ m_s$ for some cho
 
 The twisted arrow category will be important to us since it has to do with \emph{spans} in $\Cc$. This becomes apparent when we look at $\TwAr(\Delta^n)$. Its objects are arrows in $\Delta^n$. We organize these arrows in an upwards pointing triangle with rows numbered $0,1,\dotsc,n$ from the bottom to the top: In the $i\ordinalth$ row, we put the morphisms that \enquote{go up by $i$}, i.e., $(0\morphism i),(1\morphism i+1),\dotsc,(n-i\morphism n)$. In particular, the bottom row contains the identities and the top row contains only the morphism $(0\morphism n)$. If we draw in some (but not all) of the edges in $\TwAr(\Cc)$, we obtain a picture as follows:
 \begin{center}
-	\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
 		\fill (0,0) circle (0.5ex) coordinate (00);
 		\fill (2,0) circle (0.5ex) coordinate (01);
 		\fill (4,0) circle (0.5ex) coordinate (02);
@@ -957,9 +967,10 @@ The twisted arrow category will be important to us since it has to do with \emph
 		\path (21) to  node[pos=0.5,sloped] {$\ldots$} (30);
 	\end{tikzpicture}
 \end{center}
-And voilà, plenty of spans! The corresponding picture for $\Ar(\Delta^n)$ is instead the following:
+And voilà, plenty of spans!
+ The corresponding picture for $\Ar(\Delta^n)$ is instead the following:
 \begin{center}
-	\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
 		\fill (0,0) circle (0.5ex) coordinate (00);
 		\fill (2,0) circle (0.5ex) coordinate (01);
 		\fill (4,0) circle (0.5ex) coordinate (02);
@@ -1001,7 +1012,13 @@ As a bit of foreshadowing, Fabian mentioned that the first picture is related to
 \begin{exc}
 	Show that $\core\TwAr(\Cc)\simeq\core\Ar(\Cc)$ holds for all $\infty$-categories $\Cc$.
 \end{exc}
-Now that we have a reasonable $\Hom$ functor, the next step is to prove Yoneda's lemma.
+\begin{proof}[Proof sketch]
+	See \cite[Proposition~I.31]{KTheory} for a rough sketch.
+\end{proof}
+
+\section{Yoneda's Lemma, Limits and Colimits in \texorpdfstring{$\infty$}{Infinity}-Categories}
+\subsection{Yoneda's Lemma and Adjunctions}
+Now that we have a sufficient supply of mutually equivalent definitions of the $\Hom$ functor, the next step is to prove Yoneda's lemma.
 \begin{thm}[Yoneda's lemma]\label{thm:Yoneda}
 	Let $\Cc$ be an $\infty$-category. Given a functor $F\colon \Cc\morphism\cat{An}$ and an object $x\in \Cc$, the evaluation map
 		\begin{equation*}
@@ -1018,6 +1035,7 @@ Now that we have a reasonable $\Hom$ functor, the next step is to prove Yoneda's
 \begin{defi}
 	For an $\infty$-category $\Cc$ we denote by $\Pp(\Cc)=\Fun(\Cc^\op,\cat{An})$ the \emph{$\infty$-category of presheaves} on $\Cc$.
 \end{defi}
+Onwards to adjunctions!
 \begin{defi}
 	Let $R\colon\Dd\morphism\Cc$ be a functor of $\infty$-categories.
 	\begin{alphanumerate}
@@ -1034,7 +1052,7 @@ Now that we have a reasonable $\Hom$ functor, the next step is to prove Yoneda's
 	\end{alphanumerate}
 \end{defi}
 A simple but still somewhat surprising and incredibly useful consequence of Yoneda's lemma is that to define left-adjoint functors, it suffices to do so on objects (something that is wildly false for arbitrary functors)!
-\begin{cor}
+\begin{cor}\label{cor:AdjointsPointwise}
 	A functor $R\colon \Dd\morphism\Cc$ of $\infty$-categories admits a left adjoint if and only if every $y\in \Cc$ admits a left-adjoint object under $R$. More generally, if $\Cc_R\subseteq \Cc$ is the full subcategory spanned by those objects $y\in\Cc$ which admit a left-adjoint object, extracting these left-adjoint objects defines a functor
 	\begin{equation*}
 		L\colon \Cc_R\morphism \Dd\,.
@@ -1055,14 +1073,15 @@ A simple but still somewhat surprising and incredibly useful consequence of Yone
 			\end{tikzcd}
 		\end{equation*}
 		Of course we should actually write $\N(\Set)$ instead of $\Set$, but from now on we'll frequently abuse notation that way since writing $\N$ all the time will inevitably get on our \dotso \emph{nerves} (sorry).
-		\item Let $I$ be any simplicial set (which we think of as a \enquote{diagram shape}) and consider the functor $F\const\colon\Cc\morphism\Fun(I,\Cc)$. Given a map $F\colon I\morphism\Cc$, a left-adjoint object to $F$ under $\const$ is called a \emph{colimit} of $F$ and denoted $\colimit_IF$. Similarly, a right-adjoint object is called a \emph{limit} and denoted $\limit_IF$. In particular, one has
+		\item Let $\Ii$ be any simplicial set (which we think of as a \enquote{diagram shape}) and consider the functor $F\const\colon\Cc\morphism\Fun(\Ii,\Cc)$. Given a map $F\colon \Ii\morphism\Cc$, a left-adjoint object to $F$ under $\const$ is called a \emph{colimit} of $F$ and denoted $\colimit_IF$. Similarly, a right-adjoint object is called a \emph{limit} and denoted $\limit_IF$. In particular, one has
 		\begin{equation*}
-			\Hom_\Cc\left(\colimit_IF,x\right)\simeq\Nat(F,\const x)
+			\Hom_\Cc\left(\colimit_\Ii F,x\right)\simeq\Nat(F,\const x)
 		\end{equation*}
-		for all objects $x\in \Cc$, and similarly for $\lim_IF$.
+		for all objects $x\in \Cc$, and similarly for $\lim_IF$. We will discuss limits and colimits in detail in the next subsection.
 	\end{alphanumerate}
 \end{exm}
-Next we'll discuss main existence theorem for limits and colimits in $\infty$-categories. For that matter, recall the notion of \emph{Kan simplicial model categories} from \cite[Digression~IV Definition~G.2]{HigherCatsII}. For a (not necessarily Kan simplicial) model category $A$, we denote by $A^\mathrm{cf}$ its full subcategory of bifibrant objects (Lurie uses $A^\circ$). Also $(-)^\mathrm{c}\colon A\morphism A$ and $(-)^\mathrm{f}\colon A\morphism A$ denote any choice of cofibrant/fibrant replacement functors.
+\subsection{First Properties and Examples of (Co)Limits}
+First we'll discuss the main existence theorem for limits and colimits in $\infty$-categories. For that matter, recall the notion of \emph{Kan simplicial model categories} from \cite[Digression~IV Definition~G.2]{HigherCatsII}. For a (not necessarily Kan simplicial) model category $A$, we denote by $A^\mathrm{cf}$ its full subcategory of bifibrant objects (Lurie uses the notation $A^\circ$ instead). Also $(-)^\mathrm{c}\colon A\morphism A$ and $(-)^\mathrm{f}\colon A\morphism A$ denote any choice of cofibrant/fibrant replacement functors.
 \begin{thm}\label{thm:HomotopyLimits}
 	If $A$ is a Kan simplicial model category, then $\N^c(A^\mathrm{cf})$ has all limits and colimits. For a diagram $F\colon I\morphism \N^c(A^\mathrm{cf})$, these are given by
 	\begin{equation*}
@@ -1073,12 +1092,13 @@ Next we'll discuss main existence theorem for limits and colimits in $\infty$-ca
 \begin{proof*}
 	See \cite[Theorem~XI.21]{HigherCatsII}.
 \end{proof*}
-\numpar{Some properties and examples}
-Applying \cref{thm:HomotopyLimits} to $A=\sSet$ with its Kan--Quillen model structure or $A=\sSet^+$ (the category of marked simplicial sets) with its marked Joyal model structure, which are Kan simplicial model categories by \cite[Digression~IV Examples~G.3]{HigherCatsII}, shows that $\An$ and $\Cat_\infty$ are complete and cocomplete (i.e.\ have all limits and colimits).
-
-One can show that an $\infty$-category $\Cc$ has all small limits iff it admits pullbacks and arbitrary products. Dually, $\Cc$ has all colimits iff it has pushouts and arbitrary coproducts. See \cite[Proposition~4.4.2.6]{HTT}. This somehow implies that $\Kk(R)$ as defined in \cref{exm:MyFirstInftyCats}\itememph{e} is complete and cocomplete (I doubt that $\Ch(R)$ is a Kan simplicial model category with the described enrichment, so I'll have to ask Fabian on Tuesday how this argument is supposed to work).
+\begin{exm}
+	Applying \cref{thm:HomotopyLimits} to $A=\sSet$ with its Kan--Quillen model structure or $A=\sSet^+$ (the category of marked simplicial sets) with its marked Joyal model structure, which are Kan simplicial model categories by \cite[Digression~IV Examples~G.3]{HigherCatsII}, shows that $\An$ and $\Cat_\infty$ are complete and cocomplete (i.e.\ have all limits and colimits).
+	
+	Another example of a complete and cocomplete $\infty$-category is $\Kk(R)$ for any ring $R$, as defined in \cref{exm:MyFirstInftyCats}\itememph{e}. In this case though, we can't apply \cref{thm:HomotopyLimits}, since $\Kk(R)$ is (probably) not given by a Kan simplicial model structure on $\Ch(R)$, at least not for the projective or injective model structure (these have quasi-isomorphisms as weak equivalences, whereas $\Kk(R)$ wants homotopy equivalences). Instead, one has to use some more properties of limits and colimits, which we will develop until \cref{exc:K(R)cocomplete}.
+\end{exm}
 \begin{rem*}
-	We didn't mention this in the lecture, but let me also remark that Lurie has developed a theory of cofinal and coinitial maps in \cite[\S4.1]{HTT}. Roughly speaking, these properties characterize when a diagram $I\morphism \Cc$ can be replaced by some composition $I'\morphism I\morphism \Cc$ without changing its limit/colimit. As a special case of that theory, we can always assume that $I$ is an $\infty$-category too. This hardly ever matters, but we formulated \cref{thm:StraighteningCat} for $\infty$-categories only, so I sleep better knowing that $I$ can be chosen that way.
+	We'll soon talk about cofinal and final maps (see \cref{def:cofinal} or \cite[\S4.1]{HTT}), but let me already mention that the theory of these allows us to assume that all diagram shapes $\Ii$ are $\infty$-categories. This hardly ever matters, but we formulated \cref{thm:StraighteningCat} for $\infty$-categories only, so I sleep better knowing that $\Ii$ can be chosen that way.
 \end{rem*}
 For a cocartesian fibration $p\colon E\morphism S$, we denote by $\Gamma(p)$ its \emph{$\infty$-category of sections} defined by the pullback
 \begin{equation*}
@@ -1088,49 +1108,338 @@ For a cocartesian fibration $p\colon E\morphism S$, we denote by $\Gamma(p)$ its
 	\end{tikzcd}
 \end{equation*}
 (if we use the new notion from \cref{def:WeirdCocartesianDefinition}\itememph{b} and $p$ is no inner fibration, we need to take this pullback in $\Cat_\infty$, otherwise it works straight off). We let $\Gamma_\cocart(p)\subseteq \Gamma(p)$ denote the full sub-$\infty$-category spanned by sections that take all edges in $S$ to $p$-cocartesian edges.
-\begin{prop}[Lurie]
-	Given a diagram $F\colon I\morphism\cat{Cat}_\infty$, we have
+\begin{prop}[Lurie]\label{prop:CoLimitsInCat}
+	Given a diagram $F\colon \Ii\morphism\cat{Cat}_\infty$, we have
 	\begin{align*}
-		\colimit_IF&\simeq \Un^\cocart(F)\left[\{\text{\upshape cocartesian edges}\}^{-1}\right]\,,\\
-		\limit_IF&\simeq \Gamma_\cocart\big(\Un^\cocart(F)\big)\,.
+		\colimit_\Ii F&\simeq \Un^\cocart(F)\left[\{\text{\upshape cocartesian edges}\}^{-1}\right]\,,\\
+		\limit_\Ii F&\simeq \Gamma_\cocart\big(\Un^\cocart(F)\big)\,.
 	\end{align*}
-	In particular, if $F\colon I\morphism\cat{An}$ takes values in anima, then
+	In particular, if $F\colon \Ii\morphism\cat{An}$ takes values in anima, then
 	\begin{equation*}
-		\colimit_IF\simeq\big|\Un(F)\big|\quad\text{and}\quad\limit_IF\simeq\Gamma\big(\Un(F)\big)\,.
+		\colimit_\Ii F\simeq\big|\Un(F)\big|\quad\text{and}\quad\limit_\Ii F\simeq\Gamma\big(\Un(F)\big)\,.
 	\end{equation*}
 \end{prop}
 \begin{proof}[Sketch of a proof]
 	In \cite[Theorem~XI.23]{HigherCatsII} Fabian gave a proof that's basically the same as what we are going to do now, but more on the model category side (but also less sketchy). We only do the case of limits. Consider the diagram
 	\begin{equation*}
 		\begin{tikzcd}[row sep=small]
-			& \Fun(I,\Cat_\infty)\ar[<-,dd,iso,"\St"']\\
+			& \Fun(\Ii,\Cat_\infty)\ar[<-,dd,iso,"\St"']\\
 			\Cat_\infty\urar["\const",sloped]\drar& \\
-			& \Cocart(I)
+			& \Cocart(\Ii)
 		\end{tikzcd}
 	\end{equation*}
-	in which the bottom arrow sends $\Cc\in\Cat_\infty$ to the cocartesian fibration $\pr_2\colon \Cc\times I\morphism I$ over $I$. Let $p\colon E\morphism I$ denote the cocartesian unstraightening of $F$. If $X\simeq\limit_IF$, then we must have equivalences $\Nat(\const\Cc,F)\simeq \Hom_{\Cat_\infty}(\Cc,X)$ for all $\infty$-categories $\Cc$. Applying \cref{thm:StraighteningCat}, this translates into
+	in which the bottom arrow sends $\Cc\in\Cat_\infty$ to the cocartesian fibration $\pr_2\colon \Cc\times \Ii\morphism \Ii$ over $\Ii$. Let $p\colon E\morphism \Ii$ denote the cocartesian unstraightening of $F$. If $X\simeq\limit_\Ii F$, then we must have equivalences $\Nat(\const\Cc,F)\simeq \Hom_{\Cat_\infty}(\Cc,X)$ for all $\infty$-categories $\Cc$. Applying \cref{thm:StraighteningCat}, this translates into
 	\begin{equation*}
-		\Hom_{\Cocart(I)}\big((\pr_2\colon \Cc\times I\rightarrow I),(p\colon E\rightarrow I)\big)\simeq \Hom_{\Cat_\infty}(\Cc,X)\,,
+		\Hom_{\Cocart(\Ii)}\big((\pr_2\colon \Cc\times \Ii\rightarrow \Ii),(p\colon E\rightarrow \Ii)\big)\simeq \Hom_{\Cat_\infty}(\Cc,X)\,,
 	\end{equation*}
-	which we'll prove now is fulfilled for $X\simeq\Gamma_\cocart(p)$ (or rather we give an idea why it holds). A map $\phi\colon \Cc\times I\morphism E$ corresponds to a map $\roof{\phi}\colon \Cc\morphism\Fun(I,E)$ via currying. By inspection, $\phi$ commutes with the projection down to $I$ iff $\roof{\phi}$ factors over $\Gamma(p)\morphism E$. Since $\pr_2$-cocartesian edges are precisely those of the form $(\text{equivalence in }\Cc,\text{arbitrary morphism in }I)$, we see that $\phi$ preserves cocartesian edges iff $\roof{\phi}$ sends equivalences $f\colon c\morphism c'$ in $\Cc$ to natural transformations $\eta\colon \roof{\phi}(c)\Rightarrow\roof{\phi}(c')\in\Fun(I,E)_1$ such that for all edges $g\colon i\morphism i'$ in $I$ the composition (or some choice of it)
+	which we'll prove now is fulfilled for $X\simeq\Gamma_\cocart(p)$ (or rather we give an idea why it holds). A map $\phi\colon \Cc\times \Ii\morphism E$ corresponds to a map $\roof{\phi}\colon \Cc\morphism\Fun(\Ii,E)$ via currying. By inspection, $\phi$ commutes with the projection down to $\Ii$ iff $\roof{\phi}$ factors over $\Gamma(p)\morphism E$. Since $\pr_2$-cocartesian edges are precisely those of the form $(\text{equivalence in }\Cc,\text{arbitrary morphism in }\Ii)$, we see that $\phi$ preserves cocartesian edges iff $\roof{\phi}$ sends equivalences $f\colon c\morphism c'$ in $\Cc$ to natural transformations $\eta\colon \roof{\phi}(c)\Rightarrow\roof{\phi}(c')\in\Fun(\Ii,E)_1$ such that for all edges $g\colon i\morphism i'$ in $\Ii$ the composition (or some choice of it)
 	\begin{equation*}
 		\roof{\phi}(c)(i)\morphism[\eta_i]\roof{\phi}(c')(i)\morphism[g_*]\roof{\phi}(c')(i')
 	\end{equation*}
-	is $p$-cocartesian in $E$. Since $f\colon c\morphism c'$ is an equivalence in $\Cc$, we get that $\eta_i$ is an equivalence in the fibre $E\times_I\{i\}$ (even in $E$), hence automatically $p$-cocartesian by \cite[Corollary~IX.8]{HigherCatsII}. Thus the composition is $p$-cocartesian iff $g_*$ is $p$-cocartesian, in other words, if $\roof{\phi}(c')$ sends all morphisms in $I$ to $p$-cocartesian edges. Since this holds for all $c'\in \Cc$ (we can always take $f=\id_{c'}$), we finally obtain that $\phi$ preserves $\pr_2$-cocartesian edges iff $\roof{\phi}\colon \Cc\morphism\Gamma(p)$ factors over $\Gamma_\cocart(p)$. \enquote{Thus} $X\simeq \Gamma_\cocart(p)$. 
+	is $p$-cocartesian in $E$. Since $f\colon c\morphism c'$ is an equivalence in $\Cc$, we get that $\eta_i$ is an equivalence in the fibre $E\times_\Ii\{i\}$ (even in $E$), hence automatically $p$-cocartesian by \cite[Corollary~IX.8]{HigherCatsII}. Thus the composition is $p$-cocartesian iff $g_*$ is $p$-cocartesian, in other words, if $\roof{\phi}(c')$ sends all morphisms in $\Ii$ to $p$-cocartesian edges. Since this holds for all $c'\in \Cc$ (we can always take $f=\id_{c'}$), we finally obtain that $\phi$ preserves $\pr_2$-cocartesian edges iff $\roof{\phi}\colon \Cc\morphism\Gamma(p)$ factors over $\Gamma_\cocart(p)$. \enquote{Thus} $X\simeq \Gamma_\cocart(p)$. 
 	
-	So far, this is no proof at all, since we only explained why $0$-simplices of $\Nat(\const \Cc,F)$ correspond to $0$-simplices of $\Hom_{\Cat_\infty}(\Cc,\Gamma_\cocart(p))$ but it's not clear how to proceed for higher simplices, nor how to make this an $\infty$-natural transformation. First note that we have a map of cocartesian fibrations
+	So far, this is no proof at all, since we only explained why $0$-simplices of $\Nat(\const \Cc,F)$ correspond to $0$-simplices of $\Hom_{\Cat_\infty}(\Cc,\Gamma_\cocart(p))$ but it's not clear how to proceed for higher simplices, nor how to make this an $\infty$-natural transformation. To fix this, first note that we have a map of cocartesian fibrations
 	\begin{equation*}
 		\begin{tikzcd}
-			\Gamma_\cocart(p)\times I\dar["\pr_2"']\rar& E\dar["p"]\\
-			I\eqar[r]& I
+			\Gamma_\cocart(p)\times \Ii\dar["\pr_2"']\rar& E\dar["p"]\\
+			\Ii\eqar[r]&\Ii
 		\end{tikzcd}
 	\end{equation*}
-	induced by the evaluation map $\Fun(I,E)\times I\morphism E$. After straightening, this gives a natural transformation $\eta\colon \const\Gamma_\cocart(p)\Rightarrow F$, hence we get
+	induced by the evaluation map $\Fun(\Ii,E)\times \Ii\morphism E$. After straightening, this gives a natural transformation $\eta\colon \const\Gamma_\cocart(p)\Rightarrow F$, hence we get
 	\begin{equation*}
 		\Hom_{\Cat_\infty}\big(-,\Gamma_\cocart(p)\big)\overset{\const_*}{\Longrightarrow}\Nat\big(\const-,\const\Gamma_\cocart(p)\big)\overset{\eta_*}{\Longrightarrow}\Nat(\const-,F)\,,
 	\end{equation*}
-	which is the desired natural transformation. Whether this is an equivalence can be checked pointwise. Since instead of $\Nat(\const-,F)$ we can take the corresponding $\Hom$ anima in $\Cocart(I)$, we arrive at the equivalence from the beginning of the proof. Since we know how to compute $\Hom$ spaces in $\Cat_\infty$ and in $\Cat_\infty/I$ (the latter by \cite[Corollary~VIII.6]{HigherCatsII}), one easily checks $\Hom_{\Cat_\infty}(\Cc,\Gamma(p))\simeq\Hom_{\Cat_\infty/I}((\pr_2\colon\Cc\times I\morphism I),(p\colon E\morphism I))$. Now the $\Hom$ anima we are interested in are full subanima of these, so it really suffices to check that their $0$-simplices correspond, which we did above.
+	which is the desired natural transformation. Whether this is an equivalence can be checked pointwise. Since instead of $\Nat(\const-,F)$ we can take the corresponding $\Hom$ anima in $\Cocart(\Ii)$, we arrive at the equivalence from the beginning of the proof. Since we know how to compute $\Hom$ spaces in $\Cat_\infty$ and in $\Cat_\infty/\Ii$ (the latter by \cite[Corollary~VIII.6]{HigherCatsII}), one easily checks $\Hom_{\Cat_\infty}(\Cc,\Gamma(p))\simeq\Hom_{\Cat_\infty/\Ii}((\pr_2\colon\Cc\times \Ii\morphism \Ii),(p\colon E\morphism \Ii))$. Now the $\Hom$ anima we are interested in are full subanima of these, so it really suffices to check that their $0$-simplices correspond, which we did above.
 \end{proof}
+\begin{exm}\lecture[Localizations. More properties of (co)limits. Left Kan extensions for presheaf categories. $\Hom$ anima in functor categories.]{2020-11-10}
+	Since $\core\colon\Cat_\infty\morphism\An$ is right-adjoint to the inclusion $\An\subseteq\Cat_\infty$ (\cref{exm:MyFirstAdjoints}\itememph{a}), we get a natural counit transformation $\core\Rightarrow\id_{\Cat_\infty}$, which is given by a map $\Delta^1\morphism\Fun(\Cat_\infty,\Cat_\infty)$. By currying, this yields a functor
+	\begin{align*}
+		\Cat_\infty&\morphism\Ar(\Cat_\infty)\\
+		\Cc&\longmapsto(\core\Cc\rightarrow\Cc)\,.
+	\end{align*}
+	If $F\colon W\morphism\Cc$ is an object in $\Ar(\Cat_\infty)$, a left-adjoint object to $F$ under the above functor is called a \emph{localization} of $\Cc$ at $F$ (or rather at the image of $\pi_0\core\Ar(W)\morphism\pi_0\core\Ar(\Cc)$) of $F$ and denoted $\Cc[W^{-1}]$. Unwinding, this means that
+	\begin{equation*}
+		\Hom_{\Cat_\infty}\big(\Cc[W^{-1}],\Dd\big)\subseteq \Hom_{\Cat_\infty}(\Cc,\Dd)
+	\end{equation*}
+	is a collection of path components, given by those $G\colon \Cc\morphism\Dd$ such that the composite $G\circ F\colon W\morphism\Dd$ lands in $\core \Dd$. The localization $\Cc[W^{-1}]$ always exists, as one can take
+	\begin{equation*}
+		\begin{tikzcd}
+			W\rar["F"]\dar\drar[pushout] & \Cc\dar["p"]\\
+			{|W|}\rar& \Cc[W^{-1}]
+		\end{tikzcd}
+	\end{equation*}
+	(the pushout is taken in $\Cat_\infty$ of course). Futhermore, it turns out that
+	\begin{equation*}
+		p^*\colon \Fun\big(\Cc[W^{-1}],\Dd\big)\morphism\Fun(\Cc,\Dd)
+	\end{equation*}
+	is fully faithful, with essential image spanned by the same functors $G\colon \Cc\morphism\Dd$ as above (see \cite[Proposition~VIII.7]{HigherCatsII} for a proof). This has the funny consequence that the Yoneda embedding induces fully faithful inclusions $\Cc[W^{-1}]\subseteq \Pp\big(\Cc[W^{-1}]\big)\subseteq \Pp(\Cc)$.
+	In other words, all localizations of $\Cc$ occur as full subcategories of $\Pp(\Cc)$, which puts a size bound on how large $\Cc[W^{-1}]$ can be.
+\end{exm}
+\numpar*{Warning \smash{\Attention}}
+Localizations are difficult! Localizations of locally small $\infty$-categories may not be locally small any more. Moreover, the localization of a $1$-category may not be a $1$-category any more.
+\begin{exm}\label{exm:Delta0Pushout}
+	Let's compute the pushout
+	\begin{equation*}
+		\begin{tikzcd}
+			\Delta^0\rar["1"]\drar[pushout]\dar["0"']& \Delta^1\dar\\
+			\Delta^1\rar& \boldsymbol{?}
+		\end{tikzcd}
+	\end{equation*}
+	in $\Cat_\infty$, or rather let's check that $\boldsymbol{?}\simeq\Delta^2$! We will use \cref{prop:CoLimitsInCat}. Consider the diagram above as a map $F\colon\Lambda_0^2\morphism\Cat_\infty$. Since all maps in the diagram are nerves of functors of $1$-categories, the cocartesian unstraightening $\Dd=\Un^\cocart(F)$ is simply given by the Grothendieck construction. Therefore, the cocartesian fibration $\Dd\morphism \Lambda_0^2$ can be pictured as follows:
+	\begin{center}
+		\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+			\fill (0,0) circle (0.5ex) coordinate (A);
+			\fill (-2,0) circle (0.5ex) coordinate (B);
+			\fill (-2,1.5) circle (0.5ex) coordinate (C);
+			\fill (2,0) circle (0.5ex) coordinate (D);
+			\fill (2,1.5) circle (0.5ex) coordinate (E);
+			\fill (0,-2.5) circle (0.5ex) coordinate (F);
+			\fill (-2,-2.5) circle (0.5ex) coordinate (G);
+			\fill (2,-2.5) circle (0.5ex) coordinate (H);
+			\node at (-1.4,0.45) {$\scriptscriptstyle /\!/\!/$};
+			\draw[dotted, rounded corners=2] (-1.2cm-1ex,0.9cm-1ex) -- (-1ex,-1ex) -- (1.2cm+1ex,-1ex) -- (1.2cm+1ex,0.9cm+1ex) -- (-1.2cm-1ex,0.9cm+1ex) -- cycle;
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPink] (A) to (B);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPurple!90!white] (B) to (C);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (A) to (C);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPink] (A) to (E);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (D) to (E);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (F) to (G);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (F) to (H);
+			\draw[|-to] (0,-0.75cm+0.5\morphismlength) to ++(0,-\the\morphismlength);
+			\node at (-3,-2.5) {$\Lambda_0^2$};
+			\node at (-3,0.75) {$\Dd$};
+			\node at (3,0.75) {$\Dd'$};
+		\end{tikzpicture}
+	\end{center}
+	The two pink edges are the cocartesian ones and thus sent to equivalences in the localization $\Dd[\{\text{cocartesian edges}\}^{-1}]=\Dd[\{\text{pink edges}\}^{-1}]$. Let $\Dd'$ be the $\infty$-category obtained from $\Dd$ by removing the purple and the pink edge on the left, together with the $2$-simplex spanned by them. We claim that the restriction
+	\begin{equation*}
+		\Fun^{\{\text{pink}\}}(\Dd,\Ee)\isomorphism \Fun^{\{\text{pink}\}}(\Dd',\Ee)
+	\end{equation*}
+	is an equivalence for any $\infty$-category $\Ee$, where $\Fun^{\{\text{pink}\}}$ denotes functors that send pink edges to equivalences. Indeed, the purple edge on the left is \enquote{superfluous data}, i.e., any map $\Dd\smallsetminus\{\text{purple edge}\}\morphism\Ee$ has a contractible space of lifts to $\Dd$, by Joyal's lifting theorem. Moreover any map $\Dd'\morphism\Ee$ has a contractible space of lifts to a map $\Dd\smallsetminus\{\text{purple edge}\}\morphism\Ee$ that sends the left pink edge to an equivalence. This proves the above equivalence.
+	
+	A similar argument shows that it doesn't matter whether we send the pink edge on the right to an equivalence or to an actual identity in $\Ee$. Thus
+	\begin{equation*}
+		\Fun^{\{\text{pink}\}}(\Dd',\Ee)\simeq\Fun(\Lambda_1^2,\Ee)\simeq\Fun(\Delta^2,\Ee)\,,
+	\end{equation*}
+	which proves that $\Dd[\{\text{cocartesian edges}\}^{-1}]\simeq\Delta^2$, as claimed.
+\end{exm}
+\begin{lem}\label{lem:f^*preservesColimits}
+	If $\Cc$ is complete or cocomplete, then so is $\Fun(\Dd,\Cc)$ for any $\Dd$. Furthermore, for any $f\colon \Ee\morphism\Dd$, the precomposition functor
+	\begin{equation*}
+		f^*\colon \Fun(\Dd,\Cc)\morphism\Fun(\Ee,\Cc)
+	\end{equation*}
+	preserves limits and colimits. In particular \embrace{taking $f$ to be $\{d\}\monomorphism\Dd$ for any $d\in \Dd$}, limits and colimits in functor categories are computed pointwise.
+\end{lem}
+For the proof we need the following observation.
+\begin{obs}\label{obs:AdjunctionOfFunctorCats}
+	If $L\colon \Cc \shortdoublelrmorphism \Dd\noloc R$ are adjoint functors, then so are
+	\begin{equation*}
+		L_*\colon\Fun(\Ee,\Cc)\doublelrmorphism \Fun(\Ee,\Dd)\noloc R_*\quad\text{and}\quad
+		R^*\colon\Fun(\Dd,\Ee)\doublelrmorphism \Fun(\Cc,\Ee)\noloc L^*
+	\end{equation*}
+for any $\infty$-category $\Ee$.
+\end{obs}
+\begin{proof}
+	Being adjoints can be characterized by the existence of a unit and a counit transformation satisfying the triangle identities (see \cite[Proposition~XI.14]{HigherCatsII}, and $L_*$, $R_*$ inherit these transformations from $L$, $R$. Same for $R^*$, $L^*$.
+\end{proof}
+\begin{obs}
+	Left-adjoint functors preserve colimits, right-adjoint functors preserve limits.
+\end{obs}
+\begin{proof}
+	Straightforward calculation using \cref{obs:AdjunctionOfFunctorCats}. See \cite[Lemma~XI.22]{HigherCatsII} for details.
+\end{proof}
+\begin{proof}[Proof of \cref{lem:f^*preservesColimits}]
+	For any diagram shape $\Ii$, consider the commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}[row sep=small]
+			& \Fun\big(\Ii,\Fun(\Dd,\Cc)\big)\eqar[dd]\\
+			\Fun(\Dd,\Cc)\urar["\const",sloped]\drar["\const_*"', sloped]& \\
+			& \Fun\big(\Dd,\Fun(\Ii,\Cc)\big)\ular[dotted, bend right,"\colimit_*"', end anchor=east,start anchor=160,shorten <=2ex]\ular[dotted, bend left,"\limit_*",start anchor=west, end anchor=330]
+		\end{tikzcd}
+	\end{equation*}
+	By \cref{obs:AdjunctionOfFunctorCats}, $\colimit_*$ and $\limit_*$ are left and right adjoints of $\const_*$ respectively, which proves that $\const\colon \Fun(\Dd,\Cc)\morphism \Fun(\Ii,\Fun(\Dd,\Cc))$ has a left and right adjoint as well. Hence $\Fun(\Dd,\Cc)$ is complete and cocomplete again. Moreover, the assertion that limits and colimits are computed pointwise follows by unraveling.
+	
+	It remains to show that $f^*\colon \Fun(\Dd,\Cc)\morphism\Fun(\Ee,\Cc)$ preserves limits and colimits. For any diagram $F\colon \Ii\morphism\Fun(\Dd,\Cc)$ we get a map
+	\begin{equation*}
+		\colimit_\Ii f^*F\morphism f^*\colimit_\Ii F
+	\end{equation*}
+	(unique up to contractible choice). Whether this is an equivalence in $\Fun(\Ee,\Cc)$ can be checked pointwise (by \cref{thm:JoyalEquivalence}\itememph{b}), i.e., after composition with $x^*\colon \Fun(\Ee,\Cc)\morphism\Fun(\{x\},\Cc)\simeq \Cc$ for all $x\in \Ee$. Since we already know that colimits in $\Fun(\Ee,\Cc)$ and $\Fun(\Dd,\Cc)$ are computed pointwise, we see that both $x^*\colimit_\Ii f^*F$ and $x^*f^*\colimit_\Ii F$ are colimits of the diagram $\Ii\times\{f(x)\}\morphism \Cc$ induced by currying of $F$ and restriction along $\{f(x)\}\monomorphism\Dd$.
+\end{proof}
+\begin{prop}\label{prop:ColimitsCommute}
+	Let $p\colon \Ee\morphism\Cc$ be a cocartesian fibration and $F\colon \Ee\morphism\Dd$ a diagram. Suppose that the restrictions $F_{|c}\colon\Ee_{|c}\morphism\Dd$ of $F$ to the fibres $\Ee_{|c}=\Ee\times_\Cc\{c\}$ of $p$ have colimits for all $c\in \Cc$. Then these assemble into a functor $G\colon \Cc\morphism\Dd$ sending $c\mapsto \colimit_{\Ee_{|c}}F$, and
+	\begin{equation*}
+		\colimit_\Ee F\simeq \colimit_\Cc G\,,
+	\end{equation*}
+	whenever either exists. In particular \embrace{taking $p$ to be the projection $\pr_2\colon \Ii\times\Cc\morphism\Cc$ for some $\infty$-category $\Ii$}, this means that \enquote{colimits commute}.
+\end{prop}
+\begin{thm}[Joyal's version of Quillen's Theorem A]\label{thm:JoyalQuillenThmA}
+	For a functor $\alpha\colon \Ii\morphism \Jj$ the following statements are equivalent.
+	\begin{alphanumerate}
+		\item A functor $F\colon \Jj\morphism\Cc$ has a colimit iff the composition $F\circ\alpha\colon \Ii\morphism \Cc$ has a colimit, and in this case
+		\begin{equation*}
+			\colimit_\Ii F\circ\alpha\simeq\colimit_\Jj F\,.
+		\end{equation*}
+		\item For all $j\in \Jj$ we have $|j/\alpha|\simeq *$, i.e., the slice category $j/\alpha$ is weakly contractible. Here we define $j/\alpha$ by the pullback
+		\begin{equation*}
+			\begin{tikzcd}
+				j/\alpha\dar \rar\drar[pullback]&\Ar(\Jj)\dar["{(s,t)}"]\\
+				\{j\}\times\Ii\rar["{(\operatorname{incl},\alpha)}"]&\Jj\times \Jj
+			\end{tikzcd}
+		\end{equation*}
+	\end{alphanumerate}
+\end{thm}
+\begin{proof*}
+	Combine \cite[Proposition~4.1.1.8]{HTT} (for more equivalent characterizations) and \cite[Theorem~4.1.3.1]{HTT} (for the actual proof).
+\end{proof*}
+\begin{defi}\label{def:cofinal}
+	Maps $\alpha\colon \Ii\morphism \Jj$ as in \cref{thm:JoyalQuillenThmA} are called \emph{cofinal}. Dually, if precomposition with $\alpha$ preserves limits, then $\alpha$ is called \emph{final}.
+\end{defi}
+Cofinal maps induce homotopy equivalences $|\alpha|\colon |\Ii|\morphism|\Jj|$ of anima, which can be seen via the chain of homotopy equivalences
+\begin{equation*}
+	|\Ii|\simeq\colimit_\Ii\const_*\simeq\colimit_\Jj\const_*\simeq|\Jj|
+\end{equation*}
+(the colimits in the middle are taken in $\An$). Here we use $|\Ii|\simeq\colimit_\Ii\const_*$, which can be seen in several ways: One could use \cref{thm:HomotopyLimits} and the Bousfield--Kan formula (\cite[Digression~III]{HigherCatsII}). Alternatively, compute $\Hom_{\An}(\colimit_\Ii\const_*,K)\simeq \limit_\Ii\Hom_{\An}(*,K)\simeq\limit_\Ii K$ for any anima $K$ using \cref{cor:HomPreservesColimits} below, and apply \cref{prop:CoLimitsInCat} to get $\limit_\Ii K\simeq\Gamma(\pr_2\colon K\times \Ii\morphism\Ii)$. The space of sections of $\pr_2\colon K\times\Ii\morphism\Ii$ clearly identifies with $\Fun(\Ii,K)\simeq\core\Fun(\Ii,K)\simeq\Hom_{\Cat_\infty}(\Ii,K)$, so $\colimit_\Ii\const_*$ is indeed a left-adjoint object of $\Ii$ under the inclusion $\An\subseteq\Cat_\infty$.
+
+Examples of cofinal maps are given by right-adjoint functors and localizations. Indeed, if $\alpha\colon \Ii\morphism\Jj$ is a right adjoint, then consider the diagram
+\begin{equation*}
+	\begin{tikzcd}[column sep=small]
+		& \Cc\dlar["\const"{sloped}]\drar["\const"{sloped}]& \\
+		\Fun(\Jj,\Cc)\ar[rr,"\alpha^*"]\urar[bend left=45, dotted,"\colimit_\Jj"] & & \Fun(\Ii,\Cc)\ular[bend right=45, dotted,"\colimit_\Ii"']
+	\end{tikzcd}
+\end{equation*}
+By \cref{obs:AdjunctionOfFunctorCats}, $\alpha^*\colon \Fun(\Jj,\Cc)\morphism\Fun(\Ii,\Cc)$ is a left-adjoint. Since left-adjoints compose, we obtain $\colimit_\Jj\simeq {\colimit_\Ii}\circ\alpha^*$, as required. If $p\colon \Cc\morphism\Cc[W^{-1}]$ is a localization and $F\colon \Cc[W^{-1}]\morphism\Dd$ is any diagram, then 
+\begin{equation*}
+	\Nat(F,\const x)\simeq\Nat(F\circ p,\const x)
+\end{equation*}
+holds for every $x\in \Cc$ since $p^*\colon \Fun(\Cc[W^{-1}],\Dd)\morphism\Fun(\Cc,\Dd)$ is fully faithful, which again proves cofinality by means of \cref{thm:JoyalQuillenThmA}\itememph{a}.
+\begin{cor}\label{cor:ColimitsCommute}
+	Let $G\colon \Ii\morphism\Cat_\infty$ be a diagram and put $\Jj\simeq\colimit_\Ii G$. Let $F\colon \Jj\morphism\Dd$ be another diagram and suppose that the restrictions 
+	\begin{equation*}
+		G(i)\morphism\Jj\morphism[F]\Dd
+	\end{equation*}
+	have colimits for all $i\in \Ii$. Then these colimits assemble into a functor $H\colon \Ii\morphism \Dd$ sending $i\mapsto \colimit_{G(i)}F$, and we have
+	\begin{equation*}
+		\colimit_\Jj F\simeq\colimit_\Ii H
+	\end{equation*}
+	if either exists.
+\end{cor}
+\begin{proof}
+	By \cref{prop:CoLimitsInCat}, we have $\Jj\simeq\colimit_\Ii G\simeq \Un^\cocart(G)[\{\text{cocartesian edges}\}^{-1}]$. Since localizations are cofinal, we obtain
+	\begin{equation*}
+		\colimit_\Jj F\simeq\colimit_{\Un^{\cocart}(G)}F\,.
+	\end{equation*}
+	Now recall that $G(i)\simeq \Un^\cocart(G)\times_\Ii\{i\}$, so we are done by \cref{prop:ColimitsCommute}.
+\end{proof}
+\numpar{\enquote{Corollary}}\label{cor:completeIffPullbacksProducts}\itshape If $\Cc$ has coproducts and pushouts, then it is cocomplete. Dually, if $\Cc$ has products and pullbacks, then it is complete.\upshape
+\begin{proof}[\enquote{Proof} sketch]
+	Decompose any test category $\Ii$ into its skeleta and repeatedly apply \cref{cor:ColimitsCommute} using $\colimit_{\Delta^n}F=F(n)$ since $\{n\}\monomorphism \Delta^n$ is cofinal---in fact, all right anodyne maps are cofinal. For a complete proof, check out \cite[Proposition~4.4.2.6]{HTT}.
+\end{proof}
+\subsection{Colimits and the Yoneda embedding}
+\begin{thm}[Joyal]\label{thm:JoyalRightFibrations}
+	Given a functor $f\colon \Cc\morphism\Dd$ of $\infty$-categories, the functor 
+	\begin{equation*}
+		f^*\colon \Right(\Dd)\morphism\Right(\Cc)
+	\end{equation*}
+	admits a left-adjoint. Its value on $p\colon \Ee\morphism\Cc$ is obtained by factoring $\Ee\morphism\Cc\morphism\Dd$ as a cofinal map followed by a right fibration $\Ee'\morphism\Dd$. In diagrams
+	\begin{equation*}
+		\begin{tikzcd}
+			\Ee\dar["p"']\rar& \Ee'\dar\\
+			\Cc\rar["f"]&\Dd
+		\end{tikzcd}
+	\end{equation*}
+	where the top arrow is cofinal.
+\end{thm}
+\begin{proof*}[Proof sketch]
+	Recall (e.g.\ from \cite[\S2.1.4]{HTT}) that there exists the \emph{contravariant model structure} on $\sSet/\Cc$, in which the fibrant objects are given by right fibrations over $\Cc$ (general fibrations are more complicated), and that for any $f\colon \Cc\morphism\Dd$ we have a Quillen adjunction
+	\begin{equation*}
+		f_!=-\circ f\colon \sSet/\Cc\doublelrmorphism \sSet/\Dd\noloc f^*
+	\end{equation*}
+	with respect to these model structures. Here $f_!$ denotes the forgetful functor sending $\Ee\morphism\Cc$ to $\Ee\morphism\Cc\morphism\Dd$. As any Quillen adjunction of model categories, this induces an adjunction
+	\begin{equation*}
+		Lf_!\colon (\sSet/\Cc)_\infty\doublelrmorphism(\sSet/\Dd)_\infty\noloc Rf^*
+	\end{equation*}
+	on underlying $\infty$-categories, defined as the localizations at all weak equivalences, or equivalently as $\N^c((\sSet/\Cc)^{\mathrm{cf}})$ and $\N^c((\sSet/\Cc)^{\mathrm{cf}})$, since $\sSet/\Cc$ and $\sSet/\Dd$ can be made into a Kan simplicial model category, so \cite[Digression~III Theorem~D]{HigherCatsII} applies. The latter description shows that the underlying $\infty$-categories identify with $\Right(\Cc)$ and $\Right(\Dd)$, which provides the desired adjoint. Since right anodyne maps are cofinal (\cite[Proposition~4.1.1.3]{HTT}), a quick unraveling shows that $Lf_!$ can indeed be described as above.
+\end{proof*}
+\begin{cor}\label{cor:f_!:PC->PD}
+	The functor $f^*\colon \Pp(\Dd)\morphism\Pp(\Cc)$ has a left-adjoint $f_!$ \embrace{given by left Kan extension} such that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Cc\rar["f"]\dar["Y^\Cc"']& \Dd\dar["Y^\Dd"]\\			\Pp(\Cc)\rar["f_!"]&\Pp(\Dd)
+		\end{tikzcd}
+	\end{equation*}
+	commutes in the $\infty$-category $\Cat_\infty$.
+\end{cor}
+\begin{proof}
+	The first statement immediately follows from \cref{thm:JoyalRightFibrations} and (the dual of) \cref{thm:StraighteningAn}, which asserts that the cartesian straightening $\St^\cart\colon \Right(\Cc)\isomorphism\Pp(\Cc)$ is an equivalence with inverse the cartesian unstraightening $\Un^\cart$.
+	
+	For the second statement, we have to show that $f_!\Hom_\Cc(-,x)\morphism\Hom_\Dd(-,f(x))$ is an equivalence for all $x\in \Cc$.	After unstraightening, this translates to the statement that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Cc/x\dar\rar& \Dd/f(x)\dar\\
+			\Cc\rar["f"]&\Dd
+		\end{tikzcd}
+	\end{equation*}
+	exhibits $\Dd/f(x)\morphism\Dd$ as $f_!(\Cc/x\morphism\Cc)$. The right vertical arrow is already a right fibration, so it suffices to check that $\Cc/x\morphism\Dd/f(x)$ is cofinal. This holds because
+	\begin{equation*}
+		\begin{tikzcd}[column sep=small]
+			& \Delta^0\dlar["x"']\drar["f(x)"] & \\
+			\Cc/x\ar[rr,"f"]& & \Dd/f(x)
+		\end{tikzcd}
+	\end{equation*}
+	has both downward arrows cofinal (as $x$ and $f(x)$ are terminal objects in $\Cc/x$ and $\Dd/f(x)$ respectively and thus both sloped arrows are right anodyne by \cite[Digression~I Corollary~D.7]{HigherCatsII}).
+\end{proof}
+\begin{cor}\label{cor:HomInFunctorCats}
+	Given functors $F,G\colon \Cc\morphism\Dd$ of $\infty$-categories, we have an equivalence of anima
+	\begin{equation*}
+		\Nat(F,G)\simeq\limit_{(x\rightarrow y)\in\TwAr(\Cc)}\Hom_\Dd\big(F(x),G(y)\big)\,.
+	\end{equation*}
+	Explicitly, the limit is taken over $\TwAr(\Cc)\morphism\Cc^\op\times\Cc\xrightarrow{F^\op\times G}\Dd^\op\times\Dd\xrightarrow{\Hom_\Dd}\An$.
+\end{cor}
+Note that \cref{cor:HomInFunctorCats} explains why natural transformations are complicated in $\infty$-land: $\pi_0$ does not commute with arbitrary limits!
+\begin{proof}[Proof of \cref{cor:HomInFunctorCats}]
+	By \cref{prop:CoLimitsInCat}, the right-hand side can be computed as the anima of sections of $p\colon P\morphism\TwAr(\Cc)$, where $P$ denotes the correct unstraightening. Explicitly, we have a diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			P\rar\dar\drar[pullback] & P'\rar\dar\drar[pullback] & \TwAr(\Dd)\dar\rar\drar[pullback] & */\An\dar\\
+			\TwAr(\Cc)\rar["{(s,t)}"] & \Cc^\op\morphism\Cc\rar["F^\op\times G"] & \Dd^\op\times\Dd\rar["\Hom_\Dd"] & \An
+		\end{tikzcd}
+	\end{equation*}
+	which shows $\Gamma(p)\simeq\Hom_{\Cat_\infty/\Cc^\op\times\Cc}(\TwAr(\Cc),P')$. But these are both left fibrations over $\Cc^\op\times\Cc$, so the $\Hom$ anima on the right-hand side can be equivalently computed as $\Nat(\Hom_\Cc,{\Hom_\Dd}\circ(F^\op\times G))$. Now the currying equality  $\Fun(\Cc^\op\times\Cc,\An)=\Fun(\Cc,\Pp(\Cc))$ sends $\Hom_\Cc$ to $Y^\Cc$ and ${\Hom_\Dd}\circ(F^\op\times G)$ to $F^*\circ Y^\Dd\circ G$, hence the $\Hom$ anima under consideration is given by
+	\begin{equation*}
+		\Nat\big(Y^\Cc,F^*\circ Y^\Dd\circ G)\big)\simeq \Nat(F_!\circ Y^\Cc,Y^\Dd\circ G)\simeq \Nat(Y^\Dd\circ F,Y^\Dd\circ G)\simeq \Nat(F,G)\,,
+	\end{equation*}
+	as claimed. For the left equivalence, we use that $F_!\circ -$ is an adjoint of $F^*\circ -$ by construction and \cref{obs:AdjunctionOfFunctorCats}, the middle equivalence follows from \cref{cor:f_!:PC->PD}, and the right one since $Y^\Dd\colon \Dd\morphism\Pp(\Dd)$ is fully faithful by Yoneda's lemma (\cref{thm:Yoneda}).
+\end{proof}
+\begin{cor}\label{cor:HomPreservesColimits}
+	Let $F\colon \Ii\morphism\Cc$ be a functor of $\infty$-categories. A natural transformation $\eta\colon F\Rightarrow\const c$ exhibits $c\in \Cc$ as the colimit of $F$ if and only if the natural map
+	\begin{equation*}
+		\eta^*\colon \Hom_\Cc(c,x)\isomorphism\limit_{i\in\Ii^\op}\Hom_\Cc\big(F(i),x\big)
+	\end{equation*}
+	is an equivalence for all $x\in \Cc$. A similar assertion holds for limits. In particular, the functors $\Hom_\Cc(-,d)\colon \Cc^\op\morphism\An$ and $Y^\Cc\colon \Cc\morphism\Pp(\Cc)$ preserve limits.
+\end{cor}
+\begin{proof}
+	We are done if we can show that the right-hand side is just $\Nat(F,\const x)$. From \cref{cor:HomInFunctorCats} we get a map
+	\begin{equation*}
+		\Nat(F,\const x)\simeq \limit_{(c\rightarrow c')\in\TwAr(\Cc)}\Hom_\Dd(F(c),x)\morphism\limit_{c\in\Cc^\op}\Hom_\Dd(F(c),x)\,.
+	\end{equation*}
+	So we are done if we show that $s\colon\TwAr(\Cc)\morphism\Cc^\op$ is final. By (the dual of) \cref{thm:JoyalQuillenThmA}\itememph{b} we must show $|s/c|\simeq *$ for all $c\in \Cc^\op$. Applying \cref{exc:cocartesianFibrationLeftAdjoint} to the cocartesian fibration $s={\pr_2}\circ(s,t)\colon\TwAr(\Cc)\morphism\Cc^\op\times\Cc\morphism\Cc^\op$, we find that $|s^{-1}\{c\}|\simeq|s/c|$ since adjoints induce inverse homotopy equivalences after applying $|\blank|$; alternatively one can use that left adjoints are final. Now $s^{-1}\{c\}$ has an initial object which immediately shows $|s^{-1}\{c\}|\simeq *$. In fact, we have $s^{-1}\{c\}\simeq c/\Cc$ (and $\id_c$ is initial in the right-hand side): Depending on your definitions, this is either something one has to check (as in the proof of \cite[Proposition~5.2.1.10]{HA}), or follows from the fact that $t\colon s^{-1}\{c\}\morphism \Cc$ represents the functor $\Hom_\Cc(c,-)$ and is thus given by the right fibration $c/\Cc\morphism \Cc$.
+\end{proof}
+\begin{exc}\label{exc:cocartesianFibrationLeftAdjoint}
+	Let $p\colon \Ee\morphism\Cc$ be a cocartesian fibration. Show that the natural map $\Ee\times_\Cc\{c\}\morphism \Ee\times_\Cc \Cc/c$ has a left adjoint for all $c\in \Cc$.
+\end{exc}
+Fabian wrote $c/s$ instead of $s/c$ in the lecture and in \cite[Corollar~I.50]{KTheory}, and the exercise was formulated with $c/\Cc$ instead of $\Cc/c$. I'm pretty sure that we really need the other slices---after all, we need to apply the dual version of \cref{thm:JoyalQuillenThmA}\itememph{b}, also it will become apparent during the proof* of \cref{exc:cocartesianFibrationLeftAdjoint} that we really need to use $\Cc/c$.
+\begin{proof*}[Proof of \cref{exc:cocartesianFibrationLeftAdjoint}]
+	Since adjoints can be constructed objectwise by \cref{cor:AdjointsPointwise}, we only need to show that every object $(e',\phi\colon c'\morphism c)\in \Ee\times_\Cc\Cc/c$ admits a left-adjoint object. Let $\eta\colon e'\morphism e$ be a $p$-cocartesian lift of $\phi$. This induces a morphism $\eta\colon (e',\phi)\morphism (e,\id_c)$ in $\Ee\times_\Cc\Cc/c$. We claim that $\eta$ exhibits $e$ as a left-adjoint object of $(e',\phi)$, so we need to show that the composite
+	\begin{equation*}
+		\Hom_{\Ee\times_\Cc\{c\}}(e,e'')\morphism\Hom_{\Ee\times_\Cc\Cc/c}\big((e,\id_c),(e'',\id_c)\big)\morphism[\eta^*]\Hom_{\Ee\times_\Cc\Cc/c}\big((e',\phi),(e'',\id_c)\big)
+	\end{equation*}
+	is an equivalence for all $e''\in \Ee$. Plugging in the homotopy pullback that describes $\Hom_\Ee(e,e'')$ due to $e'\morphism e$ being $p$-cocartesian, as well as the homotopy pullback that computes $\Hom_{\Cc/c}(c',c)$ due to \cite[Corollary~VIII.6]{HigherCatsII}, shows that both the left-hand side and the right-hand side are homotopy equivalent to $\Hom_\Ee(e',e)\times_{\Hom_\Cc(c',c)}^R\{\phi\}$ and that the above composite induces the identity on that anima.
+\end{proof*}
+
+\begin{exc}\label{exc:K(R)cocomplete}
+	Use \cref{cor:HomPreservesColimits} to show that $\Kk(R)$ and $\N^c(\cat{Top})$ are (co)complete.
+\end{exc}
+
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography
