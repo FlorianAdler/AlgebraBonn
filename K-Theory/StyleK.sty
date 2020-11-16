@@ -30,7 +30,7 @@
 
 %%%% diagrams %%%%
 \usepackage{tikz-cd}
-\usetikzlibrary{arrows,calc,decorations.markings,shapes.geometric,patterns}
+\usetikzlibrary{arrows,calc,decorations.markings,decorations.pathmorphing,shapes.geometric,patterns}
 \DeclareRobustCommand{\Attention}{\tikz[baseline, anchor=base]\node[draw, regular polygon, regular polygon sides=3, rounded corners=2, thick, inner sep=-0.25pt] at (0,0) {\textbf{!}};}
 
 %%%% bibliography %%%%
@@ -136,6 +136,16 @@ listname={List of Lectures}%
 {5pt plus 1pt minus 1pt} % HEADSPACE
 {\thmnumber{#2. }\thmname{#1}\thmnote{ \textmd{(#3)}}}          % CUSTOM-HEAD-SPEC
 
+\newtheoremstyle{cthm*}
+{\thmsep}   % ABOVESPACE
+{\thmsep}   % BELOWSPACE
+{\itshape}  % BODYFONT
+{0pt}       % INDENT (empty value is the same as 0pt)
+{\bfseries} % HEADFONT
+{.\enskip---}         % HEADPUNCT
+{5pt plus 1pt minus 1pt} % HEADSPACE
+{\thmname{#1}\thmnote{ \textmd{(#3)}}}          % CUSTOM-HEAD-SPEC
+
 \newtheoremstyle{cdef}
 {\thmsep}   % ABOVESPACE
 {\thmsep}   % BELOWSPACE
@@ -169,6 +179,9 @@ listname={List of Lectures}%
 \newtheorem{prop*}[smallerdummy]{Proposition*}
 \newtheorem{fact*}[smallerdummy]{Fact*}
 \newtheorem{obs}[dummy]{Observation}
+
+\theoremstyle{cthm*}
+\newtheorem*{thm**}{Theorem}
 
 \theoremstyle{cdef}
 \newtheorem{defi}[dummy]{Definition}
