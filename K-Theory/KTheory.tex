@@ -646,7 +646,7 @@ By now, we haven't been able to produce any examples of $\infty$-categories yet,
 		Finally, there is $\Dd^\perf(R)\subseteq \Kk(R)$ which is the full sub-$\infty$-category spanned by bounded complexes of degreewise finite projective modules. We will see that $K(R)=\Proj^\fg(R)^\inftygrp\simeq K(\Dd^\perf(R))$ eventually.
 	\end{alphanumerate}
 \end{exm}
-\begin{exc}
+\begin{exc}\label{exc:piFHiInternalHom}
 	For complexes $C,D\in\Ch(R)$ let $\Hhom_R(C,D)$ denote the internal $\Hom$ in $\Ch(R)$, so that $\Hhom_R(C,-)$ is right-adjoint to $C\otimes_R -$ (see the \href{https://ncatlab.org/nlab/show/internal+hom+of+chain+complexes}{$n$Lab article}  for an explicit construction). Show that the Kan enrichment in \cref{exm:MyFirstInftyCats}\itememph{e} satisfies
 	\begin{equation*}
 		\pi_i\F_{\Ch(R)}(C,D)\cong H_i\big(\Hhom(C,D)\big)\quad\text{for all }i\geq 0\,.
@@ -1036,7 +1036,7 @@ Now that we have a sufficient supply of mutually equivalent definitions of the $
 		\begin{equation*}
 			\ev_{\id_x}\colon\Nat\big(\Hom_\Cc(x,-),F\big)\isomorphism F(x)
 		\end{equation*}
-		is an equivalence \embrace{we use $\Nat$ is a shortcut for $\Hom_{\Fun(\Cc,\cat{An})}$}. Morover, adjoining the functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\Fun(\Cc,\cat{An})$ gives fully faithful functors \embrace{\enquote{Yoneda embeddings}}
+		is an equivalence \embrace{we use $\Nat$ as a shortcut for $\Hom_{\Fun(\Cc,\cat{An})}$}. Morover, adjoining the functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\Fun(\Cc,\cat{An})$ gives fully faithful functors \embrace{\enquote{Yoneda embeddings}}
 		\begin{equation*}
 			Y^\Cc\colon\Cc\morphism\Fun(\Cc^\op,\cat{An})\quad\text{and}\quad Y_\Cc\colon\Cc^\op\morphism\Fun(\Cc,\An)\,.
 		\end{equation*}
@@ -1616,7 +1616,7 @@ and for $n\geq 1$ an isomorphism on the right-hand side gives an equivalence on 
 \begin{equation*}
 	K(-,n)\colon \cat{Ab}\morphism */\An
 \end{equation*}
-is fully faithful.
+is fully faithful for $n\geq 1$.
 
 Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon */\An\morphism */\An_{\leq n}$ (one can e.g.\ take $\tau_{\leq n}X=\operatorname{cosk}_nX$ and use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}) which satisfies
 \begin{equation*}
@@ -1629,7 +1629,7 @@ Then there are maps $\tau_{\leq n+1}X\morphism\tau_{\leq n}X$ whose homotopy fib
 \begin{equation*}
 	X\morphism\Big(\dotso \morphism\tau_{\leq n+1}\morphism\tau_{\leq n} X\morphism\dotso \morphism\tau_{\leq 1}X\Big)
 \end{equation*}
-is called the \emph{Postnikov tower} of $X$. It's an important organizational and computational tool.
+is called the \emph{Postnikov tower} of $X$. It's an important organizational and computational tool, since it \enquote{stratifies} $*/\An$ into 
 \begin{exc}\label{exc:ComplexQIsoHomology}
 	Show that every chain complex over $\IZ$ (in fact, over any PID) is quasi-isomorphic via a zigzag to its homology, considered as a chain complex all of whose differentials are $0$.
 \end{exc}
@@ -1688,10 +1688,230 @@ Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(
 		\begin{thm**}[Rezk, Lurie, Tierney--Joyal]
 			The Rezk nerve $\N^r\colon \Cat_\infty\morphism\cat{s}\An$ is fully faithful with essential image given by the complete Segal spaces.
 		\end{thm**}
-		More on that next time.
 	\end{alphanumerate}
 \end{exm}
+\subsection{Bousfield Localizations}
+\lecture[Bousfield localizations, limits and colimits inside them. Applications to derived categories of rings.]{2020-11-17}
+\begin{propdef}\label{propdef:BousfieldLocalization}
+	Let $L\colon \Cc \shortdoublelrmorphism \Dd\noloc R$ be an adjoint pair.
+	\begin{alphanumerate}
+		\item The functor $R$ is fully faithful iff the counit $c\colon LR\Rightarrow \id_\Dd$ is an equivalence.
+		\item A morphism $f\colon x\morphism y$ in $\Cc$ is taken to an equivalence by $L$ iff it is a left $R$-local equivalence, i.e.\ if the induced map
+		\begin{equation*}
+			f^*\colon \Hom_\Cc(y,Rd)\morphism \Hom_\Cc(x,Rd)
+		\end{equation*}
+		is an equivalence for all $d\in \Dd$. We will often drop the \enquote{left} part and just write \enquote{$R$-local equivalence}.
+	\end{alphanumerate}
+	Moreover, if the equivalent conditions from \itememph{a} hold, then:
+	\begin{alphanumerate}\setcounter{enumi}{2}
+		\item The unit $c\morphism RLc$ is always a left $R$-local equivalence.
+		\item $L\colon \Cc\morphism\Dd$ is a localization at the left $R$-local equivalences.
+	\end{alphanumerate}
+	One then says that $L$ is a left Bousfield localization. In particular, $\Cc[\{\textup{$R$-local equiv.}\}^{-1}]$ is again locally small. Of course, there's also a dual notion of right Bousfield localizations.
+\end{propdef}
+\begin{proof}
+	By Yoneda's lemma (\cref{thm:Yoneda}\itememph{b}), for $Lf\colon Lx\morphism Ly$ to be an equivalence, it suffices to show that it induces an equivalence after $\Hom_\Dd(-,d)$ for all $d\in \Dd$. Using the natural adjunction equivalence $\Hom_\Dd(L-,-)\simeq \Hom_\Cc(-,R-)$, we obtain a homotopy commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_\Cc(y,Rd)\rar["f^*"]\dar[iso] & \Hom_\Cc(x,Rd)\dar[iso]\\
+			\Hom_\Dd(Ly,d)\rar["Lf^*"]& \Hom_\Dd(Lx,d)
+		\end{tikzcd}
+	\end{equation*}
+	in anima, which immediately proves \itememph{b}. Next up, we prove \itememph{a}. Consider
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_\Cc(LRd,x)\rar["R"]\drar[iso,""{sloped, name=A}] & \Hom_\Dd(RLRd,Rx)\dar["u_{Rd}^*",""{sloped,above,name=B},,""{below,below,name=C}]\drar["\id",start anchor=south east,""{sloped,below,name=D}] & \\
+			 \arrow[from=A,to=B,phantom,"\scriptscriptstyle /\!/\!/"] & \Hom_\Dd(Rd,Rx)\rar["(Rc_d)^*"]\urar[phantom,"\scriptscriptstyle /\!/\!/", from=C,to=D]& \Hom_\Dd(RLRd,Rx)
+		\end{tikzcd}
+	\end{equation*}
+	The left diagonal arrow is the adjunction withness and thus an equivalence. The right diagonal arrow is the identity by the triangle relations. In particular, $u_{Rd}^*$ admits both a left and a right inverse and must therefore be an equivalence. And then in fact \emph{all} arrows in the diagram above must be equivalences! Now consider the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_\Dd(d,x)\dar["R"']\rar["c_d^*"] & \Hom_\Dd(LRd,x)\dar["R"]\\
+			\Hom_\Cc(Rd,Rx)\rar["(Rc_d)^*"]& \Hom_\Cc(RLRd,Rx)
+		\end{tikzcd}
+	\end{equation*}
+	which is comutative (in $\pi\An$) by functoriality of $R$. Observe that the bottom arrow the right arrow are equivalences as seen above. Hence the left arrow is an equivalence iff the top arrow is one, which is precisely what we want for \itememph{a}.
 	
+	Now for \itememph{c}. By one of the triangle identities (not the one we used above), the composition
+	\begin{equation*}
+		Lx\xrightarrow{Lu_x}LRLx\xrightarrow{c_{Lx}}Lx
+	\end{equation*}
+	is equivalent to $\id_{Lx}$ for all $x\in \Cc$. Since we assume that the conditions from \itememph{a} hold, $c_{Lx}$ is an equivalence, hence $Lu_x$ is one too. By \itememph{b} this means that $u_x$ is an $R$-local equivalence.
+	
+	For \itememph{d}, let $\Ee$ be any test category and consider the adjunction
+	\begin{equation*}
+		R^*\colon \Fun(\Cc,\Ee)\doublelrmorphism\Fun(\Dd,\Ee)\noloc L^*
+	\end{equation*}
+	obtained from \cref{obs:AdjunctionOfFunctorCats}. Since the counit of $(L,R)$ is an equivalence, the counit of $(R^*,L^*)$ is an equivalence too (it is induced by the former counit). But the direction of the adjunction has switched, so now $L^*$ is fully faithful by \itememph{a}. We are left to show that the essential image of $L^*$ is $\Fun^{\{\text{$R$-local equiv.}\}}(\Cc,\Ee)$, i.e.\ those functors that invert $R$-local equivalences. But any $L^*F\simeq F\circ L$ inverts the $R$-local equivalences by \itememph{b}, hence the essential image of $L^*$ is contained in $\Fun^{\{\text{$R$-local equiv.}\}}(\Cc,\Ee)$. Conversely, for $F\colon \Cc\morphism\Ee$ inverting the $R$-local equivalences, we have $F\simeq FRL\simeq L^*(FR)$ since the unit $u_x\colon x\morphism RLx$ is an $R$-local equivalence for all $x\in \Cc$ by \itememph{c}. Hence $F$ is contained in the essential image of $L^*$.
+\end{proof}
+Now that we know when adjunctions are Bousfield localizations, we would like to study the \enquote{converse} question, i.e.\ when localizations are Bousfield localizations.
+\begin{prop}\label{prop:LocalizationBousfield}
+	Let $W\subseteq \pi_0\core\Ar(\Cc)$ be some collection of morphisms with associated localization $p\colon \Cc\morphism\Cc[W^{-1}]$. Then a map $\tau\colon px\morphism y$ in $\Cc[W^{-1}]$ exhibits $x$ as a right-adjoint object to $y$ under $p$ iff $\tau$ is an equivalence and $\Hom_\Cc(-,x)\colon \Cc^\op\morphism\An$ inverts all morphisms from $W$.
+	
+	In particular, a right-adjoint functor $R$ to $p$ is automatically fully faithful. Note that this also characterizes the essential image of $R$ as the \embrace{left} $R$-local objects, i.e.\ those $c\in \Cc$ such that $\Hom_\Cc(-,c)\colon \Cc^\op\morphism\An$ inverts \embrace{left} $R$-local equivalences.
+\end{prop}
+We first prove the following lemma.
+\begin{lem}\label{lem:HomsInLocalization}
+	Let $p\colon \Cc\morphism\Cc[W^{-1}]$ be a localization.
+	\begin{alphanumerate}
+		\item For all $c\in \Cc$, the functor $\Hom_{\Cc[W^{-1}]}(-,pc)$ is the left Kan extension of $\Hom_\Cc(-,c)$ along $p^\op$. In diagrams:
+		\begin{equation*}
+			\begin{tikzcd}[column sep=large]
+				\Cc^\op\dar["p^\op"']\rar["{\Hom_\Cc(-,c)}"]& \An\\
+				\Cc[W^{-1}]^\op\urar[dashed, "\rlap{$\Hom_{\Cc[W^{-1}]}(-,pc)$}"'] & 
+			\end{tikzcd}
+		\end{equation*}
+		\item Any functor $F\colon \Cc[W^{-1}]\morphism \Dd$ is left Kan extended from $F\circ p$ along $p$. In diagrams:
+		\begin{equation*}
+			\begin{tikzcd}
+				\Cc\dar["p"']\rar["F\circ p"]& \Dd\\
+				\Cc[W^{-1}]\urar[dashed, "F"'] & 
+			\end{tikzcd}
+		\end{equation*}
+		The same is true for functors $F\colon \Cc[W^{-1}]^\op\morphism\Dd$ and left Kan extension along $p^\op$. In fact, $p^\op\colon \Cc\morphism\Cc[W^{-1}]^\op$ is a localization of $\Cc^\op$ at $W^\op$.
+	\end{alphanumerate}
+\end{lem}
+\numpar*{Warning \smash{\Attention}} Don't get too excited and think \enquote{Yeah, now \cref{thm:KanExtension} allows me to compute $\Hom$ anima in localizations!}, since the pointwise formula is useless here.
+\begin{proof}[Proof of \cref{lem:HomsInLocalization}]
+	For \itememph{a}, we apply Yoneda's lemma (more precisely, the dual version of \cref{thm:Yoneda}\itememph{b}) twice to obtain
+	\begin{equation*}
+		\Nat\left(\Hom_{\Cc[W^{-1}]}(-,pc),G\right)\simeq G(pc)\simeq \Nat\big(\Hom_\Cc(-,c),G\circ p^\op\big)
+	\end{equation*}
+	for all $G\colon \Cc[W^{-1}]^\op\morphism\Dd$. This is precisely what we want from a Kan extension along $p^\op$. For \itememph{b}, recall that $p^*\colon \Fun(\Cc[W^{-1}],\Ee)\morphism\Fun(\Cc,\Ee)$ is fully faithful, i.e.\ 
+	\begin{equation*}
+		p^*\colon \Nat(F,G)\isomorphism \Nat(F\circ p,G\circ p)
+	\end{equation*}
+	is an equivalence for all $F$ and $G$. This again exhibits $F$ as a left Kan extension, along $p$ this time. For the additional assertion, use the universal property or the explicit construction from \cite[Theorem~VIII.8]{HigherCatsII}.
+\end{proof}
+\begin{proof}[Proof of \cref{prop:LocalizationBousfield}]
+	If $\Hom_\Cc(-,x)$ inverts all arrows from $W$, then it descends to a functor $F\colon \Cc[W^{-1}]^\op\morphism \An$, which is left Kan extended from $\Hom_\Cc(-,x)$ by \cref{lem:HomsInLocalization}\itememph{b}. But so is $\Hom_\Cc(-,px)$ by \cref{lem:HomsInLocalization}\itememph{b}. Hence
+	\begin{equation*}
+		\Hom_\Cc(-,x)\simeq \Hom_{\Cc[W^{-1}]}(p\,-,px)\morphism[\tau_*]\Hom_{\Cc[W^{-1}]}(p\,-,y)
+	\end{equation*}
+	is an equivalence since $\tau$ is one. This proves that $x$ is indeed a right-adjoint object of $y$. For the converse, just read the argument backwards. As Sil and Bastiaan pointed out, we have to use that $p\colon \Cc\morphism\Cc[W^{-1}]$ is essentially surjective (use its universal property or the construction from \cite[Theorem~VIII.8]{HigherCatsII}), so for $\tau$ to be an equivalence it does suffice that $\tau_*\colon \Hom_{\Cc[W^{-1}]}(p\,-,px)\morphism\Hom_{\Cc[W^{-1}]}(p\,-,y)$ is an equivalence.
+	
+	For the additional assertions, assume that $R$ is a right adjoint of $p$. Then the counit $pR\Rightarrow \id$ consists of morphisms $\tau$ as above, hence it is an equivalence, hence $R$ is fully faithful by \cref{propdef:BousfieldLocalization}\itememph{a}. A morphism in $\Cc$ is an $R$-local equivalence iff it becomes an equivalence in $\Cc[W^{-1}]$ by \cref{propdef:BousfieldLocalization}\itememph{b}, so it is clear that the essential image of $R$ is contained in the $R$-local objects by what we showed above. But conversely and $R$-local object $x\in \Cc$ is a right-adjoint object of $px$ via the witness $\id_{px}\colon px\morphism px$, hence $x$ is in the essential image of $R$.
+\end{proof}
+\begin{cor}\label{cor:CoLimitsInBousfield}
+	If $L\colon \Cc\morphism\Dd$ is a left Bousfield localization and $\Cc$ is complete or cocomplete, then so is $\Dd$. More precisely, we have
+	\begin{equation*}
+		\colimit_\Ii F\simeq L\left(\colimit_\Ii RF\right)\quad\text{and}\quad \limit_\Ii F\simeq L\left(\limit_\Ii RF\right)
+	\end{equation*}
+	for any diagram $F\colon \Ii\morphism\Dd$.
+\end{cor}
+\begin{proof}
+	We start with the formula for colimits. Compute
+	\begin{equation*}
+		\Hom_\Dd\left(L\Big(\colimit_\Ii RF\Big),-\right)\simeq \Hom_\Cc\left(\colimit_\Ii RF,R\,-\right)\simeq \Nat\big(RF,\const (R\,-)\big)
+	\end{equation*}
+	Now $R$ is fully faithful by \cref{propdef:BousfieldLocalization}\itememph{a}, hence so is the postcomposition functor $R_*\colon \Fun(\Ii,\Dd)\morphism\Fun(\Ii,\Cc)$, which shows
+	\begin{equation*}
+		\Nat\big(RF,\const (R\,-)\big)\simeq \Nat(F,\const-)\simeq \Hom_\Dd\left(\colimit_\Ii F,-\right)\,.\nopagebreak
+	\end{equation*}
+	That does it for colimits.
+	
+	For the limit part, first note that $R$-local objects are closed under limits. Indeed, if $x\simeq\limit_{j\in \Jj}x_j$ with each $x_j$ an $R$-local object, then $\Hom_\Cc(-,x)\simeq \limit_{j\in \Jj}\Hom_\Cc(-,x_j)$ by the dual of \cref{cor:HomPreservesColimits}, hence $\Hom_\Cc(-,x)$ inverts $R$-local equivalences because each $\Hom_\Cc(-,x_j)$ does. Moreover, $R$-local equivalences between $R$-local objects are actual equivalences by Yoneda's lemma applied to the full sub-$\infty$-category of $\Cc$ spanned by $R$-local objects. Now \cref{propdef:BousfieldLocalization} shows that the unit
+	\begin{equation*}
+		u\colon \limit_\Ii RF\isomorphism RL\left(\limit_\Ii RF\right)
+	\end{equation*}
+	is an $R$-local equivalence, hence an actual equivalence as $RF$ takes values in the $R$-local objects by the addendum to \cref{prop:LocalizationBousfield}. Using this and the fact that $R$ is fully faithful and commutes with limits, we can now compute
+	\begin{align*}
+		\Hom_\Dd\left(-,L\Big(\limit_\Ii RF\Big)\right)&\simeq \Hom_\Cc\left(R\,-,RL\Big(\limit_\Ii RF\Big)\right)\\
+		&\simeq \Hom_\Cc\left(R\,-,\limit_\Ii RF\right)\\
+		&\simeq \Hom_\Cc\left(R\,-,R\left(\limit_\Ii F\right)\right)\\
+		&\simeq \Hom_\Dd\left(-,\limit_\Ii F\right)\,.\tag*{\qedhere}
+	\end{align*}
+\end{proof}
+\begin{exm}
+	\enquote{My first Bousfield localizations}:
+	\begin{alphanumerate}
+		\item We now recognize all the left pointing arrows in the diagram from \cref{exm:MyFirstAdjoints}\itememph{a}
+			\begin{equation*}
+			\begin{tikzcd}
+				\Set\rar[symbol=\subseteq] & \An\rar[symbol=\subseteq]\lar[dashed,bend right=45,"\pi_0"'] \rar[symbol=\subseteq] & \Cat_\infty\lar[dashed,bend right=45,"|\blank|"']\lar[dashed,bend left=45,"\core",shorten >=0.75ex]
+			\end{tikzcd}
+		\end{equation*}
+		as Bousfield localizations. More precisely, $\pi_0$ and $|\blank|$ are left Bousfield localizations, whereas $\core$ is a right one.
+		\item Recall from \cref{exm:MyFirstInftyCats}\itememph{d} that $\cat{Top}$ has a Kan enrichment, giving rise to the $\infty$-category $\N^c(\cat{Top})$ of topological spaces. Consider the localization
+		\begin{equation*}
+			p\colon \N^c(\cat{Top})\morphism\N^c(\cat{Top})\big[\{\text{weak homotopy equiv.}^{-1}\}\big]\,.
+		\end{equation*}
+		The functor $\Hom_{\N^c(\cat{Top})}(X,-)$ inverts weak homotopy equivalences if $X$ is a CW complex (that's a well-known extended version of Whitehead's theorem) and every topological space admits a weak equivalence from a CW complex (\enquote{CW} approximation). Hence the dual of \cref{prop:LocalizationBousfield} implies that $p$ is a right Bousfield localization.
+		
+		The argument also shows that $\An\simeq \N^c(\cat{CW})\morphism \N^c(\cat{Top})[\{\text{weak homotopy equiv.}^{-1}\}]$ is an equivalence. In particular, we get for free that CW approximation is $\infty$-functorial.
+		\item Let $R$ be a ring. Recall from \cref{exm:MyFirstInftyCats}\itememph{e} that there is an $\infty$-category $\Kk(R)=\N^c(\Ch(R))$ of chain complexes over $R$. We define the \emph{derived category of $R$}
+		\begin{equation*}
+			\Dd(R)=\Kk(R)\big[\{\text{quasi-isos.}\}^{-1}\big]
+		\end{equation*}
+		as the localization of $\Kk(R)$ at the quasi-isomorphisms. Then the fundamental lemma of homological algebra\footnote{Here's the complete argument: We need to show that $\Hom_{\Kk(R)}(P,-)$ inverts quasi-isomorphisms. So let $\phi\colon C\morphism D$ be one. The fundamental lemma, or at least a strong form of it, says that $\phi_*\colon\{\text{homotopy classes of maps }P\morphism C\}\isomorphism \{\text{homotopy classes of maps }P\morphism D\}$ is bijective. In other words, $\phi_*\colon H_0\Hhom_R(P,C)\isomorphism H_0\Hhom_R(P,D)$ is an isomorphism, where $\Hhom_R$ is the internal $\Hom$ in $\Ch(R)$. Replacing $P$ by its shifts $P[-i]$ shows the same for $\phi_*\colon H_i\Hhom_R(P,C)\isomorphism H_i\Hhom_R(P,D)$. Now \cref{exc:piFHiInternalHom} shows
+		\begin{equation*}
+			\pi_i\Hom_{\Kk(R)}(-,-)\simeq H_i\Hhom_R(-,-)
+		\end{equation*}	
+		and we are done.} says that for a bounded below $C\in \Kk(R)$, any projective resolution $P\morphism C$ is a left-adjoint object to $C$. Similarly, for a bounded above $C$ an injective resolution $C\morphism I$ is a right-adjoint object. In particular,
+		\begin{equation*}
+			\Dd_{\geq 0}^\mathrm{proj}(R)\subseteq \Kk(R)\morphism \Dd(R)
+		\end{equation*}
+		is fully faithful with essential image the non-negative chain complexes (and similarly for $\Dd_{\leq 0}^\mathrm{inj}(R)$). But in fact $\Kk(R)\morphism \Dd(R)$ admits both adjoints, so its both a left and a right Bousfield localization! This boils down to the classical result of Spaltenstein that there are \emph{enough $K$-projective} and \emph{$K$-injective} complexes (again a $K$ that has nothing to do with $K$-theory), see \cite{KProjective} (thanks to Sil for the reference). In particular, combining \cref{exc:K(R)cocomplete} and \cref{cor:CoLimitsInBousfield} shows that $\Dd(R)$ is both complete and cocomplete.
+		\item Given a ring morphism $\phi\colon R\morphism S$, we can look at the functor
+		\begin{equation*}
+			S\otimes_R-\colon \Ch(R)\morphism\Ch(S)\,.
+		\end{equation*}
+		This is simplicially enriched (basically since the enrichment of $\Ch(R)$ is defined via tensor products, and these are associative), hence it defines a functor $S\otimes_R-\colon \Kk(R)\morphism \Kk(S)$. Now define the \emph{derived tensor product} as the composition
+		\begin{equation*}
+			\phi_!=S\otimes_R^L-\colon \Dd(R)\xrightarrow{K\text{-proj.}} \Kk(R)\xrightarrow{S\otimes_R-}\Kk(S)\morphism \Dd(S)\,.
+		\end{equation*}
+		The map $K\text{-proj.}\colon\Dd(R)\morphism \Kk(R)$ is a left adjoint of the right Bousfield localization $p\colon \Kk(R)\morphism \Dd(R)$ and given by taking $K$-projective resolutions. We have seen in \itememph{c} that $p$ also admits a right adjoint, but that wouldn't give the correct functor. Also note that $H_i(S\otimes_R^LM)=\Tor_i^R(S,M)$ holds for all $R$-modules $M$, by unravelling of constructions.
+		
+		It follows from general homological nonsense that $\phi_!$ has a right-adjoint $\phi^*$ (the \enquote{forgetful functor}), which has another right adjoint $\phi_*=R\!\Hom_R(S,-)$. In diagrams:
+		\begin{equation*}
+			\Dd(R)\doublelrmorphism[\phi_!][\phi^*]\Dd(S)\doublelrmorphism[\phi^*][\phi_*]\Dd(R)\,.
+		\end{equation*}
+	\end{alphanumerate}
+\end{exm}
+\begin{propdef}\label{propdef:derivedLocalization}
+	For a ring morphism $\phi\colon R\morphism S$, the following conditions are equivalent:
+	\begin{alphanumerate}
+		\item $\phi_!=S\otimes_R^L-\colon \Dd(R)\morphism\Dd(S)$ is a left Bousfield localization.
+		\item $\phi^*=\mathrm{forget}\colon \Dd(S)\morphism\Dd(R)$ is fully faithful.
+		\item $\phi_*=R\!\Hom_R(S,-)\colon \Dd(R)\morphism\Dd(S)$ is a right Bousfield localization.
+		\item The multiplication map $S\otimes_R^LS\morphism S$ is an equivalence in $\Dd(S)$. As Sil points out, we should actually write $S\otimes_R^L\phi^*S$, but let's not do that here.
+		\item The cofibre $\cofib(\phi)$, i.e.\ the pushout
+		\begin{equation*}
+			\begin{tikzcd}
+				R\rar["\phi"]\dar\drar[pushout]& S\dar\\
+				0\rar & \cofib(\phi)
+			\end{tikzcd}
+		\end{equation*}
+		in $\Dd(R)$ satisfies $S\otimes_R^L\cofib(\phi)\simeq 0$.
+	\end{alphanumerate}
+	If these conditions are satisfied, $\phi$ is called a derived localization.
+\end{propdef}
+\numpar*{Examples}\enquote{My first derived localizations}:
+\begin{alphanumerate}
+	\item If $W\subseteq R$ is a multiplicative subset in the commutative ring $R$, then $R\morphism R[W^{-1}]$ is a derived localization. This easily follows from \cref{propdef:derivedLocalization}\itememph{d} since $R[W^{-1}]$ is flat over $R$.
+	\item For non-commutative rings, one needs the (left or right, who knows?) \emph{Ore condition} for $R\morphism R[W^{-1}]$ to be a derived localization.
+	\item If $U\subseteq V$ is an open embedding of affine schemes, then $\Gamma(V,\Oo_V)\morphism\Global(U,\Oo_U)$ is a derived localization. Indeed, the condition from \cref{propdef:derivedLocalization}\itememph{d} easily shows that a ring morphism $\phi\colon R\morphism S$ is a derived localization iff $R_\pp\morphism S_\qq$ is a derived localization for all prime ideals $\qq\in \Spec S$ and $\pp\in \Spec R$ such that $\pp=\phi^{-1}(\qq)$. In our case of $\Gamma(V,\Oo_V)\morphism\Global(U,\Oo_U)$, all $\Oo_{V,v}\isomorphism \Oo_{U,v}$ for $v\in V$ are isomorphisms, hence they derived localizations for obvious reasons.
+\end{alphanumerate}
+\begin{proof}[Proof of \cref{propdef:derivedLocalization}]
+	We already know \itememph{a} $\Leftrightarrow$ \itememph{b} $\Leftrightarrow$ \itememph{c} from \cref{propdef:BousfieldLocalization} and its dual. For \itememph{d} $\Leftrightarrow$ \itememph{e}, first note that $S\otimes_R^LR\isomorphism S$ is an equivalence. Indeed, we have
+	\begin{equation*}
+		H_i(S\otimes_R^LR)=\Tor_i^R(S,R)=\begin{cases*}
+			S & if $i=0$\\
+			0 & if $i\geq 1$
+		\end{cases*}\,.
+	\end{equation*}
+	Now $S\otimes_R^L-$, being a left adjoint, commutes with colimits, which implies that
+	\begin{equation*}
+		\begin{tikzcd}
+			S\rar["S\otimes_R^L\phi"]\dar\drar[pushout] & S\otimes_R^LS\dar\\
+			0\rar & S\otimes_R^L\cofib(\phi)
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback square. This immediately implies $S\otimes_R^LS\simeq S$ iff $S\otimes_R^L\cofib(\phi)\simeq 0$, as desired.
+	
+	We finish the proof by showing \itememph{b} $\Leftrightarrow$ \itememph{d}. We must show that the counit $S\otimes_R^LC\morphism C$ is an equivalence for all $C\in \Dd(S)$ iff it is an equivalence for $S$. The \enquote{only if} direction being obvious, let's assume it is an equivalence for $S$. Then it is also an equivalence for all shifts $S[i]$. But the $\{S[i]\}_{i\in \IZ}$ generate $\Dd(S)$ under colimits and $S\otimes_R^L-$ commutes with colimits, so we are done.
+\end{proof}
 
 
 \backmatter\KOMAoption{chapterprefix}{false}
