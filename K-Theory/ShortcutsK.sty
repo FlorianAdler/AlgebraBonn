@@ -234,7 +234,11 @@
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\N}{\operatorname{N}}
 \newcommand{\F}{\operatorname{F}}
-\newcommand{\IDelta}{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}%{\boldsymbol{\Delta}}
+\newoperator{asscat}
+\newoperator{Span}
+\newcommand{\IDelta}{
+	\mathchoice{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\scriptstyle\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\scriptscriptstyle\Delta$\hspace{0.025em}}}}
+	}%{\boldsymbol{\Delta}}
 \newoperator{core}
 \newoperator{const}
 \newoperator{Sing}
