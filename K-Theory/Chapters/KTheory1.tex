@@ -1,6 +1,6 @@
 \chapter{Introduction}
 	\section{Organizational Stuff}
-	Under no circumstances you should call Fabian by his last name! Also there will be oral exams, probably in the first or second week after the end of the lectures.
+	Under no circumstances you should call Fabian by his last name! Also there will be oral exams in the weeks from $15\ordinalth$--$19\ordinalth$ February and $22\ordinalnd$--$26\ordinalth$ March.
 	\numpar*{Disclaimer \smash{\Attention}}
 	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes \cite{KTheory} (please suggest a better shorthand) to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. These are an excellent resource and please the eye with their purple colour scheme! So why should I bother typing my own notes? This is because of two main reasons. First, I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
 	
@@ -1082,7 +1082,7 @@ For a cocartesian fibration $p\colon E\morphism S$, we denote by $\Gamma(p)$ its
 		\colimit_\Ii F\simeq\big|\Un(F)\big|\quad\text{and}\quad\limit_\Ii F\simeq\Gamma\big(\Un(F)\big)\,.
 	\end{equation*}
 \end{prop}
-\begin{proof}[Sketch of a proof]
+\begin{proof}[Proof sketch]
 	In \cite[Theorem~XI.23]{HigherCatsII} Fabian gave a proof that's basically the same as what we are going to do now, but more on the model category side (but also less sketchy). We only do the case of limits. Consider the diagram
 	\begin{equation*}
 		\begin{tikzcd}[row sep=small]
@@ -1162,7 +1162,7 @@ Localizations are difficult! Localizations of locally small $\infty$-categories 
 			\node at (-1.4,0.45) {$\scriptscriptstyle /\!/\!/$};
 			\draw[dotted, rounded corners=2] (-1.2cm-1ex,0.9cm-1ex) -- (-1ex,-1ex) -- (1.2cm+1ex,-1ex) -- (1.2cm+1ex,0.9cm+1ex) -- (-1.2cm-1ex,0.9cm+1ex) -- cycle;
 			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPink] (A) to (B);
-			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPurple!90!white] (B) to (C);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPurple!67!FabiansPink] (B) to (C);
 			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (A) to (C);
 			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,FabiansPink] (A) to (E);
 			\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (D) to (E);
@@ -1938,3 +1938,391 @@ We first prove the following lemma.
 	\end{alphanumerate}
 	If these conditions are satisfied, $\phi$ is called a \emph{derived localization} \embrace{or sometimes \enquote{$\Tor$-unital}}.
 \end{propdef}
+\numpar*{Examples}\enquote{My first derived localizations}:
+\begin{alphanumerate}
+	\item If $W\subseteq R$ is a multiplicative subset in the commutative ring $R$, then $R\morphism R[W^{-1}]$ is a derived localization. This easily follows from \cref{propdef:derivedLocalization}\itememph{d} since $R[W^{-1}]$ is flat over $R$.
+	\item For non-commutative rings, one needs the (left or right, who knows?) \emph{Ore condition} for $R\morphism R[W^{-1}]$ to be a derived localization.
+	\item If $U\subseteq V$ is an open embedding of affine schemes, then $\Gamma(V,\Oo_V)\morphism\Global(U,\Oo_U)$ is a derived localization (but not necessarily an ordinary localization). Indeed, the condition from \cref{propdef:derivedLocalization}\itememph{d} easily implies that a ring morphism $\phi\colon R\morphism S$ is a derived localization iff $R_\pp\morphism S_\qq$ is a derived localization for all prime ideals $\qq\in \Spec S$ and $\pp\in \Spec R$ such that $\pp=\phi^{-1}(\qq)$. In our case, all maps on local rings $\Oo_{V,v}\isomorphism \Oo_{U,v}$ for $v\in V$ are isomorphisms, hence derived localizations for obvious reasons.
+\end{alphanumerate}%\lecture[Wtf]{2020-11-19}
+We will later see that $K$-theory has exact sequences for derived localizations!
+\begin{proof}[Proof of \cref{propdef:derivedLocalization}]
+	We already know \itememph{a} $\Leftrightarrow$ \itememph{b} $\Leftrightarrow$ \itememph{c} from \cref{propdef:BousfieldLocalization} and its dual. For \itememph{d} $\Leftrightarrow$ \itememph{e}, first note that $S\otimes_R^LR\isomorphism S$ is an equivalence. Indeed, we have
+	\begin{equation*}
+		H_i(S\otimes_R^LR)=\Tor_i^R(S,R)=\begin{cases*}
+			S & if $i=0$\\
+			0 & if $i\geq 1$
+		\end{cases*}\,.
+	\end{equation*}
+	Now $S\otimes_R^L-$, being a left adjoint, commutes with colimits, which implies that
+	\begin{equation*}
+		\begin{tikzcd}
+			S\rar["S\otimes_R^L\phi"]\dar\drar[pushout] & S\otimes_R^LS\dar\\
+			0\rar & S\otimes_R^L(S/^LR)
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback square. This immediately implies $S\otimes_R^LS\simeq S$ iff $S\otimes_R^L(S/^LR)\simeq 0$, as desired.
+	
+	We finish the proof by showing \itememph{b} $\Leftrightarrow$ \itememph{d}. We must show that the counit $S\otimes_R^LC\morphism C$ is an equivalence for all $C\in \Dd(S)$ iff it is an equivalence for $S$. The \enquote{only if} direction being obvious, let's assume it is an equivalence for $S$. Then it is also an equivalence for all shifts $S[i]$. But the $\{S[i]\}_{i\in \IZ}$ generate $\Dd(S)$ under colimits and $S\otimes_R^L-$ commutes with colimits, so we are done.
+\end{proof}
+\section{The Rezk Nerve and Complete Segal Spaces}
+\lecture[The Rezk nerve and (complete) Segal spaces/anima.\newline --- \enquote{\emph{Today is brainf*ck time. There's no deep content, except for the things I'm not saying.}}]{2020-11-19}Today we get back to the Rezk-nerve. Recall the functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ introduced in \cref{exm:RezkNerve}\itememph{b}.
+\begin{thmdef}[Rezk, Joyal--Tierney, Lurie]\label{thmdef:RezkNerve}
+	The Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ is fully faithful and its essential image consists of the complete Segal spaces/anima. Here a \emph{Segal anima} is a cosimplicial anima $X\colon \IDelta^\op\morphism \An$ such that
+	\begin{equation*}
+		X_n\simeq \Hom_{\cat{s}\An}(\Delta^n,X)\isomorphism \Hom_{\cat{s}\An}(I_n,X)\simeq X\times_{X_0}X_1\times_{X_0}\dotsb\times_{X_0}X_1
+	\end{equation*}
+	is an equivalence for all $n$ \embrace{$I_n$ is an iterated pushout of copies of $\Delta^1$, hence the pullback on the right-hand side}. We call $X$ \emph{complete} if the following equivalent conditions hold:
+	\begin{alphanumerate}
+		\item Also the restriction $X_0\simeq \Hom_{\cat{s}\An}(\Delta^0,X)\isomorphism \Hom_{\cat{s}\An}(J,X)$ along $J\morphism \Delta^0$ is an equivalence, where $J$ is the \embrace{ordinary nerve of the} free-living isomorphism.
+		\item The diagram
+		\begin{equation*}
+			\begin{tikzcd}[column sep=6em]
+				X_0\dar["s"']\rar["\Delta"]\drar[pullback] & X_0\times X_0\dar["{(s,s)}"]\\
+				X_3\rar["{\left(d_{\{0,2\}},d_{\{1,3\}}\right)}"] & X_1\times X_1
+			\end{tikzcd}
+		\end{equation*}
+		is cartesian \embrace{note that $\Delta$ denotes a good old diagonal and not some simplicial stuff}.
+		\item The degeneracy map $s\colon X_0\isomorphism X_1^\times$ is an equivalence, where $X_1^\times\subseteq X_1$ is the collection of path components of those $g\in X_1$ for which the following holds: Let $x=d_1(g)$ and $y=d_0(g)$ and for arbitrary $w,z\in X_0$ put 
+		\begin{equation*}
+			\begin{tikzcd}
+				P_{w,z}\rar\dar\drar[pullback]& X_1\dar["{(d_1,d_0)}"]\\
+				*\rar["{(w,z)}"]& X_0\times X_0
+			\end{tikzcd}
+		\end{equation*}
+		Moreover, there is a \enquote{composition map}
+		\begin{equation*}
+			\begin{tikzcd}[column sep=2.7em]
+				-\circ-\colon X_1\times_{d_1,X_0,d_0}X_1 & X_2\morphism[d_1]X_1\lar["{(d_0,d_1)}"',"\sim"]
+			\end{tikzcd}
+		\end{equation*}
+		which, after restriction to $P_{w,x}\simeq P_{w,x}\times_{\{x\}}\{g\}$ and $P_{y,z}\simeq \{g\}\times_{\{y\}}P_{y,z}$ induces \enquote{post- and precomposition maps}
+		\begin{equation*}
+			g_*\colon P_{w,x}\morphism P_{w,y}\quad\text{and}\quad g^*\colon P_{y,z}\morphism P_{x,z}\,.
+		\end{equation*}
+		Then we put $x\in X_1^\times$ iff $g_*$ and $g^*$ are equivalences for all $w,z\in X_0$.
+		\item The simplicial subanima $X^\times$ given by 
+		\begin{equation*}
+			[n]\longmapsto X_n^\times\coloneqq\left\{\begin{tabular}{c}
+				collection of path components in\\
+				$X_n$ such that all edges lie in $X_1^\times$
+			\end{tabular}\right\}
+		\end{equation*}
+		is constant. Note that $X_0^\times=X_0$, so it is actually constant on $X_0$.
+	\end{alphanumerate}
+\end{thmdef}
+\numpar{Some Explanations}
+Before we (not so much) talk about the proof, some explanations are in order. Just like Segal sets, \emph{Segal anima} should be thought of simplicial anima with \enquote{unique spine lifting}, i.e.\ unique (up to contractible choice) lifting against $I_n\subseteq \Delta^n$, where as usual $I_n$ is the union of all edges between consecutive $0$-simplices.
+\begin{center}
+	\begin{tikzpicture}[line cap=round, line join=round,decoration={markings,mark=at position 0.5 with {\arrow{to}}},x=0.75cm,y=0.75cm]
+		\coordinate (0) at (-1.75,-0.3);
+		\node[left] at (0) {$0$};
+		\coordinate (1) at (-0.25,1);
+		\node[above] at (1) {$1$};
+		\coordinate (2) at (0,-1);
+		\node[below] at (2) {$2$};
+		\coordinate (3) at (1.25,0);
+		\node[right] at (3) {$3$};
+		\draw[postaction={decorate}](0) to (1);
+		\draw[postaction={decorate},line width=0.8] (0) to node[pos=0.5,below left] {$\scriptstyle\id$} (2);
+		\draw[postaction={decorate}] (1) to (2);
+		\draw[postaction={decorate}] (2) to (3);
+		\draw[postaction={decorate},line width=0.8] (1) to node[pos=0.5,above right] {$\scriptstyle\id$} (3);
+		\draw[dashed,postaction={decorate}] (0) to (3);
+	\end{tikzpicture}
+\end{center}
+To understand the completeness conditions a bit better, Fabian drew this picture for \cref{thmdef:RezkNerve}\itememph{b}. What condition~\itememph{b} is trying to say is that whenever a $3$-simplex $\Delta^3$ in $X_3$ has degenerate $\Delta^{\{0,2\}}$- and $\Delta^{\{1,3\}}$-edges as indicated, then all its edges are degenerate and the $3$-simplex itself is equivalent to a degenerate one. To get a grasp on condition~\itememph{d}, note that for any $\infty$-category $\Cc$ we have $\core\Cc$ encoded in $\N^r(\Cc)$ in two different ways: First in a direct fashion, as $\core\Cc\simeq \Hom_{\Cat_\infty}([0],\Cc)\simeq \N_0^r(\Cc)$, and second as the full subanima of $\core\Ar(\Cc)\simeq \N_1^r(\Cc)$ spanned by the equivalences in $\Cc$ (essentially because $\Delta^1\morphism \Delta^0$ is a localization). So $\N^r(\Cc)^\times$ should be constant with value $\core \Cc$.
+
+\begin{proof}[Not a proof of \cref{thmdef:RezkNerve}]
+	The proof is difficult, mostly the first statement that $\N^r$ is fully faithful. The original proof of Joyal--Tierney can be found in \cite{JoyalTierney} and Lurie's poof is in \cite{LurieGoodwillieCalculus}. However, Fabian recommends to prove the equivalence of the four conditions as a (not easy, but doable) exercise, as well as to prove that $\N^r(\Cc)$ is a complete Segal space for all $\infty$-categories $\Cc$.
+	
+	The key step to prove that $\N^r$ is fully faithful is to give a description of $\asscat(X)$ for $X$ a (not necessarily complete) Segal space: There is a canonical equivalence
+	\begin{equation}\label{eq:asscat1}
+		\core\asscat(X)\simeq |X^\times|\,,
+	\end{equation}
+	where $|\blank|\simeq \colimit_{\IDelta^\op}\colon \cat{s}\An\morphism \An$ denotes the colimit functor over $\IDelta^\op$. Fabian points out that this notation is very much consistent with the other kinds of realization we've seen so far. See \cref{rem:Realization} below. 
+	Moreover, one can show that for every (not necessarily complete) Segal space $X$ there are pullback diagrams
+	\begin{equation}\label{eq:asscat2}
+		\begin{tikzcd}
+			\Hom_{\asscat(X)}(x,y)\dar\rar\drar[pullback] & X_1\dar["{(d_1,d_0)}"]\\
+			*\rar["{(x,y)}"] & X_0\times X_0
+		\end{tikzcd}
+	\end{equation}
+	for all $x,y\in X_0$ (in particular $\Hom_{\asscat(X)}(x,y)\simeq P_{x,y}$ in the notation of \itememph{b}). This will become important later.
+	
+	With \cref{eq:asscat1} and \cref{eq:asscat2}, the proof of \cref{thmdef:RezkNerve} becomes quite easy. To prove that $\N^r$ is fully faithful, we must show that the counit $\asscat(\N^r(\Cc))\isomorphism \Cc$ is an equivalence for all $\Cc\in \Cat_\infty$. It is an equivalence on cores because
+	\begin{equation*}
+		\core\asscat\big(\N^r(\Cc)\big)\simeq |\N^r(\Cc)^\times|\quad\text{and}\quad \core\Cc\simeq \N_0^r(\Cc)\,;
+	\end{equation*}
+	since $\N^r(\Cc)$ is complete, $\N^r(\Cc)^\times$ is constant on $\N_0^r(\Cc)$, hence the colimit over $\IDelta^\op$ (recall $|\IDelta^\op|\simeq *$) is just $|\N^r(\Cc)^\times|\simeq \N_0^r(\Cc)$, as claimed. This shows that the counit is essentially surjective.
+	
+	To prove that it is fully faithful, i.e.\ induces equivalences on $\Hom$ anima, observe that using \cref{eq:asscat2} it induces the following equivalence of pullback squares:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=0em, row sep=small]
+			\Hom_{\asscat(\N^r(\Cc))}(x,y)\ar[rr] \ar[dd]\ar[dddr,pullback]\drar& & \Hom_\Cc(x,y)\ar[dd]\drar\ar[dddr,pullback]\\
+			& \N_1^r(\Cc)\ar[rr,iso,pos=0.4,crossing over] & & \core\Ar(\Cc)\ar[dd]\\
+			*\drar["{(x,y)}"']\eqar[rr] & & *\drar["{(x,y)}"]\\
+			& \N_0^r(\Cc)\times\N_0^r(\Cc)\ar[<-,uu,crossing over]\ar[rr,iso] & & \core\Cc\times\core\Cc
+		\end{tikzcd}
+	\end{equation*}
+	For the right pullback square, recall that a pullback of $\infty$-categories with one leg an inner fibration induces a pullback on cores, hence the usual pullback diagram for $\Hom_\Cc(x,y)$ passes to cores. This finishes the \dotso well, not \emph{proof}, but whatever else this is.
+\end{proof}
+\begin{rem}\label{rem:Realization}
+	Note that the notation $|\blank|\simeq \colimit_{\IDelta^\op}$ is consistent with our notation for the geometric realization of simplicial sets: If $T\colon \IDelta^\op\morphism \Set\subseteq \An$ is a simplicial set/discrete simplicial anima, then the homotopy colimit of $T$ is weakly homotopy equivalent to $T$, so
+	\begin{equation*}
+		\colimit_{\IDelta^\op}T\simeq \Big(\hocolimit_{\CC[\IDelta^\op]}T\Big)^\mathrm{f}\simeq T^\mathrm{f}\simeq \Sing|T|
+	\end{equation*}
+	using \cref{thm:HomotopyLimits}. The notation is also consistent with $|\blank|\colon\Cat_\infty\morphism \An$ in that generally for a simplicial anima $T\colon \IDelta^\op\morphism\An$ we have
+	\begin{equation*}
+		|\asscat(T)|\simeq |T|\,.
+	\end{equation*}
+	Indeed, this follows from \cref{thm:ColimitPreservingRepresentable} as both sides are colimit-preserving functors that send $[n]\mapsto *\in \An$ for all $n\in \IN$. Here and in the following, $[n]$ always denotes the $\infty$-category associated to this poset, and $\Delta^n\in \sSet\subseteq\cat{s}\An$ always denotes the discrete (but not constant) simplicial anima.
+\end{rem}
+\begin{lemdef}\label{lemdef:Completion}
+	Let $\cat{CSAn}\subseteq \cat{sAn}$ denote the complete sub$-\infty$-category of complete Segal spaces. The functor
+	\begin{equation*}
+		\comp\colon \cat{s}\An\xrightarrow{\asscat}\Cat_\infty\morphism[\N^r]\cat{CSAn}
+	\end{equation*}
+	is called \emph{completion} and it is a left adjoint to the inclusion $\cat{CSAn}\subseteq \cat{s}\An$.
+\end{lemdef}
+\begin{proof*}
+	Indeed, if $X\in \cat{sAn}$ and $Y\in \cat{CSAn}$, so $Y\simeq \N^r(\Cc)$ for some $\infty$-category $\Cc$, then $\Hom_{\cat{sAn}}(\comp X,Y)\simeq \Hom_{\Cat_\infty}(\asscat X,\Cc)\simeq \Hom_{\cat{sAn}}(X,\N^r(\Cc))$ since $\N^r$ is fully faithful and right-adjoint to $\asscat\colon \cat{sAn}\morphism\Cat_\infty$.
+\end{proof*}
+Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to control outside of (not necessarily complete) Segal spaces.
+\begin{exm}\label{exm:MyFirstRezkNerves}
+	\enquote{My first Rezk nerves}:
+	\begin{alphanumerate}
+		\item The ordinary nerve $\N(\Cc)\in \sSet\subseteq\cat{s}\An$ of a $1$-category is a Segal \emph{set} and thus also a Segal anima since $\Set\subseteq \An$ preserves limits. But it is usually not complete! In fact, we have
+		\begin{equation*}
+			\begin{tikzcd}
+				\N_0(\Cc)\dar["s"']\eqar[r]&\left\{\text{set of objects in $\Cc$}\right\}\dar\\
+				\N_1(\Cc)\eqar[r]&\left\{\text{set of isomorphisms in $\Cc$}\right\}
+			\end{tikzcd}
+		\end{equation*}
+		where the right vertical arrow takes $x\in \Cc$ to $\id_x$. But usually, there are more isomorphisms in a category than just the identities, hence $\N_1(\Cc)^\times$ is usually larger than $\N(\Cc)_0$.
+		\item The two functors
+		\begin{equation*}
+			\begin{gathered}\nonumber
+				\cat{s}\An\xrightarrow{\asscat} \Cat_\infty \morphism[\pi]\Cat_1^{(2)}\\
+				\cat{s}\An\xrightarrow{\cat{s}\pi_0}\sSet\morphism[h]\Cat_1
+			\end{gathered}
+		\end{equation*}
+		are different, even though both are colimit-preserving and take $\Delta^n\mapsto [n]$. The reason is of course that $\Cat_1\subseteq \Cat_1^{(2)}$ doesn't preserve colimits. To obtain explicit counterexamples, you can take $\const S^1$ or $\N^r(\{\text{finite-dimensional vector spaces}\})$ for example. Both functors do, however, agree on ordinary nerves $\N(\Cc)$ of $1$-categories. Nevertheless, Fabian warns you to never look at the lower functor.
+		\item The adjunction $\asscat\colon \cat{s}\An\shortdoublelrmorphism\Cat_\infty\noloc \N^r$ restricts to an equivalence
+		\begin{equation*}
+			\ev_0\colon\{\text{constant simplicial anima}\}\doublelrmorphism[\sim][\sim]\An\noloc \const\,.
+		\end{equation*}
+		Indeed, $\N_n^r(K)\simeq \core\Fun([n],K)\simeq \Fun(|[n]|,K)\simeq K$ as $|[n]|\simeq *$.
+	\end{alphanumerate}
+\end{exm}
+\begin{lem}
+	For any $\infty$-category $\Cc$ we can describe $\N^r(\TwAr(\Cc))$ as follows:
+	\begin{equation*}
+		\N_n^r\big(\TwAr(\Cc)\big)\simeq \Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)\simeq \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\,.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	Recall from \cref{par:MoreOnTwAr} that there is a pullback square
+\begin{equation*}
+	\begin{tikzcd}
+		\TwAr(\Cc)\dar\rar\drar[pullback]& */\An\dar\\
+		\Cc^\op\times\Cc\rar["\Hom_\Cc"]& \An
+	\end{tikzcd}
+\end{equation*}
+(depending on your definitions, this is a pullback both in simplicial sets and in $\Cat_\infty$ or only in $\Cat_\infty$). Now we do a computation in several steps, each of which will be justified below:
+\begin{align}
+	\N_n^r\big(\TwAr(\Cc)\big)&\mathrel{\overset{\phantom{2}}{\simeq}}\Hom_{\Cat_\infty}\big([n],\TwAr(\Cc)\big)\nonumber\\
+	&\mathrel{\overset{(1)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\Hom_{\Cat_\infty}([n],\An)}\Hom_{\Cat_\infty}\big([n],*/\An\big)\label{eq:Umformung1}\tag*{}\\
+	&\mathrel{\overset{(2)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\core(\Cc^\op\times\Cc)}\core\big((\Cc^\op\times\Cc)\times_{\An}*/\An\big)\label{eq:Umformung2}\tag*{}\\
+	&\mathrel{\overset{(3)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc^\op\times\Cc)}\core\TwAr(\Cc)\label{eq:Umformung3}\tag*{}\\
+	&\mathrel{\overset{(4)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc\times\Cc)}\core\Ar(\Cc)\label{eq:Umformung4}\tag*{}\\
+	&\mathrel{\overset{(5)}{\simeq}}\core\Fun\big([n]^\op\sqcup_{\{0\}}[1]\sqcup_{\{0\}}[n],\Cc\big)\label{eq:Umformung5}\tag*{}\\
+	&\mathrel{\overset{(6)}{\simeq}}\Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)\label{eq:Umformung6}\tag*{}\\
+	&\mathrel{\overset{(7)}{\simeq}} \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\label{eq:Umformung7}\tag*{}
+\end{align}
+Step~\hyperref[eq:Umformung1]{(1)} follows from the pullback square above via the dual of \cref{cor:HomPreservesColimits}. Next we discuss step~\hyperref[eq:Umformung2]{(2)}, which will need by far the most justification of them all: First, the map $\Hom_{\Cat_\infty}([n],\Cc^\op\times\Cc)\morphism \Hom_{\Cat_\infty}({0},\Cc^\op\times\Cc)\simeq\core(\Cc^\op\times \Cc)$ that is implicit in the pullback is induced by restriction along $\{0\}\monomorphism {[n]}$, i.e.\ \enquote{evaluation at $0$}. Now there is a pullback square
+\begin{equation*}
+	\begin{tikzcd}
+		\Hom_{\Cat_\infty}\big([n],*/\An\big)\rar["\ev_0"]\dar\drar[pullback]&*/\An\dar\\
+		\Hom_{\Cat_\infty}\big([n],\An\big)\rar["\ev_0"] & \An
+	\end{tikzcd}
+\end{equation*}
+in $\An$. To see this, note that $\Fun([n],*/\An)\simeq \Fun^*([n+1],\An)$ holds by the join-slice adjunction (or by inspection), where $\Fun^*$ denotes the full sub-$\infty$-categories of functors taking $0\mapsto *\in \An$.
+Similarly $*/\An\simeq \Fun^*([1],\An)$. Now $[n+1]$ can be written as a pushout 
+$[1]\sqcup_{\{1\}}\{1,\dotsc,n\}$ (if you take the pushout in $\sSet$, then $\Delta^1\sqcup_{\{1\}}\Delta^{\{1,\dotsc,n\}}\monomorphism \Delta^n$ will be inner anodyne, hence $[n+1]$ is the correct pushout in $\Cat_\infty$ by \cref{thm:HomotopyLimits}) and the above pullback square follows from \cref{cor:HomPreservesColimits}. Now plugging this pullback into \hyperref[eq:Umformung1]{(1)} gives \hyperref[eq:Umformung2]{(2)} after some abstract nonsense pullback manipulations.
+
+For~\hyperref[eq:Umformung3]{(3)} note that $\Hom_{\Cat_\infty}([n],\Cc^\op\times\Cc)\simeq \Hom_{\Cat_\infty}([n],\Cc^\op)\times\Hom_{\Cat_\infty}([n],\Cc)$ and we have $\Fun([n],\Cc^\op)\simeq \core\Fun([n]^\op,\Cc)^\op$. But the $(-)^\op$ vanishes upon taking cores, hence $\Hom_{\Cat_\infty}([n],\Cc^\op)\simeq \Hom_{\Cat_\infty}([n]^\op,\Cc)$. This explains the left factor in the pullback. For the right factor, use that $\core$, being a right-adjoint functor, commutes with pullbacks.
+
+Step~\hyperref[eq:Umformung4]{(4)} follows straight from \cref{exc:coreTwAr=coreAr}. Step~\hyperref[eq:Umformung5]{(5)} is immediate from \cref{cor:HomPreservesColimits} and for \hyperref[eq:Umformung6]{(6)} we need to check that the pushout in question, when taken in $\Cat_\infty$, is given by $[n]^\op\star[n]$. This can be done as before: Take the pushout in $\sSet$ and verify that the canonical map to $[n]^\op\star[n]$ is inner anodyne.
+
+Finally, \hyperref[eq:Umformung7]{(7)} is immediate once we convinced ourselves that
+\begin{equation*}
+	\N^r([n]^\op\star [n])\simeq (\Delta^n)^\op\star\Delta^n\,,
+\end{equation*}
+since $\N^r$ is fully faithful by \cref{thmdef:RezkNerve}. To obtain the equation above, note that $\Hom_{\Cat_\infty}([m],[n]^\op\star [n])\simeq \Hom_{\Cat_1}([m],[n]^\op\star [n])$ (where we view the right-hand as a discrete anima), since all $\infty$-categories involved here are actually nerves of $1$-categories (although we always surpress the nerve in our notation).
+\end{proof}
+\numpar{The Quillen $Q$-Construction}
+Let $\Cc$ be an $\infty$-category and let $Q_n(\Cc)\subseteq \Fun(\TwAr([n])^\op,\Cc)$ be the full sub-$\infty$-category consisting of those functors that take all \enquote{squares} in $\TwAr([n])^\op$ to pullbacks. To make sense of this, recall our description of $\TwAr([n])$ from \cref{par:MoreOnTwAr}. In that way, a functor $\TwAr([n])^\op\morphism \Cc$ can be pictured as a diagram
+\begin{center}
+	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
+		\fill (0,0) circle (0.5ex) coordinate (00);
+		\fill (2,0) circle (0.5ex) coordinate (01);
+		\fill (4,0) circle (0.5ex) coordinate (02);
+		\fill (6,0) circle (0.5ex) coordinate (03);
+		\fill (8,0) circle (0.5ex) coordinate (04);
+		\fill (1,1) circle (0.5ex) coordinate (10);
+		\fill (3,1) circle (0.5ex) coordinate (11);
+		\fill (5,1) circle (0.5ex) coordinate (12);
+		\fill (7,1) circle (0.5ex) coordinate (13);
+		\fill (2,2) circle (0.5ex) coordinate (20);
+		\fill (4,2) circle (0.5ex) coordinate (21);
+		\fill (6,2) circle (0.5ex) coordinate (22);
+		\fill (3,3) circle (0.5ex) coordinate (30);
+		\fill (5,3) circle (0.5ex) coordinate (31);
+		\fill (4,4) circle (0.5ex) coordinate (40);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (00) -- (10);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (10);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (11);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (12);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (12);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (04) -- (13);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (10) -- (20);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (20);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (21);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (13) -- (22);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (21);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (30) -- (40);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (31) -- (40);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (13);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (22);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (21) -- (31);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (22) -- (31);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (20) -- (30);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (30);
+		\node[rotate=-45] at (2,1) {\pullbacksign};
+		\node[rotate=-45] at (4,1) {\pullbacksign};
+		\node[rotate=-45] at (6,1) {\pullbacksign};
+		\node[rotate=-45] at (3,2) {\pullbacksign};
+		\node[rotate=-45] at (5,2) {\pullbacksign};
+		\node[rotate=-45] at (4,3) {\pullbacksign};
+	\end{tikzpicture}
+\end{center}
+in $\Cc$ (shown here for $n=3$), and to be in $Q_n(\Cc)$ we require that all squares are pullbacks as indicated. Note that then in fact all rectangles you can find in this picture must be pullbacks.
+
+The $Q_n(\Cc)$ assemble into a cosimplicial $\infty$-category $Q(\Cc)\colon \IDelta^\op\morphism \Cc$. Indeed, it is easy to see that $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ gives a functor, so we only need to check that all the boundary and degeneracy maps preserve the full subcategories $Q_n(\Cc)$ described above. We leave this as an exercise. As you might have guessed, assigning to $\Cc$ the cosimplicial $\infty$-category $Q(\Cc)$ is called the \emph{Quillen $Q$-construction}.
+\begin{propdef}\upshape\lecture[A sleep-deprived Fabian proves that $Q(\Cc)$ is a Segal $\infty$-category and introduces cartesian monoids.]{2020-11-24}\itshape
+	Let $\Cc$ be an $\infty$-category with pullbacks. The simplicial anima
+	\begin{equation*}
+		\core Q(\Cc)\colon \IDelta^\op\morphism \An
+	\end{equation*}
+	is a complete Segal space. Its associated category $\Span(\Cc)\simeq \asscat(\core Q(\Cc))$ is called the \emph{$\infty$-category of spams in $\Cc$}.
+\end{propdef}
+\begin{proof}
+	We will actually prove that $Q(\Cc)$ itself satisfies the Segal and completeness conditions for simplicial $\infty$-categories rather than anima (really what this says is that there's a $\infty$-double category $\Span^{(2)}(\Cc)$, but never mind that). Then all assertions for $\core Q(\Cc)$ will follow from the fact that $\core\colon \Cat_\infty\morphism\An$ preserves limits as it is a right-adjoint.
+	
+	Now let $J_n\subseteq \TwAr([n])^\op$ be the subposet spanned by all $0$-simplices $(i\leq j)$ with $j\leq i+1$. In pictures, $J_n$ (for $n=3$) looks as follows:
+	\begin{center}
+		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round]
+			\node[FabiansPurple!67!FabiansPink] (00) at (0,0) {$0\leq 0$};
+			\node[FabiansPurple!67!FabiansPink] (01) at (2,0) {$1\leq 1$};
+			\node[FabiansPurple!67!FabiansPink] (02) at (4,0) {$2\leq 2$};
+			\node[FabiansPurple!67!FabiansPink] (03) at (6,0) {$3\leq 3$};
+			\node[FabiansPurple!67!FabiansPink] (10) at (1,1) {$0\leq 1$};
+			\node[FabiansPurple!67!FabiansPink] (11) at (3,1) {$1\leq 2$};
+			\node[FabiansPurple!67!FabiansPink] (12) at (5,1) {$2\leq 3$};
+			\node (20) at (2,2) {$0\leq 2$};
+			\node (21) at (4,2) {$1\leq 3$};
+			\node (30) at (3,3) {$0\leq 3$};
+			\draw[to-,FabiansPurple!67!FabiansPink] (00) -- (10);
+			\draw[to-,FabiansPurple!67!FabiansPink] (01) -- (10);
+			\draw[to-,FabiansPurple!67!FabiansPink] (01) -- (11);
+			\draw[to-,FabiansPurple!67!FabiansPink] (02) -- (11);
+			\draw[to-,FabiansPurple!67!FabiansPink] (02) -- (12);
+			\draw[to-,FabiansPurple!67!FabiansPink] (03) -- (12);
+			\draw[to-,shorten <=1ex] (10) -- (20);
+			\draw[to-,shorten <=1ex] (11) -- (20);
+			\draw[to-,shorten <=1ex] (11) -- (21);
+			\draw[to-,shorten <=1ex] (12) -- (21);
+			\draw[to-]  (20) -- (30);
+			\draw[to-] (21) -- (30);
+			\draw[dotted,rounded corners=2] (00.south west) to (03.south east) to (03.north east) to node[above right] {$J_n$} (12.north east) to (10.north west) to node[above left] {$\phantom{J_n}$} (00.north west) to cycle;
+		\end{tikzpicture}
+	\end{center}
+	Then one checks from the pointwise formula for Kan extensions (\cref{thm:KanExtension}) that a functor $F\colon \TwAr([n])^\op\morphism \Cc$ is in $Q_n(\Cc)$ iff it is right-Kan extended from $F|_{J_n}$. To see this in the example above, note that Kan extensions can be computed in steps (because right adjoints compose), so we may first Kan extend to the $0$-simplex $(0\leq 2)$, then to $(1\leq 3)$ and then finally to $(0\leq 3)$. In each step, the Kan extension is given by pullback, as one can see by restricting the limit from \cref{thm:KanExtension} to a suitable cofinal sub-$\infty$-category of the respective slice categories. The case for general $n$ works precisely the same. 
+	
+	In particular, since $J_n\subseteq \TwAr([n])^\op$ is fully faithful, we see that restriction to $J_n$ induces an equivalence
+	\begin{equation*}
+		Q_n(\Cc)\isomorphism \Fun(J_n,\Cc)
+	\end{equation*}
+	by \cref{cor:FullyFaithfulKanExtension}. The reason we don't work with the $J_n$ right away is that they do not form a cosimplicial $\infty$-category! So we have to include some redundant junk. However, the $J_n$ are closed under the maps induced by the Segal maps $e_i\colon [1]\morphism {[n]}$ (sending $[1]$ to $\{i,i+1\}\subseteq [n]$) these maps induce an equivalence $J_n\simeq J_1\sqcup_{J_0}\dotsb\sqcup_{J_0}J_1$ in $\Cat_\infty$, hence 
+	\begin{align*}
+		Q_n(\Cc)\simeq \Fun(J_1\sqcup_{J_0}\dotsb\sqcup_{J_0}J_1,\Cc)&\simeq \Fun(J_1,\Cc)\times_{\Fun(J_0,\Cc)}\dotsb\times_{\Fun(J_0,\Cc)}\Fun(J_1,\Cc)\\
+		&\simeq Q_1(\Cc)\times_{Q_0(\Cc)}\dotsb\times_{Q_0(\Cc)}Q_1(\Cc)
+	\end{align*}
+	by \cref{cor:HomPreservesColimits}, which proves that $Q(\Cc)$ is indeed a Segal object in $\Cat_\infty$.
+	
+	For completeness, we have to check the condition from \cref{thmdef:RezkNerve}\itememph{b}, i.e.\ we need to show that
+	\begin{equation*}
+		\begin{tikzcd}[column sep=6em]
+			Q_0(\Cc)\dar["s"']\rar["\Delta"]\drar[pullback]& Q_0(\Cc)\times Q_0(\Cc)\dar["{(s,s)}"]\\
+			Q_3(\Cc)\rar["{\left(d_{\{0,2\}},d_{\{1,3\}}\right)}"]& Q_1(\Cc)\times Q_1(\Cc)
+		\end{tikzcd}
+	\end{equation*}
+	is cartesian. So let $P$ be the pullback. We first check that the induced map $Q_0(\Cc)\morphism P$ is fully faithful. To see this, first note that the canonical map $\TwAr([n])^\op\morphism \TwAr([0])^\op$ induces a fully faithful map $s\colon \Fun(\TwAr([0])^\op,\Cc)\morphism\Fun(\TwAr([n])^\op,\Cc)$ for all $n$. Indeed, $\TwAr([0])^\op\simeq *$ is an anima, hence $s$ factors over the full subcategory $\Fun(|\TwAr([n])^\op|,\Cc)$. But $|\TwAr([n])^\op|\simeq *$ because $\TwAr([n])^\op$ contains $(0\leq n)$ as an initial element, and now it's clear that $s$ is indeed fully faithful. Hence so is $s\colon Q_0(\Cc)\morphism Q_n(\Cc)$ for all $n$.
+	
+	In particular, this is true for $n=3$. Moreover, $P\morphism Q_3(\Cc)$ is fully faithful too because it is a pullback of the fully faithful map $(s,s)\colon Q_0(\Cc)\times Q_0(\Cc)\morphism Q_1(\Cc)\times Q_1(\Cc)$. Now the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			Q_0(\Cc)\rar\drar["s"',""{sloped,above,name=A}]& P\dar\\
+			& Q_3(\Cc)\ar[from=A,to=1-2,phantom,pos=0.4,"\scriptscriptstyle/\!/\!/"]
+		\end{tikzcd}
+	\end{equation*}
+	and the corresponding two-out-of-three property for fully faithful maps show that $Q_0(\Cc)\morphism P$ is fully faithful too.
+	
+	Now for essential surjectivity. The actual image of $Q_0(\Cc)\morphism P$ consists of the constant diagrams $F\colon \TwAr([3])^\op\morphism \Cc$, hence (by an easy argument) the essential image contains all diagrams that map all edges to equivalences. To see that every $0$-simplex in $P$ is a diagram $F\colon \TwAr([3])^\op\morphism \Cc$ of that form, we have to show the following:
+	\begin{center}
+		\begin{tikzpicture}[x=1.25cm,y=1.25cm,line cap=round]
+			\node (00) at (0,0) {$F(0\leq 0)$};
+			\node (01) at (2,0) {$F(1\leq 1)$};
+			\node (02) at (4,0) {$F(2\leq 2)$};
+			\node (03) at (6,0) {$F(3\leq 3)$};
+			\node (10) at (1,1) {$F(0\leq 1)$};
+			\node (11) at (3,1) {$F(1\leq 2)$};
+			\node (12) at (5,1) {$F(2\leq 3)$};
+			\node (20) at (2,2) {$F(0\leq 2)$};
+			\node (21) at (4,2) {$F(1\leq 3)$};
+			\node (30) at (3,3) {$F(0\leq 3)$};
+			\draw[to-] (00) to  node[pos=0.5,above left=-0.6ex] {$\scriptscriptstyle(1)$} (10);
+			\draw[to-] (01) to  node[pos=0.5,above right=-0.6ex] {$\scriptscriptstyle(2)$} (10);
+			\draw[to-] (01) to  node[pos=0.5,below right=-0.6ex] {$\scriptscriptstyle(4)$} (11);
+			\draw[to-] (02) to  node[pos=0.5,below left=-0.6ex] {$\scriptscriptstyle(4)$} (11);
+			\draw[to-] (02) to  node[pos=0.5,above left=-0.6ex] {$\scriptscriptstyle(2)$} (12);
+			\draw[to-] (03) to  node[pos=0.5,above right=-0.6ex] {$\scriptscriptstyle(1)$} (12);
+			\draw[to-] (10) to  node[pos=0.5,above left=-0.6ex] {$\scriptscriptstyle(1)$}  (20);
+			\draw[to-] (11) to  node[pos=0.7,below left=-0.6ex] {$\scriptscriptstyle(3)$} (20);
+			\draw[to-] (11) to  node[pos=0.7,below right=-0.6ex] {$\scriptscriptstyle(3)$} (21);
+			\draw[to-] (12) to  node[pos=0.5,above right=-0.6ex] {$\scriptscriptstyle(1)$} (21);
+			\draw[to-]  (20) to  node[pos=0.5,above left=-0.6ex] {$\scriptscriptstyle(1)$}  (30);
+			\draw[to-] (21) to  node[pos=0.5,above right=-0.6ex] {$\scriptscriptstyle(1)$}  (30);
+			\draw[-to,dashed,bend right=35,FabiansPink] (30) to (10);
+			\draw[-to,dashed,bend left=35,FabiansPink] (30) to (12);
+			\draw[-to,dashed,bend right=35,FabiansPurple!67!FabiansPink] (20) to (00);
+			\draw[-to,dashed,bend right=35,FabiansPurple!67!FabiansPink] (21) to (01);
+			\draw[-to,dashed,bend left=35,FabiansPurple!67!FabiansPink] (20) to (02);
+			\draw[-to,dashed,bend left=35,FabiansPurple!67!FabiansPink] (21) to (03);
+			\node[rotate=-45] at (1.95,1.05) {\pullbacksign};
+			\node[rotate=-45] at (4.05,1.05) {\pullbacksign};
+			\node[rotate=-45] at (3,2.05) {\pullbacksign};
+		\end{tikzpicture}
+	\end{center}
+	Suppose we are given a diagram $F\colon \TwAr([3])^\op\morphism \Cc$ in which all squares are pullbacks as indicated and such that the four dashed purple arrows are equivalences. Then all arrows are equivalences.
+	
+	Indeed, then the two dashed pink arrows $F(0\leq 3)\morphism F(0\leq 1)$ and $F(0\leq 3)\morphism F(2\leq 3)$ are equivalences as well, since they are pullbacks the purple arrows. By two-out-of-six, we see that all arrows labelled \enquote{$(1)$} must be equivalences. Now the commutative square
+	\begin{equation*}
+		\begin{tikzcd}
+			F(0\leq 3)\rar[iso]\dar["\sim"{sloped,swap}]\drar[phantom,"\scriptscriptstyle/\!/\!/"] & F(1\leq 3)\dar[iso]\\
+			F(0\leq 1)\rar & F(1\leq 1)
+		\end{tikzcd}
+	\end{equation*}
+	shows that $F(0\leq 1)\morphism F(1\leq 1)$ is an equivalence. An analogous argument applies to $F(2\leq 3)\morphism F(2\leq 2)$. In other words, the two arrows labelled \enquote{$(2)$} are equivalences. This implies that the two arrows labelled \enquote{$(3)$} are equivalences, since they are pullbacks of the former. Finally, the two remaining arrows, labelled \enquote{$(4)$}, must be equivalences by two-out-of-three. We are done.
+\end{proof}

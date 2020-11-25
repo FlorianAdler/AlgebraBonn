@@ -51,268 +51,130 @@
 	\include{./Chapters/KTheory1}
 	\renewcommand{\thechapter}{\Roman{chapter}}
 
-\numpar*{Examples}\enquote{My first derived localizations}:
-\begin{alphanumerate}
-	\item If $W\subseteq R$ is a multiplicative subset in the commutative ring $R$, then $R\morphism R[W^{-1}]$ is a derived localization. This easily follows from \cref{propdef:derivedLocalization}\itememph{d} since $R[W^{-1}]$ is flat over $R$.
-	\item For non-commutative rings, one needs the (left or right, who knows?) \emph{Ore condition} for $R\morphism R[W^{-1}]$ to be a derived localization.
-	\item If $U\subseteq V$ is an open embedding of affine schemes, then $\Gamma(V,\Oo_V)\morphism\Global(U,\Oo_U)$ is a derived localization (but not necessarily an ordinary localization). Indeed, the condition from \cref{propdef:derivedLocalization}\itememph{d} easily shows that a ring morphism $\phi\colon R\morphism S$ is a derived localization iff $R_\pp\morphism S_\qq$ is a derived localization for all prime ideals $\qq\in \Spec S$ and $\pp\in \Spec R$ such that $\pp=\phi^{-1}(\qq)$. In our case of $\Gamma(V,\Oo_V)\morphism\Global(U,\Oo_U)$, all $\Oo_{V,v}\isomorphism \Oo_{U,v}$ for $v\in V$ are isomorphisms, hence they derived localizations for obvious reasons.
-\end{alphanumerate}%\lecture[Wtf]{2020-11-19}
-We will later see that $K$-theory has exact sequences for derived localizations!
-\begin{proof}[Proof of \cref{propdef:derivedLocalization}]
-	We already know \itememph{a} $\Leftrightarrow$ \itememph{b} $\Leftrightarrow$ \itememph{c} from \cref{propdef:BousfieldLocalization} and its dual. For \itememph{d} $\Leftrightarrow$ \itememph{e}, first note that $S\otimes_R^LR\isomorphism S$ is an equivalence. Indeed, we have
-	\begin{equation*}
-		H_i(S\otimes_R^LR)=\Tor_i^R(S,R)=\begin{cases*}
-			S & if $i=0$\\
-			0 & if $i\geq 1$
-		\end{cases*}\,.
-	\end{equation*}
-	Now $S\otimes_R^L-$, being a left adjoint, commutes with colimits, which implies that
-	\begin{equation*}
-		\begin{tikzcd}
-			S\rar["S\otimes_R^L\phi"]\dar\drar[pushout] & S\otimes_R^LS\dar\\
-			0\rar & S\otimes_R^L(S/^LR)
-		\end{tikzcd}
-	\end{equation*}
-	is a pullback square. This immediately implies $S\otimes_R^LS\simeq S$ iff $S\otimes_R^L(S/^LR)\simeq 0$, as desired.
-	
-	We finish the proof by showing \itememph{b} $\Leftrightarrow$ \itememph{d}. We must show that the counit $S\otimes_R^LC\morphism C$ is an equivalence for all $C\in \Dd(S)$ iff it is an equivalence for $S$. The \enquote{only if} direction being obvious, let's assume it is an equivalence for $S$. Then it is also an equivalence for all shifts $S[i]$. But the $\{S[i]\}_{i\in \IZ}$ generate $\Dd(S)$ under colimits and $S\otimes_R^L-$ commutes with colimits, so we are done.
-\end{proof}
-
-\lecture[The Rezk nerve and (complete) Segal spaces/anima.\newline --- \enquote{\emph{Today is brainf*ck time. There's no deep content, except for the things I'm not saying.}}]{2020-11-19}Today we get back to the Rezk-nerve. Recall the functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ introduced in \cref{exm:RezkNerve}\itememph{b}.
-\begin{thmdef}[Rezk, Joyal--Tierney, Lurie]\label{thmdef:RezkNerve}
-	The Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ is fully faithful and its essential image consists of the complete Segal spaces/anima. Here a \emph{Segal anima} is a cosimplicial anima $X\colon \IDelta^\op\morphism \An$ such that
-	\begin{equation*}
-		X_n\simeq \Hom_{\cat{s}\An}(\Delta^n,X)\isomorphism \Hom_{\cat{s}\An}(I_n,X)\simeq X\times_{X_0}X_1\times_{X_0}\dotsb\times_{X_0}X_1
-	\end{equation*}
-	is an equivalence for all $n$ \embrace{as usual $I_n$ denotes the $n$-spine, which is an iterated pushout of copies of $\Delta^1$, hence the pullback on the right-hand side}. We call $X$ \emph{complete} if the following equivalent conditions hold:
-	\begin{alphanumerate}
-		\item Also the restriction $X_0\simeq \Hom_{\cat{s}\An}(\Delta^0,X)\isomorphism \Hom_{\cat{s}\An}(J,X)$ along $J\morphism \Delta^0$ is an equivalence, where $J$ is the \embrace{ordinary nerve of the} free-living isomorphism.
-		\item The diagram
-		\begin{equation*}
-			\begin{tikzcd}[column sep=5em]
-				X_0\dar["s"']\rar["\Delta"]\drar[pullback] & X_0\times X_0\dar["{(s,s)}"]\\
-				X_3\rar["{(d_{\{0,2\}},d_{\{1,3\}})}"] & X_1\times X_1
-			\end{tikzcd}
-		\end{equation*}
-		is cartesian \embrace{note that $\Delta$ denotes a good old diagonal and not some simplicial stuff}.
-		\item The degeneracy map $s\colon X_0\isomorphism X_1^\times$ is an equivalence, where $X_1^\times\subseteq X_1$ is the collection of path components of those $g\in X_1$ for which the following holds: Let $x=d_1(g)$ and $y=d_0(g)$ and for arbitrary $w,z\in X_0$ put 
-		\begin{equation*}
-			\begin{tikzcd}
-				P_{w,z}\rar\dar\drar[pullback]& X_1\dar["{(d_1,d_0)}"]\\
-				\{(w,z)\}\rar& X_0\times X_0
-			\end{tikzcd}
-		\end{equation*}
-		Moreover, there is a \enquote{composition map}
-		\begin{equation*}
-			\begin{tikzcd}[column sep=2.7em]
-				\operatorname{comp}\colon X_1\times_{d_1,X_0,d_0}X_1 & X_2\morphism[d_1]X_1\lar["{(d_0,d_1)}"',"\sim"]
-			\end{tikzcd}
-		\end{equation*}
-		which, after restriction to $P_{w,x}\simeq P_{w,x}\times_{\{x\}}\{g\}$ and $P_{y,z}\simeq \{g\}\times_{\{y\}}P_{y,z}$ induces \enquote{post- and precomposition maps}
-		\begin{equation*}
-			g_*\colon P_{w,x}\morphism P_{w,y}\quad\text{and}\quad g^*\colon P_{y,z}\morphism P_{x,z}\,.
-		\end{equation*}
-		Then we put $x\in X_1^\times$ iff $g_*$ and $g^*$ are equivalences for all $w,z\in X_0$.
-		\item The simplicial subanima $X^\times$ given by 
-		\begin{equation*}
-			[n]\longmapsto X_n^\times\coloneqq\left\{\begin{tabular}{c}
-				collection of path components in\\
-				$X_n$ such that all edges lie in $X_1^\times$
-			\end{tabular}\right\}
-		\end{equation*}
-		is constant. Note that $X_0^\times=X_0$, so it is actually constant on $X_0$.
- 	\end{alphanumerate}
-\end{thmdef}
-To understand these conditions a bit better, Fabian drew the following picture for \cref{thmdef:RezkNerve}\itememph{b}:
-\begin{center}
-	\begin{tikzpicture}[line cap=round, line join=round,decoration={markings,mark=at position 0.5 with {\arrow{to}}},x=0.75cm,y=0.75cm]
-		\coordinate (0) at (-1.75,-0.3);
-		\node[left] at (0) {$0$};
-		\coordinate (1) at (-0.25,1);
-		\node[above] at (1) {$1$};
-		\coordinate (2) at (0,-1);
-		\node[below] at (2) {$2$};
-		\coordinate (3) at (1.25,0);
-		\node[right] at (3) {$3$};
-		\draw[postaction={decorate}](0) to (1);
-		\draw[postaction={decorate},line width=0.8] (0) to node[pos=0.5,below left] {$\scriptstyle\id$} (2);
-		\draw[postaction={decorate}] (1) to (2);
-		\draw[postaction={decorate}] (2) to (3);
-		\draw[postaction={decorate},line width=0.8] (1) to node[pos=0.5,above right] {$\scriptstyle\id$} (3);
-		\draw[dashed,postaction={decorate}] (0) to (3);
-	\end{tikzpicture}
-\end{center}
-So what condition~\itememph{b} is trying to say is that whenever a $3$-simplex $\Delta^3$ in $X_3$ has degenerate $\Delta^{\{0,2\}}$- and $\Delta^{\{1,3\}}$-edges, then all its edges are degenerate and the $3$-simplex itself is equivalent to a degenerate one. To get a grasp on condition~\itememph{d}, note that for any $\infty$-category $\Cc$ we have $\core\Cc$ encoded in $\N^r(\Cc)$ in two different ways: First in a direct fashion, as $\core\Cc\simeq \Hom_{\Cat_\infty}([0],\Cc)\simeq \N_0^r(\Cc)$, and second as the full subanima of $\core\Ar(\Cc)\simeq \N_1^r(\Cc)$ spanned by the equivalences in $\Cc$ (essentially because $\Delta^1\morphism \Delta^0$ is a localization). So $\N^r(\Cc)^\times$ should be constant with value $\core \Cc$.
-
-\begin{proof}[Not a proof of \cref{thmdef:RezkNerve}]
-	The proof is difficult, mostly the first statement that $\N^r$ is fully faithful. The original proof of Joyal--Tierney can be found in \cite{JoyalTierney} and Lurie's poof is in \cite{LurieGoodwillieCalculus}. However, Fabian recommends to prove the equivalence of the four conditions as a (not easy, but doable) exercise, as well as to prove that $\N^r(\Cc)$ is a complete Segal space for all $\infty$-categories $\Cc$.
-	
-	The key step to prove that $\N^r$ is fully faithful is to give a description of $\asscat(X)$ for $X$ a (not necessarily complete) Segal space: There is a canonical equivalence
-	\begin{equation}\label{eq:asscat1}
-		\core\asscat(X)\simeq |X^\times|\,,
-	\end{equation}
-	where $|\blank|\colon \cat{s}\An\morphism \An$ denotes the colimit functor over $\IDelta^\op$.
-	\begin{urem}
-		Note that the notation $|\blank|\simeq \colimit_{\IDelta^\op}$ is consistent with our notation for the geometric realization of simplicial sets: If $T\colon \IDelta^\op\morphism \Set\subseteq \An$ is a simplicial set/discrete simplicial anima, then the homotopy colimit of $T$ is weakly homotopy equivalent to $T$, so
-		\begin{equation*}
-			\colimit_{\IDelta^\op}T\simeq \Big(\hocolimit_{\CC[\IDelta^\op]}T\Big)^\mathrm{f}\simeq T^\mathrm{f}\simeq \Sing|T|
-		\end{equation*}
-		using \cref{thm:HomotopyLimits}. The notation is also consistent with $|\blank|\colon\Cat_\infty\morphism \An$ in that generally for a simplicial anima $T\colon \IDelta^\op\morphism\An$ we have
-		\begin{equation*}
-			|\asscat(T)|\simeq |T|\,.
-		\end{equation*}
-		Indeed, this follows from \cref{thm:ColimitPreservingRepresentable} as both sides are colimit-preserving functors that send $[n]\mapsto *\in \An$ for all $n\in \IN$. Here and in the following, $[n]$ always denotes the $\infty$-category associated to this poset, and $\Delta^n\in \sSet\subseteq\cat{s}\An$ always denotes the discrete (but not constant) simplicial anima.
-	\end{urem}
-	Moreover, one can show that for every (not necessarily complete) Segal space $X$ there are pullback diagrams
-	\begin{equation}\label{eq:asscat2}
-		\begin{tikzcd}
-			\Hom_{\asscat(X)}(x,y)\dar\rar\drar[pullback] & X_1\dar["{(d_1,d_0)}"]\\
-			\{(x,y)\}\rar & X_0\times X_0
-		\end{tikzcd}
-	\end{equation}
-	for all $x,y\in X_0$ (in particular $\Hom_{\asscat(X)}(x,y)\simeq P_{x,y}$ in the notation of \itememph{b}). This will become important later.
-	
-	With \cref{eq:asscat1} and \cref{eq:asscat2}, the proof of \cref{thmdef:RezkNerve} becomes quite easy. To prove that $\N^r$ is fully faithful, we must show that the counit $\asscat(\N^r(\Cc))\isomorphism \Cc$ is an equivalence for all $\Cc\in \Cat_\infty$. It is an equivalence on cores because
-	\begin{equation*}
-		\core\asscat\big(\N^r(\Cc)\big)\simeq |\N^r(\Cc)^\times|\quad\text{and}\quad \core\Cc\simeq \N_0^r(\Cc)\,;
-	\end{equation*}
-	since $\N^r(\Cc)$ is complete, $\N^r(\Cc)^\times$ is constant on $\N_0^r(\Cc)$, hence the colimit over $\IDelta^\op$ (recall $|\IDelta^\op|\simeq *$) is just $|\N^r(\Cc)^\times|\simeq \N_0^r(\Cc)$, as claimed. This shows that the counit is essentially surjective.
-	
-	To prove that it is fully faithful, i.e.\ induces equivalences on $\Hom$ anima, observe that using \cref{eq:asscat2} it induces the following equivalence of pullback squares:
-	\begin{equation*}
-		\begin{tikzcd}[column sep=tiny, row sep=small]
-			\Hom_{\asscat(\N^r(\Cc))}(x,y)\ar[rr] \ar[dd]\ar[dddr,pullback]\drar& & \Hom_\Cc(x,y)\ar[dd]\drar\ar[dddr,pullback]\\
-			& \N_1^r(\Cc)\ar[rr,iso,pos=0.4,crossing over] & & \core\Ar(\Cc)\ar[dd]\\
-			\{(x,y)\}\drar\eqar[rr] & & \{(x,y)\}\drar\\
-			& \N_0^r(\Cc)\times\N_0^r(\Cc)\ar[<-,uu,crossing over]\ar[rr,iso] & & \core\Cc\times\core\Cc
-		\end{tikzcd}
-	\end{equation*}
-	For the right pullback square, recall that a pullback of $\infty$-categories with one leg an inner fibration induces a pullback on cores, hence the usual pullback diagram for $\Hom_\Cc(x,y)$ passes to cores. This finishes the \dotso well, not \emph{proof}, but whatever else this is.
-\end{proof}
-The composite functor
+\chapter{Symmetric Monoidal \texorpdfstring{$\infty$}{infty}-Categories and \texorpdfstring{$\IE_\infty$}{Einfty}-Spaces}
+We start things off slowly by only considering (not necessarily symmetric) monoidal $\infty$-categories and $\IE_1$-spaces.
+\numpar{Stasheff's Definition of Coherently Associative Monoids}
+The naive way to define a monoid in $\An$ would be to have an object $M\in \An$ together with a multiplication map
 \begin{equation*}
-	\cat{s}\An\xrightarrow{\asscat}\Cat_\infty\morphism[\N^r]\cat{s}\An
+	\mu\colon M\times M\morphism M\,.
 \end{equation*}
-is called \emph{completion}. Unwinding definitions, one finds that it is a left-adjoint to the inclusion $\{\text{complete Segal spaces}\}\subseteq \cat{s}\An$. Fabian remarks that the completion functor is impossible to control outside of Segal spaces.
-\begin{exm}\label{exm:MyFirstRezkNerves}
-	\enquote{My first Rezk nerves}:
+Now $\mu$ induces two different maps $M^3\morphism M$ (\enquote{two ways of bracketing}), so there ought to be a homotopy $H\colon \mu\circ (\mu\times \id_M)\simeq \mu\circ(\id_M\times \mu)$ between them. But then there are five maps $M^4\morphism M$ (\enquote{five ways of bracketing}), and we see that $H$ induces a loop in $\Hom_\An(M^4,M)$. Since $M$ should be associative up to \emph{coherent homotopy}, this loop has to be filled. The story goes on: There are a number of maps $M^5\morphism M$ (too lazy to count them) and now there are some $3$-simplices to be filled and so on.
+
+Although this looks horrible, it is possible to turn these considerations into a precise definition, and one obtains Stasheff's \emph{$\IA_\infty$-spaces}. But we can take a simpler route! Indeed, thanks to our efforts so far, we now have the luxury of saying: \enquote{Well, a coherently associative monoid is just an $\infty$ category with only one object.} This leads to the following definition.
+\begin{defi}\label{def:CartesianMonoids}
+	Let $\Cc$ be an $\infty$-category with finite products (in particular, $\Cc$ has a final object $*\in \Cc$). A \emph{cartesian monoid in $\Cc$} is a functor $X\colon \IDelta^\op\morphism \Cc$ such that:
 	\begin{alphanumerate}
-		\item The ordinary nerve $\N(\Cc)\in \sSet\subseteq\cat{s}\An$ of a $1$-category is a Segal \emph{set} and thus also a Segal anima since $\Set\subseteq \An$ preserves limits. But it is usually not complete! In fact, we have
+		\item $X_0\simeq *$.
+		\item It satisfies the Segal condition, i.e., the Segal maps $e_i\colon [1]\morphism {[n]}$ define an equivalence
 		\begin{equation*}
-			\begin{tikzcd}
-				\N_0(\Cc)\dar["s"']\eqar[r]&\left\{\text{set of objects in $\Cc$}\right\}\dar\\
-				\N_1(\Cc)\eqar[r]&\left\{\text{set of isomorphisms in $\Cc$}\right\}
-			\end{tikzcd}
+			X_n\isomorphism \prod_{i=1}^nX_1
 		\end{equation*}
-		where the right vertical arrow takes $x\in \Cc$ to $\id_x$. But usually, there are more isomorphisms in a category than just the identities, hence $\N_1(\Cc)^\times$ is usually larger than $\N(\Cc)_0$.
-		\item The two functors
-		\begin{equation*}
-			\begin{gathered}\nonumber
-				\cat{s}\An\xrightarrow{\asscat} \Cat_\infty \morphism[\pi]\Cat_1^{(2)}\\
-				\cat{s}\An\xrightarrow{\cat{s}\pi_0}\sSet\morphism[h]\Cat_1
-			\end{gathered}
-		\end{equation*}
-		are different, even though both are colimit-preserving and take $\Delta^n\mapsto [n]$. The reason is of course that $\Cat_1\subseteq \Cat_1^{(2)}$ doesn't preserve colimits. To obtain explicit counterexamples, you can take $\const S^1$ or $\N^r(\{\text{finite-dimensional vector spaces}\})$ for example.
-		
-		Both functors do, however, agree on ordinary nerves $\N(\Cc)$ of $1$-categories. Nevertheless, Fabian warns you to never look at the lower functor.
-		\item The adjunction $\asscat\colon \cat{s}\An\shortdoublelrmorphism\Cat_\infty\noloc \N^r$ restricts to an equivalence
-		\begin{equation*}
-			\ev_0\colon\{\text{constant simplicial anima}\}\doublelrmorphism[\sim][\sim]\An\noloc \const\,.
-		\end{equation*}
-		Indeed, $\N_n^r(K)\simeq \core\Fun([n],K)\simeq \Fun(|[n]|,K)\simeq K$ as $|[n]|\simeq *$.
-		\item A more nontrivial example is that
-		\begin{equation*}
-			\N_n^r\big(\TwAr(\Cc)\big)\simeq \Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)\simeq \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\,.
-		\end{equation*}
-		To prove this, recall from \cref{par:MoreOnTwAr} that there is a pullback square
-		\begin{equation*}
-			\begin{tikzcd}
-				\TwAr(\Cc)\dar\rar\drar[pullback]& */\An\dar\\
-				\Cc^\op\times\Cc\rar["\Hom_\Cc"]& \An
-			\end{tikzcd}
-		\end{equation*}
-		(depending on your definitions, this is a pullback both in simplicial sets and in $\Cat_\infty$ or only in $\Cat_\infty$). Now we do a computation in several steps, each of which will be justified below:\newcounter{foo}
-		\begin{align}
-			\N_n^r\big(\TwAr(\Cc)\big)&\mathrel{\overset{\phantom{2}}{\simeq}}\Hom_{\Cat_\infty}\big([n],\TwAr(\Cc)\big)\nonumber\\
-			&\mathrel{\overset{(1)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\Hom_{\Cat_\infty}([n],\An)}\Hom_{\Cat_\infty}\big([n],*/\An\big)\label{eq:Umformung1}\tag*{}\\
-			&\mathrel{\overset{(2)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\core(\Cc^\op\times\Cc)}\core\big((\Cc^\op\times\Cc)\times_{\An}*/\An\big)\label{eq:Umformung2}\tag*{}\\\refstepcounter{foo}
-			&\mathrel{\overset{(3)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc^\op\times\Cc)}\core\TwAr(\Cc)\label{eq:Umformung3}\tag*{}\\
-			&\mathrel{\overset{(4)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc\times\Cc)}\core\Ar(\Cc)\label{eq:Umformung4}\tag*{}\\
-			&\mathrel{\overset{(5)}{\simeq}}\core\Fun\big([n]^\op\sqcup_{\{0\}}[1]\sqcup_{\{0\}}[n],\Cc\big)\label{eq:Umformung5}\tag*{}\\
-			&\mathrel{\overset{(6)}{\simeq}}\Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)\label{eq:Umformung6}\tag*{}\\
-			&\mathrel{\overset{(7)}{\simeq}} \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\label{eq:Umformung7}\tag*{}
-		\end{align}
-		Step~\hyperref[eq:Umformung1]{(1)} follows from the pullback square above via the dual of \cref{cor:HomPreservesColimits}. Next we discuss step~\hyperref[eq:Umformung2]{(2)}, which will need by far the most justification of them all: First, the map $\Hom_{\Cat_\infty}([n],\Cc^\op\times\Cc)\morphism \Hom_{\Cat_\infty}({0},\Cc^\op\times\Cc)\simeq\core(\Cc^\op\times \Cc)$ that is implicit in the pullback is induced by restriction along $\{0\}\monomorphism {[n]}$, i.e.\ \enquote{evaluation at $0$}. Now there is a pullback square
-		\begin{equation*}
-			\begin{tikzcd}
-				\Hom_{\Cat_\infty}\big([n],*/\An\big)\rar["\ev_0"]\dar\drar[pullback]&*/\An\dar\\
-				\Hom_{\Cat_\infty}\big([n],\An\big)\rar["\ev_0"] & \An
-			\end{tikzcd}
-		\end{equation*}
-		in $\An$. To see this, note that $\Fun([n],*/\An)\simeq \Fun^*([n+1],\An)$ holds by the join-slice adjunction (or by inspection), where $\Fun^*$ denotes the full sub-$\infty$-categories of functors taking $0\mapsto *\in \An$.
-		Similarly $*/\An\simeq \Fun^*([1],\An)$. Now $[n+1]$ can be written as a pushout 
-		$[1]\sqcup_{\{1\}}\{1,\dotsc,n\}$ (if you take the pushout in $\sSet$, then $\Delta^1\sqcup_{\{1\}}\Delta^{\{1,\dotsc,n\}}\monomorphism \Delta^n$ will be inner anodyne, hence $[n+1]$ is the correct pushout in $\Cat_\infty$ by \cref{thm:HomotopyLimits}) and the above pullback square follows from \cref{cor:HomPreservesColimits}. Now plugging this pullback into \hyperref[eq:Umformung1]{(1)} gives \hyperref[eq:Umformung2]{(2)} after some abstract nonsense pullback manipulations.
-		
-		For~\hyperref[eq:Umformung3]{(3)} note that $\Hom_{\Cat_\infty}([n],\Cc^\op\times\Cc)\simeq \Hom_{\Cat_\infty}([n],\Cc^\op)\times\Hom_{\Cat_\infty}([n],\Cc)$ and we have $\Fun([n],\Cc^\op)\simeq \core\Fun([n]^\op,\Cc)^\op$. But the $(-)^\op$ vanishes upon taking cores, hence $\Hom_{\Cat_\infty}([n],\Cc^\op)\simeq \Hom_{\Cat_\infty}([n]^\op,\Cc)$. This explains the left factor in the pullback. For the right factor, use that $\core$, being a right-adjoint functor, commutes with pullbacks.
-		
-		Step~\hyperref[eq:Umformung4]{(4)} follows straight from \cref{exc:coreTwAr=coreAr}. Step~\hyperref[eq:Umformung5]{(5)} is immediate from \cref{cor:HomPreservesColimits} and for \hyperref[eq:Umformung6]{(6)} we need to check that the pushout in question, when taken in $\Cat_\infty$, is given by $[n]^\op\star[n]$. This can be done as before: Take the pushout in $\sSet$ and verify that the canonical map to $[n]^\op\star[n]$ is inner anodyne.
-		
-		Finally, \hyperref[eq:Umformung7]{(7)} is immediate once we convinced ourselves that
-		\begin{equation*}
-			\N^r([n]^\op\star [n])\simeq (\Delta^n)^\op\star\Delta^n\,,
-		\end{equation*}
-		since $\N^r$ is fully faithful by \cref{thmdef:RezkNerve}. To obtain the equation above, note that $\Hom_{\Cat_\infty}([m],[n]^\op\star [n])\simeq \Hom_{\Cat_1}([m],[n]^\op\star [n])$ (where we view the right-hand as a discrete anima), since all $\infty$-categories involved here are actually nerves of $1$-categories (although we always surpress the nerve in our notation).
-		\item As a final example, let's define \emph{span categories}: Let $\Cc$ be an $\infty$-category and let $Q_n(\Cc)\subseteq \Fun(\TwAr(\Delta^n)^\op,\Cc)$ be the full sub-$\infty$-category consisting of those functors that take all \enquote{squares} in $\TwAr(\Delta^n)^\op$ to pullbacks. To make sense of this, recall our description of $\TwAr(\Delta^n)$ from \cref{par:MoreOnTwAr}. In that way, a functor $\TwAr(\Delta^n)^\op\morphism \Cc$ can be pictured as a diagram
-		\begin{center}
-			\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
-				\fill (0,0) circle (0.5ex) coordinate (00);
-				\fill (2,0) circle (0.5ex) coordinate (01);
-				\fill (4,0) circle (0.5ex) coordinate (02);
-				\fill (6,0) circle (0.5ex) coordinate (03);
-				\fill (8,0) circle (0.5ex) coordinate (04);
-				\fill (1,1) circle (0.5ex) coordinate (10);
-				\fill (3,1) circle (0.5ex) coordinate (11);
-				\fill (5,1) circle (0.5ex) coordinate (12);
-				\fill (7,1) circle (0.5ex) coordinate (13);
-				\fill (2,2) circle (0.5ex) coordinate (20);
-				\fill (4,2) circle (0.5ex) coordinate (21);
-				\fill (6,2) circle (0.5ex) coordinate (22);
-				\fill (3,3) circle (0.5ex) coordinate (30);
-				\fill (5,3) circle (0.5ex) coordinate (31);
-				\fill (4,4) circle (0.5ex) coordinate (40);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (00) -- (10);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (10);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (11);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (12);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (12);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (04) -- (13);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (10) -- (20);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (20);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (21);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (13) -- (22);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (21);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (30) -- (40);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (31) -- (40);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (13);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (22);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (21) -- (31);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (22) -- (31);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex]  (20) -- (30);
-				\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (30);
-				\node[rotate=-45] at (2,1) {\pullbacksign};
-				\node[rotate=-45] at (4,1) {\pullbacksign};
-				\node[rotate=-45] at (6,1) {\pullbacksign};
-				\node[rotate=-45] at (3,2) {\pullbacksign};
-				\node[rotate=-45] at (5,2) {\pullbacksign};
-				\node[rotate=-45] at (4,3) {\pullbacksign};
-			\end{tikzpicture}
-		\end{center}
-		in $\Cc$ (shown here for $n=3$), and to be in $Q_n(\Cc)$ we require that all squares are pullbacks as indicated. Note that then in fact all rectangles you can find in this picture must be pullbacks.
-		
-		The $Q_n(\Cc)$ assemble into a cosimplicial $\infty$-category $Q(\Cc)\colon \IDelta^\op\morphism \Cc$. This is, you might have guessed it, the \emph{Quillen $Q$-construction}. Also define the \emph{spam category} of $\Cc$ to be $\Span(\Cc)\simeq \asscat(\core Q(\Cc))$.
 	\end{alphanumerate}
-\end{exm}
+	Let $\cat{Mon}(\Cc)\subseteq\cat{s}\Cc$ be the full sub-$\infty$-category spanned by cartesian monoids. If $\Cc=\An$, these are also called \emph{$\IE_1$-spaces}, \emph{$\IA_\infty$-spaces}, \emph{coherent monoids}, \emph{special $\Delta$-spaces}, \dotso. For $\Cc=\Cat_\infty$ we simply call them \emph{monoidal $\infty$-categories} (note that these can also be encoded as cocartesian fibrations over $\IDelta^\op$).
+\end{defi}
+To make sense of the condition from \cref{def:CartesianMonoids}\itememph{b}, note that since $X_0\simeq *$ is terminal, we have $X_1\times_{X_0}\times\dotsb\times_{X_0}X_1\simeq \prod_{i=1}^nX_1$, so this condition really \emph{is} the Segal condition. Somewhat weird though is that we don't impose any completeness conditions, and in fact, cartesian monoids in $\An$ are usually \emph{not} complete Segal spaces! This is in some sense fixed by the following proposition.
+\begin{prop}\label{prop:CompletionOfMonoidsFullyFaithful}
+	The completion functor $\comp\colon\cat{sAn}\morphism\cat{CSAn}$ from Lemma/Defi-nition~\labelcref{lemdef:Completion} restricts to a fully faithful functor
+	\begin{equation*}
+		\comp\colon\cat{Mon}(\An)\morphism */\cat{CSAn}
+	\end{equation*}
+	with essential image those pointed complete segal spaces $(X,x)$ with $\pi_0X_0=*$.
+\end{prop}
+In other words, monoids really are categories with one object (up to equivalence, but not up to contractible choice, as Bastiaan pointed out in the lecture), since the target is also pointed categories with connected base.
+\begin{proof}[Proof of \cref{prop:CompletionOfMonoidsFullyFaithful}]
+	\emph{Step~1.} Let's construct a candidate for an inverse functor. Recall that if $X$ is Segal, then the completion functor does not affect the pullback spaces
+	\begin{equation*}
+		\begin{tikzcd}
+			P_{x,y}\rar\dar\drar[pullback] & X_1\dar["{(d_1,d_0)}"]\\
+			*\rar["{(x,y)}"] & X_0\times X_0
+		\end{tikzcd}
+	\end{equation*}
+	(this follows essentially from \cref{eq:asscat2}). This motivates the following definition of an inverse (\enquote{decompletion}) functor $\decomp\colon */\cat{CSAn}\morphism \cat{Mon}(\An)$: Let $(X,x)$ be a pointed complete Segal space. We send it to $Y\in \cat{Mon}(\An)$, where $Y\colon \IDelta^\op\morphism \An$ is defined by the pullback
+	\begin{equation*}
+		\begin{tikzcd}[column sep=large]
+			Y_n\dar\rar\drar[pullback]& X_n\dar\\
+			*\rar["{(x,\dotsc,x)}"] & X_0^{n+1}
+		\end{tikzcd}
+	\end{equation*}
+	for all $[n]\in \IDelta^\op$. Let's first address the elephant in the room, i.e.\ how to make the pointwise-defined $Y_n$ into a functor $\IDelta^\op\morphism \An$, which in turn should be functorial in $X$. We'll have solved both problems at once if we show that the diagram
+	$*\morphism X_0^{n+1}\lmorphism X_n$ is functorial in $(X,x)$ and in $[n]$. To this end consider $X$ as a functor $\IDelta\morphism \An^\op$ and colimit-extend it to a functor
+	\begin{equation*}
+		|\blank|_X\colon \cat{sAn}\morphism \An^\op\,.
+	\end{equation*}
+	This can be done functorially in $X$, as \cref{thm:ColimitPreservingRepresentable} shows. In more abstract terms, what we do here is to identify  $\cat{sAn}\simeq \Fun(\IDelta,\An^\op)^\op\simeq \Fun^L(\cat{sAn},\An^\op)^\op$. We define two functors $\Delta,\Delta_0\colon \IDelta\morphism\cat{sSet}\subseteq\cat{sAn}$ via $\Delta([n])=\Delta^n$ and $\Delta_0([n])=\coprod_{i=0}^n\Delta^0$. Since $\Delta$ and $\Delta_0$ are functors between $1$-categories (before we compose them with the inclusion $\cat{sSet}\subseteq \cat{sAn}$), we don't need to check any higher coherences and immediately obtain that $\Delta$ and $\Delta_0$ are indeed functors. Moreover, the canonical map $\coprod_{i=0}^n\Delta^0\morphism \Delta^n$ sending the $i\ordinalth$ component to the $i\ordinalth$ vertex of $\Delta^n$ is clearly functorial in $[n]\in \IDelta$, hence it induces a natural transformation $\Delta_0\Rightarrow\Delta$ (which exhibits $\Delta_0$ as the \enquote{$0$-skeleton} of $\Delta$, hence the notation).
+	
+	Now consider the two composites
+	\begin{equation*}
+		\cat{sAn}\simeq \Fun\left(\IDelta,\An^\op\right)^\op\simeq \Fun\left(\cat{sAn},\An^\op\right)^\op\doublemorphism[\Delta^*][\Delta_0^*]\Fun\left(\IDelta,\An^\op\right)^\op\simeq \cat{sAn}\,,
+	\end{equation*}
+	which we denote $|\Delta|_{(-)}$ and $|\Delta_0|_{(-)}$. The transformation $\Delta_0\Rightarrow \Delta$ induces a transformation $|\Delta|_{(-)}\Rightarrow |\Delta_0|_{(-)}$ (since there has been an $(-)^\op$ in between). Upon closer inspection, we find that $\Delta\colon \IDelta\morphism\cat{sAn}$ is actually nothing else but the Yoneda embedding, hence \cref{thm:ColimitPreservingRepresentable} shows that $|\Delta|_{(-)}\simeq \id$! Moreover, since $|\blank|_X$ preserves colimits, we easily obtain
+	\begin{equation*}
+		X_0^{n+1}\simeq \left|\coprod_{i=0}^n\Delta^0\right|_X\,,
+	\end{equation*}
+	hence the $X_0^{n+1}$ can be organized into a simplicial anima $|\Delta_0|_X$. The transformation $\id\simeq |\Delta|_{(-)}\Rightarrow |\Delta_0|_{(-)}$ gives a natural map $X\morphism |\Delta_0|_X$.
+	
+	This shows that the maps $X_0^{n+1}\lmorphism X_n$ can indeed be made functorial in $X$ and $[n]$. A similar argument applies shows that the maps $*\morphism X_0^{n+1}$, which assemble into a functorial map $\Delta^0\morphism |\Delta_0|_X$. We conclude that $Y\simeq X\times_{|\Delta_0|_X}\Delta^0$ as above is indeed a simplicial anima and functorial in $X$. We have $Y_0\simeq *$ by construction and also $Y_n\simeq Y_1\times_{Y_0}\dotsb\times_{Y_0}Y_1$ follows from the fact that $X$ itself satisfies the Segal conditions together with some abstract pullback nonsense (basically that \enquote{limits commute}, see the dual of \cref{prop:ColimitsCommute}). So $Y\in \cat{Mon}(\An)$ and we can finally write down the functor
+	\begin{equation*}
+		\decomp\colon */\cat{CSAn}\morphism \cat{Mon}(\An)\,.
+	\end{equation*}
+
+	\emph{Step~2.} Next, let's check that $\comp\colon \cat{Mon}(\An)\morphism \cat{CSAn}$ from \cref{lemdef:Completion} indeed factors over $*/\cat{CSAn}\morphism \cat{CSAn}$ and that its essential image is contained in those pointed complete Segal spaces $(X,x)$ with $\pi_0X_0=*$. To get the factorization, observe that $\cat{Mon}(\An)$ has an initial object, namely $\Delta^0\in\sSet\subseteq\cat{sAn}$ (in the lecture we called it \enquote{$\const*$}, but it's really just $\Delta^0$). Indeed, if $T\in \cat{Mon}(\An)$, then
+	\begin{equation*}
+		\Hom_{\cat{Mon}(\An)}(\Delta^0,T)\simeq \Hom_{\cat{sAn}}(\Delta^0,T)\simeq T_0\simeq *
+	\end{equation*}
+	by \cref{def:CartesianMonoids}\itememph{a}. Also $\comp (\Delta^0)\simeq *$, so the completion functor really lifts to a functor $\cat{Mon}(\An)\simeq \Delta^0/\cat{Mon}(\An)\morphism */\cat{CSAn}$, as required.
+	
+	To check that $\pi_0(\comp T)_0=*$, recall that $(\comp T)_0\simeq \core \asscat T\simeq |T^\times|$ by \cref{eq:asscat1}. Now we have to use the following general fact:
+	\begin{alphanumerate}
+		\item[\itememph{*}] \itshape For all $X\in\cat{sAn}$ the map $\pi_0X_0\morphism \pi_0|X|$ is surjective.
+	\end{alphanumerate}
+	This shows what we want since $(T^\times)_0\simeq T_0\simeq *$ holds by assumption. To see where \itememph{*} comes from, observe that $\pi_0$, being a left adjoint (\cref{exm:MyFirstAdjoints}\itememph{a}), commutes with colimits. This shows $\pi_0|X|\simeq \pi_0\colimit_{\IDelta^\op}X\simeq \colimit_{\IDelta^\op}\pi_0X$, where the colimit on the right-hand side is a good old colimit taken in $\sSet$. Now $\{d_0,d_1\colon [1]\shortdoublemorphism [0]\}\subseteq \IDelta^\op$ is $1$-cofinal (but not $\infty$-cofinal!), hence
+	\begin{equation*}
+		\colimit_{\IDelta^\op}\pi_0X=\Coeq\left(\pi_0X_1\doublemorphism[d_1][d_0] \pi_0X_0\right)\,.
+	\end{equation*}
+	This immediately implies \itememph{*}.
+	
+	\emph{Step~3.} Finally, we check that $\decomp\colon (*/\cat{CSAn})_{\pi_0=*}\morphism \cat{Mon}(\An)$ is indeed an inverse, where $(*/\cat{CSAn})_{\pi_0=*}\subseteq */\cat{CSAn}$ is the full subcategory spanned by those $(X,x)$ with $\pi_0X_0=*$. The first step is to construct the required natural transformations. We didn't do this in the lecture (Fabian promised to give a full proof in the lecture notes soon), so here's what I would do. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}]\itshape The functors $\comp\colon \cat{Mon}(\An)\shortdoublelrmorphism */\cat{CSAn}\noloc \decomp$ form an adjunction.
+	\end{alphanumerate}
+	Once we proved \itememph{\boxtimes}, we get the required transformations for free. So let's do this! Consider $T\in \cat{Mon}(\An)$, which is naturally pointed via the unique (up to contractible choice) map $1_T\colon \Delta^0\morphism T$, and let $(X,x)$ be a pointed complete Segal space. Then
+	\begin{align*}
+		\Hom_{*/\cat{CSAn}}\big(\comp T,(X,x)\big)&\simeq \Hom_{*/\cat{sAn}}\big((T,1_T),(X,x)\big)\\
+		&\simeq \Hom_{\cat{sAn}}(T,X)\times_{\Hom_{\cat{sAn}}(\const 1_T,X)}\{\const x\}\\
+		&\simeq \Hom_{\cat{sAn}}(T,X)\times_{\Hom_\An(1_T,X_0)}\{x\}\,.
+	\end{align*}
+	The first equivalence follows from \cref{lemdef:Completion} (and the fact that adjunctions extend to slice categories), the second follows from \cite[Corollary~VIII.6]{HigherCatsII}. The last one follows by inspection. All of them are functorial in $(X,x)$. Moreover, we have
+	\begin{align*}
+		\Hom_{\cat{Mon}(\An)}\big(T,\decomp (X,x)\big)&\simeq \Hom_{\cat{sAn}}\left(T,X\times_{|\Delta_0|_X}\Delta^0\right)\\
+		&\simeq \Hom_{\cat{sAn}}(T,X)\times_{\Hom_{\cat{sAn}}(T,|\Delta_0|_X)}\Hom_{\cat{sAn}}(T,\Delta^0)\,.
+	\end{align*}
+	Since $\id\Rightarrow |\Delta_0|_{(-)}$ is a natural transformation, one quickly checks that the morphism $\Hom_{\cat{sAn}}(T,X)\morphism \Hom_{\cat{sAn}}(T,|\Delta_0|_X)$ factors over $\Hom_{\cat{sAn}}(|\Delta_0|_T,|\Delta_0|_X)$. But $T_0\simeq *$, hence $|\Delta_0|_T\simeq \Delta^0$. Also $\Hom_{\cat{sAn}}(T,\Delta^0)\simeq *$. Putting everything together, we can rewrite
+	\begin{equation*}
+		\Hom_{\cat{Mon}(\An)}\big(T,\decomp (X,x)\big)\simeq \Hom_{\cat{sAn}}(T,X)\times_{\Hom_\An(T_0,X_0)}\{x\}\,,
+	\end{equation*} 
+	and after another inspection, this provides the required natural equivalence
+	\begin{equation*}
+		\Hom_{*/\cat{CSAn}}\big(\comp T,(X,x)\big)\simeq\Hom_{\cat{Mon}(\An)}\big(T,\decomp (X,x)\big)\,,
+	\end{equation*}
+	proving \itememph{\boxtimes}.
+	
+	Equipped with our newly-acquired unit and counit transformations $\id\Rightarrow \decomp\circ \comp$ and $\comp\circ\decomp\Rightarrow \id$, we now set out to prove that $\decomp\colon (*/\cat{CSAn})_{\pi_0=*}\morphism \cat{Mon}(\An)$ is indeed an inverse of $\comp$. Let's start with the second one, i.e.\ the counit. We must show $\comp(\decomp (X,x))\simeq (X,x)$ for all $(X,x)\in (*/\cat{CSAn})_{\pi_0=*}$ . Observe that $\comp X\simeq X$ because $X$ is already complete. Hence it suffices to show $\asscat(\decomp(X,x))\simeq \asscat X$ (and check that the chosen base points on both sides correspond, but that's easy) because $\N^r$ is fully faithful by \cref{thmdef:RezkNerve}. Using \cref{eq:asscat1} and the fact that $X^\times$ is a constant simplicial anima with value $X_0$ as $X$ is complete, we see that
+	\begin{equation*}
+		\pi_0\core(\asscat X)\simeq \pi_0|X^\times|\simeq \pi_0X_0\simeq *\,,
+	\end{equation*}
+	so $\asscat(\decomp(X,x))\morphism \asscat X$ is essentially surjective for trivial reasons. Moreover, we have $\decomp(X,x)_0\simeq \{x\}$ by construction, and \cref{eq:asscat2} (which is applicable here because $\decomp(X,x)$ is Segal by construction) easily shows
+	\begin{equation*}
+		\Hom_{\asscat(\decomp(X,x))}(x,x)\simeq P_{x,x}\simeq \Hom_{\asscat X}(x,x)\,,
+	\end{equation*}
+	so $\asscat(\decomp(X,x))\morphism \asscat(X)$ is fully faithful too. This shows that the counit is an equivalence, as claimed.
+	
+	The argument for the unit is similar: We have to show $T\simeq \decomp(\comp T)$ for all $T\in \cat{Mon}(\An)$. Since both sides are functors $\IDelta^\op\morphism \cat{An}$ and a natural transformation between them is already given, we can do this degree-wise by \cref{thm:JoyalEquivalence}\itememph{b}. Since both sides are cartesian monoids, is suffices to check that the map in degree $1$ is an equivalence, i.e.\ that $T_1\simeq \decomp(\comp T)_1$. Write $(X,x)\simeq \comp T$. By construction we have
+	\begin{equation*}
+		\decomp(X,x)_1\simeq P_{x,x}\quad\text{and}\quad T_1\simeq P_{1_T,1_T}\,,
+	\end{equation*}
+	where as usual $1_T\colon \Delta^0\morphism T$ is the natural pointing of $T$. As observed at the very beginning of this proof, the spaces $P_{y,z}$ aren't affected by completion, hence $P_{x,x}\simeq P_{1_T,1_T}$ and we're done. 
+\end{proof}
 
 
 \backmatter\KOMAoption{chapterprefix}{false}
