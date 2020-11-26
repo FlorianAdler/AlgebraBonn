@@ -381,7 +381,7 @@
 		\begin{equation*}
 			(-)^\inftygrp\colon \left\{\text{symmetric monoidal $\infty$-groupoids}\right\}\morphism \left\{\text{Picard $\infty$-groupoids}\right\}
 		\end{equation*}
-		is bloody complicated. For example, one has $\left\{\text{Finite sets},\sqcup\right\}^\inftygrp=\Omega^\infty\IS=\colimit_{n\geq 0}\Omega^nS^n$, so even in the simplest case---finite sets and disjoint union---the homotopy groups of what comes out are terrifying: they are the stable homotopy groups of spheres.
+		is bloody complicated. For example, one has $\left\{\text{Finite sets},\sqcup\right\}^\inftygrp=\Omega^\infty\IS=\colimit_{n\geq 0}\Omega^n\IS^n$, so even in the simplest case---finite sets and disjoint union---the homotopy groups of what comes out are terrifying: they are the stable homotopy groups of spheres.
 	\end{warn}
 	\section{Outline of the Course}
 	The course is planned to consist of three parts, but let's see how far we will actually get.
@@ -1641,10 +1641,10 @@ The right adjoint of $C_\bullet$ is
 \begin{equation*}
 	C_\bullet(-,*)\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,.
 \end{equation*}
-I believe Fabian's argument for this in the lecture contained a small mistake, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. Now let $S^i$ be your favourite model for the $i$-sphere in anima and compute
+I believe Fabian's argument for this in the lecture contained a small mistake, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. Now let $\IS^i$ be your favourite model for the $i$-sphere in anima and compute
 \begin{align*}
-	\pi_iK(C)&\simeq \pi_0\Hom_{*/\An}\big((S^i,*),K(C)\big)\\
-	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(S^i,*),C\big)\\
+	\pi_iK(C)&\simeq \pi_0\Hom_{*/\An}\big((\IS^i,*),K(C)\big)\\
+	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(\IS^i,*),C\big)\\
 	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(\IZ[i],C\big)\\
 	&\simeq H_i(C)\,.
 \end{align*}
@@ -1706,7 +1706,7 @@ Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(
 	\begin{equation*}
 		C_\bullet(-,*)\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,,
 	\end{equation*}
-	where $C_\bullet(-,*)$ computes \emph{reduced} homology. For example, if $S^i$ denotes the $i$-sphere, then $C_\bullet(S^i,*)\simeq \cofib(\IZ[0]\morphism \IZ[0]\oplus \IZ[i])\simeq \IZ[i]$, as one would expect.
+	where $C_\bullet(-,*)$ computes \emph{reduced} homology. For example, if $\IS^i$ denotes the $i$-sphere, then $C_\bullet(\IS^i,*)\simeq \cofib(\IZ[0]\morphism \IZ[0]\oplus \IZ[i])\simeq \IZ[i]$, as one would expect.
 \end{rem*}
 \begin{exm}\label{exm:RezkNerve}
 	Two more applications of \cref{thm:ColimitPreservingRepresentable}:
@@ -1992,7 +1992,7 @@ We will later see that $K$-theory has exact sequences for derived localizations!
 		Moreover, there is a \enquote{composition map}
 		\begin{equation*}
 			\begin{tikzcd}[column sep=2.7em]
-				-\circ-\colon X_1\times_{d_1,X_0,d_0}X_1 & X_2\morphism[d_1]X_1\lar["{(d_0,d_1)}"',"\sim"]
+				\circ\colon X_1\times_{d_1,X_0,d_0}X_1 & X_2\morphism[d_1]X_1\lar["{(d_0,d_1)}"',"\sim"]
 			\end{tikzcd}
 		\end{equation*}
 		which, after restriction to $P_{w,x}\simeq P_{w,x}\times_{\{x\}}\{g\}$ and $P_{y,z}\simeq \{g\}\times_{\{y\}}P_{y,z}$ induces \enquote{post- and precomposition maps}
@@ -2106,10 +2106,10 @@ Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to 
 				\cat{s}\An\xrightarrow{\cat{s}\pi_0}\sSet\morphism[h]\Cat_1
 			\end{gathered}
 		\end{equation*}
-		are different, even though both are colimit-preserving and take $\Delta^n\mapsto [n]$. The reason is of course that $\Cat_1\subseteq \Cat_1^{(2)}$ doesn't preserve colimits. To obtain explicit counterexamples, you can take $\const S^1$ or $\N^r(\{\text{finite-dimensional vector spaces}\})$ for example. Both functors do, however, agree on ordinary nerves $\N(\Cc)$ of $1$-categories. Nevertheless, Fabian warns you to never look at the lower functor.
-		\item The adjunction $\asscat\colon \cat{s}\An\shortdoublelrmorphism\Cat_\infty\noloc \N^r$ restricts to an equivalence
+		are different, even though both are colimit-preserving and take $\Delta^n\mapsto [n]$. The reason is of course that $\Cat_1\subseteq \Cat_1^{(2)}$ doesn't preserve colimits. To obtain explicit counterexamples, you can take $\const \IS^1$ or $\N^r(\{\text{finite-dimensional vector spaces}\})$ for example. Both functors do, however, agree on ordinary nerves $\N(\Cc)$ of $1$-categories. Nevertheless, Fabian warns you to never look at the lower functor.
+		\item Let $\mathrm{const.}\ \cat{sAn}\subseteq \cat{sAn}$ denote the full subcategory of constant simplicial anima. The adjunction $\asscat\colon \cat{s}\An\shortdoublelrmorphism\Cat_\infty\noloc \N^r$ restricts to an equivalence
 		\begin{equation*}
-			\ev_0\colon\{\text{constant simplicial anima}\}\doublelrmorphism[\sim][\sim]\An\noloc \const\,.
+			\ev_0\colon\mathrm{const.}\ \cat{sAn}\doublelrmorphism[\sim][\sim]\An\noloc \const\,.
 		\end{equation*}
 		Indeed, $\N_n^r(K)\simeq \core\Fun([n],K)\simeq \Fun(|[n]|,K)\simeq K$ as $|[n]|\simeq *$.
 	\end{alphanumerate}
@@ -2320,7 +2320,7 @@ The $Q_n(\Cc)$ assemble into a cosimplicial $\infty$-category $Q(\Cc)\colon \IDe
 	Indeed, then the two dashed pink arrows $F(0\leq 3)\morphism F(0\leq 1)$ and $F(0\leq 3)\morphism F(2\leq 3)$ are equivalences as well, since they are pullbacks the purple arrows. By two-out-of-six, we see that all arrows labelled \enquote{$(1)$} must be equivalences. Now the commutative square
 	\begin{equation*}
 		\begin{tikzcd}
-			F(0\leq 3)\rar[iso]\dar["\sim"{sloped,swap}]\drar[phantom,"\scriptscriptstyle/\!/\!/"] & F(1\leq 3)\dar[iso]\\
+			F(0\leq 3)\rar[iso]\dar[iso]\drar[phantom,"\scriptscriptstyle/\!/\!/"] & F(1\leq 3)\dar[iso]\\
 			F(0\leq 1)\rar & F(1\leq 1)
 		\end{tikzcd}
 	\end{equation*}

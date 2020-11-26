@@ -175,7 +175,144 @@ In other words, monoids really are categories with one object (up to equivalence
 	\end{equation*}
 	where as usual $1_T\colon \Delta^0\morphism T$ is the natural pointing of $T$. As observed at the very beginning of this proof, the spaces $P_{y,z}$ aren't affected by completion, hence $P_{x,x}\simeq P_{1_T,1_T}$ and we're done. 
 \end{proof}
+\lecture[More on $\IE_1$-monoids and $\IE_1$-groups. Group completion.\newline --- \enquote{\emph{The fact that you can write down a group or a monoid in semester 2 is sort of an accident.}}]{2020-11-26}Under the equivalence $\Cat_\infty\simeq \cat{CSAn}$ from \cref{thmdef:RezkNerve}, the construction of $\decomp$ from the proof of \cref{prop:CompletionOfMonoidsFullyFaithful} corresponds to a functor $*/\Cat_\infty\morphism\cat{Mon}(\An)$ which becomes an equivalence when restricted to the full subcategory $(*/\Cat_\infty)_{\geq 1}\subseteq */\Cat_\infty$ spanned by those $\Cc$ with $\pi_0\core\Cc\simeq *$. In diagrams,
+\begin{equation*}
+	\begin{tikzcd}
+		*/\Cat_\infty\rar & \cat{Mon}(\An)\\
+		(*/\Cat_\infty)_{\geq 1}\uar[symbol=\subseteq]\urar[iso] & 
+	\end{tikzcd}
+\end{equation*}
+Explicitly, this functor sends a pointed $\infty$-category $(\{x\}\morphism \Cc)$ to $\Hom_\Cc(x,x)$ in degree $1$ (and then all other degrees are determined by the conditions from \cref{def:CartesianMonoids}). We thus obtain:
+\begin{cor}
+	If $\Cc$ is an $\infty$-category and $x\in \Cc$, then $\Hom_\Cc(x,x)$ carries a canonical structure of an $\IE_1$-monoid.
+\end{cor}
+\begin{defi}\label{def:E1Group}
+	Let $\Cc$ be an $\infty$-category with finite products. A cartesian monoid $X$ in $\Cc$ is called a \emph{cartesian group} (or \emph{$\IE_1$-group} in the case $\Cc=\An$) if the map
+	\begin{align*}
+		(\pr_1,\circ)\colon X_1\times X_1&\isomorphism X_1\times X_1\\
+		(f,g)&\longmapsto (f,f\circ g)
+	\end{align*}
+	is an equivalence. Here \enquote{$\circ$} is the composition as defined in \cref{thmdef:RezkNerve}\itememph{c}. We denote by $\Grp(\Cc)\subseteq \cat{Mon}(\Cc)$ the full sub-$\infty$-category of cartesian groups.
+\end{defi}
+\begin{prop}\label{prop:Grp(An)=(*/An)Connected}
+	The equivalences $\cat{Mon}(\An)\simeq (*/\Cat_\infty)\simeq (*/\cat{CSAn})_{\pi_0=*}$ restrict to equivalences
+	\begin{equation*}
+		\begin{tikzcd}[column sep=small]
+			\cat{Mon}(\An)\dar[iso]\rar[symbol=\supseteq] & \Grp(\An)\dar[iso]\\
+			(*/\Cat_\infty)_{\geq 1}\dar[iso] \rar[symbol=\supseteq] & (*/\An)_{\geq 1}\dar[iso]\\
+			(*/\cat{CSAn})_{\pi_0=*}\rar[symbol=\supseteq] & (*/\mathrm{const.}\ \cat{sAn})_{\pi_0=*}
+		\end{tikzcd}
+	\end{equation*}
+	In the lower right corner we use the notation from \cref{exm:MyFirstRezkNerves}\itememph{c}.
+\end{prop}
+\begin{proof}[Proof sketch]
+	In the lecture we noted only that $X\in \cat{Mon}(\An)$ is an $\IE_1$-group iff the set $\pi_0X_1$ with its induced ordinary monoid structure is an ordinary group.
+	
+	To elaborate on this a bit more, first note that we may assume $X\simeq \Hom_\Cc(x,x)$ for some $\infty$-category $\Cc$ with $\pi_0\core \Cc\simeq *$, as was argued above. If $X$ is an $\IE_1$-group, then $\pi_0\Hom_\Cc(x,x)$ must be an ordinary group, which implies that all endomorphisms of $x$ are equivalences, hence all morphisms in $\Cc$ are equivalences as $\pi_0\core \Cc\simeq *$. This proves that $\Cc$ is an anima by \cref{thm:JoyalLifting}. Conversely, if $\Cc$ is an anima, either inclusion $[1]\monomorphism J$ into the free-living isomorphism induces a trivial fibration $\Fun(J,\Cc)\isomorphism \Ar(\Cc)$. Choosing a section and composing it with the the other map $\Fun(J,\Cc)\morphism \Ar(\Cc)$ (induced by the other inclusion $[1]\monomorphism J$) yields an \enquote{inversion} map $(-)^{-1}\colon \Hom_\Cc(x,x)\morphism \Hom_\Cc(x,x)$. From this we can construct an inverse of the map in \cref{def:E1Group}
+\end{proof}
+\numpar{}\label{par:Grp(An)=(*/An)Connected}
+The equivalence $\Grp(\An)\simeq (*/\An)_{\geq 1}$ is explicitly given as follows:
+\begin{equation*}
+	|\blank|\colon \Grp(\An)\doublelrmorphism[\sim][\sim](*/\An)_{\geq 1}\noloc \Omega
+\end{equation*}
+(sometimes the functor $|\blank| = \colimit_{\IDelta^\op}$ is also denoted \enquote{$B$} for \enquote{Bar construction}, but Fabian doesn't like that). To make sense of this, recall that the composition
+\begin{equation*}
+	\cat{Mon}(\An)\xrightarrow{\comp}\cat{CSAn}\morphism[\ev_0]\An
+\end{equation*}
+sends $X\mapsto |X^\times|$, as follows from \cref{eq:asscat1} and some unravelling. If $X$ is an $\IE_1$-group, one easily verifies $X^\times=X$ and thus $X\in \Grp(\An)$ is sent to $|X|$, as claimed above. Conversely, the composition
+\begin{equation*}
+	(*/\An)_{\geq 1}\xrightarrow{\decomp}\Grp(\An)\morphism[\ev_1]\An
+\end{equation*}
+sends a pointed connected anima $(K,k)$ to $\Hom_K(k,k)$, as argued previously. So to justify why $(*/\An)_{\geq 1}\isomorphism \Grp(\An)$ should be thought of as a \enquote{loop space functor}, we must explain why $\Omega_kK\simeq \Hom_K(k,k)$. This can be done by several arguments and I will present a different one than in the lecture. The loop space is usually defined by the left of the following pullback diagrams in $\An$:
+\begin{equation*}
+	\begin{tikzcd}
+		\Omega_kK\vphantom{\Hom_K^L}\dar\rar\drar[pullback]& *\vphantom{K_{k/}}\dar["k"]\\
+		*\rar["k"] & K
+	\end{tikzcd}\quad\isomorphism\quad
+	\begin{tikzcd}
+		\Hom_K^L(k,k)\dar\rar\drar[pullback]& K_{k/}\dar\\
+		*\rar["k"]& K
+	\end{tikzcd}
+\end{equation*}
+The map $*\morphism K$ can be factored into the left anodyne map $*\monomorphism K_{k/}$ followed by the left fibration $K_{k/}\morphism K$, which is even a Kan fibration since $K$ is an anima. Replacing one of the $*\morphism K$ accordingly, we obtain the pullback diagram on the right, which is already a pullback in $\sSet$ as one leg is a Kan fibration (see \cref{thm:HomotopyLimits}). Its pullback is thus $\Hom_K^L(k,k)\simeq \Hom_K(k,k)$ as left-$\Hom$ anima coincide with the regular $\Hom$ anima by \cite[Digression~I Corollary~D.2]{HigherCatsII}.
 
+In particular, we have proved another result from algebraic topology (or rather deduced it from the much more general statement of \cref{thmdef:RezkNerve}, which we didn't prove, but never mind that).
+\begin{cor}[Recognition Principle for Loop Spaces, Boardman--Vogt, May]
+	The loop functor $\Omega\colon */\An\morphism \An$ lifts to an equivalence
+	\begin{equation*}
+		\Omega\colon (*/\An)_{\geq 1}\isomorphism \Grp(\An)\,.
+	\end{equation*}
+\end{cor}
+Note that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ preserves limits since $\cat{Mon}(\An)$ is closed under limits in $\cat{sAn}$ (the Segal condition is given by a limit and limits commute by the dual of \cref{prop:ColimitsCommute}). Colimits however are bloody complicated, and even though one can show that $\cat{Mon}(\An)$ is cocomplete, colimits in it are \emph{by far not} just colimits of underlying simplicial anima, same as colimits of ordinary monoids are much more complicated than colimits in sets.
+\begin{prop}\label{prop:InftyGrp}
+	The inclusion $\Grp(\An)\subseteq\cat{Mon}(\An)$ has a left adjoint called \emph{group completion} and denoted
+	\begin{equation*}
+		(-)^\inftygrp\colon \cat{Mon}(\An)\morphism \Grp(\An)\,.
+	\end{equation*}
+	It is given by $X^\inftygrp\simeq \Omega_e|X|$ \embrace{often also denoted $\Omega BX$}.
+\end{prop}
+\begin{proof}
+	We know that $\An\subseteq \Cat_\infty$ has a left-adjoint $|\blank|\colon \Cat_\infty\morphism \An$. By the usual abstract adjunction nonsense, this extends to a left adjoint
+	\begin{equation*}
+		|\blank|\colon (*/\Cat_\infty)_{\geq 1}\morphism (*/\An)_{\geq 1}\,.
+	\end{equation*}
+	Now use \cref{prop:Grp(An)=(*/An)Connected} to get the desired left-adjoint $(-)^\inftygrp\colon \cat{Mon}(\An)\morphism\Grp(\An)$. The explicit description follows from our calculations in \cref{par:Grp(An)=(*/An)Connected}
+\end{proof}
+Next we will discuss some examples. We begin with free monoids and groups.
+\begin{prop}\label{prop:FreeMonoids}
+	The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ has a left adjoint $\operatorname{Free}^{\IE_1}\colon \An\morphism \cat{Mon}(\An)$. It is given explicitly by
+	\begin{equation*}
+		\operatorname{Free}^{\IE_1}(K)_1\simeq \coprod_{n\geq 0}K^n\,.
+	\end{equation*}
+\end{prop}
+We postpone the proof of \cref{prop:FreeMonoids}. By the explicit construction given there, the diagram
+\begin{equation*}
+	\begin{tikzcd}
+		\Set\dar\rar["\operatorname{Free}"]& \cat{Mon}(\Set)\dar\\
+		\An\rar["\operatorname{Free}^{\IE_1}"] & \cat{Mon}(\An)
+	\end{tikzcd}
+\end{equation*}
+commutes. But be aware that this is not automatic, and in fact we'll see it very much breaks once we impose commutativity. As some first examples, one has $\operatorname{Free}^{\IE_1}(*)\simeq\IN$ and $\operatorname{Free}^{\IE_1}(\emptyset)\simeq *$, which is initial in $\cat{Mon}(\An)$.
+\begin{prop}\label{prop:FreeGroups}
+	The evaluation functor $\ev_1\colon \Grp(\An)\morphism \An$ has a left-adjoint too. Explicitly, it is given by the composite
+	\begin{align*}
+		\An&\morphism */\An\morphism[\Sigma]*/\An\morphism[\Omega]\Grp(\An)\\
+		X&\longmapsto X\sqcup *\,.
+	\end{align*}
+	In other words, the free $\IE_1$-group on $X$ is $\Omega\Sigma X_+$, where $X_+=X\sqcup *$. As usual, the suspension functor $\Sigma\colon \An\morphism \An$ is given by the pushout diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			X\dar\rar\drar[pushout] & *\dar\\
+			* \rar& \Sigma X
+		\end{tikzcd}
+	\end{equation*}
+\end{prop}
+\begin{rem*}\label{rem*:CoLimitsIn(*/An)OrAn}
+	For the proof, we'll need a functor $\Sigma\colon */\An\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, I believe it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with arbitrary colimits. Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq \const */\Fun(\Ii,\An)$, so since adjunctions extend to slice categories we see that $\colimit_\Ii\colon \Fun(\Ii,\An)\shortdoublelrmorphism \An\noloc \const$ extends to an adjunction $\colimit_\Ii\colon \Fun(\Ii,*/\An)\shortdoublelrmorphism */\An\noloc \const$, and this proves what we want.
+	
+	Similarly, it doesn't matter whether we take the defining pullback of $\Omega$ in $\An$ or in $*/\An$. This can be seen as above, or simply by the fact that $*/\An\morphism \An$ has a left adjoint, so we can apply \cref{obs:AdjointsPreserveLimits}. Note however that $*/\An\morphism \An$ doesn't have a right-adjoint (it doesn't preserve the initial object).
+\end{rem*}
+\begin{proof}[Proof sketch of \cref{prop:FreeGroups}]
+	The existence of a left adjoint would be immediate from Propositions~\labelcref{prop:InftyGrp,prop:FreeMonoids}, but we can give a direct argument that also yields the explicit description. We have seen in \cref{par:Grp(An)=(*/An)Connected} that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Grp(\An)\dar["|\blank|"']\rar["\ev_1"]& \An\\
+			(*/\An)_{\geq 1}\urar["\Omega"',""{name=A,sloped}] & \arrow[from=1-1,to=A,phantom,"\scriptscriptstyle/\!/\!/"]
+		\end{tikzcd}
+	\end{equation*}
+	commutes. Observe that $(-)_+=-\sqcup*\colon \An\morphism */\An$ is a left adjoint of the forgetful functor $*/\An\morphism \An$ (this is basically trivial) and that $\Sigma\colon */\An\shortdoublelrmorphism */\An\noloc \Omega$ are adjoints (this we leave as an exercise---just play around with the defining pushouts/pullbacks, which can be taken in $*/\An$ by \cref{rem*:CoLimitsIn(*/An)OrAn}). Finally, $\Omega\colon (*/\An)_{\geq 1}\shortdoublelrmorphism \Grp(\An)\noloc |\blank|$ is an adjunction (even an equivalence) by \cref{par:Grp(An)=(*/An)Connected}. The assertion now follows from the fact that left adjoints compose.
+\end{proof}
+\begin{exm}
+	By \cref{prop:FreeMonoids}, $\operatorname{Free}^{\IE_1}(\IS^1)\simeq \coprod_{n\geq 0}\IT^n$ is an infinite union of tori $\IT^n=\prod_{i=1}^n\IS^1$ and thus a reasonable geometric object. However, \cref{prop:FreeGroups} implies
+	\begin{equation*}
+		\operatorname{Free}^{\IE_1}(\IS^1)^\inftygrp\simeq \Omega\Sigma(\IS^1_+)\simeq \Omega(\IS^2\vee\IS^1)\,,
+	\end{equation*}
+	and the homotopy groups of the right-hand side are not fully known to this day. Similar for
+	\begin{equation*}
+		\operatorname{Free}^{\IE_1}(\IS^1,*)^\inftygrp\simeq \Omega\Sigma(\IS^1,*)\simeq\Omega\IS^2
+	\end{equation*}
+\end{exm}
+We're now very close to defining $K$-theory as $K_i(R)\coloneqq \pi_i\Omega (\Proj^\fg(R))^\inftygrp$ (or, if you prefer the Bar notation that Fabian hates, $\pi_i\Omega B(\Proj^\fg(R))$). What's left to do is to investigate $\Proj^\fg(R)$ and to turn it into an $\IE_1$-monoid.
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography
