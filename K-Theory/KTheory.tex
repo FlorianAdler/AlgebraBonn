@@ -288,9 +288,17 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{equation*}
 \end{prop}
 \begin{rem*}\label{rem*:CoLimitsIn(*/An)OrAn}
-	For the proof, we'll need a functor $\Sigma\colon */\An\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, I believe it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with arbitrary colimits. Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq \const */\Fun(\Ii,\An)$, so since adjunctions extend to slice categories we see that $\colimit_\Ii\colon \Fun(\Ii,\An)\shortdoublelrmorphism \An\noloc \const$ extends to an adjunction $\colimit_\Ii\colon \Fun(\Ii,*/\An)\shortdoublelrmorphism */\An\noloc \const$, and this proves what we want.
+	For the proof, we'll need a functor $\Sigma\colon */\An\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with weakly contractible colimits (but not with arbitrary ones, as I claimed before; for example, it doesn't preserve the initial object). Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)$. For the adjunction 
+	\begin{equation*}
+		\colimit_\Ii\colon \Fun(\Ii,\An)\doublelrmorphism\An\noloc \const
+	\end{equation*}
+	to descend to slice categories below $\const*$ and $*$, we need that these objects are mapped to each other and that unit/counit are equivalences on them. If $\Ii$ is weakly contractible, then $\colimit_\Ii (\const *)\simeq |\Ii|\simeq *$ by \cref{prop:CoLimitsInCat} and the required conditions are easily checked. Therefore, the adjunction above descends to an adjunction 
+	\begin{equation*}
+		\colimit_\Ii\colon \Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)\doublelrmorphism */\An\noloc \const
+	\end{equation*}
+	in this case. If you think about this for a moment, this is exactly what we need to show that $*/\An\morphism \An$ commutes with colimits over $\Ii$.
 	
-	Similarly, it doesn't matter whether we take the defining pullback of $\Omega$ in $\An$ or in $*/\An$. This can be seen as above, or simply by the fact that $*/\An\morphism \An$ has a left adjoint, so we can apply \cref{obs:AdjointsPreserveLimits}. Note however that $*/\An\morphism \An$ doesn't have a right-adjoint (it doesn't preserve the initial object).
+	Similarly, it doesn't matter whether we take the defining pullback of $\Omega$ in $\An$ or in $*/\An$. This can be seen as above, or simply by the fact that $*/\An\morphism \An$ has a left adjoint, so we can apply \cref{obs:AdjointsPreserveLimits}.
 \end{rem*}
 \begin{proof}[Proof sketch of \cref{prop:FreeGroups}]
 	The existence of a left adjoint would be immediate from Propositions~\labelcref{prop:InftyGrp,prop:FreeMonoids}, but we can give a direct argument that also yields the explicit description. We have seen in \cref{par:Grp(An)=(*/An)Connected} that the diagram

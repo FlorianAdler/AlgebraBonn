@@ -1517,7 +1517,7 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 			Y^\Cc\!/E\rar["s"] & \Cc
 		\end{tikzcd}
 	\end{equation*}
-	Since $\id_x\in x/\Cc$ is initial, we get an adjunction $\{\id_x\}\shortdoublelrmorphism x/\Cc$. Pulling back along $U\morphism x/\Cc$ provides an adjunction $U\times_{x/C}\{\id_x\}\shortdoublelrmorphism U$. In particular, we get a homotopy equivalence $|U\times_{x/\Cc}\{\id_x\}|\simeq |U|$ (see \cite[Corollary~XI.17]{HigherCatsII}). Now \cref{prop:CoLimitsInCat} shows that $|U|$ is precisely the colimit we're interested in, and
+	We'll see in the proof of \cref{lem*:LanY^CCommutesWithColimits} that $Y^\Cc\!/E\morphism \Cc$ is cartesian (even a right fibration), hence the dual of \cref{exc:cocartesianFibrationLeftAdjoint} provides an adjunction $U\times_{x/C}\{\id_x\}\shortdoublelrmorphism U$. In particular, we get a homotopy equivalence $|U\times_{x/\Cc}\{\id_x\}|\simeq |U|$ (see \cite[Corollary~XI.17]{HigherCatsII}). Now \cref{prop:CoLimitsInCat} shows that $|U|$ is precisely the colimit we're interested in, and
 	\begin{equation*}
 		U\times_{x/\Cc}\{\id_x\}\simeq Y^\Cc\!/E\times_\Cc\{x\}\simeq \Hom_{\Pp(\Cc)}\big(Y^\Cc(x),E\big)\simeq E(x)
 	\end{equation*}
@@ -1700,7 +1700,7 @@ are called \emph{gems} (a pun on \enquote{generalized Eilenberg--MacLane spaces}
 \end{equation*}
 Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(C)$ (indeed if you take the same pullback in $\An$, it will give you the loop space). In particular, $K(A,n-1)\simeq \Omega K(A,n)$ for all $n\geq 1$. And that's our first spectrum!
 \begin{rem*}\label{rem*:UpgradeToPointed}
-	In the lecture we claimed that since $0\in \Dd_{\geq 0}(\IZ)$ is an initial object, $K$ lifts to a functor $K\colon \Dd_{\geq 0}(\IZ)\simeq 0/\Dd_{\geq 0}(\IZ)\morphism */\An$, but that doesn't quite work, because $K(0)$ is not $*$, but the initial object $\emptyset\in \An$. Instead, we have to do the following: By \cref{obs:AdjunctionOfFunctorCats}, the adjunction $(C_\bullet,K)$ passes to arrow categories and hence to an adjunction $*/\An\shortdoublelrmorphism \IZ[0]/\Dd_{\geq 0}(\IZ)$.
+	In the lecture we claimed that since $0\in \Dd_{\geq 0}(\IZ)$ is an initial object, $K$ lifts to a functor $K\colon \Dd_{\geq 0}(\IZ)\simeq 0/\Dd_{\geq 0}(\IZ)\morphism */\An$, but that doesn't quite work, because $K(0)$ is not $*$, but the initial object $\emptyset\in \An$. Instead, we have to do the following: By \cref{obs:AdjunctionOfFunctorCats}, the adjunction $(C_\bullet,K)$ passes to arrow categories. Moreover, $*$ and $\IZ[0]$ are mapped to each other and the unit/counit are equivalences on them, hence one can check that the adjunction on arrow categories induces an adjunction $*/\An\shortdoublelrmorphism \IZ[0]/\Dd_{\geq 0}(\IZ)$.
 	
 	But of course we want to get rid of $\IZ[0]/\Dd_{\geq 0}(\IZ)$! To do this, note that there is a functor $\Dd_{\geq 0}(\IZ)\morphism \IZ[0]/\Dd_{\geq 0}(\IZ)$ sending $D$ to the zero map $0\colon \IZ[0]\morphism D$. This has a left adjoint, sending $\phi\colon \IZ[0]\morphism C$ to $\cofib(\phi)\coloneqq \colimit(0\lmorphism \IZ[0]\morphism[\phi]C)$. To see that this is indeed a left adjoint, use \cref{cor:HomPreservesColimits} and the computation of $\Hom$ anima in slice categories (\cite[Proposition~VIII.6]{HigherCatsII}). Since adjoints compose, we thus end up with an adjunction
 	\begin{equation*}
