@@ -51,7 +51,7 @@
 	\include{./Chapters/KTheory1}
 	\renewcommand{\thechapter}{\Roman{chapter}}
 
-\chapter{Symmetric Monoidal \texorpdfstring{$\infty$}{infty}-Categories and \texorpdfstring{$\IE_\infty$}{Einfty}-Spaces}
+\chapter{Symmetric Monoidal \texorpdfstring{$\infty$}{infty}-Categories and \texorpdfstring{$\IE_\infty$}{Einfty}-Spaces}\setcounter{dummy}{-1}
 We start things off slowly by only considering (not necessarily symmetric) monoidal $\infty$-categories and $\IE_1$-spaces.
 \numpar{Stasheff's Definition of Coherently Associative Monoids}
 The naive way to define a monoid in $\An$ would be to have an object $M\in \An$ together with a multiplication map
@@ -237,7 +237,7 @@ sends a pointed connected anima $(K,k)$ to $\Hom_K(k,k)$, as argued previously. 
 The map $*\morphism K$ can be factored into the left anodyne map $*\monomorphism K_{k/}$ followed by the left fibration $K_{k/}\morphism K$, which is even a Kan fibration since $K$ is an anima. Replacing one of the $*\morphism K$ accordingly, we obtain the pullback diagram on the right, which is already a pullback in $\sSet$ as one leg is a Kan fibration (see \cref{thm:HomotopyLimits}). Its pullback is thus $\Hom_K^L(k,k)\simeq \Hom_K(k,k)$ as left-$\Hom$ anima coincide with the regular $\Hom$ anima by \cite[Digression~I Corollary~D.2]{HigherCatsII}.
 
 In particular, we have proved another result from algebraic topology (or rather deduced it from the much more general statement of \cref{thmdef:RezkNerve}, which we didn't prove, but never mind that).
-\begin{cor}[Recognition Principle for Loop Spaces, Boardman--Vogt, May]
+\begin{cor}[Recognition Principle for Loop Spaces, Stasheff]
 	The loop functor $\Omega\colon */\An\morphism \An$ lifts to an equivalence
 	\begin{equation*}
 		\Omega\colon (*/\An)_{\geq 1}\isomorphism \Grp(\An)\,.
@@ -260,7 +260,7 @@ Note that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ preserves limits since $\cat
 \end{proof}
 Next we will discuss some examples. We begin with free monoids and groups.
 \begin{prop}\label{prop:FreeMonoids}
-	The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ has a left adjoint $\operatorname{Free}^{\IE_1}\colon \An\morphism \cat{Mon}(\An)$. It is given explicitly by
+	The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ has a left adjoint $\operatorname{Free}^{\IE_1}\colon \An\morphism \cat{Mon}(\An)$. It is given explicitly by the \enquote{anima of words of arbitrary length}
 	\begin{equation*}
 		\operatorname{Free}^{\IE_1}(K)_1\simeq \coprod_{n\geq 0}K^n\,.
 	\end{equation*}
@@ -298,7 +298,7 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{equation*}
 	in this case. If you think about this for a moment, this is exactly what we need to show that $*/\An\morphism \An$ commutes with colimits over $\Ii$.
 	
-	Similarly, it doesn't matter whether we take the defining pullback of $\Omega$ in $\An$ or in $*/\An$. This can be seen as above, or simply by the fact that $*/\An\morphism \An$ has a left adjoint, so we can apply \cref{obs:AdjointsPreserveLimits}.
+	Similarly, once we have chosen a basepoint $x\in X$, it doesn't matter whether we take the defining pullback of $\Omega_xX$ in $*/\An$ or in $\An$ (and then equip it with its natural basepoint). This can be seen as above, or simply by the fact that $*/\An\morphism \An$ has a left adjoint, so we can apply \cref{obs:AdjointsPreserveLimits}. However, in contrast to $\Sigma$, we can't define $\Omega$ as a functor on $\An$, since there is no canonical choice of basepoint.
 \end{rem*}
 \begin{proof}[Proof sketch of \cref{prop:FreeGroups}]
 	The existence of a left adjoint would be immediate from Propositions~\labelcref{prop:InftyGrp,prop:FreeMonoids}, but we can give a direct argument that also yields the explicit description. We have seen in \cref{par:Grp(An)=(*/An)Connected} that the diagram
@@ -310,17 +310,152 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{equation*}
 	commutes. Observe that $(-)_+=-\sqcup*\colon \An\morphism */\An$ is a left adjoint of the forgetful functor $*/\An\morphism \An$ (this is basically trivial) and that $\Sigma\colon */\An\shortdoublelrmorphism */\An\noloc \Omega$ are adjoints (this we leave as an exercise---just play around with the defining pushouts/pullbacks, which can be taken in $*/\An$ by \cref{rem*:CoLimitsIn(*/An)OrAn}). Finally, $\Omega\colon (*/\An)_{\geq 1}\shortdoublelrmorphism \Grp(\An)\noloc |\blank|$ is an adjunction (even an equivalence) by \cref{par:Grp(An)=(*/An)Connected}. The assertion now follows from the fact that left adjoints compose.
 \end{proof}
-\begin{exm}
-	By \cref{prop:FreeMonoids}, $\operatorname{Free}^{\IE_1}(\IS^1)\simeq \coprod_{n\geq 0}\IT^n$ is an infinite union of tori $\IT^n=\prod_{i=1}^n\IS^1$ and thus a reasonable geometric object. However, \cref{prop:FreeGroups} implies
-	\begin{equation*}
-		\operatorname{Free}^{\IE_1}(\IS^1)^\inftygrp\simeq \Omega\Sigma(\IS^1_+)\simeq \Omega(\IS^2\vee\IS^1)\,,
-	\end{equation*}
-	and the homotopy groups of the right-hand side are not fully known to this day. Similar for
-	\begin{equation*}
-		\operatorname{Free}^{\IE_1}(\IS^1,*)^\inftygrp\simeq \Omega\Sigma(\IS^1,*)\simeq\Omega\IS^2
-	\end{equation*}
+\begin{exm}\label{exm:MyFirstMonoidals}
+	\begin{alphanumerate}
+		\item The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ factors canonically over $*/\An\morphism \An$, and the resulting functor $\ev_1\colon \cat{Mon}(\An)\morphism */\An$ has a left adjoint too. For a pointed anima $(X,x)$, we denote the corresponding left adjoint object (\enquote{free $\IE_1$-monoid with unit $x$}) by $\operatorname{Free}^{\IE_1}(X,x)$. Similarly, $\ev_1\colon \Grp(\An)\morphism */\An$ has a left adjoint given on objects by $\operatorname{Free}^{\IE_1}(X,x)^\inftygrp\simeq \Omega\Sigma X$ (this equality can be seen along the lines of the proof of \cref{prop:FreeGroups}).
+		
+		If $(X,x)$ is connected, one actually has $\operatorname{Free}^{\IE_1}(X,x)\simeq \operatorname{Free}^{\IE_1}(X,x)^\inftygrp$. Indeed, as we've seen in the proof of \cref{prop:Grp(An)=(*/An)Connected}, we only need to check that the ordinary monoid $\pi_0\operatorname{Free}^{\IE_1}(X,x)_1$ is already an ordinary group. Playing around with universal properties, we see that $\pi_0\operatorname{Free}^{\IE_1}(X,x)_1$ is the free ordinary monoid on the set $\pi_0 X$ with unit $[x]$, hence just $\{[x]\}$ itself since $X$ is connected, hence it already is a group.
+		\item By \cref{prop:FreeMonoids}, $\operatorname{Free}^{\IE_1}(\IS^1)\simeq \coprod_{n\geq 0}\IT^n$ is an infinite union of tori $\IT^n=\prod_{i=1}^n\IS^1$ and thus a reasonable geometric object. However, \cref{prop:FreeGroups} implies
+		\begin{equation*}
+			\operatorname{Free}^{\IE_1}(\IS^1)^\inftygrp\simeq \Omega\Sigma(\IS^1_+)\simeq \Omega(\IS^2\vee\IS^1)\,,
+		\end{equation*}
+		and the homotopy groups of the right-hand side are not fully known to this day. Similarly, using the pointed variant from \itememph{a} above, we get
+		\begin{equation*}
+			\operatorname{Free}^{\IE_1}(\IS^1,*)\simeq\operatorname{Free}^{\IE_1}(\IS^1,*)^\inftygrp\simeq \Omega\Sigma(\IS^1,*)\simeq\Omega\IS^2
+		\end{equation*}
+		\item \lecture[A pushout computation. Monoidal $1$-categories give monoidal $\infty$-categories. Definition of algebraic and hermitian $K$-theory.]{2020-12-01}\hspace{-1ex}It is completely formal to see that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ and $\ev_1\colon \Grp(\An)\morphism \An$ are represented by $\operatorname{Free}^{\IE_1}(*)$ and $\operatorname{Free}^{\IE_1}(*)^\inftygrp$ respectively. What's not formal, however, is that $\operatorname{Free}^{\IE_1}(*)\simeq \IN$ and $\operatorname{Free}^{\IE_1}(*)^\inftygrp\simeq \Omega \IS^1\simeq\IZ$, regarded as discrete simplicial anima. This really needs Propositions~\labelcref{prop:FreeMonoids,prop:FreeGroups}.
+		
+		Moreover, we'll see that the analogous functors are no longer represented by $\IN$ and $\IZ$ once we impose commutativity, even though they are the free $\IE_1$-monoid/group on a point and happen to be commutative. In fact they are \enquote{too commutative} (*\emph{sphere spectrum intensifie}s*).
+		\item Let's for some reason compute the pushout
+		\begin{equation*}
+			\begin{tikzcd}
+				\IN \rar["\cdot2"]\dar\drar[pushout] & \IN\dar\\
+				* \rar & \IN /\!\!/ 2
+			\end{tikzcd}
+		\end{equation*}
+		in $\cat{Mon}(\An)$. The answer is $\IN/\!\!/ 2\simeq \Omega \IR\IP^2$. To see this, first observe that the functor $\pi_0\colon \cat{Mon}(\An)
+		\morphism\cat{Mon}(\Set)$ commutes with colimits, so $\pi_0(\IN/\!\!/2)=\IZ/2$ since we know how to compute pushouts in $\cat{Mon}(\Set)$. But $\IZ/2$ is a group, so $\IN/\!\!/2\in \Grp(\An)$ by \cref{prop:Grp(An)=(*/An)Connected}. In particular, since the group completion functor $(-)^\inftygrp$ commutes with colimits, we get $\IN/\!\!/2\simeq \IZ/\!\!/2$, i.e., the diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				\IZ \rar["\cdot2"]\dar\drar[pushout] & \IZ\dar\\
+				* \rar & \IN /\!\!/ 2
+			\end{tikzcd}
+		\end{equation*}
+		is a pushout in $\Grp(\An)$. Translating to $*/\An$ via \cref{prop:Grp(An)=(*/An)Connected} gives a diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				\IS^1\rar["\cdot 2"]\dar\drar[pushout] & \IS^1\dar\\
+				\ID^2\rar & \IR\IP^2
+			\end{tikzcd}
+		\end{equation*}
+		(we have replaced $*$ by the disk $\ID^2$ to make one leg of the pushout into a cofibration so that it can be computed by an ordinary pushout of CW complexes by \cref{thm:HomotopyLimits}) and translating back using \cref{par:Grp(An)=(*/An)Connected} shows $\IN/\!\!/2\simeq \Omega\IR\IP^2$, as claimed.
+		\item Every monoidal $1$-category $(\Cc,\otimes)$ gives rise to a monoidal $\infty$-category, i.e.\ an object in $\cat{Mon}(\Cat_1^{(2)})\subseteq \cat{Mon}(\Cat_\infty)$. We will produce this by straightening a suitable cocartesian fibration $p^{\otimes}\colon \Cc^\otimes\morphism \IDelta^\op$ of $1$-categories. Define $\Cc^\otimes\in \Cat_1^{(2)}$ as follows: Its objects are
+		\begin{equation*}
+			\operatorname{obj}(\Cc^\otimes)=\coprod_{n\geq 0}\operatorname{obj}(\Cc)^n\,,
+		\end{equation*}
+		i.e.\ given by tuples $(n, x_1,\dotsc,x_n)$ with $[n]\in \IDelta$ and $x_i\in \Cc$. We'll usually abbreviate $x=(x_1,\dotsc,x_n)$ and simply write $(n,x)$. Morphisms are defined as
+		\begin{equation*}
+			\Hom_{\Cc^\otimes}\big((n,x),(m,y)\big)=\left\{(\alpha,f)\st \begin{tabular}{c}
+				$\alpha\colon [m]\rightarrow [n]$ in $\IDelta$ and $f=(f_1,\dotsc,f_m)$\\
+				where $f_j\colon x_{\alpha(j-1)+1}\otimes\dotsb\otimes x_{\alpha(j)}\rightarrow y_j$\\
+				are morphisms in $\Cc$ for all $j=1\dotsc,m$
+			\end{tabular}\right\}\,.
+		\end{equation*}
+		If $\alpha(j-1)+1>\alpha(j)$ for some $j$, then $x_{\alpha(j-1)+1}\otimes\dotsb\otimes x_{\alpha(j)}$ is the empty tensor product, which is the tensor unit $1_\Cc\in\Cc$ by definition.
+		
+		The composition of $(\alpha,f)\colon(n,x)\morphism (m,y)$ and $(\beta,g)\colon (m,y)\morphism (k,z)$ is given as follows: Its first component is $\alpha\circ\beta\colon [k]\morphism{[n]}$. For the second component, observe that we can write
+		\begin{equation*}
+			x_{\alpha\beta(j-1)+1}\otimes \dotsb \otimes x_{\alpha\beta(j)}=\bigotimes_{i=1}^{\beta(j)-\beta(j-1)}\left(x_{\alpha(\beta(j-1)+i-1)+1}\otimes\dotsb\otimes x_{\alpha(\beta(j-1)+i)}\right)\,.
+		\end{equation*}
+		The $i\ordinalth$ tensor factor on the right maps to $y_{\beta(j-1)+i}$ via $f_{\beta(j-1)+i}$. Tensoring them together and postcomposing with $g_j\colon y_{\beta(j-1)+1}\otimes\dotsb\otimes z_j$ provides the desired composition of $f$ and $g$. This finishes the construction of $\Cc^\otimes$.
+		
+		The functor $p^\otimes\colon \Cc^\otimes\morphism\IDelta^\op$ just extracts $[n]$ from $(n,x)$ and $\alpha$ from $(\alpha,f)$. The fibres $\Cc_n^\otimes$ of $p^\otimes$ are then obviously given by $\Cc^n$. To show that $p$ is a cocartesian fibration of $1$-categories, we must provide cocartesian lifts of morphisms in $\IDelta^\op$. Given $\alpha\colon [m]\morphism {}[n]$ in $\IDelta$ and $(n,x)\in \Cc^\otimes$, we claim that the identities can be regarded as a morphism
+		\begin{equation*}
+			\alpha_*\colon (n,x)\morphism \left(m,x_{\alpha(0)+1}\otimes\dotsb\otimes x_{\alpha(1)},\dotsc,x_{\alpha(m-1)+1}\otimes\dotsb\otimes x_{\alpha(m)}\right)\,.
+		\end{equation*}
+		It's straightforward to check that $\alpha_*$ is a cocartesian lift of $\alpha$ (note that the daunting homotopy pullbacks in \cref{def:WeirdCocartesianDefinition} become just good old pullbacks of sets/discrete anima, since we are dealing with $1$-categories).
+		
+		It remains to check that $\St (p^\otimes)$ satisfies the conditions from \cref{def:CartesianMonoids}. As seen above, $\St (p^\otimes)_0\simeq \Cc_0^\otimes \simeq \Cc^0\simeq *$ is a point, as desired. To verify the Segal condition, let's organize the world a little bit. Call a map in $\IDelta$ \emph{inert} if it is the inclusion of an interval and \emph{active} if it preserves the largest and the smallest element. The Segal maps $e_i\colon [1]\morphism {}[n]$ are precisely the inert maps with source $[1]$. We claim that for a general inert map $\alpha\colon [m]\morphism{[n]}$, the induced functor (given by taking cocartesian lifts) 
+		\begin{equation*}
+			\alpha_*\colon \Cc^m\simeq \Cc_m^\otimes \morphism \Cc_n^\otimes \simeq \Cc^n
+		\end{equation*}
+		simply sends $(x_1,\dotsc,x_m)\in \Cc^m$ to $(x_{\alpha(1)},\dotsc,x_{\alpha(m)})\in \Cc^n$ with no tensor products occuring. Thus the Segal condition follows immediately.
+		
+		As a slogan, \enquote{inerts induce forgetful functors on fibres}, whereas \enquote{actives don't forget, they just tensor}. Generally, any map in $\IDelta$ can be uniquely factored into an inert followed by an active.
+		\item The construction from \itememph{e} also works if $\Cc$ is Kan enriched. In this case one can again constructed a cocartesian fibration $p^\otimes\colon \Cc^\otimes \morphism \IDelta^\op$, but of Kan-enriched categories this time (where $\IDelta^\op$ receives its discrete enrichment). Then $\N^c(\Cc^\otimes)\morphism \N^c(\IDelta^\op)\simeq \IDelta^\op$ straightens to a monoidal $\infty$-category as well. Fabian wouldn't tell us what a cocartesian fibration of Kan-enriched categories is though, since this would take---not a lot, but too much---time.
+	\end{alphanumerate}
 \end{exm}
-We're now very close to defining $K$-theory as $K_i(R)\coloneqq \pi_i\Omega (\Proj^\fg(R))^\inftygrp$ (or, if you prefer the Bar notation that Fabian hates, $\pi_i\Omega B(\Proj^\fg(R))$). What's left to do is to investigate $\Proj^\fg(R)$ and to turn it into an $\IE_1$-monoid.
+%We're now very close to defining $K$-theory as $K_i(R)\coloneqq \pi_i\Omega (\Proj^\fg(R))^\inftygrp$ (or, if you prefer the Bar notation that Fabian hates, $\pi_i\Omega B(\Proj^\fg(R))$). What's left to do is to investigate $\Proj^\fg(R)$ and to turn it into an $\IE_1$-monoid.
+\cref{exm:MyFirstMonoidals}\itememph{e} allows us to construct many interesting examples. All examples will turn out to be commutative, but that doesn't matter for now.
+
+\numpar*{Algebraic $K$-Theory}
+Let $R$ be a ring and consider $\cat{Mod}(R)$ as a monoidal category under $\oplus$. Moreover, let $\Proj(R)$ denote the sub-groupoid of spanned by finite projective $R$-modules (\enquote{vector bundles on $\Spec R$}) and their isomorphisms. This inherits a (symmetric) monoidal structure by \cref{exm:MyFirstMonoidals}\itememph{e}, so we obtain
+	\begin{equation*}
+		\Proj(R)\in \cat{Mon}\big(\Grpd_1^{(2)}\big)\subseteq \cat{Mon}(\An)\,.
+	\end{equation*}
+\begin{defi}[Quillen]
+	The \emph{projective class anima} (or \emph{algebraic $K$-theory space}) of $R$ is defined as 
+	\begin{equation*}
+		k(R)\coloneqq \Proj(R)^\inftygrp\in \Grp(\An)\,,
+	\end{equation*}
+	and the \emph{higher projective class groups} (or \emph{higher $K$-groups}) of $R$ are given by
+	\begin{equation*}
+		K_i(R)=\pi_i\big(k(R)_1,*\big)\,.
+	\end{equation*}
+\end{defi}
+The reason we write $k(R)$ is that the notation $K(R)$ is reserved for the $K$-theory \emph{spectrum} which we will eventually define. Note immediately that
+\begin{equation*}
+	K_0(R)=\pi_0\big(\Proj(R)^\inftygrp\big)=\big(\pi_0\Proj(R)\big)^\grp=\left\{\begin{tabular}{c}
+		iso.\ classes of finite\\
+		projective $R$-modules
+	\end{tabular}\right\}^\grp\,,
+\end{equation*}
+where $(-)^\grp\colon \cat{Mon}(\Set)\morphism \Grp(\Set)$ denotes the ordinary group completion. This shows that $K_0(R)$ is precisely what we wanted it to be way back in the introduction, \cref{def:K0R}. We will soon see that also $K_1(R)$ can be described as in \cref{def:K1R}.
+
+
+\numpar*{Hermitian $K$-Theory} Let $R$ be a ring, $M$ an $R\otimes R$-module and $\sigma\colon M\morphism M$ an involution that is flip-linear, i.e.\ $\sigma((a\otimes b)m)=(b\otimes a)\sigma(m)$. Moreover, assume that $M$ is finite projective when considered as an $R$-module via the map $R\simeq \IZ\otimes R\morphism R\otimes R$ (it doesn't matter if we choose this map or $R\simeq R\otimes \IZ\morphism R\otimes R$) and that the map
+\begin{align*}
+	R&\isomorphism \Hom_R(M,M)\\
+	r&\longmapsto \big(m \mapsto (r\otimes 1)m\big)
+\end{align*}
+is an isomorphism. A pair $(M,\sigma)$ subject to these conditions is called an \emph{invertible module with involution} over $R$ (beware that this is non-standard terminology).
+
+For a finite projective $R$-module $P\in \Proj (R)$ consider the group $\Hom_{R\otimes R}(P\otimes P,M)$ of $M$-valued $R$-bilinear forms on $P$. This is acted upon by $\IZ/2$ via conjugation with the flip of $P\otimes P$ and $\sigma$ on $M$. Define the groups of \emph{symmetric} and \emph{quadratic forms} on $P$ as
+\begin{align*}
+	\Sym_R(P,M)&\coloneqq \Hom_{R\otimes R}(P\otimes P,M)^{\IZ/2}\\
+	\Quad_R(P,M)&\coloneqq \Hom_{R\otimes R}(P\otimes P,M)_{\IZ/2}\,,
+\end{align*}
+where $(-)^{\IZ/2}$ denotes the invariants of the $\IZ/2$-action and $(-)_{\IZ/2}$ denotes the coinvariants (i.e.\ take the coequalizer rather than the equalizer). Finally, let the group of \emph{even forms} on $P$ be
+\begin{equation*}
+	\Even_R(P,M)\coloneqq \im\left(\Nm\colon \Quad_R(P,M)\rightarrow \Sym_R(P,M)\right)\,,
+\end{equation*}
+where $\Nm$ denotes the \emph{norm map} which can be defined on general abelian groups with a $\IZ/2$-action: If $X\in \IZ/2\mhyph\Ab$ is an abelian group with $\IZ/2$ acting via an involution $\tau\colon X\morphism X$,
+\begin{align*}
+	\Nm\colon X_{\IZ/2}&\morphism X^{\IZ/2}\\
+	[x]&\longmapsto x+\tau(x)\,.
+\end{align*}
+A symmetric form $q\in \Sym_R(P,M)$ is called \emph{unimodular} if the induced map
+\begin{equation*}
+	q_*\colon P\isomorphism \Hom_R(P,M)\eqqcolon D_M(P)
+\end{equation*}
+is an isomorphism. The right-hand side should be thought of the \enquote{$M$-valued dual} of $P$. This is reasonable because the assumptions on $M$ are chosen precisely to ensure that $D_M\colon \Proj(R)^\op\isomorphism \Proj(R)$ is an equivalence with inverse $D_M^\op$.
+
+Similarly, an even or quadratic form is called \emph{unimodular} if their image in $\Sym_R(P,M)$ (via the inclusion or via $\Nm$) is unimodular. For $r\in\{\text{sym},\text{quad}, \text{even}\}$ we denote
+\begin{equation*}
+	\Unimod^r(P,M)=\left\{\begin{tabular}{c}
+		groupoid of unimodular $r$-forms, i.e. pairs\\
+		$(P,q)$, where $q$ is a unimodular $r$-form on $P$,\\
+		and isomorphisms between them
+	\end{tabular}\right\}
+\end{equation*}
+This is a symmetric monoidal $1$-groupoid via $\oplus$, hence induces a symmetric monoidal anima by \cref{exm:MyFirstMonoidals}\itememph{e}.
+\begin{defi}[Karoubi]
+	For $r\in\{\text{sym},\text{quad}, \text{even}\}$, the \emph{Grothendieck--Witt anima} of $(R,M)$ is given by
+	\begin{equation*}
+		\gw^r(R,M)\coloneqq \Unimod^r(R,M)^\inftygrp\,.
+	\end{equation*}
+\end{defi}
+
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography

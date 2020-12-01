@@ -345,7 +345,7 @@
 		\end{alphanumerate}
 	\end{exm}
 	We can go one step further and give an ad hoc definition of $K_1(R)$.
-	\begin{defi}
+	\begin{defi}\label{def:K1R}
 		The \emph{$1\ordinalst$ $K$-group} $K_1(R)=\GL_\infty(R)^\ab$ is the abelianization of the infinite general linear group $\GL_\infty(R)=\colimit_{n\geq 0}\GL_n(R)$.
 	\end{defi}
 	Moreover, if $I\subseteq R$ is an ideal and $S\subseteq R$ is a multiplicative subset, then one can define $K$-groups $K_0(I)$ and $K_0(R,S)$ fitting into exact sequences
@@ -353,15 +353,15 @@
 		K_1(R)\morphism K_1(R/I)\morphism[\partial]K_0(I)\morphism K_0(R)\morphism K_0(R/I)\\
 		K_1(R)\morphism K_1\left(R[S^{-1}]\right)\morphism[\partial]K_0(R,S)\morphism K_0(R)\morphism K_0\left(R[S^{-1}]\right)\,,
 	\end{gather*}
-	which look a bit too much like long exact cohomology sequences to be a coincidence. People actually managed to produce an ad hoc definition of $K_2(R)$ fitting into the sequences above, but that was practically the end of the story \dotso 
+	which look a bit too much like long exact cohomology sequences to be a coincidence. People actually managed to produce an ad hoc definition of $K_2(R)$ fitting into the sequences above, but that was where consensus ended: People suggested several non-equivalent definitions of higher $K$-groups and it was not at all clear how to continue \dotso 
 	
-	\dotso until Quillen came! He realized that $K_0(R)$ and $K_1(R)$ could be written as homotopy groups of a certain simplicial group: Let $\Proj^\fg(R)$ denote the symmetric monoidal groupoid of finite projective $R$-modules. Now consider the inclusion
+	\dotso until Quillen came! He realized that $K_0(R)$ and $K_1(R)$ could be written as homotopy groups of a certain simplicial group: Let $\Proj (R)$ denote the symmetric monoidal groupoid of finite projective $R$-modules. Now consider the inclusion
 	\begin{equation*}
 		\left\{\text{Picard groupoids}\right\}\subseteq \left\{\text{symmetric monoidal groupoids}\right\}\,.
 	\end{equation*}
 	Here a symmetric monoidal groupoid $(G,\otimes)$ is a \emph{Picard groupoid} if for all $x\in G$ there exists a $y\in G$ such that $x\otimes y\simeq 1$. The above inclusion has a left adjoint $(-)^\grp$, and using this we can write
 	\begin{equation*}
-		K_i(R)=\pi_i\N\big(\Proj^\fg(R)^\grp\big)\quad\text{for }i=1,2\,.
+		K_i(R)=\pi_i\N\big(\Proj (R)^\grp\big)\quad\text{for }i=1,2\,.
 	\end{equation*}
 	Here $\N$ denotes the nerve construction.
 
@@ -374,7 +374,7 @@
 	\end{equation*}
 	(the objects on the bottom line are also known as \emph{grouplike $\IE_\infty$-spaces} and \emph{$\IE_\infty$-spaces} respectively). In this framework, we can finally define the higher $K$-groups!
 	\begin{defi}
-		The \emph{$i\ordinalth$ $K$-group} of a ring $R$ is defined as $K_i(R)=\pi_i(\Proj^\fg(R)^\inftygrp)$ (these are abelian groups). More importantly, we define $K(R)=\Proj^\fg(R)^\inftygrp$, which is an object of the $\infty$-category of anima.
+		The \emph{$i\ordinalth$ $K$-group} of a ring $R$ is defined as $K_i(R)=\pi_i(\Proj (R)^\inftygrp)$ (these are abelian groups). More importantly, we define $K(R)=\Proj (R)^\inftygrp$, which is an object of the $\infty$-category of anima.
 	\end{defi}
 	\begin{warn}
 		The functor
@@ -390,11 +390,11 @@
 	\numpar*{Part 2}
 	\emph{wherein we finally define $K$-theory.} Apart from that, we will do some basic computations, including Quillens computation of $K_*(\IF_q)$. There might also be some guest lectures to get an overview of the landscape.
 	\numpar*{Part 3}
-	\emph{wherein we do some \enquote{modern} $K$-theory.} In particular, we will discuss $K$-theory as a functor $K\colon \cat{Cat}_\infty^\mathrm{st}\morphism \cat{Sp}$ from the $\infty$-category of stable $\infty$-categories to the $\infty$-category of spectra, and prove the basic results of \enquote{localization, resolution, and dévissage}. For this we will follow \cite{LandTamme} as well as the series of papers \cite{9author1,9author2,9author3} that Fabian co-authored. These papers are actually concerned with \emph{Hermitian} $K$-theory, which arises if we replace $\Proj^\fg(R)$ by 
+	\emph{wherein we do some \enquote{modern} $K$-theory.} In particular, we will discuss $K$-theory as a functor $K\colon \cat{Cat}_\infty^\mathrm{st}\morphism \cat{Sp}$ from the $\infty$-category of stable $\infty$-categories to the $\infty$-category of spectra, and prove the basic results of \enquote{localization, resolution, and dévissage}. For this we will follow \cite{LandTamme} as well as the series of papers \cite{9author1,9author2,9author3} that Fabian co-authored. These papers are actually concerned with \emph{hermitian} $K$-theory, which arises if we replace $\Proj (R)$ by 
 	\begin{equation*}
 		\operatorname{Unimod}(R)=\left\{(P,q)\st \text{$P$ is finite projective, $q$ is a unimodular form on $R$}\right\}\,.
 	\end{equation*}
-	Fabian hopes to develop the Algebraic and the Hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
+	Fabian hopes to develop the algebraic and the hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
 	\renewcommand{\thechapter}{\Roman{chapter}}
 	
 	\chapter{Recollections and Preliminaries}\label{chap:preliminaries}
@@ -594,7 +594,7 @@ By now, we haven't been able to produce any examples of $\infty$-categories yet,
 	
 		We let $\Kk(R)=\N^c(\Ch(R))$ be the $\infty$-category of chain complexes (this \enquote{$\Kk$} has nothing to do with \enquote{$K$-theory}) and let $\Kk_{\geq 0}(R),\Kk_{\leq 0}(R)\subseteq \Kk(R)$ the full sub-$\infty$-categories spanned by chain complexes concentrated in nonnegative/nonpositive degrees. Inside $\Kk_{\geq 0}(R)$, there is the full sub-$\infty$-category $\Dd_{\geq 0}(R)\subseteq \Kk_{\geq 0}(R)$ spanned by the degreewise projective chain complexes in concentrated nonnegative degrees. This is called the \emph{bounded below derived category} of $R$. Similarly, there is the \emph{bounded above derived category} $\Dd_{\leq 0}(R)\subseteq\Kk_{\leq 0}(R)$ spanned by degreewise injective chain complexes concentrated in nonpositive degrees.
 		
-		Finally, there is $\Dd^\perf(R)\subseteq \Kk(R)$ which is the full sub-$\infty$-category spanned by bounded complexes of degreewise finite projective modules. We will see that $K(R)=\Proj^\fg(R)^\inftygrp\simeq K(\Dd^\perf(R))$ eventually.
+		Finally, there is $\Dd^\perf(R)\subseteq \Kk(R)$ which is the full sub-$\infty$-category spanned by bounded complexes of degreewise finite projective modules. We will see that $K(R)=\Proj (R)^\inftygrp\simeq K(\Dd^\perf(R))$ eventually.
 	\end{alphanumerate}
 \end{exm}
 \begin{exc}\label{exc:piFHiInternalHom}
@@ -1477,7 +1477,7 @@ In the official lectures notes (starting from \cite[Observation~I.56]{KTheory}) 
 			\Cc\rar["f"] & \Ee
 		\end{tikzcd}
 	\end{equation*}
-	(this is not equivalent to the thin or fat slice $\Ee_{f/}$ or $\Ee_{f/\!\!/}$). Informally, $f/\Ee$ consists of pairs $(c,f(c)\morphism e)$ where $c\in \Cc$, $e\in \Ee$. It comes with morphisms $s\colon f/\Ee\morphism \Cc$ and $t\colon f/\Ee\morphism \Ee$ sending such a pair to $c$ or $e$ respectively. Then $t$ is a cocartesian fibration by an easy generalization of \cref{exm:MyFirstCocartesian}\itememph{b} and its fibres $t^{-1}\{c\}\simeq f/e$ are the slice categories from the definition of $\Lan_fF(e)$. We may thus apply \cref{prop:ColimitsCommute} to the cocartesian fibration $t$ and the functor $F\circ s\colon f/\Ee\morphism \Dd$ to see that the pointwise formulas indeed assemble into a functor $\Lan_fF$. By construction, $\Lan_fF$ is a right-adjoint object of $F\circ s$ with respect to $t^*\colon \Fun(\Ee,\Dd)\morphism\Fun(f/\Ee,\Dd)$. Thus, we only need to show that there is an equivalence
+	(this is not equivalent to the thin or fat slice $\Ee_{f/}$ or $\Ee_{f/\!\!/}$). Informally, $f/\Ee$ consists of pairs $(c,f(c)\morphism e)$ where $c\in \Cc$, $e\in \Ee$. It comes with morphisms $s\colon f/\Ee\morphism \Cc$ and $t\colon f/\Ee\morphism \Ee$ sending such a pair to $c$ or $e$ respectively. Then $t$ is a cocartesian fibration by an easy generalization of \cref{exm:MyFirstCocartesian}\itememph{b} and its fibres $t^{-1}\{e\}\simeq f/e$ are the slice categories from the definition of $\Lan_fF(e)$. We may thus apply \cref{prop:ColimitsCommute} to the cocartesian fibration $t$ and the functor $F\circ s\colon f/\Ee\morphism \Dd$ to see that the pointwise formulas indeed assemble into a functor $\Lan_fF$. By construction, $\Lan_fF$ is a right-adjoint object of $F\circ s$ with respect to $t^*\colon \Fun(\Ee,\Dd)\morphism\Fun(f/\Ee,\Dd)$. Thus, we only need to show that there is an equivalence
 	\begin{equation*}
 		\Nat(F,-\circ f)\overset{\sim}{\Longrightarrow} \Nat(F\circ s,-\circ t)\,.
 	\end{equation*}
