@@ -27,7 +27,7 @@
 \publishers{Winter Term 2020/21\\
 	University of Bonn}
 
-%\includeonly{nothingtoseehere}
+\includeonly{nothingtoseehere}
 %\includeonly{./Chapters/KTheory1.tex}
 \begin{document}
 	\frontmatter
@@ -52,6 +52,7 @@
 	\renewcommand{\thechapter}{\Roman{chapter}}
 
 \chapter{Symmetric Monoidal \texorpdfstring{$\infty$}{infty}-Categories and \texorpdfstring{$\IE_\infty$}{Einfty}-Spaces}\setcounter{dummy}{-1}
+\section{The Non-Commutative Case: \texorpdfstring{$\IE_1$}{E1}-Monoids/Groups}
 We start things off slowly by only considering (not necessarily symmetric) monoidal $\infty$-categories and $\IE_1$-spaces.
 \numpar{Stasheff's Definition of Coherently Associative Monoids}
 The naive way to define a monoid in $\An$ would be to have an object $M\in \An$ together with a multiplication map
@@ -413,7 +414,7 @@ The reason we write $k(R)$ is that the notation $K(R)$ is reserved for the $K$-t
 where $(-)^\grp\colon \cat{Mon}(\Set)\morphism \Grp(\Set)$ denotes the ordinary group completion. This shows that $K_0(R)$ is precisely what we wanted it to be way back in the introduction, \cref{def:K0R}. We will soon see that also $K_1(R)$ can be described as in \cref{def:K1R}.
 
 
-\numpar*{Hermitian $K$-Theory} Let $R$ be a ring, $M$ an $R\otimes R$-module and $\sigma\colon M\morphism M$ an involution that is flip-linear, i.e.\ $\sigma((a\otimes b)m)=(b\otimes a)\sigma(m)$. Moreover, assume that $M$ is finite projective when considered as an $R$-module via the map $R\simeq \IZ\otimes R\morphism R\otimes R$ (it doesn't matter if we choose this map or $R\simeq R\otimes \IZ\morphism R\otimes R$) and that the map
+\numpar*{Hermitian $K$-Theory/Grothendieck--Witt Theory} Let $R$ be a ring, $M$ an $R\otimes R$-module and $\sigma\colon M\morphism M$ an involution that is flip-linear, i.e.\ $\sigma((a\otimes b)m)=(b\otimes a)\sigma(m)$. Moreover, assume that $M$ is finite projective when considered as an $R$-module via the map $R\simeq \IZ\otimes R\morphism R\otimes R$ (one can check that it doesn't matter if we choose this map or $R\simeq R\otimes \IZ\morphism R\otimes R$) and that the map
 \begin{align*}
 	R&\isomorphism \Hom_R(M,M)\\
 	r&\longmapsto \big(m \mapsto (r\otimes 1)m\big)
@@ -455,7 +456,153 @@ This is a symmetric monoidal $1$-groupoid via $\oplus$, hence induces a symmetri
 		\gw^r(R,M)\coloneqq \Unimod^r(R,M)^\inftygrp\,.
 	\end{equation*}
 \end{defi}
+\lecture[Topological $K$-theory and its connection to deep theorems in geometric topology. Cartesian commutative monoids and groups.]{2020-12-03}To make the rather technical definitions of symmetric, quadratic, and even forms a bit clearer, we discussed some examples. Choose $R$ a commutative ring, let $M=R$ and make it an $R\otimes R$-module via the multiplication map $\mu\colon R\otimes R\morphism R$. Choosing either $\sigma=\id_R$ or $\sigma=-\id_R$, we we see that $\Sym_R(P,M)$ returns the usual notion of symmetric or skew-symmetric $R$-bilinear forms on $P$.
 
+If $R=\IC$, we can also equip $M=\IC$ with a $\IC\otimes\IC$-module structure via
+\begin{equation*}
+	\IC\otimes\IC\xrightarrow{\id\otimes \overline{(-)}}\IC\otimes \IC\morphism[\mu]\IC\,,
+\end{equation*}
+where $\overline{(-)}\colon \IC\morphism\IC$ denotes complex conjugation, as usual. In this case, $\Sym_\IC(P,\IC)$ amounts to hermitian or skew-hermitian forms on $P$, depending on whether $\sigma=\id_\IC$ or $\sigma=-\id_\IC$.
+
+\begin{exc}\label{exc:WhatQuad?}
+	Show that $\Quad_R(P,M)$ is in bijection with the set of all pairs $(b,q)\in \Sym_R(P,M)\times \Hom_\Set(P,M_{\IZ/2})$ satisfying
+	\begin{equation*}
+		b(p,p)=\Nm\big(q(p)\big)\quad\text{and}\quad q(rp)=(r\otimes r)q(p) 
+	\end{equation*}
+	for all $p\in P$ and $r\in R$. Under this bijection, the map $\Nm\colon \Quad_R(P,M)\morphism\Sym_R(P,M)$ simply forgets $q$.
+\end{exc}
+What \cref{exc:WhatQuad?} means depends a little on $R$. We always assume that $R$ is commutative.
+\begin{alphanumerate}
+	\item If $\sigma=\id_M$, then $M_{\IZ/2}=M=M^{\IZ/2}$ and $\Nm$ is simply multiplication by $2$. So if $M$ has no $2$-torsion, then $q$ is already defined by $b$ and the equation $b(p,p)=\Nm(q(p))$. Hence the norm map $\Nm\colon \Quad_R(P,M)\morphism \Sym_R(P,M)$ is an isomorphism onto its image, which means that quadratic forms and even forms are in bijection in this case.
+	\item If $\sigma=-\id_M$, then $M_{\IZ/2}=M/2$ and $M^{\IZ/2}=M[2]=2\text{-torsion of }M$. Hence $\Nm\colon M_{\IZ/2}\morphism M^{\IZ/2}$ is the zero map. If $M[2]=0$, then $b(p,p)=0$ for all $b\in \Sym_R(P,M)$ and all $p\in P$, hence $\Nm\colon \Quad_R(P,M)\morphism \Sym_R(P,M)$ is surjective, because under the identification from \cref{exc:WhatQuad?}, $(b,0)$ is always a preimage of $b$. Thus all symmetric forms are even, but in general an even form may have lots of quadratic forms that map to it.
+	\item If $2\in R^\times$ is a unit and $\sigma=\id_M$, then $\Nm\colon \Quad_R(P,M)\morphism\Sym_R(P,M)$ is an isomorphism and the notions of symmetric, quadratic, and even forms all agree.
+\end{alphanumerate} 
+
+\numpar*{Topological $K$-Theory}
+Consider the three categories
+\begin{equation*}
+	\cat{Vect}_\IR\,,\quad\cat{Eucl}_\IR\,,\quad\text{and}\quad\cat{Sph}_\IR\,. 
+\end{equation*}
+In all three cases, the objects are the finite-dimensional $\IR$-vector spaces equipped with their usual topology. Morphisms in $\cat{Vect}_\IR$ are linear homeomorphisms, morphisms in $\cat{Eucl}_\IR$ are arbitrary homeomorphisms, and morphisms in $\cat{Sph}_\IR$ are proper homotopy equivalences. These categories can be Kan-enriched and are (symmetric) monoidal under $\times$ (the usual product). Applying the construction from \cref{exm:MyFirstMonoidals}\itememph{f}, we obtain monoidal anima
+\begin{equation*}
+	\cat{\Vv ect}_\IR\,,\quad\cat{\Ee ucl}_\IR\,,\quad\text{and}\quad\cat{\Ss ph}_\IR
+\end{equation*}
+Observe that while $\cat{Vect}_\IR$ and $\cat{Eucl}_\IR$ are already groupoids, $\cat{Sph}_\IR$ is not, so it only becomes an anima after taking the coherent nerve, since homotopy equivalences have homotopy inverses. Also observe that the one-point compactification $(-)^+$ of topological spaces induces equivalences
+\begin{equation*}
+	\Hom_{\cat{\Ss ph}_\IR}(T,U)\simeq \Hom_{\core(*/\An)}(T^+,U^+)\,.
+\end{equation*}
+Writing $T\cong \IR^n$, $U\cong \IR^m$ (recall that the objects of $\cat{\Ss ph}_\IR$ are finite-dimensional vector spaces) we get that $T^+\cong \IS^n$ and $U^+\cong \IS^m$ are actually spheres, hence the name $\cat{\Ss ph}_\IR$.
+\begin{defi}\label{def:koEtAl}
+	Define $\IE_1$-groups in anima
+	\begin{equation*}
+		k\cat{o}=\cat{\Vv ect}_\IR^\inftygrp\,,\quad k\cat{top}=\cat{\Ee ucl}_\IR^\inftygrp\,,\quad\text{and}\quad k\cat{sph}=\cat{\Ss ph}_\IR^\inftygrp\,.
+	\end{equation*}
+\end{defi}
+\cref{def:koEtAl} admits many variations. For example, if $X$ is a topological space, then we can consider anima
+\begin{equation*}
+	\cat{\Vv ect}_\IR(X)\,,\quad \cat{\Ee ucl}_\IR(X)\,,\quad\cat{\Ss ph}_\IR(X)
+\end{equation*}
+of vector bundles, $\IR^n$-fibre bundles, and spherical fibrations over $X$ respectively. In case $X$ is a CW complex (or more generally if some numerability conditions are satisfied), these can also be described as
+\begin{equation*}
+	\Hom_\An\left(X,\cat{\Vv ect}_\IR\right)\,,\quad \Hom_\An\left(X,\cat{\Ee ucl}_\IR\right)\,,\quad\text{and}\quad\Hom_\An\left(X,\cat{\Ss ph}_\IR\right)
+\end{equation*}
+If we believe that $\Hom_\An(X,-)\colon \An\morphism \An$ preserves $\IE_1$-groups, the universal property of group completion results in comparison maps
+\begin{align*}
+	\cat{\Vv ect}_\IR(X)^\inftygrp&\morphism \Hom_\An(X,k\cat{o})\\
+	\cat{\Ee ucl}_\IR(X)^\inftygrp&\morphism \Hom_\An(X,k\cat{top})\\
+	\cat{\Ss ph}_\IR(X)^\inftygrp&\morphism \Hom_\An(X,k\cat{sph})\,.
+\end{align*}
+Be aware that these are only equivalences when $X$ is a finite CW complex (or a retract of such), as we will see later. The homotopy groups of the right-hand sides are usually denoted $k\cat{o}^*(X)$, $k\cat{top}^*(X)$, and $k\cat{sph}^*(X)$ respectively, and are pretty important invariants in geometric topology.
+
+Fabian also mentioned that although $k\cat{o}$, $k\cat{top}$, and $k\cat{sph}$ are pretty complicated objects, we can actually compute the homotopy groups of their \enquote{differences}. More precisely, for $n\neq 4$ we have that
+\begin{equation*}
+	 \pi_n\big(\fib(k\cat{o}\rightarrow k\cat{top})\big)\simeq \Theta^n
+\end{equation*}
+is the group of exotic spheres in dimension $n$, i.e.\ exotic smooth structures on $\IS^n$. Moreover,
+\begin{equation*}
+	\pi_n\big(\fib(k\cat{top}\rightarrow k\cat{sph})\big)\simeq L_n^\mathrm{q}\IZ\simeq \begin{cases*}
+		\IZ & if $n\equiv 0\mod 4$\\
+		0 & if $n\equiv 1\mod 4$\\
+		\IZ/2 & if $n\equiv 2\mod 4$\\
+		0 & if $n\equiv 3\mod 4$
+	\end{cases*}\,.
+\end{equation*}
+is Wall's quadratic $L$-group of the integers. Moreover, $\pi_n(k\cat{sph})\simeq \pi_n^s$ is the $n\ordinalth$ stable homotopy group of spheres, and by the famous Bott periodicity theorem one has
+\begin{equation*}
+	\pi_n(k\cat{o})\simeq \begin{cases*}
+		\IZ & if $n\equiv 0\mod 8$\\
+		\IZ/2 & if $n\equiv 1\mod 8$\\
+		\IZ/2 & if $n\equiv 2\mod 8$\\
+		0 & if $n\equiv 3\mod 8$\\
+		\IZ & if $n\equiv 4\mod 8$\\
+		0 & if $n\equiv 5\mod 8$\\
+		0 & if $n\equiv 6\mod 8$\\
+		0 & if $n\equiv 7\mod 8$
+	\end{cases*}\,.
+\end{equation*}
+\section{The Commutative Case: $\IE_\infty$-Monoids/Groups}
+The \enquote{idea} how to impose commutativity is to replace $\IDelta^\op$ by some other category $\IGamma^\op$ (Lurie uses $\cat{Fin}_*^\op$, but Fabian decided to honour Segal's original notation) which has \enquote{flips} in it.
+\begin{defi}
+	We denote by $\IGamma^\op$ the $1$-category whose objects are finite sets and whose morphisms are partially defined maps. Write $\langle n\rangle=\{1,\dotsc,n\}$. There is a functor
+	\begin{equation*}
+		\Cut\colon\IDelta^\op\morphism\IGamma^\op
+	\end{equation*}
+	defined on objects via $\Cut([n])=\langle n\rangle$. On a morphism $\alpha\colon [m]\morphism {[n]}$ in $\Delta$ (which then points in the other direction in $\IDelta^\op$), $\Cut(\alpha)\colon \langle n\rangle\morphism\langle m\rangle $ is defined via
+	\begin{equation*}
+		\Cut(\alpha)(i)=\begin{cases*}
+			\text{undefined} & if $i\leq\alpha(0)$\\
+			j & if $\alpha(j-1)<i\leq \alpha(j)$\\
+			\text{undefined} & if $\alpha(n)<i$
+		\end{cases*}\,.
+	\end{equation*}
+	In more invariant words, $\Cut$ sends a finite non-empty totally ordered set $I\in \IDelta^\op$ to its set of \emph{Dedekind cuts} (i.e.\ partitions into two non-empty intervals), and a map $\alpha\colon I\morphism J$ in $\IDelta$ is sent to $\alpha^*\colon \Cut(J)\morphism \Cut(I)$ which is given by taking preimages (whenever these are non-empty, otherwise it's undefined).
+	
+	If now $\Cc$ is an $\infty$-category with finite products, then a \emph{cartesian commutative monoid} in $\Cc$ is a functor $X\colon \IGamma^\op\morphism \Cc$ such that $X\circ \Cut\colon \IDelta^\op\morphism \Cc$ is a cartesian monoid in the sense of \cref{def:CartesianMonoids}. If it is even a cartesian group, then $X$ is called a \emph{cartesian commutative group}  in $\Cc$. We let $\CMon(\Cc),\CGrp(\Cc)\subseteq \Fun(\IGamma^\op,\Cc)$ denote the full sub-$\infty$-categories spanned by cartesian commutative monoids/groups.
+\end{defi}
+Time to unwind! The functor $\Cut\colon \IDelta^\op\morphism\IGamma^\op$ takes the Segal maps $e_i\colon [1]\morphism {[n]}$ in $\IDelta$ to the maps $\rho_i\colon \langle n\rangle \morphism\langle 1\rangle$ defined by
+\begin{equation*}
+	\rho_i(j)=\begin{cases*}
+		1 & if $i=j$\\
+		\text{undefined} & else
+	\end{cases*}\,.
+\end{equation*}
+Moreover, the face maps $d_0,d_1,d_2\colon [1]\morphism{[2]}$ in $\IDelta$ are sent to $l,m,r\colon \langle 2\rangle \morphism\langle 1\rangle$, the unique maps defined on $\{1\}$, $\{1,2\}$, and $\{2\}$ respectively. So composition in a cartesian commutative monoid becomes
+\begin{equation*}
+	\begin{tikzcd}[column sep=2em]
+		\mu\colon X_1\times X_1& X_2\morphism[m]X_1\lar["\sim", "{(l,r)}"']
+	\end{tikzcd}\,.
+\end{equation*}
+But consider the flip map $\operatorname{flip}\colon \langle 2\rangle \morphism\langle 2\rangle$ that swaps $1$ and $2$. Then $m\circ \operatorname{flip}=m$, $r\circ\operatorname{flip}=l$, and $l\circ \operatorname{flip}=r$ hold in $\IGamma^\op$, so the diagram
+\begin{equation*}
+	\begin{tikzcd}[row sep=small]
+		X_1\times X_1\ar[dd,"\text{flip factors}"']\drar[bend left=20,"\mu"] & \\
+		\phantom{X}\rar[phantom, pos=0.4, "\scriptscriptstyle/\!/\!/"] & X_1\\
+		X_1\times X_1\urar[bend right=20, "\mu"'] &
+	\end{tikzcd}
+\end{equation*}
+commutes. So it really makes sense to think of $X$ as commutative!
+\begin{exc}
+	If $\Cc$ is a $1$-category, show that $\Cut^*\colon \Fun(\IGamma^\op,\Cc)\morphism\Fun(\IDelta^\op,\Cc)$ restricts to a fully faithful functor $\CMon(\Cc)\morphism\Mon(\Cc)$. Note that this is false for general $\infty$-categories, even for $\Cc=\Cat_1^{(2)}$!
+\end{exc}
+Similar to \cref{exm:MyFirstMonoidals}\itememph{e}, any symmetric monoidal $1$-category $(\Cc,\otimes)$ gives rise to an object in $\CMon(\Cat_1^{(2)})\subseteq \CMon(\Cat_\infty)$. Similar to the monoidal case, this is constructed from a cocartesian fibration $p^\otimes\colon \Cc^\otimes\morphism \IGamma^\op$.
+
+Let's briefly sketch the construction. Objects of $\Cc^\otimes$ are pairs $(n,x_1,\dotsc,x_n)$, where $\langle n\rangle \in \IGamma^\op$ and $x_1,\dotsc,x_n\in \Cc$. Morphisms $(n,x)\morphism (m,y)$ comprise the data of a map $\alpha\colon \langle n\rangle \morphism\langle m\rangle $ in $\IGamma^\op$ together with maps $f_j\colon \bigotimes_{i\in\alpha^{-1}(j)}x_i\morphism y_j$ for all $j=1,\dotsc,m$. Composition is defined in the \enquote{obvious} way, using the braiding $\sigma$, and to see that composition is associative one has to use $\sigma^2=\id$. If you are confused by this braiding stuff: In a nutshell, a \emph{braiding} of a monoidal category is a choice of isomorphisms $\sigma_{x,y}\colon x\otimes y\isomorphism y\otimes x$ subject to some naturality conditions. In this terminology, a symmetric monoidal category is a braided monoidal category for which $\sigma_{x,y}\circ \sigma_{y,x}=\id$.
+
+One can check that the cocartesian fibration $p_\mathrm{mon}^\otimes\colon\Cc_\mathrm{mon}^\otimes\morphism\IDelta^\op$ from \cref{exm:MyFirstMonoidals}\itememph{e} fits into a pullback diagram
+\begin{equation*}
+	\begin{tikzcd}
+		\Cc_\mathrm{mon}^\otimes\dar["p_\mathrm{mon}^\otimes"']\rar\drar[pullback] & \Cc^\otimes\dar["p^\otimes"]\\
+		\IDelta^\op\rar & \IGamma^\op
+	\end{tikzcd}
+\end{equation*}
+It turns out that the diagram
+\begin{equation*}
+	\begin{tikzcd}
+			\CMon\big(\Cat_1^{(2)}\big)\rar["\Cut^*"]\dar[iso] & \Mon\big(\Cat_1^{(2)}\big)\dar[iso]\\
+		\cat{SymMonCat}_1^{(2)}\rar["\text{forget}"]& \cat{MonCat}_1^{(2)}
+	\end{tikzcd}
+\end{equation*}
+commutes (we never defined the bottom categories, but if you sit down for a while you will surely come up with suitable a definition of the $2$-category of symmetric/arbitrary monoidal $1$-categories). However, a monoidal category can have many symmetries, so the horizontal functors are not at all fully faithful! For example, let $(\Cc,\otimes)$ be the category of $\IZ$-graded $R$-modules equipped with the graded tensor product. Any unit $u\in R^\times$ defines a braiding $\tau_u$ on $\Cc$ via $\tau_u\colon X\otimes Y\isomorphism Y\otimes X$ given by $\tau_u(x\otimes y)=u^{|x||y|}y\otimes x$ on elementary tensors. If $u^2=1$, then this braiding defines a symmetric monoidal structure. In particular, there can be many of these!
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography
