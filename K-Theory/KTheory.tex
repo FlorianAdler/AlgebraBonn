@@ -51,8 +51,8 @@
 	\include{./Chapters/KTheory1}
 	\renewcommand{\thechapter}{\Roman{chapter}}
 
-\chapter{Symmetric Monoidal \texorpdfstring{$\infty$}{infty}-Categories and \texorpdfstring{$\IE_\infty$}{Einfty}-Spaces}\setcounter{dummy}{-1}
-\section{The Non-Commutative Case: \texorpdfstring{$\IE_1$}{E1}-Monoids/Groups}
+\chapter{Symmetric Monoidal and Stable \texorpdfstring{$\infty$}{infty}-Categories}\label{chap:Monoidal}\setcounter{dummy}{-1}
+\section{\texorpdfstring{$\IE_1$}{E1}-Monoids and \texorpdfstring{$\IE_1$}{E1}-Groups}
 We start things off slowly by only considering (not necessarily symmetric) monoidal $\infty$-categories and $\IE_1$-spaces.
 \numpar{Stasheff's Definition of Coherently Associative Monoids}
 The naive way to define a monoid in $\An$ would be to have an object $M\in \An$ together with a multiplication map
@@ -75,7 +75,7 @@ Although this looks horrible, it is possible to turn these considerations into a
 \end{defi}
 To make sense of the condition from \cref{def:CartesianMonoids}\itememph{b}, note that since $X_0\simeq *$ is terminal, we have $X_1\times_{X_0}\times\dotsb\times_{X_0}X_1\simeq \prod_{i=1}^nX_1$, so this condition really \emph{is} the Segal condition. Somewhat weird though is that we don't impose any completeness conditions, and in fact, cartesian monoids in $\An$ are usually \emph{not} complete Segal spaces! This is in some sense fixed by the following proposition.
 \begin{prop}\label{prop:CompletionOfMonoidsFullyFaithful}
-	The completion functor $\comp\colon\cat{sAn}\morphism\cat{CSAn}$ from Lemma/Defi-nition~\labelcref{lemdef:Completion} restricts to a fully faithful functor
+	The completion functor $\comp\colon\cat{sAn}\morphism\cat{CSAn}$ from Lemma/Defi-nition~\textup{\labelcref{lemdef:Completion}} restricts to a fully faithful functor
 	\begin{equation*}
 		\comp\colon\cat{Mon}(\An)\morphism */\cat{CSAn}
 	\end{equation*}
@@ -253,34 +253,34 @@ Note that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ preserves limits since $\cat
 	It is given by $X^\inftygrp\simeq \Omega_e|X|$ \embrace{often also denoted $\Omega BX$}.
 \end{prop}
 \begin{proof}
-	We know that $\An\subseteq \Cat_\infty$ has a left-adjoint $|\blank|\colon \Cat_\infty\morphism \An$. By the usual abstract adjunction nonsense, this extends to a left adjoint
+	We know that $\An\subseteq \Cat_\infty$ has a left-adjoint $|\blank|\colon \Cat_\infty\morphism \An$. The unit and counit are equivalences on $*\in \An$, hence the adjunction passes to slices under it. Moreover the $(-)_{\geq 1}$-parts on both sides are clearly preserved, thus $|\blank|$ descends to a left adjoint
 	\begin{equation*}
-		|\blank|\colon (*/\Cat_\infty)_{\geq 1}\morphism (*/\An)_{\geq 1}\,.
+		|\blank|\colon (*/\Cat_\infty)_{\geq 1}\morphism (*/\An)_{\geq 1}
 	\end{equation*}
-	Now use \cref{prop:Grp(An)=(*/An)Connected} to get the desired left-adjoint $(-)^\inftygrp\colon \cat{Mon}(\An)\morphism\Grp(\An)$. The explicit description follows from our calculations in \cref{par:Grp(An)=(*/An)Connected}
+	of the obvious inclusion in the other direction. Now use \cref{prop:Grp(An)=(*/An)Connected} to get the desired left-adjoint $(-)^\inftygrp\colon \cat{Mon}(\An)\morphism\Grp(\An)$. The explicit description follows from our calculations in \cref{par:Grp(An)=(*/An)Connected}
 \end{proof}
 Next we will discuss some examples. We begin with free monoids and groups.
 \begin{prop}\label{prop:FreeMonoids}
-	The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ has a left adjoint $\operatorname{Free}^{\IE_1}\colon \An\morphism \cat{Mon}(\An)$. It is given explicitly by the \enquote{anima of words of arbitrary length}
+	The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ has a left adjoint $\operatorname{Free}^{\Mon}\colon \An\morphism \cat{Mon}(\An)$. It is given explicitly by the \enquote{anima of words of arbitrary length}
 	\begin{equation*}
-		\operatorname{Free}^{\IE_1}(K)_1\simeq \coprod_{n\geq 0}K^n\,.
+		\operatorname{Free}^{\Mon}(K)_1\simeq \coprod_{n\geq 0}K^n\,.
 	\end{equation*}
 \end{prop}
 We postpone the proof of \cref{prop:FreeMonoids}. By the explicit construction given there, the diagram
 \begin{equation*}
-	\begin{tikzcd}
+	\begin{tikzcd}[column sep=large]
 		\Set\dar\rar["\operatorname{Free}"]& \cat{Mon}(\Set)\dar\\
-		\An\rar["\operatorname{Free}^{\IE_1}"] & \cat{Mon}(\An)
+		\An\rar["\operatorname{Free}^{\Mon}"] & \cat{Mon}(\An)
 	\end{tikzcd}
 \end{equation*}
-commutes. But be aware that this is not automatic, and in fact we'll see it very much breaks once we impose commutativity. As some first examples, one has $\operatorname{Free}^{\IE_1}(*)\simeq\IN$ and $\operatorname{Free}^{\IE_1}(\emptyset)\simeq *$, which is initial in $\cat{Mon}(\An)$.
+commutes. But be aware that this is not automatic, and in fact we'll see it very much breaks once we impose commutativity. As some first examples, one has $\operatorname{Free}^{\Mon}(*)\simeq\IN$ and $\operatorname{Free}^{\Mon}(\emptyset)\simeq *$, which is initial in $\cat{Mon}(\An)$.
 \begin{prop}\label{prop:FreeGroups}
-	The evaluation functor $\ev_1\colon \Grp(\An)\morphism \An$ has a left-adjoint too. Explicitly, it is given by the composite
+	The evaluation functor $\ev_1\colon \Grp(\An)\morphism \An$ has a left-adjoint $\Free^\Grp\colon \An\morphism\Grp(\An)$ too. Explicitly, it is given by the composite
 	\begin{align*}
 		\An&\morphism */\An\morphism[\Sigma]*/\An\morphism[\Omega]\Grp(\An)\\
 		X&\longmapsto X\sqcup *\,.
 	\end{align*}
-	In other words, the free $\IE_1$-group on $X$ is $\Omega\Sigma X_+$, where $X_+=X\sqcup *$. As usual, the suspension functor $\Sigma\colon \An\morphism \An$ is given by the pushout diagram
+	In other words, the free $\IE_1$-group on $X$ is $\Free^\Grp(X)\simeq\Omega\Sigma X_+$, where $X_+=X\sqcup *$. As usual, the suspension functor $\Sigma\colon \An\morphism \An$ is given by the pushout diagram
 	\begin{equation*}
 		\begin{tikzcd}
 			X\dar\rar\drar[pushout] & *\dar\\
@@ -313,20 +313,20 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 \end{proof}
 \begin{exm}\label{exm:MyFirstMonoidals}
 	\begin{alphanumerate}
-		\item The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ factors canonically over $*/\An\morphism \An$, and the resulting functor $\ev_1\colon \cat{Mon}(\An)\morphism */\An$ has a left adjoint too. For a pointed anima $(X,x)$, we denote the corresponding left adjoint object (\enquote{free $\IE_1$-monoid with unit $x$}) by $\operatorname{Free}^{\IE_1}(X,x)$. Similarly, $\ev_1\colon \Grp(\An)\morphism */\An$ has a left adjoint given on objects by $\operatorname{Free}^{\IE_1}(X,x)^\inftygrp\simeq \Omega\Sigma X$ (this equality can be seen along the lines of the proof of \cref{prop:FreeGroups}).
+		\item The evaluation functor $\ev_1\colon \cat{Mon}(\An)\morphism \An$ factors canonically over $*/\An\morphism \An$, and the resulting functor $\ev_1\colon \cat{Mon}(\An)\morphism */\An$ has a left adjoint too. For a pointed anima $(X,x)$, we denote the corresponding left adjoint object (\enquote{free $\IE_1$-monoid with unit $x$}) by $\operatorname{Free}^{\Mon}(X,x)$. Similarly, $\ev_1\colon \Grp(\An)\morphism */\An$ has a left adjoint given on objects by $\operatorname{Free}^{\Grp}(X,x)\simeq \Free^\Mon(X,x)^\inftygrp\simeq \Omega\Sigma X$ (this equality can be seen along the lines of the proof of \cref{prop:FreeGroups}).
 		
-		If $(X,x)$ is connected, one actually has $\operatorname{Free}^{\IE_1}(X,x)\simeq \operatorname{Free}^{\IE_1}(X,x)^\inftygrp$. Indeed, as we've seen in the proof of \cref{prop:Grp(An)=(*/An)Connected}, we only need to check that the ordinary monoid $\pi_0\operatorname{Free}^{\IE_1}(X,x)_1$ is already an ordinary group. Playing around with universal properties, we see that $\pi_0\operatorname{Free}^{\IE_1}(X,x)_1$ is the free ordinary monoid on the set $\pi_0 X$ with unit $[x]$, hence just $\{[x]\}$ itself since $X$ is connected, hence it already is a group.
-		\item By \cref{prop:FreeMonoids}, $\operatorname{Free}^{\IE_1}(\IS^1)\simeq \coprod_{n\geq 0}\IT^n$ is an infinite union of tori $\IT^n=\prod_{i=1}^n\IS^1$ and thus a reasonable geometric object. However, \cref{prop:FreeGroups} implies
+		If $(X,x)$ is connected, one actually has $\operatorname{Free}^{\Mon}(X,x)\simeq \operatorname{Free}^{\Grp}(X,x)$. Indeed, as we've seen in the proof of \cref{prop:Grp(An)=(*/An)Connected}, we only need to check that the ordinary monoid $\pi_0\operatorname{Free}^{\Mon}(X,x)_1$ is already an ordinary group. Playing around with universal properties, we see that $\pi_0\operatorname{Free}^{\Mon}(X,x)_1$ is the free ordinary monoid on the set $\pi_0 X$ with unit $[x]$, hence just $\{[x]\}$ itself since $X$ is connected, hence it already is a group.
+		\item By \cref{prop:FreeMonoids}, $\operatorname{Free}^{\Mon}(\IS^1)\simeq \coprod_{n\geq 0}\IT^n$ is an infinite union of tori $\IT^n=\prod_{i=1}^n\IS^1$ and thus a reasonable geometric object. However, \cref{prop:FreeGroups} implies
 		\begin{equation*}
-			\operatorname{Free}^{\IE_1}(\IS^1)^\inftygrp\simeq \Omega\Sigma(\IS^1_+)\simeq \Omega(\IS^2\vee\IS^1)\,,
+			\operatorname{Free}^{\Grp}(\IS^1)\simeq \Omega\Sigma(\IS^1_+)\simeq \Omega(\IS^2\vee\IS^1)\,,
 		\end{equation*}
 		and the homotopy groups of the right-hand side are not fully known to this day. Similarly, using the pointed variant from \itememph{a} above, we get
 		\begin{equation*}
-			\operatorname{Free}^{\IE_1}(\IS^1,*)\simeq\operatorname{Free}^{\IE_1}(\IS^1,*)^\inftygrp\simeq \Omega\Sigma(\IS^1,*)\simeq\Omega\IS^2
+			\operatorname{Free}^{\Mon}(\IS^1,*)\simeq\operatorname{Free}^{\Grp}(\IS^1,*)\simeq \Omega\Sigma(\IS^1,*)\simeq\Omega\IS^2
 		\end{equation*}
-		\item \lecture[A pushout computation. Monoidal $1$-categories give monoidal $\infty$-categories. Definition of algebraic and hermitian $K$-theory.]{2020-12-01}\hspace{-1ex}It is completely formal to see that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ and $\ev_1\colon \Grp(\An)\morphism \An$ are represented by $\operatorname{Free}^{\IE_1}(*)$ and $\operatorname{Free}^{\IE_1}(*)^\inftygrp$ respectively. What's not formal, however, is that $\operatorname{Free}^{\IE_1}(*)\simeq \IN$ and $\operatorname{Free}^{\IE_1}(*)^\inftygrp\simeq \Omega \IS^1\simeq\IZ$, regarded as discrete simplicial anima. This really needs Propositions~\labelcref{prop:FreeMonoids,prop:FreeGroups}.
+		\item \lecture[A pushout computation. Monoidal $1$-categories give monoidal $\infty$-categories. Definition of algebraic and hermitian $K$-theory.]{2020-12-01}\hspace{-1ex}It is completely formal to see that $\ev_1\colon \cat{Mon}(\An)\morphism \An$ and $\ev_1\colon \Grp(\An)\morphism \An$ are represented by $\operatorname{Free}^{\Mon}(*)$ and $\operatorname{Free}^{\Grp}(*)\simeq \Free^\Mon(*)^\inftygrp$ respectively. What's not formal, however, is that $\operatorname{Free}^{\Mon}(*)\simeq \IN$ and $\operatorname{Free}^{\Grp}(*)\simeq \Omega \IS^1\simeq\IZ$, regarded as discrete simplicial anima. This really needs Propositions~\labelcref{prop:FreeMonoids,prop:FreeGroups}.
 		
-		Moreover, we'll see that the analogous functors are no longer represented by $\IN$ and $\IZ$ once we impose commutativity, even though they are the free $\IE_1$-monoid/group on a point and happen to be commutative. In fact they are \enquote{too commutative} (*\emph{sphere spectrum intensifie}s*).
+		Moreover, we'll see that the analogous functors are no longer represented by $\IN$ and $\IZ$ once we impose commutativity, even though they are the free $\IE_1$-monoid/group on a point and happen to be commutative. In fact they are \enquote{too commutative to be free commutative monoids} (*\emph{sphere spectrum intensifies}*).
 		\item Let's for some reason compute the pushout
 		\begin{equation*}
 			\begin{tikzcd}
@@ -387,7 +387,7 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{alphanumerate}
 \end{exm}
 %We're now very close to defining $K$-theory as $K_i(R)\coloneqq \pi_i\Omega (\Proj^\fg(R))^\inftygrp$ (or, if you prefer the Bar notation that Fabian hates, $\pi_i\Omega B(\Proj^\fg(R))$). What's left to do is to investigate $\Proj^\fg(R)$ and to turn it into an $\IE_1$-monoid.
-\cref{exm:MyFirstMonoidals}\itememph{e} allows us to construct many interesting examples. All examples will turn out to be commutative, but that doesn't matter for now.
+\cref{exm:MyFirstMonoidals}\itememph{e} allows us to construct many interesting examples. All examples will turn out to be commutative (see after \cref{cor:CommutativeHorizontalAdjoints}), but that doesn't matter for now.
 
 \numpar*{Algebraic $K$-Theory}
 Let $R$ be a ring and consider $\cat{Mod}(R)$ as a monoidal category under $\oplus$. Moreover, let $\Proj(R)$ denote the sub-groupoid of spanned by finite projective $R$-modules (\enquote{vector bundles on $\Spec R$}) and their isomorphisms. This inherits a (symmetric) monoidal structure by \cref{exm:MyFirstMonoidals}\itememph{e}, so we obtain
@@ -540,9 +540,9 @@ is Wall's quadratic $L$-group of the integers. Moreover, $\pi_n(k\cat{sph})\sime
 		0 & if $n\equiv 7\mod 8$
 	\end{cases*}\,.
 \end{equation*}
-\section{The Commutative Case: $\IE_\infty$-Monoids/Groups}
+\section{\texorpdfstring{$\IE_\infty$}{Einfty}-Monoids and \texorpdfstring{$\IE_\infty$}{Einfty}-Groups}
 The \enquote{idea} how to impose commutativity is to replace $\IDelta^\op$ by some other category $\IGamma^\op$ (Lurie uses $\cat{Fin}_*^\op$, but Fabian decided to honour Segal's original notation) which has \enquote{flips} in it.
-\begin{defi}
+\begin{defi}\label{def:CartesianCommutativeMonoids}
 	We denote by $\IGamma^\op$ the $1$-category whose objects are finite sets and whose morphisms are partially defined maps. Write $\langle n\rangle=\{1,\dotsc,n\}$. There is a functor
 	\begin{equation*}
 		\Cut\colon\IDelta^\op\morphism\IGamma^\op
@@ -602,7 +602,600 @@ It turns out that the diagram
 		\cat{SymMonCat}_1^{(2)}\rar["\text{forget}"]& \cat{MonCat}_1^{(2)}
 	\end{tikzcd}
 \end{equation*}
-commutes (we never defined the bottom categories, but if you sit down for a while you will surely come up with suitable a definition of the $2$-category of symmetric/arbitrary monoidal $1$-categories). However, a monoidal category can have many symmetries, so the horizontal functors are not at all fully faithful! For example, let $(\Cc,\otimes)$ be the category of $\IZ$-graded $R$-modules equipped with the graded tensor product. Any unit $u\in R^\times$ defines a braiding $\tau_u$ on $\Cc$ via $\tau_u\colon X\otimes Y\isomorphism Y\otimes X$ given by $\tau_u(x\otimes y)=u^{|x||y|}y\otimes x$ on elementary tensors. If $u^2=1$, then this braiding defines a symmetric monoidal structure. In particular, there can be many of these!
+commutes (we never defined the bottom categories, but if you sit down for a while you will surely come up with suitable a definition of the $2$-category of symmetric/arbitrary monoidal $1$-categories). However, a monoidal category can have many symmetries, so the horizontal functors are not at all fully faithful! For example, let $(\Cc,\otimes)$ be the category of $\IZ$-graded $R$-modules equipped with the graded tensor product. Any unit $u\in R^\times$ defines a braiding $\tau_u$ on $\Cc$ via $\tau_u\colon X\otimes Y\isomorphism Y\otimes X$ given by $\tau_u(x\otimes y)=u^{|x||y|}y\otimes x$ on elementary tensors. If $u^2=1$, then this braiding defines a symmetric monoidal structure. In particular, there can be many of these! So commutativity is a \emph{structure}, not a \emph{property}.
+
+\numpar*{Semi-Additive and Additive $\infty$-Categories}
+\lecture[Semi-additive and additive $\infty$-categories, monoids and groups in these.]{2020-12-08} An $\infty$-category is called \emph{semi-additive} if it admits finite products and finite coproducts, its initial and terminal object agree, and for any $x,y\in \Cc$ the natural map
+\begin{equation*}
+	\begin{pmatrix}
+		\id_x & 0\\
+		0 & \id_y
+	\end{pmatrix}\colon x\sqcup y\isomorphism x\times y
+\end{equation*}
+is an equivalence. Here $0\colon x\morphism 0\morphism y$ denotes the unique (up to contractible choice) map in $\Hom_\Cc(x,y)$ factoring through an initial/terminal object which we also denote $0\in \Cc$. If $\Cc$ is semi-additive, then we'll usually denote its unified product and coproduct by $\oplus$.
+
+We call $\Cc$ \emph{additive} if also the shear map
+\begin{equation*}
+	\begin{pmatrix}
+		\id_x & \id_x\\
+		0 & \id_x
+	\end{pmatrix}\colon x\oplus x\isomorphism x\oplus x
+\end{equation*}
+is an equivalence for all $x\in \Cc$. The typical source of examples is everything that has to do with abelian groups, so for example $\Kk(\IZ)$ and the derived category $\Dd(\IZ)$ are additive.
+\begin{prop}\label{prop:CMonOfSemiAdditive}
+	If $\Cc$ is a semi-additive $\infty$-category, then the forgetful maps
+	\begin{equation*}
+		\CMon(\Cc)\isomorphism\Mon(\Cc)\isomorphism \Cc
+	\end{equation*}
+	are equivalences. If $\Cc$ is additive, then the same holds true for
+	\begin{equation*}
+		\CGrp(\Cc)\isomorphism\Grp(\Cc)\isomorphism \Cc\,.
+	\end{equation*}
+\end{prop}
+\begin{cor}\label{cor:HomSemiAdditveFactorsThroughCGrpAn}
+	If $\Cc$ is an additive $\infty$-category, then there is a canonical lift
+	\begin{equation*}
+		\Hom_\Cc\colon \Cc^\op\times \Cc\morphism \CGrp(\An)\,.
+	\end{equation*}
+	If $\Cc$ is only semi-additive, one still gets a lift to $\CMon(\An)$.
+\end{cor}
+\begin{proof*}
+	In general, if $F\colon \Cc\morphism\Dd$ is a finite product-preserving functor, then the induced functor $F_*\colon \Fun(\IGamma^\op,\Cc)\morphism \Fun(\IGamma^\op,\Dd)$ preserves the Segal condition and also the condition from \cref{def:E1Group}, hence it restricts to functors $F_*\colon \CMon(\Cc)\morphism\CMon(\Dd)$ and $F_*\colon \CGrp(\Cc)\morphism\CGrp(\Dd)$.
+	
+	We can't apply this directly to our situation, since $\Hom_\Cc\colon \Cc^\op\times\Cc\morphism\An$ doesn't preserve finite products---or rather it is too good at respecting products, as
+	\begin{equation*}
+		\Hom_\Cc\left(\bigoplus_{i=1}^nx_i,\bigoplus_{i=1}^ny_i\right)\simeq \prod_{i,j=1}^n\Hom_\Cc(x_i,y_j)\,,
+	\end{equation*}
+	of which the diagonal $\prod_{i=1}^n\Hom_\Cc(x_i,y_i)$ is only a factor.
+	
+	At least $\Hom_\Cc(x,-)\colon \Cc\morphism\An$ preserves products for all $x\in \Cc$, whence it induces a functor $\Hom_\Cc(x,-)_*\colon \CGrp(\Cc)\morphism\CGrp(\An)$. But if $\Cc$ is additive, then $\CGrp(\Cc)\simeq \Cc$ by \cref{prop:CMonOfSemiAdditive}, which provides the desired lift $\Hom_\Cc(x,-)\colon \Cc\morphism\CGrp(\An)$. To paste these lifts together into a lift $\Hom_\Cc\colon\Cc^\op\times \Cc\morphism \CGrp(\An)$ as well, consider the composite
+	\begin{equation*}
+		\Fun(\Cc,\An)\morphism\Fun\big(\Fun(\IGamma^\op,\Cc),\Fun(\IGamma^\op,\An)\big)\morphism \Fun\big(\CGrp(\Cc),\Fun(\IGamma^\op,\An)\big)\,.
+	\end{equation*}
+	If we restrict to the full subcategory $\Fun^\times(\Cc,\An)\subseteq \Fun(\Cc,\An)$ of finite product-preserving functors, it lands in $\Fun(\CGrp(\Cc),\CGrp(\An))$, as argued above. Moreover, if $\Cc$ is additive, then $\CGrp(\Cc)\simeq \Cc$ by \cref{prop:CMonOfSemiAdditive}. Now $\Hom_\Cc\colon \Cc^\op\morphism\Fun(\Cc,\An)$ has image in $\Fun^\times(\Cc,\An)$, hence we may compose it with the above to obtain a functor
+	\begin{equation*}
+		\Hom_\Cc\colon \Cc^\op\morphism\Fun\big(\Cc,\CGrp(\An)\big)\,,
+	\end{equation*}
+	as desired.
+	
+	If $\Cc$ is only semi-additive, then the argument still works with $\CMon(-)$ instead of $\CGrp(-)$ everywhere. Moreover, one can check (but we won't do that here) that if we we use the (semi-)additive structure on $\Cc^\op$ instead to do the constructions above, we still end up with the same functor $\Hom_\Cc\colon \Cc^\op\times \Cc\morphism\CGrp(\An)$.
+\end{proof*}
+\begin{proof}[Proof sketch of \cref{prop:CMonOfSemiAdditive}]
+	The key to the proof is the following claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape Let $\Ii\in\{\IDelta^\op,\IGamma^\op\}$. Given a functor $X\colon \Ii\morphism\Cc$ satisfying $X_0\simeq 0$, then $X$ satisfies the Segal condition iff it is left-Kan extended from $X_{|\Ii_{\leq 1}}$ along $p\colon \Ii_{\leq 1}\morphism\Ii$.
+	\end{alphanumerate}
+	To conclude the statement of the proposition from \itememph{\boxtimes}, write $\Fun(\Ii_{\leq 1},\Cc)_0\subseteq \Fun(\Ii_{\leq 1},\Cc)$ for the full subcategory of functors $F$ satisfying $F(0)\simeq 0$. Since $0\in \Cc$ is initial and terminal, one easily checks that $\Cc\isomorphism\Fun(\Ii_{\leq 1},\Cc)_0$, sending $x\in \Cc$ to the unique (up to contractible choice) functor $F_x$ satisfying $F_x(0)\simeq 0$ and $F_x(1)\simeq x$, is an equivalence. Moreover,
+	\begin{equation*}
+		\Fun(\Ii_{\leq 1},\Cc)_0\subseteq \Fun(\Ii_{\leq 1},\Cc)\xrightarrow{\Lan_p}\Fun(\Ii,\Cc)
+	\end{equation*}
+	is fully faithful by \cref{cor:FullyFaithfulKanExtension}, and \itememph{\boxtimes} precisely says that its essential image is $\Mon(\Cc)$ for $\Ii=\IDelta^\op$ or $\CMon(\Cc)$ for $\Ii=\IGamma^\op$. This shows $\Mon(\Cc)\simeq \Cc\simeq \CMon(\Cc)$, as required. If $\Cc$ is additive, then the image of $x\in \Cc$ under the above composite is automatically a cartesian group: Indeed, after an easy unravelling, the condition from \cref{def:E1Group} translates into the condition that the shear map on $x$ be an equivalence, which is guaranteed by $\Cc$ being additive.
+	
+	To prove \itememph{\boxtimes}, first note that we get a natural counit transformation $\Lan_p X_{|\Ii_{\leq 1}}\Rightarrow X$ for free, so whether this is an equivalence can be checked on objects. Recall from \cref{thm:KanExtension} that
+	\begin{equation*}
+		\Lan_p X_{|\Ii_{\leq 1}}(n)\simeq \colimit_{i\in \Ii_{\leq 1}/n}X_i
+	\end{equation*}
+	(it will follow from the discussion below that these colimits exist in $\Cc$, so the theorem is indeed applicable). Therefore we have to understand the slice categories $\IGamma_{\leq 1}^\op/\langle n\rangle$ and $\IDelta_{\leq 1}^\op/[n]\simeq ([n]/\IDelta_{\leq 1})^\op$. So let's describe $[n]/\IDelta_{\leq 1}$, first in words and then in a picture. Its vertices are given by maps $[n]\morphism {[1]}$ and $[n]\morphism {[0]}$ in $\IDelta$. There's only one of the latter kind and it is denoted $0$ (depicted on the right). There are $n+2$ maps $[n]\morphism {[1]}$: One that is constantly $0$, one that is constantly $1$ (depicted on the top and on the bottom), and $n$ surjective maps (depicted on the left). Moreover, there's a bunch of non-degenerate edges. The pink ones are those induced by $0\colon [0]\morphism {[1]}$ and $0\colon [1]\morphism {[1]}$, the purple ones are those induced by $1\colon [0]\morphism{[1]}$ and $1\colon [1]\morphism{[1]}$, and finally the black ones are induced by the unique morphism $[1]\morphism {[0]}$.
+	\begin{center}
+	\begin{tikzpicture}[x=0.6cm,y=0.6cm, line cap=round]
+		\fill (0,0) circle (0.5ex) coordinate (A);
+		\fill (0,-1) circle (0.5ex) coordinate (B);
+		\fill (0,-3) circle (0.5ex) coordinate (C);
+		\fill (3,-4) circle (0.5ex) coordinate (D);
+		\fill (3,1) circle (0.5ex) coordinate (E);
+		\node[rotate=-90] at (0,-2) {$\dotso$};
+		\fill (6,-1.5) circle (0.5ex) coordinate (F);
+		\node[left=1ex]  at (A) {$0\dotso01$};
+		\node[left=1ex] (001) at (B) {$0\dotso11$};
+		\node[left=1ex] (011) at (C) {$01\dotso1$};
+		\node[below=0.5ex] (111) at (D) {$1\dotso1$};
+		\node[above=0.5ex] (000) at (E) {$0\dotso0$};
+		\node[right=1ex] at (F) {$0$};
+		\path (001.south) -- (011.north) node[pos=0.5,sloped] {$\dotso$};
+		\draw[dotted, rounded corners=2] (1ex,1ex) to[out=0,in=150] (3.6cm+1ex,-0.9cm+1ex) to ++ (0,-2ex) to[out=210,in=0] (1ex,-1.8cm-1ex) to (-1ex,-1.8cm-1ex) to (-1ex,1ex) to (1ex,1ex);
+		%\draw[dotted, rounded corners=2, shift={(F)}] (1ex,1ex) -- (1ex,-1ex) -- (-1ex,-1ex) -- (-1ex,1ex) -- cycle;
+		% pink
+		\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=20] (A) to (E);
+		\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=10] (B) to (E);
+		\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=5] (C) to (E);
+		\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=10] (D) to (E);
+		\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend right=45] (F) to (E);
+		\draw[FabiansPink,-to,looseness=4] (000.115) to[out=115,in=65] (000.65);
+		%purple
+		\draw[FabiansPurple!67!FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=5] (A) to (D);
+		\draw[FabiansPurple!67!FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend right=15] (B) to (D);
+		\draw[FabiansPurple!67!FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend right=20] (C) to (D);
+		\draw[FabiansPurple!67!FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=15] (E) to (D);
+		\draw[FabiansPurple!67!FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend left=45] (F) to (D);
+		\draw[FabiansPurple!67!FabiansPink,-to,looseness=4] (111.-115) to[out=-115,in=-65] (111.-65);
+		% black
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend left=15] (A) to (F);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend right=5] (B) to (F);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend right=15] (C) to (F);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend right=20] (D) to (F);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend left=20] (E) to (F);
+	\end{tikzpicture}
+	\end{center}
+
+	However, the punchline is that all of this doesn't really matter, since the dotted part turns out to be consisting of the vertices on the left and $0$ on the right turns out to be final (in the lecture we claimed that already the vertices on the left are final, but I think that's not true). To prove this, verify the criterion from \cref{thm:JoyalQuillenThmA}\itememph{b} and use that the slice category in question contain the respective arrow starting at $0$ as a terminal object. After passing to $\IDelta_{\leq 1}^\op/[n]$ instead of $[n]/\IDelta$, the dotted part becomes cofinal, hence the colimit in question can be taken over the dotted part only. But the $0$-vertex on the right is mapped to $X_0\simeq 0$ and there are no edges between the vertices on the left, hence it's easy to see that the colimit over the dotted part is just $X_1^{\oplus n}$. This is precisely what we wanted to show!
+	
+	For $\IGamma^\op/\langle n\rangle$, we can draw a similar picture:
+	\begin{center}
+		
+		\begin{tikzpicture}[x=0.6cm,y=0.6cm, line cap=round]
+			\fill (0,0) circle (0.5ex) coordinate (A);
+			\fill (0,-1) circle (0.5ex) coordinate (B);
+			\fill (0,-3) circle (0.5ex) coordinate (C);
+			\fill (3,-1.5) circle (0.5ex) coordinate (D);
+			\node[rotate=-90] at (0,-2.065) {$\dotso$};
+			\fill (6,-1.5) circle (0.5ex) coordinate (F);
+			\node[left=1ex]  at (A) {$1$};
+			\node[left=1ex] (001) at (B) {$2$};
+			\node[left=1ex] (011) at (C) {$n$};
+			\node[right=0.5ex] (111) at (D) {$\emptyset$};
+			\node[right=1ex] at (F) {$\emptyset$};
+			\path (001.north) -- (011.south) node[pos=0.5,sloped] {$\dotso$};
+			\draw[dotted, rounded corners=2] (-1ex,-1.8cm-1ex) to (-1ex,1ex) to[bend left] (3.6cm+1ex,-0.9cm+1ex) to ++ (0,-2ex) to[bend left]  cycle;
+			\draw[dotted, rounded corners=2] (1.5,-1.65) to[out=90,in=90] (5,-1.65) to[out=-90,in=-90] cycle;
+			% pink
+			\draw[FabiansPink,-to,looseness=4] (111.-115) to[out=-115,in=-65] (111.-65);
+			\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex] (D) -- (A);
+			\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex] (D) -- (B);
+			\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex] (D) -- (C);
+			\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend right=20] (111.east) to (F);
+			\draw[FabiansPink,-to,shorten <=1.25ex,shorten >=1.25ex,bend right=20] (F) to (111.east);
+			%purple
+			% black
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend right] (F) to (A);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend right] (F) to (B);
+			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend left] (F) to (C);
+		\end{tikzpicture}
+	\end{center}
+	The vertices of $\IGamma^\op/\langle n\rangle$ consist of partially defined maps $\langle 0\rangle \morphism\langle n\rangle$ and $\langle 0\rangle \morphism\langle n\rangle$. As $\langle 0\rangle=\emptyset$, there is only one such map of the first kind, depicted by the vertex on the right. The vertex in the middle represents the unique nowhere-defined map $\langle 1\rangle\morphism \langle n\rangle$, and the vertices on the right correspond to the maps $\langle 1\rangle\morphism \langle n\rangle$ which are actually defined on $1$. Again, the dotted part (i.e.\ everything except the vertex in the middle) is cofinal and the colimit over it evaluates to $X_1^{\oplus n}$ since the vertex on the right is sent to $X_0\simeq 0$.
+\end{proof}
+
+
+Since $\Dd_{\geq 0}(\IZ)$ is additive, a simple consequence of \cref{prop:CMonOfSemiAdditive} is that the Eilenberg--MacLane functor from Very Long Example~\cref{exm:EilenberMacLane} lifts to a functor
+\begin{equation*}
+	K\colon \Dd_{\geq 0}(\IZ)\morphism\CGrp(\An)\,.
+\end{equation*}
+Indeed, $K$ is a right-adjoint by construction, hence it preserves products, so we can use the argument from the proof of \cref{cor:HomSemiAdditveFactorsThroughCGrpAn} to produce the desired lift. We will soon extend this further (in \cref{exm:MyFirstSpectra}\itememph{c})!
+
+So Eilenberg--MacLane anima give rise to $\IE_\infty$-groups. Another source of examples for $\IE_\infty$-monoids/groups is
+\begin{equation*}
+	\CMon(\Kan)\morphism \CMon(\An)\quad\text{and}\quad \CGrp(\Kan)\morphism \CGrp(\An)\,,
+\end{equation*}
+(again note that $\Kan\morphism \An$ preserves products), but these are essentially the same examples: It is a theorem of Dold--Thom, that a connected commutative monoid in Kan complexes has underlying anima a \emph{gem} (\enquote{generalized Eilenberg--MacLane space}; we defined these things in Very Long Example~\cref{exm:EilenberMacLane}). The same then holds for not necessarily connected commutative groups in Kan complexes, since all connected components are equivalent.
+\begin{prop}\label{prop:RealizationCommutesWithFiniteProducts}
+	The realization functor $|\blank|\colon \cat{sAn}\morphism\An$ preserves finite products.
+\end{prop}
+\begin{proof}
+	We compute
+	\begin{align*}
+		|M\times N|\simeq\colimit_{[n]\in\IDelta^\op}\left(M_n\times N_n\right)&\simeq \colimit_{([n],[m])\in \IDelta^\op\times \IDelta^\op}\left(M_n\times N_m\right)\\
+		&\simeq \colimit_{[n]\in\IDelta^\op}\left(M_n\times \colimit_{[m]\in\IDelta^\op}N_m\right)\\
+		&\simeq \left(\colimit_{[n]\in\IDelta^\op}M_n\right)\times \left(\colimit_{[m]\in\IDelta^\op}N_m\right)\\
+		&\simeq |M|\times |N|\,.
+	\end{align*}
+	For the second equivalence see \cref{exc:IDeltaOpSifted} below. The third equivalence follows from \cref{prop:ColimitsCommute} together with the fact that $M_n\times -$ commutes with arbitrary colimits. Indeed, for any $X\in\An$ the functor $X\times-\colon \An\morphism\An$ is a left adjoint of $\Hom_\An(X,-)$. Applying the same argument to $-\times \colimit_{\IDelta^\op}N_m$ gives the fourth equivalence.
+\end{proof}
+\begin{exc}\label{exc:IDeltaOpSifted}
+	Show that the diagonal $\Delta\colon \IDelta^\op\morphism\IDelta^\op\times \IDelta^\op$ is cofinal as a map of $\infty$-categories. In other words, $\IDelta^\op$ is \emph{sifted}.
+\end{exc}
+\begin{proof*}
+	By \cref{thm:JoyalQuillenThmA}\itememph{b} we need to check that $\IDelta^\op\times_{\IDelta^\op\times \IDelta^\op}([m],[n])/(\IDelta^\op\times \IDelta^\op)$ is weakly contractible for all $[m],[n]\in \IDelta^\op$. Note that we may form the slice category as a $1$-category, since the nerve functor commutes with limits. Also note that we may replace the slice category by its opposite $\Ss_{m,n}\coloneqq\IDelta\times_{\IDelta\times \IDelta}(\IDelta\times \IDelta)/([m],[n])$ for convenience.
+	
+	Unravelling definitions, we find that objects in $\Ss_{m,n}$ can be thought of as maps of posets $\alpha\colon [i]\morphism {}[m]\times [n]$. Any such map factors uniquely into a composition $[i]\epimorphism{} [j]\monomorphism{} [m]\times [n]$ of a surjective and an injective map. This defines a functor $r\colon \Ss_{m,n}\morphism\Cc_{m,n}$ into the category $\Cc_{m,n}$ of non-empty linearly ordered subposets of $[m]\times [n]$ ($\Cc_{m,n}$ is partially ordered by inclusion). But conversely, any such subposet is given by an injective map $[j]\monomorphism {}[m]\times [n]$ for some $j\leq m+n+1$, hence we get an inclusion $s\colon \Cc_{m,n}\morphism \Ss_{m,n}$ in the reverse direction. Clearly $r\circ s=\id_{\Cc_{m,n}}$, whereas the surjections $[i]\epimorphism{} [j]$ define a natural transformation $\id_{\Ss_{m,n}}\Rightarrow s\circ r$.
+	
+	This shows that $\Ss_{m,n}$ and $\Cc_{m,n}$ are weakly (and even strongly) homotopy equivalent after taking nerves. Now if we recall \cite[Definition~V.4.7]{HigherCatsI}, we recognize $\Cc_{m,n}$ as the barycentric subdivision $\operatorname{sd}(\Delta^m\times \Delta^n)$, which is weakly contractible because $\Delta^m\times \Delta^n$ is.
+\end{proof*}
+\begin{rem*}\label{rem*:RealizationOmega}
+	Recall that we have an adjunction
+	\begin{equation*}
+		|\blank|\colon \Mon(\An)\doublelrmorphism */\An\colon \Omega\,.
+	\end{equation*}
+	Although this follows from stuff we did before, I got quite a bit confused since for example \cref{par:Grp(An)=(*/An)Connected} says something slightly different. So it's perhaps worth to spell out where this adjunction actually comes from.
+	
+	For a pointed anima $(X,x)$, let $X_x$ denote the connected component containing $x$. Then $\Omega_xX\simeq \Omega_xX_x$, so the equivalence $\Omega\colon (*/\An)_{\geq 1}\isomorphism\Grp(\An)$ from \cref{par:Grp(An)=(*/An)Connected} extends to a functor $\Omega\colon */\An\morphism \Grp(\An)$. Now if $M\in \Mon(\An)$ is an $\IE_1$-monoid, we can compute
+	\begin{align*}
+		\Hom_{\Mon(\An)}(M,\Omega_xX)&\simeq \Hom_{\Grp(\An)}(M^\inftygrp,\Omega_xX_x)\\
+		&\simeq \Hom_{\Grp(\An)}\big(\Omega_e|M|,\Omega_xX_x\big)\\
+		&\simeq \Hom_{(*/\An)_{\geq 1}}\big(|M|,X_x\big)\\
+		&\simeq \Hom_{*/\An}\big(|M|,X\big)\,,
+	\end{align*}
+	which establishes the desired adjunction. The second equivalence follows from \cref{prop:InftyGrp}, the third equivalence uses that $\Omega\colon (*/\An)_{\geq 1}\isomorphism\Grp(\An)$ is an equivalence, and the fourth equivalence follows from the fact that $|M|$ is connected, hence any pointed map $|M|\morphism X$ only hits the connected component $X_x$. Also recall \cref{rem:Realization}, which ensures that the different meanings of $|\blank|$ ($\colimit_{\IDelta^\op}$ or localization of an $\infty$-category at all its morphisms) are actually compatible.
+\end{rem*}
+Now $|\blank|$ and $\Omega$ both preserve finite products---the former by \cref{prop:RealizationCommutesWithFiniteProducts}, the latter since it is a right-adjoint. So both functors preserve the Segal condition. Therefore the adjunction obtained from \cref{rem*:RealizationOmega} after applying $\Fun(\IGamma^\op,-)$ on both sides restricts to an adjunction
+\begin{equation}\label{eq:BOmegaAdjunction}
+	B\colon \CMon\big(\Mon(\An)\big)\doublelrmorphism \CMon(*/\An)\noloc \Omega
+\end{equation}
+(even though Fabian doesn't like to use $B$ instead of $|\blank|$, he does it here since we will soon have both $B$ and $|\blank|$ in one diagram). Now it is easy to see that the forgetful map $\CMon(*/\Cc)\morphism\CMon(\Cc)$ is an equivalence for any $\infty$-category $\Cc$ with finite products (and thus a terminal object $*\in \Cc$). We claim that also%\setcounter{smallerdummy}{0}
+\begin{equation}\label{eq:EckmannHilton}
+	\begin{tikzcd}[row sep=small]
+		\CMon\big(\Mon(\Cc)\big)\ar[dd,iso]\drar[bend left=20,"\mathrm{forget}_*","\sim"{swap,sloped}]& \\
+		\phantom{X}\rar[phantom, pos=0.4, "\scriptscriptstyle/\!/\!/"]&\CMon(\Cc)\\
+		\Mon\big(\CMon(\Cc)\big)\urar[bend right=20,iso,"\mathrm{forget}"'] &
+	\end{tikzcd}
+\end{equation}
+commutes (the forgetful functors are given by evaluation in degree $1$ of course). Once we have this, we will obtain the following statement (which is from the future, as its number suggests).
+\addtocounter{dummy}{2}
+\begin{cor}\label{cor:CommutativeHorizontalAdjoints}
+	There is a commutative diagram of horizontal adjunctionts
+	\begin{equation*}
+		\begin{tikzcd}
+			\CMon(\An)\rar[shift left=0.45ex, "B"]\dar["\Cut^*"'] & \CMon(\An)\lar[shift left=0.45ex,"\Omega"]\dar["\ev_1"]\\
+			\Mon(\An)\rar[shift left=0.45ex, "|\blank|"] & */\An\lar[shift left=0.45ex,"\Omega"]
+		\end{tikzcd}
+	\end{equation*}
+	Restricting $B$ to the full subcategory $\CGrp(\An)\subseteq\CMon(\An)$ gives a fully faithful functor $B\colon \CGrp(\An)\morphism\CMon(\An)$. Moreover, $\Omega$ from the top row takes values in $\CGrp(\An)$ and the composite $\Omega B\colon \CMon(\An)\morphism\CGrp(\An)$ is a left adjoint to $\CGrp(\An)\subseteq \CMon(\An)$.
+\end{cor}
+\begin{proof*}
+	We construct the diagram and prove commutativity first. The bottom row is already known. After identifying $\CMon(*/\An)\simeq \CMon(\An)$ and $\CMon(\An)\simeq \CMon(\Mon(\An))$, the upper row becomes \cref{eq:BOmegaAdjunction}. To see that the diagram commutes, we first check that the these identifications transform the forgetful functor $\CMon(\Mon(\An))\morphism\Mon(\An)$ into $\Cut^*\colon \CMon(\An)\morphism \Mon(\An)$. Indeed, this follows easily from \cref{eq:EckmannHilton}. Now both vertical arrows are of the form $\mathrm{forget}\colon \CMon(-)\morphism (-)$, from which commutativity of the diagram is clear.
+	
+	Next we check that $\Omega$ takes values in $\CGrp(\An)$. It suffices to check that ${\Cut^*}\circ\Omega$ lands in $\Grp(\An)$ (that's just how $\IE_\infty$-groups are defined). But ${\Cut^*}\circ \Omega\simeq \Omega\circ\ev_1$ and the right-hand side takes values in $\Grp(\An)$ by \cref{par:Grp(An)=(*/An)Connected}. 
+	
+	In particular, the top row adjunction restricts to an adjunction
+	\begin{equation*}
+		B\colon \CGrp(\An)\shortdoublelrmorphism \CMon(\An)\noloc \Omega\,.
+	\end{equation*}
+	To show that $B$ is fully faithful on $\CGrp(\An)$, it suffices therefore to check that the unit $\id\Rightarrow \Omega B$ is an equivalence. Equivalences of $\IE_\infty$-groups can be detected on underlying $\IE_1$-groups (in fact, even on underlying anima, i.e.\ after applying $\ev_1$). So it suffices that $\Cut^*\Rightarrow \Cut^*\Omega B$ is an equivalence. But $\Cut^*\Omega B\simeq \Omega\ev_1 B\simeq \Omega|\Cut^*|$, and if $G$ is an $\IE_\infty$-group, then $\Omega|\Cut^*G|\simeq (\Cut^*G)^\inftygrp\simeq G$ by \cref{prop:InftyGrp}. This finishes the proof that $B_{|\CGrp(\An)}$ is fully faithful.
+	
+	Let $\Cc\subseteq \CMon(\An)$ denote the essential image of $B_{|\CGrp(\An)}$. Then $B\colon \CGrp(\An)\isomorphism\Cc$ is an equivalence, hence its right adjoint $\Omega\colon \Cc\morphism\CGrp(\An)$ is an equivalence too. For $M\in \CMon(\An)$ and $G\in \CGrp(\An)$ we may thus compute
+	\begin{align*}
+		\Hom_{\CGrp(\An)}(\Omega BM,G)&\simeq \Hom_{\CGrp(\An)}(\Omega BM,\Omega BG)\\
+		&\simeq \Hom_\Cc(BM,BG)\\
+		&\simeq \Hom_{\CMon(\An)}(M,\Omega BG)\\
+		&\simeq \Hom_{\CMon(\An)}(M,G)\,,
+	\end{align*}
+	where we also used $G\simeq \Omega BG$ twice. This shows that $\Omega B\colon \CMon(\An)\morphism\CGrp(\An)$ is a left adjoint of the inclusion $\CGrp(\An)\subseteq \CMon(\An)$.
+\end{proof*}
+In particular, all examples from the end of the previous section, i.e.\ $k(R)$, $\gw^r(R)$, $k\mathrm{o}$, $k\mathrm{top}$, and $k\mathrm{sph}$, are canonically $\IE_\infty$-groups, since they arise as group completions of $\IE_\infty$-monoids.
+
+Also note that $B\colon \CMon(\An)\morphism\CMon(\An)$ actually takes values in $\CGrp(\An)$ (just like $\Omega$ does). Indeed, as argued in the proof of \cref{prop:Grp(An)=(*/An)Connected}, it suffices to check that the ordinary monoids $\pi_0(BM)_1$ are groups for all $M\in \CMon(\An)$. But in fact $\pi_0(BM)_1\simeq *$ is always a trivial group!
+
+Moreover, we get a commutative solid diagram
+\begin{equation*}
+	\begin{tikzcd}[column sep=large]
+		\Dd_{\geq 0}(\IZ)\dar[shift right=0.45ex,"{[1]=\Sigma}"']\rar["K"]\drar[phantom,"\scriptscriptstyle/\!/\!/"] & \CGrp(\An)\dar[shift right=0.45ex,"B"']\\
+		\Dd_{\geq 0}(\IZ)\uar[dotted,shift right=0.45ex,"{\Omega}"']\rar["K"] & \CGrp(\An)\uar[dotted,shift right=0.45ex,"\Omega"']
+	\end{tikzcd}
+\end{equation*}
+in $\Cat_\infty$. In a nutshell, this says that \enquote{$B$ preserves Eilenberg--MacLane anima and only shifts the homotopy groups up by $1$}. To see commutativity, first note that the diagram with the dotted vertical arrows commutes (where $\Omega=(\tau_{\geq 1}-)[-1]\colon \Dd_{\geq 0}(\IZ)\morphism \Dd_{\geq 0}(\IZ)$ is defined as in Philosophical Nonsense~\cref{rem:PhilosophicalNonsenseII}). Indeed, $\Omega$ is given by a pullback which is preserved by the right-adjoint functor $K$ (being a right adjoint is still true for the lift $K\colon \Dd_{\geq 0}(\IZ)\morphism \CGrp(\An)$, simply by construction and our \cref{obs:AdjunctionOfFunctorCats} that adjunctions extend to functor categories). By abstract nonsense, commutativity of the dotted diagram induces a natural transformation $BK\Rightarrow K\Sigma$. Whether this is an equivalence can be checked on objects $C\in \Dd_{\geq 0}(\IZ)$. But whether $BKC\morphism K\Sigma C$ is an equivalence can be checked on homotopy groups of underlying anima, i.e.\ it suffices to check that $\pi_*((BKC)_1,e)\isomorphism \pi_*((K\Sigma C)_1,e)$ is an isomorphism. But for general $X\in \CGrp(\An)$ we have
+\begin{equation*}
+	\pi_i\big((BX)_1,e\big)\simeq \begin{cases*}
+		\pi_{i-1}(X_1,e)& if $i>0$\\
+		* & if $i=0$ 
+	\end{cases*}
+\end{equation*}
+(indeed, its well-known that $\Omega$ shifts homotopy groups down, so $B$ has to shift them up since $\Omega B\simeq \id$ by \cref{cor:CommutativeHorizontalAdjoints}).
+
+Now towards the proof of \cref{eq:EckmannHilton}. Let's denote by $\Cat_\infty^\times\subseteq \Cat_\infty$ the (non-full) sub-$\infty$-category spanned by $\infty$-categories with finite products and functors preserving these. Let furthermore $\Cat_\infty^\mathrm{add}\subseteq \Cat_\infty^{\mathrm{semi\mhyph add}}\subseteq \Cat_\infty^\times$ denote the full sub-$\infty$-categories spanned by the additive and semi-additive $\infty$-categories respectively.\addtocounter{dummy}{-3}
+\begin{thm}\label{thm:CMonCGrpAdjunctions}
+	If an $\infty$-category $\Cc$ has products, then $\CMon(\Cc)$ and $\CGrp(\Cc)$ are semi-additive and additive, respectively. Furthermore, the functors
+	\begin{align*}
+		\CMon\colon \Cat_\infty^\times&\morphism \Cat_\infty^\mathrm{semi\mhyph add}\\
+		\CGrp\colon \Cat_\infty^\times &\morphism \Cat_\infty^\mathrm{add}
+	\end{align*}
+	are right-adjoint to the inclusions $ \Cat_\infty^{\mathrm{semi\mhyph add}}\subseteq \Cat_\infty^\times$ and $\Cat_\infty^\mathrm{add}\subseteq\Cat_\infty^\times$ respectively.
+\end{thm}
+Using \cref{thm:CMonCGrpAdjunctions} we get an easy proof of \cref{eq:EckmannHilton}. First note that the two maps
+\begin{equation*}
+	\begin{tikzcd}
+		\CMon\big(\CMon(\Cc)\big)\rar[bend left,start anchor=north east, end anchor=north west, "\sim"', "\mathrm{forget}_*"]\rar[bend right,start anchor=south east, end anchor=south west, "\sim", "\mathrm{forget}"'] & \CMon(\Cc)
+	\end{tikzcd}	
+\end{equation*}
+agree and are equivalences. Indeed, $\CMon(-)\morphism (-)$ is the counit of the adjunction from \cref{thm:CMonCGrpAdjunctions}, hence an equivalence since the left adjoint $\Cat_\infty^\mathrm{semi\mhyph add}\subseteq \Cat_\infty^\times$ is fully faithful. This shows that both functors are equivalences. Moreover, by writing down the triangle identities we find that both maps are inverses (once from the right, once from the left) to the unit $\CMon(\Cc)\morphism \CMon(\CMon(\Cc))$, hence they must agree. This almost shows \cref{eq:EckmannHilton}, except that we want to replace one $\CMon$ by a $\Mon$. To do this, note that \cref{prop:CMonOfSemiAdditive} implies $\CMon(\CMon(\Cc))\simeq \Mon(\CMon(\Cc))$. Moreover $\CMon(\Mon(\Cc))\simeq \Mon(\CMon(\Cc))$ follows by straightforward inspection, as both sides can be interpreted as full subcategories of $\Fun(\IDelta^\op\times \IGamma^\op,\Cc)$. Hence we are done.
+
+Note that our argument can not be extended to show that the two forgetful functors $\Mon(\Mon(\Cc))\shortdoublemorphism\Mon(\Cc)$ agree. This is still true, but much harder to show. Moreover, if $\Cc$ is a $1$-category, then $\Mon(\Mon(\Cc))\simeq \CMon(\Cc)$, a fact that is usually called the \emph{Eckmann--Hilton trick}. This is false for $\infty$-categories! What is true instead is
+\begin{equation*}
+	\CMon(\Cc)\simeq \limit_{n\in \IN^\op}\Mon^{(n)}(\Cc)\,,
+\end{equation*}
+where $\Mon^{(n)}(-)=\Mon(\Mon(\dotso(\Mon(-))\dotso))$ is the $n$-fold iteration of $\Mon(-)$. The transition morphisms $\Mon^{(n)}(\Cc)\morphism \Mon^{(n-1)}(\Cc)$ are given by forgetting one $\Mon$. There are $n$ choices to do so, but it turns out that they all agree, generalizing our claim about $\Mon(\Mon(\Cc))\shortdoublemorphism\Mon(\Cc)$.
+
+
+
+For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-additivity.
+\begin{lem}[compare {\cite[Proposition~\HAthm{2.4.3.19}]{HA}}, which is stronger]\label{lem:SemiAddCriterion}
+	Let $\Cc$ be a category with finite products. Then $\Cc$ is semi-additive if the following conditions hold:
+	\begin{alphanumerate}
+		\item The terminal object $*\in \Cc$ also is initial.
+		\item We have a natural transformation $\mu\colon (\Delta\colon x\mapsto x\times x)\Rightarrow\id_\Cc$ such that both compositions
+		\begin{align*}
+			x&\simeq x\times *\xrightarrow{{\id_x}\times 0} x\times x\morphism[\mu_x]x\\
+			 x&\simeq *\times x\xrightarrow{0\times{\id_x}} x\times x\morphism[\mu_x]x
+		\end{align*}
+		are homotopic to $\id_x$ for all $x\in \Cc$, and the diagram
+		\begin{equation*}
+			\begin{tikzcd}[column sep=small]
+				(x\times x)\times (y\times y)\drar["\mu_x\times \mu_y"']\ar[rr,"\id_x\times\mathrm{flip}\times \id_y"] & & (x\times y)\times (x\times y)\dlar["\mu_{x\times y}"]\\
+				& x\times y & 
+			\end{tikzcd}
+		\end{equation*}
+		commutes up to homotopy for all $x,y\in \Cc$.
+	\end{alphanumerate}
+\end{lem}
+\begin{rem*}
+	Both Fabian and Lurie only require that the first of the two compositions in \cref{lem:SemiAddCriterion}\itememph{b} is homotopic to $\id_x$. However, I don't think the second one follows from the first, and we'll really need both to be homotopic to $\id_x$ in the proof. In fact, if only the first composition were to be homotopic to $\id_x$, we could take $\mu_x$ to be $\pr_1\colon x\times x\morphism x$ for all $x\in \Cc$ (it's clear that this also makes the diagram above commute), and then we could show that every $\infty$-categories with finite products and a zero object is semi-additive. This can't be true!
+\end{rem*}
+\begin{proof}[Proof of \cref{lem:SemiAddCriterion}]
+	Let $c,d\in \Cc$. We want to show that the maps
+	\begin{equation*}
+		c\simeq c\times *\xrightarrow{\id_c\times 0}c\times d\quad\text{and}\quad d\simeq *\times d\xrightarrow{0\times\id_d}c\times d
+	\end{equation*}
+	exhibit $c\times d$ as a coproduct of $c$ and $d$. That is, we need to show that the natural transformation
+	\begin{equation*}
+		\phi\colon \Hom_\Cc(c\times d,-)\overset{\sim}{\Longrightarrow}\Hom_\Cc(c,-)\times \Hom_\Cc(d,-)
+	\end{equation*}
+	induced by these maps is an equivalence. This can be checked on objects. Given $a\in \Cc$, we construct an inverse $\psi_a$ to $\phi_a$ as follows:
+	\begin{equation*}
+		\psi_a\colon \Hom_\Cc(c,a)\times \Hom_\Cc(d,a)\morphism[\times]\Hom_\Cc(c\times d,a\times a)\morphism[\mu_a]\Hom_\Cc(c\times d,a)
+	\end{equation*}
+	Note that we do not claim that the $\psi_a$ combine into a natural transformation $\psi$ which is inverse to $\phi$, only that $\psi_a$ is inverse to $\phi_a$, since it suffices to have $\phi$ a pointwise equivalence. Let's prove $\phi_a\circ \psi_a\simeq \id$ first. This follows essentially from the first condition in \itememph{b}, but since this sparked some confusion in the lecture, I'll try to give a much more detailed proof than in the lecture and be as precise as possible (hopefully this doesn't make things worse). We begin by drawing a tiny diagram:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=1.765ex]
+			& \Hom_\Cc(c,a)\times \Hom_\Cc(d,a)\dar[iso]\ar[ldd,bend right,start anchor=west,"\times"']\ar[rddd,bend left,start anchor=east,"\id","\sim"{swap,sloped}] &[-3ex] \\
+			\phantom{X}\drar[phantom, start anchor=center, end anchor=center, "\mathrm{(I)}"]& \Hom_\Cc(c\times *,a\times *)\times \Hom_\Cc(*\times d,*\times a)\dar\drar[phantom, start anchor=center, end anchor=center, "\mathrm{(III)}"] &[-3ex] \\
+			\Hom_\Cc(c\times d,a\times a)\dar["\mu_a"']\rar\drar[phantom, start anchor=center, end anchor=center,"\mathrm{(II)}"] & \Hom_\Cc(c\times *,a\times a)\times \Hom_\Cc(*\times d,a\times a)\dar["\mu_a\times \mu_a"] &[-3ex] \phantom{X} \\
+			\Hom_\Cc(c\times d,a)\rar & \Hom_\Cc(c\times*,a)\times \Hom_\Cc(*\times d,a)\rar[iso] &[-3ex] \Hom_\Cc(c,a)\times \Hom_\Cc(d,a)
+		\end{tikzcd}
+	\end{equation*}
+	If we can show that this diagram commutes up to homotopy, then walking around its perimeter will show $\phi_a\circ \psi_a\simeq \id$. The cell labelled (III) commutes up to homotopy because the composition of the three downward pointing arrows and the rightward pointing arrow is induced by $\mu_a\circ (\id_a\times 0)\colon a\simeq a\times *\morphism a\times a\morphism a$ in the first factor and by $\mu_a\circ (0\times\id_a)\colon a\simeq *\times a\morphism a\times a\morphism a$ in the second factor, both of which are homotopic to $\id_a$ by assumption.
+	
+	To see that the cell labelled (II) commutes up to homotopy, it suffices to check this after composition with $\pr_1\colon \Hom_\Cc(c\times *,a)\times \Hom_\Cc(*\times d,a)\morphism \Hom_\Cc(c\times *,a)$ and after composition with $\pr_2\colon \Hom_\Cc(c\times *,a)\times \Hom_\Cc(*\times d,a)\morphism \Hom_\Cc(*\times d,a)$. We only give the argument for $\pr_1$, since the argument for $\pr_2$ will be analogous. After composition with $\pr_1$, we end up with two maps $\Hom_\Cc(c\times d,a\times a)\morphism \Hom_\Cc(c\times *,a)$. Both are given by precomposition with $c\times *\morphism c\times d$ and postcomposition with $\mu_a\colon a\times a\morphism a$, but in different orders. However, it doesn't matter (up to homotopy) in which order we postcompose and precompose, which proves commutativity of (II).
+	
+	Finally, to see that (I) commutes, we look at the diagram (and its obvious analogue where $c\times *$ is replaced by $*\times d$)
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_\Cc(c,a)\times \Hom_\Cc(d,a)\dar\rar["\times"] & \Hom_\Cc(c\times d,a\times a)\dar\\
+			\Hom_\Cc(c,a)\times \Hom_\Cc(*,a)\rar["\times"] & \Hom_\Cc(c\times *,a\times a)\\
+			\Hom_\Cc(c,a)\times \Hom_\Cc(*,*)\uar[iso]\rar["\times"] & \Hom_\Cc(c\times *,a\times *)\uar
+		\end{tikzcd}
+	\end{equation*}
+	This commutes \enquote{by naturality of the $\times$-construction on morphism anima}. The bottom left vertical arrow is an equivalence since $*$ is initial, so $\Hom_\Cc(*,-)\simeq *$. In particular, this shows $\Hom_\Cc(c,a)\times \Hom_\Cc(*,*)\simeq \Hom_\Cc(c,a)$. Under this identification, the bottom row becomes the morphism $\Hom_\Cc(c,a)\morphism \Hom_\Cc(c\times *,a\times *)$ from (I) and the two left vertical arrows compose to the projection $\pr_1\colon \Hom_\Cc(c,a)\times \Hom_\Cc(d,a)\morphism \Hom_\Cc(c,a)$. This shows that (I) commutes indeed and therefore that $\phi_a\circ \psi_a\simeq \id$.
+	
+	Now we prove $\psi_a\circ \phi_a\simeq \id$. First we check that $\psi_a\circ\phi_a$ is homotopic to the map induced by precomposition with
+	\begin{equation*}
+		c\times d\simeq (c\times *)\times (*\times d)\morphism (c\times d)\times (c\times d)\xrightarrow{\mu_{c\times d}} c\times d\,.
+	\end{equation*}
+	To show this, we draw another moderately large diagram:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=0.5em]
+			\Hom_\Cc(c,a)\times \Hom_\Cc(d,a)\dar\drar[phantom, start anchor=center, end anchor=center, "\mathrm{(IV)}"]&[-0.4em] \Hom_\Cc(c\times d,a)\dar["\Delta"]\lar\ar[ddr,bend left,start anchor=east, end anchor=north,"\mu_{c\times d}"]\ar[ddr,phantom, start anchor=center, end anchor=center, "\mathrm{(V)}",pos=0.25] & \\
+			\Hom_\Cc(c\times d,a\times a)\dar["\mu_a"']\ar[drr,phantom, start anchor=center, end anchor=center, "\mathrm{(VI)}"] & \Hom_\Cc\big((c\times d)\times (c\times d),a\times a)\big)\lar[dotted]\drar[bend left=20, start anchor=east,"\mu_a"'] &  \\
+			\Hom_\Cc(c\times d,a) & \Hom_\Cc\big((c\times *)\times (*\times d),a\big)\lar & \Hom_\Cc\big((c\times d)\times (c\times d),a\big)\lar
+		\end{tikzcd}
+	\end{equation*}
+	The cell labelled (V) commutes up to homotopy because $\mu\colon \Delta\Rightarrow \id$ is a natural transformation (and I believe Fabian is right that we really need this here---if we were to use Lurie's weaker condition, it would only commute on $\pi_0$). If we choose the dotted arrow to be induced by $c\times d\simeq(c\times *)\times (*\times d)\morphism (c\times d)\times (c\times d)$, then also (VI) commutes up to homotopy because it doesn't matter in which order precomposition with said morphism and postcomposition with $\mu_a$ are applied. Finally, (IV) commutes by inspection. Walking around the perimeter of this diagram now proves that $\psi_a\circ \phi_a$ is really induced by precomposition with the map from above.
+	
+	Now we finally use the second condition from \itememph{b} to obtain a homotopy-commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			c\times d\rar[iso]\drar[iso] & (c\times *)\times (*\times c)\eqar[d]\rar & (c\times d)\times (c\times d)\rar["\mu_{c\times d}"] & c\times d\\
+			& (c\times *)\times (*\times d)\rar & (c\times c)\times (d\times d)\uar["\id_c\times\mathrm{flip}\times \id_c","\sim"{swap,sloped}]\urar["\mu_c\times \mu_d"']
+		\end{tikzcd}
+	\end{equation*}
+	in $\Cc$. Using the first condition from \itememph{b} we see that the composition of the lower three arrows is homotopic to $\id_c\times \id_d$. Hence the morphism we precompose with is homotopic to the identity on $c\times d$, which shows $\psi_a\times \phi_a\simeq \id$, as required.
+\end{proof}
+\begin{proof}[Proof of \cref{thm:CMonCGrpAdjunctions}]
+	We first prove that $\CMon(\Cc)$ is semi-additive. Of course we would like to apply \cref{lem:SemiAddCriterion}, so we must produce the corresponding data on $\CMon(\Cc)$. First of all, note that $\const_*\colon \IGamma^\op\morphism \Cc$ is both terminal and initial. It is even terminal in $\Fun(\IGamma^\op,\Cc)$ because $*\in \Cc$ is terminal and limits in functor categories are computed pointwise (\cref{lem:f^*preservesColimits}). To see that it is initial, let $X\in \CMon(\Cc)$ and compute
+	\begin{equation*}
+		\Nat(\const_*,X)\simeq \Hom_\Cc\left(*,\limit_{\langle n\rangle\in \IGamma^\op}X_n\right)\simeq \Hom_\Cc(*,X_0)\simeq \Hom_\Cc(*,*)\simeq *\,,
+	\end{equation*}
+	where we used that $\langle 0\rangle\in \IGamma^\op$ is a terminal object and thus spans a final subset.
+	
+	Next we need to construct functorial maps $\mu_M\colon M\times M\morphism M$ for all $M\in \CMon(\Cc)$. Consider the map $\times \colon \IGamma^\op\times \IGamma^\op\morphism \IGamma^\op$ given by crossing the sets and crossing the morphisms (note that this wouldn't work with $\IDelta^\op$). It induces a functor $\Fun(\IGamma^\op,\Cc)\morphism \Fun(\IGamma^\op,\Fun(\IGamma^\op,\Cc))$, and one easily checks that the Segal condition is preserved, i.e.\ we get a functor
+	\begin{equation*}
+		\operatorname{Double}\colon \CMon(\Cc)\morphism\CMon\big(\CMon(\Cc)\big)\,.
+	\end{equation*}
+	Unravelling definitions, we find that $\operatorname{Double}(-)_1\colon \CMon(\Cc)\morphism\CMon(\Cc)$ is naturally equivalent to the identity and $\operatorname{Double}(-)_2\colon \CMon(\Cc)\morphism\CMon(\Cc)$ is naturally equivalent to the diagonal $\Delta\colon M\mapsto M\times M$. Hence we can take $\mu_M\colon M\times M\morphism M$ to be the multiplication $m\colon \operatorname{Double}(M)_2\morphism \operatorname{Double}(M)_1$, i.e.\ the map induced by $m\colon \langle 2\rangle \morphism\langle 1\rangle$ in $\IGamma^\op$ (see \cref{def:CartesianCommutativeMonoids}). Since the $\mu_M$ are induced by a map in $\IGamma^\op$, it's clear that they assemble into a natural transformation $\mu$. Also the required conditions for $\mu$ are straightforward to check.
+	
+	This shows that $\CMon(\Cc)$ is semi-additive by \cref{lem:SemiAddCriterion}. Hence the same holds for its full subcategory $\CGrp(\Cc)\subseteq \CMon(\Cc)$ since this is closed under finite products. To show that $\CGrp(\Cc)$ is additive, we need to check that the shear map is an equivalence for all objects $G\in \CGrp(\Cc)$. But in view of the fact that the codiagonal $G\times G\morphism G$ is induced by $\mu_G$ (this follows by unravelling the explicit inverse in the proof of \cref{lem:SemiAddCriterion}), hence by multiplication on $\operatorname{Double}(G)$, this gets translated into the fact that $\operatorname{Double}(G)$ is a cartesian commutative group itself, which is again easy to check.
+	
+	Finally, we need to show that $\CMon\colon \Cat_\infty^\times\morphism \Cat_\infty^\mathrm{semi\mhyph add}$ and $\CGrp\colon \Cat_\infty^\times \morphism \Cat_\infty^\mathrm{add}$ are right adjoints. If we denote $R=\CMon$ and $\eta\colon R\Rightarrow \id$ the forgetful natural transformation (given by evaluation in degree $1$), then \cref{prop:CMonOfSemiAdditive} and the fact that $\CMon(\Cc)$ is semi-additive show that $\eta R\colon R\circ R\overset{\sim}{\Longrightarrow} R$ and $R\eta\colon R\circ R\overset{\sim}{\Longrightarrow} R$ are natural equivalences. Thus we may apply the dual of Proposition~\labelcref{prop:LLaddendum} to see that $R$ is a right adjoint to the inclusion $\im(R)\subseteq \Cat_\infty^\times$ of its essential image. But $\im(R)=\Cat_\infty^\mathrm{semi\mhyph add}$: Indeed, \enquote{$\subseteq$} was checked above, whereas \enquote{$\supseteq$} follows from \cref{prop:CMonOfSemiAdditive} again. The argument for $\CGrp$ is completely analogous.
+\end{proof}
+\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \enquote{\emph{Peter May hates this proof. I love it.}}]{2020-12-10}
+The forgetful functor $\CMon(\An)\morphism\An$ as a left adjoint $\Free^\CMon\colon \An\morphism \CMon(\An)$. On objects $X\in\An$ it is given by
+\begin{equation*}
+	\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{hS_n}^n\,,
+\end{equation*}
+i.e.\ we take free words in $X$, but we need to homotopy-quotient out the action of the symmetric group $S_n$, which the notation $(-)_{hS_n}$ is supposed to do. In general, given a functor $F\colon BG\morphism\Cc$, where $\Cc$ is an $\infty$-category with colimits and $G$ is a discrete group, we put
+\begin{equation*}
+	F_{hG}\simeq \colimit_{BG}F\,.
+\end{equation*}
+On $X^n$, the $S_n$-action is given by \enquote{permuting words}, so the corresponding functor $BS_n\morphism\An$ sends the unique $0$-simplex to $X^n$, the edges to the corresponding automorphisms of $X^n$ and so on. As an example,
+\begin{equation*}
+	\Free^\CMon(*)_1\simeq \coprod_{n\geq 0}BS_n\simeq S,
+\end{equation*}
+where $S\in \Grpd_1^{(2)}\subseteq \An$ is the symmetric monoidal groupoid of finite sets and bjections between them, whose tensor product is given by disjoint union.
+
+
+Also, if $G$ is a topological group, then $BG$ agrees with the classifying space for principal $G$-bundles.
+
+\section{Spectra and Stable \texorpdfstring{$\infty$}{infinity}-Categories}
+Let $\CGrp(\An)_{\geq i}\subseteq \CGrp(\An)$ be the full sub-$\infty$-category spanned by those $X$ with $\pi_jX_1=0$ for $j<i$. We have seen in \cref{cor:CommutativeHorizontalAdjoints} that $B\colon \CGrp(\An)\morphism\CMon(\An)$ is fully faithful with right adjoint $\Omega$. Moreover, after its proof we checked that $B$ actually has essential image in $\CGrp(\An)_{\geq 1}$. In fact, its essential image \emph{is} $\CGrp(\An)_{\geq 1}$! To see this, it suffices to check that the counit $c\colon B\Omega X\isomorphism X$ is an equivalence for all $X\in \CGrp(\An)_{\geq 1}$. This can be checked on underlying anima, i.e.\ after $\ev_1$, and then again on homotopy groups. Since $\Omega$ shifts homotopy groups down and $B$ shifts them up, we get that $c_*\colon \pi_i(B\Omega X)_1\isomorphism \pi_i X_1$ is an isomorphism for $i>0$. For $i=0$ it is one as well as both sides are connected.
+
+Iterating this argument, we find that the $i$-fold application $B^{(i)}=B\circ\dotsb\circ B$ is an equivalence
+\begin{equation*}
+	B^{(i)}\colon \CGrp(\An)\isomorphism\CGrp(\An)_{\geq i}\,.
+\end{equation*}
+Moreover, since $\Omega B\simeq \id$ by \cref{cor:CommutativeHorizontalAdjoints}, we get $\Omega B^{(i+1)}\simeq B^{(i)}$. This yields a fully faithful functor
+\begin{equation*}
+	B^\infty\colon \CGrp(\An)\morphism \limit_{\IN^\op}\left(\dotso\morphism[\Omega]\CGrp(\An)\morphism[\Omega]\CGrp(\An)\right)
+\end{equation*}
+(the limit being taken in $\Cat_\infty$ of course) with essential image
+\begin{equation*}
+	\limit_{\IN^\op}\left(\dotso\morphism[\Omega]\CGrp(\An)_{\geq 2}\morphism[\Omega]\CGrp(\An)_{\geq 1}\right)\,.
+\end{equation*}\stepcounter{dummy}
+\begin{defi}\label{def:spectra}
+	We say that an $\infty$-category $\Cc$ has \emph{finite limits} if it has finite products and pullbacks (one can check that this is equivalent to having limits over all finite simplicial sets). If this is the case, then a suspension functor $\Omega\colon */\Cc\morphism */\Cc$ can be defined and we put
+	\begin{equation*}
+		\Sp(\Cc)\coloneqq \limit_{\IN^\op}\left(\dotso\morphism[\Omega]*/\Cc\morphism[\Omega]*/\Cc\right)\,
+	\end{equation*}
+	called the $\infty$-category of \emph{spectrum objects} in $\Cc$. If $\Cc=\An$, we obtain $\Sp=\Sp(\An)$, the $\infty$-category of \emph{spectra}.
+\end{defi}
+\begin{prop}\label{prop:SpCGrpIsSpAgain}
+	Suppose $\Cc$ has finite limits. Then the forgetful functor
+	\begin{equation*}
+		\Sp\big(\CGrp(\Cc)\big)\isomorphism\Sp(\Cc)
+	\end{equation*}
+	is an equivalence.
+\end{prop}
+\begin{proof}[Proof sketch]
+	Topologists hate this proof. First observe that $\Sp(\CGrp(\Cc))\simeq \CGrp(\Sp(\Cc))$. This is because
+	\begin{equation*}
+		\limit_{\IN^\op}\left(\dotso\morphism[\Omega]\Fun(\IGamma^\op,*/\Cc)\morphism[\Omega]\Fun(\IGamma^\op,*/\Cc)\right)\simeq \Fun\left(\IGamma^\op,\limit_{\IN^\op}\left(\dotso\morphism[\Omega]*/\Cc\morphism[\Omega]*/\Cc\right)\right)
+	\end{equation*}
+	(here we use that $\Fun(\Dd,-)\colon \Cat_\infty\morphism\Cat_\infty$ commutes with limits since it is right-adjoint to $\Dd\times -$ and also that $\Omega$ in functor categories can be computed pointwise by \cref{lem:f^*preservesColimits}) and one checks that the Segal condition and the group condition are preserved.
+	
+	Therefore, we will be done by \cref{prop:CMonOfSemiAdditive} once we show that $\Sp(\Cc)$ is an additive category. Of course we will employ \cref{lem:SemiAddCriterion} again. Clearly $(*,*,\dotsc)\in \Sp(\Cc)$ is both initial and terminal. Also $\Sp(\Cc)$ again has finite limits, inherited from $*/\Cc$ because limits in limits can be computed degree-wise (combine the fact that $\Hom$ anima in limits are limits of $\Hom$ anima with \cref{cor:HomPreservesColimits} and \cref{prop:ColimitsCommute}). Moreover, we know that $\Omega\colon \Sp(\Cc)\isomorphism \Sp(\Cc)$ is an equivalence by construction and factors as
+	\begin{equation*}
+		\Omega\colon \Sp(\Cc)\morphism \Grp\big(\Sp(\Cc)\big)\morphism[\ev_1]\Sp(\Cc)
+	\end{equation*}
+	(I didn't find this quite obvious, so I decided to sketch a proof in \cref{rem*:OmegaFactorsOverGrp} below). Finally, to apply \cref{lem:SemiAddCriterion}, we must produce functorial morphisms $\mu_X\colon X\times X\morphism X$ with the properties stated there. For this, we use $X\simeq \Omega(\Omega^{-1}X)_1$ and take $\mu_X$ to be induced by the multiplication on $\Omega(\Omega^{-1}X)\in \Grp(\Sp(\Cc))$.
+	
+	Up to checking the various conditions, this shows that $\Sp(\Cc)$ is semi-additive. For additivity we must check that the shear map is an equivalence on every $X\in \Sp(\Cc)$. Similar to the proof of \cref{thm:CMonCGrpAdjunctions} this follows from the fact that $\Omega(\Omega^{-1}X)$ is a cartesian group rather than just a monoid.
+\end{proof}
+\begin{rem*}\label{rem*:OmegaFactorsOverGrp}
+	If I'm not mistaken, then for any $\infty$-category $\Dd$ with finite limits and a zero object $*\in \Dd$ (i.e.\ an object that is both initial and terminal) the functor $\Omega\colon \Dd\morphism\Dd$ factors as
+	\begin{equation*}
+		\Omega\colon \Dd\morphism\Grp(\Dd)\morphism[\ev_1]\Dd
+	\end{equation*}
+	This can be bootstrapped from the case $\Dd=*/\An$ which we already know from \cref{par:Grp(An)=(*/An)Connected}. The first step is to enhance the Yoneda embedding to a fully faithful functor $\Dd\morphism \Fun(\Dd^\op,*/\An)$. To this end we consider $\Fun(\Dd^\op,\An)\morphism\Fun(\Ar(\Dd^\op),\Ar(\An))\morphism\Fun(*/\Dd^\op,\Ar(\An))$ and check that its image lands in the \enquote{correct fibre}, i.e.\ in $\Fun(*/\Dd^\op,*/\An)$ if we restrict the source to the full subcategory of finite limits-preserving functors (in which Yoneda embedding lands).
+	
+	On $\Fun(\Dd^\op,*/\An)$ we have loop functor $\Omega\colon \Fun(\Dd^\op,*/\An)\morphism \Fun(\Dd^\op,*/\An)$ as well, and it is simply given by postcomposition with $\Omega\colon */\An\morphism*/\An$. Hence it factors as 
+	\begin{equation*}
+		\begin{tikzcd}
+			& \Fun\big(\Dd^\op,\Grp(*/\An)\big)\dar["\ev_1"]\rar[iso] & \Grp\big(\Fun(\Dd^\op,*/\An)\big)\\
+			\Fun(\Dd^\op,*/\An)\rar["\Omega"]\urar[dashed,"\Omega"]&\Fun(\Dd^\op,*/\An)
+		\end{tikzcd}
+	\end{equation*}
+	Since the Yoneda embedding preserves limits, we get a lift $\Omega\colon \Dd\morphism \Grp(\Fun(\Dd^\op,*/\An))$ and one checks that it lands in the full sub-$\infty$-category $\Grp(\Dd)$, as required.
+\end{rem*}
+
+Because  $\IN^\op\subseteq \IZ^\op$ is final, we can also write $\Sp(\Cc)\simeq\limit_{\IZ^\op}(\ActsOn{*/\Cc}{\Omega})$. This gives evaluation functors
+\begin{equation*}
+	\Omega^{\infty-i}\colon \Sp(\Cc)\morphism\Cc\,.
+\end{equation*}
+for all $i\in \IZ$. Note $\Omega\Omega^{\infty-i}X\simeq \Omega^{\infty-(i-1)}X\simeq\Omega^{\infty-i}\Omega X$, so this somewhat weird notation actually makes sense. For $X\in \Sp$ we can now define homotopy groups as
+\begin{equation*}
+	\pi_iX=\pi_0\Omega^{\infty-i}X\,.
+\end{equation*}
+If we think of a spectrum $X$ as a sequence $X=(X_0,X_1,X_2,\dotsc)$, where $X_i=\Omega^{\infty-i}X$, together with equivalences $X_i\simeq \Omega X_{i+1}$, then we see that $\pi_iX\simeq \pi_0X_i\simeq \pi_jX_{i+j}$ for all $j\geq 0$ because $\Omega\colon */\An\morphism */\An$ shifts homotopy groups down.
+
+\numpar*{Summary}
+Let's explicitly record the following facts we learned so far in the proof of \cref{prop:SpCGrpIsSpAgain} and afterwards:
+\begin{alphanumerate}
+	\item $\Sp(\Cc)$ has finite limits (because $*/\Cc$ has) and limits in $\Sp(\Cc)$ are computed degree-wise, i.e.\ $\Omega^{\infty-i}\colon \Sp(\Cc)\morphism\Cc$ preserves limits.
+	\item $\Omega\colon \Sp(\Cc)\isomorphism\Sp(\Cc)$ is an equivalence.
+	\item $\Sp(\Cc)$ is additive.
+\end{alphanumerate}
+\begin{cor}[Recognition principle for infinite loop spaces, Boardman--Vogt, May, Segal]
+	The functor
+	\begin{equation*}
+		B^\infty\colon\CGrp(\An)\morphism\Sp
+	\end{equation*}
+	is fully faithful with essential image those $X\in \Sp$ with $\pi_iX=0$ for $i<0$ \embrace{as a slogan, $\IE_\infty$-groups are spectra with no negative homotopy groups}. Also $\pi_i(B^\infty X)=\pi_i(X_1,*)$ for all $i\geq 0$.
+\end{cor}
+\begin{proof*}
+	The target of $B^\infty$ is $\Sp(\CGrp(\An))\simeq \Sp$ by \cref{prop:SpCGrpIsSpAgain}. We have seen that $B^\infty$ is fully faithful and identified its image before \cref{def:spectra}, and it's easy to see that the two descriptions of the essential image of $B^\infty$ are the same (for this we need the convention $0\notin\IN^\op$, otherwise everything gets shifted by one).
+\end{proof*}
+\begin{exm}\label{exm:MyFirstSpectra}
+	Let $\Cc$ always have finite limits. Here are \enquote{my first spectra}:
+	\begin{alphanumerate}
+		\item If $\Omega\colon */\Cc\isomorphism */\Cc$ is an equivalence, then $\Sp(\Cc)\simeq \Cc$ (because $|\IN^\op|\simeq *$). For example, $\Sp(\Dd(\IZ))\simeq \Dd(\IZ)$ or, even more silly, $\Sp(\Sp)\simeq \Sp$.
+		\item Let's compute $\Sp(\Dd_{\geq 0}(R))$ for a ring $R$. Recall that the loop functor on $\Dd_{\geq 0}(\IZ)$ is defined as $\Omega C\simeq \tau_{\geq 0}(C[-1])\in \Dd_{\geq 0}(R)$. Then the functor
+		\begin{align*}
+			\Dd(R)&\isomorphism \Sp\big(\Dd_{\geq 0}(R)\big)\\
+			C&\longmapsto \big(\tau_{\geq 0}C,(\tau_{\geq -1}C)[1],(\tau_{\geq -2}C)[2],\dotsc\big)
+		\end{align*}
+		is an equivalence. The inverse functor sends a sequence $(C_0,C_1,\dotsc)$ with equivalences $\sigma_i\colon C_i\simeq (\tau_{\geq 1}C_{i+1})[-1]$ to $\colimit_\IN C_i[-i]$. The structure maps $C_i[-i]\morphism C_{i+1}[-(i+1)]$ in this colimit are constructed from the $\sigma_i$ in the obvious way.
+		\item Consider the Eilenberg--MacLane functor $K\colon \Dd_{\geq 0}(\IZ)\morphism \An$. Being a right adjoint, it preserves finite limits, and in particular loop spaces. Hence it upgrades to a functor
+		\begin{equation*}
+			\begin{tikzcd}
+				\Sp\big(\Dd_{\geq 0}(\IZ)\big)\eqar[d]\rar["\Sp(K)"]& \Sp(\An)\eqar[d]\\
+				\Dd(\IZ)\rar["H"] & \Sp
+			\end{tikzcd}
+		\end{equation*}
+		the \emph{Eilenberg--MacLane spectrum functor}. By construction, the diagram
+		\begin{equation*}
+			\begin{tikzcd}[column sep=small]
+				\Dd(\IZ)\drar["{K(\tau_{\geq -i}-)[i]}"']\ar[rr,"H"] & & \Sp\dlar["\Omega^{\infty-i}"]\\
+				& \CGrp(\An)
+			\end{tikzcd}
+		\end{equation*}
+		commutes. If $C\in \Dd_{\geq 0}(\IZ)$, then $HC=(K(C),K(C[1]),K(C[2]),\dotsc)$ and we have $\pi_i HC=H_iC$. If $C$ is an abelian group $A$ concentrated in degree $0$, we obtain the \emph{Eilenberg--MacLane spectrum} $HA=(K(A,0),K(A,1),K(A,2),\dotsc)$.
+		\item We have $\Sp(\An^\op)\simeq *$, because it is a sequential limit over $(\emptyset/\An^\op)\simeq (\An/\emptyset)^\op\simeq *$ (since there is no map $X\morphism\emptyset$ in $\An$ except $\id_\emptyset\colon \emptyset\morphism \emptyset$). Also
+		\begin{align*}
+			\Sp\big((*/\An)^\op\big)&\simeq \limit_{\IN^\op}\left(\dotso\morphism[\Omega](*/\An)^\op\morphism[\Omega](*/\An)^\op\right)\\
+			&\simeq \limit_{\IN^\op}\left(\dotso\morphism[\Sigma]*/\An\morphism[\Sigma]*/\An\right)^\op\simeq *\,,
+		\end{align*}
+		since only contractible spaces can be an infinite suspension (as all homotopy groups must be vanish).
+	\end{alphanumerate}
+\end{exm}
+\begin{propdef}
+	If $\Cc$ is an $\infty$-category with a zero object \embrace{i.e.\ a simultaneously initial and terminal object $0\in \Cc$}, then the following are equivalent:
+	\begin{alphanumerate}
+		\item $\Cc$ has finite limits and $\Omega\colon \Cc\isomorphism\Cc$ is an equivalence.
+		\item $\Cc$ has finite colimits and $\Sigma\colon \Cc\isomorphism \Cc$ is an equivalence.
+		\item $\Cc$ has finite limits and finite colimits and a square
+		\begin{equation*}
+			\begin{tikzcd}
+				a \rar\dar& b\dar\\
+				c\rar & d
+			\end{tikzcd}
+		\end{equation*}
+		is a pushout in $\Cc$ iff it is a pullback.
+	\end{alphanumerate}
+	Such $\infty$-categories are called \emph{stable $\infty$-categories}.
+\end{propdef}
+\begin{proof}
+	The implications \itememph{c} $\Rightarrow $ \itememph{a}, \itememph{b} are clear: Applying the pushout-pullback condition to the pushout square defining $\Sigma$ and the pullback square defining $\Omega$ shows that the unit $\id\overset{\sim}{\Longrightarrow}\Omega\Sigma$ and the counit $\Sigma\Omega\overset{\sim}{\Longrightarrow}\id$ are natural equivalences, so $\Sigma$ and $\Omega$ must be equivalences of $\infty$-categories.
+	
+	 For \itememph{a} $\Rightarrow$ \itememph{c}, the same argument as in the proof of \cref{prop:SpCGrpIsSpAgain} shows that $\Cc$ is additive  (write $X$ as $\Omega Y$ in $\Grp(\Cc)$ and apply \cref{lem:SemiAddCriterion}). So we only need to check that pushouts exist and coincide with pullbacks. Let $P\subseteq \Fun(\Delta^1\times\Delta^1,\Cc)$ be the full subcategory spanned by pullback squares. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape The restriction $P\isomorphism \Fun(\Lambda_0^2,\Cc)$ is an equivalence.
+	\end{alphanumerate}
+	To prove \itememph{\boxtimes}, we construct an inverse functor. Given a diagram $F\colon \Lambda_0\morphism \Cc$, which we can view as a span $c\lmorphism a\morphism b$ in $\Cc$, we construct the following moderately large diagram:
+	\begin{equation*}
+		\begin{tikzcd}
+			\Omega a\rar\dar\drar[pullback] & \Omega c\rar\dar\drar[pullback] & 0\dar & \\
+			\Omega b\rar\dar\drar[pullback] & x \rar\dar\drar[pullback] & g \rar\dar\drar[pullback] & 0\dar\\
+			0\rar & f\rar\dar\drar[pullback] & a\dar\rar & b\\
+			& 0\rar & c & 
+		\end{tikzcd}
+	\end{equation*}
+	All squares are pullbacks as indicated. The fact that $\Omega a$, $\Omega b$, and $\Omega c$ appear in the top left corner follows by combining suitable pullback squares into larger pullback rectangles. The inverse functor now sends 
+	\begin{equation*}
+		F=\left(\begin{tikzcd}
+			a\dar\rar & b\\
+			c
+		\end{tikzcd}\right)\longmapsto
+		\Omega^{-1}\left(\begin{tikzcd}
+			\Omega a\dar\rar\drar[pullback] & \Omega b\dar\\
+			\Omega c\rar & x
+		\end{tikzcd}\right)
+	\end{equation*}
+	(technically we have only defined the inverse on objects, but its clear how to make it functorial since limits are functorial).
+	
+	To construct pushouts using \itememph{\boxtimes}, let $F\colon \Lambda_0^2\morphism\Cc$ be a span $c\lmorphism a\morphism b$ as above. We know that it can be uniquely (up to contractible choice) extended to a pullback square, where the bottom right corner is some object $d\in \Cc$. The same goes for the trivial span consisting of identities $x=x=x$ for some $x\in \Cc$, and in this case the object we have to add is $x$ again of course. Hence
+	\begin{equation*}
+		\Nat\left(\begin{tikzcd}
+			a\dar\rar & b\\
+			c
+		\end{tikzcd},\begin{tikzcd}
+		x\eqar[r]\eqar[d] & x\\
+		x
+	\end{tikzcd}\right)\simeq \Nat\left(\begin{tikzcd}
+	 a\dar\rar\drar[pullback] &  b\dar\\
+	 c\rar & d
+	\end{tikzcd},\begin{tikzcd}
+	x\eqar[r]\eqar[d]\drar[pullback] & x\eqar[d]\\
+	x\eqar[r] & x
+	\end{tikzcd}\right)\simeq \Hom_\Cc(d,x)
+	\end{equation*}
+	because $\Delta^1\times \Delta^1$ has terminal vertex $(1,1)$. This computation shows that $d$ is a pushout of the given span. Moreover, we get the property that pushouts agree with pullbacks for free. This finishes the proof of \itememph{a} $\Rightarrow$ \itememph{c}. For \itememph{b} $\Rightarrow$ \itememph{c} just dualize everything.
+\end{proof}
+
 
 \backmatter\KOMAoption{chapterprefix}{false}
 \printbibliography

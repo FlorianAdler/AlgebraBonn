@@ -239,9 +239,18 @@
 \newoperator{comp}
 \newoperator{decomp}
 \newcommand{\IDelta}{
-	\mathchoice{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\scriptstyle\Delta$\hspace{0.025em}}}}{\Delta\llap{\scalebox{0.775}{$\scriptscriptstyle\Delta$\hspace{0.025em}}}}
+	\mathchoice{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}%
+	{\Delta\llap{\scalebox{0.775}{$\Delta$\hspace{0.025em}}}}%
+	{\Delta\llap{\scalebox{0.775}{$\scriptstyle\Delta$\hspace{0.025em}}}}%
+	{\Delta\llap{\scalebox{0.775}{$\scriptscriptstyle\Delta$\hspace{0.025em}}}}
 	}%{\boldsymbol{\Delta}}
-\newcommand{\IGamma}{\raisebox{\depth}{\scalebox{1}[-1]{$\mathbb L$}}}
+\newcommand{\IGamma}{%
+	\mathchoice{\raisebox{\depth}{\scalebox{1}[-1]{$\mathbb L$}}}%
+	{\raisebox{\depth}{\scalebox{1}[-1]{$\mathbb L$}}}%
+	{\raisebox{\depth}{\scalebox{1}[-1]{$\scriptstyle\mathbb L$}}}%
+	{\raisebox{\depth}{\scalebox{1}[-1]{$\scriptscriptstyle\mathbb L$}}}
+	}
+	
 \newoperator{Cut}
 \newoperator{core}
 \newoperator{const}
@@ -360,6 +369,10 @@
 
 \newlength{\morphismlength}
 \settowidth{\morphismlength}{$\longrightarrow$}
+
+\newcommand{\ActsOn}[2]{\begin{tikzcd}[cramped]
+		#1\ar[from=1-1,to=1-1,start anchor=-10, end anchor=10,bend right=125,looseness=7,"#2"']
+\end{tikzcd}}
 
 %somewhat ugly
 \NewDocumentCommand{\doublemorphism}{O{} O{}}{%

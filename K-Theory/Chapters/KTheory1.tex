@@ -621,7 +621,7 @@ We obtain a chain of adjunctions
 \end{equation*}
 (all bottom arrows are right-adjoints, that's why the direction of the arrows on the left is swapped). Going from $\cat{Top}$ to $\Ch_{\geq 0}(\IZ)$ sends a topological space $X$ to its singular chain complex $C_\bullet^\sing(X)$. Going in the reverse direction sends a chain complex $C$ to the corresponding generalized Eilenberg--MacLane space. In particular, if $C=A[n]$ is given by an single abelian group $A$ sitting in degree $n$, then it is sent to $K(A,n)$.
 
-\numpar{Philosophical Nonsense~II}
+\numpar{Philosophical Nonsense~II}\label{rem:PhilosophicalNonsenseII}
 To describe what an unbounded chain complex is, it suffices to understand bounded below chain complexes. Namely, a chain complex $C\in\Ch(R)$ can be described by the sequence of truncations $\tau_{\geq i}C\in\Ch_{\geq i}(R)$. These are given by
 \begin{equation*}
 	\tau_{\geq i}C=\left(\dotso \xrightarrow{\partial_{i+3}} C_{i+2}\xrightarrow{\partial_{i+2}} C_{i+1} \xrightarrow{\partial_{i+1}}\ker \partial_i\morphism 0\morphism 0\morphism \dotso\right)
@@ -858,7 +858,7 @@ There are at least four equivalent ways to do so.
 	All constructions in \cref{par:HomC} give the same functor $\Hom_\Cc\colon \Cc^\op\times\Cc\morphism\cat{An}$ up to equivalence.
 \end{thm}
 
-We won't prove \cref{thm:AllHomconstructionsBornEqual}. Lurie shows that \cref{par:HomC}\itememph{a} and \itememph{b} are equivalent in \cite[Proposition~5.2.1.11]{HA}, and to show equivalence of \itememph{c} and \itememph{d} you probably shouldn't go for a direct proof, but show that either one is equivalent to \itememph{b}. Fabian believes that if one works with any of these constructions long enough, then it will become obvious that the others are equivalent to it.
+We won't prove \cref{thm:AllHomconstructionsBornEqual}. Lurie shows that \cref{par:HomC}\itememph{a} and \itememph{b} are equivalent in \cite[Proposition~\HAthm{5.2.1.11}]{HA}, and to show equivalence of \itememph{c} and \itememph{d} you probably shouldn't go for a direct proof, but show that either one is equivalent to \itememph{b}. Fabian believes that if one works with any of these constructions long enough, then it will become obvious that the others are equivalent to it.
 
 \numpar{More on the twisted arrow category}\label{par:MoreOnTwAr}
 By \cref{par:HomC}\itememph{b} and \cref{thm:StraighteningAn}, the twisted arrow category of $\Cc$ sits inside a pullback (up to equivalence, or take the pullback in $\Cat_\infty$)
@@ -1236,7 +1236,7 @@ for any $\infty$-category $\Ee$.
 	whenever either exists. In particular \embrace{taking $p$ to be the projection $\pr_2\colon \Ii\times\Cc\morphism\Cc$ for some $\infty$-category $\Ii$}, this means that \enquote{colimits commute}. Also a dual assertion holds, with $p$ a cartesian fibration and all colimits replaced by limits.
 \end{prop}
 \begin{proof*}
-	Fabian claims (I think) this follows from \cite[Proposition~4.3.2.12]{HTT}, but Lurie's proof is rather laborious, so I'll give my own proof*. As it turns out, the arguments are pretty much the same as for the proof of Theorems~\labelcref{thm:ColimitPreservingRepresentable,thm:KanExtension} in Fabians notes. I'll freely reference later results (without running into circular arguments, I hope).
+	Fabian claims (I think) this follows from \cite[Proposition~\HTTthm{4.3.2.12}]{HTT}, but Lurie's proof is rather laborious, so I'll give my own proof*. As it turns out, the arguments are pretty much the same as for the proof of Theorems~\labelcref{thm:ColimitPreservingRepresentable,thm:KanExtension} in Fabians notes. I'll freely reference later results (without running into circular arguments, I hope).
 	
 	We will prove the dual version, so let $p\colon \Ee\morphism\Cc$ be cartesian (the undualized version follows by applying $(-)^\op$ everywhere). We want to construct $G$ as the right Kan extension $G\simeq p_*F$. Let's first consider the case where $\Dd$ is replaced by $\Pp(\Dd)$. Then the dual of \cref{thm:StraighteningAn} implies $\Fun(\Cc,\Pp(\Dd))\simeq \Fun(\Cc\times\Dd^\op,\An)\simeq \Right(\Cc^\op\times\Dd)$ and same for $\Dd$, so we may apply \cref{lem*:SmoothBaseChange} below to the cocartesian fibration $p^\op\times\id_\Dd\colon \Ee^\op\times\Dd\morphism\Cc^\op\times\Dd$ to see that $p^*\colon \Fun(\Cc,\Pp(\Dd))\morphism\Fun(\Ee,\Pp(\Dd))$ has a right adjoint $p_*$. Now consider the diagram
 	\begin{equation*}
@@ -1270,7 +1270,7 @@ for any $\infty$-category $\Ee$.
 	\end{equation*}
 \end{lem*}
 \begin{proof*}
-	Without loss of generality all cartesian or right fibrations can be taken in the old sense. Consider $\sSet/\Cc$ and $\sSet/\Dd$ equipped with their contravariant model structures (see the dual of \cite[\S2.1.4]{HTT}). The functor $p^*\colon\sSet/\Dd\morphism\sSet/\Cc$ has a right adjoint $p_*$ for abstract reasons: It's straightforward to check that $p^*$ preserves colimits, so \cref{thm:2Yoneda} can be applied to $\sSet/\Dd\simeq\Pp((\Delta/\Dd)^\op)$ (here $\Delta/S$ denotes the slice category with respect to the functor $\Delta\colon \IDelta\morphism\sSet$ sending $[n]\mapsto \Delta^n$). However, for $p^*\colon \sSet/\Dd\shortdoublelrmorphism\sSet/\Cc\noloc p_*$ to be a Quillen adjunction, we need $p^*$ to preserve trivial contravariant equivalences (preservation of cofibrations and cofibrant objects is clear). Thankfully, this holds for $p$ a cocartesian fibration, see \cite[Proposition~4.1.2.15]{HTT} or the dual of \cite[Proposition~X.43]{HigherCatsII} for the essential case. As in the proof* of \cref{thm:JoyalRightFibrations}, this implies that $(p^*,p_*)$ descends to an adjunction on underlying $\infty$-categories, as desired.
+	Without loss of generality all cartesian or right fibrations can be taken in the old sense. Consider $\sSet/\Cc$ and $\sSet/\Dd$ equipped with their contravariant model structures (see the dual of \cite[\S2.1.4]{HTT}). The functor $p^*\colon\sSet/\Dd\morphism\sSet/\Cc$ has a right adjoint $p_*$ for abstract reasons: It's straightforward to check that $p^*$ preserves colimits, so \cref{thm:2Yoneda} can be applied to $\sSet/\Dd\simeq\Pp((\Delta/\Dd)^\op)$ (here $\Delta/S$ denotes the slice category with respect to the functor $\Delta\colon \IDelta\morphism\sSet$ sending $[n]\mapsto \Delta^n$). However, for $p^*\colon \sSet/\Dd\shortdoublelrmorphism\sSet/\Cc\noloc p_*$ to be a Quillen adjunction, we need $p^*$ to preserve trivial contravariant equivalences (preservation of cofibrations and cofibrant objects is clear). Thankfully, this holds for $p$ a cocartesian fibration, see \cite[Proposition~\HTTthm{4.1.2.15}]{HTT} or the dual of \cite[Proposition~X.43]{HigherCatsII} for the essential case. As in the proof* of \cref{thm:JoyalRightFibrations}, this implies that $(p^*,p_*)$ descends to an adjunction on underlying $\infty$-categories, as desired.
 	
 	So $p_*$ and $q_*$ exist. The counit $p^*p_*\Rightarrow \id$ induces a transformation $q^*f^*p_*\simeq g^*p^*p_*\Rightarrow g^*$, whose adjoint is the transformation $f^*p_*\Rightarrow q_*g^*$. Whether this is an equivalence can be checked on objects. However, explicitly computing $p_*$ and $q_*$ is nasty, so we employ a trick: By Yoneda, it suffices to check that $\Hom_{\Right(\Dd')}(-,f^*p_*-)\Rightarrow \Hom_{\Right(\Dd')}(-,q_*g^*-)$ is a natural equivalence. But $f^*$ and $g^*$ have left adjoints $f_!$ and $g_!$ by \cref{thm:JoyalRightFibrations}, so we may as well show that $\Hom_{\Right(\Cc)}(p^*f_!-,-)\Rightarrow \Hom_{\Right(\Cc)}(g_!q^*-,-)$ is an equivalence, i.e., that $g_!q^*\Rightarrow p^*f_!$ is an equivalence. This is now easily checked on objects: Unravelling, we need to prove that if $X\epimorphism\Dd'$ is a right fibration and $X\monomorphism Y\epimorphism \Dd$ is a factorization into a right anodyne and a right fibration, then $X\times_\Dd\Cc\monomorphism Y\times_\Dd\Cc$ is right anodyne again, which follows from the references above since $p\colon \Cc\morphism\Dd$ is cocartesian.
 \end{proof*}
@@ -1292,7 +1292,7 @@ for any $\infty$-category $\Ee$.
 	\end{alphanumerate}
 \end{thm}
 \begin{proof*}
-	Combine \cite[Proposition~4.1.1.8]{HTT} (for more equivalent characterizations) and \cite[Theorem~4.1.3.1]{HTT} (for the actual proof).
+	Combine \cite[Proposition~\HTTthm{4.1.1.8}]{HTT} (for more equivalent characterizations) and \cite[Theorem~\HTTthm{4.1.3.1}]{HTT} (for the actual proof).
 \end{proof*}
 \begin{defi}\label{def:cofinal}
 	Maps $\alpha\colon \Ii\morphism \Jj$ as in \cref{thm:JoyalQuillenThmA} are called \emph{cofinal}. Dually, if precomposition with $\alpha$ preserves limits, then $\alpha$ is called \emph{final}.
@@ -1335,7 +1335,7 @@ holds for every $x\in \Cc$ since $p^*\colon \Fun(\Cc[W^{-1}],\Dd)\morphism\Fun(\
 \end{proof}
 \numpar{\enquote{Corollary}}\label{cor:completeIffPullbacksProducts}\itshape If $\Cc$ has coproducts and pushouts, then it is cocomplete. Dually, if $\Cc$ has products and pullbacks, then it is complete.\upshape
 \begin{proof}[\enquote{Proof} sketch]
-	Decompose any test category $\Ii$ into its skeleta and repeatedly apply \cref{cor:ColimitsCommute} using $\colimit_{\Delta^n}F=F(n)$ since $\{n\}\monomorphism \Delta^n$ is cofinal---in fact, all right anodyne maps are cofinal. For a complete proof, check out \cite[Proposition~4.4.2.6]{HTT}.
+	Decompose any test category $\Ii$ into its skeleta and repeatedly apply \cref{cor:ColimitsCommute} using $\colimit_{\Delta^n}F=F(n)$ since $\{n\}\monomorphism \Delta^n$ is cofinal---in fact, all right anodyne maps are cofinal. For a complete proof, check out \cite[Proposition~\HTTthm{4.4.2.6}]{HTT}.
 \end{proof}
 \subsection{Colimits and the Yoneda embedding}
 We start with an existence result for \enquote{Kan extensions} which was already used in the proof* of \cref{prop:ColimitsCommute}.
@@ -1362,7 +1362,7 @@ We start with an existence result for \enquote{Kan extensions} which was already
 	\begin{equation*}
 		Lf_!\colon (\sSet/\Cc)_\infty\doublelrmorphism(\sSet/\Dd)_\infty\noloc Rf^*
 	\end{equation*}
-	on underlying $\infty$-categories, defined as the localizations at all weak equivalences, or equivalently as $\N^c((\sSet/\Cc)^{\mathrm{cf}})$ and $\N^c((\sSet/\Cc)^{\mathrm{cf}})$, since $\sSet/\Cc$ and $\sSet/\Dd$ can be made into a Kan simplicial model category, so \cite[Digression~III Theorem~D]{HigherCatsII} applies. The latter description shows that the underlying $\infty$-categories identify with $\Right(\Cc)$ and $\Right(\Dd)$, which provides the desired adjoint. Since right anodyne maps are cofinal (\cite[Proposition~4.1.1.3]{HTT}), a quick unraveling shows that $Lf_!$ can indeed be described as above.
+	on underlying $\infty$-categories, defined as the localizations at all weak equivalences, or equivalently as $\N^c((\sSet/\Cc)^{\mathrm{cf}})$ and $\N^c((\sSet/\Cc)^{\mathrm{cf}})$, since $\sSet/\Cc$ and $\sSet/\Dd$ can be made into a Kan simplicial model category, so \cite[Digression~III Theorem~D]{HigherCatsII} applies. The latter description shows that the underlying $\infty$-categories identify with $\Right(\Cc)$ and $\Right(\Dd)$, which provides the desired adjoint. Since right anodyne maps are cofinal (\cite[Proposition~\HTTthm{4.1.1.3}]{HTT}), a quick unraveling shows that $Lf_!$ can indeed be described as above.
 \end{proof*}
 \begin{cor}\label{cor:f_!:PC->PD}
 	The functor $f^*\colon \Pp(\Dd)\morphism\Pp(\Cc)$ has a left-adjoint $f_!$ \embrace{given by left Kan extension} such that the diagram
@@ -1426,7 +1426,7 @@ Note that \cref{cor:HomInFunctorCats} explains why natural transformations are c
 	\begin{equation*}
 		\Nat(F,\const x)\simeq \limit_{(c\rightarrow c')\in\TwAr(\Cc)}\Hom_\Dd(F(c),x)\morphism\limit_{c\in\Cc^\op}\Hom_\Dd(F(c),x)\,.
 	\end{equation*}
-	So we are done if we show that $s\colon\TwAr(\Cc)\morphism\Cc^\op$ is final. By (the dual of) \cref{thm:JoyalQuillenThmA}\itememph{b} we must show $|s/c|\simeq *$ for all $c\in \Cc^\op$. Applying \cref{exc:cocartesianFibrationLeftAdjoint} to the cocartesian fibration $s={\pr_2}\circ(s,t)\colon\TwAr(\Cc)\morphism\Cc^\op\times\Cc\morphism\Cc^\op$, we find that $|s^{-1}\{c\}|\simeq|s/c|$ since adjoints induce inverse homotopy equivalences after applying $|\blank|$; alternatively one can use that left adjoints are final. Now $s^{-1}\{c\}$ has an initial object which immediately shows $|s^{-1}\{c\}|\simeq *$. In fact, we have $s^{-1}\{c\}\simeq c/\Cc$ (and $\id_c$ is initial in the right-hand side): Depending on your definitions, this is either something one has to check (as in the proof of \cite[Proposition~5.2.1.10]{HA}), or follows from the fact that $t\colon s^{-1}\{c\}\morphism \Cc$ represents the functor $\Hom_\Cc(c,-)$ and is thus given by the right fibration $c/\Cc\morphism \Cc$.
+	So we are done if we show that $s\colon\TwAr(\Cc)\morphism\Cc^\op$ is final. By (the dual of) \cref{thm:JoyalQuillenThmA}\itememph{b} we must show $|s/c|\simeq *$ for all $c\in \Cc^\op$. Applying \cref{exc:cocartesianFibrationLeftAdjoint} to the cocartesian fibration $s={\pr_2}\circ(s,t)\colon\TwAr(\Cc)\morphism\Cc^\op\times\Cc\morphism\Cc^\op$, we find that $|s^{-1}\{c\}|\simeq|s/c|$ since adjoints induce inverse homotopy equivalences after applying $|\blank|$; alternatively one can use that left adjoints are final. Now $s^{-1}\{c\}$ has an initial object which immediately shows $|s^{-1}\{c\}|\simeq *$. In fact, we have $s^{-1}\{c\}\simeq c/\Cc$ (and $\id_c$ is initial in the right-hand side): Depending on your definitions, this is either something one has to check (as in the proof of \cite[Proposition~\HAthm{5.2.1.10}]{HA}), or follows from the fact that $t\colon s^{-1}\{c\}\morphism \Cc$ represents the functor $\Hom_\Cc(c,-)$ and is thus given by the right fibration $c/\Cc\morphism \Cc$.
 \end{proof}
 \begin{exc}\label{exc:cocartesianFibrationLeftAdjoint}
 	Let $p\colon \Ee\morphism\Cc$ be a cocartesian fibration \embrace{in the old sense; if you want this to work in the new sense as well, all fibre products need to be taken inside $\Cat_\infty$}. Show that the natural map $\Ee\times_\Cc\{c\}\morphism \Ee\times_\Cc \Cc/c$ has a left adjoint for all $c\in \Cc$.
@@ -1575,7 +1575,7 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	\begin{equation*}
 		\Hom_{\Cart(\Cc)}(\Jj,X)\simeq \Hom_{\Cart(\Cc)}\big(Y^\Cc\!/E,X\big)
 	\end{equation*}
-	for right fibrations $X\morphism \Cc$. This easily implies $\F_{Y^\Cc\!/E}(\Jj,X)\simeq \F_{Y^\Cc\!/E}(Y^\Cc\!/E,X)$ for all right fibrations $X\morphism Y^\Cc\!/E$, hence $\Jj\morphism Y^\Cc\!/E$ is indeed cofinal in the sense of \cite[Definition~4.1.1.1]{HTT} (which is equivalent to our \cref{def:cofinal}).
+	for right fibrations $X\morphism \Cc$. This easily implies $\F_{Y^\Cc\!/E}(\Jj,X)\simeq \F_{Y^\Cc\!/E}(Y^\Cc\!/E,X)$ for all right fibrations $X\morphism Y^\Cc\!/E$, hence $\Jj\morphism Y^\Cc\!/E$ is indeed cofinal in the sense of \cite[Definition~\HTTthm{4.1.1.1}]{HTT} (which is equivalent to our \cref{def:cofinal}).
 \end{proof*}
 \begin{warn*}\label{warn*:LanFCommutesWithColimits}
 	In the situation of \cref{thm:KanExtension}, there examples where $f\colon \Cc\morphism\Ee$ is fully faithful and colimit-dense, but still $\Lan_fF$ doesn't commute with colimits (but of course the functor $\Lan_f$ itself does preserve colimits as it is a left adjoint). Here's a counterexample, I think. Let $\Cc=\IN\sqcup\{c\}$ be the poset consisting of $\IN$ and a totally unrelated additional point $c$, such that $\Hom_\Cc(c,n)=\emptyset=\Hom_\Cc(n,c)$ for all $n\in \IN$. Let $\Ee=\Cc^\triangleright$ be the cocone below $\Cc$, with tip $e\in \Ee$, and let $f\colon \Cc\morphism \Ee$ be the canonical inclusion. Let $F\colon \Cc\morphism\An$ be the functor that is constant with value $\emptyset\in \An$ on $\IN$ and takes $F(c)=*\in \An$. Then $\colimit_{n\in \IN}n\simeq e$ and we have
@@ -1622,7 +1622,7 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 \end{proof}
 This finishes the proofs of \cref{thm:ColimitPreservingRepresentable} and \cref{thm:KanExtension}. Time for examples!
 
-\numpar{Very Long Example}
+\numpar{Very Long Example}\label{exm:EilenberMacLane}
 We will show that algebraic topology is a corollary of \cref{thm:ColimitPreservingRepresentable}. Let $\Cc=*$. Then the theorem shows that the evaluation at the point $*\in \An$ is an equivalence
 \begin{equation*}
 	\ev_*\colon \Fun^L(\An,\Dd)\isomorphism \Dd\,.
@@ -1639,9 +1639,9 @@ The right adjoint of $C_\bullet$ is
 \end{equation*}
 (this is another $K$ that has nothing to do with $K$-theory), which is now our official definition of \emph{Eilenberg--MacLane \sout{spaces} anima}. On objects $C\in \Dd_{\geq 0}(\IZ)$ it can be explicitly described as $K(C)\simeq \Hom_{\Dd_{\geq 0}(\IZ)}(\IZ[0],C)$ by \cref{cor:ExplicitAdjoint}. The $(C_\bullet,K)$ adjunction can be upgraded to an adjunction
 \begin{equation*}
-	C_\bullet(-,*)\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,.
+	\snake{C}_\bullet\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,.
 \end{equation*}
-I believe Fabian's argument for this in the lecture contained a small mistake, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. Now let $\IS^i$ be your favourite model for the $i$-sphere in anima and compute
+Here $\snake{C}_\bullet(X,x)$ is the complex computing the \emph{reduced homology} of a pointed anima $(X,x)$. For example, if $\IS^i$ is your favourite model for the $i$-sphere in anima, then $C_\bullet(\IS^i,*)\simeq \IZ[i]$. This new adjunction needs a bit of justification, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. For now let's compute
 \begin{align*}
 	\pi_iK(C)&\simeq \pi_0\Hom_{*/\An}\big((\IS^i,*),K(C)\big)\\
 	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(\IS^i,*),C\big)\\
@@ -1700,13 +1700,22 @@ are called \emph{gems} (a pun on \enquote{generalized Eilenberg--MacLane spaces}
 \end{equation*}
 Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(C)$ (indeed if you take the same pullback in $\An$, it will give you the loop space). In particular, $K(A,n-1)\simeq \Omega K(A,n)$ for all $n\geq 1$. And that's our first spectrum!
 \begin{rem*}\label{rem*:UpgradeToPointed}
-	In the lecture we claimed that since $0\in \Dd_{\geq 0}(\IZ)$ is an initial object, $K$ lifts to a functor $K\colon \Dd_{\geq 0}(\IZ)\simeq 0/\Dd_{\geq 0}(\IZ)\morphism */\An$, but that doesn't quite work, because $K(0)$ is not $*$, but the initial object $\emptyset\in \An$. Instead, we have to do the following: By \cref{obs:AdjunctionOfFunctorCats}, the adjunction $(C_\bullet,K)$ passes to arrow categories. Moreover, $*$ and $\IZ[0]$ are mapped to each other and the unit/counit are equivalences on them, hence one can check that the adjunction on arrow categories induces an adjunction $*/\An\shortdoublelrmorphism \IZ[0]/\Dd_{\geq 0}(\IZ)$.
+	To construct a lift $K\colon \Dd_{\geq 0}(\IZ)\morphism */\An$, Fabian explained that $0\in \Dd_{\geq 0}(\IZ)$ is an initial object and $K(0)\simeq \Hom_{\Dd_{\geq 0}(\IZ)}(\IZ[0],0)\simeq *$, so $K$ lifts to a functor $K\colon \Dd_{\geq 0}(\IZ)\simeq 0/\Dd_{\geq 0}(\IZ)\morphism */\An$ on slice categories. I claimed that $K(0)\simeq \emptyset$ in a previous version of these notes, but that's nonsense and Fabian was completely right!
 	
-	But of course we want to get rid of $\IZ[0]/\Dd_{\geq 0}(\IZ)$! To do this, note that there is a functor $\Dd_{\geq 0}(\IZ)\morphism \IZ[0]/\Dd_{\geq 0}(\IZ)$ sending $D$ to the zero map $0\colon \IZ[0]\morphism D$. This has a left adjoint, sending $\phi\colon \IZ[0]\morphism C$ to $\cofib(\phi)\coloneqq \colimit(0\lmorphism \IZ[0]\morphism[\phi]C)$. To see that this is indeed a left adjoint, use \cref{cor:HomPreservesColimits} and the computation of $\Hom$ anima in slice categories (\cite[Proposition~VIII.6]{HigherCatsII}). Since adjoints compose, we thus end up with an adjunction
+	Yet the fact that $K$ has a left adjoint is not entirely automatic; more precisely, it's not an instance where an adjunction automatically descends to slice categories (this will happen occasionally in the future). The reason is $C_\bullet(*)\simeq \IZ[0]$, so $C_\bullet$ doesn't lift to a functor $*/\An\morphism 0/\Dd_{\geq 0}(\IZ)\simeq \Dd_{\geq 0}(\IZ)$ on slice categories. Instead, we have to define a functor $\snake{C}_\bullet\colon*/\An\morphism \Dd_{\geq 0}(\IZ)$ taking a pointed anima $(X,x)$ to the pushout
 	\begin{equation*}
-		C_\bullet(-,*)\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,,
+		\begin{tikzcd}
+			\IZ[0]\simeq C_\bullet(x)\rar\dar\drar[pushout]& C_\bullet(X)\dar\\
+			0\rar & \snake{C}_\bullet(X,x)
+		\end{tikzcd}
 	\end{equation*}
-	where $C_\bullet(-,*)$ computes \emph{reduced} homology. For example, if $\IS^i$ denotes the $i$-sphere, then $C_\bullet(\IS^i,*)\simeq \cofib(\IZ[0]\morphism \IZ[0]\oplus \IZ[i])\simeq \IZ[i]$, as one would expect.
+	or in other words, to the \emph{cofibre} $\cofib(C_\bullet(x)\morphism C_\bullet(X))$. It's straightforward to check that $\snake{C}_\bullet$ is indeed left-adjoint to $K$. Indeed, from \cref{cor:HomPreservesColimits} and the computation of $\Hom$ anima in slice categories (\cite[Proposition~VIII.6]{HigherCatsII}) we get
+	\begin{align*}
+		\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(X,x),D\big)&\simeq \Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(X),D\big)\times_{\Hom_{\Dd_{\geq 0}(\IZ)}(C_\bullet(x),D)}\{0\}\\
+		&\simeq \Hom_\An\big(X,K(D)\big)\times_{\Hom_\An(x,K(D))}\{K(0)\simeq *\rightarrow K(D)\}\\
+		&\simeq \Hom_{*/\An}\big((X,x),K(D)\big)
+	\end{align*}
+	The complex $\snake{C}_\bullet(X,x)$ computes reduced homology. For example, if $\IS^i$ denotes the $i$-sphere, then $C_\bullet(\IS^i,*)\simeq \cofib(\IZ[0]\morphism \IZ[0]\oplus \IZ[i])\simeq \IZ[i]$, as one would expect.
 \end{rem*}
 \begin{exm}\label{exm:RezkNerve}
 	Two more applications of \cref{thm:ColimitPreservingRepresentable}:
@@ -1871,8 +1880,30 @@ We first prove the following lemma.
 		\Hom_\Dd\left(-,L\Big(\limit_\Ii RF\Big)\right)&\simeq \Hom_\Cc\left(R\,-,RL\Big(\limit_\Ii RF\Big)\right)\\
 		&\simeq \Hom_\Cc\left(R\,-,\limit_\Ii RF\right)\\
 		&\simeq \Hom_\Cc\left(R\,-,R\left(\limit_\Ii F\right)\right)\\
-		&\simeq \Hom_\Dd\left(-,\limit_\Ii F\right)\,.\tag*{\qedhere}
+		&\simeq \Hom_\Dd\left(-,\limit_\Ii F\right)\,,%\tag*{\qedhere}
 	\end{align*}
+	as desired.
+\end{proof}
+\refstepcounter{smallerdummy}
+Before we discuss our first examples of Bousfield localizations, we need to discuss a proposition which Fabian originally forgot to put here, but which came up later in the course.
+\numpar*{\thesmallerdummy. Proposition \textmd{(see \cite[Proposition~\HTTthm{5.2.7.4}]{HTT})}}\label{prop:LLaddendum}
+	\itshape Let $L\colon \Cc\morphism \Cc$ be a functor together with a natural transformation $\eta\colon \id\Rightarrow L$ such that both maps
+	\begin{equation*}
+		\eta_{Lx}\colon Lx\isomorphism LLx\quad\text{and}\quad L\eta_x\colon Lx\isomorphism LLx
+	\end{equation*}
+	are equivalences for all $x\in \Cc$. Then $L\colon\Cc\morphism \im(L)$ is left-ajoint to the inclusion $\im(L)\subseteq \Cc$ with unit $\eta$. In particular, $L$ is a Bousfield localization and $L\eta \simeq \eta L$ as natural transformations \embrace{by the triangle identities}.\upshape
+\begin{proof}
+	We will prove the assertion by reduction to the case of $1$-categories, for which we already know this statement. We have to show that $\eta_c^*\colon\Hom_\Cc(Lc,Ld)\isomorphism \Hom_\Cc(c,Ld)$ is an equivalence for all $c,d\in \Cc$. For this it suffices to show that for all $K\in \An$, the induced map
+	\begin{equation*}
+		\pi_0\Hom_\An\big(K,\Hom_\Cc(Lc,Ld)\big)\isomorphism \pi_0\Hom_\An\big(K,\Hom_\Cc(c,Ld)\big)
+	\end{equation*}
+	is a bijection. But now consider the functor of $1$-categories
+	\begin{equation*}
+		\pi L_*\colon \pi\Fun(K,\Cc)\morphism \pi\Fun(K,\Cc)
+	\end{equation*}
+	together with the transformation $\pi\eta_*\colon \id\Rightarrow \pi L_*$ satisfying that $\pi \eta_*\pi L_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ and $\pi L_*\pi \eta_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ are natural equivalences. So we get the same situation as before, but now $\pi\Fun(K,\Cc)$ is a $1$-category. For $1$-categories we already know the statement is true: For example, we've seen this on exercise sheet \#2 of Higher Categories~I, and also Lurie gives another proof. Plugging in the functors $\const_c,\const_{Lc},\const_{Ld}\in \Fun(K,\Cc)$ then shows that $\pi_0\Hom_\An(K,\Hom_\Cc(Lc,Ld))\isomorphism \pi_0\Hom_\An(K,\Hom_\Cc(c,Ld))$ is an equivalence, as desired. Thus we have proved that $L\colon \Cc\morphism\im(L)$ is a Bousfield localization.
+	
+	To obtain the additional assertion that $L\eta\simeq \eta L$, write down the triangle identities and note that both sides have the same inverse (once from the right, once from the left), namely the counit evaluated at $Lx$.
 \end{proof}
 \begin{exm}
 	\enquote{My first Bousfield localizations}:
@@ -1971,7 +2002,7 @@ We will later see that $K$-theory has exact sequences for derived localizations!
 	\begin{equation*}
 		X_n\simeq \Hom_{\cat{s}\An}(\Delta^n,X)\isomorphism \Hom_{\cat{s}\An}(I_n,X)\simeq X\times_{X_0}X_1\times_{X_0}\dotsb\times_{X_0}X_1
 	\end{equation*}
-	is an equivalence for all $n$ \embrace{$I_n$ is an iterated pushout of copies of $\Delta^1$, hence the pullback on the right-hand side}. We call $X$ \emph{complete} if the following equivalent conditions hold:
+	is an equivalence for all $n$ \embrace{the $n\ordinalth$ spine $I_n\subseteq \Delta^n$, i.e.\ the the union of all edges between consecutive $0$-simplices of $\Delta^n$, is an iterated pushout of copies of $\Delta^1$, hence the pullback on the right-hand side follows from \cref{cor:HomPreservesColimits}}. We call $X$ \emph{complete} if the following equivalent conditions hold:
 	\begin{alphanumerate}
 		\item Also the restriction $X_0\simeq \Hom_{\cat{s}\An}(\Delta^0,X)\isomorphism \Hom_{\cat{s}\An}(J,X)$ along $J\morphism \Delta^0$ is an equivalence, where $J$ is the \embrace{ordinary nerve of the} free-living isomorphism.
 		\item The diagram
@@ -1981,7 +2012,7 @@ We will later see that $K$-theory has exact sequences for derived localizations!
 				X_3\rar["{\left(d_{\{0,2\}},d_{\{1,3\}}\right)}"] & X_1\times X_1
 			\end{tikzcd}
 		\end{equation*}
-		is cartesian \embrace{note that $\Delta$ denotes a good old diagonal and not some simplicial stuff}.
+		is cartesian \embrace{note that $\Delta$ denotes a good old honest diagonal and not some simplicial stuff}.
 		\item The degeneracy map $s\colon X_0\isomorphism X_1^\times$ is an equivalence, where $X_1^\times\subseteq X_1$ is the collection of path components of those $g\in X_1$ for which the following holds: Let $x=d_1(g)$ and $y=d_0(g)$ and for arbitrary $w,z\in X_0$ put 
 		\begin{equation*}
 			\begin{tikzcd}
@@ -2011,7 +2042,7 @@ We will later see that $K$-theory has exact sequences for derived localizations!
 	\end{alphanumerate}
 \end{thmdef}
 \numpar{Some Explanations}
-Before we (not so much) talk about the proof, some explanations are in order. Just like Segal sets, \emph{Segal anima} should be thought of simplicial anima with \enquote{unique spine lifting}, i.e.\ unique (up to contractible choice) lifting against $I_n\subseteq \Delta^n$, where as usual $I_n$ is the union of all edges between consecutive $0$-simplices.
+Before we (not so much) talk about the proof, some explanations are in order. Just like Segal sets, \emph{Segal anima} should be thought of simplicial anima with \enquote{unique spine lifting}, i.e.\ unique (up to contractible choice) lifting against $I_n\subseteq \Delta^n$. We'll also link the Segal condition to monoidal structures soon, see \cref{chap:Monoidal}.
 \begin{center}
 	\begin{tikzpicture}[line cap=round, line join=round,decoration={markings,mark=at position 0.5 with {\arrow{to}}},x=0.75cm,y=0.75cm]
 		\coordinate (0) at (-1.75,-0.3);
@@ -2030,7 +2061,7 @@ Before we (not so much) talk about the proof, some explanations are in order. Ju
 		\draw[dashed,postaction={decorate}] (0) to (3);
 	\end{tikzpicture}
 \end{center}
-To understand the completeness conditions a bit better, Fabian drew this picture for \cref{thmdef:RezkNerve}\itememph{b}. What condition~\itememph{b} is trying to say is that whenever a $3$-simplex $\Delta^3$ in $X_3$ has degenerate $\Delta^{\{0,2\}}$- and $\Delta^{\{1,3\}}$-edges as indicated, then all its edges are degenerate and the $3$-simplex itself is equivalent to a degenerate one. To get a grasp on condition~\itememph{d}, note that for any $\infty$-category $\Cc$ we have $\core\Cc$ encoded in $\N^r(\Cc)$ in two different ways: First in a direct fashion, as $\core\Cc\simeq \Hom_{\Cat_\infty}([0],\Cc)\simeq \N_0^r(\Cc)$, and second as the full subanima of $\core\Ar(\Cc)\simeq \N_1^r(\Cc)$ spanned by the equivalences in $\Cc$ (essentially because $\Delta^1\morphism \Delta^0$ is a localization). So $\N^r(\Cc)^\times$ should be constant with value $\core \Cc$.
+To understand the completeness conditions a bit better, Fabian drew this picture of a $3$-simplex. What \cref{thmdef:RezkNerve}\itememph{b} is trying to say is that whenever a $3$-simplex $\Delta^3$ in $X_3$ has degenerate $\Delta^{\{0,2\}}$- and $\Delta^{\{1,3\}}$-edges as indicated, then all its edges are degenerate and the $3$-simplex itself is equivalent to a degenerate one. To get a grasp on condition~\itememph{d}, note that for any $\infty$-category $\Cc$ we have $\core\Cc$ encoded in $\N^r(\Cc)$ in two different ways: First in a direct fashion, as $\core\Cc\simeq \Hom_{\Cat_\infty}([0],\Cc)\simeq \N_0^r(\Cc)$, and second as the full subanima of $\core\Ar(\Cc)\simeq \N_1^r(\Cc)$ spanned by the equivalences in $\Cc$ (essentially because $\Delta^1\morphism \Delta^0$ is a localization). So $\N^r(\Cc)^\times$ should be constant with value $\core \Cc$.
 
 \begin{proof}[Not a proof of \cref{thmdef:RezkNerve}]
 	The proof is difficult, mostly the first statement that $\N^r$ is fully faithful. The original proof of Joyal--Tierney can be found in \cite{JoyalTierney} and Lurie's poof is in \cite{LurieGoodwillieCalculus}. However, Fabian recommends to prove the equivalence of the four conditions as a (not easy, but doable) exercise, as well as to prove that $\N^r(\Cc)$ is a complete Segal space for all $\infty$-categories $\Cc$.
@@ -2089,7 +2120,6 @@ To understand the completeness conditions a bit better, Fabian drew this picture
 \end{proof*}
 Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to control outside of (not necessarily complete) Segal spaces.
 \begin{exm}\label{exm:MyFirstRezkNerves}
-	\enquote{My first Rezk nerves}:
 	\begin{alphanumerate}
 		\item The ordinary nerve $\N(\Cc)\in \sSet\subseteq\cat{s}\An$ of a $1$-category is a Segal \emph{set} and thus also a Segal anima since $\Set\subseteq \An$ preserves limits. But it is usually not complete! In fact, we have
 		\begin{equation*}
@@ -2130,7 +2160,7 @@ Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to 
 \end{equation*}
 (depending on your definitions, this is a pullback both in simplicial sets and in $\Cat_\infty$ or only in $\Cat_\infty$). Now we do a computation in several steps, each of which will be justified below:
 \begin{align}
-	\N_n^r\big(\TwAr(\Cc)\big)&\mathrel{\overset{\phantom{2}}{\simeq}}\Hom_{\Cat_\infty}\big([n],\TwAr(\Cc)\big)\nonumber\\
+	\N_n^r\big(\TwAr(\Cc)\big)&\mathrel{\overset{\phantom{(2)}}{\simeq}}\Hom_{\Cat_\infty}\big([n],\TwAr(\Cc)\big)\nonumber\\
 	&\mathrel{\overset{(1)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\Hom_{\Cat_\infty}([n],\An)}\Hom_{\Cat_\infty}\big([n],*/\An\big)\label{eq:Umformung1}\tag*{}\\
 	&\mathrel{\overset{(2)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\core(\Cc^\op\times\Cc)}\core\big((\Cc^\op\times\Cc)\times_{\An}*/\An\big)\label{eq:Umformung2}\tag*{}\\
 	&\mathrel{\overset{(3)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc^\op\times\Cc)}\core\TwAr(\Cc)\label{eq:Umformung3}\tag*{}\\
@@ -2220,7 +2250,7 @@ The $Q_n(\Cc)$ assemble into a cosimplicial $\infty$-category $Q(\Cc)\colon \IDe
 \begin{proof}
 	We will actually prove that $Q(\Cc)$ itself satisfies the Segal and completeness conditions for simplicial $\infty$-categories rather than anima (really what this says is that there's a $\infty$-double category $\Span^{(2)}(\Cc)$, but never mind that). Then all assertions for $\core Q(\Cc)$ will follow from the fact that $\core\colon \Cat_\infty\morphism\An$ preserves limits as it is a right-adjoint.
 	
-	Now let $J_n\subseteq \TwAr([n])^\op$ be the subposet spanned by all $0$-simplices $(i\leq j)$ with $j\leq i+1$. In pictures, $J_n$ (for $n=3$) looks as follows:
+	Recall that the $0$-simplices in $\TwAr([n])^\op$ are given by morphisms in the poset $[n]$, i.e.\ by relations $(i\leq j)$. Now let $J_n\subseteq \TwAr([n])^\op$ be the subposet spanned by all $0$-simplices $(i\leq j)$ with $j\leq i+1$. In pictures, $J_n$ (for $n=3$) looks as follows:
 	\begin{center}
 		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round]
 			\node[FabiansPurple!67!FabiansPink] (00) at (0,0) {$0\leq 0$};
@@ -2254,7 +2284,7 @@ The $Q_n(\Cc)$ assemble into a cosimplicial $\infty$-category $Q(\Cc)\colon \IDe
 	\begin{equation*}
 		Q_n(\Cc)\isomorphism \Fun(J_n,\Cc)
 	\end{equation*}
-	by \cref{cor:FullyFaithfulKanExtension}. The reason we don't work with the $J_n$ right away is that they do not form a cosimplicial $\infty$-category! So we have to include some redundant junk. However, the $J_n$ are closed under the maps induced by the Segal maps $e_i\colon [1]\morphism {[n]}$ (sending $[1]$ to $\{i,i+1\}\subseteq [n]$) these maps induce an equivalence $J_n\simeq J_1\sqcup_{J_0}\dotsb\sqcup_{J_0}J_1$ in $\Cat_\infty$, hence 
+	by \cref{cor:FullyFaithfulKanExtension}. The reason we don't work with the $J_n$ right away is that they do not form a cosimplicial $\infty$-category! So we have to include some redundant junk. However, the $J_n$ are closed under the maps induced by the Segal maps $e_i\colon [1]\morphism {[n]}$ (sending $[1]$ to $\{i,i+1\}\subseteq [n]$). These maps induce an equivalence $J_n\simeq J_1\sqcup_{J_0}\dotsb\sqcup_{J_0}J_1$ in $\Cat_\infty$, hence 
 	\begin{align*}
 		Q_n(\Cc)\simeq \Fun(J_1\sqcup_{J_0}\dotsb\sqcup_{J_0}J_1,\Cc)&\simeq \Fun(J_1,\Cc)\times_{\Fun(J_0,\Cc)}\dotsb\times_{\Fun(J_0,\Cc)}\Fun(J_1,\Cc)\\
 		&\simeq Q_1(\Cc)\times_{Q_0(\Cc)}\dotsb\times_{Q_0(\Cc)}Q_1(\Cc)
