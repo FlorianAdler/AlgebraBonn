@@ -1609,16 +1609,16 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 \begin{cor}\label{cor:ExplicitAdjoint}
 	In the situation of \cref{thm:ColimitPreservingRepresentable}, let $F\colon\Cc\morphism\Dd$ be a functor corresponding to $\Lan_{Y^\Cc}F\colon \Pp(\Cc)\morphism\Dd$. Then $\Lan_{Y^\Cc}F$ admits a right-adjoint $R\colon \Dd\morphism \Pp(\Cc)$, which is given by
 	\begin{equation*}
-		R(d)\simeq \Hom_\Dd(F-,d)\colon \Cc^\op\morphism \An
+		R(d)\simeq \Hom_\Dd(F\!\mathop{}-,d)\colon \Cc^\op\morphism \An
 	\end{equation*}
 	on objects $d\in \Dd$.
 \end{cor}
 \begin{proof}
 	To check that $\Lan_{Y^\Cc}F$ admits a right adjoint, it suffices to check that all $d\in \Dd$ admit right-adjoint objects under $\Lan_{Y^\Cc}F$ by \cref{cor:AdjointsPointwise}. We already have a candidate for $R(d)$, so we need to check that there is an equivalence
 	\begin{equation*}
-		\Hom_\Dd\big(\Lan_{Y^\Cc}F-,d\big)\simeq \Nat\big(-,R(d)\big)
+		\Hom_\Dd\big(\Lan_{Y^\Cc}F\!\mathop{}-,d\big)\simeq \Nat\big(-,R(d)\big)
 	\end{equation*}
-	of functors $\Cc^\op\morphism\An$. But regarding both sides as functors $\Pp(\Cc)\morphism\An^\op$ instead, note that they preserve colimits and they agree on representables since both become $\Hom_\Dd(F-,d)$ after precomposition with $Y^\Cc\colon \Cc\morphism\Pp(\Cc)$ (for the left-hand side we need to use \cref{cor:FullyFaithfulKanExtension}, for the right-hand side use Yoneda's lemma in the form of \cref{thm:Yoneda}\itememph{a}). Hence these two functors must be equivalent by \cref{thm:ColimitPreservingRepresentable}. To complete the proof that $R(d)$ is a right-adjoint object of $d$, we need to check that the above equivalence is actually induced by a map $\Lan_{Y^\Cc}F(R(d))\morphism d$, but this we get for free by plugging $R(d)$ into the above equivalence and taking the of $\id_{R(d)}\in\Nat(R(d),R(d))$ in the left-hand side.
+	of functors $\Cc^\op\morphism\An$. But regarding both sides as functors $\Pp(\Cc)\morphism\An^\op$ instead, note that they preserve colimits and they agree on representables since both become $\Hom_\Dd(F\!\mathop{}-,d)$ after precomposition with $Y^\Cc\colon \Cc\morphism\Pp(\Cc)$ (for the left-hand side we need to use \cref{cor:FullyFaithfulKanExtension}, for the right-hand side use Yoneda's lemma in the form of \cref{thm:Yoneda}\itememph{a}). Hence these two functors must be equivalent by \cref{thm:ColimitPreservingRepresentable}. To complete the proof that $R(d)$ is a right-adjoint object of $d$, we need to check that the above equivalence is actually induced by a map $\Lan_{Y^\Cc}F(R(d))\morphism d$, but this we get for free by plugging $R(d)$ into the above equivalence and taking the of $\id_{R(d)}\in\Nat(R(d),R(d))$ in the left-hand side.
 \end{proof}
 This finishes the proofs of \cref{thm:ColimitPreservingRepresentable} and \cref{thm:KanExtension}. Time for examples!
 
@@ -1627,7 +1627,7 @@ We will show that algebraic topology is a corollary of \cref{thm:ColimitPreservi
 \begin{equation*}
 	\ev_*\colon \Fun^L(\An,\Dd)\isomorphism \Dd\,.
 \end{equation*}
-for every cocomplete $\Dd$. For example, take $\Dd=\Dd_{\geq 0}(\IZ)$ to be the derived category of abelian groups (which is cocomplete---after \cref{cor:completeIffPullbacksProducts} and \cref{cor:HomPreservesColimits} there isn't much to do). Then the equivalence $\Dd_{\geq 0}(\IZ)\simeq \Fun^L(\An,\Dd_{\geq 0}(\IZ))$ from above takes $\IZ[0]\in\Dd_{\geq 0}(\IZ)$ to the \enquote{normalized chain complex} functor 
+for every cocomplete $\Dd$. For example, take $\Dd=\Dd_{\geq 0}(\IZ)$ to be the derived category of abelian groups (which is cocomplete---after \enquote{Corollary}~\cref{cor:completeIffPullbacksProducts} and \cref{cor:HomPreservesColimits} there isn't much to do). Then the equivalence $\Dd_{\geq 0}(\IZ)\simeq \Fun^L(\An,\Dd_{\geq 0}(\IZ))$ from above takes $\IZ[0]\in\Dd_{\geq 0}(\IZ)$ to the \enquote{normalized chain complex} functor 
 \begin{equation*}
 	C_\bullet\colon \An\morphism \Dd_{\geq 0}(\IZ)\,,
 \end{equation*}
@@ -1639,7 +1639,7 @@ The right adjoint of $C_\bullet$ is
 \end{equation*}
 (this is another $K$ that has nothing to do with $K$-theory), which is now our official definition of \emph{Eilenberg--MacLane \sout{spaces} anima}. On objects $C\in \Dd_{\geq 0}(\IZ)$ it can be explicitly described as $K(C)\simeq \Hom_{\Dd_{\geq 0}(\IZ)}(\IZ[0],C)$ by \cref{cor:ExplicitAdjoint}. The $(C_\bullet,K)$ adjunction can be upgraded to an adjunction
 \begin{equation*}
-	\snake{C}_\bullet\colon */\An\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,.
+	\snake{C}_\bullet\colon {*/\An}\doublelrmorphism \Dd_{\geq 0}(\IZ)\noloc K\,.
 \end{equation*}
 Here $\snake{C}_\bullet(X,x)$ is the complex computing the \emph{reduced homology} of a pointed anima $(X,x)$. For example, if $\IS^i$ is your favourite model for the $i$-sphere in anima, then $C_\bullet(\IS^i,*)\simeq \IZ[i]$. This new adjunction needs a bit of justification, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. For now let's compute
 \begin{align*}
@@ -1668,7 +1668,7 @@ and for $n\geq 1$ an isomorphism on the right-hand side gives an equivalence on 
 \end{equation*}
 is fully faithful for $n\geq 1$.
 
-Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon */\An\morphism */\An_{\leq n}$ (one can e.g.\ take $\tau_{\leq n}X=\operatorname{cosk}_nX$ and use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}) which satisfies
+Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon {*/\An}\morphism */\An_{\leq n}$ (one can e.g.\ take $\tau_{\leq n}X=\operatorname{cosk}_nX$ and use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}) which satisfies
 \begin{equation*}
 	\pi_i(\tau_{\leq n}X)\simeq \begin{cases*}
 		0 & if $i>n$\\
@@ -1905,7 +1905,7 @@ Before we discuss our first examples of Bousfield localizations, we need to disc
 	
 	To obtain the additional assertion that $L\eta\simeq \eta L$, write down the triangle identities and note that both sides have the same inverse (once from the right, once from the left), namely the counit evaluated at $Lx$.
 \end{proof}
-\begin{exm}
+\begin{exm}\label{exm:MyFirstBousfield}
 	\enquote{My first Bousfield localizations}:
 	\begin{alphanumerate}
 		\item We now recognize all the left pointing arrows in the diagram from \cref{exm:MyFirstAdjoints}\itememph{a}
@@ -2190,7 +2190,7 @@ Finally, \hyperref[eq:Umformung7]{(7)} is immediate once we convinced ourselves 
 \end{equation*}
 since $\N^r$ is fully faithful by \cref{thmdef:RezkNerve}. To obtain the equation above, note that $\Hom_{\Cat_\infty}([m],[n]^\op\star [n])\simeq \Hom_{\Cat_1}([m],[n]^\op\star [n])$ (where we view the right-hand as a discrete anima), since all $\infty$-categories involved here are actually nerves of $1$-categories (although we always surpress the nerve in our notation).
 \end{proof}
-\numpar{The Quillen $Q$-Construction}
+\numpar{The Quillen $Q$-Construction}\label{par:QuillenQConstruction}
 Let $\Cc$ be an $\infty$-category and let $Q_n(\Cc)\subseteq \Fun(\TwAr([n])^\op,\Cc)$ be the full sub-$\infty$-category consisting of those functors that take all \enquote{squares} in $\TwAr([n])^\op$ to pullbacks. To make sense of this, recall our description of $\TwAr([n])$ from \cref{par:MoreOnTwAr}. In that way, a functor $\TwAr([n])^\op\morphism \Cc$ can be pictured as a diagram
 \begin{center}
 	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]

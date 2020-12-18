@@ -90,7 +90,7 @@ In other words, monoids really are categories with one object (up to equivalence
 			*\rar["{(x,y)}"] & X_0\times X_0
 		\end{tikzcd}
 	\end{equation*}
-	(this follows essentially from \cref{eq:asscat2}). This motivates the following definition of an inverse (\enquote{decompletion}) functor $\decomp\colon */\cat{CSAn}\morphism \cat{Mon}(\An)$: Let $(X,x)$ be a pointed complete Segal space. We send it to $Y\in \cat{Mon}(\An)$, where $Y\colon \IDelta^\op\morphism \An$ is defined by the pullback
+	(this follows essentially from \cref{eq:asscat2}). This motivates the following definition of an inverse (\enquote{decompletion}) functor $\decomp\colon {*/\cat{CSAn}}\morphism \cat{Mon}(\An)$: Let $(X,x)$ be a pointed complete Segal space. We send it to $Y\in \cat{Mon}(\An)$, where $Y\colon \IDelta^\op\morphism \An$ is defined by the pullback
 	\begin{equation*}
 		\begin{tikzcd}[column sep=large]
 			Y_n\dar\rar\drar[pullback]& X_n\dar\\
@@ -116,7 +116,7 @@ In other words, monoids really are categories with one object (up to equivalence
 	
 	This shows that the maps $X_0^{n+1}\lmorphism X_n$ can indeed be made functorial in $X$ and $[n]$. A similar argument applies shows that the maps $*\morphism X_0^{n+1}$, which assemble into a functorial map $\Delta^0\morphism |\Delta_0|_X$. We conclude that $Y\simeq X\times_{|\Delta_0|_X}\Delta^0$ as above is indeed a simplicial anima and functorial in $X$. We have $Y_0\simeq *$ by construction and also $Y_n\simeq Y_1\times_{Y_0}\dotsb\times_{Y_0}Y_1$ follows from the fact that $X$ itself satisfies the Segal conditions together with some abstract pullback nonsense (basically that \enquote{limits commute}, see the dual of \cref{prop:ColimitsCommute}). So $Y\in \cat{Mon}(\An)$ and we can finally write down the functor
 	\begin{equation*}
-		\decomp\colon */\cat{CSAn}\morphism \cat{Mon}(\An)\,.
+		\decomp\colon {*/\cat{CSAn}}\morphism \cat{Mon}(\An)\,.
 	\end{equation*}
 
 	\emph{Step~2.} Next, let's check that $\comp\colon \cat{Mon}(\An)\morphism \cat{CSAn}$ from \cref{lemdef:Completion} indeed factors over $*/\cat{CSAn}\morphism \cat{CSAn}$ and that its essential image is contained in those pointed complete Segal spaces $(X,x)$ with $\pi_0X_0=*$. To get the factorization, observe that $\cat{Mon}(\An)$ has an initial object, namely $\Delta^0\in\sSet\subseteq\cat{sAn}$ (in the lecture we called it \enquote{$\const*$}, but it's really just $\Delta^0$). Indeed, if $T\in \cat{Mon}(\An)$, then
@@ -239,7 +239,7 @@ The map $*\morphism K$ can be factored into the left anodyne map $*\monomorphism
 
 In particular, we have proved another result from algebraic topology (or rather deduced it from the much more general statement of \cref{thmdef:RezkNerve}, which we didn't prove, but never mind that).
 \begin{cor}[Recognition Principle for Loop Spaces, Stasheff]
-	The loop functor $\Omega\colon */\An\morphism \An$ lifts to an equivalence
+	The loop functor $\Omega\colon {*/\An}\morphism \An$ lifts to an equivalence
 	\begin{equation*}
 		\Omega\colon (*/\An)_{\geq 1}\isomorphism \Grp(\An)\,.
 	\end{equation*}
@@ -289,7 +289,7 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{equation*}
 \end{prop}
 \begin{rem*}\label{rem*:CoLimitsIn(*/An)OrAn}
-	For the proof, we'll need a functor $\Sigma\colon */\An\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with weakly contractible colimits (but not with arbitrary ones, as I claimed before; for example, it doesn't preserve the initial object). Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)$. For the adjunction 
+	For the proof, we'll need a functor $\Sigma\colon {*/\An}\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with weakly contractible colimits (but not with arbitrary ones, as I claimed before; for example, it doesn't preserve the initial object). Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)$. For the adjunction 
 	\begin{equation*}
 		\colimit_\Ii\colon \Fun(\Ii,\An)\doublelrmorphism\An\noloc \const
 	\end{equation*}
@@ -309,7 +309,7 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 			(*/\An)_{\geq 1}\urar["\Omega"',""{name=A,sloped}] & \arrow[from=1-1,to=A,phantom,"\scriptscriptstyle/\!/\!/"]
 		\end{tikzcd}
 	\end{equation*}
-	commutes. Observe that $(-)_+=-\sqcup*\colon \An\morphism */\An$ is a left adjoint of the forgetful functor $*/\An\morphism \An$ (this is basically trivial) and that $\Sigma\colon */\An\shortdoublelrmorphism */\An\noloc \Omega$ are adjoints (this we leave as an exercise---just play around with the defining pushouts/pullbacks, which can be taken in $*/\An$ by \cref{rem*:CoLimitsIn(*/An)OrAn}). Finally, $\Omega\colon (*/\An)_{\geq 1}\shortdoublelrmorphism \Grp(\An)\noloc |\blank|$ is an adjunction (even an equivalence) by \cref{par:Grp(An)=(*/An)Connected}. The assertion now follows from the fact that left adjoints compose.
+	commutes. Observe that $(-)_+=-\sqcup*\colon \An\morphism */\An$ is a left adjoint of the forgetful functor $*/\An\morphism \An$ (this is basically trivial) and that $\Sigma\colon {*/\An}\shortdoublelrmorphism */\An\noloc \Omega$ are adjoints (this we leave as an exercise---just play around with the defining pushouts/pullbacks, which can be taken in $*/\An$ by \cref{rem*:CoLimitsIn(*/An)OrAn}). Finally, $\Omega\colon (*/\An)_{\geq 1}\shortdoublelrmorphism \Grp(\An)\noloc |\blank|$ is an adjunction (even an equivalence) by \cref{par:Grp(An)=(*/An)Connected}. The assertion now follows from the fact that left adjoints compose.
 \end{proof}
 \begin{exm}\label{exm:MyFirstMonoidals}
 	\begin{alphanumerate}
@@ -796,7 +796,7 @@ So Eilenberg--MacLane anima give rise to $\IE_\infty$-groups. Another source of 
 	\end{equation*}
 	Although this follows from stuff we did before, I got quite a bit confused since for example \cref{par:Grp(An)=(*/An)Connected} says something slightly different. So it's perhaps worth to spell out where this adjunction actually comes from.
 	
-	For a pointed anima $(X,x)$, let $X_x$ denote the connected component containing $x$. Then $\Omega_xX\simeq \Omega_xX_x$, so the equivalence $\Omega\colon (*/\An)_{\geq 1}\isomorphism\Grp(\An)$ from \cref{par:Grp(An)=(*/An)Connected} extends to a functor $\Omega\colon */\An\morphism \Grp(\An)$. Now if $M\in \Mon(\An)$ is an $\IE_1$-monoid, we can compute
+	For a pointed anima $(X,x)$, let $X_x$ denote the connected component containing $x$. Then $\Omega_xX\simeq \Omega_xX_x$, so the equivalence $\Omega\colon (*/\An)_{\geq 1}\isomorphism\Grp(\An)$ from \cref{par:Grp(An)=(*/An)Connected} extends to a functor $\Omega\colon {*/\An}\morphism \Grp(\An)$. Now if $M\in \Mon(\An)$ is an $\IE_1$-monoid, we can compute
 	\begin{align*}
 		\Hom_{\Mon(\An)}(M,\Omega_xX)&\simeq \Hom_{\Grp(\An)}(M^\inftygrp,\Omega_xX_x)\\
 		&\simeq \Hom_{\Grp(\An)}\big(\Omega_e|M|,\Omega_xX_x\big)\\
@@ -915,7 +915,7 @@ For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-ad
 	\end{alphanumerate}
 \end{lem}
 \begin{rem*}
-	Both Fabian and Lurie only require that the first of the two compositions in \cref{lem:SemiAddCriterion}\itememph{b} is homotopic to $\id_x$. However, I don't think the second one follows from the first, and we'll really need both to be homotopic to $\id_x$ in the proof. In fact, if only the first composition were to be homotopic to $\id_x$, we could take $\mu_x$ to be $\pr_1\colon x\times x\morphism x$ for all $x\in \Cc$ (it's clear that this also makes the diagram above commute), and then we could show that every $\infty$-categories with finite products and a zero object is semi-additive. This can't be true!
+	Lurie only requires that the first of the two compositions in \cref{lem:SemiAddCriterion}\itememph{b} is homotopic to $\id_x$, and Fabian may or may not have done the same in the lecture. However, the second one doesn't follow from the first, and we'll really need both to be homotopic to $\id_x$ in the proof. In fact, if only the first composition were to be homotopic to $\id_x$, we could take $\mu_x$ to be $\pr_1\colon x\times x\morphism x$ for all $x\in \Cc$ (it's clear that this also makes the diagram above commute), and then we could show that every $\infty$-categories with finite products and a zero object is semi-additive. This can't be true!
 \end{rem*}
 \begin{proof}[Proof of \cref{lem:SemiAddCriterion}]
 	Let $c,d\in \Cc$. We want to show that the maps
@@ -993,20 +993,20 @@ For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-ad
 	
 	Finally, we need to show that $\CMon\colon \Cat_\infty^\times\morphism \Cat_\infty^\mathrm{semi\mhyph add}$ and $\CGrp\colon \Cat_\infty^\times \morphism \Cat_\infty^\mathrm{add}$ are right adjoints. If we denote $R=\CMon$ and $\eta\colon R\Rightarrow \id$ the forgetful natural transformation (given by evaluation in degree $1$), then \cref{prop:CMonOfSemiAdditive} and the fact that $\CMon(\Cc)$ is semi-additive show that $\eta R\colon R\circ R\overset{\sim}{\Longrightarrow} R$ and $R\eta\colon R\circ R\overset{\sim}{\Longrightarrow} R$ are natural equivalences. Thus we may apply the dual of Proposition~\labelcref{prop:LLaddendum} to see that $R$ is a right adjoint to the inclusion $\im(R)\subseteq \Cat_\infty^\times$ of its essential image. But $\im(R)=\Cat_\infty^\mathrm{semi\mhyph add}$: Indeed, \enquote{$\subseteq$} was checked above, whereas \enquote{$\supseteq$} follows from \cref{prop:CMonOfSemiAdditive} again. The argument for $\CGrp$ is completely analogous.
 \end{proof}
-\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \enquote{\emph{Peter May hates this proof. I love it.}}]{2020-12-10}
+\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \enquote{\emph{Peter May hates this proof. I love it.}}]{2020-12-10}\label{par:FreeCMon}
 The forgetful functor $\CMon(\An)\morphism\An$ as a left adjoint $\Free^\CMon\colon \An\morphism \CMon(\An)$. On objects $X\in\An$ it is given by
 \begin{equation*}
-	\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{hS_n}^n\,,
+	\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{h\SS_n}^n\,,
 \end{equation*}
-i.e.\ we take free words in $X$, but we need to homotopy-quotient out the action of the symmetric group $S_n$, which the notation $(-)_{hS_n}$ is supposed to do. In general, given a functor $F\colon BG\morphism\Cc$, where $\Cc$ is an $\infty$-category with colimits and $G$ is a discrete group, we put
+i.e.\ we take free words in $X$, but we need to homotopy-quotient out the action of the symmetric group $\SS_n$, which the notation $(-)_{h\SS_n}$ is supposed to do. In general, given a functor $F\colon BG\morphism\Cc$, where $\Cc$ is an $\infty$-category with colimits and $G$ is a discrete group, we put
 \begin{equation*}
 	F_{hG}\simeq \colimit_{BG}F\,.
 \end{equation*}
-On $X^n$, the $S_n$-action is given by \enquote{permuting words}, so the corresponding functor $BS_n\morphism\An$ sends the unique $0$-simplex to $X^n$, the edges to the corresponding automorphisms of $X^n$ and so on. As an example,
+On $X^n$, the $\SS_n$-action is given by \enquote{permuting factors}, so the corresponding map $B\SS_n\morphism\An$ sends the unique $0$-simplex to $X^n$, the edges to the corresponding automorphisms of $X^n$ and so on. As an example,
 \begin{equation*}
-	\Free^\CMon(*)_1\simeq \coprod_{n\geq 0}BS_n\simeq S,
+	\Free^\CMon(*)_1\simeq \coprod_{n\geq 0}B\SS_n\simeq \big(\{\text{finite sets, bijections}\},\sqcup\big),
 \end{equation*}
-where $S\in \Grpd_1^{(2)}\subseteq \An$ is the symmetric monoidal groupoid of finite sets and bjections between them, whose tensor product is given by disjoint union.
+where the right-hand side is the symmetric monoidal $1$-groupoid of finite sets and bjections between them, whose tensor product is given by disjoint union.
 
 
 Also, if $G$ is a topological group, then $BG$ agrees with the classifying space for principal $G$-bundles.
@@ -1027,7 +1027,7 @@ Moreover, since $\Omega B\simeq \id$ by \cref{cor:CommutativeHorizontalAdjoints}
 	\limit_{\IN^\op}\left(\dotso\morphism[\Omega]\CGrp(\An)_{\geq 2}\morphism[\Omega]\CGrp(\An)_{\geq 1}\right)\,.
 \end{equation*}\stepcounter{dummy}
 \begin{defi}\label{def:spectra}
-	We say that an $\infty$-category $\Cc$ has \emph{finite limits} if it has finite products and pullbacks (one can check that this is equivalent to having limits over all finite simplicial sets). If this is the case, then a suspension functor $\Omega\colon */\Cc\morphism */\Cc$ can be defined and we put
+	We say that an $\infty$-category $\Cc$ has \emph{finite limits} if it has finite products and pullbacks (one can check that this is equivalent to having limits over all finite simplicial sets). If this is the case, then a suspension functor $\Omega\colon {*/\Cc}\morphism */\Cc$ can be defined and we put
 	\begin{equation*}
 		\Sp(\Cc)\coloneqq \limit_{\IN^\op}\left(\dotso\morphism[\Omega]*/\Cc\morphism[\Omega]*/\Cc\right)\,
 	\end{equation*}
@@ -1056,13 +1056,13 @@ Moreover, since $\Omega B\simeq \id$ by \cref{cor:CommutativeHorizontalAdjoints}
 	Up to checking the various conditions, this shows that $\Sp(\Cc)$ is semi-additive. For additivity we must check that the shear map is an equivalence on every $X\in \Sp(\Cc)$. Similar to the proof of \cref{thm:CMonCGrpAdjunctions} this follows from the fact that $\Omega(\Omega^{-1}X)$ is a cartesian group rather than just a monoid.
 \end{proof}
 \begin{rem*}\label{rem*:OmegaFactorsOverGrp}
-	If I'm not mistaken, then for any $\infty$-category $\Dd$ with finite limits and a zero object $*\in \Dd$ (i.e.\ an object that is both initial and terminal) the functor $\Omega\colon \Dd\morphism\Dd$ factors as
+	For any $\infty$-category $\Dd$ with finite limits and a zero object $*\in \Dd$ (i.e.\ an object that is both initial and terminal) the functor $\Omega\colon \Dd\morphism\Dd$ factors as
 	\begin{equation*}
 		\Omega\colon \Dd\morphism\Grp(\Dd)\morphism[\ev_1]\Dd
 	\end{equation*}
-	This can be bootstrapped from the case $\Dd=*/\An$ which we already know from \cref{par:Grp(An)=(*/An)Connected}. The first step is to enhance the Yoneda embedding to a fully faithful functor $\Dd\morphism \Fun(\Dd^\op,*/\An)$. To this end we consider $\Fun(\Dd^\op,\An)\morphism\Fun(\Ar(\Dd^\op),\Ar(\An))\morphism\Fun(*/\Dd^\op,\Ar(\An))$ and check that its image lands in the \enquote{correct fibre}, i.e.\ in $\Fun(*/\Dd^\op,*/\An)$ if we restrict the source to the full subcategory of finite limits-preserving functors (in which Yoneda embedding lands).
+	This can be bootstrapped from the case $\Dd=*/\An$ which we already know from \cref{par:Grp(An)=(*/An)Connected}. The first step is to enhance the Yoneda embedding to a fully faithful functor $\Dd\morphism \Fun(\Dd^\op,*/\An)$. To this end we consider $\Fun(\Dd^\op,\An)\morphism\Fun(\Ar(\Dd^\op),\Ar(\An))\morphism\Fun(*/\Dd^\op,\Ar(\An))$ and check that its image lands in the \enquote{correct fibre}, i.e.\ in $\Fun(*/\Dd^\op,*/\An)$ if we restrict the source to finite limits-preserving functors (where the Yoneda embedding lands).
 	
-	On $\Fun(\Dd^\op,*/\An)$ we have loop functor $\Omega\colon \Fun(\Dd^\op,*/\An)\morphism \Fun(\Dd^\op,*/\An)$ as well, and it is simply given by postcomposition with $\Omega\colon */\An\morphism*/\An$. Hence it factors as 
+	On $\Fun(\Dd^\op,*/\An)$ we have loop functor $\Omega\colon \Fun(\Dd^\op,*/\An)\morphism \Fun(\Dd^\op,*/\An)$ as well, and it is simply given by postcomposition with $\Omega\colon {*/\An}\morphism*/\An$. Hence it factors as 
 	\begin{equation*}
 		\begin{tikzcd}
 			& \Fun\big(\Dd^\op,\Grp(*/\An)\big)\dar["\ev_1"]\rar[iso] & \Grp\big(\Fun(\Dd^\op,*/\An)\big)\\
@@ -1071,8 +1071,8 @@ Moreover, since $\Omega B\simeq \id$ by \cref{cor:CommutativeHorizontalAdjoints}
 	\end{equation*}
 	Since the Yoneda embedding preserves limits, we get a lift $\Omega\colon \Dd\morphism \Grp(\Fun(\Dd^\op,*/\An))$ and one checks that it lands in the full sub-$\infty$-category $\Grp(\Dd)$, as required.
 \end{rem*}
-
-Because  $\IN^\op\subseteq \IZ^\op$ is final, we can also write $\Sp(\Cc)\simeq\limit_{\IZ^\op}(\ActsOn{*/\Cc}{\Omega})$. This gives evaluation functors
+\numpar*{Homotopy Groups of Spectra}
+Because  $\IN^\op\subseteq \IZ^\op$ is final in the sense of \cref{def:cofinal}, we can also write $\smash{\Sp(\Cc)\simeq\limit_{\IZ^\op}(\ActsOn{*/\Cc}{\Omega})}$. This gives evaluation functors
 \begin{equation*}
 	\Omega^{\infty-i}\colon \Sp(\Cc)\morphism\Cc\,.
 \end{equation*}
@@ -1080,16 +1080,16 @@ for all $i\in \IZ$. Note $\Omega\Omega^{\infty-i}X\simeq \Omega^{\infty-(i-1)}X\
 \begin{equation*}
 	\pi_iX=\pi_0\Omega^{\infty-i}X\,.
 \end{equation*}
-If we think of a spectrum $X$ as a sequence $X=(X_0,X_1,X_2,\dotsc)$, where $X_i=\Omega^{\infty-i}X$, together with equivalences $X_i\simeq \Omega X_{i+1}$, then we see that $\pi_iX\simeq \pi_0X_i\simeq \pi_jX_{i+j}$ for all $j\geq 0$ because $\Omega\colon */\An\morphism */\An$ shifts homotopy groups down.
+If we think of a spectrum $X$ as a sequence $X=(X_0,X_1,X_2,\dotsc)$, where $X_i=\Omega^{\infty-i}X$, together with equivalences $X_i\simeq \Omega X_{i+1}$, then we see that $\pi_iX\simeq \pi_0X_i\simeq \pi_jX_{i+j}$ for all $j\geq 0$ because $\Omega\colon {*/\An}\morphism */\An$ shifts homotopy groups down.
 
-\numpar*{Summary}
-Let's explicitly record the following facts we learned so far in the proof of \cref{prop:SpCGrpIsSpAgain} and afterwards:
+\numpar*{Summary of What We Know So Far}
+Let's explicitly record the following facts we already learned in the proof of \cref{prop:SpCGrpIsSpAgain} and afterwards:
 \begin{alphanumerate}
-	\item $\Sp(\Cc)$ has finite limits (because $*/\Cc$ has) and limits in $\Sp(\Cc)$ are computed degree-wise, i.e.\ $\Omega^{\infty-i}\colon \Sp(\Cc)\morphism\Cc$ preserves limits.
+	\item $\Sp(\Cc)$ has finite limits (because $*/\Cc$ has) and limits in $\Sp(\Cc)$ are computed degree-wise, i.e.\ $\Omega^{\infty-i}\colon \Sp(\Cc)\morphism\Cc$ preserves limits. %The only reason this doesn't work for colimits as well is that the degree-wise colimits might not be compatible with the $\Omega$-maps any more, so they don't necessarily define an element of $\Sp(\Cc)$.
 	\item $\Omega\colon \Sp(\Cc)\isomorphism\Sp(\Cc)$ is an equivalence.
 	\item $\Sp(\Cc)$ is additive.
 \end{alphanumerate}
-\begin{cor}[Recognition principle for infinite loop spaces, Boardman--Vogt, May, Segal]
+\begin{cor}[Recognition principle for infinite loop spaces, Boardman--Vogt, May, Segal]\label{cor:RecognitionForInfiniteLoopSpaces}
 	The functor
 	\begin{equation*}
 		B^\infty\colon\CGrp(\An)\morphism\Sp
@@ -1102,7 +1102,7 @@ Let's explicitly record the following facts we learned so far in the proof of \c
 \begin{exm}\label{exm:MyFirstSpectra}
 	Let $\Cc$ always have finite limits. Here are \enquote{my first spectra}:
 	\begin{alphanumerate}
-		\item If $\Omega\colon */\Cc\isomorphism */\Cc$ is an equivalence, then $\Sp(\Cc)\simeq \Cc$ (because $|\IN^\op|\simeq *$). For example, $\Sp(\Dd(\IZ))\simeq \Dd(\IZ)$ or, even more silly, $\Sp(\Sp)\simeq \Sp$.
+		\item If $\Omega\colon {*/\Cc}\isomorphism */\Cc$ is an equivalence, then $\Sp(\Cc)\simeq \Cc$ (because $|\IN^\op|\simeq *$). For example, $\Sp(\Dd(\IZ))\simeq \Dd(\IZ)$ or, even more silly, $\Sp(\Sp)\simeq \Sp$.
 		\item Let's compute $\Sp(\Dd_{\geq 0}(R))$ for a ring $R$. Recall that the loop functor on $\Dd_{\geq 0}(\IZ)$ is defined as $\Omega C\simeq \tau_{\geq 0}(C[-1])\in \Dd_{\geq 0}(R)$. Then the functor
 		\begin{align*}
 			\Dd(R)&\isomorphism \Sp\big(\Dd_{\geq 0}(R)\big)\\
@@ -1132,7 +1132,29 @@ Let's explicitly record the following facts we learned so far in the proof of \c
 		since only contractible spaces can be an infinite suspension (as all homotopy groups must be vanish).
 	\end{alphanumerate}
 \end{exm}
-\begin{propdef}
+\numpar{Homology of Spectra}\label{par:HomologyOfSpectra}
+The Eilenberg--MacLane spectrum functor $H$, the adjunction $\snake{C}_\bullet\colon {*/\An}\shortdoublelrmorphism \Dd_{\geq0}(\IZ)\noloc K$ from Very Long Example~\cref{exm:EilenberMacLane} can be upgraded to another adjunction
+\begin{equation*}
+	C_\bullet\colon \Sp\doublelrmorphism \Dd(\IZ)\noloc H\,.
+\end{equation*}
+The new $C_\bullet$ is defined by the formula $C_\bullet(X)\simeq \colimit_{i\in \IN}\snake{C}_\bullet(\Omega^{\infty-i}X)[-i]$ on objects. To see where the transition maps in this colimit come from, recall that $\Omega=[-1]$ is the loop functor in $\Dd(\IZ)$. Together with $\snake{C}(*)\simeq 0$, this provides a natural transformation $\snake{C}_\bullet(\mathop{\Omega}-)\Rightarrow \snake{C}_\bullet(-)[-1]$, which provide the required transition maps.
+
+To check that $C_\bullet$ is a left adjoint, it suffices to do so on objects by \cref{cor:AdjointsPointwise} (in particular, this will show that $C_\bullet$ is a functor at all), where we can compute
+\begin{align*}
+	\Hom_{\Dd(\IZ)}\big(C_\bullet(X),D\big)&\simeq \limit_{i\in \IN^\op}\Hom_{\Dd(\IZ)}\big(\snake{C}_\bullet(\Omega^{\infty-i}X),D[i]\big)\\
+	&\simeq \limit_{i\in \IN^\op}\Hom_{*/\An}\big(\Omega^{\infty-i}X,K(D[i])\big)\\
+	&\simeq \limit_{i\in \IN^\op}\Hom_{*/\An}(\Omega^{\infty-i}X,\Omega^{\infty-i}HD)\\
+	&\simeq \Hom_\Sp(X,HD)\,,
+\end{align*}
+where we used that $\Hom$ anima in $\Sp$ (in fact, in arbitrary limits of $\infty$-categories) can be computed as a limit over the $\Hom$ anima in each degree. Also all equivalences are clearly functorial in $D\in \Dd(\IZ)$.
+
+Now define the \emph{homology of $X$ with coefficients in $A\in \Ab$} to be
+\begin{equation*}
+	H_*(X,A)\coloneqq H_*\big(C_\bullet X\otimes_\IZ^LA\big)=\colimit_{i\in \IN}H_*(\Omega^{\infty-i}X,A)\,.
+\end{equation*}
+Note however that neither $H_*(HC,A)$ nor $H_*(B^\infty X,A)$ are easy to compute! We will eventually find out that $H_*(HC,\IZ)=\Tor_*^\IS(C,C)$ is given by \enquote{$\Tor$ over the sphere spectrum}.
+
+\begin{propdef}\label{propdef:StableInftyCategory}
 	If $\Cc$ is an $\infty$-category with a zero object \embrace{i.e.\ a simultaneously initial and terminal object $0\in \Cc$}, then the following are equivalent:
 	\begin{alphanumerate}
 		\item $\Cc$ has finite limits and $\Omega\colon \Cc\isomorphism\Cc$ is an equivalence.
@@ -1195,6 +1217,435 @@ Let's explicitly record the following facts we learned so far in the proof of \c
 	\end{equation*}
 	because $\Delta^1\times \Delta^1$ has terminal vertex $(1,1)$. This computation shows that $d$ is a pushout of the given span. Moreover, we get the property that pushouts agree with pullbacks for free. This finishes the proof of \itememph{a} $\Rightarrow$ \itememph{c}. For \itememph{b} $\Rightarrow$ \itememph{c} just dualize everything.
 \end{proof}
+An immediate consequence of \cref{propdef:StableInftyCategory} is that $\Sp(\Cc)$ is stable for all $\infty$-categories $\Cc$ with finite limits. In particular, it holds for $\Sp$ and $\Dd(R)$ for any ring $R$ by \cref{exm:MyFirstSpectra}\itememph{b} (but it's also true for $\Kk(R)$). Moreover, $\Fun(\Ii,\Cc)$ is stable whenever $\Cc$ is.
+%\addtocounter{dummy}{1}
+\begin{cor}
+	\upshape\lecture[Spectra and prespectra, spectrification. $\Sigma^\infty$ and the Baratt--Priddy-Quillen theorem. Another model for spectra. Towards a symmetric monoidal structure on $\Sp$.]{2020-12-15}\itshape
+	For a functor $F\colon \Cc\morphism\Dd$ between stable $\infty$-categories the following are equivalent:
+	\begin{alphanumerate}
+		\item $F$ preserves finite limits.
+		\item $F$ preserves finite colimits.
+	\end{alphanumerate}
+\end{cor}
+\begin{proof}
+	Since $\Cc$ and $\Dd$ are additive, $F$ preserves finite coproducts iff it preserves finite products. Since also pushout squares and pullback squares coincide, $F$ preserves the former iff it preserves the latter. This suffices to get all finite colimits and limits.
+\end{proof}
+\begin{defi}
+	\begin{alphanumerate}
+		\item Let $F\colon \Cc\morphism\Dd$ be a functor between $\infty$-categories with finite limits. We call $F$ \emph{left exact} if it preserves finite limits.
+		\item We denote by $\Cat_\infty^\mathrm{lex}\subseteq \Cat_\infty$ the (non-full) sub-$\infty$-category  spanned by these. Dually, $\Cat_\infty^\mathrm{rex}\subseteq \Cat_\infty$ is the full sub-$\infty$-category spanned by \emph{right-exact} functors, i.e.\ finit colimit-preserving functors between $\infty$-categories with finite colimits.
+		\item Finally, we denote by $\Cat_\infty^\mathrm{st}$ the full subcategory of both $\Cat_\infty^\mathrm{lex}$ and $\Cat_\infty^\mathrm{rex}$ spanned by the stable $\infty$-categories.
+	\end{alphanumerate}
+\end{defi}
+For example, the functor $\Omega^\infty\colon \Sp(\Cc)\morphism \Cc$ is left exact for every $\Cc$ with finite limits. Also note that $\Omega^\infty$ factors canonically over $\CGrp(\Cc)$. This needs doesn't need an argument as in \cref{rem*:OmegaFactorsOverGrp}, simply recall that $\Sp(\Cc)\simeq \Sp(\CGrp(\Cc))$ by \cref{prop:SpCGrpIsSpAgain}.
+\begin{rem*}
+	Before we move on, I would like to point out a subtlety that's perhaps easy to overlook: In \cref{thm:SpLeftAdjoint} below, we'll investigate the functor $\Sp(-)\colon \Cat_\infty^\mathrm{lex}\morphism\Cat_\infty^\mathrm{st}$. But why is it a functor though? My own knee-jerk reaction was \enquote{well, limits are functorial}, but that's not the problem. The problem is that $\Omega\colon {*/\Cc}\morphism */\Cc$ is also supposed to be functorial in $\Cc$! Essentially this leads to the following question:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape Let $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}\subseteq \Cat_\infty$ be the \embrace{non-full} subcategory spanned by $\infty$-categories with $\Ii$-shaped limits and functors preserving these. Why do the maps $\limit_\Ii\colon \Fun(\Ii,\Cc)\morphism \Cc$ for $\Cc\in \Cat_\infty^{\Ii\mhyph\mathrm{ex}}$ assemble into a natural transformation
+		\begin{equation*}
+			\limit_\Ii\colon \Fun(\Ii,-)\Longrightarrow (-)
+		\end{equation*}
+		of functors $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}\morphism \Cat_\infty$?
+	\end{alphanumerate}
+	There are a few more steps involved to show that $\Omega$ is natural too, namely one has to produce natural transformations $(-)\Rightarrow */(-)\Rightarrow \Fun(\Lambda_2^2,*/(-))$, but I'll leave that to you.
+	
+	To show \itememph{\boxtimes}, let's first produce the \enquote{adjoint} transformation $\const\colon (-)\Rightarrow \Fun(\Ii,-)$. Since the adjunction $-\times\Ii\colon \Cat_\infty\shortdoublelrmorphism \Cat_\infty\noloc \Fun(\Ii,-)$ extends to $\Fun(\Cat_\infty^{\Ii\mhyph\mathrm{ex}},\Cat_\infty)$ by \cref{obs:AdjunctionOfFunctorCats}, we may equivalently give a transformation $-\times \Ii\Rightarrow (-)$. Here the projection to the first factor is an obvious candidate and it is indeed the correct one.
+	
+	We may view the natural transformation $\const$ as a functor $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}\morphism\Ar (\Cat_\infty)$. Its image lies in the full subcategory spanned by those $\Delta^1\morphism\Cat_\infty$ that represent left-adjoint functors (because $\limit_\Ii$ is a pointwise right adjoint). But in fact, more is true (and that's the crucial point). Consider objects $(L\colon \Cc\morphism\Dd)$ and $(L'\colon \Cc'\morphism\Dd')$ in $\Ar(\Cat_\infty)$ as well as a morphism between them, which we view as a solid diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Cc\dar["L"']\rar& \Cc'\dar["L'"']\\
+			\Dd\uar[dotted, bend right, "R"{swap,anchor=west}]\rar  & \Dd'\uar[dotted, bend right,"R'"{swap, anchor=west}]
+		\end{tikzcd}
+	\end{equation*}
+	If $L$ and $L'$ are left adjoints, then the dotted arrows exist, but the resulting new square only commutes up to a natural transformation, not up to natural equivalence in general. We let $\Ar^L(\Cat_\infty)$ be the non-full sub-$\infty$-category spanned by those squares for which the adjoint square does in fact commute. Then $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}\morphism\Ar (\Cat_\infty)$ already factors over $\Ar^L(\Cat_\infty)$ since morphisms in $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}$ preserve $\Ii$-shaped limits.
+	
+	Now note that under the equivalence $\Un^\cocart\colon\Ar(\Cat_\infty)\isomorphism \Cocart(\Delta^1)$, the non-full sub-$\infty$-category $\Ar^L(\Cat_\infty)$ corresponds to $\cat{Bicart}(\Delta^1)$, the $\infty$-category of bicartesian fibrations over $\Delta^1$ with morphisms that preserve both cocartesian and cartesian edges (we know from \cite[Proposition~XI.10]{HigherCatsII} that bicartesian fibrations correspond to adjunctions, and the additional condition unravels to the condition that cartesian edges are preserved as well). Now we can apply the cartesian straightening $\St^\cart\colon \cat{Bicart}(\Delta^1)\morphism \Fun((\Delta^1)^\op,\Cat_\infty)$ to get a functor $\Cat_\infty^{\Ii\mhyph\mathrm{ex}}\morphism \Fun((\Delta^1)^\op,\Cat_\infty)$. After currying, this gives a map $(\Delta^1)^\op\morphism \Fun(\Cat_\infty^{\Ii\mhyph\mathrm{ex}},\Cat_\infty)$ which finally provides the desired transformation.
+\end{rem*}
+\begin{thm}\label{thm:SpLeftAdjoint}
+	The functor $\Sp(-)\colon \Cat_\infty^\mathrm{lex}\morphism\Cat_\infty^\mathrm{st}$ is right-adjoint to the inclusion $\Cat_\infty^\mathrm{st}\subseteq \Cat_\infty^\mathrm{lex}$, the counit being given by $\Omega^\infty\colon \Sp(\Cc)\morphism \Cc$. In particular, if $\Cc$ is a stable $\infty$-category, we get a canonical lift
+	\begin{equation*}
+		\begin{tikzcd}
+			& \Sp\dar["\Omega^\infty"]\\
+			\Cc^\op\times \Cc \rar["\Hom_\Cc"']\urar[dashed,"\hom_\Cc"] & \An
+		\end{tikzcd}
+	\end{equation*}
+	of the $\Hom_\Cc$ functor.
+\end{thm}
+Fabian remarks that $\Cat_\infty^\mathrm{st}\subseteq \Cat_\infty^\mathrm{lex}$ also has a left adjoint given by $\colimit (\ActsOn{*/\Cc}{\Omega})$
+but we probably won't ever use this. More interestingly, we can apply \cref{thm:SpLeftAdjoint} to the stable $\infty$-categories $\Dd(R)$ and $\Kk(R)$ for any ring $R$, we obtain
+\begin{equation*}
+	\hom_{\Dd(R)}(C,D)\simeq H\big(R\!\Hom_R(C,D)\big)\quad\text{and}\quad\hom_{\Kk(R)}(C,D)\simeq H\big(\Hhom_R(C,D)\big)\,.
+\end{equation*}
+To prove the left equivalence, it suffices to check that we get $\Hom_{\Dd(R)}(C,D)$ after applying $\Omega^\infty$ (and that everything is functorial, but that will be clear). So we compute
+\begin{align*}
+	\Omega^\infty H\big(R\!\Hom_R(C,D)\big)\simeq K\big(R\!\Hom_R(C,D)\big)&\simeq \Hom_\An\big(*,K(R\!\Hom_R(C,D))\big)\\
+	&\simeq \Hom_{\Dd(\IZ)}\big(\IZ,R\!\Hom_R(C,D)\big)\\
+	&\simeq \Hom_{\Dd(R)}\left(\IZ\otimes_\IZ^LC,D\right)\\
+	&\simeq	\Hom_{\Dd(R)}(C,D)\,,
+\end{align*}
+using $C_\bullet(*)\simeq \IZ$ and the derived tensor-$\Hom$ adjunction. The right equivalence can be proved analogously, but one should first check that $C_\bullet\colon \An\morphism \Dd_{\geq 0}(\IZ)$ already factors over $\Kk_{\geq 0}(\IZ)$ and gives rise to the same Eilenberg--MacLane functor $K\colon \Kk_{\geq 0}(\IZ)\morphism \An$. We haven't done this, but one can simply modify the construction in Very Long Example~\cref{exm:EilenberMacLane}.
+\begin{proof}[Proof of \cref{thm:SpLeftAdjoint}]
+	By the dual of Proposition~\labelcref{prop:LLaddendum}, all we need to show is that the two functors $\Omega^\infty\colon \Sp(\Sp(\Cc))\isomorphism\Sp(\Cc)$ and $\Omega^\infty_*\colon \Sp(\Sp(\Cc))\morphism\Sp(\Cc)$ are equivalences. But we know that $\Omega^\infty$ is one by \cref{exm:MyFirstSpectra}\itememph{a}. Also $\Omega_*^\infty$ is an equivalence too because it is a \enquote{coordinate flip} of $\Omega^\infty$. By that, we mean the following: Plugging in the definitions, we can write $\Sp(\Sp(\Cc))$ as a limit indexed by $\IN^\op\times\IN^\op$. Using the dual of \cref{prop:ColimitsCommute}, we can flip that diagram around, swapping $\Omega^\infty$ and $\Omega^\infty_*$, which proves the latter is an equivalence as well.
+	
+	For the \enquote{in particular}, we need another small argument similar to the proof* of \cref{cor:HomSemiAdditveFactorsThroughCGrpAn}, since $\Hom_\Cc\colon \Cc^\op\times\Cc\morphism \An$ isn't left exact. Every $\Hom_\Cc(x,-)\colon \Cc\morphism\An$ is, however, hence the adjunction provides us with canonical lifts $\hom_\Cc(x,-)\morphism\Sp$ for all $x\in \Cc$ when $\Cc$ is a stable $\infty$-category. To show that these combine into a functor $\hom_\Cc\colon \Cc^\op\times \Cc\morphism \An$, consider the full subcategory $\Fun^{\mathrm{lex}}(\Cc,\An)\subseteq \Fun(\Cc,\An)$ spanned by left exact functors. We claim that
+	\begin{equation*}
+		\Omega_*^\infty\colon\Fun^\mathrm{ex}(\Cc,\Sp)\isomorphism \Fun^\mathrm{lex}(\Cc,\An)
+	\end{equation*}
+	is an equivalence. Indeed, it becomes one after applying $\core(-)$ by the adjunction we've just proved. To show that it is an equivalence after $\core\Ar(-)$, we can use the same argument once we convince ourselves that $\Ar\Fun^\mathrm{ex}(\Cc,\Sp)\simeq \Fun^\mathrm{ex}(\Cc,\Ar(\Sp))$ (use that limits in arrow categories are pointwise by \cref{lem:f^*preservesColimits}) and that $\Ar(\Sp)\simeq \Sp(\Ar(\An))$ (use that $\Ar(-)$ commutes with limits).
+	
+	Now the Yoneda embedding $\Cc^\op\morphism \Fun(\Cc,\An)$ has image in $\Fun^\mathrm{lex}(\Cc,\An)\simeq \Fun^\mathrm{ex}(\Cc,\Sp)$ and we get our desired $\hom_\Cc$ after currying.
+\end{proof}
+
+\numpar*{Spectra and Prespectra}
+We already know that $\Sp$ is complete and $\Omega^{\infty-i}\colon \Sp\morphism\An$ preserve limits. We also know from \cref{propdef:StableInftyCategory} that $\Sp$ has finite colimits because it is stable. But in fact we can even show that it is cocomplete! To see this, we will write $\Sp$ as a Bousfield localization of the $\infty$-category of \emph{prespectra}.
+
+This can be introduced in general. So let $\Cc$ be an $\infty$-category with finite limits and (thus) a terminal object $*\in \Cc$. We let
+\begin{equation*}
+	\cat{PSp}(\Cc)\subseteq \Fun(\IN^2,*/\Cc)
+\end{equation*}
+be the full subcategory of functors that \enquote{vanish away from the diagonal}. So the objects of $\cat{PSp}(\Cc)$ can be pictured as lattice diagrams
+\begin{equation*}
+	\begin{tikzcd}[row sep=1.2em,column sep=1.2em]
+		\vdots & \vdots & \vdots & \\
+		*\rar\uar & *\rar\uar & X_2\rar\uar & \cdots \\
+		*\rar\uar & X_1\rar\uar & *\rar\uar & \cdots\\
+		X_0\rar\uar & *\rar\uar & *\rar\uar &\cdots
+	\end{tikzcd}	
+\end{equation*}
+The diagonal squares induce morphisms $\Sigma X_i\morphism X_{i+1}$ (provided $\Cc$ has pushouts) or equivalently $X_i\morphism \Omega X_{i+1}$. If the latter were to be isomorphisms, we would recover $\Sp(\Cc)$, as we'll see in a moment.
+
+
+To construct a fully faithful embedding $\Sp(\Cc)\monomorphism \cat{PSp}(\Cc)$, write $\IN^2=\colimit_{n\in \IN}\IN^2_{\leq (n,n)}$ as an ascending union of finite pieces $\IN^2_{\leq (n,n)}$ and consider the diagram
+\begin{equation*}
+	\begin{tikzcd}
+		\cat{PSp}(\Cc)\rar[symbol=\subseteq] & \limit\limits_{n\in \IN^\op}\Fun\big(\IN^2_{\leq (n,n)},*/\Cc\big)\\
+		\Sp(\Cc)\uar[dashed]\rar[iso] & \limit\limits_{n\in\IN^\op}*/\Cc\uar["\eta=\limit \eta_n"']
+	\end{tikzcd}
+\end{equation*}
+The morphisms $\eta_n\colon {*/\Cc}\morphism \Fun(\IN^2_{\leq (n,n)},*/\Cc)$ send an object $X\in */\Cc$ to the right Kan extension of the functor
+\begin{center}
+	\begin{tikzpicture}[x=3em,y=3em,line cap=round]
+		\node (00) at (0,0) {$\phantom{W}$};
+		\node (10) at (1,0) {$*$};
+		\node (20) at (2,0) {$\cdots$};
+		\node (30) at (3,0) {$*$};
+		\node (01) at (0,1) {$*$};
+		\node (11) at (1,1) {$\phantom{W}$};
+		\node (21) at (2,1) {$*$};
+		\node[inner sep=0] (31) at (3,1) {$\raisebox{1.25ex}{\vdots}$};
+		\node[inner sep=0] (02) at (0,2) {$\raisebox{1.25ex}{\vdots}$};
+		\node (12) at (1,2) {$*$};
+		\node (22) at (2,2) {$\phantom{W}$};
+		\node (32) at (3,2) {$*$};
+		\node (03) at (0,3) {$*$};
+		\node (13) at (1,3) {$\cdots$};
+		\node (23) at (2,3) {$*$};
+		\node (33) at (3,3) {$X$};
+		\draw[-to] (00) -- (01);
+		\draw[-to] (01) -- (02);
+		\draw[-to] (02) -- (03);
+		\draw[-to] (10) -- (11);
+		\draw[-to] (11) -- (12);
+		\draw[-to] (12) -- (13);
+		\draw[-to] (20) -- (21);
+		\draw[-to] (21) -- (22);
+		\draw[-to] (22) -- (23);
+		\draw[-to] (30) -- (31);
+		\draw[-to] (31) -- (32);
+		\draw[-to] (32) -- (33);
+		\draw[-to] (00) -- (10);
+		\draw[-to] (10) -- (20);
+		\draw[-to] (20) -- (30);
+		\draw[-to] (01) -- (11);
+		\draw[-to] (11) -- (21);
+		\draw[-to,shorten >=1ex] (21) -- (31);
+		\draw[-to,shorten <=1ex] (02) -- (12);
+		\draw[-to] (12) -- (22);
+		\draw[-to] (22) -- (32);
+		\draw[-to] (03) -- (13);
+		\draw[-to] (13) -- (23);
+		\draw[-to] (23) -- (33);
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (00) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (11) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (22) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\path (0,-0.5) to node {$\underbrace{\hspace{10em}}$} node[below=0.5ex] {$\scriptstyle n+1$} (3,-0.5);
+		\path (3.5,0) to node[sloped] {$\underbrace{\hspace{10em}}$} node[right=0.5ex] {$\scriptstyle n+1$} (3.5,3);
+		\node[left] at (-0.25,1.5) {$\IN^2_{\leq(n,n)}$};
+	\end{tikzpicture}
+\end{center}
+Note the blank spots along the diagonal, except for the $(n,n)\ordinalth$ entry! So we right-Kan extend along the inclusion $\IN^2_{\leq (n,n)}\smallsetminus \{(0,0),\dotsc,(n-1,n-1)\}\subseteq \IN^2_{\leq (n,n)}$. Since this inclusion is fully faithful, \cref{cor:FullyFaithfulKanExtension} (combined with \cref{propdef:BousfieldLocalization}\itememph{a}) shows that $\eta_n$ is fully faithful, and thus also the limit $\eta$ over all $\eta_n$ gives a fully faithful map between the limits. One easily checks that the image of $\eta$ lands in the full subcategory $\cat{PSp}(\Cc)$ and thus we get the desired fully faithful functor $\Sp(\Cc)\monomorphism \cat{PSp}(\Cc)$.
+
+As another consequence of the maps $\eta_n$ being defined by right Kan extension, we obtain canonical equivalences
+\begin{equation*}
+	\Hom_{\cat{PSp}(\Cc)}(X,Y)\simeq \limit_{n\in \IN^\op}\Hom_{*/\Cc}(X_n,Y_n)
+\end{equation*}
+for all $X\in \cat{PSp}(\Cc)$ and $Y\in \Sp(\Cc)$ (just compute the left-hand side as a $\Hom$ anima in $\limit_{n\in \IN^\op}\Fun(\IN_{\leq (n,n)}^2,*/\Cc)$ and use the universal property of right Kan extension).
+
+Note that $\cat{PSp}(\Cc)$ inherits all limits and colimits from $*/\Cc$. Also $\Sp(\Cc)\subseteq \cat{PSp}(\Cc)$ is closed under limits, but not colimits. To show that $\Sp(\Cc)$ is cocomplete (under appropriate conditions), we need to show that it is in fact a Bousfield localization of $\cat{PSp}(\Cc)$. This is done by the following proposition (which we prove only after some consequences are discussed).
+\begin{prop}\label{prop:Spectrification}
+	If $*/\Cc$ has sequential colimits and $\Omega\colon {*/\Cc}\morphism*/\Cc$ commutes with them, then the inclusion $\Sp(\Cc)\subseteq\cat{PSp}(\Cc)$ has a left adjoint $(-)^\mathrm{sp}\colon \cat{PSp}(\Cc)\morphism\Sp(\Cc)$. On objects it is given by
+	\begin{equation*}
+		\Omega^{\infty-i}(X^\mathrm{sp})\simeq \colimit_{n\in \IN}\Omega^nX_{n+i}\,,
+	\end{equation*}
+	where the transition maps are induced by the morphisms $X_i\morphism\Omega X_{i+1}$ that where constructed on the previous page.
+\end{prop}
+Observe that $\Cc=\An$ meets the condition of \cref{prop:Spectrification}. Indeed, we can replace any sequential diagram $(X_1\morphism X_2\morphism \dotso)$ in $\An$ by a diagram $(X_1'\monomorphism X_2'\monomorphism \dotso)$ $\Kan$ such that all transition maps are cofibrations; then \cref{thm:HomotopyLimits} allows us to compute the colimit in $\Kan$ instead. Now write $\Omega\simeq \F_*(\IS^1,-)$ as the pointed mapping space out of $\IS^1$ (or any simplicial model for it, it doesn't even need to be Kan) and observe that the right-hand side commutes with filtered colimits in $\Kan$ because $\IS^1$ is compact. Thus we see that $\Sp$ is a Bousfield localization of $\cat{PSp}$ and therefore cocomplete by \cref{cor:CoLimitsInBousfield}.
+
+Similarly to our construction of the embedding $\Sp(\Cc)\subseteq \cat{PSp}(\Cc)$, one can show that $\ev_{(0,0)}\colon \cat{PSp}(\Cc)\morphism */\Cc$ has a left adjoint $\snake{\Sigma}^\infty\colon {*/\Cc}\morphism \cat{PSp}(\Cc)$ if $\Cc$ has finite colimits. On objects $c\in */\Cc$, we define $\Sigma^\infty c$ to be the left Kan extension of
+\begin{center}
+	\begin{tikzpicture}[x=3em,y=3em,line cap=round]
+		\node (00) at (0,0) {$c$};
+		\node (10) at (1,0) {$*$};
+		\node (20) at (2,0) {$\cdots$};
+		\node (30) at (3,0) {$*$};
+		\node (01) at (0,1) {$*$};
+		\node (11) at (1,1) {$\phantom{W}$};
+		\node (21) at (2,1) {$*$};
+		\node[inner sep=0] (31) at (3,1) {$\raisebox{1.25ex}{\vdots}$};
+		\node[inner sep=0] (02) at (0,2) {$\raisebox{1.25ex}{\vdots}$};
+		\node (12) at (1,2) {$*$};
+		\node (22) at (2,2) {$\phantom{W}$};
+		\node (32) at (3,2) {$*$};
+		\node (03) at (0,3) {$*$};
+		\node (13) at (1,3) {$\cdots$};
+		\node (23) at (2,3) {$*$};
+		\node (33) at (3,3) {$\phantom{W}$};
+		\draw[-to] (00) -- (01);
+		\draw[-to] (01) -- (02);
+		\draw[-to] (02) -- (03);
+		\draw[-to] (10) -- (11);
+		\draw[-to] (11) -- (12);
+		\draw[-to] (12) -- (13);
+		\draw[-to] (20) -- (21);
+		\draw[-to] (21) -- (22);
+		\draw[-to] (22) -- (23);
+		\draw[-to] (30) -- (31);
+		\draw[-to] (31) -- (32);
+		\draw[-to] (32) -- (33);
+		\draw[-to] (00) -- (10);
+		\draw[-to] (10) -- (20);
+		\draw[-to] (20) -- (30);
+		\draw[-to] (01) -- (11);
+		\draw[-to] (11) -- (21);
+		\draw[-to,shorten >=1ex] (21) -- (31);
+		\draw[-to,shorten <=1ex] (02) -- (12);
+		\draw[-to] (12) -- (22);
+		\draw[-to] (22) -- (32);
+		\draw[-to] (03) -- (13);
+		\draw[-to] (13) -- (23);
+		\draw[-to] (23) -- (33);
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (33) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (11) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\draw[FabiansPurple!67!FabiansPink,dotted, rounded corners=2] (22) ++ (-1ex,-1ex) -- ++ (2ex,0) -- ++ (0,2ex) -- ++(-2ex,0) -- cycle;
+		\path (0,-0.5) to node {$\underbrace{\hspace{10em}}$} node[below=0.5ex] {$\scriptstyle n+1$} (3,-0.5);
+		\path (3.5,0) to node[sloped] {$\underbrace{\hspace{10em}}$} node[right=0.5ex] {$\scriptstyle n+1$} (3.5,3);
+		\node[left] at (-0.25,1.5) {$\IN^2_{\leq(n,n)}$};
+	\end{tikzpicture}
+\end{center}
+Again, note the blank spots along the diagonal, so the Kan extension is along the inclusion $\IN^2_{\leq (n,n)}\smallsetminus \{(1,1),\dotsc,(n,n)\}\subseteq \IN^2_{\leq (n,n)}$ this time.
+
+Combining this with \cref{prop:Spectrification}, we see that $\Omega^\infty\colon\Sp\morphism {*/\An}$ has a left adjoint $\Sigma^\infty=(\snake{\Sigma}^\infty)^\mathrm{sp}\colon {*/\An}\morphism\Sp$. Plugging in the explicit formulas for Kan extension (\cref{thm:KanExtension}) to compute $\snake{\Sigma}^\infty$, we get
+\begin{equation*}
+	\Omega^\infty\Sigma^\infty(X,x)\simeq \colimit_{n\in \IN}\Omega^n\Sigma^n(X,x)
+\end{equation*}
+for all $(X,x)\in */\An$. The left-hand side is sometimes denoted $Q(X,x)$, but that has nothing to do with the Quillen $Q$-construction (see page~\labelcpageref{par:QuillenQConstruction}).
+
+We will denote the composite
+\begin{equation*}
+	\IS[-]\colon \An\xrightarrow{(-)_+}*/\An\morphism[\Sigma^\infty]\Sp\,.
+\end{equation*}
+In particular, we obtain $\IS\coloneqq\IS[*]\simeq \Sigma^\infty(\IS^0,*)$, the mythical \emph{sphere spectrum}. Plugging in the adjunctions we know gives $\Hom_\Sp(\IS,-)\simeq \Hom_\An(*,\mathop{\Omega^\infty}-)\simeq \Omega^\infty$, so $\IS$ represents the functor $\Omega^\infty\colon \Sp\morphism\An$. Its homotopy groups are
+\begin{equation*}
+	\pi_i(\IS)=\colimit_{n\in\IN} \pi_i\Omega^n\Sigma^n(\IS^0,*)=\colimit_{n\in\IN}\pi_{i+n}(\IS^n,*)\,,
+\end{equation*}
+i.e.\ the \emph{stable homotopy groups of spheres}. In contrast to the vastly complicated problem of computing these, the homology of $\IS$ (defined as in \cref{par:HomologyOfSpectra}) is rather boring:
+\begin{equation*}
+	H_i(\IS,A)=\begin{cases*}
+		A & if $i=0$\\
+		0 & else
+	\end{cases*}\,.
+\end{equation*}
+Proving this is not completely trivial, however, since one needs a bit of homotopy theory to compute $H_*(\Omega^n\IS^n,A)$ in low degrees.
+\begin{cor}[Baratt--Priddy--Quillen]\label{cor:BarattPriddyQuillen}
+	The functor $\ev_1\colon \CGrp(\An)\morphism */\An$ has a left adjoint $\Free^\CGrp\colon {*/\An}\morphism \CGrp(\An)$ given by
+	\begin{equation*}
+		\Free^\CMon(X,x)^\inftygrp\simeq\Free^\CGrp(X,x)\simeq \Omega^\infty\Sigma^\infty(X,x)\,.
+	\end{equation*}
+	Here $\Omega^\infty\colon \Sp_{\geq 0}\isomorphism \CGrp(\An)$ denotes the inverse of $B^\infty\colon \CGrp(\An)\isomorphism \Sp_{\geq 0}$, which we recall is an equivalence by \cref{cor:RecognitionForInfiniteLoopSpaces}.
+\end{cor}
+\begin{proof*}
+	We didn't spell this out in the lecture since there isn't much to do: It's evident that $\Sigma^\infty\colon {*/\An}\morphism \Sp$ lands in the full subcategory $\Sp_{\geq 0}$, hence it's also a left-adjoint to $\Omega^\infty\colon \Sp_{\geq 0}\morphism */\An$. After applying the other $\Omega^\infty$ (i.e.\ the inverse of $B^\infty$) we obtain the second equivalence. For the first equivalence, recall that \cref{cor:CommutativeHorizontalAdjoints} actually shows that the $\IE_1$-group completion of an $\IE_\infty$-monoid has a canonical $\IE_\infty$-group structure.
+\end{proof*}
+Applying \cref{cor:BarattPriddyQuillen} to the unnumbered example on page~\labelcpageref{par:FreeCMon}, we see that
+\begin{equation*}
+	\big(\{\text{finite sets, bijection}\},\sqcup\big)^\inftygrp\simeq \Free^\CMon(*)^\inftygrp\simeq \Omega^\infty\IS\,,
+\end{equation*}
+an example that Fabian already terrified us with in the introduction.
+
+
+\begin{proof}[Proof of \cref{prop:Spectrification}]
+	By \cref{cor:AdjointsPointwise}, it suffices to check that $X^\mathrm{sp}$ as defined there is really a spectrum and a left-adjoint object to $X$ for all $X\in \cat{PSp}(\Cc)$. To check the first, we compute
+	\begin{equation*}
+		\Omega X_{i+1}^\mathrm{sp}\simeq \Omega\colimit_{n\in \IN}\Omega^nX_{n+i+1}\simeq \colimit_{n\in \IN}\Omega^{n+1}X_{n+i+1}\simeq \colimit_{n\in\IN}\Omega^nX_{n+i}\simeq X_i^\mathrm{sp}
+	\end{equation*}
+	(and all of this is functorial) since $\Omega$ commutes with sequential colimits. To check that $X^\mathrm{sp}$ is really a left-adjoint object of $X$, we compute
+	\begin{align*}
+		\Hom_{\Sp(\Cc)}(X^\mathrm{sp},Y)&\simeq \limit_{i\in \IN^\op}\Hom_{*/\Cc}\left(X_i^\mathrm{sp},Y_i\right)\\
+		&\simeq\limit_{i\in\IN^\op}\left(\colimit_{n\in \IN}\Omega^nX_{n+i},Y_i\right)\\
+		&\simeq \limit_{i\in\IN^\op}\Hom_{*/\Cc}\bigg(\colimit_{n\in\IN_{\geq i}}\Omega^{n-i}X_n,\Omega^{n-i}Y_n\bigg)\\
+		&\simeq \limit_{i\in\IN^\op}\limit_{n\in \IN^\op_{\geq i}}\Hom_{*/\Cc}\left(\Omega^{n-i} X_n,\Omega^{n-i}Y_n\right)\\
+		&\simeq \limit_{n\in \IN^\op}\limit_{j\in \IN_{\leq n}}\Hom_{*/\Cc}\left(\Omega^jX_n,\Omega^jY_n\right)\\
+		&\simeq \limit_{n\in \IN^\op}\Hom_{*/\Cc}(X_n,Y_n)\\
+		&\simeq \Hom_{\cat{PSp}(\Cc)}(X,Y)\,.
+	\end{align*}
+	The first two equivalences are just plugging in definitions. For the third equivalence, we do an index shift by $-i$ and use $\Omega^{n-i}Y_n\simeq Y_i$ since $Y$ is a spectrum. The fourth equivalence is \cref{cor:HomPreservesColimits}. For the fifth equivalence, we substitute $j=n-i$ and use that limits commute (by the dual of \cref{prop:ColimitsCommute}). Since $j$ has \enquote{negative slope in $i$}, we really take the limit over $j\in \IN_{\leq n}$; the missing $(-)^\op$ is no typo (and crucial). The sixth equivalence now follows from the fact that $j=0$ is initial in $0\in \IN_{\leq n}$. Finally, the seventh equivalence is the formula we deduced just before the formulation of \cref{prop:Spectrification}. 
+\end{proof}
+Our next goal is to define a more \enquote{Segal style} model for $\Sp(\Cc)$. To do this, we construct another $\infty$-category $\IF^\op$. Fabian remarks that this symbol is not the \texttt{\textbackslash mathbb}-version of the Roman letter F, but of the archaic Greek letter Digamma, which was the letter after Gamma and Delta in the ancient Greek alphabet, so $\IGamma^\op$, $\IDelta^\op$, and $\IF^\op$ fit together nicely. \href{https://en.wikipedia.org/wiki/Digamma}{Wikipedia} claims, however, that Digamma was only the sixth letter and that Epsilon came between it and Delta. Nevertheless, I'll obediently stick to Fabian's notation. I took the liberty though to typeset that symbol using \verb|\mathbb{F}| (I'm already going to \LaTeX hell for my $\IGamma$ being a \verb|\mathbb{L}| turned upside down \dotso).
+\begin{defi}
+	Let $\IF^\op\subseteq */\An$ be the smallest sub-$\infty$-category containing $\IS^0$ and closed under finite colimits. There's a functor $\IGamma^\op\morphism\IF^\op$ sending $\langle n\rangle$ to $\langle n\rangle_+$ (i.e.\ we add a basepoint to the discrete anima $\langle n\rangle$) and any partially defined map $\alpha\colon\langle m\rangle \morphism\langle n\rangle$ to the map $\alpha_+\colon \langle m\rangle_+\morphism\langle n\rangle_+$ which is $\alpha$ wherever it is defined and sends everything else to the basepoint.
+	
+	Finally, if $\Cc$ is an $\infty$-category with finite limits and (thus) a terminal object $*\in\Cc$, we define $\widetilde{\Sp}(\Cc)\subseteq \Fun(\IF^\op,*/\Cc)$ to be the full subcategory of functors taking pushouts to pullbacks and $*=\langle 0\rangle_+$ to $*\in \Cc$. 
+\end{defi}
+Note that $\widetilde{\Sp}(\Cc)$ is stable: It has finite limits inherited from $*/\Cc$ and $\Omega$ is an equivalence with inverse induced by precomposition with $\Sigma\colon \IF^\op\morphism \IF^\op$. Hence the criterion from \cref{propdef:StableInftyCategory}\itememph{a} is fulfilled.
+\begin{prop}
+	There is a natural equivalence of $\infty$-categories
+	\begin{align*}
+		\widetilde{\Sp}(\Cc)&\isomorphism \Sp(\Cc)\\
+		F&\longmapsto \big(F(\IS^0),F(\IS^1),\dotsc\big)\,.
+	\end{align*}
+\end{prop}
+\begin{proof}[Proof sketch]
+	There are multiple ways to prove this. One can directly show that $\widetilde{\Sp}(\Cc)$ satisfies the universal property from \cref{thm:SpLeftAdjoint}. Or one can simply check that both $\ev_{\IS^0}\colon \widetilde{\Sp}(\widetilde{\Sp}(\Cc))\isomorphism \widetilde{\Sp}(\Cc)$ and $\ev_{\IS^0,*}\colon \widetilde{\Sp}(\widetilde{\Sp}(\Cc))\isomorphism\widetilde{\Sp}(\Cc)$ are equivalences and then apply the same reasoning as in the proof of that theorem.
+	
+	We will sketch a third way by constructing an inverse functor. For this, we use the following general construction: Let $\An^\mathrm{fin}\subseteq \An$ denote the smallest sub-$\infty$-category containing $*$ and closed under finite colimits. Let $\Dd$ be any $\infty$-category with finite limits and colimits. For $d\in \Dd$ we put
+	\begin{equation*}
+		X\otimes d\coloneqq \colimit_X\const_d\quad\text{and}\quad d^X\coloneqq \limit_X\const_d\,.
+	\end{equation*}
+	These exist by assumption and are functorial in $X$ and $d$. If $(X,x)\in \IF^\op$ and $\Dd$ is \emph{pointed}, i.e.\ has a zero object, then we put
+	\begin{equation*}
+		(X,x)\otimes d\coloneqq \cofib\left(\colimit_{\{x\}}\const_d\rightarrow \colimit_Xd\right)\,.
+	\end{equation*}
+	The inverse functor $\Sp(\Cc)\morphism\widetilde{\Sp}(\Cc)$ now sends a spectrum $E\in \Sp(\Cc)$ to the functor $\Omega^\infty(-\otimes E)\colon \IF^\op\morphism */\Cc$. Note that $\Sp(\Cc)$ has finite colimits since it is stable, so the functor $-\otimes E\colon \IF^\op\morphism \Sp(\Cc)$ is well-defined.
+\end{proof}
+The functors $-\otimes E$ and $E^{(-)}$ for spectra are interesting on their own. Observe for example that $X\otimes HA\simeq H(C_\bullet(X)\otimes_\IZ^LA)$, since both sides are colimit-preserving functors $\An\morphism\Sp$ with value $HA$ on $*\in \An$, hence they are equal by \cref{thm:ColimitPreservingRepresentable} and the fact that $\Sp$ is cocomplete. This motivates the following definition.
+\begin{defi}
+	Let $E\in \Sp$ and $X\in \An$. The \emph{homology} and \emph{cohomology theory} associated to $E$ are defined by
+	\begin{equation*}
+		E_*(X)=\pi_*(X\otimes E)=\pi_*\left(\colimit_XE\right)\quad\text{and}\quad
+		E^*(X)=\pi_{-*}(E^X)=\pi_{-*}\left(\limit_XE\right)\,.
+	\end{equation*}
+\end{defi}
+A little bit of foreshadowing: We can also extend the tensor product (or \emph{smash product}) $-\otimes -$ to all of $\Sp$ by defining
+\begin{equation*}
+	E\otimes E'\coloneqq\colimit_{i\in \IN}\Omega^i\big((\Omega^{\infty-i}E')\otimes E\big)
+\end{equation*}
+(the outer $\Omega^i$ is the intrinsic loop functor on $\Sp$, the inner is $\Omega^{\infty-i}\colon \Sp\morphism*/\An$). It turns out that this defines a symmetric monoidal structure on $\Sp$ behaving like $-\otimes_\IZ^L-$ on $\Dd(\IZ)$, although not even symmetry is in any way obvious from the definition. Proving this will be the content of the next few lectures. 
+
+In the end we will see that $X\otimes E\simeq \IS[X]\otimes E$ and $E^X\simeq \hom_\Sp(\IS[X],E)$ for all $X\in\An$. If $X$ is an $\IE_\infty$-monoid, it's usually very hard to understand its group completion $X^\inftygrp$. But we can sometimes understand $\IS[X^\inftygrp]\in \Sp$. This is still good enough to compute $H_*(X^\inftygrp,A)$ or even $E_*(X^\inftygrp)$, which will be the  content of the \enquote{group completion theorem}. Once we have this, we're in business to compute some $K$-groups!
+\subsection{An Interlude on Operads}
+\lecture[Operads. Symmetric monoidal $\infty$-category as operads, strict vs.\ lax monoidal functors. Some examples. A technical lemma about presheaves.]{2020-12-17}
+Recall that a morphism in $\IGamma^\op$ is \emph{inert} if it is a bijection (where it is defined) and \emph{active} if it is defined everywhere. This yields two subcategories $\IGamma^\op_{\mathrm{act}}$ and $\IGamma^\op_{\mathrm{int}}$. Recall also that symmetric monoidal $\infty$-categories are precisely the objects of $\CMon(\Cat_\infty)$, which is a full subcategory of $\Cocart(\IGamma^\op)$ via cocartesian unstraightening.
+\begin{defi}\label{def:Operad}
+	A \emph{\embrace{multicoloured and symmetric} operad \embrace{in anima}} is a functor $p\colon \Oo\morphism \IGamma^\op$ of $\infty$-categories such that the following conditions hold:
+	\begin{alphanumerate}
+		\item Every inert in $\IGamma^\op$ has cocartesian lifts with arbitrary sources (in the invariant sense of \cref{def:WeirdCocartesianDefinition}\itememph{b}).
+		\item The functor $\Oo\colon\IGamma_\mathrm{int}^\op\morphism \Cat_\infty$ arising by cocartesian straightening satisfies the Segal condition. That is, $\Oo_0\simeq *$ and $\Oo_n\simeq \prod_{i=1}^n\Oo_1$ via the Segal maps $\rho_1,\dotsc,\rho_n\colon \langle n\rangle \morphism \langle 1\rangle$.
+		\item Let $x,y\in \Oo$ with $p(x)=\langle m\rangle$ and $p(y)=\langle n\rangle$. By \itememph{b}, we can write $y\simeq (y_1,\dotsc,y_n)$ for some $y_i\in \Oo_1$. Then we require that the diagram
+		\begin{equation*}
+			\begin{tikzcd}[column sep=large]
+				\Hom_\Oo(x,y)\rar["{(\rho_1,\dotsc,\rho_n)}"]\drar[pullback]\dar["p"'] & \displaystyle\prod_{i=1}^n\Hom_\Oo(x,y_i)\dar[shorten <=-2.5ex,shorten >=-2ex,"p"] \\
+				\Hom_{\IGamma^\op}\big(\langle m\rangle,\langle n\rangle\big)\rar["{(\rho_1,\dotsc,\rho_n)}"]& \displaystyle\prod_{i=1}^n\Hom_{\IGamma^\op}\big(\langle m\rangle,\langle 1\rangle\big)
+			\end{tikzcd}
+		\end{equation*}
+		is a pullback. Note that the bottom arrow is an injective map of sets!
+	\end{alphanumerate}
+	We call a morphism $f\colon x\morphism y$ in $\Oo$ \emph{inert} if it is a $p$-cocartesian lift of an inert morphism in $\IGamma$. We call $f$ \emph{active} if it is a (not necessarily $p$-cocartesian) lift of an active morphism. We also call $\Oo_1$ the \emph{underlying $\infty$-category} of $\Oo$.
+	
+	Finally, the $\infty$-category $\cat{Op}$ of operads is the (non-full) sub-$\infty$-category of $\Cat_\infty/\IGamma^\op$ spanned by the operads and by functors which preserve inert morphisms.
+\end{defi}
+\begin{exm}
+	\begin{alphanumerate}
+		\item The cocartesian unstraightening induces a functor
+		\begin{equation*}
+			(-)^\otimes=\Un^\cocart\colon \CMon(\Cat_\infty)\morphism \cat{Op}\,.
+		\end{equation*}
+		To see this, note that conditions \cref{def:Operad}\itememph{a} and \itememph{b} are trivially satisfied, so we only have to check \itememph{c}. We've already remarked that the bottom row of the diagram in question is an injection of discrete anima, hence we must show that the top row is an inclusion of the corresponding path components. So let $\alpha\colon \langle m\rangle \morphism\langle n\rangle $ be some morphism and denote by $\Hom_\Oo^\alpha(x,y)$ the path component over $\alpha$. Let $x\morphism \alpha_*(x)$ be a $p$-cocartesian lift of $\alpha$ and consider the diagram
+		\begin{equation*}
+			\begin{tikzcd}[column sep=large]
+				\Hom_{\Oo_n}(\alpha_*x,y)\rar[iso]\dar[iso] & \displaystyle\prod_{i=1}^n\Hom_{\Oo_1}\big((\alpha_*x)_i,y_i\big)\dar[shorten <=-2.5ex,shorten >=-2ex,iso] \\
+				\Hom_{\Oo}^\alpha(x,y)\rar & \displaystyle\prod_{i=1}^n\Hom_{\Oo}^{\rho_i\circ\alpha}(x,y)
+			\end{tikzcd}
+		\end{equation*}
+		That the vertical arrows are equivalences follows easily from the fact that $x\morphism \alpha_*x$ is $p$-cocartesian and the pullback diagram in \cref{def:WeirdCocartesianDefinition}\itememph{a}. The top arrow is an equivalence by the Segal condition. Hence the bottom arrow is an equivalence as well, which is what we wanted to show. Thus $(-)^\otimes$ has its image in contained in $\cat{Op}\subseteq \Cat_\infty/\IGamma^\op$, as claimed.
+		
+		However, $(-)^\otimes$ is not fully faithful. In $\CMon(\Cat_\infty)$ a morphism is a \emph{strongly} symmetric monoidal functor, i.e.\ it has to preserve the tensor product. We define a \emph{lax symmetric monoidal functor} $\Cc\morphism\Dd$ to be a map of operads $\Cc^\otimes\morphism\Dd^\otimes$. We can now define $\infty$-categories $\cat{SymMonCat}_\infty\simeq \CMon(\Cat_\infty)$ and $\cat{SymMonCat}_\infty^\mathrm{lax}\subseteq \cat{Op}$ to be the essential image of $(-)^\otimes$.
+		
+		How do we recognize the essential image of $(-)^\otimes$? By the Segal condition and the fact that $p\colon \Oo\morphism \IGamma^\op$ has $p$-cocartesian lifts for all inert morphisms, it suffices to check that it has $p$-cocartesian lifts for the unique active maps $f_n\colon \langle n\rangle \morphism \langle 1\rangle$ (we leave it as an exercise to work out a proper argument). This is in turn equivalent to the following: For elements $(a_1,\dotsc,a_n)\in \Oo_n$ and $b\in \Oo_1$ define the \emph{multi-morphism space}
+		\begin{equation*}
+			\begin{tikzcd}
+				\Hom_\Oo^\mathrm{act}\big((a_1,\dotsc,a_n),b\big)\dar\drar[pullback]\rar & \Hom_\Oo\big((a_1,\dotsc,a_n),b\big)\dar\\
+				*\rar["f_n"] & \Hom_{\IGamma^\op}\big(\langle n\rangle,\langle 1\rangle\big)
+			\end{tikzcd}
+		\end{equation*}
+		Then a morphism $g\colon (a_1,\dotsc,a_n)\morphism a$ over $f_n$ is a $p$-cocartesian lift iff the precomposition $g^*\colon \Hom_{\Oo_1}(a,-)\isomorphism \Hom_\Oo^\mathrm{act}((a_1,\dotsc,a_n),-)$ is an equivalence of functors $\Oo_1\morphism \An$. The way to think about this is that \enquote{$a\simeq a_1\otimes\dotsb\otimes a_n$} and that an operad $\Oo$ is the data you need to make a \enquote{category in which you specify what a map out of a tensor product should be}. Whether such a category exists should equivalent to whether $\Oo\simeq \Cc^\otimes$ for some $\Cc\in \CMon(\Cat_\infty)$.
+		
+		\item There is an entirely dual theory of \emph{dual operads} (but that's not the same thing as cooperads). These are the functors to $\IGamma$ satisfying \cref{def:Operad}\itememph{a}, \itememph{b}, and \itememph{c} for cartesian lifts. The resulting category $\cat{dOp}$ is equivalent to $\cat{Op}$ via $(-)^\op\colon \cat{Op}\isomorphism \cat{dOp}$. Note, however, that this doesn't preserve underlying $\infty$-categories. Instead it fits into a diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				\cat{Op}\rar[iso]\dar["{(-)_1}"'] & \cat{dOp}\dar["{(-)_1}"]\\
+				\Cat_\infty\rar["{(-)^\op}"] & \Cat_\infty
+			\end{tikzcd}
+		\end{equation*}
+		The image of the cartesian unstraightening $\Un^\cart\colon \CMon(\Cat_\infty)\morphism\cat{dOp}$ is denoted $\cat{SymMonCat}_\infty^{\mathrm{oplax}}$, thought of as symmetric monoidal $\infty$-categories with oplax monoidal functors.
+		\item Here are some trivial operads: The functors $\IGamma^\op_\mathrm{int}\morphism\IGamma^\op$, $\langle 0\rangle\morphism \IGamma^\op$, and $\id\colon \IGamma^\op\morphism \IGamma^\op$.
+		\item Let $\Cc^\otimes\morphism\IGamma^\op$ be a symmetric monoidal structure on $\Cc$ and $\Dd\subseteq \Cc$ a full sub-$\infty$-category. Define $\Dd^\otimes\subseteq \Cc^\otimes$ to be the full sub-$\infty$-category spanned by the $d\simeq(d_1,\dotsc,d_n)$ with $d_i\in \Dd$. Then $\Dd^\otimes\morphism\IGamma^\op$ is an operad which is a symmetric monoidal category iff $d\otimes d'\in \Dd$ for all $d,d'\in \Dd$ and $1_\Cc\in \Dd$.
+		
+		Since I didn't find this completely obvious, here's a full argument. To check that $\Dd^\otimes$ is an operad, the conditions from \cref{def:Operad}\itememph{b} and \itememph{c} are immediately inherited from $\Cc^\otimes$. To check the remaining condition \itememph{a}, we must check that whenever $d\morphism d'$ is a cocartesian lift of an inert morphism in $\IGamma^\op$ with $d\in \Dd^\otimes$, then also $d'\in \Dd^\otimes$. Say $d\in \Dd_n^\otimes$ and let $d\simeq (d_1,\dotsc,d_n)$. Then the components $d_i\in \Dd_1^\otimes$ are precisely the endpoints of cocartesian lifts $d\morphism d_i$ of $\rho_i\colon \langle n\rangle \morphism\langle 1\rangle$. Since cocartesian lifts compose (see \cite[Proposition~IX.5]{HigherCatsII}), we see that the components of $d'$ are a subset of the components of $d$, hence $d'\in \Dd^\otimes$ as well. This shows that $\Dd^\otimes$ is indeed an operad. The further claim about when it is a symmetric monoidal category follows from the recognition criterion sketched in \itememph{a}.		 
+		\item Let $R$ be a commutative ring. One can check that $\Ch(R)$ is symmetric monoidal under $-\otimes_R-$ as a Kan-enriched category, hence its coherent nerve $\Kk(R)$ is symmetric monoidal. Now recall from \cref{exm:MyFirstBousfield}\itememph{c} that $\Dd(R)$ is a Bousfield localization of $\Kk(R)$. More precisely, $\Dd(R)$ can be embedded fully faithfully into $\Kk(R)$ as the full sub-$\infty$-category $\Dd(R)^{K\mhyph\mathrm{proj}}\subseteq \Kk(R)$ of $K$-projective complexes, i.e.\ those $C$ such that $\Hom_{\Kk(R)}(C,-)$ inverts quasi-isomorphisms. Clearly the tensor unit $R[0]$ is $K$-projective (as is any bounded below degree-wise projective complex) and if $C$ and $D$ are $K$-projective, then so is $C\otimes_RD$ as $\Hom_{\Kk(R)}(C\otimes_RD,-)\simeq \Hom_{\Kk(R)}(C,\Hhom_R(D,-))$ inverts quasi-isomorphisms too.
+		
+		We may thus apply \itememph{d} to obtain a symmetric monoidal structure $-\otimes_R^L-$ on $\Dd(R)$. The localization functor $\Kk(R)\morphism\Dd(R)$ (\enquote{taking $K$-projective resolutions}) is lax symmetric monoidal in the sense explained in \itememph{a}. In particular, there are canonical maps $C\otimes_R^LD\morphism C\otimes_RD$ for all $C,D\in \Kk(R)$.
+	\end{alphanumerate}
+\end{exm}
+Our next goal is to make cartesian and cocartesian monoidal structures on $\infty$-categories with products, and eventually to define the symmetric monoidal structure on $\Sp$. While Lurie writes down explicit simplicial sets to construct the desired operads, we will cheat a bit and use complete Segal spaces instead. This is based on the following lemma.
+\begin{lem}\label{lem:TautologicalPresheafLemma}
+	Let $\Ee$ be an $\infty$-category. For a presheaf $X\in \Pp(\Ee)$, consider the slice category $\Ee/X$ with respect to the Yoneda embedding $Y^\Ee\colon \Ee\morphism P(\Ee)$ and $\{X\}\morphism \Pp(\Ee)$ \embrace{in the notation of \cref{lem*:PresheafColimitOfRepresentables} this would have been $Y^\Ee/X$ instead}. The canonical functor
+	\begin{equation*}
+		\Pp(\Ee/X)\isomorphism \Pp(\Ee)/X\,,
+	\end{equation*}
+	constructed as the unique colimit-preserving extension of $Y^\Ee\colon\Ee/X\morphism \Pp(\Ee)/X$ via \cref{thm:ColimitPreservingRepresentable}, is an equivalence of $\infty$-categories.
+\end{lem}
+Applying \cref{lem:TautologicalPresheafLemma} to $\Ee=\IDelta$ and $X=\N^r(\Cc)\in \cat{sAn}$ for some $\infty$-category $\Cc$, we obtain $\Pp(\IDelta/\N^r(\Cc))\simeq \cat{sAn}/\N^r(\Cc)$. We will usually abbreviate the left-hand side as $\Pp(\IDelta/\Cc)$. This allows us to specify functors to $\Cat_\infty/\Cc$ as functors to $\Pp(\IDelta/\Cc)$ and then compose with 
+\begin{equation*}
+	\Pp(\IDelta/\Cc)\simeq \cat{sAn}/\N^r(\Cc)\xrightarrow{\asscat}\Cat_\infty/\Cc\,.
+\end{equation*}
+\begin{proof}[Proof of \cref{lem:TautologicalPresheafLemma}]
+	Before we start, observe that $\Pp(\Ee)/X$ is indeed cocomplete since one immediately checks that it inherits colimits from $\Pp(\Ee)$. We will use the following criterion:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}]\itshape\label{claim:EquivalenceCondition} Let $F\colon \Cc\morphism\Dd$ be a functor from a small $\infty$-category to a cocomplete $\infty$-category. Let $|\blank|_F\colon \Pp(\Cc)\shortdoublelrmorphism \Dd\noloc \Sing_F$ denote the adjunction resulting from \cref{thm:ColimitPreservingRepresentable}. Suppose furthermore that the following conditions hold:
+		\begin{alphanumerate}
+			\item $F$ is fully faithful.
+			\item $\Hom_\Dd(F(c),-)\colon\Dd\morphism\An$ commutes with colimits for all $c\in \Cc$.
+			\item $\Sing_F\colon \Dd\morphism \Pp(\Cc)$ is conservative.
+		\end{alphanumerate}
+		Then $|\blank|_F\colon \Pp(\Cc)\isomorphism\Dd$ is an equivalence.
+	\end{alphanumerate}
+	We prove \itememph{\boxtimes} first. Condition~\itememph{b} implies that $\Sing_F$ commutes with colimits. Indeed, this can be checked pointwise by \cref{thm:JoyalEquivalence}\itememph{b} since there always is a natural transformation $\colimit_\Ii\Sing_F\Rightarrow\Sing_F\colimit_\Ii$. Moreover, colimits in $\Pp(\Cc)$ are computed pointwise. Plugging in the explicit description of $\Sing_F$ that \cref{cor:ExplicitAdjoint} offers us, we must thus check that $\colimit_\Ii\Hom_\Dd(F(c),d_i)\simeq \Hom_\Dd(F(c),\colimit_\Ii d_i)$ for all $c\in \Cc$ and $d_i\in \Dd$. This is \itememph{b}.
+	
+	Now since $F$ is fully faithful, the unit $\id_{\Pp(\Cc)}\Rightarrow\Sing_F|\blank|_F$ is an equivalence on representables. Indeed, the right-hand side sends $c\in \Cc$ to $\Hom_\Dd(\mathop{F}-,F(c))\simeq \Hom_\Cc(-,c)$ by \cref{cor:ExplicitAdjoint} again. Now both sides preserve colimits and every presheaf on $\Cc$ can be written as a colimit of representatives by \cref{lem*:PresheafColimitOfRepresentables}, hence the unit is an equivalence everywhere. By the triangle identities and the fact that $\Sing_F$ is conservative by \itememph{c}, this implies that the counit $|\Sing_F-|_F\Rightarrow \id_\Dd$ is an equivalence as well. This finishes the proof of \itememph{\boxtimes}.
+	
+	Now to check that \itememph{\boxtimes} is applicable for $\Cc=\Ee/X$ and $\Dd=\Pp(\Ee)/X$. We already argued that $\Pp(\Ee)/X$ is cocomplete. It's easily checked that $\Ee/X\morphism\Pp(\Ee)/X$ is fully faithful since it's induced by the fully faithful Yoneda embedding, so \itememph{a} holds. To check \itememph{c}, let $\alpha\colon F\morphism F'$ be a morphism in $\Pp(\Ee)/X$ such that $\alpha_*\colon \Hom_{\Pp(\Ee/X)}(-,F)\morphism \Hom_{\Pp(\Ee/X)}(-,F')$ is an equivalence on representable presheaves. We must check that $\alpha$ is an equivalence itself. But if $\alpha_*$ is an equivalence on representables, then the Yoneda lemma implies that $\alpha\colon F(e)\morphism F'(e)$ is an equivalence for all $e\in \Ee$ (except those $e\in \Ee$ for which $X(e)=\emptyset$ since these aren't contained in the image of $\Ee/X\morphism \Ee$, but in that case we have $F(e)=\emptyset=F'(e)$ too since $F$ and $F'$ come with a map to $X$), hence $\alpha$ is an equivalence of presheaves.
+	
+	Finally, we have to check \itememph{b}. Given a representable object $\Hom_\Ee(e,-)\morphism X$ and an arbitrary object $F\morphism X$ of $\Pp(\Ee)/X$, the Yoneda lemma and \cite[Corollary~VIII.6]{HigherCatsII} provide a pullback square
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_{\Pp(\Ee)/X}\big(\Hom_\Ee(e,-),F\big)\rar\dar\drar[pullback]& \Hom_{\Pp(\Ee)}\big(\Hom_\Ee(e,-),F\big)\rar[iso] \dar & F(e)\dar\\
+			*\rar & \Hom_{\Pp(\Ee)}\big(\Hom_\Ee(e,-),X\big)\rar[iso]& X(e)
+		\end{tikzcd}
+	\end{equation*}
+	Clearly $F(e)$ commutes with colimits in $F$ because colimits in functor categories are computed pointwise (\cref{lem:f^*preservesColimits}). Hence it suffices to check that colimits in $\An$ commute with pullbacks. In other words, if $f\colon K\morphism L$ is any morphism of anima, then $f^*\colon \An/L\morphism \An/K$ preserves colimits. But $\Right(K)\simeq \An/K$ since every morphism to $K$ can be factored into a right anodyne and a right fibration, and likewise for $L$, so we are done since we verified in \cref{lem*:SmoothBaseChange} that $f^*\colon \Right(L)\morphism \Right(K)$ has a right adjoint $f_*$.
+\end{proof}
+
 
 
 \backmatter\KOMAoption{chapterprefix}{false}
