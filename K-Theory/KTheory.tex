@@ -16,6 +16,12 @@
 			post=lineto,
 			post length=0.42ex
 		}] (0,0) -- (#1,0);}\ }
+	
+	
+\makeatletter
+\renewcommand{\@pnumwidth}{2em} 
+\renewcommand{\@tocrmarg}{3em}
+\makeatother
 
 
 \subject{Lecture Notes for}
@@ -289,7 +295,7 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 	\end{equation*}
 \end{prop}
 \begin{rem*}\label{rem*:CoLimitsIn(*/An)OrAn}
-	For the proof, we'll need a functor $\Sigma\colon {*/\An}\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with weakly contractible colimits (but not with arbitrary ones, as I claimed before; for example, it doesn't preserve the initial object). Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)$. For the adjunction 
+	For the proof, we'll need a functor $\Sigma\colon {*/\An}\morphism */\An$ instead. It is induced by its unpointed variant, of course, but we can also define it by taking the above pushout in $*/\An$. In fact, it doesn't matter whether the pushout is taken in $*/\An$ or $\An$ since $*/\An\morphism \An$ commutes with weakly contractible colimits (but not with arbitrary ones, which I erroneously claimed in an earlier version of these notes; for example, it doesn't preserve the initial object). Indeed, if $\Ii$ is any diagram shape, then a quick calculation shows $\Fun(\Ii,*/\An)\simeq (\const *)/\Fun(\Ii,\An)$. For the adjunction 
 	\begin{equation*}
 		\colimit_\Ii\colon \Fun(\Ii,\An)\doublelrmorphism\An\noloc \const
 	\end{equation*}
@@ -717,9 +723,9 @@ is an equivalence for all $x\in \Cc$. The typical source of examples is everythi
 	\end{tikzpicture}
 	\end{center}
 
-	However, the punchline is that all of this doesn't really matter, since the dotted part turns out to be consisting of the vertices on the left and $0$ on the right turns out to be final (in the lecture we claimed that already the vertices on the left are final, but I think that's not true). To prove this, verify the criterion from \cref{thm:JoyalQuillenThmA}\itememph{b} and use that the slice category in question contain the respective arrow starting at $0$ as a terminal object. After passing to $\IDelta_{\leq 1}^\op/[n]$ instead of $[n]/\IDelta$, the dotted part becomes cofinal, hence the colimit in question can be taken over the dotted part only. But the $0$-vertex on the right is mapped to $X_0\simeq 0$ and there are no edges between the vertices on the left, hence it's easy to see that the colimit over the dotted part is just $X_1^{\oplus n}$. This is precisely what we wanted to show!
+	However, the punchline is that all of this doesn't really matter, since the dotted part turns out to be consisting of the vertices on the left and $0$ on the right turns out to be final (in the lecture we claimed that already the vertices on the left are final, but I think that's not true). To prove this, verify the criterion from \cref{thm:JoyalQuillenThmA}\itememph{b} and use that the slice category in question contain the respective arrow starting at $0$ as a terminal object. After passing to $\IDelta_{\leq 1}^\op/[n]$ instead of $[n]/\IDelta_{\leq 1}$, the dotted part becomes cofinal, hence the colimit in question can be taken over the dotted part only. But the $0$-vertex on the right is mapped to $X_0\simeq 0$ and there are no edges between the vertices on the left, hence it's easy to see that the colimit over the dotted part is just $X_1^{\oplus n}$. This is precisely what we wanted to show!
 	
-	For $\IGamma^\op/\langle n\rangle$, we can draw a similar picture:
+	For $\IGamma^\op_{\leq 1}/\langle n\rangle$, we can draw a similar picture:
 	\begin{center}
 		
 		\begin{tikzpicture}[x=0.6cm,y=0.6cm, line cap=round]
@@ -751,7 +757,7 @@ is an equivalence for all $x\in \Cc$. The typical source of examples is everythi
 			\draw[-to,shorten <=1.25ex,shorten >=1.25ex,bend left] (F) to (C);
 		\end{tikzpicture}
 	\end{center}
-	The vertices of $\IGamma^\op/\langle n\rangle$ consist of partially defined maps $\langle 0\rangle \morphism\langle n\rangle$ and $\langle 0\rangle \morphism\langle n\rangle$. As $\langle 0\rangle=\emptyset$, there is only one such map of the first kind, depicted by the vertex on the right. The vertex in the middle represents the unique nowhere-defined map $\langle 1\rangle\morphism \langle n\rangle$, and the vertices on the right correspond to the maps $\langle 1\rangle\morphism \langle n\rangle$ which are actually defined on $1$. Again, the dotted part (i.e.\ everything except the vertex in the middle) is cofinal and the colimit over it evaluates to $X_1^{\oplus n}$ since the vertex on the right is sent to $X_0\simeq 0$.
+	The vertices of $\IGamma^\op_{\leq 1}/\langle n\rangle$ consist of partially defined maps $\langle 0\rangle \morphism\langle n\rangle$ and $\langle 1\rangle \morphism\langle n\rangle$. As $\langle 0\rangle=\emptyset$, there is only one such map of the first kind, depicted by the vertex on the right. The vertex in the middle represents the unique nowhere-defined map $\langle 1\rangle\morphism \langle n\rangle$, and the vertices on the right correspond to the maps $\langle 1\rangle\morphism \langle n\rangle$ which are actually defined on $1$. Again, the dotted part (i.e.\ everything except the vertex in the middle) is cofinal and the colimit over it evaluates to $X_1^{\oplus n}$ since the vertex on the right is sent to $X_0\simeq 0$.
 \end{proof}
 
 
@@ -1103,7 +1109,7 @@ Let's explicitly record the following facts we already learned in the proof of \
 	Let $\Cc$ always have finite limits. Here are \enquote{my first spectra}:
 	\begin{alphanumerate}
 		\item If $\Omega\colon {*/\Cc}\isomorphism */\Cc$ is an equivalence, then $\Sp(\Cc)\simeq \Cc$ (because $|\IN^\op|\simeq *$). For example, $\Sp(\Dd(\IZ))\simeq \Dd(\IZ)$ or, even more silly, $\Sp(\Sp)\simeq \Sp$.
-		\item Let's compute $\Sp(\Dd_{\geq 0}(R))$ for a ring $R$. Recall that the loop functor on $\Dd_{\geq 0}(\IZ)$ is defined as $\Omega C\simeq \tau_{\geq 0}(C[-1])\in \Dd_{\geq 0}(R)$. Then the functor
+		\item Let's compute $\Sp(\Dd_{\geq 0}(R))$ for a ring $R$. Recall that the loop functor on $\Dd_{\geq 0}(R)$ is defined as $\Omega C\simeq \tau_{\geq 0}(C[-1])\in \Dd_{\geq 0}(R)$. Then the functor
 		\begin{align*}
 			\Dd(R)&\isomorphism \Sp\big(\Dd_{\geq 0}(R)\big)\\
 			C&\longmapsto \big(\tau_{\geq 0}C,(\tau_{\geq -1}C)[1],(\tau_{\geq -2}C)[2],\dotsc\big)
@@ -1133,7 +1139,7 @@ Let's explicitly record the following facts we already learned in the proof of \
 	\end{alphanumerate}
 \end{exm}
 \numpar{Homology of Spectra}\label{par:HomologyOfSpectra}
-The Eilenberg--MacLane spectrum functor $H$, the adjunction $\snake{C}_\bullet\colon {*/\An}\shortdoublelrmorphism \Dd_{\geq0}(\IZ)\noloc K$ from Very Long Example~\cref{exm:EilenberMacLane} can be upgraded to another adjunction
+Via the Eilenberg--MacLane spectrum functor $H$, the adjunction $\snake{C}_\bullet\colon {*/\An}\shortdoublelrmorphism \Dd_{\geq0}(\IZ)\noloc K$ from Very Long Example~\cref{exm:EilenberMacLane} can be upgraded to another adjunction
 \begin{equation*}
 	C_\bullet\colon \Sp\doublelrmorphism \Dd(\IZ)\noloc H\,.
 \end{equation*}
@@ -1298,7 +1304,7 @@ using $C_\bullet(*)\simeq \IZ$ and the derived tensor-$\Hom$ adjunction. The rig
 \end{proof}
 
 \numpar*{Spectra and Prespectra}
-We already know that $\Sp$ is complete and $\Omega^{\infty-i}\colon \Sp\morphism\An$ preserve limits. We also know from \cref{propdef:StableInftyCategory} that $\Sp$ has finite colimits because it is stable. But in fact we can even show that it is cocomplete! To see this, we will write $\Sp$ as a Bousfield localization of the $\infty$-category of \emph{prespectra}.
+We already know that $\Sp$ is complete and $\Omega^{\infty-i}\colon \Sp\morphism\An$ preserves limits for all $i$. We also know from \cref{propdef:StableInftyCategory} that $\Sp$ has finite colimits because it is stable. But in fact we can even show that it is cocomplete! To see this, we will write $\Sp$ as a Bousfield localization of the $\infty$-category of \emph{prespectra}.
 
 This can be introduced in general. So let $\Cc$ be an $\infty$-category with finite limits and (thus) a terminal object $*\in \Cc$. We let
 \begin{equation*}
@@ -1390,7 +1396,7 @@ Note that $\cat{PSp}(\Cc)$ inherits all limits and colimits from $*/\Cc$. Also $
 	\end{equation*}
 	where the transition maps are induced by the morphisms $X_i\morphism\Omega X_{i+1}$ that where constructed on the previous page.
 \end{prop}
-Observe that $\Cc=\An$ meets the condition of \cref{prop:Spectrification}. Indeed, we can replace any sequential diagram $(X_1\morphism X_2\morphism \dotso)$ in $\An$ by a diagram $(X_1'\monomorphism X_2'\monomorphism \dotso)$ $\Kan$ such that all transition maps are cofibrations; then \cref{thm:HomotopyLimits} allows us to compute the colimit in $\Kan$ instead. Now write $\Omega\simeq \F_*(\IS^1,-)$ as the pointed mapping space out of $\IS^1$ (or any simplicial model for it, it doesn't even need to be Kan) and observe that the right-hand side commutes with filtered colimits in $\Kan$ because $\IS^1$ is compact. Thus we see that $\Sp$ is a Bousfield localization of $\cat{PSp}$ and therefore cocomplete by \cref{cor:CoLimitsInBousfield}.
+Observe that $\Cc=\An$ meets the condition of \cref{prop:Spectrification}. First of, $\IN$ is weakly contractible, hence the colimit can be formed in $\An$ instead (\cref{rem*:CoLimitsIn(*/An)OrAn}). We can replace any sequential diagram $(X_1\morphism X_2\morphism \dotso)$ in $\An$ by a diagram $(X_1'\monomorphism X_2'\monomorphism \dotso)$ $\Kan$ such that all transition maps are cofibrations; then \cref{thm:HomotopyLimits} allows us to compute the colimit in $\Kan$ instead. Now write $\Omega\simeq \F_*(\IS^1,-)$ as the pointed mapping space out of $\IS^1$ (or any simplicial model for it, it doesn't even need to be Kan) and observe that the right-hand side commutes with filtered colimits in $\Kan$ because $\IS^1$ is compact. Thus we see that $\Sp$ is a Bousfield localization of $\cat{PSp}$ and therefore cocomplete by \cref{cor:CoLimitsInBousfield}.
 
 Similarly to our construction of the embedding $\Sp(\Cc)\subseteq \cat{PSp}(\Cc)$, one can show that $\ev_{(0,0)}\colon \cat{PSp}(\Cc)\morphism */\Cc$ has a left adjoint $\snake{\Sigma}^\infty\colon {*/\Cc}\morphism \cat{PSp}(\Cc)$ if $\Cc$ has finite colimits. On objects $c\in */\Cc$, we define $\Sigma^\infty c$ to be the left Kan extension of
 \begin{center}
@@ -1501,15 +1507,15 @@ an example that Fabian already terrified us with in the introduction.
 	\end{align*}
 	The first two equivalences are just plugging in definitions. For the third equivalence, we do an index shift by $-i$ and use $\Omega^{n-i}Y_n\simeq Y_i$ since $Y$ is a spectrum. The fourth equivalence is \cref{cor:HomPreservesColimits}. For the fifth equivalence, we substitute $j=n-i$ and use that limits commute (by the dual of \cref{prop:ColimitsCommute}). Since $j$ has \enquote{negative slope in $i$}, we really take the limit over $j\in \IN_{\leq n}$; the missing $(-)^\op$ is no typo (and crucial). The sixth equivalence now follows from the fact that $j=0$ is initial in $0\in \IN_{\leq n}$. Finally, the seventh equivalence is the formula we deduced just before the formulation of \cref{prop:Spectrification}. 
 \end{proof}
-Our next goal is to define a more \enquote{Segal style} model for $\Sp(\Cc)$. To do this, we construct another $\infty$-category $\IF^\op$. Fabian remarks that this symbol is not the \texttt{\textbackslash mathbb}-version of the Roman letter F, but of the archaic Greek letter Digamma, which was the letter after Gamma and Delta in the ancient Greek alphabet, so $\IGamma^\op$, $\IDelta^\op$, and $\IF^\op$ fit together nicely. \href{https://en.wikipedia.org/wiki/Digamma}{Wikipedia} claims, however, that Digamma was only the sixth letter and that Epsilon came between it and Delta. Nevertheless, I'll obediently stick to Fabian's notation. I took the liberty though to typeset that symbol using \verb|\mathbb{F}| (I'm already going to \LaTeX hell for my $\IGamma$ being a \verb|\mathbb{L}| turned upside down \dotso).
-\begin{defi}
+Our next goal is to define a more \enquote{Segal style} model for $\Sp(\Cc)$. To do this, we construct another $\infty$-category $\IF^\op$. Fabian remarks that this symbol is not the \texttt{\textbackslash mathbb}-version of the Roman letter F, but of the archaic Greek letter Digamma, which was the letter after Gamma and Delta in the ancient Greek alphabet, so $\IGamma^\op$, $\IDelta^\op$, and $\IF^\op$ fit together nicely. \href{https://en.wikipedia.org/wiki/Digamma}{Wikipedia} claims, however, that Digamma was only the sixth letter and that Epsilon came between it and Delta. Nevertheless, I'll obediently stick to Fabian's notation. I took the liberty though to typeset that symbol using \verb|\mathbb{F}| (I'm already going to \LaTeX\ hell for my $\IGamma$ being a \verb|\mathbb{L}| turned upside down \dotso).
+\begin{defi}\label{def:OtherModelForSpectra}
 	Let $\IF^\op\subseteq */\An$ be the smallest sub-$\infty$-category containing $\IS^0$ and closed under finite colimits. There's a functor $\IGamma^\op\morphism\IF^\op$ sending $\langle n\rangle$ to $\langle n\rangle_+$ (i.e.\ we add a basepoint to the discrete anima $\langle n\rangle$) and any partially defined map $\alpha\colon\langle m\rangle \morphism\langle n\rangle$ to the map $\alpha_+\colon \langle m\rangle_+\morphism\langle n\rangle_+$ which is $\alpha$ wherever it is defined and sends everything else to the basepoint.
 	
-	Finally, if $\Cc$ is an $\infty$-category with finite limits and (thus) a terminal object $*\in\Cc$, we define $\widetilde{\Sp}(\Cc)\subseteq \Fun(\IF^\op,*/\Cc)$ to be the full subcategory of functors taking pushouts to pullbacks and $*=\langle 0\rangle_+$ to $*\in \Cc$. 
+	Finally, if $\Cc$ is an $\infty$-category with finite limits and (thus) a terminal object $*\in\Cc$, we define $\widetilde{\Sp}(\Cc)\subseteq \Fun(\IF^\op,*/\Cc)$ to be the full subcategory of \emph{excisive} and \emph{reduced} functors, i.e.\ those taking pushouts to pullbacks and $*=\langle 0\rangle_+$ to $*\in */\Cc$. We might as well define $\widetilde{\Sp}(\Cc)$ as the full sub-$\infty$-category of $\Fun(\IF^\op,\Cc)$ (rather than $\Fun(\IF^\op,*/\Cc)$) spanned by reduced and excisive functors, since every reduced functor $F\colon \IF^\op\morphism\Cc$ lifts canonically to $*/\Cc$.
 \end{defi}
 Note that $\widetilde{\Sp}(\Cc)$ is stable: It has finite limits inherited from $*/\Cc$ and $\Omega$ is an equivalence with inverse induced by precomposition with $\Sigma\colon \IF^\op\morphism \IF^\op$. Hence the criterion from \cref{propdef:StableInftyCategory}\itememph{a} is fulfilled.
-\begin{prop}
-	There is a natural equivalence of $\infty$-categories
+\begin{prop}\label{prop:OtherModelForSpectra}
+	With assumptions as in \cref{def:OtherModelForSpectra}, there is a natural equivalence of $\infty$-categories
 	\begin{align*}
 		\widetilde{\Sp}(\Cc)&\isomorphism \Sp(\Cc)\\
 		F&\longmapsto \big(F(\IS^0),F(\IS^1),\dotsc\big)\,.
@@ -1528,8 +1534,32 @@ Note that $\widetilde{\Sp}(\Cc)$ is stable: It has finite limits inherited from 
 	\end{equation*}
 	The inverse functor $\Sp(\Cc)\morphism\widetilde{\Sp}(\Cc)$ now sends a spectrum $E\in \Sp(\Cc)$ to the functor $\Omega^\infty(-\otimes E)\colon \IF^\op\morphism */\Cc$. Note that $\Sp(\Cc)$ has finite colimits since it is stable, so the functor $-\otimes E\colon \IF^\op\morphism \Sp(\Cc)$ is well-defined.
 \end{proof}
-The functors $-\otimes E$ and $E^{(-)}$ for spectra are interesting on their own. Observe for example that $X\otimes HA\simeq H(C_\bullet(X)\otimes_\IZ^LA)$, since both sides are colimit-preserving functors $\An\morphism\Sp$ with value $HA$ on $*\in \An$, hence they are equal by \cref{thm:ColimitPreservingRepresentable} and the fact that $\Sp$ is cocomplete. This motivates the following definition.
-\begin{defi}
+Here's a proposition that was added in the $16\ordinalth$ lecture.
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. Proposition}\label{prop:OtherModelSpectrification}\itshape
+In addition to the assumptions from \cref{def:OtherModelForSpectra}, suppose that $*/\Cc$ has sequential colimits and that $\Omega\colon {*/\Cc}\morphism*/\Cc$ commutes with them. Then the inclusion $\widetilde{\Sp}(\Cc)\subseteq\Fun_*(\IF^\op,*/\Cc)$ into the reduced functors has a left adjoint, sending a reduced functor $F\colon \IF^\op\morphism */\Cc$ to
+\begin{equation*}
+	F^\mathrm{sp}\simeq\colimit_{n\in\IN}\Omega^nF(\mathop{\Sigma^n}-)\,.
+\end{equation*}
+The transition maps in this colimit are induced by the natural transformations $F\Rightarrow \Omega F(\mathop{\Sigma}-)$, which exist since $F$ is reduced.
+\upshape
+\begin{proof*}[Proof sketch]
+	This essential argument is copied from Fabian's notes, \cite[Chapter~II p.\:71]{KTheory}. As usual, by \cref{cor:AdjointsPointwise} all we need to do is to verify that the formula above indeed defines a left-adjoint object of $F$. If $E\colon \IF^\op\morphism */\Cc$ is already reduced and excisive, then $E\simeq \Omega E(\mathop{\Sigma}-)$. Using this and a calculation as in the proof of \cref{prop:Spectrification}, one easily shows $\Nat(F,E)\simeq \Nat(F^\mathrm{sp},E)$.
+	
+	It remains to see, however, that $F^\mathrm{sp}$ is indeed excisive (and that's the hard part of the proof). Since $\Omega$ commutes with filtered colimits, we get $F^\mathrm{sp}\simeq \Omega F^\mathrm{sp}(\mathop{\Sigma}-)$. Now consider an arbitrary pushout square in $\IF^\op$ and extend it to a diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			A\rar\dar\drar[pushout] & C\rar\dar\drar[pushout] & *\dar & \\
+			B\rar\dar\drar[pushout] & D \rar\dar\drar[pushout] & Q \rar\dar\drar[pushout] & *\dar\\
+			*\rar & P\rar\dar\drar[pushout] & \Sigma A\dar\rar\drar[pushout] & \Sigma B\dar\\
+			& *\rar & \Sigma C\rar & \Sigma D
+		\end{tikzcd}
+	\end{equation*}
+	The upper left $2\times 2$-square induces a map $F^\mathrm{sp}(B)\times_{F^\mathrm{sp}(D)}F^\mathrm{sp}(C)\morphism \Omega F^\mathrm{sp}(\Sigma A)\simeq F^\mathrm{sp}(A)$ and one can check that this is an inverse to the canonical map in the other direction. This shows that $F^\mathrm{sp}$ turns pushouts into pullbacks, as required.
+\end{proof*}
+
+The functors $-\otimes E$ and $E^{(-)}$ for spectra that were constructed in the proof of \cref{prop:OtherModelForSpectra} are interesting on their own. Observe for example that $X\otimes HA\simeq H(C_\bullet(X)\otimes_\IZ^LA)$, since both sides are colimit-preserving functors $\An\morphism\Sp$ with value $HA$ on $*\in \An$, hence they are equal by \cref{thm:ColimitPreservingRepresentable} and the fact that $\Sp$ is cocomplete. This motivates the following definition.
+\begin{defi}\label{def:SpectraCohomologyTheory}
 	Let $E\in \Sp$ and $X\in \An$. The \emph{homology} and \emph{cohomology theory} associated to $E$ are defined by
 	\begin{equation*}
 		E_*(X)=\pi_*(X\otimes E)=\pi_*\left(\colimit_XE\right)\quad\text{and}\quad
@@ -1542,12 +1572,12 @@ A little bit of foreshadowing: We can also extend the tensor product (or \emph{s
 \end{equation*}
 (the outer $\Omega^i$ is the intrinsic loop functor on $\Sp$, the inner is $\Omega^{\infty-i}\colon \Sp\morphism*/\An$). It turns out that this defines a symmetric monoidal structure on $\Sp$ behaving like $-\otimes_\IZ^L-$ on $\Dd(\IZ)$, although not even symmetry is in any way obvious from the definition. Proving this will be the content of the next few lectures. 
 
-In the end we will see that $X\otimes E\simeq \IS[X]\otimes E$ and $E^X\simeq \hom_\Sp(\IS[X],E)$ for all $X\in\An$. If $X$ is an $\IE_\infty$-monoid, it's usually very hard to understand its group completion $X^\inftygrp$. But we can sometimes understand $\IS[X^\inftygrp]\in \Sp$. This is still good enough to compute $H_*(X^\inftygrp,A)$ or even $E_*(X^\inftygrp)$, which will be the  content of the \enquote{group completion theorem}. Once we have this, we're in business to compute some $K$-groups!
-\subsection{An Interlude on Operads}
+In the end (see \cref{par:SpTensorProduct}) we will see that $X\otimes E\simeq \IS[X]\otimes E$ and $E^X\simeq \hom_\Sp(\IS[X],E)$ for all $X\in\An$. If $X$ is an $\IE_\infty$-monoid, it's usually very hard to understand its group completion $X^\inftygrp$. But we can sometimes understand $\IS[X^\inftygrp]\in \Sp$. This is still good enough to compute $H_*(X^\inftygrp,A)$ or even $E_*(X^\inftygrp)$, which will be the  content of the \enquote{group completion theorem}. Once we have this, we're in business to compute some $K$-groups!
+\subsection{An Interlude on \texorpdfstring{$\infty$}{Infinity}-Operads}
 \lecture[Operads. Symmetric monoidal $\infty$-category as operads, strict vs.\ lax monoidal functors. Some examples. A technical lemma about presheaves.]{2020-12-17}
 Recall that a morphism in $\IGamma^\op$ is \emph{inert} if it is a bijection (where it is defined) and \emph{active} if it is defined everywhere. This yields two subcategories $\IGamma^\op_{\mathrm{act}}$ and $\IGamma^\op_{\mathrm{int}}$. Recall also that symmetric monoidal $\infty$-categories are precisely the objects of $\CMon(\Cat_\infty)$, which is a full subcategory of $\Cocart(\IGamma^\op)$ via cocartesian unstraightening.
 \begin{defi}\label{def:Operad}
-	A \emph{\embrace{multicoloured and symmetric} operad \embrace{in anima}} is a functor $p\colon \Oo\morphism \IGamma^\op$ of $\infty$-categories such that the following conditions hold:
+	A \emph{\embrace{multicoloured and symmetric} $\infty$-operad \embrace{in anima}} is a functor $p\colon \Oo\morphism \IGamma^\op$ of $\infty$-categories such that the following conditions hold:
 	\begin{alphanumerate}
 		\item Every inert in $\IGamma^\op$ has cocartesian lifts with arbitrary sources (in the invariant sense of \cref{def:WeirdCocartesianDefinition}\itememph{b}).
 		\item The functor $\Oo\colon\IGamma_\mathrm{int}^\op\morphism \Cat_\infty$ arising by cocartesian straightening satisfies the Segal condition. That is, $\Oo_0\simeq *$ and $\Oo_n\simeq \prod_{i=1}^n\Oo_1$ via the Segal maps $\rho_1,\dotsc,\rho_n\colon \langle n\rangle \morphism \langle 1\rangle$.
@@ -1562,13 +1592,13 @@ Recall that a morphism in $\IGamma^\op$ is \emph{inert} if it is a bijection (wh
 	\end{alphanumerate}
 	We call a morphism $f\colon x\morphism y$ in $\Oo$ \emph{inert} if it is a $p$-cocartesian lift of an inert morphism in $\IGamma$. We call $f$ \emph{active} if it is a (not necessarily $p$-cocartesian) lift of an active morphism. We also call $\Oo_1$ the \emph{underlying $\infty$-category} of $\Oo$.
 	
-	Finally, the $\infty$-category $\cat{Op}$ of operads is the (non-full) sub-$\infty$-category of $\Cat_\infty/\IGamma^\op$ spanned by the operads and by functors which preserve inert morphisms.
+	Finally, the $\infty$-category $\cat{Op}_\infty$ of $\infty$-operads is the (non-full) sub-$\infty$-category of $\Cat_\infty/\IGamma^\op$ spanned by the $\infty$-operads and by functors which preserve inert morphisms.
 \end{defi}
-\begin{exm}
+\begin{exm}\label{exm:MyFirstOperads}
 	\begin{alphanumerate}
 		\item The cocartesian unstraightening induces a functor
 		\begin{equation*}
-			(-)^\otimes=\Un^\cocart\colon \CMon(\Cat_\infty)\morphism \cat{Op}\,.
+			(-)^\otimes=\Un^\cocart\colon \CMon(\Cat_\infty)\morphism \cat{Op}_\infty\,.
 		\end{equation*}
 		To see this, note that conditions \cref{def:Operad}\itememph{a} and \itememph{b} are trivially satisfied, so we only have to check \itememph{c}. We've already remarked that the bottom row of the diagram in question is an injection of discrete anima, hence we must show that the top row is an inclusion of the corresponding path components. So let $\alpha\colon \langle m\rangle \morphism\langle n\rangle $ be some morphism and denote by $\Hom_\Oo^\alpha(x,y)$ the path component over $\alpha$. Let $x\morphism \alpha_*(x)$ be a $p$-cocartesian lift of $\alpha$ and consider the diagram
 		\begin{equation*}
@@ -1577,37 +1607,104 @@ Recall that a morphism in $\IGamma^\op$ is \emph{inert} if it is a bijection (wh
 				\Hom_{\Oo}^\alpha(x,y)\rar & \displaystyle\prod_{i=1}^n\Hom_{\Oo}^{\rho_i\circ\alpha}(x,y)
 			\end{tikzcd}
 		\end{equation*}
-		That the vertical arrows are equivalences follows easily from the fact that $x\morphism \alpha_*x$ is $p$-cocartesian and the pullback diagram in \cref{def:WeirdCocartesianDefinition}\itememph{a}. The top arrow is an equivalence by the Segal condition. Hence the bottom arrow is an equivalence as well, which is what we wanted to show. Thus $(-)^\otimes$ has its image in contained in $\cat{Op}\subseteq \Cat_\infty/\IGamma^\op$, as claimed.
+		That the vertical arrows are equivalences follows easily from the fact that $x\morphism \alpha_*x$ is $p$-cocartesian and the pullback diagram in \cref{def:WeirdCocartesianDefinition}\itememph{a}. The top arrow is an equivalence by the Segal condition. Hence the bottom arrow is an equivalence as well, which is what we wanted to show. Thus $(-)^\otimes$ has its image in contained in $\cat{Op}_\infty\subseteq \Cat_\infty/\IGamma^\op$, as claimed.
 		
-		However, $(-)^\otimes$ is not fully faithful. In $\CMon(\Cat_\infty)$ a morphism is a \emph{strongly} symmetric monoidal functor, i.e.\ it has to preserve the tensor product. We define a \emph{lax symmetric monoidal functor} $\Cc\morphism\Dd$ to be a map of operads $\Cc^\otimes\morphism\Dd^\otimes$. We can now define $\infty$-categories $\cat{SymMonCat}_\infty\simeq \CMon(\Cat_\infty)$ and $\cat{SymMonCat}_\infty^\mathrm{lax}\subseteq \cat{Op}$ to be the essential image of $(-)^\otimes$.
+		However, $(-)^\otimes$ is not fully faithful. In $\CMon(\Cat_\infty)$ a morphism is a \emph{strongly} symmetric monoidal functor, i.e.\ it has to preserve the tensor product. We define a \emph{lax symmetric monoidal functor} $\Cc\morphism\Dd$ to be a map of $\infty$-operads $\Cc^\otimes\morphism\Dd^\otimes$. We can now define $\infty$-categories $\cat{SymMonCat}_\infty\simeq \CMon(\Cat_\infty)$ and $\cat{SymMonCat}_\infty^\mathrm{lax}\subseteq \cat{Op}_\infty$ to be the essential image of $(-)^\otimes$.
 		
-		How do we recognize the essential image of $(-)^\otimes$? By the Segal condition and the fact that $p\colon \Oo\morphism \IGamma^\op$ has $p$-cocartesian lifts for all inert morphisms, it suffices to check that it has $p$-cocartesian lifts for the unique active maps $f_n\colon \langle n\rangle \morphism \langle 1\rangle$ (we leave it as an exercise to work out a proper argument). This is in turn equivalent to the following: For elements $(a_1,\dotsc,a_n)\in \Oo_n$ and $b\in \Oo_1$ define the \emph{multi-morphism space}
+		How do we recognize the essential image of $(-)^\otimes$? By the Segal condition and the fact that $p\colon \Oo\morphism \IGamma^\op$ has $p$-cocartesian lifts for all inert morphisms, it suffices to check that it has $p$-cocartesian lifts for the unique active maps $f_n\colon \langle n\rangle \morphism \langle 1\rangle$ (we leave it as an exercise to work out a proper argument). This can in turn be reformulated as follows: For elements $(a_1,\dotsc,a_n)\in \Oo_n$ and $b\in \Oo_1$ define the \emph{multi-morphism space}
 		\begin{equation*}
 			\begin{tikzcd}
 				\Hom_\Oo^\mathrm{act}\big((a_1,\dotsc,a_n),b\big)\dar\drar[pullback]\rar & \Hom_\Oo\big((a_1,\dotsc,a_n),b\big)\dar\\
 				*\rar["f_n"] & \Hom_{\IGamma^\op}\big(\langle n\rangle,\langle 1\rangle\big)
 			\end{tikzcd}
 		\end{equation*}
-		Then a morphism $g\colon (a_1,\dotsc,a_n)\morphism a$ over $f_n$ is a $p$-cocartesian lift iff the precomposition $g^*\colon \Hom_{\Oo_1}(a,-)\isomorphism \Hom_\Oo^\mathrm{act}((a_1,\dotsc,a_n),-)$ is an equivalence of functors $\Oo_1\morphism \An$. The way to think about this is that \enquote{$a\simeq a_1\otimes\dotsb\otimes a_n$} and that an operad $\Oo$ is the data you need to make a \enquote{category in which you specify what a map out of a tensor product should be}. Whether such a category exists should equivalent to whether $\Oo\simeq \Cc^\otimes$ for some $\Cc\in \CMon(\Cat_\infty)$.
+		If a morphism $g\colon (a_1,\dotsc,a_n)\morphism a$ over $f_n$ is $p$-cocartesian, then the precomposition $g^*\colon \Hom_{\Oo_1}(a,-)\isomorphism \Hom_\Oo^\mathrm{act}((a_1,\dotsc,a_n),-)$ is an equivalence of functors $\Oo_1\morphism \An$. The converse, however, is \emph{not quite} true in the sense that if $g^*$ is an equivalence, then $g$ is only \emph{locally} $p$-cocartesian by the criterion from \cite[Chapter~IX p.\:23]{HigherCatsII}. The way to think about this is that \enquote{$a\simeq a_1\otimes\dotsb\otimes a_n$}. So if $p$ is a locally cocartesian fibration, then these tensor products exist. But for them to be associative, we need (after some unravelling) that locally $p$-cocartesian lifts compose. By \cite[Proposition~IX.13]{HigherCatsII}, this is precisely the condition we need for the locally cocartesian fibration $p$ to be a cocartesian fibration! 
 		
-		\item There is an entirely dual theory of \emph{dual operads} (but that's not the same thing as cooperads). These are the functors to $\IGamma$ satisfying \cref{def:Operad}\itememph{a}, \itememph{b}, and \itememph{c} for cartesian lifts. The resulting category $\cat{dOp}$ is equivalent to $\cat{Op}$ via $(-)^\op\colon \cat{Op}\isomorphism \cat{dOp}$. Note, however, that this doesn't preserve underlying $\infty$-categories. Instead it fits into a diagram
+		The moral of this story is that, intuitively, an $\infty$-operad $\Oo$ is the data you need to make a \enquote{$\infty$-category in which you specify what a map out of a tensor product should be}. Whether such a category exists should equivalent to whether $\Oo\simeq \Cc^\otimes$ for some $\Cc\in \CMon(\Cat_\infty)$.
+		
+		\item There is an entirely dual theory of \emph{dual $\infty$-operads} (be aware that's not the same thing as $\infty$-cooperads). These are the functors to $\IGamma$ satisfying \cref{def:Operad}\itememph{a}, \itememph{b}, and \itememph{c} for cartesian lifts. The resulting $infty$-category $\cat{dOp}_\infty$ is equivalent to $\cat{Op}_\infty$ via $(-)^\op\colon \cat{Op}_\infty\isomorphism \cat{dOp}_\infty$. Note, however, that this doesn't preserve underlying $\infty$-categories. Instead it fits into a diagram
 		\begin{equation*}
 			\begin{tikzcd}
-				\cat{Op}\rar[iso]\dar["{(-)_1}"'] & \cat{dOp}\dar["{(-)_1}"]\\
+				\cat{Op}_\infty\rar[iso]\dar["{(-)_1}"'] & \cat{dOp}_\infty\dar["{(-)_1}"]\\
 				\Cat_\infty\rar["{(-)^\op}"] & \Cat_\infty
 			\end{tikzcd}
 		\end{equation*}
-		The image of the cartesian unstraightening $\Un^\cart\colon \CMon(\Cat_\infty)\morphism\cat{dOp}$ is denoted $\cat{SymMonCat}_\infty^{\mathrm{oplax}}$, thought of as symmetric monoidal $\infty$-categories with oplax monoidal functors.
-		\item Here are some trivial operads: The functors $\IGamma^\op_\mathrm{int}\morphism\IGamma^\op$, $\langle 0\rangle\morphism \IGamma^\op$, and $\id\colon \IGamma^\op\morphism \IGamma^\op$.
-		\item Let $\Cc^\otimes\morphism\IGamma^\op$ be a symmetric monoidal structure on $\Cc$ and $\Dd\subseteq \Cc$ a full sub-$\infty$-category. Define $\Dd^\otimes\subseteq \Cc^\otimes$ to be the full sub-$\infty$-category spanned by the $d\simeq(d_1,\dotsc,d_n)$ with $d_i\in \Dd$. Then $\Dd^\otimes\morphism\IGamma^\op$ is an operad which is a symmetric monoidal category iff $d\otimes d'\in \Dd$ for all $d,d'\in \Dd$ and $1_\Cc\in \Dd$.
+		The image of the cartesian unstraightening $\Un^\cart\colon \CMon(\Cat_\infty)\morphism\cat{dOp}_\infty$ is denoted $\cat{SymMonCat}_\infty^{\mathrm{oplax}}$, thought of as symmetric monoidal $\infty$-categories with oplax monoidal functors.
+		\item Some trivial examples for $\infty$-operads are given by the functors $\IGamma^\op_\mathrm{int}\morphism\IGamma^\op$, $*\xrightarrow{\langle 0\rangle}\IGamma^\op$, and $\id\colon \IGamma^\op\morphism \IGamma^\op$.
+		\item Let $\Oo\morphism\IGamma^\op$ be an $\infty$-operad and $\Dd\subseteq \Oo_1$ a full sub-$\infty$-category. Define $\Dd^\otimes\subseteq \Oo$ to be the full sub-$\infty$-category spanned by the $d\simeq(d_1,\dotsc,d_n)$ with $d_i\in \Dd$. Then $\Dd^\otimes\morphism\IGamma^\op$ is an $\infty$-operad with underlying $\infty$-category $\Dd$.
 		
-		Since I didn't find this completely obvious, here's a full argument. To check that $\Dd^\otimes$ is an operad, the conditions from \cref{def:Operad}\itememph{b} and \itememph{c} are immediately inherited from $\Cc^\otimes$. To check the remaining condition \itememph{a}, we must check that whenever $d\morphism d'$ is a cocartesian lift of an inert morphism in $\IGamma^\op$ with $d\in \Dd^\otimes$, then also $d'\in \Dd^\otimes$. Say $d\in \Dd_n^\otimes$ and let $d\simeq (d_1,\dotsc,d_n)$. Then the components $d_i\in \Dd_1^\otimes$ are precisely the endpoints of cocartesian lifts $d\morphism d_i$ of $\rho_i\colon \langle n\rangle \morphism\langle 1\rangle$. Since cocartesian lifts compose (see \cite[Proposition~IX.5]{HigherCatsII}), we see that the components of $d'$ are a subset of the components of $d$, hence $d'\in \Dd^\otimes$ as well. This shows that $\Dd^\otimes$ is indeed an operad. The further claim about when it is a symmetric monoidal category follows from the recognition criterion sketched in \itememph{a}.		 
-		\item Let $R$ be a commutative ring. One can check that $\Ch(R)$ is symmetric monoidal under $-\otimes_R-$ as a Kan-enriched category, hence its coherent nerve $\Kk(R)$ is symmetric monoidal. Now recall from \cref{exm:MyFirstBousfield}\itememph{c} that $\Dd(R)$ is a Bousfield localization of $\Kk(R)$. More precisely, $\Dd(R)$ can be embedded fully faithfully into $\Kk(R)$ as the full sub-$\infty$-category $\Dd(R)^{K\mhyph\mathrm{proj}}\subseteq \Kk(R)$ of $K$-projective complexes, i.e.\ those $C$ such that $\Hom_{\Kk(R)}(C,-)$ inverts quasi-isomorphisms. Clearly the tensor unit $R[0]$ is $K$-projective (as is any bounded below degree-wise projective complex) and if $C$ and $D$ are $K$-projective, then so is $C\otimes_RD$ as $\Hom_{\Kk(R)}(C\otimes_RD,-)\simeq \Hom_{\Kk(R)}(C,\Hhom_R(D,-))$ inverts quasi-isomorphisms too.
+		Since I didn't find this completely obvious that $\Dd^\otimes$ is an $\infty$-operad, here's a full argument. The conditions from \cref{def:Operad}\itememph{b} and \itememph{c} are immediately inherited from $\Oo$. To check the remaining condition \itememph{a}, we must check that whenever $d\morphism d'$ is a cocartesian lift of an inert morphism in $\IGamma^\op$ with $d\in \Dd^\otimes$, then also $d'\in \Dd^\otimes$. Say $d\in \Dd_n^\otimes$ and let $d\simeq (d_1,\dotsc,d_n)$. Then the components $d_i\in \Dd_1^\otimes$ are precisely the endpoints of cocartesian lifts $d\morphism d_i$ of $\rho_i\colon \langle n\rangle \morphism\langle 1\rangle$. Since cocartesian lifts compose (see \cite[Proposition~IX.5]{HigherCatsII}), we see that the components of $d'$ are a subset of the components of $d$, hence $d'\in \Dd^\otimes$ as well. This shows that $\Dd^\otimes$ is indeed an $\infty$-operad.
 		
-		We may thus apply \itememph{d} to obtain a symmetric monoidal structure $-\otimes_R^L-$ on $\Dd(R)$. The localization functor $\Kk(R)\morphism\Dd(R)$ (\enquote{taking $K$-projective resolutions}) is lax symmetric monoidal in the sense explained in \itememph{a}. In particular, there are canonical maps $C\otimes_R^LD\morphism C\otimes_RD$ for all $C,D\in \Kk(R)$.
+		In the case where $\Oo\simeq \Cc^\otimes$ is a symetric monoidal $\infty$-category, it's naturally to ask whether $\Dd^\otimes$ is one as well. Fabian gave two criteria for this in the lecture. Since these deserve to be stated and proved properly, I outsourced them to Lemma~\labelcref{lem:LaxMonoidalAdjoints} below.
+		
+		
+		% which is a symmetric monoidal category iff $d\otimes d'\in \Dd$ for all $d,d'\in \Dd$ and $1_\Cc\in \Dd$. In this case $\Dd\subseteq \Cc$ is strongly monoidal. Moreover, if it has a right adjoint $R\colon \Cc\morphism\Dd$, then this extends to a map $R^\otimes \colon \Cc^\otimes\morphism\Dd^\otimes$ of operads (i.e.\ a lax monoidal functor) which is right-adjoint to $\Dd^\otimes\subseteq\Cc^\otimes$.
+		
+		%The further claim about when it is a symmetric monoidal category follows from the recognition criterion sketched in \itememph{a}. Finally, the fact that $R^\otimes$ is right adjoint to the inclusion (if it exists) is clear since the unit and counit transformations along with the triangle identities are simply inherited via $(-)^\otimes$.
+			 
+		\item Let's already apply Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{a} below to derived tensor products. Let $R$ be a commutative ring. One can check that $\Ch(R)$ is symmetric monoidal under $-\otimes_R-$ as a Kan-enriched category, hence its coherent nerve $\Kk(R)$ is symmetric monoidal. Now recall from \cref{exm:MyFirstBousfield}\itememph{c} that $\Dd(R)$ is a Bousfield localization of $\Kk(R)$. More precisely, $\Dd(R)$ can be embedded fully faithfully into $\Kk(R)$ as the full sub-$\infty$-category $\Dd(R)^{K\mhyph\mathrm{proj}}\subseteq \Kk(R)$ of $K$-projective complexes, i.e.\ those $C$ such that $\Hom_{\Kk(R)}(C,-)$ inverts quasi-isomorphisms. Clearly the tensor unit $R[0]$ is $K$-projective (as is any bounded below degree-wise projective complex) and if $C$ and $D$ are $K$-projective, then so is $C\otimes_RD$ as $\Hom_{\Kk(R)}(C\otimes_RD,-)\simeq \Hom_{\Kk(R)}(C,\Hhom_R(D,-))$ inverts quasi-isomorphisms too.
+		
+		We may thus apply Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{a} to obtain a symmetric monoidal structure $-\otimes_R^L-$ on $\Dd(R)$. The localization functor $\Kk(R)\morphism\Dd(R)$ (\enquote{taking $K$-projective resolutions}) is lax symmetric monoidal in the sense explained in \itememph{a}. In particular, there are canonical maps $C\otimes_R^LD\morphism C\otimes_RD$ for all $C,D\in \Kk(R)$.
+		%
+		%\item There's another situation in which $\Dd^\otimes$ from \itememph{d} happens to be a symmetric monoidal $\infty$-category itself. Suppose $\Cc$ is a symmetric monoidal $\infty$-category and $\Dd\subseteq \Cc$ a full sub-$\infty$-category such that the inclusion has a left adjoint $L\colon \Cc\morphism\Dd$ (i.e.\ $\Dd$ is a Bousfield localization of $\Cc$). If $L$ has the property that whenever $L(f)\colon L(x)\isomorphism L(y)$ is an equivalence, then $L(f\otimes \id_z)\colon L(x\otimes z)\isomorphism L(y\otimes z)$ is an equivalence too for all $z\in\Cc$, then the operad $\Dd^\otimes$ from \itememph{d} is a symmetric monoidal $\infty$-category and the inclusion $\Dd\subseteq\Cc$ is lax symmetric monoidal, whereas $L\colon \Cc\morphism\Dd$ is strongly symmetric monoidal.
+		%
+		%Indeed, we can argue as in \itememph{d} to deduce that $L^\otimes\colon \Cc^\otimes\morphism \Dd^\otimes$ is again a left adjoint of $\Dd^\otimes\subseteq\Cc^\otimes$. This implies $\Hom_{\Dd^\otimes}^\mathrm{act}(L^{\otimes}(c_1,\dotsc,c_n),d)\simeq \Hom_{\Cc^\otimes}^\mathrm{act}((c_1,\dotsc,c_n),d)$, so if $g\colon (c_1,\dotsc,c_n)\morphism c$ is locally $p$-cocartesian, then so is $L^\otimes (c_1,\dotsc,c_n)\morphism L(c)$. This implies that $\Dd^\otimes\morphism\IGamma^\op$ is locally $p$-cocartesian as well. To see that locally $p$-cocartesian edges compose, one uses that this is true for $\Cc^\otimes\morphism \IGamma^\op$ as well as the assumptions on $L$.
 	\end{alphanumerate}
 \end{exm}
-Our next goal is to make cartesian and cocartesian monoidal structures on $\infty$-categories with products, and eventually to define the symmetric monoidal structure on $\Sp$. While Lurie writes down explicit simplicial sets to construct the desired operads, we will cheat a bit and use complete Segal spaces instead. This is based on the following lemma.
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. Lemma}\label{lem:LaxMonoidalAdjoints}\itshape
+	Let $\Dd^\otimes\subseteq\Cc^\otimes$ be defined as in \cref{exm:MyFirstOperads}\itememph{d}.
+	\begin{alphanumerate}
+		\item Suppose that $d\otimes d'\in \Dd$ for all $d,d'\in \Dd$ and $1_\Cc\in \Dd$. Then $\Dd^\otimes$ is a symmetric monoidal $\infty$-category and the inclusion $\Dd\subseteq \Cc$ is strongly monoidal. If it has, moreover, a right adjoint $R\colon \Cc\morphism\Dd$, then $R$ can be extended to a map of $\infty$-operads $R^\otimes\colon \Cc^\otimes\morphism\Dd^\otimes$ such that $R^\otimes$ is right-adjoint to the inclusion $\Dd^\otimes\subseteq \Cc^\otimes$. In particular, $R$ is lax symmetric monoidal.
+		\item Suppose that $\Dd\subseteq \Cc$ has a left adjoint $L\colon \Cc\morphism\Dd$ with the property that whenever $L(f)\colon L(x)\isomorphism L(y)$ is an equivalence, then $L(f\otimes \id_z)\colon L(x\otimes z)\isomorphism L(y\otimes z)$ is an equivalence too for all $z\in\Cc$. Then $\Dd^\otimes$ is symmetric monoidal and $L$ extends to a map $L^\otimes\colon \Cc^\otimes\morphism\Dd^\otimes$ of $\infty$-operads such that $L^\otimes$ is left-adjoint to $\Dd^\otimes\subseteq \Cc^\otimes$. Moreover, $L$ is strongly symmetric monoidal and $\Dd\subseteq \Cc$ is lax symmetric monoidal.
+	\end{alphanumerate}\upshape
+\begin{proof*}
+	For~\itememph{a}, the fact that $\Dd^\otimes$ is a symmetric monoidal $\infty$-category and that $\Dd\subseteq\Cc$ is a strongly monoidal functor (i.e.\ $\Dd^\otimes\subseteq \Cc^\otimes$ preserves all cocartesian edges) follows from the recognition criterion sketched in \cref{exm:MyFirstOperads}\itememph{a}. To construct $R^\otimes$, we employ \cref{cor:AdjointsPointwise} as usual to see that it can be constructed pointwise. So let $c\in \Cc^\otimes$ and write $c=(c_1,\dotsc,c_n)$. We put $R^\otimes (c)=(R(c_1),\dotsc,R(c_n))$ and claim that the natural map $\eta_c\colon c\morphism R^ \otimes (c)$ (induced by the unit maps $\eta_{c_i}\colon c_i\morphism R(c_i)$ for $R$) witnesses it as a right-adjoint object of $c$. That is, we must show that 
+	\begin{equation*}
+		\eta_{c,*}\colon \Hom_{\Cc^\otimes}(d,c)\isomorphism \Hom_{\Dd^\otimes}\big(d,R^\otimes(c)\big)
+	\end{equation*}
+	is an equivalence for all $d\in \Dd^\otimes$. By \cref{def:Operad}\itememph{c} it suffices to show the same for $\eta_{c_i,*}\colon \Hom_{\Cc^\otimes}(d,c_i)\isomorphism\Hom_{\Dd^\otimes}(d,R(c_i))$. But whether this is an equivalence of anima can be checked on (derived) fibres over $\Hom_{\IGamma^\op}(\langle n\rangle,\langle 1\rangle)$. Given $\alpha\colon \langle n\rangle \morphism\langle 1\rangle$ in $\IGamma^\op$, choose a cocartesian lift $d\morphism \alpha_*d$ to $\Dd^\otimes$, which is also cocartesian in $\Cc^\otimes$ by construction. Then the fibres over $\alpha$ are given by $\Hom_{\Cc^\otimes}^\alpha(d,c_i)\simeq \Hom_\Cc(\alpha_*d,c_i)$ and $\Hom_{\Dd^\otimes}^\alpha(d,R(c_i))\simeq \Hom_\Dd(\alpha_*d,c_i)$, hence $\eta_{c_i,*}$ is indeed an equivalence since $R\colon \Cc\morphism\Dd$ is a right adjoint of the inclusion $\Dd\subseteq\Cc$. This shows that $R^\otimes$ exist as a map in $\Cat_\infty$. It's clear from the construction that it's also a map in $\Cat_\infty/\IGamma^\op$. Finally, since cocartesian lifts of inert morphisms just \enquote{forget} some of the factors, they are preserved by $R^\otimes$, whence it is a map of $\infty$-operads. This shows \itememph{a}.
+	
+	Now for \itememph{b}. First observe that the condition on $L$ can be strengthened as follows: If we are given equivalences $L(f_i)\colon L(x_i)\isomorphism L(y_i)$ in $\Dd$ for all $i=1,\dotsc,n$, then also $L(f_1\otimes\dotsb\otimes f_n)\colon L(x_1\otimes\dotsb\otimes x_n)\isomorphism L(y_1\otimes\dotsb\otimes y_n)$ is an equivalence. To show that $\Dd^\otimes$ is a symmetric monoidal $\infty$-category, we use the recognition criterion from \cref{exm:MyFirstOperads}\itememph{a}: Given $(d_1,\dotsc,d_n)\in\Dd_n^\otimes$ and any $d\in \Dd$, we have
+	\begin{align*}
+		\Hom_{\Dd^\otimes}^\mathrm{act}\big((d_1,\dotsc,d_n),d\big)&\simeq \Hom_{\Cc^\otimes}^\mathrm{act}\big((d_1,\dotsc,d_n),d\big)\\
+		&\simeq \Hom_\Cc(d_1\otimes\dotsb\otimes d_n,d)\\
+		&\simeq \Hom_\Dd\big(L(d_1\otimes\dotsb\otimes d_n),d\big)\,,
+	\end{align*}
+	hence composing $(d_1,\dotsc,d_n)\morphism d_1\otimes\dotsb\otimes d_n$ with the unit map $ d_1\otimes\dotsb\otimes d_n\morphism L(d_1\otimes\dotsb\otimes d_n)$ in $\Cc^\otimes$ gives a locally cocartesian lift of $f_n\colon \langle n\rangle \morphism\langle 1\rangle$ to $\Dd^\otimes$. Hence $\Dd^\otimes\morphism\IGamma^\op$ is a locally cocartesian fibration. To check that the locally cocartesian edges compose, we must verify that $L(L(x\otimes y)\otimes z)\simeq L(x\otimes y\otimes z)$. But $x\otimes y\morphism L(x\otimes y)$ becomes an equivalence after applying $L$, as $L^2\simeq L$, hence this follows from the assumption on $L$. Hence $\Dd^\otimes\morphism\IGamma^\op$ is even a cocartesian fibration by \cite[Proposition~IX.13]{HigherCatsII}, which precisely says that $\Dd^\otimes$ is a symmetric monoidal $\infty$-category.
+	
+	To construct $L^\otimes$, we proceed as in \itememph{a} and define it pointwise via $L^\otimes(c_1,\dotsc,c_n)=(L(c_1),\dotsc,L(c_n))$. By the same tricks as above, showing that this is indeed a right-adjoint object of $(c_1,\dotsc,c_n)$ reduces to showing
+	\begin{equation*}
+		\Hom_{\Cc^\otimes}^\alpha\big((c_1,\dotsc,c_n),d\big)\simeq \Hom_{\Dd^\otimes}^\alpha\big((L(c_1),\dotsc,L(c_n)),d\big)
+	\end{equation*}
+	for all $d\in \Dd$ and all $\alpha\colon \langle n\rangle \morphism\langle 1\rangle$. Let $(c_1,\dotsc,c_n)\morphism c$ be a cocartesian lift of $\alpha$ to $\Cc^\otimes$. Then $\Hom_{\Cc^\otimes}^\alpha((c_1,\dotsc,c_n),d)\simeq\Hom_\Cc(c,d)$ and also $c\simeq c_{i_1}\otimes\dotsb\otimes c_{i_m}$, where $i_1,\dotsc,i_m\in\langle n\rangle$ are the elements where $\alpha$ is defined. The assumption on $L$ then implies
+	\begin{equation*}
+		L(c)\simeq L\big(L(c_{i_1})\otimes\dotsb\otimes L(c_{i_m})\big)\,,
+	\end{equation*}
+	because each $c_{i_j}\morphism L(c_{i_j})$ becomes an equivalence after applying $L$. Hence a cocartesian lift of $\alpha$ to $\Dd^\otimes$ is given by $(L(c_1),\dotsc,L(c_n))\morphism L(c)$ and $\Hom_{\Dd^\otimes}^\alpha((L(c_1),\dotsc,L(c_n)),d)\simeq \Hom_{\Dd}(L(c),d)$. Now $\Hom_\Cc(c,d)\simeq \Hom_\Dd(L(c),d)$ because $L\colon \Cc\morphism\Dd$ is left-adjoint to the inclusion $\Dd\subseteq\Cc$, which finally shows the desired equivalence. It's clear from the construction that $L^\otimes$ preserves cocartesian edges, whence $L$ is indeed strongly symmetric monoidal.
+\end{proof*}
+
+The following lemma is closely related, but wasn't mentioned in the lecture, although we'll need it later. It roughly says that whether a left adjoint is strongly monoidal can be checked on objects.
+\begin{lem*}\label{lem*:LeftAdjointStronglyMonoidal}
+	Let $R^\otimes\colon \Dd^\otimes\morphism\Cc^\otimes$ be a map of $\infty$-operads \embrace{hence a lax symmetric monoidal functor between $\Dd$ and $\Cc$}. If the underlying functor $R\colon \Dd\morphism\Cc$ has a left adjoint $L\colon \Cc\morphism\Dd$ satisfying $L(1_\Cc)\simeq 1_\Dd$ and $L(c_1\otimes_\Cc c_2)\simeq L(c_1)\otimes_\Dd L(c_2)$ for all $c,c'\in \Cc$, then $L$ extends to a map $L^\otimes\colon \Cc^\otimes\morphism \Dd^\otimes$ of $\infty$-operads, which is left-adjoint to $R^\otimes$ and witnesses $L$ as a strongly symmetric monoidal functor.
+\end{lem*}
+\begin{proof*}[Proof sketch]
+	The condition on $L$ implies $L(c_1\otimes_\Cc\dotsb\otimes_\Cc c_n)\simeq L(c_1)\otimes_\Dd\dotsb\otimes_\Dd L(c_n)$ for all $c_1,\dotsc,c_n\in\Cc$. We define $L^\otimes$ pointwise as in Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{b}. By the same arguments as given there, all we need to check is that
+	\begin{equation*}
+		\Hom_{\Cc^\otimes}^\alpha\big((c_1,\dotsc,c_n),R(d)\big)\simeq \Hom_{\Dd^\otimes}^\alpha\big((L(c_1),\dotsc,L(c_n)),d\big)
+	\end{equation*}
+	for all $c_1,\dotsc,c_n\in\Cc$, $d\in \Dd$ and all $\alpha\colon \langle n\rangle \morphism\langle 1\rangle$. If $\alpha$ is defined at $i_1,\dotsc,i_m\in\langle n\rangle$, then $(c_1,\dotsc,c_n)\morphism c_{i_1}\otimes_\Cc\dotsb\otimes_\Cc c_{i_m}$ is a cocartesian lift of $\alpha$ to $\Cc^\otimes$, hence
+	\begin{equation*}
+		\Hom_{\Cc^\otimes}^\alpha\big((c_1,\dotsc,c_n),R(d)\big)\simeq \Hom_\Cc\big(c_{i_1}\otimes_\Cc\dotsb\otimes_\Cc c_{i_m},R(d)\big)\,.
+	\end{equation*}
+	The same argument for $\Dd^\otimes$ together with the condition on $L$  implies
+	\begin{equation*}
+		\Hom_{\Dd^\otimes}^\alpha\big((L(c_1),\dotsc,L(c_n)),d\big)\simeq \Hom_\Dd\big(L(c_1\otimes_\Cc\dotsb\otimes_\Cc c_n),d\big)\,,
+	\end{equation*}
+	whence we are done by the fact that $L$ and $R$ are adjoints. This shows that $L^\otimes$ is an adjoint of $R^\otimes$, as desired. It's straightforward to check that $L^\otimes$ is a map over $\IGamma^\op$ and preserves cocartesian edges, hence $L$ is indeed strongly symmetric monoidal.
+\end{proof*}
+\subsection{Towards the Tensor Product of Spectra}
+Our next goal is to make cartesian and cocartesian monoidal structures on $\infty$-categories with products, and to stablize them to eventually define the symmetric monoidal structure on $\Sp$. While Lurie writes down explicit simplicial sets to construct the desired $\infty$-operads, we will cheat a bit and use complete Segal spaces instead. This is based on the following lemma.
 \begin{lem}\label{lem:TautologicalPresheafLemma}
 	Let $\Ee$ be an $\infty$-category. For a presheaf $X\in \Pp(\Ee)$, consider the slice category $\Ee/X$ with respect to the Yoneda embedding $Y^\Ee\colon \Ee\morphism P(\Ee)$ and $\{X\}\morphism \Pp(\Ee)$ \embrace{in the notation of \cref{lem*:PresheafColimitOfRepresentables} this would have been $Y^\Ee/X$ instead}. The canonical functor
 	\begin{equation*}
@@ -1615,20 +1712,15 @@ Our next goal is to make cartesian and cocartesian monoidal structures on $\inft
 	\end{equation*}
 	constructed as the unique colimit-preserving extension of $Y^\Ee\colon\Ee/X\morphism \Pp(\Ee)/X$ via \cref{thm:ColimitPreservingRepresentable}, is an equivalence of $\infty$-categories.
 \end{lem}
-Applying \cref{lem:TautologicalPresheafLemma} to $\Ee=\IDelta$ and $X=\N^r(\Cc)\in \cat{sAn}$ for some $\infty$-category $\Cc$, we obtain $\Pp(\IDelta/\N^r(\Cc))\simeq \cat{sAn}/\N^r(\Cc)$. We will usually abbreviate the left-hand side as $\Pp(\IDelta/\Cc)$. This allows us to specify functors to $\Cat_\infty/\Cc$ as functors to $\Pp(\IDelta/\Cc)$ and then compose with 
-\begin{equation*}
-	\Pp(\IDelta/\Cc)\simeq \cat{sAn}/\N^r(\Cc)\xrightarrow{\asscat}\Cat_\infty/\Cc\,.
-\end{equation*}
-\begin{proof}[Proof of \cref{lem:TautologicalPresheafLemma}]
+\begin{proof}%[Proof of \cref{lem:TautologicalPresheafLemma}]
 	Before we start, observe that $\Pp(\Ee)/X$ is indeed cocomplete since one immediately checks that it inherits colimits from $\Pp(\Ee)$. We will use the following criterion:
 	\begin{alphanumerate}
-		\item[\itememph{\boxtimes}]\itshape\label{claim:EquivalenceCondition} Let $F\colon \Cc\morphism\Dd$ be a functor from a small $\infty$-category to a cocomplete $\infty$-category. Let $|\blank|_F\colon \Pp(\Cc)\shortdoublelrmorphism \Dd\noloc \Sing_F$ denote the adjunction resulting from \cref{thm:ColimitPreservingRepresentable}. Suppose furthermore that the following conditions hold:
+		\item[\itememph{\boxtimes}]\itshape\label{claim:EquivalenceCondition} Let $F\colon \Cc\morphism\Dd$ be a functor from a small $\infty$-category to a cocomplete $\infty$-category. Let $|\blank|_F\colon \Pp(\Cc)\shortdoublelrmorphism \Dd\noloc \Sing_F$ denote the adjunction resulting from \cref{thm:ColimitPreservingRepresentable}. Then $|\blank|_F$ is an equivalence if the following three conditions hold:
 		\begin{alphanumerate}
 			\item $F$ is fully faithful.
 			\item $\Hom_\Dd(F(c),-)\colon\Dd\morphism\An$ commutes with colimits for all $c\in \Cc$.
 			\item $\Sing_F\colon \Dd\morphism \Pp(\Cc)$ is conservative.
 		\end{alphanumerate}
-		Then $|\blank|_F\colon \Pp(\Cc)\isomorphism\Dd$ is an equivalence.
 	\end{alphanumerate}
 	We prove \itememph{\boxtimes} first. Condition~\itememph{b} implies that $\Sing_F$ commutes with colimits. Indeed, this can be checked pointwise by \cref{thm:JoyalEquivalence}\itememph{b} since there always is a natural transformation $\colimit_\Ii\Sing_F\Rightarrow\Sing_F\colimit_\Ii$. Moreover, colimits in $\Pp(\Cc)$ are computed pointwise. Plugging in the explicit description of $\Sing_F$ that \cref{cor:ExplicitAdjoint} offers us, we must thus check that $\colimit_\Ii\Hom_\Dd(F(c),d_i)\simeq \Hom_\Dd(F(c),\colimit_\Ii d_i)$ for all $c\in \Cc$ and $d_i\in \Dd$. This is \itememph{b}.
 	
@@ -1644,7 +1736,555 @@ Applying \cref{lem:TautologicalPresheafLemma} to $\Ee=\IDelta$ and $X=\N^r(\Cc)\
 		\end{tikzcd}
 	\end{equation*}
 	Clearly $F(e)$ commutes with colimits in $F$ because colimits in functor categories are computed pointwise (\cref{lem:f^*preservesColimits}). Hence it suffices to check that colimits in $\An$ commute with pullbacks. In other words, if $f\colon K\morphism L$ is any morphism of anima, then $f^*\colon \An/L\morphism \An/K$ preserves colimits. But $\Right(K)\simeq \An/K$ since every morphism to $K$ can be factored into a right anodyne and a right fibration, and likewise for $L$, so we are done since we verified in \cref{lem*:SmoothBaseChange} that $f^*\colon \Right(L)\morphism \Right(K)$ has a right adjoint $f_*$.
+\end{proof}\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy}\label{par:PresheafConstruction}
+Applying \cref{lem:TautologicalPresheafLemma} to $\Ee=\IDelta$ and $X=\N^r(\Cc)\in \cat{sAn}$ for some $\infty$-category $\Cc$, we obtain $\Pp(\IDelta/\N^r(\Cc))\simeq \cat{sAn}/\N^r(\Cc)$. We will usually abbreviate the left-hand side as $\Pp(\IDelta/\Cc)$.  If you think about it, this makes a lot of sense: Objects of $\IDelta/\N^r(\Cc)$ are maps $\Delta^n\morphism \N^r(\Cc)$ of simplicial anima. But $\N^r\colon \Cat_\infty\morphism\cat{sAn}$ is fully faithful by \cref{thmdef:RezkNerve}, so we may equivalently think of maps $[n]\morphism \Cc$. 
+
+We can now specify objects of (or functors to) $\Cat_\infty/\Cc$ as objects of (or functors to) $\Pp(\IDelta/\Cc)$ and then compose with 
+\begin{equation*}
+	\Pp(\IDelta/\Cc)\simeq \cat{sAn}/\N^r(\Cc)\xrightarrow{\asscat}\Cat_\infty/\Cc\,.
+\end{equation*}
+This will be done quite a number of times on the next few pages.\refstepcounter{smallerdummy}
+
+\numpar*{\thesmallerdummy}
+\lecture[Cocartesian and cartesian monoidal structures. Algebras over $\infty$-operads. Day convolution. Operadic limits and colimits. The tensor product on spectra.\newline
+--- \enquote{\emph{I didn't feel like presenting this as a gift to you. It's more like a punishment for Christmas.}}]{2020-12-22}
+To check that an object on the left is complete Segal, we will check the \emph{relative Segal condition}. A map $Y\morphism X$ in $\cat{sAn}$ is called \emph{relative Segal} if the diagram
+\begin{equation*}
+	\begin{tikzcd}
+		\Hom_{\cat{sAn}}(\Delta^n,Y)\rar\dar\drar[pullback] & \Hom_{\cat{sAn}}(I^n,Y)\dar\\
+		\Hom_{\cat{sAn}}(\Delta^n,X)\rar & \Hom_{\cat{sAn}}(I^n,X)
+	\end{tikzcd}
+\end{equation*}
+is a pullback in $\An$. If $X$ is a Segal anima, then the lower row is an equivalence. Thus $Y$ is a Segal anima too if $Y\morphism X$ is relative Segal. Likewise, a morphism $Y\morphism X$ is called \emph{relatively complete Segal} if it is relative Segal and the diagram
+\begin{equation*}
+	\begin{tikzcd}
+		\Hom_{\cat{sAn}}(\Delta^0,Y)\rar\dar\drar[pullback] & \Hom_{\cat{sAn}}\big(\Delta^3/(\Delta^{\{0,2\}}\cup \Delta^{\{1,3\}}),Y\big)\dar\\
+		\Hom_{\cat{sAn}}(\Delta^0,X)\rar & \Hom_{\cat{sAn}}\big(\Delta^3/(\Delta^{\{0,2\}}\cup \Delta^{\{1,3\}}),X\big)
+	\end{tikzcd}
+\end{equation*}
+Again, if this holds and $X$ is a complete Segal anima, then so is $Y$ (here we use a slight reformulation of \cref{thmdef:RezkNerve}\itememph{b}).
+
+
+With that let's dive into cocartesian monoidal structure:
+\begin{con}\label{con:CocartesianMonoidalStructure}
+	Let $\IGamma_\sqcup^\op\subseteq \langle 1\rangle/\IGamma^\op$ be the full subcategory spanned by the \enquote{defined maps} (for every $n$ there's a unique nowhere-defined map $\langle 1\rangle\morphism \langle n\rangle$; this is the only one we exclude). For any $\infty$-category $\Cc$ define $p^\sqcup\colon\Cc^\sqcup\morphism \IGamma^\op$ via \labelcref{par:PresheafConstruction} applied to the presheaf $F_{\Cc^\sqcup}\colon \IDelta/\IGamma^\op\morphism \An$, which is given by
+	\begin{equation*}
+		F_{\Cc^\sqcup}\big([n]\rightarrow\IGamma^\op\big)\simeq \Hom_{\Cat_\infty}\big([n]\times_{\IGamma^\op}\IGamma^\op_\sqcup,\Cc\big)
+	\end{equation*}
+	on objects (and turned into a functor of $\infty$-categories in the obvious way).
+\end{con}
+\begin{prop}\label{prop:CocartesianMonoidalStructure}
+	With notation as in \cref{con:CocartesianMonoidalStructure}:
+	\begin{alphanumerate}
+		\item The presheaf $F_{\Cc^\sqcup}$ defines a complete Segal anima over $\N^r(\IGamma^\op)$ via \cref{lem:TautologicalPresheafLemma}.
+		\item $p^\sqcup\colon\Cc^\sqcup\morphism \IGamma^\op$ is always an $\infty$-operad with underlying category $\Cc$.
+		\item An active morphism $(a_1,\dotsc,a_n)\morphism b$ in $\Cc^{\sqcup}$ is locally $p^\sqcup$-cocartesian iff the maps $a_i\morphism b$ exhibit $b$ as the coproduct of the $a_i$.
+		\item In particular, $p^\sqcup\colon\Cc^\sqcup\morphism\IGamma^\op$ is a symmetric monoidal category iff $\Cc$ has finite coproducts.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}[Proof sketch]
+	The proof of \itememph{a} was left as an exercise, so here's what I figured out. To show that $F_{\Cc^\sqcup}$ is Segal, consider the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_{\cat{sAn}}(\Delta^n,F_{\Cc^\sqcup})\rar\dar & \Hom_{\cat{sAn}}(I^n,F_{\Cc^\sqcup})\dar\\
+			\Hom_{\cat{sAn}}\big(\Delta^n,\N^r(\IGamma^\op)\big)\rar[iso] & \Hom_{\cat{sAn}}\big(I^n,\N^r(\IGamma^\op)\big)
+		\end{tikzcd}
+	\end{equation*}
+	The bottom row is an equivalence since $\N^r(\IGamma^\op)$ is Segal. To show that the top row is an equivalence as well, it suffices to check that it induces equivalences on all (derived) fibres. Unravelling what that means (using the computation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII}), we need to check that
+	\begin{equation*}
+		\Hom_{\cat{sAn}/\N^r(\IGamma^\op)}(\Delta^n,F_{\Cc^\sqcup})\isomorphism \Hom_{\cat{sAn}/\N^r(\IGamma^\op)}(I^n,F_{\Cc^\sqcup})\simeq\prod_{i=1}^n\Hom_{\cat{sAn}/\N^r(\IGamma^\op)}(\Delta^1,F_{\Cc^\sqcup})
+	\end{equation*}
+	is an equivalence for all choices of $\Delta^n\morphism \N^r(\IGamma^\op)$. Recall that $\cat{sAn}/\N^r(\IGamma^\op)\simeq \Pp(\IDelta/\IGamma^\op)$ by \cref{lem:TautologicalPresheafLemma}. Using this together with the Yoneda lemma and the definition of $F_{\Cc^\sqcup}$, our assertion translates into 
+	\begin{equation*}
+		\Hom_{\Cat_\infty}\big([n]\times_{\IGamma^\op}\IGamma^\op_\sqcup,\Cc\big)\isomorphism\prod_{i=1}^n\Hom_{\Cat_\infty}\big([1]\times_{\IGamma^\op}\IGamma^\op_\sqcup,\Cc\big)\,.
+	\end{equation*}
+	In other words, we must prove that $[n]\times_{\IGamma^\op}\IGamma^\op_\sqcup$ is an iterated pushout of $[1]\times_{\IGamma^\op}\IGamma^\op_\sqcup$ in $\Cat_\infty$. One way to do this is to simply check by hand that $I^n\times_{\N(\IGamma^\op)}\N(\IGamma^\op_\sqcup)\monomorphism\Delta^n\times_{\N(\IGamma^\op)}\N(\IGamma^\op_\sqcup)$ is an inner anodyne map of simplicial sets. This shows that $F_{\Cc^\sqcup}$ is Segal. Completeness can be shown analogously, whence we have proved \itememph{a}.
+	
+	To prove \itememph{b}, we must investigate the fibres of $p^\sqcup\colon\Cc^\sqcup\morphism \IGamma^\op$. So fix some $\langle n\rangle \in \N^r(\IGamma^\op)$. Since $F_{\Cc^\sqcup}$ is complete Segal by \itememph{a}, we get $F_{\Cc^\sqcup}\simeq \N^r(\asscat F_{\Cc^\sqcup})\simeq \N^r(\Cc^\sqcup)$. Because $\N^r$ preserves limits, we may as well compute the corresponding fibre of $F_{\Cc^\sqcup}\morphism \N^r(\IGamma^\op)$ and then take $\asscat(-)$ again. To do this, we claim that the following diagram commutes:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=small]
+			\Pp(\IDelta/\IGamma^\op)\ar[rr,iso]\drar["\substack{\text{evaluation at}\\
+			\text{constant maps}}"'] & & \cat{sAn}/\N^r(\IGamma^\op)\dlar["-\times_{\N^r(\IGamma^\op)}\{\langle n\rangle\}"]\\
+			& \cat{sAn} &
+		\end{tikzcd}
+	\end{equation*}
+	The right diagonal arrow sends a simplicial anima $X$ over $\N^r(\IGamma^\op)$ to $X\times_{\N^r(\IGamma^\op)}\{\langle n\rangle\}$ (i.e.\ to the fibre we're interested in). The left diagonal arrow sends a presheaf $F\colon \IDelta/\IGamma^\op\morphism \An$ to a simplicial anima $Y$ defined by $Y_k\simeq F(\const_{\langle n\rangle}\colon [k]\morphism \IGamma^\op$). To show commutativity, we may use \cref{thm:ColimitPreservingRepresentable}, whence it suffices to check that both ways around the diagram agree on representable presheaves and preserve colimits. The former is straightforward to check (although it took me some time to wrap my head around this). For the latter, it's clear that the left diagonal arrow preserves colimits, and for the right diagonal arrow we can use that colimits in anima commute with pullbacks (as seen in the proof of \cref{lem:TautologicalPresheafLemma}) and that colimits and pullbacks in $\cat{sAn}$ are computed pointwise.
+	
+	Let's apply our newfound knowledge to $p^\sqcup\colon\Cc^\sqcup\morphism\IGamma^\op$. It's straightforward to check that the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			{[k]}\times\langle n\rangle \dar["\pr_1"']\rar\drar[pullback] & \IGamma_\sqcup^\op\dar\\
+			{[k]}\rar["\const_{\langle n\rangle}"] & \IGamma^\op
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback diagram. In particular, the fibre of $p^\sqcup\colon\Cc^\sqcup\morphism\IGamma^\op$ over $\langle n\rangle$ is the associated category of a simplicial anima $Y$ given by
+	\begin{align*}
+		Y_k\simeq F_{\Cc^\sqcup}\big(\const_{\langle n\rangle}\colon [k]\rightarrow \IGamma^\op\big)&\simeq\Hom_{\Cat_\infty}\big([k]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc\big)\\
+		&\simeq \Hom_{\Cat_\infty}\big([k]\times\langle n\rangle,\Cc\big)\\
+		&\simeq \Hom_{\Cat_\infty}\big([k],\Cc^n\big)
+	\end{align*}
+	Up to checking some functoriality stuff, this shows $Y\simeq \N^r(\Cc^n)$, so the fibre of $p^\sqcup\colon\Cc^\sqcup\morphism\IGamma^\op$ over $\langle n\rangle$ is $\Cc^n$. This shows that $p^\sqcup$ satisfies \cref{def:Operad}\itememph{b}.
+	
+	Two more conditions are to check. Let $x,y\in \Cc^\sqcup$ and let $\alpha\colon p^\sqcup(x)\morphism p^\sqcup(y)$ be some morphism in $\IGamma^\op$. Then the fibre $\Hom_{\Cc^\sqcup}^\alpha(x,y)\coloneqq \Hom_{\Cc^\sqcup}(x,y)\times_{\Hom_{\IGamma^\op}(p^\sqcup(x),p^\sqcup(y))}\{\alpha\}$ of $\Hom_{\Cc^\sqcup}^\alpha(x,y)$ over $\alpha$ has a particularly simple description: If we think of $\alpha$ as a functor $\alpha\colon [1]\morphism \IGamma^\op$, then $\Hom_{\Cc^\sqcup}^\alpha(x,y)$ fits into a pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_{\Cc^\sqcup}^\alpha(x,y)\rar\dar\drar[pullback] & \Hom_{\Cat_\infty}\big([1]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc\big)\dar["{(d_1,d_0)}"]\\
+			*\rar["{(x,y)}"] & \Hom_{\Cat_\infty}\big([0]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc\big)\times \Hom_{\Cat_\infty}\big([0]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc\big)
+		\end{tikzcd}
+	\end{equation*}
+	To prove this, use Yoneda's lemma, the computation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII}, and the fact that $\N^r\colon \Cat_\infty\morphism\cat{sAn}$ is fully faithful to compute
+	\begin{align*}
+		\Hom_{\Cat_\infty}\big([1]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc\big)&\simeq F_{\Cc^\sqcup}(\alpha\colon[1]\rightarrow \IGamma^\op)\\
+		&\simeq \Hom_{\Pp(\IDelta/\IGamma^\op)}\big(\alpha\colon [1]\morphism \IGamma^\op,F_{\Cc^\sqcup}\big)\\
+		&\simeq \Hom_{\cat{sAn}/\N^r(\IGamma^\op)}\big(\N^r(\alpha)\colon \Delta^1\rightarrow\N^r(\IGamma^\op),F_{\Cc^\sqcup}\big)\\
+		&\simeq \Hom_{\cat{sAn}}(\Delta^1,F_{\Cc^\sqcup})\times_{\Hom_{\cat{sAn}}(\Delta^1,\N^r(\IGamma^\op))}\{\N^r(\alpha)\}\\
+		&\simeq \Hom_{\Cat_\infty}\big([1],\Cc^\sqcup\big)\times_{\Hom_{\Cat_\infty}([1],\IGamma^\op)} \{\alpha\}\,.
+	\end{align*}
+	With this and an analogous computation for $\Hom_{\Cat_\infty}([0]\times_{\IGamma^\op}\IGamma_\sqcup^\op,\Cc)$, the above pullback square is straightforward to verify. Let's use this to check that $p^\sqcup\colon \Cc^\sqcup\morphism\IGamma^\op$ has cocartesian lifts for inert morphisms. So let $\alpha\colon \langle m\rangle\morphism\langle n\rangle$ be inert, and $x\in \Cc^\sqcup$ a lift of $\langle m\rangle$. Then $x$ corresponds to a map $[0]\times_{\IGamma^\op}\IGamma^\op_\sqcup\morphism\Cc$ and a lift of $\alpha$ corresponds to a map $[1]\times_{\IGamma^\op}\IGamma^\op_\sqcup\morphism \Cc$, where the pullback is formed using $\alpha\colon [1]\morphism\IGamma^\op$. So we need to solve a lifting problem
+	\begin{equation*}
+		\begin{tikzcd}
+			{[0]}\times_{\IGamma^\op}\IGamma^\op_\sqcup\dar[mono,"d_1"']\rar &\Cc\\
+			{[1]}\times_{\IGamma^\op}\IGamma^\op_\sqcup\urar[dashed]& 
+		\end{tikzcd}
+	\end{equation*}
+	in such a way that the solution is a $p^\sqcup$-cocartesian lift of $\alpha$. Since $\alpha$ is inert, i.e.\ an isomorphism where it is defined, $[1]\times_{\IGamma^\op}\IGamma^\op_\sqcup$ consists of a disjoint union of copies of $[1]$ (their number corresponds to the number of elements of $\langle m\rangle$ where $\alpha$ is defined) and $[0]$ (corresponding to the elements of $\langle m\rangle$ where $\alpha$ isn't). We define the desired lift $[1]\times_{\IGamma^\op}\IGamma^\op_\sqcup\morphism \Cc$ to be degenerate on every copy of $[1]$, noting that it is already defined on their starting points and on the additional copies of $[0]$.
+	
+	To show that this gives a cocartesian lifts, we must check the condition from \cref{def:WeirdCocartesianDefinition}\itememph{a}, i.e.\ that 
+	\begin{equation*}
+		\Hom_{\Cc^\sqcup}(y,z)\isomorphism \Hom_{\Cc^\sqcup}(x,z)\times_{\Hom_{\IGamma^\op}(\langle n\rangle,\langle k\rangle)}\Hom_{\IGamma^\op}\big(\langle m\rangle,\langle k\rangle\big)
+	\end{equation*}
+	is an isomorphism for all $z\in \Cc^\sqcup$ and $p^\sqcup(z)=\langle k\rangle$. This can be checked on (derived) fibres over any $\beta\in \Hom_{\IGamma^\op}(\langle m\rangle,\langle k\rangle)$. The fibre of the left-hand side is $\Hom_{\Cc^\sqcup}^\beta(y,z)$. The fibre of the right-hand side is the same as that of $\Hom_{\Cc^\sqcup}(x,z)\morphism\Hom_{\IGamma^\op}(\langle n\rangle,\langle k\rangle)$ over $\beta\circ\alpha$, which is $\Hom_{\Cc^\sqcup}^{\beta\circ \alpha}(x,z)$. That these two are equivalent is straightforward to check from the constructions, using the pullback diagram above. This proves that $p^\sqcup\colon \Cc^\sqcup\morphism\IGamma^\op$ satisfies \cref{def:Operad}\itememph{a}. The condition from \cref{def:Operad}\itememph{c} can be checked in the same way. This proves \itememph{b}.
+	
+	For \itememph{c}, it suffices to check the condition from \cref{exm:MyFirstOperads}\itememph{a}. By definition, we have $\Hom_{\Cc^\sqcup}^\mathrm{act}((a_1,\dotsc,a_n),-)\simeq \Hom_{\Cc^\sqcup}^{f_n}((a_1,\dotsc,a_n),-)$. The pullback $[1]\times_{\IGamma^\op}\IGamma^\op_\sqcup$ formed using $f_n\colon [1]\morphism \IGamma^\op$ is precisely the cone over a discrete set with $n$ elements. Using this and the pullback diagram above, one easily verifies
+	\begin{equation*}
+		\Hom_{\Cc^\sqcup}^{f_n}\big((a_1,\dotsc,a_n),-\big)\simeq \prod_{i=1}^n\Hom_\Cc(a_i,-)\,.
+	\end{equation*}
+	Hence any representing object of $\Hom_{\Cc^\sqcup}^\mathrm{act}((a_1,\dotsc,a_n),-)$ is a coproduct of the $a_i$, whence \itememph{c} follows. Part~\itememph{d} is an immediate consequence of \itememph{c} and the discussion in \cref{exm:MyFirstOperads}, as coproducts are clearly associative.
 \end{proof}
+\cref{prop:CocartesianMonoidalStructure} allows us to define the cocartesian monoidal structure on an $\infty$-category with finite coproducts. To construct the cartesian monoidal structure, once can consider $((\Cc^\op)^\sqcup)^\op\in \cat{dOp}_\infty$. If $\Cc$ has finite products, so $\Cc^\op$ has finite coproducts, then the dual $\infty$-operad $((\Cc^\op)^\sqcup)^\op$ defines a symmetric monoidal $\infty$-category and we can define $p^\times\colon \Cc^\times\morphism \IGamma^\op$ via
+\begin{equation*}
+	\Cc^\times=\Un^\cocart\big(\St^\cart ((\Cc^\op)^\sqcup)^\op\big)\,.
+\end{equation*}
+\begin{con}\label{con:CartesianMonoidalStructure}
+	There is also a direct construction of $p^\times\colon \Cc^\times\morphism\IGamma^\op$, but this is a bit tricky, which perhaps isn't very surprising since $\infty$-operads would like to specify maps out of a tensor product, whereas products would like to have maps into them specified. We define a $1$-category $\IGamma_\times^\op$ as follows: Its objects are pairs $(n,S)$, where $S\subseteq \langle n\rangle$ is a subset, and morphisms $(n,S)\morphism (m,T)$ are given by morphisms $\alpha\colon \langle n\rangle \morphism\langle m\rangle$ in $\IGamma^\op$ such that $\alpha^{-1}(T)=S$. Let $\snake{p}^\times\colon \snake{\Cc}^\times\morphism\IGamma^\op$ be given by \labelcref{par:PresheafConstruction} applied to the presheaf $F_{\Cc^\times}\IDelta/\IGamma^\op\morphism\An$, which is in turn given by
+	\begin{equation*}
+		F_{\Cc^\times}\big([n]\rightarrow \IGamma^\op\big)\simeq \Hom_{\Cat_\infty}\big([n]\times_{\IGamma^\op}\IGamma_\times^\op,\Cc\big)\,.
+	\end{equation*}
+	The same analysis as in the proof of \cref{prop:CocartesianMonoidalStructure}\itememph{a} shows that the fibre of $\snake{p}^\times\colon \snake{\Cc}^\times\morphism\IGamma^\op$ over $\langle n\rangle$ is given by
+	\begin{equation*}
+		\snake{\Cc}_n^\times\simeq \Fun\big((\text{power set of }\langle n\rangle)^\op,\Cc\big)\,.
+	\end{equation*}
+	Now let $\Cc^\times$ be the full subcategory of $\snake{\Cc}^\times$ which is fibrewise spanned by those functors $F\colon (\text{power set of }\langle n\rangle)^\op\morphism\Cc$ satisfying $F(S)\simeq \prod_{i=1}^nF(\{i\})$. Then $p^\times\colon \Cc^\times\morphism\IGamma^\op$ is an $\infty$-operad satisfying $\Cc_n^\times\simeq \Cc^n$ and it represents the cartesian monoidal structure if $\Cc$ has enough products. An active morphism $(a_1,\dotsc,a_n)\morphism b$ is $p^\times$-cocartesian iff it exhibits $b$ as a product of the $a_i$.
+\end{con}
+\begin{prop}\label{prop:CartesianMonoidalStructure}
+	With notation as in \cref{con:CocartesianMonoidalStructure}:
+	\begin{alphanumerate}
+		\item The presheaf $F_{\Cc^\times}$ defines a complete Segal anima via \cref{lem:TautologicalPresheafLemma}.
+		\item $p^\times\colon\Cc^\times\morphism \IGamma^\op$ is always an $\infty$-operad with underlying category $\Cc$ \embrace{and thus $\Cc_n^\times\simeq \Cc^n$}.
+		\item If $\Cc$ has finite products, then $p^\times\colon\Cc^\times\morphism\IGamma^\op$ is a symmetric monoidal category and $\Hom_{\Cc^\times}^\mathrm{act}((a_1,\dotsc,a_n),-)\simeq \Hom_{\Cc^\times}(a_1\times\dotsb\times a_n,-)$.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof}
+	Similar to \cref{prop:CocartesianMonoidalStructure} and omitted. Fabian's script \cite[Proposition~II.42]{KTheory} has some details.
+\end{proof}
+
+\numpar*{Monoids over an $\infty$-Operad}
+If $p\colon\Oo\morphism\IGamma^\op$ and $p'\colon\Oo'\morphism \IGamma^\op$ are $\infty$-operads, let $\Fun^{\cat{Op}_\infty}(\Oo,\Oo')$ be the full sub-$\infty$-category of $\Fun_{\IGamma^\op}(\Oo,\Oo')$ spanned by $\infty$-operad maps. Here $\Fun_{\IGamma^\op}(\Oo,\Oo')$ is given by the pullback
+\begin{equation*}
+	\begin{tikzcd}
+		\Fun_{\IGamma^\op}(\Oo,\Oo')\rar\dar\drar[pullback] & \Fun(\Oo,\Oo')\dar["p'_*"]\\
+		*\rar["p"] & \Fun(\Oo,\IGamma^\op)
+	\end{tikzcd}
+\end{equation*}
+as usual. If $\Cc$ has products, then $\Fun^{\cat{Op}_\infty}(\IGamma^\op,\Cc^\times)\simeq \CMon(\Cc)$. In fact, this can be stated in much greater generality, which we'll do in \cref{thm:OMon} below: Define the \emph{$\infty$-category of $\Oo$-monoids} to be the full subcateroy $\Oo\cat{Mon}(\Cc)\subseteq \Fun(\Oo,\Cc)$ spanned by those functors $F\colon \Oo\morphism\Cc$ satisfying the Segal condition. That is, the maps $(a_1,\dotsc,a_n)\morphism a_i$ in $\Oo$ are supposed to induce equivalences $F(a_1,\dotsc,a_n)\isomorphism \prod_{i=1}^n F(a_i)$.
+
+Also note that there is a section $\IGamma^\op\morphism \IGamma_\times^\op$ sending $\langle n\rangle \mapsto (n,\langle n\rangle)$. It induces canonical maps $\Hom_{\Cat_\infty}([n]\times_{\IGamma^\op}\IGamma^\op_\times,\Cc)\morphism\Hom_{\Cat_\infty}([n]\times_{\IGamma^\op}\IGamma^\op,\Cc)\simeq \Hom_{\Cat_\infty}([n],\Cc)$, hence a map $F_{\Cc^\times}\morphism\N^r(\Cc)$ of simplicial anima and therefore a map $\Cc^\times\morphism\Cc$.
+\begin{thm}\label{thm:OMon}
+	If $\Cc$ has finite products, then the map $\Cc^\times\morphism\Cc$ constructed above induces an equivalence
+	\begin{equation*}
+		\Fun^{\cat{Op}_\infty}(\Oo,\Cc^\times)\isomorphism \Oo\cat{Mon}(\Cc)		
+	\end{equation*}
+	is an equivalence. If $\Cc$ has finite coproducts and satisfies $\Hom_\Oo^\mathrm{act}(\emptyset,x)\simeq *$ for all $x\in \Oo$ then the restriction
+	\begin{equation*}
+		\Fun^{\cat{Op}_\infty}(\Oo,\Cc^\sqcup)\isomorphism \Fun(\Oo_1,\Cc)
+	\end{equation*}
+	is an equivalence as well.
+\end{thm}
+\begin{proof}
+	See \cite{HA}: The first part follows from Proposition~\HAthm{2.4.2.5}, the second part from Propositions~\HAthm{2.4.3.16} and~\HAthm{2.3.1.11}.
+\end{proof}
+$\infty$-Operads satisfying $\Hom_\Oo^\mathrm{act}(\emptyset,x)\simeq *$ for all $x\in \Oo$ are called \emph{unital}. One easily checks that this is satisfied for $\IGamma^\op$ itself. \cref{thm:OMon} is supposed to motivate the following general definition.
+\begin{defi}
+	If $\Oo$ is an $\infty$-operad and $\Cc^\otimes$ is a symmetric monoidal structure on an $\infty$-category $\Cc$, then we put
+	\begin{equation*}
+		\cat{Alg}_\Oo(\Cc^\otimes)\coloneqq \Fun^{\cat{Op}_\infty}(\Oo,\Cc^\otimes)
+	\end{equation*}
+	and call this the $\infty$-category of \emph{$\Oo$-algebras in $\Cc$}. If the symmetric monoidal structure on $\Cc$ is clear from the context, we'll often write $\cat{Alg}_\Oo(\Cc)$ instead.
+	
+	More generally, let $\Oo'$ be another another $\infty$-operad with a map $\alpha\colon \Oo'\morphism \Oo$, and let $\Cc$ be an \emph{$\Oo$-monoidal $\infty$-category}, i.e.\ an object of $\Oo\cat{Mon}(\Cat_\infty)$. Again, we denote by $(-)^\otimes\colon \Oo\cat{Mon}(\Cat_\infty)\morphism \cat{Op}_\infty/\Oo$ the functor induced by cocartesian unstraightening. Then $\cat{Alg}_{\Oo'/\Oo}(\Cc^\otimes)$ is defined as the pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			\cat{Alg}_{\Oo'/\Oo}(\Cc^\otimes)\rar\dar\drar[pullback] & \Fun^{\cat{Op}_\infty}(\Oo',\Cc^\otimes)\dar\\
+			*\rar["\alpha"]& \Fun^{\cat{Op}_\infty}(\Oo',\Oo)
+		\end{tikzcd}
+	\end{equation*}
+	This recovers $\cat{Alg}_\Oo(\Cc^\otimes)\simeq \cat{Alg}_{\Oo/\IGamma^\op}(\Cc^\otimes)$ as a special case.
+\end{defi}
+\begin{exm}\label{exm:MyFirstAlgebrasOverOperads}
+	\enquote{My first algebras over $\infty$-operads}:
+	\begin{alphanumerate}
+		\item If $\Oo$ is the $\infty$-operad $*\xrightarrow{\langle 0\rangle}\IGamma^\op$, then $\cat{Alg}_\Oo(\Cc)\simeq *$.
+		\item If $\Oo$ is $\IGamma_\mathrm{int}^\op\morphism\IGamma^\op$, then $\cat{Alg}_\Oo(\Cc^\otimes)\simeq \Cc$. 
+		Hence this $\infty$-operad will be denoted $\Oo=\cat{\IT riv}$. We'll give a sketch of why this is true. One easily finds
+		\begin{equation*}
+			\Fun_{\IGamma^\op}\big(\IGamma^\op_\mathrm{int},\Cc^\otimes\big)\simeq \Fun_{\IGamma^\op_\mathrm{int}}\big(\IGamma^\op_\mathrm{int},\Cc^\otimes\times_{\IGamma^\op}\IGamma^\op_\mathrm{int}\big)\,,
+		\end{equation*}
+		and this restricts to an equivalence
+		\begin{equation*}
+			\Fun^{\cat{Op}_\infty}\big(\cat{\IT riv},\Cc^\otimes\big)\simeq\Gamma_\cocart\big(\Cc^\otimes\times_{\IGamma^\op}\IGamma^\op_\mathrm{int}\big)\,,
+		\end{equation*}
+		where $\Gamma_\cocart$ is defined as in \cref{prop:CoLimitsInCat}. In particular, the right hand side is equivalent to $\limit(\St^\cocart(\Cc^\otimes\times_{\IGamma^\op}\IGamma^\op_\mathrm{int})\colon \IGamma^\op_\mathrm{int}\morphism\Cat_\infty)$, so we are to show that this limit is $\Cc$.
+		
+		To see this, note that by definition of $\IGamma_\mathrm{int}^\op$, its opoosite category $\IGamma_\mathrm{int}$ can be viewed as the category of finite sets $\langle n\rangle$ with injective maps between them. Hence there is a $\IGamma_\mathrm{int}\morphism\Cat_\infty$ sending $\langle n\rangle$ to itself, considered as a discrete $\infty$-category. Let $U\morphism\IGamma_\mathrm{int}^\op$ be its cartesian unstraightening, so that the fibre $U_n\coloneqq U \times_{\IGamma_\mathrm{int}^\op}\{\langle n\rangle\}$ is isomorphic to $\langle n\rangle$. Then $\Cc_n^\otimes\simeq \Cc^n\simeq \limit_{U_n}\Cc$. Hence we may apply the dual of \cref{prop:ColimitsCommute} to see that the limit we're looking for is given as $\limit_U\Cc$. But now it's straightforward to check that the unique point of the fibre $U_1$ is an initial object of $U$, hence $\limit_U\Cc\simeq \Cc$, as required.
+		
+		\item If $\Oo$ is $\id\colon \IGamma^\op\morphism\IGamma^\op$, then we define $\cat{Alg}_\Oo(\Cc^\otimes)\eqqcolon \cat{CMon}(\Cc)$. If $\Cc$ has finite products and $\Cc^\otimes\simeq \Cc^\times$ is the $\infty$-operad giving the cartesian monoidal structure, then this notation is consistent with our previous definition of $\CMon(\Cc)$ by \cref{thm:OMon}. Consequently, the $\infty$-operad $\id\colon\IGamma^\op\morphism\IGamma^\op$ will be denoted $\Oo=\cat{\IC omm}$ (or sometimes $\IE_\infty$).
+		
+		If $\Cc^\otimes\morphism \IGamma^\op$ is any symmetric monoidal $\infty$-category, then we would expect that the tensor unit $1_\Cc\in \Cc$ gives rise to an object in $\CMon(\Cc)$. So let's construct this object as a reality check. Since $\CMon(\Cc)\simeq \cat{Alg}_{\cat{\IC omm}}(\Cc^\otimes)\simeq \Fun^{\cat{Op}_\infty}(\cat{\IC omm},\Cc^\otimes)$, our goal is to produce an $\infty$-operad map
+		\begin{equation*}
+			\begin{tikzcd}[column sep=small]
+				\cat{\IC omm}\drar["\id"']\ar[rr] & & \Cc^\otimes\dlar\\
+				& \IGamma^\op &
+			\end{tikzcd}
+		\end{equation*}
+		whose evaluation at $\langle 1\rangle$ is $1_\Cc$. After straightening, this corresponds to a natural transformation in $\Fun(\IGamma^\op,\Cat_\infty)$ between $\const_*$ and the functor $\Cc\colon\IGamma^\op\morphism \Cat_\infty$ corresponding to $\Cc\in\CMon(\Cat_\infty)$ via \cref{def:CartesianCommutativeMonoids}. This natural transformation can be constructed as $\const_*\simeq \const_{\Cc_0}\Rightarrow \Cc$, using that $\langle 0\rangle \in \IGamma^\op$ is initial.
+		\item In view of \itememph{c}, a natural question is whether there exists an $\infty$-operad $\cat{\IA ssoc}$ satisfying $\cat{Alg}_{\cat{\IA ssoc}}(\Cc^\times)\simeq \Mon(\Cc)$. This is indeed true and we will construct $\cat{\IA ssoc}$ soon (to be precise, in a future version of Example~\hyperref[exm:MyFirstAlgebrasOverOperadsII]{\labelcref*{exm:MyFirstAlgebrasOverOperads}}\itememph{d}).
+		\item Similarly, there is an $\infty$-operad $\cat{\IL Mod}$ encoding left modules and so on.
+	\end{alphanumerate}
+\end{exm}
+\begin{con}\label{con:DayConvolution}
+	Let $\Cc^\otimes$ be a symmetric monoidal $\infty$-category and $\Oo$ an $\infty$-operad. Define $\F(\Cc^\otimes,\Oo)\morphism \IGamma^\op$ via \labelcref{par:PresheafConstruction} applied to the presheaf $F\colon \IDelta/\IGamma^\op\morphism\An$ which is given by
+	\begin{equation*}
+		F \big([n]\rightarrow \IGamma^\op\big)\simeq \Hom_{\Cat_\infty/\IGamma^\op}\big([n]\times_{\IGamma^\op}\Cc^\otimes,\Oo\big)
+	\end{equation*}	
+	Then $F$ defines a complete Segal anima over $\N^r(\IGamma^\op)$. Indeed, this can be shown as in the proof of \cref{prop:CartesianMonoidalStructure}, the only difference being that one can no longer show by hand that $I^n\times_{\N^r(\IGamma^\op)}\Cc^\otimes\morphism \Delta^n\times_{\N^r(\IGamma^\op)}\Cc^\otimes$ is a Joyal equivalence; instead, one can for example use that pullback along cocartesian fibrations preserves Joyal equivalences by \cite[Proposition~\HTTthm{3.3.1.3}]{HTT} or a stronger version of \cite[Theorem~IX.17]{HigherCatsII}).
+	
+	Once we know $F$ is complete Segal, we may apply the same method as in the proof of \cref{prop:CartesianMonoidalStructure} to compute
+	\begin{equation*}
+		\F(\Cc^\otimes,\Oo)_n\simeq \Fun(\Cc^\otimes_n,\Oo_n)\simeq \Fun(\Cc^n,\Oo_1^n)\,.
+	\end{equation*}
+	Let the \emph{day convolution} $\operatorname{Day}(\Cc^\otimes,\Oo)\subseteq \F(\Cc^\otimes,\Oo)$ be the full sub-$\infty$-category spanned by those functors $F\colon \Cc_n^\otimes\morphism \Oo_n$ which split as products $F\simeq F_1\times \dotsb \times F_n$.
+\end{con}
+\begin{prop}\label{prop:DayConvolution}
+	With notation as in \cref{con:DayConvolution}:
+	\begin{alphanumerate}
+		\item $\operatorname{Day}(\Cc^\otimes,\Oo)\morphism \IGamma^\op$ is an $\infty$-operad with underlying $\infty$-category $\Fun(\Cc,\Oo_1)$.
+		\item If $q\colon \Cc^\otimes\morphism \Cc'^\otimes$ is an $\infty$-operad map, or $p\colon \Oo\morphism\Oo'$ is one, so are
+		\begin{equation*}
+			q^*\colon \operatorname{Day}(\Cc'^\otimes,\Oo)\morphism\operatorname{Day}(\Cc^\otimes,\Oo)\quad\text{and}\quad p_*\colon \operatorname{Day}(\Cc^\otimes,\Oo)\morphism \operatorname{Day}(\Cc^\otimes,\Oo')\,.
+		\end{equation*}
+		\item If $\Oo\simeq \Dd^\otimes$, where $\Dd$ is a cocomplete symmetric monoidal category such that $-\otimes_\Dd -$ commutes with colimits in each variable, then $\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)$ represents a symmetric monoidal structure on $\Fun(\Cc,\Dd)$ with tensor product
+		\begin{equation*}
+			(F_1\otimes_{\operatorname{Day}} F_2)(c)\simeq \colimit_{d\otimes_\Cc d'\morphism c} \big(F_1(d)\otimes_\Dd F_2(d')\big)\,.
+		\end{equation*}
+		To be really precise, the colimit on the right-hand side is taken over the slice category $(-\otimes_\Cc -)/c$, where $-\otimes_\Cc-\colon \Cc\times\Cc\morphism\Cc$ denotes the tensor product on $\Cc$. Moreover, the underlying $\infty$-category of $\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)$ is again cocomplete and $-\otimes_{\operatorname{Day}}-$ commutes with colimits in either variable.
+		
+		\item In the situation of \itememph{c}, let $q\colon \Cc\morphism \Cc'$ be a strongly symmetric monoidal functor. Then $q^*$ has a left adjoint \embrace{left Kan extension} which is strongly symmetric monoidal.
+	\end{alphanumerate}
+\end{prop}
+\begin{proof*}[Proof sketch]
+	Adapting the arguments from the proof sketch of \cref{prop:CartesianMonoidalStructure}, one shows that we have pullback squares
+	\begin{equation*}
+		\begin{tikzcd}[column sep=scriptsize]
+			\Hom_{\operatorname{Day}(\Cc^\otimes,\Oo)}^\alpha(F,G)\rar\dar\drar[pullback] & \Hom_{\Cat_\infty/\IGamma^\op}\big([1]\times_{\IGamma^\op}\Cc^\otimes,\Oo\big)\dar["{(d_1,d_0)}"]\\
+			*\rar["{(x,y)}"] & \Hom_{\Cat_\infty/\IGamma ^\op}\big([0]\times_{\IGamma^\op}\Cc^\otimes,\Oo\big)\times \Hom_{\Cat_\infty/\IGamma^\op}\big([0]\times_{\IGamma^\op}\Cc^\otimes,\Oo\big)
+		\end{tikzcd}
+	\end{equation*}
+	for every $\alpha\colon \langle m\rangle \morphism\langle n\rangle$ in $\IGamma^\op$ and all $F,G\in \operatorname{Day}(\Cc^\otimes,\Oo)$ with images $\langle m\rangle$ and $\langle n\rangle$ respectively (in fact, these pullback squares already exist for $\F(\Cc^\otimes,\Oo)$). Note that by our description of the fibres of $\F(\Cc^\otimes,\Oo)\morphism \IGamma^\op$ given above, $F$ and $G$ define functors $F\colon \Cc^m\morphism\Oo_1^m$ and $G\colon \Cc^n\morphism\Oo_1^n$. The following claim will be used several times during the proof:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape Suppose the functor $\alpha\colon [1]\morphism \IGamma^\op$ associated to $\alpha$ satisfies that $[1]\times_{\IGamma^\op}\Oo\morphism {}[1]$ is a cocartesian fibration \embrace{for example, $\alpha$ could be inert}. By cocartesian unstraightening, $\alpha$ induces morphisms $\alpha_{\Cc^\otimes}\colon \Cc^m\morphism\Cc^n$ and $\alpha_\Oo\colon \Oo_1^m\morphism\Oo_1^n$. Then
+		\begin{equation*}
+			\Hom_{\operatorname{Day}(\Cc^\otimes,\Oo)}^\alpha(F,G)\simeq \Nat(\alpha_\Oo\circ F,G\circ \alpha_{\Cc^\otimes})
+		\end{equation*}
+	\end{alphanumerate}
+	Proving \itememph{\boxtimes} should be a matter of playing around with the pullback square above and the straightening equivalence, but I have yet to come up with a good argument so the proof is \enquote{left to the reader} for now.
+	
+	To prove \itememph{a}, we must provide cocartesian lifts of inert morphisms. If $\alpha\colon [1]\morphism \IGamma^\op$, then lifting $\alpha$ means (by unravelling the pullback diagram above) we need to solve a lifting problem
+	\begin{equation*}
+		\begin{tikzcd}
+			{[0]}\times_{\IGamma^\op}\Cc^\otimes\dar[mono,"d_1"']\rar &{[1]}\times_{\IGamma^\op}\Oo\\
+			{[1]}\times_{\IGamma^\op}\Cc^\otimes\urar[dashed]& 
+		\end{tikzcd}
+	\end{equation*}
+	in such a way that the solution is cocartesian. Since $\alpha$ is inert, the induced functors $\alpha_{\Cc^\otimes}\colon \Cc^m\morphism \Cc^n$ and $\alpha_\Oo\colon \Oo_1^m\morphism\Oo_1^n$ are simply given by projection to some of the factors. Moreover, the top arrow in the diagram above represents an element of $\operatorname{Day}(\Cc^\otimes,\Oo)_m$, hence a functor $F\colon \Cc^m\morphism \Oo_1^m$ which decomposes as $F\simeq F_1\times\dotsb\times F_m$. Hence $\alpha_\Oo\circ F\simeq F_{|\Cc^n}\circ \alpha_{\Cc^\otimes}$ and thus $F$ induces a map between the cocartesian fibrations associated to $\alpha_{\Cc^\otimes}$ and $\alpha_\Oo$. This map is precisely the desired lift. To see that the lift is indeed cocartesian, adapt the arguments from the proof sketch of \cref{prop:CartesianMonoidalStructure} and use \itememph{\boxtimes}. It's clear from the construction that the endpoint of the lift is $F_{|\Cc^n}$, hence it lies in $\operatorname{Day}(\Cc^\otimes,\Oo)$ again. This shows that $\operatorname{Day}(\Cc^\otimes,\Oo)\morphism\IGamma^\op$ satisfies \cref{def:Operad}\itememph{a}. The Segal condition from \cref{def:Operad}\itememph{b} holds pretty much by definition of $\operatorname{Day}(\Cc^\otimes,\Oo)_n\subseteq \F(\Cc^\otimes,\Oo)_n\simeq \Fun(\Cc^n,\Oo_1^n)$. Finally, the condition from \cref{def:Operad}\itememph{c} can again be checked using \itememph{\boxtimes}. This finishes part~\itememph{a}.
+	
+	For \itememph{b}, all we need to check is that $q^*$ and $p_*$ preserve cocartesian lifts of inert morphisms. But that's clear from our construction.
+	
+	Now let's prove \itememph{c}. We use the criterion from \cref{exm:MyFirstOperads}\itememph{a} to show that the active morphisms $f_n\colon \langle n\rangle \morphism\langle 1\rangle$ have locally cocartesian lifts. Let $F\colon \Cc^n\morphism\Dd^n$ such that $F\simeq F_1\times\dotsb\times F_n$ and let $G\colon \Cc\morphism \Dd$. The maps $(f_n)_{\Cc^\otimes}\colon \Cc^n\morphism \Cc$ and $(f_n)_{\Dd^\otimes}\colon \Dd^n\morphism \Dd$ are given by the $n$-fold tensor products $\otimes_\Cc^n\colon \Cc^n\morphism\Cc$ and $\otimes_\Dd^n\colon \Dd^n\morphism\Dd$. Thus \itememph{\boxtimes} shows
+	\begin{equation*}
+		\Hom_{\operatorname{Day}(\Cc^\otimes,\Oo)}^\mathrm{act}\big((F_1,\dotsc,F_n),G\big)\simeq \Hom_{\operatorname{Day}(\Cc^\otimes,\Oo)}^{f_n}(F,G)\simeq \Nat(\otimes_\Dd^n\circ F,G\circ \otimes_\Cc^n)\,,
+	\end{equation*}
+	Hence a lift $F\morphism F'$ of $f_n$ is locally cocartesian iff $F'\colon \Cc\morphism\Dd$ is the left Kan extension of $\otimes_\Dd^n\circ F\colon \Cc^n\morphism\Dd$ along $\otimes_\Cc^n\colon \Cc^n\morphism\Cc$. Since $\Dd$ is cocomplete, these Kan extensions exist by \cref{thm:KanExtension}. In particular, for $F_1,F_2\colon \Cc\morphism\Dd$ we have that $F_1\otimes_{\operatorname{Day}}F_2$ is the left Kan extension of $F_1\otimes_\Dd F_2\colon \Cc^2\morphism \Dd$ along $\otimes_\Cc^2\colon \Cc^2\morphism\Cc$, which shows that the desired formula holds true.
+	
+	So far we haven't used that $-\otimes_\Dd-$ commutes with colimits in either variable, but we'll need it to show that the locally cocartesian edges compose, so that $\operatorname{Day}(\Cc^\otimes,\Oo)\morphism\IGamma^\op$ is not only locally cocartesian, but honestly cocartesian by \cite[Proposition~IX.13]{HigherCatsII}. To show this, it will suffice to check that $-\otimes_{\operatorname{Day}}-$ is associative. For associativity, it suffices to check that $F_1\otimes_\Dd (F_2\otimes_{\operatorname{Day}} F_3)\colon \Cc^2\morphism \Dd$ is the left Kan extension of $F_1\otimes_\Dd F_2\otimes_\Dd F_3\colon \Cc^3\morphism \Dd$ along $\id_\Cc\times \otimes_\Cc^2\colon \Cc^3\morphism\Cc^2$ (and likewise for $(F_1\otimes_{\operatorname{Day}} F_2)\otimes_\Dd F_3$), since then the fact that Kan extension composes will do the rest. Given $(c,c')\in \Cc^2$, we have $(\id_\Cc\times \otimes_\Cc^2)/(c,c')\simeq \id_\Cc/c\times \otimes_\Cc^2/c'$. Now $\{c\}$ is cofinal in $\id_\Cc/c$, hence $\{c\}\times \otimes_\Cc^2/c'$ is cofinal in $\id_\Cc/c\times \otimes_\Cc^2/c'$. The value at $(c,c')$ of the left Kan extension in question can therefore be computed as
+	\begin{align*}
+		\colimit_{(c,d\otimes_\Cc d')\morphism (c,c')}\big( F_1(c)\otimes_\Dd F_2(d)\otimes_\Dd F_3(d')\big)&\simeq F_1(c)\otimes_\Dd \colimit_{d\otimes_\Cc d'\morphism c'}\big(F_2(d)\otimes_\Dd F_3(d')\big)\\
+		&\simeq F_1(c)\otimes_\Dd (F_2\otimes_{\operatorname{Day}}F_3)(c')\,,
+	\end{align*}
+	as desired. Here where we finally used that $-\otimes_\Dd-$ commutes with colimits. In the exact same way one shows $F\otimes_{\operatorname{Day}}1_{\operatorname{Day}}\simeq F$, where $1_{\operatorname{Day}}\colon \Cc\morphism\Dd$ is given by the left Kan extension of $1_\Dd\colon *\morphism \Dd$ along $1_\Cc\colon *\morphism\Cc$. This concludes the proof that $\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)$ is symmetric monoidal. The additional assertion is clear since left Kan extension preserves colimits and colimits in functor categories are pointwise. This proves \itememph{c}.
+	
+	For \itememph{d}, note that $q^*\colon \Fun(\Cc',\Dd)\morphism \Fun(\Cc,\Dd)$ has a left adjoint $q_!$ given by left Kan extension. Using the definition of $-\otimes_{\operatorname{Day}}-$ via left Kan extension and the fact that left Kan extension composes, it's straightforward to check $q_!(F_1\otimes_{\operatorname{Day}}F_2)\simeq q_!(F_1)\otimes_{\operatorname{Day}} q_!(F_2)$ and $q_!(1_{\operatorname{Day}})\simeq 1_{\operatorname{Day}}$. Hence \cref{lem*:LeftAdjointStronglyMonoidal} can be applied to finish the proof.
+\end{proof*}
+\begin{defi}\label{def:OperadicLimits}
+	Let $\Oo$ be an $\infty$-operad and $F\colon \Ii\morphism \Oo_1$ be a diagram. Then a colimit/limit of $F$ is called \emph{operadic} if for every $(x_1,\dotsc,x_n)\in \Oo$ and $y\in \Oo_1$ we have
+	\begin{align*}
+		\Hom_\Oo^\mathrm{act}\left(\Big(\colimit_\Ii F,x_1,\dotsc,x_n\Big),y\right)&\simeq \limit_\Ii\Hom_\Oo^\mathrm{act}\big((F(-),x_1,\dotsc,x_n),y\big)\\
+		\Hom_\Oo^\mathrm{act}\left((x_1,\dotsc,x_n),\limit_\Ii F\right)&\simeq \limit_\Ii\Hom_\Oo^\mathrm{act}\big((x_1,\dotsc,x_n),F(-)\big)
+	\end{align*}
+	For example, if $\Oo\simeq \Cc^\otimes$ is a symmetric monoidal $\infty$-category, then all limits are operadic because $\Hom_{\Cc^\otimes}^\mathrm{act}((x_1,\dotsc,x_n),-)\simeq \Hom_\Cc(x_1\otimes\dotsb\otimes x_n,-)$, and a colimit is operadic iff $\colimit_\Ii(F(-)\otimes x)\simeq (\colimit_\Ii F)\otimes x$ for all $x\in\Cc$.
+
+	An $\infty$-operad is \emph{pointed/semi-additive/additive/stable} if $\Oo_1$ is and the required limits and colimits are operadic. Spelling this out explicitly, this means that:
+	\begin{alphanumerate}
+		\item $\Oo$ is \emph{pointed} if $\Oo_1$ has a zero object which is also both operadic initial and operadic terminal. We define $\cat{Op}_\infty^*\subseteq \cat{Op}_\infty$ as the (non-full) sub-$\infty$-category spanned by $\infty$-operads with an operadic terminal object and maps preserving these. We denote by $\cat{Op}_\infty^\mathrm{pt}\subseteq \cat{Op}_\infty^*$ the full sub-$\infty$-category spanned by pointed $\infty$-operads.
+		\item $\Oo$ is \emph{semi-additive/additive} if $\Oo_1$ is and all finite products and coproducts are operadic. We define $\cat{Op}_\infty^\times\subseteq \cat{Op}_\infty$ as the (non-full) sub-$\infty$-category spanned by $\infty$-operads with finite operadic products and maps preserving these. We denote by $\cat{Op}_\infty^\mathrm{semi\mhyph add},\cat{Op}_\infty^\mathrm{add}\subseteq \cat{Op}_\infty^*$ the full sub-$\infty$-categories spanned by semi-additive and additive $\infty$-operads, respectively.
+		\item $\Oo$ is \emph{stable} if $\Oo_1$ is and all finite limits and colimits are operadic. We define $\cat{Op}_\infty^\mathrm{lex}\subseteq \cat{Op}_\infty$ as the (non-full) sub-$\infty$-category spanned by $\infty$-operads with finite operadic limits and maps preserving these. We denote by $\cat{Op}_\infty^\mathrm{st}\subseteq \cat{Op}_\infty^*$ the full sub-$\infty$-category spanned by stable $\infty$-operads.
+	\end{alphanumerate}
+\end{defi}
+
+
+Given an $\infty$-operad $\Oo$ with sufficient operadic limits and colimits, our goal is to construct new $\infty$-operads
+\begin{equation*}
+	\Oo_*^{\Op_\infty}\,,\quad \CMon^{\Op_\infty}(\Oo)\,,\quad \CGrp^{\Op_\infty}(\Oo)\,,\quad\text{and}\quad \Sp^{\Op_\infty}(\Oo)
+\end{equation*}
+with underlying $\infty$-categories $*/\Oo_1$, $\CMon(\Oo_1)$, $\CGrp(\Oo_1)$, and $\Sp(\Oo_1)$ respectively.
+\begin{con}\label{con:Operads*CMonCGrpSp}
+	We will tackle all four constructions at once! Consider the following $\infty$-operads:
+	\begin{equation*}
+		[1]^{\min}\morphism\IGamma^\op\,,\quad (\IGamma^\op)^\times\morphism \IGamma^\op\,,\quad\text{and}\quad (\IF^\op)^\wedge\morphism \IGamma^\op\,.
+	\end{equation*}
+	The first one is given by the symmetric monoidal structure on $[1]$ obtained by taking the minimum (in particular, $1\in [1]$ is the tensor unit). The second one is the cartesian symmetric monoidal structure (as introduced in \cref{prop:CartesianMonoidalStructure}) on $\IGamma^\op$. The third one is given by the smash product. We didn't construct this yet, but it will arise as follows: Starting from the cartesian symmetric monoidal structure $\An^\times$ on $\An$, the smash product will be defined as its \enquote{pointification} $(*/\An)^\wedge\coloneqq (\An^\times)_*^{\Op_\infty}$. Then $(\IF^\op)^\wedge\subseteq(*/\An)^\wedge$ can be defined via Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{a}. So to be super precise, we would need to prove the assertions about $(-)_*^{\Op_\infty}$ in \cref{thm:NikolausStabilizationOfOperads} below before we could even formulate anything about $\Sp^{\Op_\infty}(-)$, but obviously that's not what we're going to do. We will also check below \cref{rem*:PropII.51ApplicableForP(D)} that the smash product coincides with the one you know from topology. 
+	
+	If $\Oo\in \Op_\infty^*$, we let
+	\begin{equation*}
+		\Oo_*^{\Op_\infty}\subseteq\operatorname{Day}\big([1]^{\min},\Oo\big)
+	\end{equation*}
+	denote the $\infty$-operad obtained via \cref{exm:MyFirstOperads}\itememph{d} from the full sub-$\infty$-category $(*/\Oo_1)\subseteq \Fun([1],\Oo_1)$ spanned by those functors $F\colon [1]\morphism\Oo_1$ with $F(0)=*$. Similarly, if $\Oo\in\Op_\infty^\times$, we let
+	\begin{equation*}
+		\CGrp^{\Op_\infty}(\Oo)\subseteq\CMon^{\Op_\infty}(\Oo)\subseteq\operatorname{Day}\big((\IGamma^\op)^\times,\Oo\big)
+	\end{equation*}
+	be induced by $\CGrp(\Oo_1)\subseteq\CMon(\Oo_1)\subseteq\Fun(\IGamma^\op,\Oo_1)$, i.e.\ the full sub-$\infty$-categories of functors satisfying the Segal condition and---in the case of $\CGrp(\Oo_1)$---additionally the condition from \cref{def:E1Group}. Finally, for $\Oo\in\Op_\infty^\mathrm{lex}$, we let
+	\begin{equation*}
+		\Sp^{\Op_\infty}(\Oo)\subseteq \operatorname{Day}\big((\IF^\op)^\wedge,\Oo\big)
+	\end{equation*}
+	be given by the full sub-$\infty$-category $\Sp(\Oo_1)\subseteq\Fun(\IF^\op,\Oo_1)$ spanned by reduced and excisive functors (see \cref{def:OtherModelForSpectra}).
+	
+	These $\infty$-operads come equipped with canonical maps
+	\begin{equation*}
+		\Oo\lmorphism\Oo_*^{\Op_\infty}\lmorphism\CMon^{\Op_\infty}(\Oo)\lmorphism\CGrp^{\Op_\infty}(\Oo)\lmorphism[\Omega^\infty] \Sp^{\Op_\infty}(\Oo)\,.
+	\end{equation*}
+	Except for the fourth one, which comes from the inclusion $\CMon(\Oo_1)\supseteq \CGrp(\Oo_1)$, these maps are induced via functoriality of Day convolution (see \cref{prop:DayConvolution}\itememph{b}) by the $\infty$-operad maps
+	\begin{equation*}
+		\cat{\IC omm}\morphism{} [1]^{\min}\morphism (\IGamma^\op)^\times\morphism (\IF^\op)^\wedge\,.
+	\end{equation*}
+	All of these are induced by strongly monoidal functors between the underlying categories: The first one comes from $1\colon *\morphism [1]$, the second one from $[1]\morphism\IGamma^\op$ sending $i\mapsto \langle i\rangle$ for $i=0,1$, and the third one comes from the functor $(-)_+\colon \IGamma^\op\morphism \IF^\op$ introduced in \cref{def:OtherModelForSpectra}.
+\end{con}
+With these constructions we can now formulate a striking theorem of Thomas Nikolaus!
+\begin{thm}[{\cite[Theorem~4.11 and Theorem~5.7]{NikolausStable}}]
+	\label{thm:NikolausStabilizationOfOperads}
+	The $\infty$-operads $\Oo_*^{\Op_\infty}$, $\CMon^{\Op_\infty}(\Oo)$, $\CGrp^{\Op_\infty}(\Oo)$, and $\Sp^{\Op_\infty}(\Oo)$ from \cref{con:Operads*CMonCGrpSp} are pointed, semi-additive, additive and stable respectively. Moreover, the respective constructions assemble into functors
+	\begin{align*}
+		(-)_*^{\Op_\infty}\colon \Op_\infty^*&\morphism \Op_\infty^\mathrm{pt}\,,&\CMon^{\Op_\infty}(-)\colon \Op_\infty^\times&\morphism \Op_\infty^\mathrm{semi\mhyph add}\,,\\
+		\CGrp^{\Op_\infty}(-)\colon \Op_\infty^\times&\morphism \Op_\infty^\mathrm{add}\,,&\Sp^{\Op_\infty}(-)\colon \Op_\infty^\mathrm{lex}&\morphism \Op_\infty^\mathrm{st}\,,
+	\end{align*}
+	each of which is left-adjoint to the respective fully faithful inclusion in the other direction \embrace{i.e., a left Bousfield localization}.
+\end{thm}
+\begin{proof*}[Proof sketch]
+	Once we know that our four functors take values in the correct $\infty$-categories, we can proceed as in \cref{thm:CMonCGrpAdjunctions} and \cref{thm:SpLeftAdjoint} to show that they are left Bousfield localizations. So we only need to prove the first part of the theorem.
+	
+	The most subtle part is to show that the required colimits in the $\infty$-operads $\Oo_*^{\Op_\infty}$, $\CMon^{\Op_\infty}(\Oo)$, $\CGrp^{\Op_\infty}(\Oo)$, and $\Sp^{\Op_\infty}(\Oo)$ are actually operadic. Thomas Nikolaus does this with a beautiful trick: Let's first assume $\Oo\simeq \Cc^\otimes$, where $\Cc$ is a symmetric monoidal $\infty$-category for which \cref{prop:Sp(C)Monoidal} below is applicable. Then this proposition says that in fact all small colimits are operadic and we're happy. In general, one can find a fully faithful map of $\infty$-operads $i\colon\Oo\morphism \Cc^\otimes$ such that \cref{prop:Sp(C)Monoidal} is applicable to $\Cc^\otimes$ and $i_1\colon \Oo_1\morphism\Cc$ preserves the required finite limits, see \cite[Proposition~2.7]{NikolausStable} and \cref{rem*:PropII.51ApplicableForP(D)}. The required finite colimits in $*/\Oo_1$, $\CMon(\Oo_1)$, $\CGrp(\Oo_1)$, and $\Sp(\Oo_1)$ are also finite colimits in $*/\Cc$, $\CMon(\Cc)$, $\CGrp(\Cc)$, and $\Sp(\Cc)$ since each of them (zero objects, finite coproducts in semi-additive $\infty$-categories, finite colimits in stable $\infty$-categories) can be built from finite limits which $i_1\colon \Oo_1\morphism\Cc$ preserves. Hence they are operadic and we win.
+\end{proof*}
+In general, neither of the constructions from \cref{con:Operads*CMonCGrpSp} gives a symmetric monoidal category, even when $\Oo$ itself is symmetric monoidal. The following proposition gives a criterion for the symmetric monoidal structure to be inherited.
+\begin{prop}\label{prop:Sp(C)Monoidal}
+	Suppose $\Oo\simeq\Cc^\otimes$ is a symmetric monoidal $\infty$-categories with all small operadic colimits \embrace{this is a short way of saying that $\Cc$ is cocomplete and $-\otimes_\Cc-$ commutes with colimits in either variable, see the remark inside \cref{def:OperadicLimits}}. Suppose furthermore that the inclusions
+	\begin{align*}
+		*/\Cc&\subseteq \Ar(\Cc)\,,&\CMon(\Cc)&\subseteq \Fun(\IGamma^\op,\Cc)\,,\\
+		\CGrp(\Cc)&\subseteq \Fun(\IGamma^\op,\Cc)\,,& \Sp(\Cc)&\subseteq \Fun(\IF^\op,\Cc)
+	\end{align*}
+	have left adjoints. Then $(\Cc^\otimes)_*^{\Op_\infty}$, $\CMon^{\Op_\infty}(\Cc^\otimes)$, $\CGrp^{\Op_\infty}(\Cc^\otimes)$, and $\Sp^{\Op_\infty}(\Cc^\otimes)$ are symmetric monoidal $\infty$-categories again and have all small operadic colimits. Moreover, there are maps $\infty$-operads
+	\begin{align*}
+		(-)_+\colon\Cc^\otimes&\morphism(\Cc^\otimes)_*^{\Op_\infty}\,,&\Free^\CMon\colon \Cc^\otimes&\morphism\CMon^{\Op_\infty}(\Cc^\otimes)\,,\\
+		\Free^\CGrp(-)\colon \Cc^\otimes&\morphism \CGrp^{\Op_\infty}(\Cc^\otimes)\,,& \Sigma^\infty\colon \Cc^\otimes&\morphism \Sp^{\Op_\infty}(\Cc^\otimes)
+	\end{align*}
+	which are strongly monoidal and left-adjoint to the respective maps in the other direction constructed at the end of \cref{con:Operads*CMonCGrpSp}.
+\end{prop}
+\begin{proof*}
+	We only prove the assertions about $\Sp$, since the arguments can be copied verbatim for the other cases. By \cref{prop:DayConvolution}\itememph{c}, $\operatorname{Day}((\IF^\op)^\wedge,\Cc^\otimes)$ is symmetric monoidal and has all small operadic colimits. Since $\Sp(\Cc)\subseteq\Fun(\IF^\op,\Cc)$ has a left adjoint, we may apply Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{b} to see that $\Sp^{\Op_\infty}(\Cc^\otimes)$ is again symmetric monoidal and its inclusion into $\operatorname{Day}((\IF^\op)^\wedge,\Cc^\otimes)$ has a left adjoint $\operatorname{Day}((\IF^\op)^\wedge,\Cc^\otimes)\morphism\Sp^{\Op_\infty}(\Cc^\otimes)$ which is strongly monoidal. Together with our computation of colimits in Bousfield localizations (\cref{cor:CoLimitsInBousfield}) this shows that $\Sp^{\Op_\infty}(\Cc^\otimes)$ has all small operadic colimits.
+	
+	Moreover, to produce the strongly monoidal left adjoint $\Sigma^\infty\colon \Cc^\otimes\morphism \Sp^{\Op_\infty}(\Cc^\otimes)$, it suffices to construct a stronglyy monoidal left adjoint of the canonical map
+	\begin{equation*}
+		\operatorname{Day}\big((\IF^\op)^\wedge,\Cc\big)\morphism\operatorname{Day}(\cat{\IC omm},\Cc^\otimes)\simeq \Cc^\otimes
+	\end{equation*}
+	induced by the strongly monoidal map $\cat{\IC omm}\morphism (\IF^\op)^\wedge$. But this is precisely what \cref{prop:DayConvolution}\itememph{d} does!
+\end{proof*}
+\begin{rem*}\label{rem*:PropII.51ApplicableForP(D)}
+	\cref{prop:Sp(C)Monoidal} is always applicable when $\Cc^\otimes\simeq \operatorname{Day}(\Dd^\otimes,\An^\times)$ for some small symmetric monoidal $\infty$-category $\Dd$. That is, whenever $\Cc\simeq \Pp(\Dd)$, equipped with the Day convolution structure. Since $\Cc^\otimes$ in the proof of \cref{thm:NikolausStabilizationOfOperads} can be always chosen in this way (see the proof of \cite[Proposition~2.7]{NikolausStable}), this is all we need.
+	
+	So let's prove that the assumptions of \cref{prop:Sp(C)Monoidal} are really satisfied for $\Cc\simeq \Pp(\Dd)$! First of all, $\Pp(\Dd)$ has all small operadic colimits by \cref{prop:DayConvolution}\itememph{c}, so only the required left adjoints have to be constructed. Let's first do the case of $\Sp$. By Proposition~\labelcref{prop:OtherModelSpectrification}, the inclusion $\Sp(\Cc)\subseteq \Fun_*(\IF^\op,*/\Cc)$ into the reduced functors has a left adjoint whenever $*/\Cc$ has sequential colimits and $\Omega\colon {*/\Cc}\morphism*/\Cc$ commutes with them. This is satisfied for $*/\An$, as we checked after \cref{prop:Spectrification}, hence also for $\const_*/\Pp(\Dd)\simeq \Fun(\Dd^\op,*/\An)$ since everything is pointwise. Now $\Fun_*(\IF^\op,*/\Cc)\simeq \Fun_*(\IF^\op,\Cc)$, since every reduced functor $F\colon \IF^\op\morphism\Cc$ canonically lifts to $*/\Cc$, so it suffices to construct a left adjoint of $\Fun_*(\IF^\op,\Cc)\subseteq\Fun(\IF^\op,\Cc)$. If $\Cc$ has pushouts, we can send an arbitrary $F\colon \IF^\op\morphism\Cc$ to $\cofib(F(*)\morphism F(-))\colon \IF^\op\morphism \Cc$ to obtain the desired left adjoint. Again, $\Pp(\Dd)$ clearly has pushouts, whence we are done.
+	
+	Next, we treat $\CMon$. Denote $i\colon \IGamma^\op_{\leq 1}\monomorphism \IGamma^\op$. If $\Cc$ has small limits, then restriction and right Kan extension along $i$ gives a functor $i_*i^*\colon \Fun_*(\IGamma^\op,\Cc)\morphism \CMon(\Cc)$. This is a left Bousfield localization, which can be easily checked using Proposition~\labelcref{prop:LLaddendum} and an assertion similar to claim~\itememph{\boxtimes} from the proof of \cref{prop:CMonOfSemiAdditive}. Composing this with a left Bousfield localization $\Fun(\IGamma^\op,\Cc)\morphism\Fun_*(\IGamma^\op,\Cc)$ as abovegives the required localization $\Fun(\IGamma^\op,\Cc)\morphism\CMon(\Cc)$ in the $\CMon$ case. This immediately implies the $\CGrp$ case, since $\CGrp(\An)\subseteq\CMon(\An)$ has a left adjoint by \cref{cor:CommutativeHorizontalAdjoints}, hence the same is true for $\CGrp(\Pp(\Dd))\simeq \Fun(\Dd,\CGrp(\An))\subseteq\Fun(\Dd,\CMon(\An))\simeq \CMon(\Pp(\Dd))$. I'll leave the final case to you.
+\end{rem*}
+In particular, the above discussion shows that $*/\An$ carries a pointed symmetric monoidal structure, called the \emph{smash product}, via $(*/\An)^\wedge\coloneqq (\An^\times)_*^{\Op_\infty}$. We wish to compute  $-\wedge -$ explicitly to show that it coincides with the smash product we know from topology.
+
+So let $X,Y\in */\An\subseteq\Ar(\An)$. Let's first compute the Day convolution $X\times_{\operatorname{Day}}Y$: Using the explicit formula from \cref{prop:DayConvolution}\itememph{c}, we obtain
+\begin{align*}
+	(X\times_{\operatorname{Day}}Y)(0)&\simeq\colimit\left(\begin{tikzcd}[ampersand replacement=\&]
+		*\times *\dar\rar \& *\times Y\\
+		X\times *
+	\end{tikzcd}\right)\simeq X\vee Y\\
+	(X\times_{\operatorname{Day}}Y)(1)&\simeq\colimit\left(\begin{tikzcd}[ampersand replacement=\&]
+		*\times *\dar\rar\drar  \& *\times Y\dar\\
+		X\times *\rar \& X\times Y
+	\end{tikzcd}\right)\simeq X\times Y
+\end{align*}
+Since the left adjoint of $*/\An\subseteq\Ar(\An)$ sends any $T\colon [1]\morphism\An$ to $\cofib(T(0)\morphism T(1))$, we obtain $X\wedge Y\simeq \cofib(X\wedge Y\morphism X\times Y)$ after unravelling what the proofs* of \cref{prop:Sp(C)Monoidal} and Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{b} actually do. Hence $X\wedge Y$ is what we would expect.
+
+\begin{defi}\label{def:SpTensorProduct}
+	The \emph{tensor product} (or traditionally \emph{smash product}) of spectra is defined by the $\infty$-operad $\Sp^\otimes\coloneqq \Sp^{\Op_\infty}(\An^\times)$, which is a symmetric monoidal $\infty$-category by \cref{prop:Sp(C)Monoidal}.
+\end{defi}
+\subsection{Some Brave New Algebra}
+\lecture[Some tensor product calculations. $\IE_\infty$-ring spectra. The $\infty$-operads $\cat{\IA ssoc}$ and $\cat{\IL Mod}$, categories of modules over $\IE_\infty$-ring spectra.]{2021-01-07}The term \enquote{brave new algebra} roughly refers to the idea that $\Sp$ should behave like the category of abelian groups. We've already seen the first instance of this when we constructed the tensor product on $\Sp$. We'll spend the final two lectures of \cref{chap:Monoidal} on exploring this analogy a bit more.
+
+
+\numpar{First Steps with the Tensor Product on $\Sp$}\label{par:SpTensorProduct}
+The tensor unit $1_\Sp$ is given by the sphere spectrum $\IS$! %To see this, we compute the tensor unit $1_{\operatorname{Day}}$ of $\operatorname{Day}((\IF^\op)^\wedge,\An^\times)$ first. Since $(\IS^0,*)\in \IF^\op$ and $*\in \An$ are the respective tensor units,  $1_{\operatorname{Day}}$ can be computed as the left Kan extension of $*\colon *\morphism \An$ along $(\IS^0,*)\colon *\morphism\IF^\op$, hence
+%\begin{equation*}
+%	1_{\operatorname{Day}}(X,x)\simeq \colimit_{(\IS^0,*)\morphism (X,x)} \const_*\simeq \colimit_X \const_*\simeq X\,.
+%\end{equation*}
+%This is already reduced, hence $1_\Sp$ can be obtained by applying the left adjoint from Proposition~\labelcref{prop:OtherModelSpectrification} to it. This shows
+%\begin{equation*}
+%	1_\Sp(\IS^i)\simeq \colimit_{n\in\IN}\Omega^n\Sigma^n\IS^i\simeq\colimit_{n\in\IN}\Omega^n\IS^{n+i}\,.
+%\end{equation*}
+%Hence $1_\Sp$ becomes indeed the sphere spectrum under the equivalence from \cref{prop:OtherModelForSpectra}. 
+The quickest way to see this is that $\IS[-]\colon \An^\times\morphism\Sp^\otimes$ is strongly symmetric monoidal because so are both its constituents $(-)_+\colon \An^\times\morphism (*/\An)^\wedge$ and $\Sigma^\infty\colon (*/\An)^\wedge\morphism\Sp^\otimes$ by \cref{prop:Sp(C)Monoidal}, and the tensor unit $*\in \An$ is sent to $\IS$.
+
+
+As an easy consequence, we obtain
+\begin{equation*}
+	X\otimes E\simeq \IS[X]\otimes E\quad\text{and}\quad (X,x)\otimes E\simeq \Sigma^\infty(X,x)\otimes E\,,
+\end{equation*}
+for all $(X,x)\in */\An$ and $E\in \Sp$, where $X\otimes E$ and $(X,x)\otimes E$ are defined as in the proof of \cref{prop:OtherModelForSpectra}. Indeed, for the left-hand equivalence it's enough to show that both $-\otimes E\colon \An\morphism\Sp$ and $\IS[-]\otimes E\colon \An\morphism\Sp$ preserve colimits and that they agree on $*\in \An$, for then they must agree by \cref{thm:ColimitPreservingRepresentable}. That both sides agree on $*$ precisely says that $\IS$ is the tensor unit, which we just checked. That $-\otimes E$ preserves colimits is clear by inspection, whereas for $\IS[-]\otimes E$ it follows from the fact that the tensor product on spectra commutes with colimits in either variable by \cref{prop:Sp(C)Monoidal}. Hence the left-hand equivalence holds. The right-hand one follows, as $(X,x)\otimes E\simeq \cofib(\{x\}\otimes E\morphism X\otimes E)$ and $\Sigma^\infty(X,x)\simeq \cofib(\IS[\{x\}]\morphism\IS[X])$.
+
+Now any spectrum $E'$ can be written as $E'\simeq \colimit_{n\in\IN} (\Sigma^\infty(\Omega^{\infty-n}E'))[-n]$ (to prove this, just compute homotopy groups on either side), hence we get the general formula
+\begin{equation*}
+	E'\otimes E\simeq \colimit_{n\in \IN} \big(\Sigma^\infty(\Omega^{\infty-n}E')\big)[-n]\otimes E\simeq \colimit_{n\in\IN}\big(\Omega^{\infty-n}E'\otimes E\big)[-n]
+\end{equation*}
+This is still pretty complicated though and the colimits in question are seldom computable. To give an example of how complicated even simple tensor products can become, write $\Tor_i^\IS(E,E')\coloneqq \pi_*(E\otimes E')$ and $\Ext_\IS^i(E,E')\simeq \pi_i\hom_\Sp(E,E')$ and consider $\Tor_*^\IS(H\IF_p,H\IF_p)=\Aa_p^\vee$ and $\Ext_\IS^*(H\IF_p,H\IF_p)=\Aa_p$, called the (\emph{dual} and \emph{non-dual}) \emph{Steenrod algebra}. These are infinite-dimensional graded $\IF_p$-algebras, but completely computed (albeit not by the formula above). For example, $\Aa_2=\IF_2\left[x_i\st i \in\IN\right]$ with $\deg(x_i)=2^i-1$ is a polynomial ring in infinitely many variables.
+
+But to show that the formula above is not completely useless, I would like to use it to show an application that was not in the lecture: The tensor--$\Hom$ adjunction
+\begin{equation*}
+	\hom_\Sp(E\otimes E',E'')\simeq \hom_\Sp\big(E,\hom_\Sp(E',E'')\big)
+\end{equation*}
+for all $E,E',E''\in\Sp$. Let's first check it in the special case $E'\simeq \IS[X]$. Note that $\hom_\Sp(\IS,-)\colon \Sp\morphism\Sp$ is the identity functor. Indeed, we've already verified before \cref{cor:BarattPriddyQuillen} that $\Hom_\Sp(\IS,-)\simeq \Omega^\infty$, and $\Omega^\infty\colon \Sp\morphism\An$ clearly lifts to $\id_\Sp$ via \cref{thm:SpLeftAdjoint}. Hence the functors
+\begin{equation*}
+	\hom_\Sp(E\otimes\IS[-],E'')^\op\colon\An\morphism\Sp^\op\,,\quad \hom_\Sp\big(E,\hom_\Sp(\IS[-],E'')\big)^\op\colon \An\morphism\Sp^\op
+\end{equation*}
+agree on $*\in\An$ and both clearly preserve colimits, hence they must agree by \cref{thm:ColimitPreservingRepresentable}. This settles the special case $E'\simeq \IS[X]$. The case $E'\simeq \Sigma^\infty(X,x)$ immediately follows. Finally, writing $E'\simeq \colimit_{n\in\IN} (\Sigma^\infty(\Omega^{\infty-n}E'))[-n]$ and using the above formula reduces the general case to the case $E'\simeq \Sigma^\infty(X,x)$. Along the same lines one can also prove the formula $E^X\simeq\hom_\Sp(\IS[X],E)$ that was promised after \cref{def:SpectraCohomologyTheory}.
+
+
+\numpar{$\IE_\infty$-Ring Spectra}
+We define
+\begin{equation*}
+	\cat{CAlg}\coloneqq \cat{Alg}_{\cat{\IC omm}}(\Sp^\otimes)
+\end{equation*}
+and call this the \emph{$\infty$-category of $\IE_\infty$-ring spectra}. In our picture where $\Sp$ corresponds to the $1$-category $\Ab$ of abelian groups, $\cat{CAlg}$ takes the place of the $1$-category $\cat{CRing}$ of commutative rings.
+
+As a first example, recall from \cref{par:SpTensorProduct} that $\IS[-]\colon \An^\times\morphism\Sp^\otimes$ is strongly monoidal, and that $\cat{Alg}_{\cat{\IC omm}}(\An^\times)\simeq \CMon(\An)$ by \cref{thm:OMon}. Hence $\IS[-]$ upgrades to a functor
+\begin{equation*}
+	\IS[-]\colon \CMon(\An)\morphism \cat{CAlg}\,.
+\end{equation*}
+For $M\in \CMon(\An)$, we think of $\IS[M]\in\cat{CAlg}$ as the \enquote{spherical monoid ring on $M$}.
+
+As a second example, we would like to \enquote{import} ordinary rings into the theory of $\IE_\infty$-ring spectra. As it turns out, all commutative differential graded algebras (CGDAs) will be included as well. To prove this, we claim the following:
+\begin{alphanumerate}
+	\item[\itememph{*}] \itshape The functor $H\colon \Dd(\IZ)\morphism \Sp$ refines to a map
+	\begin{equation*}
+		H\colon \Dd(\IZ)^{\otimes_\IZ^L}\morphism\Sp^\otimes
+	\end{equation*}
+	of $\infty$-operad, i.e.\ it is a lax symmetric monoidal functor.
+\end{alphanumerate}
+We postpone the proof of \itememph{*} for the moment. Observe that we have two more lax symmetric monoidal functors
+\begin{equation*}
+	\Ch(\IZ)^{\otimes_\IZ}\morphism\Kk(\IZ)^{\otimes_\IZ}\morphism\Dd(\IZ)^{\otimes_\IZ^L}\,,
+\end{equation*}
+where $\Ch(\IZ)$ is the $1$-category of chain complexes over $\IZ$. The left functor comes from the fact that $\Kk(\IZ)\simeq \N^c(\Ch(\IZ))$ is the coherent nerve of the Kan-enrichment of $\Ch(\IZ)$. The right functor was constructed in \cref{exm:MyFirstOperads}\itememph{e}. Unwinding definitions, we see that $\cat{Alg}_{\cat{\IC omm}}(\Ch(\IZ)^{\otimes_\IZ})\simeq \cat{CDGAlg}$ is the $1$-category of commutative differential graded algebras. Moreover, we have an inclusion $\Ab^\otimes\subseteq \Ch(\IZ)^{\otimes_\IZ}$ of symmetric monoidal $1$-categories, given by interpreting abelian groups as chain complexes concentrated in degree $0$, and one easily verifies $\cat{Alg}_{\cat{\IC omm}}(\Ab^\otimes)\simeq\cat{CRing}$. Summarizing, if we apply $\cat{Alg}_{\cat{\IC omm}}(-)$ everywhere, we obtain functors
+\begin{equation*}
+	\cat{CRing}\morphism\cat{CDGAlg}\morphism \cat{Alg}_{\cat{\IC omm}}\big(\Dd(\IZ)^{\otimes_\IZ^L}\big)\morphism\cat{CAlg}\,.
+\end{equation*}
+It turns out that the composition $\cat{CRing}\morphism\cat{CAlg}$ is fully faithful. However, the middle functor $\cat{CDGAlg}\morphism \cat{Alg}_{\cat{\IC omm}}(\Dd(\IZ)^{\otimes_\IZ^L})$ from the $1$-category of CDGAs to the \emph{$\infty$-category of $\IE_\infty$-chain complexes} is not (!) fully faithful.
+
+It remains to show \itememph{*}. This follows from general principles: If $\Cc^\otimes$ is a symmetric monoidal $\infty$-category, then $\Hom_\Cc(1_\Cc,-)\colon \Cc\morphism\An$ is lax symmetric monoidal. If $\Cc^\otimes$ is stable as an $\infty$-operad, then the same is true for the enriched $\Hom$ functor $\hom_\Cc(1_\Cc,-)\colon \Cc\morphism\Sp$. This will imply \itememph{*}, since $\IZ[0]\in \Dd(\IZ)$ is the tensor unit and $H\simeq \hom_{\Dd(\IZ)}(\IZ[0],-)$ (as follows from the remarks after \cref{thm:SpLeftAdjoint}).
+
+To prove these general principles, let's first consider an arbitrary symmetric monoidal $\infty$-category $\Dd$ with all small operadic colimits. Then the Day convolution $\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)$ is symmetric monoidal and its tensor unit is given by
+\begin{equation*}
+	\Hom_\Cc(1_\Cc,-)\otimes 1_\Dd\colon \Cc\morphism\Dd\,.
+\end{equation*}
+Note that the tensor product here is neither $\otimes_\Cc$, nor $\otimes_\Dd$, but the one defined in the proof of \cref{prop:OtherModelForSpectra}!!! That is, the functor under consideration is actually given by $\colimit_{\Hom_\Cc(1_\Cc,-)}\const_{1_\Dd}$, and one immediately checks that this coincides with the left Kan extension of $1_\Dd\colon *\morphism\Dd$ along $1_\Cc\colon *\morphism\Cc$, which is how we constructed the tensor unit in the proof of \cref{prop:DayConvolution}\itememph{c}. Now, per construction (just take a sharp look at \cref{con:DayConvolution} again), there is a map
+\begin{equation*}
+	\cat{Alg}_{\cat{\IC omm}}\big(\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)\big)\morphism \Fun^{\Op_\infty}(\Cc^\otimes,\Dd^\otimes)
+\end{equation*}
+(it is even an equivalence, but we won't need that). By \cref{exm:MyFirstAlgebrasOverOperads}\itememph{c}, the tensor unit of $\operatorname{Day}(\Cc^\otimes,\Dd^\otimes)$ defines canonically an element of the left-hand side, hence also an element of the right-hand side. This shows that $\Hom_\Cc(1_\Cc,-)\otimes 1_\Dd$ has a canonical lax symmetric monoidal refinement.
+
+Now plug in $\Dd^\otimes\simeq \An^\times$. Then $1_\Dd\simeq *$ and $X\otimes *\simeq \colimit_X \const_*\simeq X$ for all $X\in\An$, hence we obtain that $\Hom_\Cc(1_\Cc,-)\colon \Cc\morphism\An$ is the Day convolution tensor unit and thus has a lax symmetric monoidal refinement $\Hom_\Cc(1_\Cc,-)\colon \Cc^\otimes\morphism\An^\times$, as required. Moreover, it preserves limits (which are automatically operadic), hence the refinement lifts to $\hom_\Cc(1_\Cc,-)\colon \Cc^\otimes\morphism\Sp^\otimes$ by \cref{thm:NikolausStabilizationOfOperads} if $\Cc^\otimes$ is a stable $\infty$-operad
+
+\numpar{Categories of Modules}
+$\IE_\infty$-ring spectra have categories of modules that behave like the derived categories of modules over ordinary rings. In particular, the category of modules over $HR$ for some $R\in\cat{CRing}$ should \emph{just be} $\Dd(R)$. As a first step, we'll construct certain operads $\cat{\IA ssoc}$ and $\cat{\IL Mod}$. These have already been teasered in \cref{exm:MyFirstAlgebrasOverOperads}\itememph{d} and \itememph{e}, so we'll hijack that numbering and define them properly.\label{exm:MyFirstAlgebrasOverOperadsII}
+
+\numpar*{\labelcref*{exm:MyFirstAlgebrasOverOperads}. Example}What it should have been:
+\begin{alphanumerate}\setcounter{enumi}{3}
+	\item We would like to have an $\infty$-operad that describes associative monoids. So we define $\IE_1=\cat{\IA ssoc}\morphism\IGamma^\op$ as follows: The objects of $\cat{\IA ssoc}$ are finite sets and a morphism $I\morphism J$ is a map in $\IGamma^\op$ together with a total ordering on each preimage $\alpha^{-1}(j)$. Composition is given by composition in $\IGamma^\op$ and lexicogaphic ordering. If we equip the $1$-category $\cat{\IA ssoc}$ with the obvious functor $\cat{\IA ssoc}\morphism \IGamma^\op$, it becomes an $\infty$-operad with underlying category $\cat{\IA ssoc}_1=\{*\}$ and
+	\begin{equation*}
+		\Hom_{\cat{\IA ssoc}}^\mathrm{act}\big(\underbrace{(*,\dotsc,*)}_{n\text{ entries}},*\big)=\left\{\text{total orders on }\langle n\rangle\right\}\,.
+	\end{equation*}
+	(just as there are $n!$ ways to multiply $n$ factors in an associative, but not necessarily commutative monoid).
+	Recall the functor $\Cut\colon\IDelta^\op\morphism\IGamma^\op$ from \cref{def:CartesianCommutativeMonoids}, which sends a totally ordered set $I$ to its set of Dedekind cuts. Since the set of Dedekind cuts inherits a total order, $\Cut$ lifts to a functor $\Cut\colon \IDelta^\op\morphism\cat{\IA ssoc}$.
+	
+	\begin{thm**}[Lurie]
+		Recall the notation introduced before \cref{thm:OMon}. If $\Cc$ has finite products, then the induced functor
+		\begin{equation*}
+			\Cut^*\colon \cat{\IA ssoc}\Mon(\Cc)\simeq \cat{Alg}_{\cat{\IA ssoc}}(\Cc^\times)\isomorphism \Mon(\Cc)
+		\end{equation*}
+		is an equivalence.
+	\end{thm**}
+	\item We would also like to have an $\infty$-operad that describes an associative monoid $A$ together with an object $M$ it acts upon. So we define $\cat{\IL Mod}\morphism \IGamma^\op$ as follows: Its objects are pairs $(I,S)$ with $I\in\IGamma^\op$ and $S\subseteq I$ (think of $I$ as the set of factors we'd like to multiply, and of $S$ as the set of those factors that come from $M$; of course, we can't multiply more than one element from $M$). A map $(I,S)\morphism(J,T)$ is given by a map $\alpha\colon I\morphism J$ in $\cat{\IA ssoc}$ such that $\alpha(S)=T$ and for all $t\in T$ the set $\alpha^{-1}(t)\cap S$ consists exactly of the maximal element of $\alpha^{-1}(t)$. Composition is inherited from $\cat{\IA ssoc}$. Again, if we equip the $1$-category $\cat{\IL Mod}$ with the obvious map $\cat{\IL Mod}\morphism \IGamma^\op$, it becomes an i$\infty$-operad. The unerlying category $\cat{\IL Mod}$ has precisely two objects: $a=(\langle 1\rangle,\emptyset)$ and $m=(\langle 1\rangle,\langle 1\rangle)$, which we think of corresponding to $A$ and $M$ respectively.
+	\begin{equation*}
+		\Hom_{\cat{\IL Mod}}^\mathrm{act}\big((*,\dotsc,*),*\big)=\begin{cases*}
+			\emptyset & if $b_i=m$ for some $i$\\
+			\{\text{total orders on }\langle n\rangle\}& if $b_i=a$ for all $i$
+		\end{cases*}
+	\end{equation*}
+	This makes sense since \enquote{as soon as one of the factors is from $M$, the result will be no longer an element of $A$, but one of $M$}. Similarly,
+	\begin{equation*}
+		\Hom_{\cat{\IL Mod}}^\mathrm{act}\big((*,\dotsc,*),*\big)=\begin{cases*}
+			\emptyset & unless exactly one $b_i=m$\\
+			\left\{\begin{tabular}{c}
+				total orders on $\langle n\rangle$\\
+				with max.\ element $i$
+			\end{tabular}\right\}& if $b_i=m$
+		\end{cases*}
+	\end{equation*}
+	since there can be only one factor from $M$ in any product, and if there is, it must be the right-most factor.
+\end{alphanumerate}
+Sending the unique element $*$ to $a$ defines a map $\cat{\IA ssoc}\morphism \cat{\IL Mod}$ of $\infty$-operads, which induces a map $a^*\colon \cat{Alg}_{\cat{\IL Mod}}(\Cc^\otimes)\morphism \cat{Alg}_{\cat{\IA ssoc}}(\Cc^\otimes)$ (\enquote{we forget $M$ and only retain $A$}) for any symmetric monoidal category $\Cc^\otimes$. For any $A\in \cat{Alg}_{\cat{\IA ssoc}}(\Cc^\otimes)$, the pullback
+\begin{equation*}
+	\begin{tikzcd}
+		\cat{\IL Mod}_{\Cc^\otimes}(A)\rar\dar\drar[pullback] & \cat{Alg}_{\cat{\IL Mod}}(\Cc^\otimes)\dar["a^*"]\\
+		*\rar["A"]& \cat{Alg}_{\cat{\IA ssoc}}(\Cc^\otimes)
+	\end{tikzcd}
+\end{equation*}
+is called the \emph{$\infty$-category of left modules in $\Cc$ over $A$}. We can convince ourselves in examples that this terminology really makes sense: If $\Cc^\otimes=\Set^\times$, then $A\in \Mon(\Set)$ is a monoid and elements of $\cat{\IL Mod}_{\Set^\times}(A)$ are really left $A$-sets. Similarly, if $\Cc^\otimes=\Ab^\otimes$, then $A$ is an associative (not necessarily commutative) ring and $\cat{\IL Mod}_{\Ab^\otimes}(A)$ is really the $1$-category of left $A$-modules.
+
+Consequently, the \emph{$\infty$-category of modules} over an $\IE_\infty$-ring spectrum $A\in \cat{CAlg}$ is defined as $\cat{Mod}_A\coloneqq \cat{\IL Mod}_{\Sp^\otimes}(A)$. We will check next time that $\cat{Mod}_{H\IZ}\simeq \Dd(\IZ)$.
+
 
 
 
