@@ -847,7 +847,7 @@ There are at least four equivalent ways to do so.
 	\end{equation*}
 	which is a morphism in $\Cocart(\Cc)$ (in particular, $(s,t)$ preserves cocartesian edges) by \cref{exm:MyFirstCocartesian}\itememph{b} and the following simple fact: For all $\infty$-categories $\Cc$ and $\Dd$, the projection $\pr_2\colon \Cc\times\Dd\morphism\Dd$ is cartesian and cocartesian, and the $\pr_2$-cartesian/cocartesian edges are those of the form $(\text{equivalence in }\Cc,\text{arbitrary morphism in }\Dd)$.
 	
-	Applying the cocartesian straightening construction gives a natural transformation $\St^\cocart(t)\Rightarrow \const_\Cc$ of functors $\Cc\morphism\cat{Cat}_\infty$ by \cref{thm:StraighteningCat}. This natural transformation defines a map $\Delta^1\morphism\Fun(\Cc,\cat{Cat}_\infty)$, hence a functor $S\colon\Cc\morphism\Ar(\cat{Cat}_\infty)$ by adjoining. Informally, $S$ takes $x\in \Cc$ to the object $\Cc/x\morphism\Cc$ in the arrow category of $\cat{Cat}_\infty$. In particular, these are right fibrations by \cref{exm:MyFirstCocartesian}\itememph{c} and the target is always $\Cc$, whence $S$ factors through $\Right(\Cc)\morphism\Ar(\cat{Cat}_\infty)$. We denote the resulting functor $S\colon \Cc\morphism\Right(\Cc)$ as well. Composing $S$ with $\St^\cart\colon\Right(\Cc)\isomorphism \Fun(\Cc^\op,\cat{An})$,  the cartesian straightening equivalence, finally provides a functor
+	Applying the cocartesian straightening construction gives a natural transformation $\St^\cocart(t)\Rightarrow \const \Cc$ of functors $\Cc\morphism\cat{Cat}_\infty$ by \cref{thm:StraighteningCat}. This natural transformation defines a map $\Delta^1\morphism\Fun(\Cc,\cat{Cat}_\infty)$, hence a functor $S\colon\Cc\morphism\Ar(\cat{Cat}_\infty)$ by adjoining. Informally, $S$ takes $x\in \Cc$ to the object $\Cc/x\morphism\Cc$ in the arrow category of $\cat{Cat}_\infty$. In particular, these are right fibrations by \cref{exm:MyFirstCocartesian}\itememph{c} and the target is always $\Cc$, whence $S$ factors through $\Right(\Cc)\morphism\Ar(\cat{Cat}_\infty)$. We denote the resulting functor $S\colon \Cc\morphism\Right(\Cc)$ as well. Composing $S$ with $\St^\cart\colon\Right(\Cc)\isomorphism \Fun(\Cc^\op,\cat{An})$,  the cartesian straightening equivalence, finally provides a functor
 	\begin{equation*}
 		Y\colon \Cc\morphism\Fun(\Cc^\op,\cat{An})
 	\end{equation*}
@@ -864,7 +864,7 @@ There are at least four equivalent ways to do so.
 	All constructions in \cref{par:HomC} give the same functor $\Hom_\Cc\colon \Cc^\op\times\Cc\morphism\cat{An}$ up to equivalence.
 \end{thm}
 
-We won't prove \cref{thm:AllHomconstructionsBornEqual}. Lurie shows that \cref{par:HomC}\itememph{a} and \itememph{b} are equivalent in \cite[Proposition~\HAthm{5.2.1.11}]{HA}, and to show equivalence of \itememph{c} and \itememph{d} you probably shouldn't go for a direct proof, but show that either one is equivalent to \itememph{b}. Fabian believes that if one works with any of these constructions long enough, then it will become obvious that the others are equivalent to it.
+We won't prove \cref{thm:AllHomconstructionsBornEqual}. Lurie shows that \cref{par:HomC}\itememph{a} and \itememph{b} are equivalent in \cite[Proposition~\HAthm{5.2.1.11}]{HA}, and for equivalence of \itememph{c} and \itememph{d} you probably shouldn't go for a direct proof, but show that either one is equivalent to \itememph{b}. Fabian believes that if one works with any of these constructions long enough, it will become obvious that the others are equivalent.
 
 \numpar{More on the twisted arrow category}\label{par:MoreOnTwAr}
 By \cref{par:HomC}\itememph{b} and \cref{thm:StraighteningAn}, the twisted arrow category of $\Cc$ sits inside a pullback (up to equivalence, or take the pullback in $\Cat_\infty$)
@@ -887,7 +887,7 @@ Unwinding, this shows that the objects of $\TwAr(\Cc)$ are given by pairs $(x,y)
 		& \Delta^0\ular["f"]\urar["g"'] &
 	\end{tikzcd}
 \end{equation*}
-More formally, since $\TwAr(\Cc)$ sits in the pullback above, $\Hom_{\TwAr(\Cc)}(f,g)$ can be computed as the pullback of the corresponding $\Hom$ anima in $\Cc^\op\times\Cc$, $\cat{An}$, and $*/\cat{An}$. This pullback is also a homotopy pullback, as $*/\cat{An}\morphism\cat{An}$ is an inner fibration (even a left fibration in the old sense), hence induces Kan fibrations on $\Hom$ anima. Plugging in the calculation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII} thus provides a homotopy pullback diagram
+More formally, since $\TwAr(\Cc)$ sits in the pullback above, $\Hom_{\TwAr(\Cc)}(f,g)$ can be computed as the pullback of the corresponding $\Hom$ anima in $\Cc^\op\times\Cc$, $\cat{An}$, and $*/\cat{An}$. This pullback is also a homotopy pullback, as $*/\cat{An}\morphism\cat{An}$ is an inner fibration (even a left fibration in the old sense), hence induces Kan fibrations on $\Hom$ anima. Plugging in the calculation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII} thus provides a homotopy pullback
 \begin{equation*}
 	\begin{tikzcd}
 		\Hom_{\TwAr(\Cc)}(f,g)\dar\rar\drar[hpullback]& \{g\}\dar\\
@@ -1123,7 +1123,7 @@ If we use the new notion from \cref{def:WeirdCocartesianDefinition}\itememph{b} 
 	\end{equation*}
 	induced by the evaluation map $\Fun(\Ii,E)\times \Ii\morphism E$. After straightening, this gives a natural transformation $\eta\colon \const\Gamma_\cocart(p)\Rightarrow F$, hence we get
 	\begin{equation*}
-		\Hom_{\Cat_\infty}\big(-,\Gamma_\cocart(p)\big)\xRightarrow{\const_*}\Nat\big(\const-,\const\Gamma_\cocart(p)\big)\overset{\eta_*}{\Longrightarrow}\Nat(\const-,F)\,,
+		\Hom_{\Cat_\infty}\big(-,\Gamma_\cocart(p)\big)\xRightarrow{\const *}\Nat\big(\const-,\const\Gamma_\cocart(p)\big)\overset{\eta_*}{\Longrightarrow}\Nat(\const-,F)\,,
 	\end{equation*}
 	which is the desired natural transformation. Whether this is an equivalence can be checked pointwise. Since instead of $\Nat(\const-,F)$ we can take the corresponding $\Hom$ anima in $\Cocart(\Ii)$, we arrive at the equivalence from the beginning of the proof. Since we know how to compute $\Hom$ spaces in $\Cat_\infty$ and in $\Cat_\infty/\Ii$ (the latter by \cite[Corollary~VIII.6]{HigherCatsII}), one easily checks $\Hom_{\Cat_\infty}(\Cc,\Gamma(p))\simeq\Hom_{\Cat_\infty/\Ii}((\pr_2\colon\Cc\times \Ii\morphism \Ii),(p\colon E\morphism \Ii))$. Now the $\Hom$ anima we are interested in are full subanima of these, so it really suffices to check that their $0$-simplices correspond, which we did above.
 \end{proof}
@@ -1231,11 +1231,11 @@ for any $\infty$-category $\Ee$.
 	\begin{equation*}
 		\begin{tikzcd}[row sep=small]
 			& \Fun\big(\Ii,\Fun(\Dd,\Cc)\big)\eqar[dd]\\
-			\Fun(\Dd,\Cc)\urar["\const",sloped]\drar["\const_*"', sloped]& \\
+			\Fun(\Dd,\Cc)\urar["\const",sloped]\drar["\const *"', sloped]& \\
 			& \Fun\big(\Dd,\Fun(\Ii,\Cc)\big)\ular[dotted, bend right,"\colimit_*"', end anchor=east,start anchor=160,shorten <=2ex]\ular[dotted, bend left,"\limit_*",start anchor=west, end anchor=330]
 		\end{tikzcd}
 	\end{equation*}
-	By \cref{obs:AdjunctionOfFunctorCats}, $\colimit_*$ and $\limit_*$ are left and right adjoints of $\const_*$ respectively, which proves that $\const\colon \Fun(\Dd,\Cc)\morphism \Fun(\Ii,\Fun(\Dd,\Cc))$ has a left and right adjoint as well. Hence $\Fun(\Dd,\Cc)$ is complete and cocomplete again. Moreover, the assertion that limits and colimits are computed pointwise follows by unraveling.
+	By \cref{obs:AdjunctionOfFunctorCats}, $\colimit_*$ and $\limit_*$ are left and right adjoints of $\const *$ respectively, which proves that $\const\colon \Fun(\Dd,\Cc)\morphism \Fun(\Ii,\Fun(\Dd,\Cc))$ has a left and right adjoint as well. Hence $\Fun(\Dd,\Cc)$ is complete and cocomplete again. Moreover, the assertion that limits and colimits are computed pointwise follows by unraveling.
 	
 	It remains to show that $f^*\colon \Fun(\Dd,\Cc)\morphism\Fun(\Ee,\Cc)$ preserves limits and colimits. For any diagram $F\colon \Ii\morphism\Fun(\Dd,\Cc)$ we get a map
 	\begin{equation*}
@@ -1326,9 +1326,9 @@ for any $\infty$-category $\Ee$.
 \end{defi}
 Cofinal maps induce homotopy equivalences $|\alpha|\colon |\Ii|\morphism|\Jj|$ of anima, which can be seen via the chain of homotopy equivalences
 \begin{equation*}
-	|\Ii|\simeq\colimit_\Ii\const_*\simeq\colimit_\Jj\const_*\simeq|\Jj|
+	|\Ii|\simeq\colimit_\Ii\const *\simeq\colimit_\Jj\const *\simeq|\Jj|
 \end{equation*}
-(the colimits in the middle are taken in $\An$). Here we use $|\Ii|\simeq\colimit_\Ii\const_*$, which can be seen in several ways: One could use \cref{thm:HomotopyLimits} and the Bousfield--Kan formula (\cite[Digression~III]{HigherCatsII}). Alternatively, compute $\Hom_{\An}(\colimit_\Ii\const_*,K)\simeq \limit_\Ii\Hom_{\An}(*,K)\simeq\limit_\Ii K$ for any anima $K$ using \cref{cor:HomPreservesColimits} below, and apply \cref{prop:CoLimitsInCat} to get $\limit_\Ii K\simeq\Gamma(\pr_2\colon K\times \Ii\morphism\Ii)$. The space of sections of $\pr_2\colon K\times\Ii\morphism\Ii$ clearly identifies with $\Fun(\Ii,K)\simeq\core\Fun(\Ii,K)\simeq\Hom_{\Cat_\infty}(\Ii,K)$, so $\colimit_\Ii\const_*$ is indeed a left-adjoint object of $\Ii$ under the inclusion $\An\subseteq\Cat_\infty$.
+(the colimits in the middle are taken in $\An$). Here we use $|\Ii|\simeq\colimit_\Ii\const *$, which can be seen in several ways: One could use \cref{thm:HomotopyLimits} and the Bousfield--Kan formula (\cite[Digression~III]{HigherCatsII}). Alternatively, compute $\Hom_{\An}(\colimit_\Ii\const *,K)\simeq \limit_\Ii\Hom_{\An}(*,K)\simeq\limit_\Ii K$ for any anima $K$ using \cref{cor:HomPreservesColimits} below, and apply \cref{prop:CoLimitsInCat} to get $\limit_\Ii K\simeq\Gamma(\pr_2\colon K\times \Ii\morphism\Ii)$. The space of sections of $\pr_2\colon K\times\Ii\morphism\Ii$ clearly identifies with $\Fun(\Ii,K)\simeq\core\Fun(\Ii,K)\simeq\Hom_{\Cat_\infty}(\Ii,K)$, so $\colimit_\Ii\const *$ is indeed a left-adjoint object of $\Ii$ under the inclusion $\An\subseteq\Cat_\infty$.
 
 Examples of cofinal maps are given by right-adjoint functors and localisations. Indeed, if $\alpha\colon \Ii\morphism\Jj$ is a right adjoint, then consider the diagram
 \begin{equation*}
@@ -1383,17 +1383,24 @@ We start with an existence result for \enquote{Kan extensions} which was already
 \begin{proof*}[Proof sketch]
 	One way to prove this would be to use the contravariant model structures on $\sSet/\Cc$ and $\sSet/\Dd$ as in the proof* of \cref{lem*:SmoothBaseChange}: One shows that $f^*\colon \sSet/\Dd\morphism\sSet/\Cc$ has a left Quillen adjoint $f_!$, sending $\Ee\morphism\Cc$ to $\Ee\morphism\Cc\morphism\Dd$. Since right anodyne maps are cofinal (\cite[Proposition~\HTTthm{4.1.1.3}]{HTT} or \cite[Theorem~XI.28]{HigherCatsII}), a quick unraveling shows that $Lf_!$ can indeed be described as above.
 	
-	However, Bastiaan has pointed out a simpler proof that doesn't need any model categories. By \cref{cor:AdjointsPointwise}, it suffices to show that $p'\colon \Ee'\morphism\Dd$ is a left-adjoint object to $p\colon \Ee\morphism\Cc$ under $f^*$. Remembering that $\Right(\Cc)\subseteq\Cat_\infty/\Cc$ and $\Right(\Dd)\subseteq\Cat_\infty(\Dd)$ are full subcategories, we must show
-	\begin{equation*}
-		\Hom_{\Cat_\infty/\Cc}\big(\Ee,f^*(-)\big)\simeq \Hom_{\Cat_\infty/\Dd}(\Ee',-)\,.
-	\end{equation*}
-	We get a natural transformation from the right-hand side to the left-hand side by composing $\Hom_{\Cat_\infty/\Dd}(\Ee',-)\Rightarrow \Hom_{\Cat_\infty/\Cc}(f^*\Ee',f^*(-))$ with the transformation induced by precomposition with $\Ee\morphism f^*\Ee'$. Hence it suffices to check the equivalence on objects.
+	However, Bastiaan has pointed out a simpler proof that doesn't need any model categories. We will proceed in three steps:
+	\begin{numerate}\itshape
+		\item The pullback functor $f^*\colon \Cat_\infty/\Dd\morphism\Cat_\infty/\Cc$ \embrace{where we take the pullback along $f$ in $\Cat_\infty$} has a left adjoint. On objects, it is the \enquote{forgetful functor} sending $p\colon \Ee\morphism\Cc$ to $f\circ p\colon \Ee\morphism\Cc\morphism\Dd$.
+		\item Under the fully faithful inclusions $\Right(\Cc)\subseteq\Cat_\infty/\Cc$ and $\Right(\Dd)\subseteq\Cat_\infty/\Dd$, the pullback functor $f^*\colon \Cat_\infty/\Dd\morphism\Cat_\infty/\Cc$ restricts to $f^*\colon \Right(\Dd)\morphism\Right(\Cc)$ from the formulation of the theorem.
+		\item The fully faithful inclusion $\Right(\Dd)\subseteq\Cat_\infty/\Dd$ has a left adjoint, sending an object $q\colon\Ee\morphism\Dd$ to $q'\colon\Ee'\morphism\Dd$, where $\Ee\morphism\Ee'\morphism\Dd$ is any factorisation into a cofinal map followed by a right fibration.
+	\end{numerate}
+	Since left adjoints compose, combining \itememph{1}, \itememph{2}, and \itememph{3} shows that $f^*\colon \Right(\Dd)\morphism\Right(\Cc)$ has a left adjoint $f_!$ with the desired description on objects.
+		
+	To show \itememph{1}, we use \cref{cor:AdjointsPointwise} to see that it suffices to show that $f\circ p$ is a left adjoint object of $p$ for any $(p\colon \Ee\morphism\Cc)\in \Cat_\infty/\Cc$. If we had the dual of \cref{cor:HomPreservesColimits} below already, this would be almost trivial, but as it is, we need to be a bit careful. Factor $f\circ p$ into a Joyal equivalence $\Ee\morphism \Ee'$ followed by an isofibration $p'\colon\Ee'\morphism\Dd$. Then $f^*\Ee'$ equals the same pullback taken in $\sSet$ by \cref{thm:HomotopyLimits}. Hence there is a natural map $\Ee\morphism f^*\Ee'$. Together with functoriality of $f^*$, it induces natural transformations
+	\begin{align*}
+		\Hom_{\Cat_\infty/\Dd}(\Ee,-)\simeq \Hom_{\Cat_\infty/\Dd}(\Ee',-)&\Longrightarrow \Hom_{\Cat_\infty/\Cc}\big(f^*\Ee',f^*(-)\big)\\
+		&\Longrightarrow \Hom_{\Cat_\infty/\Cc}\big(\Ee,f^*(-)\big)\,.
+	\end{align*}
+	We are to show that the composite is an equivalence. By \cref{thm:JoyalEquivalence}\itememph{b}, this can be done on objects. Let $T\morphism\Dd$ be an bject of $\Cat_\infty/\Dd$, which we may choose to be an isofibration without restriction, so that $f^*(T)$ agrees with the corresponding pullback in $\sSet$. Consider $\Fun_\Dd(\Ee,T)\coloneqq\Fun(\Ee,T)\times_{\Fun(\Ee,\Dd)}\{f\circ p\}$ and define $\Fun_\Cc(\Ee,f^*(T))$ similarly. Since $T\morphism\Dd$ is an isofibration, it doesn't matter whether this pullback is taken in $\sSet$ or in $\Cat_\infty$. Moreover, $\core(-)$ transforms pullbacks in $\Cat_\infty$ into pullbacks in $\An$ (it is a right adjoint by \cref{exm:MyFirstAdjoints}\itememph{a}, so \cref{obs:AdjointsPreserveLimits} can be applied), hence our computation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII} shows $\Hom_{\Cat_\infty/\Dd}(\Ee,T)\simeq \core \Fun_\Dd(\Ee,T)$. Likewise, $\Hom_{\Cat_\infty/\Cc}(\Ee,f^*(T))\simeq \core \Fun_\Cc(\Ee,f^*(T))$. Now the universal property of $f^*(T)$ as a pullback in $\sSet$ implies $\Fun_\Dd(\Ee,T)\simeq \Fun_\Cc(\Ee,f^*(T))$, which proves step~\itememph{1}.
 	
-	So let $T\morphism\Dd$ be a right fibration (in the old sense, without restriction). Consider $\Fun_\Dd(\Ee',T)\coloneqq\Fun(\Ee',T)\times_{\Fun(\Ee',\Dd)}\{p'\}$. Since $T\morphism\Dd$ is a right fibration, it doesn't matter whether this pullback is taken in $\sSet$ or in $\Cat_\infty$. Moreover, $\core(-)$ transforms pullbacks in $\Cat_\infty$ into pullbacks in $\An$ (it is a right adjoint by \cref{exm:MyFirstAdjoints}\itememph{a}, so \cref{obs:AdjointsPreserveLimits} can be applied), hence our computation of $\Hom$ anima in slice categories from \cite[Corollary~VIII.6]{HigherCatsII} shows $\Hom_{\Cat_\infty/\Dd}(\Ee',T)\simeq \core \Fun_\Dd(\Ee',T)$.\footnote{In fact, $\Fun_\Dd(\Ee',T)$ is an anima because it is a fibre of a right fibration, so we can omit the $\core(-)$.} Likewise, $\Hom_{\Cat_\infty/\Cc}(\Ee,f^*(T))\simeq \core \Fun_\Cc(\Ee,f^*(T))$. The universal property of $f^*(T)$ easily implies $\Fun_\Cc(\Ee,f^*(T))\simeq \Fun_\Dd(\Ee,T)$,\footnote{Here we really use that the pullback defining $\Fun_\Cc(\Ee,f^*(T))$ is taken in $\sSet$, since we do not know \cref{cor:HomPreservesColimits} yet.} so it suffices to show that $\Ee\morphism\Ee'$ induces an equivalence
-	\begin{equation*}
-		\Fun_\Dd(\Ee',T)\isomorphism\Fun_\Dd(\Ee,T)\,.
-	\end{equation*}
-	But this is precisely how Lurie defines cofinal maps in \cite[Definition~\HTTthm{4.1.1.1}]{HTT}, and his definition is equivalent to our \cref{def:cofinal}.
+	For \itememph{2}, observe that $f^*$ of a right fibration in the old sense can also be taken in $\sSet$ by \cref{thm:HomotopyLimits} again, and right fibrations (in the old sense) are preserved under pullbacks formed in $\sSet$. Hence right fibrations in the new sense are preserved by pullbacks in $\Cat_\infty$.
+	
+	Finally, to show \itememph{3}, we can argue as \itememph{1} to reduce the assertion to $\Fun_\Dd(\Ee',T)\simeq\Fun_\Dd(\Ee,T)$ for any right fibration $T\morphism\Dd$ and any cofinal map $\Ee'\morphism \Ee$ over $\Dd$. 	But this is precisely how Lurie defines cofinal maps in \cite[Definition~\HTTthm{4.1.1.1}]{HTT}, and his definition is equivalent to our \cref{def:cofinal}.
 \end{proof*}
 \begin{cor}\label{cor:f_!:PC->PD}
 	The functor $f^*\colon \Pp(\Dd)\morphism\Pp(\Cc)$ has a left-adjoint $f_!$ \embrace{given by left Kan extension} such that the diagram
@@ -1577,7 +1584,7 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	\begin{equation*}
 		\colimit_{i\in \Ii}\Lan_{Y^\Cc}F(E_i)\simeq \colimit\left(\Jj\morphism \Cc\morphism[F]\Dd\right)\,.
 	\end{equation*}
-	We obtain a canonical map $\Jj\morphism Y^\Cc\!/E$ as follows: Extend $\Theta\colon \Ii\morphism\Pp(\Cc)$ to its colimit cocone $\Theta^\triangleright\colon \Ii^\triangleright\morphism\Pp(\Cc)$. Since $\Ii^\triangleright=(\Ii\times\Delta^1)/(\Ii\times\{1\})$, this can be further extended to a map $\Ii\times \Delta^1\morphism \Pp(\Cc)$ which is $\const_E$ on $\Ii\times\{1\}$. Pulling back $t\colon Y^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Ii\times\Delta^1\morphism \Pp(\Cc)$ gives a cocartesian fibration over $\Ii\times\Delta^1$, hence a cocartesian fibration over $\Delta^1$ by composing with $\pr_2\colon \Ii\times \Delta^1\morphism \Delta^1$. After applying $\St^\cocart$ this gives a map $\Jj\morphism \Ii\times Y^\Cc\!/E$, providing the required map $\Jj\morphism Y^\Cc\!/E$.
+	We obtain a canonical map $\Jj\morphism Y^\Cc\!/E$ as follows: Extend $\Theta\colon \Ii\morphism\Pp(\Cc)$ to its colimit cocone $\Theta^\triangleright\colon \Ii^\triangleright\morphism\Pp(\Cc)$. Since $\Ii^\triangleright=(\Ii\times\Delta^1)/(\Ii\times\{1\})$, this can be further extended to a map $\Ii\times \Delta^1\morphism \Pp(\Cc)$ which is $\const E$ on $\Ii\times\{1\}$. Pulling back $t\colon Y^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Ii\times\Delta^1\morphism \Pp(\Cc)$ gives a cocartesian fibration over $\Ii\times\Delta^1$, hence a cocartesian fibration over $\Delta^1$ by composing with $\pr_2\colon \Ii\times \Delta^1\morphism \Delta^1$. After applying $\St^\cocart$ this gives a map $\Jj\morphism \Ii\times Y^\Cc\!/E$, providing the required map $\Jj\morphism Y^\Cc\!/E$.
 	
 	Now observe that $\Jj\morphism \Cc$ is a cartesian fibration and $Y^\Cc\!/E\morphism \Cc$ is even a right fibration. Indeed, by construction and some abstract nonsense about pullbacks, we get pullback diagrams
 	\begin{equation*}
@@ -1688,31 +1695,27 @@ In fact, we can say more: Let $A$ bw an abelian group and $A[n]\in \Dd_{\geq 0}(
 	&\simeq H^{n-i}(X,A)\,,
 \end{align*}
 where $C^\bullet(X,A)\in\Dd_{\leq 0}(\IZ)$ is the complex of simplicial/cellular/singular cochains with coefficients in $A$. If $X$ is pointed and connected, the same calculation works with reduced cohomology (this only matters for $n=i$). We thus obtain:
-\begin{thm**}[Eilenberg--MacLane]
+\begin{smallthm}[Eilenberg--MacLane]\label{thm:EilenbergMacLane}
 	The functors $H^n(-,A)\colon \pi\An\morphism\Set$ \embrace{unreduced cohomology} and $\snake{H}^n(-,A)\colon \pi(*/\An)\morphism\Set$ \embrace{reduced cohomology} are represented by $K(A,n)$.
-\end{thm**}
+\end{smallthm}
 In particular, if $X\in */\An$ satisfies $\pi_iX=0$ for $i\neq n$, then $H\coloneqq\Hom_{*/\An}(X,K(A,n))$ is given by the discrete anima $H^n(X,A)$: Indeed, we have $\pi_iH=\snake{H}^{n-i}(X,A)$, which vanishes for $1\leq i\leq n$ by Hurewicz and the universal coefficient theorem, and for $i>n$ by the fact that cohomology is zero in negative degrees. So $H\morphism \pi_0H$ is a homotopy equivalence by Whitehead's theorem. Using universal coefficients again, we can summarize this by
 \begin{equation*}
 	\Hom_{*/\An}\big(X,K(A,n)\big)\simeq H^n(X,A)\simeq \Hom_{\cat{Ab}}\big(H_n(X),A\big)\,.
 \end{equation*}
-For $n\geq 1$, an isomorphism on the right-hand side gives an equivalence on the left-hand side by a combination of Hurewicz and Whitehead (for $n=1$ we really need that $A$ is abelian for this argument to work). This shows that
-\begin{equation*}
-	K(-,n)\colon \cat{Ab}\morphism */\An
-\end{equation*}
-is fully faithful for $n\geq 1$.
+For $n\geq 1$, an isomorphism on the right-hand side gives an equivalence on the left-hand side by a combination of Hurewicz and Whitehead (for $n=1$ we really need that $A$ is abelian for this argument to work). This shows that $K(-,n)\colon \cat{Ab}\morphism */\An$ is fully faithful for $n\geq 1$.
 
-Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon {*/\An}\morphism */\An_{\leq n}$. One can e.g.\ take $\tau_{\leq n}X=\operatorname{cosk}_{n+1}X$  and use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}. Alternatively, $\tau_{\leq n}X$ can be constructed by iteratively attaching cells to $X$ to kill higher and higher homotopy groups (in fact, $\operatorname{cosk}_{n+1}X$ is just a really brutal way of doing so). The $n$-truncation $\tau_{\leq n}X$ satisfies
+Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon {*/\An}\morphism */\An_{\leq n}$. One can construct $\tau_{\leq n}X$ by iteratively attaching cells to $X$ to kill higher and higher homotopy groups and then use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}. In fact, one can take $\tau_{\leq n}X=\operatorname{cosk}_{n+1}X$, since the right-hand side is a really brutal way of killing homotopy groups in degrees $n$ and higher. In particular, the $n$-truncation $\tau_{\leq n}X$ satisfies
 \begin{equation*}
 	\pi_i(\tau_{\leq n}X)\simeq \begin{cases*}
 		0 & if $i>n$\\
 		\pi_iX & if $i\leq n$
 	\end{cases*}\,.
 \end{equation*}
-The unit map $X\morphism \tau_{\leq n}X$ factors over $\tau_{\leq n+1}X\morphism\tau_{\leq n}X$, since $\tau_{\leq n}X$ is already $(n+1)$-truncated. We claim that the homotopy fibre $F$ (i.e.\ the fibre taken inside the $\infty$-category $\An$) of this map is equivalent to $K(\pi_{n+1}X,n+1)$. Indeed, the long exact sequence of homotopy groups shows that $\pi_iF=0$ for $i\neq n+1$ and that $\pi_{n+1}F\simeq \pi_{n+1}X$. Hence, by the discussion after the Eilenberg--MacLane theorem,
+The unit map $X\morphism \tau_{\leq n}X$ factors over $\tau_{\leq n+1}X\morphism\tau_{\leq n}X$, since $\tau_{\leq n}X$ is already $(n+1)$-truncated. We claim that the homotopy fibre $F$ (i.e.\ the fibre taken inside the $\infty$-category $\An$) of this map is equivalent to $K(\pi_{n+1}X,n+1)$. Indeed, the long exact sequence of homotopy groups shows that $\pi_iF=0$ for $i\neq n+1$ and that $\pi_{n+1}F\simeq \pi_{n+1}X$. Hence, by the discussion after \cref{thm:EilenbergMacLane},
 \begin{equation*}
 	\Hom_{*/\An}\big(F,K(\pi_{n+1}X,n+1)\big)\simeq \Hom_{\cat{Ab}}\big(H_{n+1}(F),\pi_{n+1}X\big)\,,
 \end{equation*}
-and an isomorphism on the right-hand side induces an isomorphism on the left-hand side, as shown in. But $H_{n+1}(F)\simeq \pi_{n+1}X$ by Hurewicz, hence we do obtain an equivalence as desired.
+and an isomorphism on the right-hand side induces an isomorphism on the left-hand side. But $H_{n+1}(F)\simeq \pi_{n+1}X$ by Hurewicz, hence we do obtain an equivalence as desired.
 
  The diagram
 \begin{equation*}
@@ -1774,7 +1777,7 @@ Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(
 		of the adjunction above.
 		
 		\numpar*{Warning \smash{\Attention}}
-		Right now there is another possible definition of $\pi_0$. Recall that $\pi_0\colon \sSet\morphism\Set$ can also be written as $\colimit_{\IDelta^\op}=|\blank|_{\const_*}^1$, where the cosimplicial set $\const_*\colon \IDelta\morphism \Set$ sends everything to a point. Analogously, we have a functor $\colimit_{\IDelta^\op}=|\blank|_{\const_*}\colon \cat{s}\An\morphism\An$, which arises via \cref{thm:ColimitPreservingRepresentable} from the cosimplicial anima $\const_*\colon \IDelta\morphism\An$. We will never call this functor $\pi_0$, but $\colimit_{\IDelta^\op}$ instead, which is what it really is.
+		Right now there is another possible definition of $\pi_0$. Recall that $\pi_0\colon \sSet\morphism\Set$ can also be written as $\colimit_{\IDelta^\op}=|\blank|_{\const *}^1$, where the cosimplicial set $\const *\colon \IDelta\morphism \Set$ sends everything to a point. Analogously, we have a functor $\colimit_{\IDelta^\op}=|\blank|_{\const *}\colon \cat{s}\An\morphism\An$, which arises via \cref{thm:ColimitPreservingRepresentable} from the cosimplicial anima $\const *\colon \IDelta\morphism\An$. We will never call this functor $\pi_0$, but $\colimit_{\IDelta^\op}$ instead, which is what it really is.
 		
 		\item Consider $\IDelta\morphism\Cat_1\subseteq \Cat_1^{(2)}\subseteq \Cat_\infty$ sending $[n]$ to itself, considered as a poset. By \itememph{a}, this cosimplicial $\infty$-category induces an adjunction
 		\begin{equation*}
@@ -1940,7 +1943,7 @@ Before we discuss our first examples of Bousfield localisations, we need to disc
 	\begin{equation*}
 		\pi L_*\colon \pi\Fun(K,\Cc)\morphism \pi\Fun(K,\Cc)
 	\end{equation*}
-	together with the transformation $\pi\eta_*\colon \id\Rightarrow \pi L_*$ satisfying that $\pi \eta_*\pi L_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ and $\pi L_*\pi \eta_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ are natural equivalences. So we get the same situation as before, but now $\pi\Fun(K,\Cc)$ is a $1$-category. For $1$-categories we already know the statement is true: For example, we've seen this on exercise sheet \#2 of Higher Categories~I, and also Lurie gives another proof. Plugging in the functors $\const_c,\const_{Lc},\const_{Ld}\in \Fun(K,\Cc)$ then shows that $\pi_0\Hom_\An(K,\Hom_\Cc(Lc,Ld))\isomorphism \pi_0\Hom_\An(K,\Hom_\Cc(c,Ld))$ is an equivalence, as desired. Thus we have proved that $L\colon \Cc\morphism\im(L)$ is a Bousfield localisation.
+	together with the transformation $\pi\eta_*\colon \id\Rightarrow \pi L_*$ satisfying that $\pi \eta_*\pi L_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ and $\pi L_*\pi \eta_*\colon \pi L_*\overset{\sim}{\Longrightarrow}\pi L_*\pi L_*$ are natural equivalences. So we get the same situation as before, but now $\pi\Fun(K,\Cc)$ is a $1$-category. For $1$-categories we already know the statement is true: For example, we've seen this on exercise sheet \#2 of Higher Categories~I, and also Lurie gives another proof. Plugging in the functors $\const c,\const {Lc},\const {Ld}\in \Fun(K,\Cc)$ then shows that $\pi_0\Hom_\An(K,\Hom_\Cc(Lc,Ld))\isomorphism \pi_0\Hom_\An(K,\Hom_\Cc(c,Ld))$ is an equivalence, as desired. Thus we have proved that $L\colon \Cc\morphism\im(L)$ is a Bousfield localisation.
 	
 	To obtain the additional assertion that $L\eta\simeq \eta L$, write down the triangle identities and note that both sides have the same left inverse, namely the counit evaluated at $Lx$.
 \end{proof}
@@ -2036,7 +2039,11 @@ We will later see that $K$-theory has exact sequences for derived localisations!
 \lecture[The Rezk nerve and (complete) Segal spaces/anima.\newline --- \enquote{\emph{Today is brainf*ck time. There's no deep content, except for the things I'm not saying.}}]{2020-11-19}
 From now on, a good portion of the lecture will take place in the land of simplicial anima. Unfortunately, this leads to \enquote{$\Delta^n$} having two different meanings: It could mean the $\infty$-category $\Delta^n=\N([n])$, or the simplicial set $\Delta^n$, which we consider as a discrete simplicial anima via $\sSet\subseteq\cat{sAn}$. To avoid confusion, we adopt the following convention: The $\infty$-category will always be denoted $[n]$, whereas the simplicial anima will be denoted $\Delta^n$.
 
-Under the Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ from \cref{exm:RezkNerve}\itememph{b}, these two are related via $\N^r([n])\simeq\Delta^n$. Indeed, we have $\N_m^r([n])\simeq\Hom_{\Cat_\infty}([m],[n])\simeq \core\Fun([m],[n])$, and the right-hand side is the discrete set $(\Delta^n)_m$ because every isomorphism of functors in $\Fun([m],[n])$ must be an identity (as $[n]$ itself has no non-identity isomorphisms).
+Under the Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ from \cref{exm:RezkNerve}\itememph{b}, these two are related via $\N^r([n])\simeq\Delta^n$. Indeed, we have
+\begin{equation*}
+	\N_m^r\big([n]\big)\simeq\Hom_{\Cat_\infty}\big([m],[n]\big)\simeq \core\Fun\big([m],[n]\big)\,,
+\end{equation*}
+and the right-hand side is the discrete set $(\Delta^n)_m$ because every isomorphism of functors in $\Fun([m],[n])$ must be an identity (as $[n]$ itself has no non-identity isomorphisms).
 \begin{thmdef}[Rezk, Joyal--Tierney, Lurie]\label{thmdef:RezkNerve}
 	The Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ is fully faithful and its essential image consists of the complete Segal spaces/anima. Here a \emph{Segal anima} is a simplicial anima $X\colon \IDelta^\op\morphism \An$ such that
 	\begin{equation*}
@@ -2082,9 +2089,11 @@ Under the Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ from \
 	\end{alphanumerate}
 \end{thmdef}
 \numpar{Some Explanations}\label{par:SomeExplanations}
-Before we (not so much) talk about the proof, some explanations are in order. Just like Segal sets, \emph{Segal anima} should be thought of simplicial anima with \enquote{unique spine lifting}, i.e.\ unique (up to contractible choice) lifting against $I_n\subseteq \Delta^n$. To see why $\Hom_{\cat{sAn}}(I^n,X)\simeq X_1\times_{X_0}\dotsb\times_{X_0}X_1$, we must show that $I^n$ is an iterated pushout of copies of $\Delta^1$ and then invoke \cref{cor:HomPreservesColimits}. The pushout condition is certainly true in $\sSet$. In particular, the discrete set $(I^n)_m$ is an iterated pushout of copies of $(\Delta^1)_m$, and the maps along the pushouts are taken are injective. Now pushouts in $\cat{sAn}$ are computed degreewise by \cref{lem:f^*preservesColimits}, the simplicial anima $I^n$, $\Delta^1$, and $\Delta^0$ are discrete sets in every degree, and $\Set\subseteq\An$ preserves pushouts along injective maps, so in this particular special case, the pushout in $\sSet$ agrees with the one in $\cat{sAn}$. We'll also link the Segal condition to monoidal structures soon, see \cref{chap:Monoidal}.
+Before we (not so much) talk about the proof, some explanations are in order.
 
-As Bastiaan explained to me, the completeness condition is probably best understood in the words of Emily Riehl: \enquote{Completeness says that all things that are categorically equivalent are identified, i.e.\ all categorical equivalences are identity morphisms.} For conditions \itememph{a} and \itememph{c} it is intuitive that this is what it is saying, and condition \itememph{d} is basically just the statement that all higher simplices having equivalences as edges are degenerate. To make it more intuitive why also condition \itememph{b} is saying the same thing, Fabian drew the following picture of a $3$-simplex in $X$:
+First of, the Segal condition. Just like Segal sets, \emph{Segal anima} should be thought of simplicial anima with \enquote{unique spine lifting}, i.e.\ unique (up to contractible choice) lifting against $I_n\subseteq \Delta^n$. To see why $\Hom_{\cat{sAn}}(I^n,X)\simeq X_1\times_{X_0}\dotsb\times_{X_0}X_1$, we must show that $I^n$ is an iterated pushout of copies of $\Delta^1$ and then invoke \cref{cor:HomPreservesColimits}. The pushout condition is certainly true in $\sSet$. In particular, the discrete set $(I^n)_m$ is an iterated pushout of copies of $(\Delta^1)_m$, and the maps along the pushouts are taken are injective. Now pushouts in $\cat{sAn}$ are computed degreewise by \cref{lem:f^*preservesColimits}, the simplicial anima $I^n$, $\Delta^1$, and $\Delta^0$ are discrete sets in every degree, and $\Set\subseteq\An$ preserves pushouts along injective maps, so in this particular special case, the pushout in $\sSet$ agrees with the one in $\cat{sAn}$. We'll also link the Segal condition to monoidal structures soon, see \cref{chap:Monoidal}.
+
+Now about completeness. As Bastiaan explained to me, the completeness condition is probably best understood in the \href{https://youtu.be/A6hXn6QCu0k?t=5307}{words of Emily Riehl}: \enquote{[The completeness condition] says that isomorphisms are equivalent to identities.} Although these words were spoken in a slightly different context, they fit here just wonderfully. For conditions \itememph{a} and \itememph{c} it is intuitive that \enquote{isomorphisms are equivalent to identities} is what they're saying, and condition \itememph{d} is basically just the statement that all higher simplices having equivalences as edges are degenerate. To make it more intuitive why also condition \itememph{b} is saying the same thing, Fabian drew the following picture of a $3$-simplex in $X$:
 \begin{center}
 	\begin{tikzpicture}[line cap=round, line join=round,decoration={markings,mark=at position 0.5 with {\arrow{to}}},x=0.75cm,y=0.75cm]
 		\coordinate (0) at (-1.75,-0.3);
@@ -2168,7 +2177,7 @@ Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to 
 				\N_1(\Cc)\eqar[r]&\left\{\text{set of isomorphisms in $\Cc$}\right\}
 			\end{tikzcd}
 		\end{equation*}
-		where the right vertical arrow takes $x\in \Cc$ to $\id_x$. But usually, there are more isomorphisms in a category than just the identities, hence $\N_1(\Cc)^\times$ is usually larger than $\N(\Cc)_0$. This is also another instance of Emily Riehl's wise words from \cref{par:SomeExplanations}: \enquote{Completeness says that all things that are categorically equivalent are identified, i.e.\ all categorical equivalences are identity morphisms.}
+		where the right vertical arrow takes $x\in \Cc$ to $\id_x$. But usually, there are more isomorphisms in a category than just the identities, hence $\N_1(\Cc)^\times$ is usually larger than $\N(\Cc)_0$. This is also another instance of Emily Riehl's wise words from \cref{par:SomeExplanations}: \enquote{The completeness condition says that isomorphisms are equivalent to identities.}
 		
 		Note however that the composition $\asscat(\N(\Cc))\morphism \asscat(\N^r(\Cc))\morphism \Cc$ is an equivalence, so $\N^r(\Cc)$ is the completion of $\N(\Cc)$ in the sense of \cref{lemdef:Completion}. Indeed, it's clear from \cref{eq:asscat2} that  $\asscat(\N(\Cc))\morphism \Cc$ induces equivalences on $\Hom$ anima, so it remains to see whether it is essentially surjective. By \cref{eq:asscat1}, it suffices to show $|\N(\Cc)^\times|\simeq \core\Cc$. But $\N_n(\Cc)^\times$ is given by the set of composable sequences $(f_1,\dotsc,f_n)$ of isomorphisms in $\Cc$, hence it is the ordinary $\N(\core \Cc)$. Since this is already a Kan complex, \cref{rem:Realisation} shows $|\N(\core\Cc)|\simeq\core(\Cc)$, as required.
 		\item The two functors
@@ -2208,9 +2217,7 @@ Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to 
 	&\mathrel{\overset{(2)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\core(\An)}\core(*/\An)\label{eq:Umformung2}\tag*{}\\
 	&\mathrel{\overset{(3)}{\simeq}}\Hom_{\Cat_\infty}\big([n],\Cc^\op\times\Cc\big)\times_{\core(\Cc^\op\times\Cc)}\core\big((\Cc^\op\times\Cc)\times_{\An}*/\An\big)\label{eq:Umformung3}\tag*{}\\
 	&\mathrel{\overset{(4)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc^\op\times\Cc)}\core\TwAr(\Cc)\label{eq:Umformung4}\tag*{}\\
-	&\mathrel{\overset{(5)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc\times\Cc)}\core\Ar(\Cc)\label{eq:Umformung5}\tag*{}
-\end{align}
-\begin{align}
+	&\mathrel{\overset{(5)}{\simeq}}\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc\times\Cc)}\core\Ar(\Cc)\label{eq:Umformung5}\tag*{}\\
 	&\mathrel{\overset{(6)}{\simeq}}\core\Fun\big([n]^\op\sqcup_{\{0\}}[1]\sqcup_{\{0\}}[n],\Cc\big)\label{eq:Umformung6}\tag*{}\\
 	\phantom{\N_n^r\big(\TwAr(\Cc)\big)}&\mathrel{\overset{(7)}{\simeq}}\rlap{$\Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)$}\phantom{\big(\Hom_{\Cat_\infty}\big([n]^\op,\Cc\big)\times\Hom_{\Cat_\infty}\big([n],\Cc\big)\big)\times_{\core(\Cc^\op\times\Cc)}\core\TwAr(\Cc)}\label{eq:Umformung7}\tag*{}\\
 	&\mathrel{\overset{(8)}{\simeq}} \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\,.\label{eq:Umformung8}\tag*{}
@@ -2245,9 +2252,9 @@ For~\hyperref[eq:Umformung4]{(4)}, note that $\Hom_{\Cat_\infty}([n],\Cc^\op\tim
 \end{equation*}
 This explains the left factor in the pullback. For the right factor, we simply plug in $\TwAr(\Cc)\simeq (\Cc^\op\times\Cc)\times_\An*/\An$.
 
-Step~\hyperref[eq:Umformung4]{(5)} follows straight from \cref{exc:coreTwAr=coreAr}. Step~\hyperref[eq:Umformung5]{(6)} is immediate from \cref{cor:HomPreservesColimits}, and for \hyperref[eq:Umformung6]{(6)} we need to check that $[n]^\op\sqcup_{\{0\}}[1]\sqcup_{\{0\}}[n]$, when taken as a pushout in $\Cat_\infty$, is given by $[n]^\op\star[n]$. This can be done as before: Take the pushout in $\sSet$ and verify that the canonical map to $[n]^\op\star[n]$ is inner anodyne.
+Step~\hyperref[eq:Umformung4]{(5)} follows straight from \cref{exc:coreTwAr=coreAr}. Step~\hyperref[eq:Umformung5]{(6)} is immediate from \cref{cor:HomPreservesColimits}, and for \hyperref[eq:Umformung7]{(7)} we need to check that $[n]^\op\sqcup_{\{0\}}[1]\sqcup_{\{0\}}[n]$, when taken as a pushout in $\Cat_\infty$, is given by $[n]^\op\star[n]$. This can be done as before: Take the pushout in $\sSet$ and verify that the canonical map to $[n]^\op\star[n]$ is inner anodyne.
 
-Finally, \hyperref[eq:Umformung7]{(7)} is immediate once we convinced ourselves that
+Finally, \hyperref[eq:Umformung8]{(8)} is immediate once we convinced ourselves that
 \begin{equation*}
 	\N^r([n]^\op\star [n])\simeq (\Delta^n)^\op\star\Delta^n\,,
 \end{equation*}
@@ -2302,7 +2309,9 @@ Let $\Cc$ be an $\infty$-category and let $Q_n(\Cc)\subseteq \Fun(\TwAr([n])^\op
 \end{center}
 in $\Cc$ (shown here for $n=3$), and to be in $Q_n(\Cc)$ we require that all squares are pullbacks as indicated. Note that then in fact all rectangles you can find in this picture must be pullbacks.
 
-The $Q_n(\Cc)$ assemble into a simplicial $\infty$-category $Q(\Cc)\colon \IDelta^\op\morphism \Cat_\infty$. Indeed, it is easy to see that $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ gives a functor, so we only need to check that all the boundary and degeneracy maps preserve the full subcategories $Q_n(\Cc)$ described above. We leave this as an exercise. As you might have guessed, assigning to $\Cc$ the simplicial $\infty$-category $Q(\Cc)$ is called the \emph{Quillen $Q$-construction}.
+The $Q_n(\Cc)$ assemble into a simplicial $\infty$-category $Q(\Cc)\colon \IDelta^\op\morphism \Cat_\infty$. To see this, one first shows that $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ gives a functor. It's clear that all its ingredients are functorial, except perhaps for $\TwAr(-)$. But $\TwAr(-)\colon \sSet\morphism \sSet$ is right-adjoint to $(-)^\op\star (-)\colon \sSet\morphism \sSet$ (indeed, this guy has a right adjoint by \cref{thm:2Yoneda}, now unravel that $\TwAr(-)$ as defined in \cref{par:HomC}\itememph{b} fits the general description of such right adjoints), which one can show is a left Quillen functor for the Joyal model structure (by \cite[Proposition~D.5]{HigherCatsII} for example).
+
+Now that we know $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ is a functor, we only need to check that all the boundary and degeneracy maps preserve the full subcategories $Q_n(\Cc)$ described above. We leave this as an exercise. As you might have guessed, assigning to $\Cc$ the simplicial $\infty$-category $Q(\Cc)$ is called the \emph{Quillen $Q$-construction}.
 \begin{propdef}\upshape\lecture[A sleep-deprived Fabian proves that $Q(\Cc)$ is a Segal $\infty$-category and introduces cartesian monoids.]{2020-11-24}\itshape
 	Let $\Cc$ be an $\infty$-category with pullbacks. The simplicial anima
 	\begin{equation*}
@@ -2410,7 +2419,9 @@ The $Q_n(\Cc)$ assemble into a simplicial $\infty$-category $Q(\Cc)\colon \IDelt
 	\end{center}
 	Suppose we are given a diagram $F\colon \TwAr([3])^\op\morphism \Cc$ in which all squares are pullbacks as indicated and such that the four dashed purple arrows are equivalences. Then all arrows are equivalences.
 	
-	Indeed, then the two dashed pink arrows $F(0\leq 3)\morphism F(0\leq 1)$ and $F(0\leq 3)\morphism F(2\leq 3)$ are equivalences as well, since they are pullbacks the purple arrows. By two-out-of-six, we see that all arrows labelled \enquote{$(1)$} must be equivalences. Now the commutative square
+	Indeed, then the two dashed pink arrows $F(0\leq 3)\morphism F(0\leq 1)$ and $F(0\leq 3)\morphism F(2\leq 3)$ are equivalences as well, since they are pullbacks the purple arrows. By two-out-of-six, we see that all arrows labelled \enquote{$(1)$} must be equivalences.
+	
+	Now the commutative square
 	\begin{equation*}
 		\begin{tikzcd}
 			F(0\leq 3)\rar[iso]\dar[iso]\drar[phantom,"\scriptscriptstyle/\!/\!/"] & F(1\leq 3)\dar[iso]\\
