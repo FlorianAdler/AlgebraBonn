@@ -72,7 +72,7 @@
 	Still no sign of $K$-theory though. This is when Grothendieck, the master of them all, entered the stage. 
 	Recall that $H^i(X,E)=R^i\Gamma(X,E)$. Consider the canonical map $f\colon X\morphism *$, so that the global sections functor is canonically isomorphic to the pushforward along $f$. In formulas,  $f_*=\Gamma(X,-)$. Grothendieck's idea was to generalize \cref{thm:HirzebruchRiemannRoch} to arbitrary proper morphisms $f\colon X\morphism Y$ of complex manifolds by replacing the $H^i(X,E)$ (appearing in the definition of $\chi(X,E)$) by $R^if_*E$. This raises an immediate question though: What is $\sum(-1)^iR^if_*E$ supposed to be? The summands are coherent sheaves on $Y$ after all, which we can add (using the direct sum), but surely not subtract one from another. And that brings us straight to $K$-theory!
 	\begin{defi}\label{def:K0X}
-		Let $X$ be a complex manifolds. We define the \emph{$0\ordinalth$ $K$-groups} $K_0(X)$ and $K^0(X)$ as follows:
+		Let $X$ be a complex manifold. We define the \emph{$0\ordinalth$ $K$-groups} $K_0(X)$ and $K^0(X)$ as follows:
 		\begin{alphanumerate}
 			\item $K_0(X)$ is the group completion of the monoid of isomorphism classes vector bundles on $X$ (the monoid structure is given by taking direct sums), modulo the relation $[E]=[E']+[E'']$ for every short exact sequence $0\morphism E'\morphism E\morphism E''\morphism 0$ (that's the condition that was missing in the lecture).
 			\item $K^0(X)$ is defined in the same way, with vector bundles replaced by arbitrary coherent sheaves on $X$.
@@ -1484,7 +1484,7 @@ Fabian wrote $i/s$ instead of $s/i$ in the lecture and in \cite[Corollar~I.50]{K
 \numpar*{\smash{\Attention} Public Service Announcement}\label{psa:PullbacksInCat}
 \emph{From now on, all pullbacks of $\infty$-categories or anima will be taken in $\Cat_\infty$ or $\An$, unless specified otherwise!} Still, in many cases they will agree with the corresponding pullbacks in $\sSet$ by arguments like \cref{exm*:HomotopyPullbacks}.% Also note that $\An\subseteq\Cat_\infty$ preserves all limits and colimits since it has both adjoints by \cref{exm:MyFirstAdjoints}\itememph{a}.
 \subsection{Kan Extensions}
-\lecture[Kan extensions and a version of \cref{thm:2Yoneda} for $\infty$-categories. Lots of examples to show how algebraic topology becomes a triviality after enough $\infty$-category theory.\newline --- \enquote{\emph{I'm so happy he \textup{[}Peter Scholze\textup{]} uses \textup{\enquote{$\An$}} \textup{[}to denote anima\textup{]}. I forced this on him. He wanted to call them \textup{\enquote{$\mathrm{Ani}$}}. That's the name of Darth Vader!}}]{2020-11-12}The first goal for today is to discuss two closely related theorems, which provide an $\infty$-analogue of \cref{thm:2Yoneda}.
+\lecture[Kan extensions and a version of \cref{thm:2Yoneda} for $\infty$-categories. Lots of examples to show how algebraic topology becomes a triviality after enough $\infty$-category theory.\newline --- \emph{\enquote{I'm so happy he \textup{[}Peter Scholze\textup{]} uses \textup{\enquote{$\An$}} \textup{[}to denote anima\textup{]}. I forced this on him. He wanted to call them \textup{\enquote{$\mathrm{Ani}$}}. That's the name of Darth Vader!}}]{2020-11-12}The first goal for today is to discuss two closely related theorems, which provide an $\infty$-analogue of \cref{thm:2Yoneda}.
 \begin{thm}\label{thm:ColimitPreservingRepresentable}
 	For every cocomplete $\infty$-category $\Dd$ and every small $\infty$-category $\Cc$, the restriction of $Y^*\colon \Fun(\Pp(\Cc),\Dd)\morphism\Fun(\Cc,\Dd)$ to colimit-preserving functors in the source is an equivalence. Furthermore, any such functor has a right adjoint. In view of \cref{obs:AdjointsPreserveLimits}, we thus get an equivalence
 	\begin{equation*}
@@ -1791,7 +1791,7 @@ Again, since $K$ preserves limits, we get $K(\tau_{\geq 0}C[-1])\simeq \Omega K(
 	\end{alphanumerate}
 \end{exm}
 \subsection{Bousfield Localisations}
-\lecture[Bousfield localisations, limits and colimits inside them. Applications to derived categories of rings.\newline --- \enquote{\emph{Look up a paper on Bousfield colocalisations. And then cry yourself to sleep.}}]{2020-11-17}
+\lecture[Bousfield localisations, limits and colimits inside them. Applications to derived categories of rings.\newline --- \emph{\enquote{Look up a paper on Bousfield colocalisations. And then cry yourself to sleep.}}]{2020-11-17}
 \begin{propdef}\label{propdef:BousfieldLocalisation}
 	Let $L\colon \Cc \shortdoublelrmorphism \Dd\noloc R$ be an adjoint pair.
 	\begin{alphanumerate}
@@ -2036,7 +2036,7 @@ We will later see that $K$-theory has exact sequences for derived localisations!
 	We finish the proof by showing \itememph{b} $\Leftrightarrow$ \itememph{d}. We must show that the counit $S\otimes_R^LC\morphism C$ is an equivalence for all $C\in \Dd(S)$ iff it is an equivalence for $S$. The \enquote{only if} direction being obvious, let's assume it is an equivalence for $S$. Then it is also an equivalence for all shifts $S[i]$. But the $\{S[i]\}_{i\in \IZ}$ generate $\Dd(S)$ under colimits and $S\otimes_R^L-$ commutes with colimits, so we are done.
 \end{proof}
 \section{The Rezk Nerve and Complete Segal Spaces}
-\lecture[The Rezk nerve and (complete) Segal spaces/anima.\newline --- \enquote{\emph{Today is brainf*ck time. There's no deep content, except for the things I'm not saying.}}]{2020-11-19}
+\lecture[The Rezk nerve and (complete) Segal spaces/anima.\newline --- \emph{\enquote{Today is brainf*ck time. There's no deep content, except for the things I'm not saying.}}]{2020-11-19}
 From now on, a good portion of the lecture will take place in the land of simplicial anima. Unfortunately, this leads to \enquote{$\Delta^n$} having two different meanings: It could mean the $\infty$-category $\Delta^n=\N([n])$, or the simplicial set $\Delta^n$, which we consider as a discrete simplicial anima via $\sSet\subseteq\cat{sAn}$. To avoid confusion, we adopt the following convention: The $\infty$-category will always be denoted $[n]$, whereas the simplicial anima will be denoted $\Delta^n$.
 
 Under the Rezk nerve functor $\N^r\colon \Cat_\infty\morphism \cat{s}\An$ from \cref{exm:RezkNerve}\itememph{b}, these two are related via $\N^r([n])\simeq\Delta^n$. Indeed, we have

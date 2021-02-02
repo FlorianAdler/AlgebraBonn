@@ -201,6 +201,8 @@ listname={List of Lectures}%
 \newtheorem{defi*}[smallerdummy]{Definition*}
 \newtheorem{rem*}[smallerdummy]{Remark*}
 \newtheorem{smallrem}[smallerdummy]{Remark}
+\newtheorem{smallexm}[smallerdummy]{Example}
+\newtheorem{smalldefi}[smallerdummy]{Definition}
 \newtheorem*{urem}{Remark}
 \newtheorem*{urem*}{Remark*}
 \newtheorem{exm}[dummy]{Example}
@@ -262,6 +264,8 @@ listname={List of Lectures}%
 \crefformat{nota*}{Notation*~\textup{#2#1#3}}
 \crefformat{rem*}{Remark*~\textup{#2#1#3}}
 \crefformat{smallrem}{Remark~\textup{#2#1#3}}
+\crefformat{smalldefi}{Definition~\textup{#2#1#3}}
+\crefformat{smallexm}{Example~\textup{#2#1#3}}
 \crefformat{con*}{Construction*~\textup{#2#1#3}}
 \crefformat{defi*}{Definition*~\textup{#2#1#3}}
 \crefformat{exm*}{Example*~\textup{#2#1#3}}
@@ -324,14 +328,14 @@ tocstyle=gobble,
 font={}
 ]{unnumpar}
 
-\newcommand{\unnumparr}[1]{\unnumpar{#1.\enskip---\enskip}}
+\newcommand{\unnumparr}[2][.]{\unnumpar{#2#1\enskip---\enskip}}
 
-\newcommand{\numpar}[1]{%
-	\edef\retardedDummy{\detokenize{#1}}%
+\newcommand{\numpar}[2][.]{%
+	\edef\retardedDummy{\detokenize{#2}}%
 	\def\retardedDummz{*}
 	\ifx\retardedDummy\retardedDummz%
 	\expandafter\unnumparr
 	\else
-	\numberedparagraph{\IsArgEmpty{#1}{\enskip---\enskip}{\enskip#1.\enskip---\enskip}}\refstepcounter{dummy}\addtocounter{dummy}{-1}
+	\numberedparagraph{\IsArgEmpty{#2}{\enskip---\enskip}{\enskip#2#1\enskip---\enskip}}\refstepcounter{dummy}\addtocounter{dummy}{-1}
 	\fi
 }
