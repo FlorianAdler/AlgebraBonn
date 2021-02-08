@@ -141,7 +141,7 @@ Now what's still missing is an argument why $R[S^{-1}]$ is an $\IE_\infty$-ring 
 	\end{equation*}
 	by \cref{propdef:Idempotent}\itememph{c}. The right-hand side is contractible since $R$ is initial in $\CAlg(\Mod_R^{\otimes_R})\simeq R/\CAlg$, whence we are done.
 \end{proof*}
-\lecture[The group completion theorem. Computation of $K_1(R)$. $K_1(R)$ as a generalised determinant.\newline ---\enquote{\emph{Aaahhh, we're not gonna discuss more about this thing!}}]{2021-01-14}As an example of this machinery, consider the unique $\IE_\infty$ ring map $\IS\morphism H\IZ$ (using that $\IS$ is initial in $\CAlg$ by Lemma/Definition~\labelcref{lemdef:UnitInAlg}). This map is sometimes called the \enquote{Hurewicz map}---if you tensor with $\IS[X]$ for some $X\in \An$ and take homotopy groups, you get the stable Hurewicz morphism $\pi_*^s(X)\morphism H_*(X,\IZ)$ . Localising at $\IZ\smallsetminus\{0\}\subseteq \IZ=\pi_0\IS$ gives an equivalence
+\lecture[The group completion theorem. Computation of $K_1(R)$. $K_1(R)$ as a generalised determinant.\newline --- \enquote{\emph{Aaahhh, we're not gonna discuss more about this thing!}}]{2021-01-14}As an example of this machinery, consider the unique $\IE_\infty$ ring map $\IS\morphism H\IZ$ (using that $\IS$ is initial in $\CAlg$ by Lemma/Definition~\labelcref{lemdef:UnitInAlg}). This map is sometimes called the \enquote{Hurewicz map}---if you tensor with $\IS[X]$ for some $X\in \An$ and take homotopy groups, you get the stable Hurewicz morphism $\pi_*^s(X)\morphism H_*(X,\IZ)$ . Localising at $\IZ\smallsetminus\{0\}\subseteq \IZ=\pi_0\IS$ gives an equivalence
 \begin{equation*}
 	\IS\left[p^{-1}\st \text{$p$ prime}\right]\isomorphism H\IQ\,.
 \end{equation*}
@@ -552,7 +552,7 @@ again unique up to contractible choice. This finally provides an honestly unique
 	\end{equation*}
 \end{prop}
 \begin{proof}
-	\lecture[The Quillen plus construction. Topological $K$-theory, Bott periodicity, Adams operations.\newline ---\enquote{\emph{My mum is calling me \dotso \textup{[}Rejects call\textup{]} Now my phone has decided to tell me that my mum has called me.}}]{2021-01-21}\hspace{-1ex}
+	\lecture[The Quillen plus construction. Topological $K$-theory, Bott periodicity, Adams operations.\newline --- \enquote{\emph{My mum is calling me \dotso \textup{[}Rejects call\textup{]} Now my phone has decided to tell me that my mum has called me.}}]{2021-01-21}\hspace{-1ex}
 	Let's prove first that \itememph{a} implies the addendum. This will take us a bit longer than in the lecture or in Fabian's notes, since I'm trying to be super precise when dealing with $M$-modules and their symmetric monoidal structure, to unconfuse myself. The reason Fabian has to deal with this technical stuff at all is an inconspicuous but nasty problem: It's not at all clear why $T(M,s)$ is an $\IE_\infty$-monoid again. And it doesn't help us to know that $\CMon(\An)$ has colimits, since the maps $s\colon M\morphism M$ the colimit is taken over are not even maps of $\IE_\infty$-monoids!
 	
 	Enough of that and let's get going. From  \cref{thm:LModSymmetricMonoidal} we get a symmetric monoidal $\infty$-category $\Mm^{\otimes_M}\coloneqq\LMod_M(\An^\times)^{\otimes_M}$ whose tensor unit is $M$ and whose tensor product commutes with colimits in either variable. We've already seen in \labelcref{rem:BasePointIssues} that $T(M,s)$ is canonically an element of $\Mm$. We claim that $M\morphism T(M,s)$ is $\otimes_M$-idempotent in the sense of \cref{propdef:Idempotent}. Indeed, since $M$ is the tensor unit and $-\otimes_M T(M,s)$ commutes with colimits, what we need to show is that
@@ -599,7 +599,7 @@ As you undoubtedly have guessed already, $(-)^+$ is called the \emph{Quillen plu
 \begin{proof}[Proof of \cref{prop:Quillen+}]
 	Throughout the proof we assume without restriction that $X$ is connected (so no basepoints of fundamental groups need to be specified). Since the proof will be a bit lengthy, we divide it into four steps.
 	\begin{alphanumerate}
-		\item[\emph{Step~1}.]\itshape We construct $X^+$ in the case where $\pi_1(X)$ is perfect itself.
+		\item[\itememph{1}]\itshape We construct $X^+$ in the case where $\pi_1(X)$ is perfect itself.
 	\end{alphanumerate}
 	
 	Pick generators $f_i\colon \IS^1\morphism X$, $i\in I$, of $\pi_1(X)$ and form the pushout
@@ -624,7 +624,7 @@ As you undoubtedly have guessed already, $(-)^+$ is called the \emph{Quillen plu
 	\end{equation*}
 	Again, it's easy to check that $X^+$ is simply connected. Also $X\morphism X^+$ is an isomorphism in homology. To see this, one can for example use the same excision calculation as before to compute that $H_i(X^+,\ov{X},\IZ)$ equals $\IZ^{\oplus I}$ for $i=3$ and vanishes in all other degrees, and then use the long exact sequence of the triple $(X^+,\ov{X},X)$ to deduce $H_*(X^+,X,\IZ)=0$.
 	\begin{alphanumerate}
-		\item[\emph{Step~2.}] \itshape Still in the case where $\pi_1(X)$ is perfect, we use obstruction theory to verify that $\Hom_\An(X^+,Z)\isomorphism \Hom_\An(X,Z)$ is an equivalence for all hypoabelian anima $Z$.
+		\item[\itememph{2}] \itshape Still in the case where $\pi_1(X)$ is perfect, we use obstruction theory to verify that $\Hom_\An(X^+,Z)\isomorphism \Hom_\An(X,Z)$ is an equivalence for all hypoabelian anima $Z$.
 	\end{alphanumerate}
 	
 	We didn't have time for this step in the lecture, so here's my own argument. It suffices to check that
@@ -660,7 +660,7 @@ As you undoubtedly have guessed already, $(-)^+$ is called the \emph{Quillen plu
 	\end{equation*}
 	such that $\snake{f}$ sends $\{x\}\times |\Delta^n|$ to $\{\snake{y}\}$. And so we are done.
 	\begin{alphanumerate}
-		\item[\emph{Step~3.}] \itshape We construct $X^+$ in general and show that it satisfies the required universal property.
+		\item[\itememph{3}] \itshape We construct $X^+$ in general and show that it satisfies the required universal property.
 	\end{alphanumerate}
 	
 	Let $P\subseteq \pi_1(X)$ be the largest perfect subgroup (just consider the subgoup generated by all perfect subgroup and check it's perfect). Let $\snake X\morphism X$ be the covering space associated to $P$ (\cite[Theorem~1.38]{Hatcher}). Note that  $P\subseteq \pi_1(X)$ is normal (since its conjugates are also perfect), hence $\pi_1(\snake{X})=P$ by more covering theory. This means that we know hw to construct $\snake{X}^+$ and can put
@@ -676,7 +676,7 @@ As you undoubtedly have guessed already, $(-)^+$ is called the \emph{Quillen plu
 	\end{equation*}
 	for all hypoabelian anima $Z$, since we already know $\Hom_\An(\snake{X},Z)\simeq \Hom_\An(\snake{X}^+,Z)$.
 	\begin{alphanumerate}
-		\item[\emph{Step~4.}] \itshape We verify that $\IS[X]\isomorphism \IS[X^+]$ is an equivalence and that $(-)^+$ commutes with finite products.
+		\item[\itememph{4}] \itshape We verify that $\IS[X]\isomorphism \IS[X^+]$ is an equivalence and that $(-)^+$ commutes with finite products.
 	\end{alphanumerate}
 	
 	Both assertions are completely formal. We have $\Hom_\Sp(\IS[X],E)\simeq \Hom_\An(X,\Omega^\infty E)$ and $\Hom_\Sp(\IS[X^+],E)\simeq \Hom_\An(X^+,\Omega^\infty E)$. But the right-hand sides coincide because $\Omega^\infty E$ is hypoabelian. In fact, it is an $\IE_\infty$-group and thus all its path components are equivalent and have abelian fundamental group. Thus $\IS[X]\simeq \IS[X^+]$ by Yoneda.
@@ -766,16 +766,21 @@ Our next goal is to get some understanding of $k\cat{u}$ and the Adams operation
 	\end{equation*}
 	as claimed. The complex case works completely analogous.
 \end{proof}
-
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ as Cohomology Theories}\label{par:koAndkuAsCohomologyTheories}
 Recall that the tensor product $-\otimes_R-$ on $\Proj(R)$ turns $B^\infty k(R)$ into an $\IE_\infty$-ring spectrum, as explained in \cref{par:EinftyRingSpectra}\itememph{c^*}. The same argument essentially works again for the real tensor product $-\otimes_\IR-$ on $\cat{Vect}_\IR$ and the complex tensor product $-\otimes_\IC-$ on $\cat{Vect}_\IC$, up to some check that they are compatible with the Kan enrichment (as defined in \cref{par:TopologicalKTheory}) to ensure that the coherent nerves $\cat{\Vv ect}_\IR$ and $\cat{\Vv ect}_\IC$ are indeed elements of $\CAlg(\CMon(\An)^\otimes)$. Up to this technicality, we see that $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ are $\IE_\infty$-ring spectra! Also note that his doesn't work for $k\cat{top}$ or $k\cat{sph}$.
 
 Using \cref{cor*:SpectraCohomologyTheory}, we now recognize
 \begin{equation*}
-	k\cat{o}^*(X)=\pi_{-*}\Hom_\An(X,k\cat{o})=\pi_{-*}\hom_\Sp\big(\IS[X],B^\infty k\cat{o}\big)=(B^\infty k\cat{o})^{*}(X)
+	k\cat{o}^i(X)=\pi_{-i}\Hom_\An(X,k\cat{o})=\pi_{-i}\hom_\Sp\big(\IS[X],B^\infty k\cat{o}\big)=(B^\infty k\cat{o})^{i}(X)
 \end{equation*}
-as the negative part of the cohomology theory associated to $B^\infty k\cat{o}$. The same works for $k\cat{u}^*(X)$. It might seem weird at first that  $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are only negative parts of cohomology theories, but then again it's not so weird anymore if you know a bit of topological $K$-theory: A priori, it can only be constructed in degrees $\leq 0$. To extend it to positive degrees, one needs \emph{Bott periodicity}---which we'll discuss next.
+for all $i\leq 0$. In particular, $k\cat{o}^*(-)\simeq\pi_{-*}\Hom_\An(-,k\cat{o})$ and $k\cat{u}^*(-)\simeq \Hom_\An(-,k\cat{u})$ can be canonically extended to cohomology theories in both positive and negative degrees. However, this is not the extension topologists are looking for. Instead, it will turn out (and this is the content of the famous \emph{Bott periodicity theorem}, which will appear as \cref{thm:BottPeriodicity} in a moment) that in negative degrees $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are $8$-periodic and $2$-periodic, respectively, and the \enquote{right} way to extend them should be to make them periodic in all integral degrees. 
 
-Consider the \emph{Hopf bundles} (see \cite[Examples~4.45--4.47]{Hatcher} for a construction)
+If you've seen topological $K$-theory before, this situation might look familiar: One usually constructs $K^0(X)$ as the group completion of $\cat{Vect}_\IR(X)$ or $\cat{Vect}_\IC(X)$, and then one gets $K$-theory in negative degrees for free since the suspension isomorphism is supposed to be satisfied. But after that there's the problem of extending it to positive degrees, thus making $K$-theory a cohomology theory at all. This is done using Bott periodicity. We've seen above that $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ provide another extension to a cohomology theory, but it's the \enquote{wrong} one.
+%as the negative part of the cohomology theory associated to $B^\infty k\cat{o}$. The same works for $k\cat{u}^*(X)$. It might seem weird at first that  $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are only negative parts of cohomology theories, but then again it's not so weird anymore if you know a bit of topological $K$-theory: A priori, it can only be constructed in degrees $\leq 0$. To extend it to positive degrees, one needs \emph{Bott periodicity}---which we'll discuss next.
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. Hopf Bundles}
+To formulate Bott periodicity properly, we need the following vector bundles (see \cite[Examples~4.45--4.47]{Hatcher} for a construction):
 \begin{equation*}
 	(\gamma_1^\IR\rightarrow \IR\IP^1)\in\cat{Vect}_\IR^1(\IS^1)\,,\quad (\gamma_1^\IH\rightarrow \IH\IP^1)\in\cat{Vect}_\IR(\IS^4)\,,\quad\text{and}\quad (\gamma_1^\IO\rightarrow\IO\IP^1)\in \cat{Vect}_\IR^8(\IS^8)
 \end{equation*}
@@ -815,29 +820,30 @@ Since $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ are $\IE_\infty$-ring spectra,
 		\end{cases*}\,.
 	\end{equation*}
 \end{thm}
-We won't prove \cref{thm:BottPeriodicity}. If you want to read up on this, you'll find proofs in any book on topological $K$-theory but Fabian particularly recommends Bott's original proof in \cite{BottPeriodicity}.
+We won't prove \cref{thm:BottPeriodicity}. If you want to read up on this, you'll find proofs in any book on topological $K$-theory but Fabian particularly likes Bott's original proof, the most accessible treatment of which can probably be found in \cite[\S\S23--24]{MilnorMorseTheory}.
 
 As a consequence, we can now define spectra $K\cat{U}$ and $K\cat{O}$ with $\Omega^{\infty-2i}K\cat{U}=k\cat{u}$ and $\Omega^{\infty-8i}K\cat{O}\simeq k\cat{o}$ for all $i\in\IZ$, which are thus 2-periodic and 8-periodic, respectively. Another description is
 \begin{equation*}
 	K\cat{U}\simeq (B^\infty k\cat{u})[\beta^{-1}]\quad\text{and}\quad K\cat{O}\simeq (B^\infty k\cat{o})[\nu^{-1}]
 \end{equation*}
-(in \cref{prop:Ms-1}, we only saw how to localise elements from $\pi_0$, but the construction is straightforward to generalise to elements from arbitrary degrees). In this formluation we immediately see $K\cat{O},K\cat{U}\in\CAlg$. The associated cohomology theories were studied by Atiyah and Hirzebruch, and are known as \emph{\embrace{periodic} topological $K$-theory.}
+(in \cref{prop:Ms-1}, we only saw how to localise elements from $\pi_0$, but the construction is straightforward to generalise to elements from arbitrary degrees). In this formluation we immediately see $K\cat{O},K\cat{U}\in\CAlg$. The associated cohomology theories $K\cat{U}^*(-)$ and $K\cat{O}^*(-)$ were studied by Atiyah and Hirzebruch, and are known as \emph{\embrace{periodic} topological $K$-theory.} They coincide with $k\cat{u}^*(-)$ and $k\cat{o}^*(-)$ in nonpositive degrees.
 
 \numpar{Adams Operations on $K$-Theory}\label{par:AdamsOperations}
 The Adams operations are certain maps $\psi^i\colon k\cat{u}\morphism k\cat{u}$. We'll construct them in two steps:
 \begin{alphanumerate}
-	\item[\emph{Step~1.}] \itshape We'll massage the exterior power maps $\Lambda^i\colon \cat{Vect}_\IC(X)\morphism \cat{Vect}_\IC(X)$ on complex vector bundles long enough to turn them into maps $\lambda^i\colon k\cat{u}\morphism k\cat{u}$ of anima \embrace{not respecting any $\IE_\infty$-structures though}.
+	\item[\itememph{1}] \itshape We'll massage the exterior power maps $\Lambda^i\colon \cat{Vect}_\IC(X)\morphism \cat{Vect}_\IC(X)$ on complex vector bundles long enough to turn them into maps $\lambda^i\colon k\cat{u}\morphism k\cat{u}$ of anima \embrace{not respecting any $\IE_\infty$-structures though}.
 \end{alphanumerate}
+
 Let's suppose $X$ is finitely dominated at first. Then $k\cat{u}^0(X)\simeq (\pi_0\cat{Vect}_\IC(X))^\grp$ by \cref{cor:BOBU}. The main obstacle later on will be to bypass the finiteness assumptions on $X$, but right now, there's another problem: We would like to extend
 \begin{equation*}
 	\Lambda^i\colon \pi_0\cat{Vect}_\IC(X)\morphism k\cat{u}^0(X)
 \end{equation*}
-to all of $k\cat{u}^0(X)$. However, knowing that $k\cat{u}^0(X)\simeq (\pi_0\cat{Vect}_\IC(X))^\grp$ doesn't help us as $\Lambda^i$ is not even a map of monoids! This can be fixed as follows: Instead of considering each $\Lambda^i$ on its own, we combine them into a single map
+to all of $k\cat{u}^0(X)$. However, knowing that $k\cat{u}^0(X)\simeq (\pi_0\cat{Vect}_\IC(X))^\grp$ (as $X$ is assumed to be finitely dominated) doesn't help us as $\Lambda^i$ is not even a map of monoids! However, this can be easily fixed as follows: Instead of considering each $\Lambda^i$ on its own, we combine all of them into a single map
 \begin{align*}
 	\Lambda\colon \pi_0\cat{Vect}_\IC(X)&\morphism k\cat{u}^0(X)\llbracket t\rrbracket\\
 	[V] & \longmapsto\sum_{i\geq 0}[\Lambda^iV]t^i\,,
 \end{align*}
-where $k\cat{u}^0(X)\llbracket t\rrbracket$ denotes the ring of power series over $k\cat{u}^0(X)$, which is a ring itself as denoted before \cref{thm:BottPeriodicity}. From the formula
+where $k\cat{u}^0(X)\llbracket t\rrbracket$ denotes the ring of power series over $k\cat{u}^0(X)$, which is a ring itself as noted before \cref{thm:BottPeriodicity}. From the formula
 \begin{equation*}
 	\Lambda^n(V\oplus W)=\bigoplus_{i+j=n}\Lambda^ i(V)\otimes \Lambda^j(V)\,,
 \end{equation*}
@@ -853,7 +859,7 @@ We would like to extend the $\Lambda^i$ to natural maps $\Lambda^i\colon k\cat{u
 \end{equation*}
 hence $k\cat{u}^0(-)=\Hom_{\pi\An}(-,k\cat{u})$ is represented by $k\cat{u}$. By the $1$-categorical Yoneda lemma, any endotransformation of $k\cat{u}^0(-)$ thus corresponds to a map $k\cat{u}\morphism k\cat{u}$ in $\pi\An$, or put differently, to an element of $k\cat{u}^0(k\cat{u})$. The idea how to construct the element $\lambda^i\in k\cat{u}^0(k\cat{u})$ we're looking for is simple: We \enquote{approximate} $k\cat{u}$ by suitable finite anima, on which we already know what $\Lambda^i$ does, and show that all finite stages together combine into a unique element of $k\cat{u}^0(k\cat{u})$. Let's give a sketch of how to make this precise!
 
-First off, we need to compute $k\cat{u}^0(k\cat{u})$. Since $\Omega^\infty K\cat{U}\simeq k\cat{u}$, we may equivalently compute $K \cat{U}^0(k\cat{u})$. In the lecture we worked with $k\cat{u}^*$ right away, but I think this might get us into trouble (please don't take my word for it, I'm way out of my mathematical comfort zone here). Now $K\cat{U}$ is an example of a \emph{multiplicative complex oriented cohomology theory}. These are $\IE_\infty$-ring spectra $E$ for which the natural inclusion $\IS^2\simeq \IC\IP^1\subseteq \IC\IP^\infty$ induces a surjection $E^2(\IC\IP^\infty)\epimorphism E^2(\IS^2)$. This is by the way the reason why I don't think we could take $k\cat{u}^*$ instead of $K\cat{U}^*$: The former is not a cohomology theory, only the negative part of one (and we can't just extend it by $0$ to positive degrees since that would violate the suspension isomorphism). A general fact about multiplicative complex oriented cohomology theories is the formula
+First off, we need to compute $k\cat{u}^0(k\cat{u})$. Since $\Omega^\infty K\cat{U}\simeq k\cat{u}$, we may equivalently compute $K \cat{U}^0(k\cat{u})$. In the lecture we worked with $k\cat{u}^*$ right away, but I think this might get us into trouble (please don't take my word for it, I'm way out of my mathematical comfort zone here). Now $K\cat{U}$ (and more generally any $2$-periodic $\IE_\infty$-ring spectrum) is an example of a \emph{multiplicative complex oriented cohomology theory}. These are $\IE_\infty$-ring spectra $E$ for which the natural inclusion $\IS^2\simeq \IC\IP^1\subseteq \IC\IP^\infty$ induces a surjection $E^2(\IC\IP^\infty)\epimorphism E^2(\IS^2)$. This is by the way the reason why believe we should take $K\cat{U}^*$ instead of $k\cat{u}^*$: The cohomology theory associated to $B^\infty k\cat{u}$ is not complex oriented (I think). A general fact about multiplicative complex oriented cohomology theories is the formula
 \begin{equation*}
 	E^*\big(B\cat{U}(n)\big)\simeq \pi_*(E)\llbracket c_1,\dotsc,c_n\rrbracket\,,
 \end{equation*}
@@ -874,13 +880,14 @@ The upshot is that we get natural maps $\lambda ^i\colon k\cat{u}\morphism k\cat
 \begin{equation*}
 	\lambda^n(x+y)=\sum_{i+j=n}\lambda^i(x)\cdot \lambda^j(y)\in k\cat{u}^0(X)
 \end{equation*}
-for all $x,y\in k\cat{u}^0(X)$. We've thereby reached our goal of Step~1.
+for all $x,y\in k\cat{u}^0(X)$. We've thereby reached our goal of Step~\itememph{1}.
 \begin{alphanumerate}
-	\item[\emph{Step~2.}] \itshape We show how one can extract ring homomorphisms $\psi^i\colon k\cat{u}^0(X)\morphism k\cat{u}^0(X)$ from the $\lambda^i$ by a purely algebraic procedure.
+	\item[\itememph{2}] \itshape We show how one can extract ring homomorphisms $\psi^i\colon k\cat{u}^0(X)\morphism k\cat{u}^0(X)$ from the $\lambda^i$ by a purely algebraic procedure.
 \end{alphanumerate}
+
 The buzzword here is that $\{\lambda^i\ |\ i\geq 0\}$ turn $k\cat{u}^0(X)$ into a \emph{$\lambda$-ring}. For a precise definition, consult the \href{https://ncatlab.org/nlab/show/Lambda-ring}{$n$Lab}; in a nutshell, it means one has a ring $R$ together with maps $\lambda^i\colon R\morphism R$ of sets that satisfy the relation above, as well as a bunch of other relations for $\lambda^n(xy)$ and $\lambda^n(\lambda^m(x))$, which are all satisfied for exterior powers of vector bundles, and thus also in our case. And now extracting the $\psi^i$ from the $\lambda^i$ is a purely algebraic procedure in that it can be done for any $\lambda$-ring.
 
-Just as the $\Lambda^i$ in Step~1 behave nicer once combined into a single power series, the same happens for the $\lambda^i$. For better normalisation behaviour later one, we put
+Just as the $\Lambda^i$ in Step~\itememph{1} behave nicer once combined into a single power series, the same happens for the $\lambda^i$. For better normalisation behaviour later one, we put
 \begin{equation*}
 	\snake{\lambda}(x)\coloneqq\sum_{i\geq 0}(-1)^i\lambda^i(x)t^i\in k\cat{u}^0(X)\llbracket t\rrbracket
 \end{equation*}
@@ -975,7 +982,7 @@ Throughout this subsection, $p$ is a prime number and $q$ some power of $p$. By 
 		\end{cases*}\,.
 	\end{equation*}
 \end{thm}
-The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph{Prüfer $\ell$-group}. There are many more ways to write it down, such as $\IZ[\ell^{-1}]/\IZ$ or $\IQ_\ell/\IZ_\ell$. Using that the group of units in any finite field is cyclic, one easily finds $\ov{\IF}_p^\times\simeq \bigoplus_{\ell\neq p}\mu_{\ell^\infty}$. But there is no canonical embedding of this into $\IC^\times$, hence we remember $\rho$ in the notation $\operatorname{Br}^\rho$. It should be noted that $\operatorname{Br}^\rho$ also depends on the embedding $\IF_q\monomorphism \ov{\IF}_p$ into an algebraic closure, which we chose to suppress in the notation
+The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph{Prüfer $\ell$-group}. There are many more ways to write it down, such as $\IZ[\ell^{-1}]/\IZ$ or $\IQ_\ell/\IZ_\ell$ or $\IZ/\ell^\infty$. Using that the group of units in any finite field is cyclic, one easily finds $\ov{\IF}_p^\times\simeq \bigoplus_{\ell\neq p}\mu_{\ell^\infty}$. But there is no canonical embedding of this into $\IC^\times$, hence we remember $\rho$ in the notation $\operatorname{Br}^\rho$. It should be noted that $\operatorname{Br}^\rho$ also depends on the embedding $\IF_q\monomorphism \ov{\IF}_p$ into an algebraic closure, which we chose to suppress in the notation
 \begin{proof}[Proof sketch of \cref{thm:QuillenKTheoryOfFiniteFields}]
 	The computation of $K_*(\IF_q)=\pi_*(k(\IF_q)_0)$ is a consequence of the long exact sequence of homotopy groups associated to the fibre sequence
 	\begin{equation*}
@@ -1005,8 +1012,9 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 	
 	What we will do, however, is to construct the desired map $B\!\GL_\infty(\IF_q)\morphism \fib(\psi^q-\id)$. To give this construction some structure, I decided to divide it into four steps.
 	\begin{alphanumerate}
-		\item[\emph{Step~0.}] \itshape We recall some facts from the representation theory of finite groups.
+		\item[\itememph{0}] \itshape We recall some facts from the representation theory of finite groups.
 	\end{alphanumerate}
+	
 	If you are someone like me who dodged representation theory for their entire mathematical life, Fabian recommends you put a copy of \cite{SerreRepT} on your nightstand and read a page per day; it will make you a better mathematician within a semester. So let $G$ be a finite group and $R_k(G)$ its \emph{representation ring} over some field $k$ (that is, $R_k(G)=K_0(k[G])$). We'll need the following facts:
 	\begin{alphanumerate}
 		\item There is a map
@@ -1014,7 +1022,7 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 			\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)\,,
 		\end{equation*}
 		sending a representation $V\in R_\IC(G)$, i.e.\ a $\IC$-vector space with a $G$-action, to the vector bundle $EG\times_GV\morphism BG$. Alternatively, it can be described as sending a group homomorphism $r\colon G\morphism \cat{U}(n)$ to the map $BG\morphism B\cat{U}(n)\morphism \{n\}\times B\cat{U}\subseteq k\cat{u}$. It suffices to consider homomorphisms $r\colon G\morphism \cat{U}(n)\subseteq \GL_n(\IC)$, since we can always find a $G$-equivariant scalar product on any $G$-representation $V$ (start with any scalar product $\langle \blank,\blank\rangle'$ on $V$ and put $\langle u,v\rangle=\#G^{-1}\sum_{g\in G}\langle r(g)u,r(g)v\rangle'$ to make it $G$-equivariant).
-		\item For any field $k$, there are exterior power maps $\Lambda^i\colon \LMod_{k[G]}\morphism \LMod_{k[G]}$. Just as in Step~1 of \cref{par:AdamsOperations} (minus the technical mumbo-jumbo), these induce maps of sets $\lambda^i\colon R_k(G)\morphism R_k(G)$, turning the representation ring $R_k(G)=K_0(k[G])$ into a $\lambda$-ring. And just as in Step~2 of \cref{par:AdamsOperations}, we can then extract Adams operations $\psi^i\colon R_k(G)\morphism R_k(G)$ from them. In the case $k=\IC$, it follows from the constructions that $\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)$ from \itememph{a} commutes with the Adams operations on both sides.
+		\item For any field $k$, there are exterior power maps $\Lambda^i\colon \LMod_{k[G]}\morphism \LMod_{k[G]}$. Just as in Step~\itememph{1} of \cref{par:AdamsOperations} (minus the technical mumbo-jumbo), these induce maps of sets $\lambda^i\colon R_k(G)\morphism R_k(G)$, turning the representation ring $R_k(G)=K_0(k[G])$ into a $\lambda$-ring. And just as in Step~\itememph{2} of \cref{par:AdamsOperations}, we can then extract Adams operations $\psi^i\colon R_k(G)\morphism R_k(G)$ from them. In the case $k=\IC$, it follows from the constructions that $\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)$ from \itememph{a} commutes with the Adams operations on both sides.
 		\item Recall that a \emph{class function} on $G$ is a function $G\morphism \IC$ which is constant on conjugacy classes. One of the first result about complex representations is that the function
 		\begin{equation*}
 			\chi\colon R_\IC(G)\monomorphism \{\text{class functions }G\rightarrow \IC\}
@@ -1032,15 +1040,16 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 		\begin{equation*}
 			\sum_{n\geq 0}\chi\big(\psi^{n+1}(V)\big)(g)t^n=\sum_{i=1}^d\frac{\lambda_i}{1-\lambda_it}=\sum_{n\geq 0}\sum_{i=1}^d\lambda_i^{n+1}t^n\,.
 		\end{equation*}
-		Comparing coefficients, plus the fact that the eigenvalues of $g^n$ are precisely $\lambda_1^n,\dotsc,\lambda_d^n$ (for example by Jordan decomposition), proves the claim.
+		Comparing coefficients, plus the fact that the eigenvalues of $g^n$ are precisely $\lambda_1^n,\dotsc,\lambda_d^n$ (for example by Jordan decomposition) proves the claim.
 	\end{alphanumerate}
 	With that out of the way, let's start with the actual construction.
 	\begin{alphanumerate}
-		\item[\emph{Step~1.}] \itshape For any embedding $\rho\colon \ov{\IF}_p^\times\monomorphism \IC^\times$ we construct the famous \emph{Brauer lift}
+		\item[\itememph{1}] \itshape For any embedding $\rho\colon \ov{\IF}_p^\times\monomorphism \IC^\times$ as the group $\bigoplus_{\ell\neq p}\mu_{\ell^\infty}$ of all roots of unity of order coprime to $p$ we construct the famous \emph{Brauer lift}
 		\begin{equation*}
 			\operatorname{Br}^\rho\colon R_{\ov{\IF}_p}\big(\GL_n(\IF_q)\big)\morphism R_\IC\big(\GL_n(\IF_q)\big)\,.
 		\end{equation*}
 	\end{alphanumerate}
+	
 	For any $\ov{\IF}_p$-representation $V$ of $\GL_n(\IF_q)$, we form its \emph{Brauer character}
 	\begin{equation*}
 		\chi_V^\rho\colon \GL_n(\IF_q)\morphism \IC\,,
@@ -1058,17 +1067,18 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 	\end{equation*}
 	Also recall that $k\cat{u}^0(B\!\GL_n(\IF_q))=\pi_0\Hom_\An(B\!\GL_n(\IF_q),k\cat{u})$. Hence the canonical representation $\GL_n(\IF_q)\curvearrowright \IF_q^n$ defines a homotopy class of maps $B\!\GL_n(\IF_q)\morphism k\cat{u}$. We have yet to show that these maps lift to $\fib(\psi^q-\id)$, and that the lifts are compatible for varying $n$.
 	\begin{alphanumerate}
-		\item[\emph{Step~2.}] \itshape As a first step in that direction, we verify that the composition
+		\item[\itememph{2}] \itshape As a first step in that direction, we verify that the composition
 		\begin{equation*}
 			R_{\IF_q}\big(\GL_n(\IF_q)\big)\morphism R_{\ov{\IF}_p}\big(\GL_n(\IF_q)\big)\morphism[\operatorname{Br}^\rho] R_\IC\big(\GL_n(\IF_q)\big)
 		\end{equation*}
 		takes values in the fixed points of $\psi^q$.
 	\end{alphanumerate}
+	
 	Since the map $\chi$ from \itememph{c} above is injective, it's enough to verify this after composition with $\chi$. Recall that $\IF_q\subseteq \ov{\IF}_p$ is the fixed field of the Frobenius $(-)^q\colon \ov{\IF}_p\morphism \ov{\IF}_p$. Hence, if $\lambda$ is an eigenvalue of $g\colon \ov{\IF}_p\otimes_{\IF_q}V\morphism \ov{\IF}_p\otimes_{\IF_q}V$, then so are $\lambda^q,\lambda^{q^2},\lambda^{q^3},\dotsc$, each of them with the same multiplicity as $\lambda$. Hence
 	\begin{equation*}
 		\chi_{\ov{\IF}_p\otimes_{\IF_q}V}^\rho(g)=\sum_{[\mu]}\operatorname{mult}(\mu)\sum_{\lambda\in[\mu]}\rho(\lambda)\,,
 	\end{equation*}
-	where the first sum ranges over all Frobenius orbits $[\mu]$. Using assertion \itememph{d} from Step~0 shows that applying $\psi^q$ only replaces $g$ by $g^q$. But the eigenvalues of $g^q$ are the $q\ordinalth$ powers of the eigenvalues of $g$ (for example by Jordan decomposition), and replacing each $\lambda$ by $\lambda^q$ only permutes the summands in $\sum_{\lambda\in[\mu]}\rho(\lambda)$, hence $\smash{\chi_{\ov{\IF}_p\otimes_{\IF_q}V}^\rho}$ is indeed invariant under the action of $\psi^q$.
+	where the first sum ranges over all Frobenius orbits $[\mu]$. Using assertion \itememph{d} from Step~\itememph{0} shows that applying $\psi^q$ only replaces $g$ by $g^q$. But the eigenvalues of $g^q$ are the $q\ordinalth$ powers of the eigenvalues of $g$ (for example by Jordan decomposition), and replacing each $\lambda$ by $\lambda^q$ only permutes the summands in $\sum_{\lambda\in[\mu]}\rho(\lambda)$, hence $\smash{\chi_{\ov{\IF}_p\otimes_{\IF_q}V}^\rho}$ is indeed invariant under the action of $\psi^q$.
 	
 	The upshot is that we obtain a compatible sytem of maps
 	\begin{equation*}
@@ -1076,13 +1086,13 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 	\end{equation*}
 	where $(-)^{\psi^q}$ denotes fixed points under $\psi^q$. Here we also use that the canonical map $\operatorname{rep}\colon R_\IC(\GL_n(\IF_q))\morphism k\cat{u}^0(B\!\GL_n(\IF_q))$ from assertion~\itememph{c} above is compatible with the Adams operations on both sides.
 	\begin{alphanumerate}
-		\item[\emph{Step~3.}]\itshape To get a compatible system of maps $B\!\GL_n(\IF_q)\morphism \fib(\psi^q-\id)$, we show that there are bijections
+		\item[\itememph{3}]\itshape To get a compatible system of maps $B\!\GL_n(\IF_q)\morphism \fib(\psi^q-\id)$, we show that there are bijections
 		\begin{gather*}
 			\pi_0\Hom_\An\big(B\!\GL_n(\IF_q),\fib(\psi^q-\id)\big)\isomorphism \pi_0\Hom_\An\big(B\!\GL_n(\IF_q),k\cat{u}\big)^{\psi^q}\,,\\
 			\pi_0\Hom_\An\big(B\!\GL_\infty(\IF_q),\fib(\psi^q-\id)\big)\isomorphism \lim_{n\in\IN}\pi_0\Hom_\An\big(B\!\GL_n(\IF_q),\fib(\psi^q-\id)\big)\,.
 		\end{gather*}
 	\end{alphanumerate}
-	The first map is automatically surjective. Indeed, the left-hand side consists of maps to the homotopy fibre $\fib(\psi^q-\id)$, which given by maps to $\cat{ku}$ plus a homotopy to the identity after composition with $\psi^q\colon k\cat{u}\morphism k\cat{u}$. On the right-hand side, we forget the choice of homotopy and only remember that there is some. To show injectivity, we use that $\Hom_\An(B\!\GL_n(\IF_q),-)$ preserves fibre sequences. Hence, by the long exact sequence of a fibration, there is a surjection from $\pi_1(B\!\GL_n(\IF_q),k\cat{u})=k\cat{u}^{-1}(B\!\GL_n(\IF_q))$ onto the kernel. But we have the following general result:
+	The first map is automatically surjective. Indeed, the left-hand side consists of maps to the homotopy fibre $\fib(\psi^q-\id)$, which given by maps to $\cat{ku}$ plus a homotopy to the identity after composition with $\psi^q\colon k\cat{u}\morphism k\cat{u}$. On the right-hand side, we forget the choice of homotopy and only remember that there is some. To show injectivity, we use that $\Hom_\An(B\!\GL_n(\IF_q),-)$ preserves fibre sequences. Hence, by the long exact sequence of a fibration, there is a surjection from $\pi_1(B\!\GL_n(\IF_q),k\cat{u})=k\cat{u}^{-1}(B\!\GL_n(\IF_q))$ onto the kernel. But we have the following general result (which we won't prove):
 	\begin{smallthm}[Atiyah--Segal completion theorem]
 		If $G$ is a finite group \embrace{or a compact Lie group}, then
 		\begin{equation*}
@@ -1095,7 +1105,11 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 	\end{smallthm}
 	This shows $k\cat{u}^{-1}(B\!\GL_n(\IF_q))=0$, and thus the first map is indeed a bijection. I suspect that there should be a less overkill proof that $k\cat{u}^{-1}$ vanishes, but right now I'm too lazy to think about this.
 	
-	The second map is part of a \emph{Milnor exact sequence} in general (see for example the corresponding \href{https://ncatlab.org/nlab/show/lim^1+and+Milnor+sequences#MilnorSequences}{$n$Lab} article). This shows that it is surjective and its kernel is given by
+	The second map is part of a \emph{Milnor exact sequence}. In general, the homotopy groups of a sequential limit $\limit_{n\in\IN}X_n$ in $*/\An$ sit in an exact sequence
+	\begin{equation*}
+		0\morphism R^1\!\limit_{n\in\IN}\pi_{i+1}(X_n)\morphism \pi_i\left(\limit_{n\in\IN}X_n\right)\morphism \limit_{n\in\IN}\pi_i(X_n)\morphism 0\,.
+	\end{equation*}
+	A proof can be found in the corresponding \href{https://ncatlab.org/nlab/show/lim^1+and+Milnor+sequences#MilnorSequences}{$n$Lab} article, but it's also not hard to prove this yourself. The Milnor sequence now shows that the second map is surjective and its kernel is given by
 	\begin{equation*}
 		R^1\!\limit_{n\in\IN}\pi_1\Hom_\An\big(B\!\GL_n(\IF_q),k\cat{u}\big)\,.
 	\end{equation*}
@@ -1153,7 +1167,7 @@ Next, we investigate how the equivalence $\operatorname{Br}^\rho$ depends on the
 	\begin{equation*}
 		\pi_0\Hom_\An\big(B\!\GL_n(\IF_q),\fib(\psi^q-\id)\big)\isomorphism \pi_0\Hom_\An\big(B\!\GL_n(\IF_q),k\cat{u}\big)^{\psi^q}
 	\end{equation*}
-	(Step~3 in the proof of \cref{thm:QuillenKTheoryOfFiniteFields}), we then obtain that $f_*$ agrees with the map induced by the right-hand square on fibres. Hence the claim follows from \cref{prop:AdamsOperations}\itememph{e} and the way we used it in the proof of \cref{thm:QuillenKTheoryOfFiniteFields}.
+	(Step~\itememph{3} in the proof of \cref{thm:QuillenKTheoryOfFiniteFields}), we then obtain that $f_*$ agrees with the map induced by the right-hand square on fibres. Hence the claim follows from \cref{prop:AdamsOperations}\itememph{e} and the way we used it in the proof of \cref{thm:QuillenKTheoryOfFiniteFields}.
 	
 	For \itememph{b}, one similarly computes from the definition of the Brauer lift and \cref{prop:AdamsOperations}\itememph{b} that
 	\begin{equation*}
@@ -1203,61 +1217,135 @@ Be warned, however, that this isomorphism only exists at the level of homology, 
 	in which there are transition maps $\IZ/s\morphism \IZ/t$ given by multiplication with $\frac{t}{s}$, whenever $s\mid t$. This proves $K_{2i-1}(\ov{\IF}_p)=\bigoplus_{\ell\neq p}\mu_{\ell^\infty}$. The additional assertion follows by inspection.
  \end{proof}
 \numpar{Completions of Spectra}\label{par:pCompletion}
-Fabian would like to end the chapter with some remarks on the Suslin rigidity theorem. But before we can do that, we need to introduce completions of spectra. This took us on a short detour in the lecture. I decided to make it a slightly longer detour, to elaborate more on the connection to derived completion in ordinary algebra and to explain one small technical step in the proof sketch of \cref{thm:QuillenKTheoryOfFiniteFields}.
+Fabian would like to end the chapter with some remarks on the Suslin rigidity theorem. But before we can do that, we need to introduce completions of spectra. This took us on a short detour in the lecture. I decided to make it a slightly longer detour (so mind the asterisks!), to elaborate more on the connection to derived completion in ordinary algebra and to explain one small technical step in the proof sketch of \cref{thm:QuillenKTheoryOfFiniteFields}.
 
-Let's do the spectra case first. Given a spectrum $E\in\Sp$ and a prime $p$, we define the \emph{$p$-completion of $E$} as
+Let's do the spectra case first. Let $R$ be an $\IE_\infty$-ring spectrum, $s\in \pi_0(R)$ some element, and $M\in\Mod_R$ a module over $R$. We define the \emph{$s$-completion of $M$} as
 \begin{equation*}
-	\roof{E}_p\coloneqq \limit_{n\in\IN}E/p^nE\,,
+	\roof{M}_s\coloneqq \limit_{n\in\IN}M/s^nM\,,
 \end{equation*}
-where we define $E/p^nE$ as the pushout
+where we define $M/s^nM$ as the pushout
 \begin{equation*}
 	\begin{tikzcd}
-		E\rar["p^n"]\dar\drar[pushout] &E\dar\\
-		0 \rar & E/p^nE
+		M\rar["s^n"]\dar\drar[pushout] &M\dar\\
+		0 \rar & M/s^nM
 	\end{tikzcd}
 \end{equation*}
-Since $\hom_\Sp(-,E)$ preserves (but flips) fibre sequences, we see that $E/p^nE$ can equivalently be written as $\hom_\Sp((\IS/p^n\IS)[-1],E)$. This also shows
+In the case $M=R$ we often just write $R/s^n$, and in general, $M/s^nM\simeq M\otimes_RR/s^n$ since $-\otimes_RR/s^n$ commutes with colimits. Since $\hom_R(-,M)\colon \Mod_R\morphism \Mod_R$ (defined as in \labelcref{par:TensorHomInCAlg}\itememph{a}) preserves but flips fibre sequences, we see that $M/s^nM$ can equivalently be written as $\hom_R((R/s^n)[-1],M)$. This also shows
 \begin{equation*}
-	\roof{E}_p\simeq \hom_\Sp\big((\IS[p^{-1}]/\IS)[-1],E\big)\,,
+	\roof{M}_s\simeq \hom_R\big((R/s^\infty)[-1],M\big)\,,
 \end{equation*}
-which motivates the following lemma/definition:\refstepcounter{smallerdummy}
+where we denote $R/s^\infty\simeq R[s^{-1}]/R$. In particular, the latter description shows that $\roof{M}_s$ doesn't depend on the choice of representative of $s\in \pi_0(R)$. Moreover, it motivates the following lemma/definition:\refstepcounter{smallerdummy}
 \numpar*{\thesmallerdummy. Lemma/Definition*}\label{lemdef*:pComplete}\itshape
-For a spectrum $E$, the following are equivalent:
+For an $R$-module spectrum $M$ and some $s\in \pi_0(R)$, the following are equivalent:
 \begin{alphanumerate}
-	\item $\hom_\Sp(\IS[p^{-1}],E)\simeq 0$.
-	\item $\hom_\Sp(M,E)\simeq 0$ for all $p$-local spectra $M$.
-	\item $E$ is equivalent to its $p$-completion $\roof{E}_p$.
+	\item $\hom_R(R[s^{-1}],M)\simeq 0$.
+	\item $\hom_\Sp(T,M)\simeq 0$ for all $s$-local $R$-module spectra $T$.
+	\item The canonical morphism $M\isomorphism \roof{M}_s$ into the $s$-completion is an equivalence.
 \end{alphanumerate}
-Such spectra are called \emph{$p$-complete}. The $p$-completion functor
+Such $R$-module spectra are called \emph{$s$-complete}. The $s$-completion functor
 \begin{equation*}
-	(-)_p^\complete\colon \Sp\morphism \Sp_{p\mhyph\cat{comp}}
+	(-)_s^\complete\colon \Mod_R\morphism \Mod_{R}^{s\mhyph\cat{comp}}
 \end{equation*}
-is a Bousfield localisation onto the full sub-$\infty$-category $\Sp_{p\mhyph\cat{comp}}\subseteq\Sp$ of $p$-complete spectra.\upshape
+is a left Bousfield localisation onto the full stable sub-$\infty$-category $\Mod_R^{s\mhyph\cat{comp}}\subseteq\Mod_R$ of $s$-complete $R$-module spectra.\upshape
 \begin{proof*}
-	The implication \itememph{b} $\Rightarrow$ \itememph{a} is clear, and since $M\simeq M\otimes \IS[p^{-1}]$ by \cref{cor:ModRS-1}, the reverse implication follows from the the tensor-$\Hom$ adjunction (\cref{lem*:TensorHomAdjunction}).
+	The implication \itememph{b} $\Rightarrow$ \itememph{a} is clear, and since $T\simeq T\otimes R[s^{-1}]$ by \cref{cor:ModRS-1}, the reverse implication follows from the general tensor-$\Hom$ adjunction (see \labelcref{par:TensorHomInCAlg}\itememph{a}).
 	
-	Using the the fact that $\IS[p^{-1}]\otimes \IS[p^{-1}]/\IS\simeq \IS[p^{-1}]/\IS[p^{-1}]\simeq 0$ together with the tensor-$\Hom$ adjunction, we see that the $p$-completion $\roof{E}_p\simeq \hom_\Sp((\IS[p^{-1}]/\IS)[-1],E)$ is indeed $p$-complete in the sense of \itememph{a}, which shows \itememph{c} $\Rightarrow$ \itememph{a}. Conversely, from the fibre sequence $(\IS[p^{-1}]/\IS)[-1]\morphism \IS\morphism\IS[p^{-1}]$ we get that $E$ is $p$-complete in the sense of \itememph{a} iff it equals its own $p$-completion. The final assertion about $(-)_p^\complete$ being a Bousfield localisation follows from Proposition~\labelcref{prop:LLaddendum}, as usual.
+	Using the the fact that
+	\begin{equation*}
+		R[s^{-1}]\otimes_R R[s^{-1}]/R\simeq R[s^{-1}]/R[s^{-1}]\simeq 0
+	\end{equation*}
+	together with the tensor-$\Hom$ adjunction, we see that $\roof{M}_s\simeq \hom_R((R/s^\infty)[-1],M)$ is indeed $s$-complete in the sense of \itememph{a}, which shows \itememph{c} $\Rightarrow$ \itememph{a}. Conversely, from the fibre sequence $(R/s^\infty)[-1]\morphism R\morphism R[s^{-1}]$ we get that $M$ is $s$-complete in the sense of \itememph{a} iff it equals its own $s$-completion. The final assertion about $(-)_s^\complete$ being a Bousfield localisation follows from Proposition~\labelcref{prop:LLaddendum}, as usual. We know from \cref{cor:LModHasCoLimits} that $\Mod_R$ is stable, and its clear from \itememph{a} that $\Mod_R^{s\mhyph\cat{comp}}\subseteq\Mod_R$ is closed under finite direct sums as well as fibres and cofibres, hence it is indeed a full stable sub-$\infty$-category.
 \end{proof*}
+ Completion of spectra shares many properties with the completion of ordinary rings and modules. For example:
+\begin{lem*}\label{lem:Nakayama}
+	Let $R$ be an $\IE_\infty$-ring spectrum and $s\in \pi_0(R)$.
+	\begin{alphanumerate}
+		\item For all $R$-module spectra $M$ and all $n\geq 0$, we have $M\otimes_RR/s^n\simeq \roof{M}_s\otimes_RR/s^n$.
+		\item \embrace{Beauville--Laszlo} The functors $(-)_s^\complete\colon \Mod_R\morphism \Mod_R$ and $-[s^{-1}]\colon \Mod_R\morphism \Mod_R$ are jointly conservative, and for all $R$-module spectra $M$ there is a pushout/pullback square
+		\begin{equation*}
+			\begin{tikzcd}
+				M\rar\dar\drar[pullback] & \roof{M}_s\dar\\
+				M[s^{-1}]\rar & \roof{M}_s[s^{-1}]
+			\end{tikzcd}
+		\end{equation*}
+		\item \embrace{Nakayama's lemma} If $M$ is $s$-complete and $M\otimes_RR/s\simeq 0$, then $M\simeq 0$. In particular, $-\otimes_RR/s\colon \Mod_R^{s\mhyph\mathrm{comp}}\morphism \Mod_R$ is conservative.
+	\end{alphanumerate}
+\end{lem*}
+Note that combining all three assertions from \cref{lem:Nakayama} implies that also the functors $-\otimes_RR/s\colon \Mod_R\morphism \Mod_R$ and $-[s^{-1}]\colon \Mod_R\morphism\Mod_R$ are jointly conservative.
+\begin{proof*}[Proof of \cref{lem:Nakayama}]
+	It's straightforward to show that $s^n\colon M\otimes_RR/s^n\morphism M\otimes_RR/s^n$ is the zero morphism. This implies that $M\otimes_RR/s^n$ is $s$-complete. Indeed,
+	\begin{equation*}
+		s^n\colon \hom_R\big(R[s^{-1}],M\otimes_RR/s^n\big)\morphism \hom_R\big(R[s^{-1}],M\otimes_RR/s^n\big)
+	\end{equation*}
+	is an equivalence, because it is an equivalence on $R[s^{-1}]$, but it's also the zero map because it is zero on $M\otimes_RR/s^n$. This forces $\hom_R(R[s^{-1}],M\otimes_RR/s^n)\simeq 0$, whence $M\otimes_RR/s^n$ is $s$-complete by Lemma/Definition~\labelcref{lemdef*:pComplete}\itememph{a}. The same holds for $\roof{M}_s\otimes_RR/s^n$. Now let $N$ be another $s$-complete $R$-module spectrum. Since $(-)_s^\complete$ is a Bousfield localisation,
+	\begin{align*}
+		\hom_R(M\otimes_RR/s^n,N)&\simeq \hom_R\big(R/s^n,\hom_R(M,N)\big)\\
+		&\simeq \hom_R\big(R/s^n,\hom_R(\roof{M}_s,N)\big)\\
+		&\simeq \hom_R(\roof{M}_s\otimes_RR/s^n,N)\,.
+	\end{align*}
+	Thus the assertion of \itememph{a} follows from the Yoneda lemma in $\Mod_R^{s\mhyph\mathrm{comp}}$. We have silently used that the adjunction involving $(-)_s^\complete$ upgrades to the internal $\Hom$ of $\Mod_R$. But it clearly upgrades to the underlying spectra $\hom_{\Mod_R}$ of $\hom_R$ by \cref{thm:SpLeftAdjoint} and \labelcref{par:TensorHomInCAlg}\itememph{a}, and equivalences in $\Mod_R$ can be detected on underlying spectra by the Segal condition from \cref{thm:AlgLModDescription}.
+	
+	We prove \itememph{b} next. Since a morphism in $\Mod_R$ is an equivalence iff its fibre vanishes, it suffices to show that $\roof{M}_s\simeq 0$ and $M[s^{-1}]\simeq 0$ together imply $M\simeq 0$. Suppose that $0\simeq \roof{M}_s\simeq \hom_R((R/s^\infty)[-1],M)$. Since $(R/s^\infty)[-1]\morphism R\morphism R[s^{-1}]$ is a fibre sequence, this implies
+	\begin{equation*}
+		\hom_R\big(R[s^{-1}],M\big)\simeq \hom_R(R,M)\simeq M\,.
+	\end{equation*}
+	Hence $M$ is already $s$-local, which implies $M\simeq M[s^{-1}]$. Thus $M[s^{-1}]\simeq 0$ iff $M\simeq 0$, as claimed. To prove that the commutative square from \itememph{b} is really a pullback square, it now suffices to do so after applying $(-)_s^\complete$ and $-[s^{-1}]$. But one immediately checks that the $s$-completion of $s$-local $R$-module spectra vanishes, hence the pullback becomes trivial after $s$-completion, just as it becomes trivial after applying $-[s^{-1}]$.
+	
+	Finally, let's prove Nakayama's lemma. From the pushout diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			R\rar["s^n"]\dar\drar[pushout] & R\rar["s"]\dar\drar[pushout] & R\dar\\
+			0\rar & R/s^n\rar["s"]\dar\drar[pushout] & R/s^{n+1}\dar\\
+			& 0\rar & R/s
+		\end{tikzcd}
+	\end{equation*}
+	we get a fibre sequence $R/s^n\morphism[s] R/s^{n+1}\morphism R/s$ for all $n\geq 0$ (note that we don't need any non-zero divisor condition on $s$---that's the blessing of working in a \enquote{fully derived} setting). Thus $M\otimes_RR/s\simeq 0$ inductively implies $M\otimes_RR/s^n\simeq 0$ for all $n\geq 0$, hence also 
+	\begin{equation*}
+		\roof{M}_s\simeq\limit_{n\in\IN}(M\otimes_RR/s^n)\simeq 0\,.
+	\end{equation*}
+	But $M\simeq \roof{M}_s$ by assumption and Lemma/Definition~\labelcref{lemdef*:pComplete}\itememph{c}.
+\end{proof*}
+%It is also possible to define completion with respect to any finitely generated ideal $I=(s_1,\dotsc,s_m)\subseteq \pi_0(R)$, via 
+%\begin{equation*}
+%	\roof{M}_I\simeq \limit_{n\in\IN}M\otimes_RR/s_1^n\otimes_R\dotsb\otimes_RR/s_m^n\,.
+%\end{equation*}
+
+
 \refstepcounter{smallerdummy}
-\numpar*{\thesmallerdummy. Derived Completion in General*}
+\numpar*{\thesmallerdummy. Derived Completion over Ordinary Rings*}\label{par:DerivedCompletion}
 Let's leave the land of spectra for the moment and consider an ordinary commutative ring $R$ with an element $s\in R$. Following \cite[\stackstag{091N}]{stacks-project}, we call a complex $K\in \Dd(R)$ \emph{derived $s$-complete} if
 \begin{equation*}
 	R\!\Hom_R\big(R[s^{-1}],K\big)\simeq 0\,.
 \end{equation*}
-In complete analogy with Lemma/Definition*~\labelcref{lemdef*:pComplete}, one shows that this is equivalent to $R\!\Hom_R(M,K)\simeq 0$ for all $M\in \Dd(R[s^{-1}])$. Moreover, if $C$ denotes the chain complex $(R\morphism R[s^{-1}])$ concentrated in degrees $0$ and $-1$, then the \emph{derived $s$-completion} functor
+Combining \cref{thm:D(R)IsModOverHR}, Corollary~\labelcref{cor:homDRIsRHom}, and \labelcref{par:TensorHomInCAlg}, we find that $K$ is derived $s$-complete iff $HK\in \Mod_{HR}$ is an $s$-complete $HR$-module spectrum. In particular, if $\Dd^{s\mhyph\mathrm{comp}}(R)\subseteq \Dd(R)$ denotes the full sub-$\infty$-category of derived $s$-complete complexes, then the Eilenberg--MacLane spectrum functor restricts to an equivalence
+\begin{equation*}
+	H\colon \Dd^{s\mhyph\mathrm{comp}}(R)\isomorphism \Mod_{HR}^{s\mhyph\mathrm{comp}}\,.
+\end{equation*}
+Moreover, if $C$ denotes the chain complex $(R\morphism R[s^{-1}])$ concentrated in degrees $0$ and $-1$, then the \emph{derived $s$-completion} functor
 \begin{equation*}
 	(-)_s^\complete\coloneqq R\!\Hom_R(C,-)\colon \Dd(R)\morphism \Dd(R)
 \end{equation*}
-is a Bousfield localisation onto the full sub-$\infty$-category $\Dd_{s\mhyph\mathrm{comp}}(R)\subseteq \Dd(R)$ of derived $s$-complete complexes. One might wonder perhaps why we use the complex $C$ rather than $(R[s^{-1}]/R)[-1]$, as was the case for spectra. This is because we have to take the derived quotient. In fact, one easily checks that $C[1]$ is the mapping cone of $R\morphism R[s^{-1}]$, hence it sits inside a pushout diagram
+is a Bousfield localisation onto $\Dd^{s\mhyph\mathrm{comp}}(R)$. It's perhaps somewhat confusing why we use the complex $C$ rather than $(R[s^{-1}]/R)[-1]$. This is because we have to take the derived quotient. In fact, one easily checks that $C[1]$ is the mapping cone of $R\morphism R[s^{-1}]$, hence it sits inside a pushout diagram
 \begin{equation*}
 	\begin{tikzcd}
 		R\rar\dar\drar[pushout] &R{[s^{-1}]}\dar\\
 		0 \rar & C{[1]}
 	\end{tikzcd}
 \end{equation*}
-Thus $C\simeq (R[s^{-1}]/^LR)[-1]$ and therefore our formula for derived completion looks exactly like in \cref{par:pCompletion}.
+Thus $C\simeq (R[s^{-1}]/^LR)[-1]$ and therefore
+\begin{equation*}
+	HC\simeq (HR/s^\infty)[-1]\,,
+\end{equation*}
+which implies that our definitions of $(-)_s^\complete$ in $\Dd(R)$ and $\Mod_{HR}$ are indeed compatible.
 
-This can be generalised as follows: If $I=(s_1,\dotsc,s_n)\subseteq R$ is a finitely generated ideal, then a complex $K\in\Dd(R)$ is called \emph{derived $I$-complete} if it is derived $s$-complete for all $s\in I$. It turns out that this is equivalent to $K$ being derived $s_i$-complete for $i=1,\dotsc,n$. Again, there is a Bousfield localisation (\emph{derived $I$-completion})
+Over an ordinary ring, the Nakayama lemma can be slightly improved (although again it doesn't look like an improvement at first glance, until one realises that the quotient $R/s$ is an underived one this time):
+\begin{cor*}[Derived Nakayama lemma]\label{cor*:DerivedNakayama}
+	If $K$ is a derived $s$-complete complex over $R$, then $K\otimes_R^LR/s\simeq 0$ implies $K\simeq 0$.
+\end{cor*}
+\begin{proof*}
+	We already know from \cref{lem:Nakayama}\itememph{c} and \cref{prop:HStronglyMonoidal} that $K\otimes_R^LR/^Ls\simeq 0$ implies $K\simeq 0$, where the derived quotient $R/^Ls$ can be represented by the complex $(R\morphism[s] R)$ concentrated in degrees $0$ and $-1$. But the cohomology of $R/^Ls$ are $R/s$-modules, hence $K\otimes_R^LR/s\simeq 0$ already implies $K\otimes_R^LR/^Ls\simeq 0$.
+\end{proof*}
+\if0This can be generalised as follows: If $I=(s_1,\dotsc,s_n)\subseteq R$ is a finitely generated ideal, then a complex $K\in\Dd(R)$ is called \emph{derived $I$-complete} if it is derived $s$-complete for all $s\in I$. It turns out that this is equivalent to $K$ being derived $s_i$-complete for $i=1,\dotsc,n$. Again, there is a Bousfield localisation (\emph{derived $I$-completion})
 \begin{equation*}
 	(-)_I^\complete\coloneqq R\!\Hom_R(C,-)\colon \Dd(R)\morphism \Dd(R)
 \end{equation*}
@@ -1281,25 +1369,27 @@ Here are two pretty useful facts about derived completions:
 		R\!\Hom_R\big(R[s^{-1}],K\big)\simeq R\!\Hom_R(R,K)\simeq K\,.
 	\end{equation*}
 	Hence $K$ is already $s$-local, which implies $K\simeq K[s^{-1}]$. Hence $K[s^{-1}]\simeq 0$ iff $K\simeq 0$, as claimed. This shows \itememph{a}. Part \itememph{b} needs more preparation and we refer to \cite[\stackstag{0G1U}]{stacks-project}.
-\end{proof*}
+\end{proof*}\fi
 \refstepcounter{smallerdummy}
-\numpar*{\thesmallerdummy. Derived Completion in the Noetherian Case*}
-It is not true, in general, that derived $I$-completion is given by
+\numpar*{\thesmallerdummy. Derived Completion over Noetherian Rings*}
+It is not true, in general, that derived $s$-completion is given by
 \begin{equation*}
-	\roof{K}_I\simeq R\!\limit_{n\in\IN}\left(K\otimes_R^LR/I^n\right)
+	\roof{K}_s\simeq R\!\limit_{n\in\IN}\left(K\otimes_R^LR/s^n\right)
 \end{equation*}
-(here $R\!\limit$ denotes the limit in the $\infty$-category $\Dd(R)$). And neither is it true (I think, but don't take my word for it) that derived completion is the left-derived functor of
+(here $R\!\limit$ denotes the limit in the $\infty$-category $\Dd(R)$). The problem is, as usual, that the ordinary quotients $R/s^n$ don't coincide with the derived quotients $R/^Ls^n$, which are required in general to make the formula correct. Neither is it true (I think, but don't take my word for it) that derived completion is the left-derived functor of
 \begin{equation*}
-	\Lambda_I=\limit_{n\in\IN} -/I^n-\colon \Mod_R\morphism \Mod_R
+	\Lambda_s=\limit_{n\in\IN} -/s^n-\colon \Mod_R\morphism \Mod_R
 \end{equation*}
-in general. Fabian remarks that $\Lambda_I$ is neither left- nor right-exact in general\footnote{\dotso which confused me a bit, since $R^1\!\limit_{n\in\IN}M/I^nM=0$ holds by the Mittag-Leffler condition. However, this isn't enough to ensure right-exactness. For an inclusion $N\subseteq M$, the kernel of $N/I^nN\morphism M/I^nM$ is $(I^nM\cap N)/I^nN$, so we would need $R^1\!\limit_{n\in\IN}(I^nM\cap N)/I^nN=0$ instead---which isn't true in general.} \dotso but we need a right-exact functor to form left derivatives, right? Wrong! Grothendieck formulated his theory for arbitrary additive functors between abelian categories without any exactness requirements; it just won't be true anymore that $L_0\Lambda_I\simeq \Lambda_I$.
+in general. Fabian remarks that $\Lambda_s$ is neither left- nor right-exact in general\footnote{\dotso which confused me a bit, since $R^1\!\limit_{n\in\IN}M/s^nM=0$ holds by the Mittag-Leffler condition. However, this isn't enough to ensure right-exactness. For an inclusion $N\subseteq M$, the kernel of $N/s^nN\morphism M/s^nM$ is $(s^nM\cap N)/s^nN$, so we would need $R^1\!\limit_{n\in\IN}(s^nM\cap N)/s^nN=0$ instead---which isn't true in general.} \dotso but we need a right-exact functor to form left derivatives, right? Wrong! Grothendieck formulated his theory for arbitrary additive functors between abelian categories without any exactness requirements; it just won't be true anymore that $L_0\Lambda_s\simeq \Lambda_s$.
 
-Both of the problems above go away if we assume $R$ is a noetherian ring. Indeed, in this case $\roof{K}_i\simeq R\!\limit_{n\in\IN}(K\otimes^LR/I^n)$ holds by \cite[\stackstag{0BKH}]{stacks-project}, which also implies that $(-)_I^\complete\simeq L\Lambda_I$, since it takes the correct values on free $R$-modules.
+Both of the problems above go away if we assume $R$ is a noetherian ring (or, more generally, has bounded $s$-power torsion). Indeed, in this case $\roof{K}_s\simeq R\!\limit_{n\in\IN}(K\otimes^LR/s^n)$ holds by \cite[\stackstag{0923}]{stacks-project}, which also implies that $(-)_s^\complete\simeq L\Lambda_s$, since it takes the correct values on free $R$-modules.
 \refstepcounter{smallerdummy}
-\numpar*{\thesmallerdummy. Derived Completion over $\IZ$ vs.\ Completion of Spectra}
-Now let $p\in\IZ$ be a prime. Since $\IZ\morphism \IZ[p^{-1}]$ is injective, the complex $C=(\IZ\morphism \IZ[p^{-1}])$ concentrated in degrees $0$ and $-1$ is quasi-isomorphic to $(\IZ[p^{-1}]/\IZ)[-1]\simeq \mu_{p^\infty}[-1]$. Hence derived $p$-adic completion in $\Dd(\IZ)$ is given by
+\numpar*{\thesmallerdummy. Derived $p$-Completion over $\IZ$ vs.\ $p$-Completion of Spectra}\label{par:DerivedCompletionOverZVsCompletionOfSpectra}
+Let $p\in \IZ$ be a prime. Our considerations in \labelcref{par:DerivedCompletion} allow us to compare derived $p$-completion over $\IZ$ with $p$-completion over $H\IZ$. But $p$ is also an element of $\pi_0(\IS)=\IZ$, and it turns out that we can also describe $p$-completion over the sphere spectrum $\IS$ (somewhat) in terms of derived $p$-completion over $\IZ$.
+
+Let's first analyse derived $p$-completion over $\IZ$ a bit more. Since $\IZ\morphism \IZ[p^{-1}]$ is injective, the complex $C=(\IZ\morphism \IZ[p^{-1}])$ concentrated in degrees $0$ and $-1$ is quasi-isomorphic to $(\IZ[p^{-1}]/\IZ)[-1]\simeq \mu_{p^\infty}[-1]$. Hence derived $p$-adic completion in $\Dd(\IZ)$ is given by
 \begin{equation*}
-	L\Lambda_p\simeq R\!\Hom_\IZ\big(\mu_{p^\infty}[-1],-\big)\colon \Dd(\IZ)\morphism \Dd_{p\mhyph\mathrm{comp}}(\IZ)\,.
+	L\Lambda_p\simeq R\!\Hom_\IZ\big(\mu_{p^\infty}[-1],-\big)\colon \Dd(\IZ)\morphism \Dd^{p\mhyph\mathrm{comp}}(\IZ)\,.
 \end{equation*}
 In particular, if $A$ is an abelian group, then
 \begin{equation*}
@@ -1313,9 +1403,9 @@ where $A[p^n]$ denotes the $p^n$-torsion part of $A$ and the transition morphism
 \begin{equation*}
 	0\morphism R^1\!\limit_{n\in\IN} A[p^n]\morphism L^0\Lambda_p(A)\morphism \Lambda_p(A)\morphism 0\,,
 \end{equation*}
-To see where this sequence comes from, choose a projective resolution $0\morphism P_1\morphism P_0\morphism A\morphism 0$ (which we can do since $\IZ$ has global dimension $1$), note that $A[p^n]=\ker(P_1/p^nP_1\morphism P_0/p^nP_0)$ (since the right-hand side computes $\Tor_1^\IZ(\IZ/p^n,A)$) and play a bit around with exact sequences.
+To see where this sequence comes from, choose a projective resolution $0\morphism P_1\morphism P_0\morphism A\morphism 0$ ($\IZ$ has global dimension $1$), note that $A[p^n]=\ker(P_1/p^nP_1\morphism P_0/p^nP_0)$ since the right-hand side computes $\Tor_1^\IZ(\IZ/p^n,A)$, and play a bit around with exact sequences.
 
-The upshot is that if $A$ has bounded $p$-torsion (for example, if $A$ is finitely generated), then there is an $n\gge 0$ such that $p^n\colon A[p^{2n}]\morphism A[p^n]$ is the zero morphism. Hence
+The upshot is that if $A$ has bounded $p$-power torsion (for example, if $A$ is finitely generated), then there is an $n\gge 0$ such that $p^n\colon A[p^{2n}]\morphism A[p^n]$ is the zero morphism. Hence
 \begin{equation*}
 	R\!\limit_{n\in\IN}A[p^n]\simeq 0
 \end{equation*}
@@ -1325,7 +1415,7 @@ in this case and we see that $L\Lambda_p(A)$ coincides with the usual underived 
 	\begin{equation*}
 		0\morphism L^0\Lambda_p\big(\pi_i(E)\big)\morphism \pi_i(\roof{E}_p)\morphism L^1\Lambda_p\big(\pi_{i-1}(E)\big)\morphism 0\,.
 	\end{equation*}
-	In particular, if $\pi_*(E)$ has degreewise bounded $p$-torsion, then its degreewise $p$-completion is $\pi_*(\roof{E}_p)$. Moreover, the homotopy groups of any $p$-complete spectrum are derived $p$-complete.
+	In particular, if $\pi_*(E)$ has degreewise bounded $p$-power torsion, then its degreewise $p$-completion $\Lambda_p\pi_*(E)$ coincides with $\pi_*(\roof{E}_p)$. Moreover, the homotopy groups of any $p$-complete spectrum are derived $p$-complete.
 \end{smalllem}
 \begin{proof*}
 	The homotopy groups of $\roof{E}_p$ sit inside the Milnor exact sequence
@@ -1344,8 +1434,8 @@ in this case and we see that $L\Lambda_p(A)$ coincides with the usual underived 
 	\begin{equation*}
 		\begin{tikzcd}
 			& & & 0\dar& \\
-			0\rar & R^1\!\limit\limits_{n\in\IN}\pi_{i-1}(E)[p^n]\rar\dar[iso] & L_0\Lambda_p\big(\pi_i(E)\big) \rar\dar[dashed] & \Lambda_p\big(\pi_i(E)\big)\dar \rar & 0\\
-			0\rar & R^1\!\limit\limits_{n\in\IN}\pi_i(E/p^nE)\rar & \pi_i(\roof{E}_p) \rar & \limit\limits_{n\in\IN}\pi_i(E/p^nE)\dar\rar & 0\\
+			0\rar & R^1\!\limit\limits_{n\in\IN^\op}\pi_{i-1}(E)[p^n]\rar\dar[iso] & L_0\Lambda_p\big(\pi_i(E)\big) \rar\dar[dashed] & \Lambda_p\big(\pi_i(E)\big)\dar \rar & 0\\
+			0\rar & R^1\!\limit\limits_{n\in\IN^\op}\pi_i(E/p^nE)\rar & \pi_i(\roof{E}_p) \rar & \limit\limits_{n\in\IN^\op}\pi_i(E/p^nE)\dar\rar & 0\\
 			& & & L_1\Lambda_p\big(\pi_{i-1}(E)\big)\dar& \\
 			& & & 0& 
 		\end{tikzcd}
@@ -1353,20 +1443,22 @@ in this case and we see that $L\Lambda_p(A)$ coincides with the usual underived 
 	If we can show that the dashed arrow exists, then we'll be done. Indeed, the snake lemma will then show that $L_0\Lambda_p(\pi_i(E))\morphism \pi_i(\roof{E}_p)$ is injective and that its cokernel is isomorphic to $L_1\Lambda_p(\pi_{i-1}(E))$, which is what we want to show.
 	
 	To construct the dashed arrow, it suffices to show that $\pi_i(\roof{E}_p)$ is derived $p$-complete, since then the canonical morphism $\pi_i(E)\morphism \pi_i(\roof{E}_p)$ will extend over the derived $p$-completion $L\Lambda_p(\pi_i(E))$ and hence also over $L_0\Lambda(\pi_i(E))$ since $\pi_i(\roof{E}_p)$ is concentrated in degree $0$. But the solid diagram is already enough to conclude that $\pi_i(\roof{E}_p)$ is derived $p$-complete! Indeed, we know from \cite[\stackstag{091U}]{stacks-project} that if two out of three abelian groups in a short exact sequence are derived $p$-complete, then so is the third. Moreover, this result and \cite[\stackstag{091T}]{stacks-project} imply that the homology of a derived $p$-complete complex is derived $p$-complete, and that $p$-complete abelian groups are also derived $p$-complete. hence $L_0\Lambda_p(\pi_i(E))$, $\Lambda_p(\pi_i(E))$, and $L_1\Lambda_p(\pi_{i-1}(E))$ are all derived $p$-complete, which suffices to show the same for the rest of the diagram.
+	
+	Regarding the additional two assertions: We've already seen that $\pi_*(\roof{E}_p)$ is degreewise derived $p$-complete. If $\pi_*(E)$ has degreewise bounded $p$-power torsion, then $L\Lambda_p(\pi_i(E))\simeq \Lambda_p\pi_i(E)[0]$ by our discussion in \labelcref{par:DerivedCompletionOverZVsCompletionOfSpectra}, hence $\pi_i(\roof{E}_p)=\Lambda_p(\pi_i(E))$ in this case.
 \end{proof*}
 Only the third part of the following lemma was mentioned in the lecture, but the other two fit nicely and provide a proof of a small technical step in the proof sketch of \cref{thm:QuillenKTheoryOfFiniteFields}, as promised at the beginning of \cref{par:pCompletion}. 
 \begin{smalllem}\label{lem:ArithmeticFractureSquare}
 	\begin{alphanumerate}
-		\item[\itememph{a^*}] The functors $-\otimes H\IQ\colon \Sp\morphism \Sp$ and $(-)_p^\complete\colon \Sp\morphism \Sp$ for all primes $p$ are jointly conservative.
-		\item[\itememph{b^*}] The functors $-\otimes_\IZ \IQ\morphism \Dd(\IZ)\morphism \Dd(\IZ)$ and $-\otimes_\IZ^L\IZ/p\colon \Dd(\IZ)\morphism\Dd(\IZ)$ for all primes $p$ are jointly conservative. In particular, if $f\colon X\morphism Y$ is a map of anima such that
+		\item[\itememph{a^*}] The functors $-\otimes H\IQ\colon \Sp\morphism \Sp$ and $(-)_p^\complete\colon \Sp\morphism \Sp$ for all primes $p$ are jointly conservative. The same is true for $(-)_p^\complete$ replaced by $-\otimes\IS/p$.
+		\item[\itememph{b^*}] The functors $-\otimes_\IZ \IQ\colon \Dd(\IZ)\morphism \Dd(\IZ)$ and $-\otimes_\IZ^L\IZ/p\colon \Dd(\IZ)\morphism\Dd(\IZ)$ for all primes $p$ are jointly conservative. In particular, if $f\colon X\morphism Y$ is a map of anima such that
 		\begin{equation*}
 			f_*\colon H_*(X,\IQ)\isomorphism H_*(Y,\IQ)\quad\text{and}\quad f_*\colon H_*(X,\IZ/p)\isomorphism H_*(Y,\IZ/p) 
 		\end{equation*}
 		are isomorphisms, then $f$ is also an isomorphism on homology with $\IZ$-coefficients.
 		\item[\itememph{c}] For all spectra $E$, there is a canonical pullback square \embrace{the \enquote{arithmetic fracture square}}
 		\begin{equation*}
-			\begin{tikzcd}
-				E\rar\dar\drar[pullback] & \displaystyle\prod_p\roof{E}_p\dar\\
+			\begin{tikzcd}[row sep=small]
+				E\rar\dar\drar[pullback] & \displaystyle\prod_p\roof{E}_p\dar[shorten <=-1ex]\\
 				E\otimes H\IQ\rar & \Bigg(\displaystyle\prod_p\roof{E}_p\Bigg)\otimes H\IQ
 			\end{tikzcd}
 		\end{equation*}
@@ -1374,15 +1466,17 @@ Only the third part of the following lemma was mentioned in the lecture, but the
 \end{smalllem}
 Observe that \cref{lem:ArithmeticFractureSquare}\itememph{b^*} is wildly false for underived tensor products. For example, $\IQ/\IZ$ vanishes upon tensoring with $\IQ$ or any $\IZ/p$.
 \begin{proof*}[Proof of \cref{lem:ArithmeticFractureSquare}]
-	For \itememph{a^*}, it suffices to show that $E\otimes H\IQ\simeq 0$ and $\roof{E}_p\simeq 0$ for all $p$ imply $E\simeq 0$. By the same argument as in \cref{lem*:DerivedNakayama}\itememph{a}, $\roof{E}_p\simeq 0$ implies that $E$ is $p$-local. If that's the case for all $p$, then $E\simeq E\otimes H\IQ$ by \cref{cor:DIQRationalSpectra}, hence the right-hand side vanishes iff $E$ vanishes.
+	For \itememph{a^*}, it suffices to show that $E\otimes H\IQ\simeq 0$ and $\roof{E}_p\simeq 0$ for all $p$ imply $E\simeq 0$. By the same argument as in \cref{lem:Nakayama}\itememph{b}, $\roof{E}_p\simeq 0$ implies that $E$ is $p$-local. If that's the case for all $p$, then $E\simeq E\otimes H\IQ$ by \cref{cor:DIQRationalSpectra}, hence the right-hand side vanishes iff $E$ vanishes. Moreover, we can replace $(-)_p^\complete$ by $-\otimes\IS/p$ because $-\otimes\IS/p\colon\Sp^{p\mhyph\mathrm{comp}}\morphism \Sp$ is conservative by Nakayama's lemma for spectra.
 	
-	For part~\itememph{b^*}, we can use the same argument to show that $-\otimes_\IZ \IQ\colon \Dd(\IZ)\morphism \Dd(\IZ)$ and $(-)_p^\complete \Dd(\IZ)\morphism \Dd(\IZ)$ are jointly conservative. But $-\otimes_\IZ^L\IZ/p\colon \Dd_{p\mhyph\mathrm{comp}}(\IZ)\morphism \Dd(\IZ)$ is conservative by the derived Nakayama lemma (\cref{lem*:DerivedNakayama}\itememph{b}), hence the claim. The \enquote{in particular} follows as $H_*(-,\IQ)=H_*(C_\bullet(-)\otimes_\IZ\IQ)$ and $H_*(-,\IZ/p)=H_*(C_\bullet(-)\otimes_\IZ^L\IZ/p)$.
-	
+	Part~\itememph{b^*} is completely analogous, except that we have to use the slightly stronger derived Nakayama lemma from \cref{cor*:DerivedNakayama}. The \enquote{in particular} follows as 
+	\begin{equation*}
+		H_*(-,\IQ)=H_*\big(C_\bullet(-)\otimes_\IZ\IQ\big)\quad\text{and}\quad H_*(-,\IZ/p)=H_*\big(C_\bullet(-)\otimes_\IZ^L\IZ/p\big)\,.
+	\end{equation*}
 	For \itememph{c}, we may apply \itememph{a} to see that it suffices to check the pullback property after $p$-completion and after tensoring with $H\IQ$. It's easy to check that $p$-completion kills all rational spectra and all $\ell$-complete spectra for $\ell\neq p$. Hence after $p$-completion the lower row becomes zero, whereas the upper row becomes the identity on $\roof{E}_p$. Similarly, the pullback property becomes trivial after tensoring with $H\IQ$.
 \end{proof*}
-As a consequence of \cref{lem:ArithmeticFractureSquare}, to understand the \emph{algebraic $K$-theory spectrum} $K(F)=B^\infty k(F)$ of a field $F$, it suffices to understand its $p$-completions and its rationalisation. Surprisingly, it is the latter which causes problems in praxis, even though we have a formula for its homotopy groups: $K_i(F)\otimes\IQ=\operatorname{indec}_i H_*^{\grp}(\GL_\infty(F),\IQ)$ by \cref{cor:RationalKTheory}. But computing the right-hand side is an insanely hard problem and very much depends on $F$, as one can already see in the special case $K_1(F)=F^\times$ (by \cref{prop:WhiteheadsLemma}).
+As a consequence of \cref{lem:ArithmeticFractureSquare}, to understand the \emph{connective $K$-theory spectrum} $K(F)=B^\infty k(F)$ of a field $F$, it suffices to understand its $p$-completions and its rationalisation. Surprisingly, it is the latter which causes problems in praxis, even though we have a formula for its homotopy groups: $K_i(F)\otimes\IQ=\operatorname{indec}_i H_*^{\grp}(\GL_\infty(F),\IQ)$ by \cref{cor:RationalKTheory}. But computing the right-hand side is an insanely hard problem and very much depends on $F$, as one can already see in the special case $K_1(F)=F^\times$ (by \cref{prop:WhiteheadsLemma}).
 
-In contrast to that, the $\ell$-adic completions $K(F)_\ell^\complete$ are well understood and don't really depend on $F$:
+In contrast to that, at least when $F$ is a separably closed field, the $\ell$-adic completions $K(F)_\ell^\complete$ are well understood and don't really depend on $F$:
 \begin{thm}[Suslin's rigidity theorem]\label{thm:SuslinRigidity}
 	For any morphism $F\morphism F'$ of separably closed fields and all primes $\ell$,
 	\begin{equation*}
@@ -1398,7 +1492,7 @@ In contrast to that, the $\ell$-adic completions $K(F)_\ell^\complete$ are well 
 	\end{equation*}
 	are equivalences.
 \end{thm}
-We won't prove \cref{thm:SuslinRigidity}. But note that $\Oo_p/\mm\simeq \ov{\IF}_p$. Hence we see that any pair of embeddings $\ov{\IQ}\monomorphism\ov{\IQ}_p$ and $\ov{\IQ}\monomorphism \ov{\IC}$ induces an equivalence $K(\ov{\IF}_p)_\ell^\complete\simeq (B^\infty k\cat{u})_\ell^\complete$. This fits with our calculations of their homotopy groups: Since $\pi_*(B^\infty k\cat{u})=\IZ[\beta]$ has degreewise bounded $\ell$-torsion, \cref{lem:HomotopyOfPCompletion} implies
+We won't prove \cref{thm:SuslinRigidity}. But note that $\Oo_p/\mm\simeq \ov{\IF}_p$. Hence any pair of embeddings $\ov{\IQ}\monomorphism\ov{\IQ}_p$ and $\ov{\IQ}\monomorphism \ov{\IC}$ induces an equivalence $K(\ov{\IF}_p)_\ell^\complete\simeq (B^\infty k\cat{u})_\ell^\complete$. This fits with our calculations of their homotopy groups: Since $\pi_*(B^\infty k\cat{u})=\IZ[\beta]$ has degreewise bounded $\ell$-power torsion, \cref{lem:HomotopyOfPCompletion} implies
 \begin{equation*}
 	\pi_i\big((B^\infty k\cat{u})_\ell^\complete\big)=\begin{cases*}
 		\IZ_\ell & if $i$ is even\\
@@ -1425,12 +1519,12 @@ To end this chapter, we state the analogue of \cref{thm:QuillenKTheoryOfFiniteFi
 \begin{thm}[Friedlander, Fiedorowicz--Priddy {\cite{FiedorowiczPriddy}}]
 	For odd $q$, Brauer lifting induces equivalences
 	\begin{align*}
-		\gw^{\mathrm{-sym}}(\IF_q)_0&\isomorphism \fib(\psi^q-\id\colon B\cat{Spin}\morphism B\cat{Spin})\\
-		\gw^{\mathrm{sym}}(\IF_q)_0&\isomorphism \fib(\psi^q-\id\colon B\cat{O}\morphism B\cat{O})\,,
+		\gw^{\mathrm{-sym}}(\IF_q)_0&\isomorphism \fib(\psi^q-\id\colon B\Sp\morphism B\Sp)\\
+		\gw^{\mathrm{sym}}(\IF_q)_0&\isomorphism \fib(\psi^q-\id\colon B\cat{O}\morphism B\cat{O})
 	\end{align*}
-	and in the even case we obtain
+	\embrace{where $\Sp$ denotes the symplectic group and not the $\infty$-category of spectra} and in the even case we obtain
 	\begin{gather*}
-		\gw^{\mathrm{sym}}(\IF_{2^n})\simeq \gw^{\mathrm{even}}(\IF_{2^n})\isomorphism \fib(\psi^q-\id\colon B\cat{Spin}\morphism B\cat{Spin})\\
+		\gw^{\mathrm{sym}}(\IF_{2^n})\simeq \gw^{\mathrm{even}}(\IF_{2^n})\isomorphism \fib(\psi^q-\id\colon B\Sp\morphism B\Sp)\\
 		\gw^{\mathrm{quad}}(\IF_{2^n}) \simeq  \gw^{\mathrm{sym}}(\IF_{2^n})\times B\IZ/2\,.
 	\end{gather*}
 \end{thm}

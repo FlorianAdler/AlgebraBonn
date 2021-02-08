@@ -30,9 +30,9 @@ To make sense of the condition from \cref{def:CartesianMonoids}\itememph{b}, not
 \end{prop}
 In other words, monoids really are categories with one object (up to equivalence, but not up to contractible choice, as Bastiaan pointed out in the lecture), since the target is also pointed categories with connected base.
 \begin{proof}[Proof of \cref{prop:CompletionOfMonoidsFullyFaithful}]
-	The proof is not hard, but quite lengthy, so we break it down into four major steps. Be aware that Step~3 wasn't done in the lecture, so any errors in it are my fault.
+	The proof is not hard, but quite lengthy, so we break it down into four major steps. Be aware that Step~\itememph{3} wasn't done in the lecture, so any errors in it are my fault.
 	\begin{alphanumerate}
-		\item[\emph{Step~1.}] \itshape There exists a reasonable candidate $\decomp\colon {*/\cat{CSAn}}\morphism \cat{Mon}(\An)$ of an inverse functor \embrace{\enquote{decompletion}}.
+		\item[\itememph{1}] \itshape There exists a reasonable candidate $\decomp\colon {*/\cat{CSAn}}\morphism \cat{Mon}(\An)$ of an inverse functor \embrace{\enquote{decompletion}}.
 	\end{alphanumerate}
 	%Recall that if $X$ is Segal, then the completion functor does not affect the pullback spaces
 	%\begin{equation*}
@@ -42,6 +42,7 @@ In other words, monoids really are categories with one object (up to equivalence
 	%	\end{tikzcd}
 	%\end{equation*}
 	%(this follows essentially from \cref{eq:asscat2}).
+	
 	If $(X,x)$ is a pointed complete Segal space, and if $Y\in \cat{Mon}(\An)$ is the \enquote{universal way} to make $(X,x)$ connected and still satisfy the Segal condition, then it's reasonable to expect that $Y_n$ sits inside a pullback
 	\begin{equation*}
 		\begin{tikzcd}[column sep=large]
@@ -74,10 +75,11 @@ In other words, monoids really are categories with one object (up to equivalence
 	\begin{equation*}
 		\decomp\colon {*/\cat{CSAn}}\morphism \cat{Mon}(\An)\,.
 	\end{equation*}
-	This finishes Step~1.
+	This finishes Step~\itememph{1}.
 	\begin{alphanumerate}
-		\item[\emph{Step 2.}] \itshape The completion functor $\comp\colon \cat{Mon}(\An)\morphism \cat{CSAn}$ from \cref{lemdef:Completion} factors over $*/\cat{CSAn}\morphism \cat{CSAn}$ and its essential image is contained in those pointed complete Segal spaces $(X,x)$ with $\pi_0X_0=*$.
+		\item[\itememph{2}] \itshape The completion functor $\comp\colon \cat{Mon}(\An)\morphism \cat{CSAn}$ from \cref{lemdef:Completion} factors over $*/\cat{CSAn}\morphism \cat{CSAn}$ and its essential image is contained in those pointed complete Segal spaces $(X,x)$ with $\pi_0X_0=*$.
 	\end{alphanumerate}
+	
 	To get the factorisation, observe that $\cat{Mon}(\An)$ has an initial object, namely $\Delta^0\in\sSet\subseteq\cat{sAn}$ (in the lecture we called it \enquote{$\const*$}, but it's really just $\Delta^0$). Indeed, if $T\in \cat{Mon}(\An)$, then
 	\begin{equation*}
 		\Hom_{\cat{Mon}(\An)}(\Delta^0,T)\simeq \Hom_{\cat{sAn}}(\Delta^0,T)\simeq T_0\simeq *
@@ -92,13 +94,14 @@ In other words, monoids really are categories with one object (up to equivalence
 	\begin{equation*}
 		\colimit_{\IDelta^\op}\pi_0X=\Coeq\left(\pi_0X_1\doublemorphism[d_1][d_0] \pi_0X_0\right)\,.
 	\end{equation*}
-	This immediately implies \itememph{*} and thus Step~2 is done.
+	This immediately implies \itememph{*} and thus Step~\itememph{2} is done.
 	\begin{alphanumerate}
-		\item[\emph{Step~3.}]\itshape The functors from Step~1 and Step~2 fit into an adjunction
+		\item[\itememph{3}]\itshape The functors from Step~\itememph{1} and Step~\itememph{2} fit into an adjunction
 		\begin{equation*}
 			\comp\colon \cat{Mon}(\An)\doublelrmorphism {*/\cat{CSAn}}\noloc \decomp
 		\end{equation*}
 	\end{alphanumerate}
+	
 	Consider $T\in \cat{Mon}(\An)$, which is naturally pointed via the unique (up to contractible choice) map $1_T\colon \Delta^0\morphism T$, and let $(X,x)$ be a pointed complete Segal space. Then
 	\begin{align*}
 		\Hom_{*/\cat{CSAn}}\big(\comp T,(X,x)\big)&\simeq \Hom_{*/\cat{sAn}}\big((T,1_T),(X,x)\big)\\
@@ -114,11 +117,12 @@ In other words, monoids really are categories with one object (up to equivalence
 	\begin{equation*}
 		\Hom_{\cat{Mon}(\An)}\big(T,\decomp (X,x)\big)\simeq \Hom_{\cat{sAn}}(T,X)\times_{\Hom_\An(T_0,X_0)}\{x\}\,,
 	\end{equation*} 
-	and after another inspection, we see that our calculations of $\Hom_{*/\cat{CSAn}}(\comp T,(X,x))$ and $\Hom_{\cat{Mon}(\An)}(T,\decomp (X,x))$ agree, as they are supposed to. This finishes Step~3.
+	and after another inspection, we see that our calculations of $\Hom_{*/\cat{CSAn}}(\comp T,(X,x))$ and $\Hom_{\cat{Mon}(\An)}(T,\decomp (X,x))$ agree, as they are supposed to. This finishes Step~\itememph{3}.
 	\begin{alphanumerate}
-		\item[\emph{Step~4.}] \itshape The restriction $\decomp\colon (*/\cat{CSAn})_{\pi_0=*}\morphism \cat{Mon}(\An)$ is indeed an inverse to $\comp$, where $(*/\cat{CSAn})_{\pi_0=*}\subseteq */\cat{CSAn}$ denotes the full subcategory spanned by those $(X,x)$ with $\pi_0X_0=*$.
+		\item[\itememph{4}] \itshape The restriction $\decomp\colon (*/\cat{CSAn})_{\pi_0=*}\morphism \cat{Mon}(\An)$ is indeed an inverse to $\comp$, where $(*/\cat{CSAn})_{\pi_0=*}\subseteq */\cat{CSAn}$ denotes the full subcategory spanned by those $(X,x)$ with $\pi_0X_0=*$.
 	\end{alphanumerate}
-	Thanks to Step~3, we already have unit and counit transformations $\id\Rightarrow \decomp\circ \comp$ and $\comp\circ\decomp\Rightarrow \id$, so we only need to show that they are equivalences. Let's start with the counit. We must show
+	
+	Thanks to Step~\itememph{3}, we already have unit and counit transformations $\id\Rightarrow \decomp\circ \comp$ and $\comp\circ\decomp\Rightarrow \id$, so we only need to show that they are equivalences. Let's start with the counit. We must show
 	\begin{equation*}
 		\comp\big(\decomp (X,x)\big)\simeq (X,x)
 	\end{equation*}
@@ -1044,11 +1048,11 @@ For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-ad
 	in $\Cc$. Using the first condition from \itememph{b} we see that the composition of the lower three arrows is homotopic to $\id_c\times \id_d$. Hence the morphism we precompose with is homotopic to the identity on $c\times d$, which shows $\psi_a\times \phi_a\simeq \id$, as required.
 \end{proof}
 \begin{proof}[Proof of \cref{thm:CMonCGrpAdjunctions}]
-	We first prove that $\CMon(\Cc)$ is semi-additive. Of course we would like to apply \cref{lem:SemiAddCriterion}, so we must produce the corresponding data on $\CMon(\Cc)$. First of all, note that $\const *\colon \IGamma^\op\morphism \Cc$ is both terminal and initial. It is even terminal in $\Fun(\IGamma^\op,\Cc)$ because $*\in \Cc$ is terminal and limits in functor categories are computed pointwise (\cref{lem:f^*preservesColimits}). To see that it is initial, let $X\in \CMon(\Cc)$ and compute
+	We first prove that $\CMon(\Cc)$ is semi-additive. Of course we would like to apply \cref{lem:SemiAddCriterion}, so we must produce the corresponding data on $\CMon(\Cc)$. First of all, note that $\const *\colon \IGamma^\op\morphism \Cc$ is both terminal and initial in $\CMon(\Cc)$. It is even terminal in $\Fun(\IGamma^\op,\Cc)$ because $*\in \Cc$ is terminal and limits in functor categories are computed pointwise (\cref{lem:f^*preservesColimits}). To see that it is initial, let $X\in \CMon(\Cc)$ and compute
 	\begin{equation*}
 		\Nat(\const *,X)\simeq \Hom_\Cc\left(*,\limit_{\langle n\rangle\in \IGamma^\op}X_n\right)\simeq \Hom_\Cc(*,X_0)\simeq \Hom_\Cc(*,*)\simeq *\,,
 	\end{equation*}
-	where we used that $\langle 0\rangle\in \IGamma^\op$ is a terminal object and thus spans a final subset.
+	where we used that $\langle 0\rangle\in \IGamma^\op$ is an initial object and thus spans a final subset in the sense of \cref{def:cofinal} (and yes, our terminology here isn't optimal, but then again there is no good terminology at all).
 	
 	Next we need to construct functorial maps $\mu_M\colon M\times M\morphism M$ for all $M\in \CMon(\Cc)$. Consider the map $\times \colon \IGamma^\op\times \IGamma^\op\morphism \IGamma^\op$ given by crossing the sets and crossing the morphisms (note that this wouldn't work with $\IDelta^\op$). It induces a functor $\Fun(\IGamma^\op,\Cc)\morphism \Fun(\IGamma^\op,\Fun(\IGamma^\op,\Cc))$, and one easily checks that the Segal condition is preserved, i.e.\ we get a functor
 	\begin{equation*}
@@ -1312,7 +1316,7 @@ An immediate consequence of \cref{propdef:StableInftyCategory} is that $\Sp(\Cc)
 \begin{defi}
 	\begin{alphanumerate}
 		\item Let $F\colon \Cc\morphism\Dd$ be a functor between $\infty$-categories with finite limits. We call $F$ \emph{left exact} if it preserves finite limits.
-		\item We denote by $\Cat_\infty^\mathrm{lex}\subseteq \Cat_\infty$ the (non-full) sub-$\infty$-category  spanned by these. Dually, $\Cat_\infty^\mathrm{rex}\subseteq \Cat_\infty$ is the full sub-$\infty$-category spanned by \emph{right-exact} functors, i.e.\ finit colimit-preserving functors between $\infty$-categories with finite colimits.
+		\item We denote by $\Cat_\infty^\mathrm{lex}\subseteq \Cat_\infty$ the (non-full) sub-$\infty$-category  spanned by these. Dually, $\Cat_\infty^\mathrm{rex}\subseteq \Cat_\infty$ is the full sub-$\infty$-category spanned by \emph{right-exact} functors, i.e.\ finite colimit-preserving functors between $\infty$-categories with finite colimits.
 		\item Finally, we denote by $\Cat_\infty^\mathrm{st}$ the full subcategory of both $\Cat_\infty^\mathrm{lex}$ and $\Cat_\infty^\mathrm{rex}$ spanned by the stable $\infty$-categories.
 	\end{alphanumerate}
 \end{defi}
@@ -1664,7 +1668,7 @@ Note that $\widetilde{\Sp}(\Cc)$ is stable: It has finite limits inherited from 
 	\begin{equation*}
 		\ev_{\IS^0}\colon \widetilde{\Sp}\big(\widetilde{\Sp}(\Cc)\big)\isomorphism \widetilde{\Sp}(\Cc)\quad\text{and}\quad\ev_{\IS^0,*}\colon \widetilde{\Sp}\big(\widetilde{\Sp}(\Cc)\big)\isomorphism\widetilde{\Sp}(\Cc) 
 	\end{equation*}
-	are equivalences and then apply the same reasoning as in the proof of that theorem.
+	are equivalences and then apply the same reasoning (in particular, use Proposition~\labelcref{prop:LLaddendum}) as in the proof of that theorem.
 	
 	We will sketch a third way by constructing an inverse functor. For this, we use the following general construction: Let $\An^\mathrm{fin}\subseteq \An$ denote the smallest sub-$\infty$-category containing $*$ and closed under finite colimits. Let $\Dd$ be any $\infty$-category with finite limits and finite colimits. For $d\in \Dd$ we put
 	\begin{equation*}
@@ -1855,11 +1859,11 @@ The following lemma is closely related, but wasn't mentioned in the lecture, alt
 \subsection{Towards the Tensor Product of Spectra}
 Our next goal is to make cartesian and cocartesian monoidal structures on $\infty$-categories with products, and to stablize them to eventually define the symmetric monoidal structure on $\Sp$. While Lurie writes down explicit simplicial sets to construct the desired $\infty$-operads, we will cheat a bit and use complete Segal spaces instead. This is based on the following lemma.
 \begin{lem}\label{lem:TautologicalPresheafLemma}
-	Let $\Ee$ be an $\infty$-category. For a presheaf $X\in \Pp(\Ee)$, consider the slice category $\Ee/X$ with respect to the Yoneda embedding $Y^\Ee\colon \Ee\morphism P(\Ee)$ and $\{X\}\morphism \Pp(\Ee)$ \embrace{in the notation of \cref{lem*:PresheafColimitOfRepresentables} this would have been $Y^\Ee/X$ instead}. The canonical functor
+	Let $\Ee$ be an $\infty$-category. For a presheaf $X\in \Pp(\Ee)$, consider the slice category $\Ee/X$ with respect to the Yoneda embedding $\Yo^\Ee\colon \Ee\morphism P(\Ee)$ and $\{X\}\morphism \Pp(\Ee)$ \embrace{in the notation of \cref{lem*:PresheafColimitOfRepresentables} this would have been $\Yo^\Ee/X$ instead}. The canonical functor
 	\begin{equation*}
 		\Pp(\Ee/X)\isomorphism \Pp(\Ee)/X\,,
 	\end{equation*}
-	constructed as the unique colimit-preserving extension of $Y^\Ee\colon\Ee/X\morphism \Pp(\Ee)/X$ via \cref{thm:ColimitPreservingRepresentable}, is an equivalence of $\infty$-categories.
+	constructed as the unique colimit-preserving extension of $\Yo^\Ee\colon\Ee/X\morphism \Pp(\Ee)/X$ via \cref{thm:ColimitPreservingRepresentable}, is an equivalence of $\infty$-categories.
 \end{lem}
 \begin{proof}%[Proof of \cref{lem:TautologicalPresheafLemma}]
 	Before we start, observe that $\Pp(\Ee)/X$ is indeed cocomplete since one immediately checks that it inherits colimits from $\Pp(\Ee)$. We will use the following criterion:
@@ -2030,14 +2034,17 @@ With that let's dive into cocartesian monoidal structure:
 	\begin{equation*}
 		\snake{\Cc}_n^\times\simeq \Fun\big((\text{power set of }\langle n\rangle)^\op,\Cc\big)\,.
 	\end{equation*}
-	Now let $\Cc^\times$ be the full subcategory of $\snake{\Cc}^\times$ which is fibrewise spanned by those functors $F\colon (\text{power set of }\langle n\rangle)^\op\morphism\Cc$ satisfying $F(S)\simeq \prod_{i=1}^nF(\{i\})$. Then $p^\times\colon \Cc^\times\morphism\IGamma^\op$ is an $\infty$-operad satisfying $\Cc_n^\times\simeq \Cc^n$ and it represents the cartesian monoidal structure if $\Cc$ has enough products. An active morphism $(a_1,\dotsc,a_n)\morphism b$ is $p^\times$-cocartesian iff it exhibits $b$ as a product of the $a_i$.
+	Now let $\Cc^\times$ be the full subcategory of $\snake{\Cc}^\times$ which is fibrewise spanned by those functors $F\colon (\text{power set of }\langle n\rangle)^\op\morphism\Cc$ satisfying $F(S)\simeq \prod_{i\in S}F(\{i\})$. 
 \end{con}
 \begin{prop}\label{prop:CartesianMonoidalStructure}
 	With notation as in \cref{con:CocartesianMonoidalStructure}:
 	\begin{alphanumerate}
 		\item The presheaf $F_{\Cc^\times}$ defines a complete Segal anima via \cref{lem:TautologicalPresheafLemma}.
-		\item $p^\times\colon\Cc^\times\morphism \IGamma^\op$ is always an $\infty$-operad with underlying category $\Cc$ \embrace{and thus $\Cc_n^\times\simeq \Cc^n$}.
-		\item If $\Cc$ has finite products, then $p^\times\colon\Cc^\times\morphism\IGamma^\op$ is a symmetric monoidal category and $\Hom_{\Cc^\times}^\mathrm{act}((a_1,\dotsc,a_n),-)\simeq \Hom_{\Cc^\times}(a_1\times\dotsb\times a_n,-)$.
+		\item $p^\times\colon\Cc^\times\morphism \IGamma^\op$ is always a cocartesian fibration with $\Cc_1^\times\simeq \Cc$ \embrace{but not necessarily an $\infty$-operad}.
+		\item If $\Cc$ has finite products, then $p^\times\colon\Cc^\times\morphism\IGamma^\op$ satisfies the Segal condition, hence it is a symmetric monoidal $\infty$-category with underlying $\infty$-category $\Cc$. Moreover, in this case we have
+		\begin{equation*}
+			\Hom_{\Cc^\times}^\mathrm{act}\big((a_1,\dotsc,a_n),-\big)\simeq \Hom_{\Cc^\times}(a_1\times\dotsb\times a_n,-)\,.
+		\end{equation*}
 	\end{alphanumerate}
 \end{prop}
 \begin{proof}
@@ -2309,10 +2316,10 @@ With these constructions we can now formulate a striking theorem of Thomas Nikol
 		(-)_*^{\Op_\infty}\colon \Op_\infty^*&\morphism \Op_\infty^\mathrm{pt}\,,&\CMon^{\Op_\infty}(-)\colon \Op_\infty^\times&\morphism \Op_\infty^\mathrm{semi\mhyph add}\,,\\
 		\CGrp^{\Op_\infty}(-)\colon \Op_\infty^\times&\morphism \Op_\infty^\mathrm{add}\,,&\Sp^{\Op_\infty}(-)\colon \Op_\infty^\mathrm{lex}&\morphism \Op_\infty^\mathrm{st}\,,
 	\end{align*}
-	each of which is left-adjoint to the respective fully faithful inclusion in the other direction \embrace{i.e., a left Bousfield localisation}.
+	each of which is right-adjoint to the respective fully faithful inclusion in the other direction \embrace{i.e., they are all right Bousfield localisations}.
 \end{thm}
 \begin{proof*}[Proof sketch]
-	Once we know that our four functors take values in the correct $\infty$-categories, we can proceed as in \cref{thm:CMonCGrpAdjunctions} and \cref{thm:SpLeftAdjoint} to show that they are left Bousfield localisations. So we only need to prove the first part of the theorem.
+	Once we know that our four functors take values in the correct $\infty$-categories, we can proceed as in \cref{thm:CMonCGrpAdjunctions} and \cref{thm:SpLeftAdjoint} to show that they are right Bousfield localisations. So we only need to prove the first part of the theorem.
 	
 	The most subtle part is to show that the required colimits in the $\infty$-operads $\Oo_*^{\Op_\infty}$, $\CMon^{\Op_\infty}(\Oo)$, $\CGrp^{\Op_\infty}(\Oo)$, and $\Sp^{\Op_\infty}(\Oo)$ are actually operadic. Thomas Nikolaus does this with a beautiful trick: Let's first assume $\Oo\simeq \Cc^\otimes$, where $\Cc$ is a symmetric monoidal $\infty$-category for which \cref{prop:Sp(C)Monoidal} below is applicable. Then this proposition says that in fact all small colimits are operadic and we're happy. In general, one can find a fully faithful map of $\infty$-operads $i\colon\Oo\morphism \Cc^\otimes$ such that \cref{prop:Sp(C)Monoidal} is applicable to $\Cc^\otimes$ and $i_1\colon \Oo_1\morphism\Cc$ preserves the required finite limits, see \cite[Proposition~2.7]{NikolausStable} and \cref{rem*:PropII.51ApplicableForP(D)}. The required finite colimits in $*/\Oo_1$, $\CMon(\Oo_1)$, $\CGrp(\Oo_1)$, and $\Sp(\Oo_1)$ are also finite colimits in $*/\Cc$, $\CMon(\Cc)$, $\CGrp(\Cc)$, and $\Sp(\Cc)$ since each of them (zero objects, finite coproducts in semi-additive $\infty$-categories, finite colimits in stable $\infty$-categories) can be built from finite limits which $i_1\colon \Oo_1\morphism\Cc$ preserves. Hence they are operadic and we win.
 \end{proof*}
@@ -2958,7 +2965,7 @@ We can now define symmetric monoidal structures on the stable $\infty$-categorie
 		S\otimes_R-\colon \Mod_R^{\otimes_R}\morphism \Mod_S^{\otimes_S}\,,
 	\end{equation*}
 	which does what it says on underlying spectra. If moreover $S\morphism T$ is another map in $\CAlg$, then $T\otimes_S(S\otimes_R -)\simeq  T\otimes_R-$.
-	\item The functor $S\otimes_R\colon \Mod_R\morphism\Mod_S$ has a right adjoint, the forgetful functor
+	\item The functor $S\otimes_R-\colon \Mod_R\morphism\Mod_S$ has a right adjoint, the forgetful functor
 	\begin{equation*}
 		F_{S/R}\colon \Mod_S\morphism\Mod_R\,,
 	\end{equation*}
@@ -3060,7 +3067,7 @@ If $M\in \CGrp(\An)$, then $\IS[M]$ is an $\IE_\infty$-ring spectrum, as noted w
 \end{equation*}
 This is (our definition of) the \emph{Pontryagin product}. 
 
-A natural question is whether the cup product in cohomology arises in a similar way. It does! The main ingredient is a construction due to Glasman, which upgrades the Yoneda embedding $Y^\Cc\colon \Cc\morphism \Fun(\Cc^\op,\An)$ to a lax symmetric monoidal functor
+A natural question is whether the cup product in cohomology arises in a similar way. It does! The main ingredient is a construction due to Glasman, which upgrades the Yoneda embedding $\Yo^\Cc\colon \Cc\morphism \Fun(\Cc^\op,\An)$ to a lax symmetric monoidal functor
 \begin{equation*}
 	\Cc^\otimes\morphism\operatorname{Day}(\Cc_\otimes^\op,\An^\times)\,,
 \end{equation*}

@@ -405,9 +405,9 @@
 		The \emph{simplex category} $\IDelta$ is the category of finite totally ordered sets and order preserving maps. For $\Cc$ a category we put $\cat{s}\Cc=\Fun(\IDelta^\op,\Cc)$ and $\cat{c}\Cc=\Fun(\IDelta,\Cc)$ and call this the categories of \emph{simplicial} and \emph{cosimplicial objects} in $\Cc$.
 	\end{defi}
 \begin{thm}\label{thm:2Yoneda}
-	Let $A$ be a small category and let $\Cc$ be a cocomplete category. Then the Yoneda embedding $Y\colon A\morphism\Fun(A^\op,\cat{Set})$ induces an equivalence of categories
+	Let $A$ be a small category and let $\Cc$ be a cocomplete category. Then the Yoneda embedding $\Yo\colon A\morphism\Fun(A^\op,\cat{Set})$ induces an equivalence of categories
 	\begin{equation*}
-		Y^*\colon \Fun^L\big(\Fun(A^\op,\cat{Set}),\Cc\big)\isomorphism \Fun(A,\Cc)\,.
+		\Yo^{*}\colon \Fun^L\big(\Fun(A^\op,\cat{Set}),\Cc\big)\isomorphism \Fun(A,\Cc)\,.
 	\end{equation*}
 	Here $\Fun^L$ denotes the full subcategory of functors who are left adjoints \embrace{and thus admit right adjoints}.
 \end{thm}
@@ -421,11 +421,11 @@ In particular, we can apply \cref{thm:2Yoneda} to $A=\IDelta$ and obtain $\Fun^L
 In concrete terms, $|\blank|_F$ can be described as the left Kan extension
 \begin{equation*}
 	\begin{tikzcd}
-		\IDelta \rar["F"]\dar["Y"']& \Cc\\
-		\cat{sSet}\urar[dashed,"\operatorname{Lan}_YF=|\blank|_F"'] & 
+		\IDelta \rar["F"]\dar["\Yo"']& \Cc\\
+		\cat{sSet}\urar[dashed,"\operatorname{Lan}_{\Yo}F=|\blank|_F"'] & 
 	\end{tikzcd}
 \end{equation*}
-of $F$ along the Yoneda embedding $Y\colon \IDelta\morphism \cat{sSet}$. Moreover, as $\Sing_F$ is supposed to be right-adjoint to $|\blank|_F$, it is necessarily given by 
+of $F$ along the Yoneda embedding $\Yo\colon \IDelta\morphism \cat{sSet}$. Moreover, as $\Sing_F$ is supposed to be right-adjoint to $|\blank|_F$, it is necessarily given by 
 \begin{equation*}
 	\Sing_F(X)_n=\Hom_{\Cc}\big(|\Delta^n|_F,X\big)=\Hom_{\Cc}\big(F([n]),X\big)\,.
 \end{equation*}
@@ -672,7 +672,7 @@ The main goal of Fabian's Higher Categories~II lecture last semester was to cons
 	This association upgrades to a fully faithful functor $\Un\colon \Fun(\Cc,\cat{An})\morphism\cat{Cat}_\infty/\Cc$ \embrace{the \enquote{unstraightening} functor}, whose essential image is the full subcategory $\Left(\Cc)$ spanned by the left fibrations over $\Cc$ \embrace{to be defined in \cref{def:WeirdCocartesianDefinition}}. We let $\St\colon \Left(\Cc)\morphism\Fun(\Cc,\cat{An})$ \embrace{\enquote{straightening}} denote an inverse.
 \end{thm}
 \begin{proof*}
-	This follows from the combined effort of all we did in Higher Categories~II, so let me randomly choose \cite[Remark~X.57(iii)]{HigherCatsII} as a reference.
+	This follows from the combined effort of all we did in Higher Categories~II, so let me randomly pick \cite[Remark~X.57(iii)]{HigherCatsII} as a reference.
 \end{proof*}
 \begin{exm}
 	For any $x\in \Cc$, the straightening of the left fibration $x/\Cc\morphism\Cc$ is defined to be $\Hom_\Cc(x,-)\colon \Cc\morphism\cat{An}$. That this makes sense can be seen as follows. Observe that the fibre of $\Un(F)\morphism \Cc$ over some $y\in \Cc$ is just $F(y)$, since the fibre of $*/\cat{An}\morphism \cat{An}$ over some anima $X$ is just $X$ itself. Conversely, $\St(p\colon \Ee\morphism\Cc)(y)\simeq (\text{fibre of $G$ over $y$})$ holds for all left fibrations $p\colon \Ee\morphism \Cc$. In particular, evaluating $\Hom_\Cc(x,-)$ at $y$ gives the fibre of $x/\Cc$ over $y$, which is indeed $\Hom_\Cc(x,y)$.
@@ -849,7 +849,7 @@ There are at least four equivalent ways to do so.
 	
 	Applying the cocartesian straightening construction gives a natural transformation $\St^\cocart(t)\Rightarrow \const \Cc$ of functors $\Cc\morphism\cat{Cat}_\infty$ by \cref{thm:StraighteningCat}. This natural transformation defines a map $\Delta^1\morphism\Fun(\Cc,\cat{Cat}_\infty)$, hence a functor $S\colon\Cc\morphism\Ar(\cat{Cat}_\infty)$ by adjoining. Informally, $S$ takes $x\in \Cc$ to the object $\Cc/x\morphism\Cc$ in the arrow category of $\cat{Cat}_\infty$. In particular, these are right fibrations by \cref{exm:MyFirstCocartesian}\itememph{c} and the target is always $\Cc$, whence $S$ factors through $\Right(\Cc)\morphism\Ar(\cat{Cat}_\infty)$. We denote the resulting functor $S\colon \Cc\morphism\Right(\Cc)$ as well. Composing $S$ with $\St^\cart\colon\Right(\Cc)\isomorphism \Fun(\Cc^\op,\cat{An})$,  the cartesian straightening equivalence, finally provides a functor
 	\begin{equation*}
-		Y\colon \Cc\morphism\Fun(\Cc^\op,\cat{An})
+		\Yo^\Cc\colon \Cc\morphism\Fun(\Cc^\op,\cat{An})
 	\end{equation*}
 	(the \emph{Yoneda embedding}), which gives the desired $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\cat{An}$ after \enquote{currying} (which is how Fabian sometimes calls the adjunction $\Fun(\Cc,\Fun(\Dd,\Ee))\simeq \Fun(\Cc\times\Dd,\Ee)$).
 	\item You can also dualize all steps in \itememph{c} and start with
@@ -939,7 +939,7 @@ The twisted arrow category will be important to us since it has to do with \emph
 And voilà, plenty of spans!
  The corresponding picture for $\Ar(\Delta^n)$ is instead the following:
 \begin{center}
-	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
+	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round,rotate=-45]
 		\fill (0,0) circle (0.5ex) coordinate (00);
 		\fill (2,0) circle (0.5ex) coordinate (01);
 		\fill (4,0) circle (0.5ex) coordinate (02);
@@ -960,24 +960,25 @@ And voilà, plenty of spans!
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (11) -- (02);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (02) -- (12);
-		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (12) -- (03);
+		\path (12) to node[pos=0.5,sloped,rotate=-45] {$\ldots$} (03);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (13) -- (04);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (10) -- (20);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (20) -- (11);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (11) -- (21);
-		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (22) -- (13);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (31) -- (22);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (21) -- (12);
-		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (30) -- (40);
+		\path (30) to node[pos=0.5] {$\ldots$} (40);
 		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (40) -- (31);
-		\path (03) to  node[pos=0.5] {$\ldots$} (04);
-		\path (12) to  node[pos=0.5] {$\ldots$} (13);
-		\path (21) to  node[pos=0.5] {$\ldots$} (22);
-		\path (31) to  node[pos=0.5,sloped] {$\ldots$} (22);
-		\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
-		\path (21) to  node[pos=0.5,sloped] {$\ldots$} (30);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (20) to  (30);
+		\draw[-to,shorten <=1.25ex,shorten >=1.25ex] (03) to  (13);
+		\path (02) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (03);
+		\path (12) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (22);
+		\path (21) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (31);
+		\path (22) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (13);
+		\path (21) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (30);
 	\end{tikzpicture}
 \end{center}
-As a bit of foreshadowing, Fabian mentioned that the first picture is related to the Quillen $Q$-construction (which will come up later, see \cref{exm:MyFirstRezkNerves}\itememph{d}), whereas the second is related to the Waldhausen $S$-construction (which we probably won't discuss in the course).
+As a bit of foreshadowing, Fabian mentioned that the first picture is related to the \emph{Quillen $Q$-construction} (see~\cref{par:QuillenQConstruction}), whereas the second is related to the \emph{Segal $S$-construction} (see \cref{con:SConstruction}), which people keep calling \emph{Waldhausen} $S$-construction, even though Waldhausen himself wrote \emph{Segal} $S$-construction.
 \begin{exc}\label{exc:coreTwAr=coreAr}
 	Show that $\core\TwAr(\Cc)\simeq\core\Ar(\Cc)$ holds for all $\infty$-categories $\Cc$.
 \end{exc}
@@ -995,16 +996,17 @@ Now that we have a sufficient supply of mutually equivalent definitions of the $
 		\end{equation*}
 		is an equivalence \embrace{we use $\Nat$ as a shortcut for $\Hom_{\Fun(\Cc,\cat{An})}$}. Morover, adjoining the functor $\Hom_\Cc\colon\Cc^\op\times\Cc\morphism\Fun(\Cc,\cat{An})$ gives fully faithful functors \embrace{\enquote{Yoneda embeddings}}
 		\begin{equation*}
-			Y^\Cc\colon\Cc\morphism\Fun(\Cc^\op,\cat{An})\quad\text{and}\quad Y_\Cc\colon\Cc^\op\morphism\Fun(\Cc,\An)\,.
+			\Yo^\Cc\colon\Cc\morphism\Fun(\Cc^\op,\cat{An})\quad\text{and}\quad \Yo_\Cc\colon\Cc^\op\morphism\Fun(\Cc,\An)\,.
 		\end{equation*}
 \end{thm}
-\begin{proof*}
+Initially, I used $Y$ to denote the Yoneda embeddings, but then people advised me to use $\Yo$ instead, the hiragana symbol for \emph{yo}, which I think makes a lot of sense.
+\begin{proof*}[Proof of \cref{thm:Yoneda}]
 	See \cite[Corollaries~XI.2 and~XI.4]{HigherCatsII}.
 \end{proof*}
 \begin{defi}
 	For an $\infty$-category $\Cc$ we denote by $\Pp(\Cc)=\Fun(\Cc^\op,\cat{An})$ the \emph{$\infty$-category of presheaves} on $\Cc$.
 \end{defi}
-Onwards to adjunctions!
+%Onwards to adjunctions!
 \begin{defi}
 	Let $R\colon\Dd\morphism\Cc$ be a functor of $\infty$-categories.
 	\begin{alphanumerate}
@@ -1028,9 +1030,9 @@ A simple but still somewhat surprising and incredibly useful consequence of Yone
 	\end{equation*}
 \end{cor}
 \begin{proof}
-	We repeat the proof given in \cite[Lemma~XI.6]{HigherCatsII}. Via currying, the functor $\Hom_\Cc(-,R-)\colon \Cc^\op\times\Dd\morphism\cat{An}$ corresponds to a functor $H\colon \Cc^\op\morphism\Fun(\Dd,\cat{An})$. When restricted to $\Cc_R^\op$, it lands in the representables, i.e., in the essential image of the Yoneda embedding $Y_\Dd\colon \Dd^\op\morphism\Fun(\Dd,\cat{An})$. By \cref{thm:Yoneda}, $Y_\Dd$ is fully faithful, hence an equivalence onto its essential image by \cref{thm:JoyalEquivalence}\itememph{a}. Composing $H|_{\Cc_R^\op}$ with an inverse of this equivalence gives a functor $\Cc_R^\op\morphism\Dd^\op$. Taking $(-)^\op$ we get $L\colon \Cc_R\morphism\Dd$ as required.
+	We repeat the proof given in \cite[Lemma~XI.6]{HigherCatsII}. Via currying, the functor $\Hom_\Cc(-,R-)\colon \Cc^\op\times\Dd\morphism\cat{An}$ corresponds to a functor $H\colon \Cc^\op\morphism\Fun(\Dd,\cat{An})$. When restricted to $\Cc_R^\op$, it lands in the representables, i.e., in the essential image of the Yoneda embedding $\Yo_\Dd\colon \Dd^\op\morphism\Fun(\Dd,\cat{An})$. By \cref{thm:Yoneda}, $\Yo_\Dd$ is fully faithful, hence an equivalence onto its essential image by \cref{thm:JoyalEquivalence}\itememph{a}. Composing $H|_{\Cc_R^\op}$ with an inverse of this equivalence gives a functor $\Cc_R^\op\morphism\Dd^\op$. Taking $(-)^\op$ we get $L\colon \Cc_R\morphism\Dd$ as required.
 	
-	By construction, $Y_\Dd\circ L^\op$ is equivalent to $H|_{\Cc_R^\op}$ in $\Fun(\Cc_R^\op,\Fun(\Dd,\An))$. But this means that $\Hom_\Dd(L-,-)$ and $\Hom_\Cc(-,R-)$ are equivalent in $\Fun(\Cc_R^\op\times\Dd,\An)$. If $\Cc_R=\Cc$, this proves that $L$ is indeed a left adjoint of $R$.
+	By construction, $\Yo_\Dd\circ L^\op$ is equivalent to $H|_{\Cc_R^\op}$ in $\Fun(\Cc_R^\op,\Fun(\Dd,\An))$. But this means that $\Hom_\Dd(L-,-)$ and $\Hom_\Cc(-,R-)$ are equivalent in $\Fun(\Cc_R^\op\times\Dd,\An)$. If $\Cc_R=\Cc$, this proves that $L$ is indeed a left adjoint of $R$.
 \end{proof}
 \begin{exm}\label{exm:MyFirstAdjoints}
 	\enquote{My first adjoint pairs of functors}:
@@ -1038,7 +1040,7 @@ A simple but still somewhat surprising and incredibly useful consequence of Yone
 		\item The inclusion $\cat{An}\subseteq \cat{Cat}_\infty$ has both a left adjoint, the functor $|\blank|\colon \cat{Cat}_\infty\morphism\cat{An}$ (which sends an $\infty$-category to its localisation at all its morphisms), and a right adjoint, given by $\core\colon \cat{Cat}_\infty\morphism\cat{An}$. We proved this in \cite[Example~XI.8]{HigherCatsII}. Moreover, the inclusion $\cat{Set}\morphism\cat{An}$ has $\pi_0\colon\cat{An}\morphism\cat{Set}$ as a left adjoint. In pictures,
 		\begin{equation*}
 			\begin{tikzcd}
-				\Set\rar[symbol=\subseteq] & \An\rar[symbol=\subseteq]\lar[dashed,bend right=45,"\pi_0"'] \rar[symbol=\subseteq] & \Cat_\infty\lar[dashed,bend right=45,"|\blank|"']\lar[dashed,bend left=45,"\core",shorten >=0.75ex]
+				\Set\rar[symbol=\subseteq] & \An\rar[symbol=\subseteq]\lar[dashed,bend right=45,"\pi_0"']  & \Cat_\infty\lar[dashed,bend right=45,"|\blank|"']\lar[dashed,bend left=45,"\core",shorten >=0.75ex]
 			\end{tikzcd}
 		\end{equation*}
 		Of course we should actually write $\N(\Set)$ instead of $\Set$, but from now on we'll frequently abuse notation that way since writing $\N$ all the time will inevitably get on our \dotso \emph{nerves} (sorry).
@@ -1127,7 +1129,7 @@ If we use the new notion from \cref{def:WeirdCocartesianDefinition}\itememph{b} 
 	\end{equation*}
 	which is the desired natural transformation. Whether this is an equivalence can be checked pointwise. Since instead of $\Nat(\const-,F)$ we can take the corresponding $\Hom$ anima in $\Cocart(\Ii)$, we arrive at the equivalence from the beginning of the proof. Since we know how to compute $\Hom$ spaces in $\Cat_\infty$ and in $\Cat_\infty/\Ii$ (the latter by \cite[Corollary~VIII.6]{HigherCatsII}), one easily checks $\Hom_{\Cat_\infty}(\Cc,\Gamma(p))\simeq\Hom_{\Cat_\infty/\Ii}((\pr_2\colon\Cc\times \Ii\morphism \Ii),(p\colon E\morphism \Ii))$. Now the $\Hom$ anima we are interested in are full subanima of these, so it really suffices to check that their $0$-simplices correspond, which we did above.
 \end{proof}
-\begin{exm}\lecture[Localisations. More properties of (co)limits. Left Kan extensions for presheaf categories. $\Hom$ anima in functor categories.]{2020-11-10}
+\begin{exm}\lecture[Localisations. More properties of (co)limits. Left Kan extensions for presheaf categories. $\Hom$ anima in functor categories.]{2020-11-10}\label{exm:Localisation}
 	Since $\core\colon\Cat_\infty\morphism\An$ is right-adjoint to the inclusion $\An\subseteq\Cat_\infty$ (\cref{exm:MyFirstAdjoints}\itememph{a}), we get a natural counit transformation $\core\Rightarrow\id_{\Cat_\infty}$, which is given by a map $\Delta^1\morphism\Fun(\Cat_\infty,\Cat_\infty)$. By currying, this yields a functor
 	\begin{align*}
 		\Cat_\infty&\morphism\Ar(\Cat_\infty)\\
@@ -1157,8 +1159,8 @@ Localisations are difficult! Localisations of locally small $\infty$-categories 
 	Let's compute the pushout
 	\begin{equation*}
 		\begin{tikzcd}
-			\Delta^0\rar["1"]\drar[pushout]\dar["0"']& \Delta^1\dar\\
-			\Delta^1\rar& \boldsymbol{?}
+			\Delta^0\rar["1"]\drar[pushout]\dar["0"']& \Delta^1\dar[dashed]\\
+			\Delta^1\rar[dashed]& \boldsymbol{?}
 		\end{tikzcd}
 	\end{equation*}
 	in $\Cat_\infty$. One way to do this would be to notice that $0\colon \Delta^0\morphism\Delta^1$ is a cofibration in the Joyal model structure on $\sSet$ (and so is $1\colon \Delta^0\morphism\Delta^1$, but we don't even need this) and all objects are cofibrant, hence the pushout on the nose, which is the $2$-spine $I^2$, is also a homotopy pushout. Now $I^2\subseteq\Delta^2$ is inner anodyne, hence $\Delta^2$ is a fibrant replacement of $I^2$ in the Joyal model structure, which shows that $\boldsymbol{?}\simeq \Delta^2$ is really the pushout in question by \cref{thm:HomotopyLimits}.
@@ -1253,7 +1255,7 @@ for any $\infty$-category $\Ee$.
 \begin{proof*}
 	Fabian claims (I think) this follows from \cite[Proposition~\HTTthm{4.3.2.12}]{HTT}, but Lurie's proof is rather laborious, so I'll give my own proof*. As it turns out, the arguments are pretty much the same as for the proof of Theorems~\labelcref{thm:ColimitPreservingRepresentable,thm:KanExtension} in Fabians notes. I'll freely reference later results (without running into circular arguments, I hope).
 	
-	We won't prove the assertion as stated above, but its dualized version. The reason is that the direct proof of the undualized version is quite confusing (for example, neither of the Yoneda embeddings preserves colimits, so we would have to consider $(Y^\Dd)^\op\colon \Dd^\op\morphism\Pp(\Dd)^\op$) and it seems cleaner to prove the dualized statement and then deduce the undualized one by applying the dual statement to $p^\op\colon \Ee^\op\morphism\Cc^\op$.
+	We won't prove the assertion as stated above, but its dualized version. The reason is that the direct proof of the undualized version is quite confusing (for example, neither of the Yoneda embeddings preserves colimits, so we would have to consider $(\Yo^\Dd)^\op\colon \Dd^\op\morphism\Pp(\Dd)^\op$) and it seems cleaner to prove the dualized statement and then deduce the undualized one by applying the dual statement to $p^\op\colon \Ee^\op\morphism\Cc^\op$.
 	
 	So let $p\colon \Ee\morphism\Cc$ be cartesian instead. We want to construct $G$ as the right Kan extension $G\simeq p_*F$. Let's first consider the case where $\Dd$ is replaced by $\Pp(\Dd)$. Then the dual of \cref{thm:StraighteningAn} implies $\Fun(\Cc,\Pp(\Dd))\simeq \Fun(\Cc\times\Dd^\op,\An)\simeq \Right(\Cc^\op\times\Dd)$ and same for $\Ee$, so we may apply \cref{lem*:SmoothBaseChange} below to the cocartesian fibration $p^\op\times\id_\Dd\colon \Ee^\op\times\Dd\morphism\Cc^\op\times\Dd$ to see that $p^*\colon \Fun(\Cc,\Pp(\Dd))\morphism\Fun(\Ee,\Pp(\Dd))$ has a right adjoint $p_*$. Now consider the diagram
 	\begin{equation*}
@@ -1268,7 +1270,7 @@ for any $\infty$-category $\Ee$.
 	\end{equation*}
 	since right adjoints compose. This finishes the proof for $\Pp(\Dd)$.
 	
-	Now for the case of general $\Dd$. The Yoneda embedding $Y^\Dd\colon \Dd\morphism\Pp(\Dd)$ is fully faithful, hence an equivalence onto its essential image. To obtain a functor $p_*F\colon \Cc\morphism\Dd$, it thus suffices to check that $p_*(Y^\Dd\circ F)\colon \Cc\morphism\Pp(\Dd)$ has image in the representable functors. By assumption, all limits $\limit_{\Ee_{|c}}F_{|c}$ exist in $\Dd$ and $Y^\Dd$ preserves limits by \cref{cor:HomPreservesColimits}, hence the description of the values $p_*(Y\circ F)(c)$ for $c\in \Cc$ shows that indeed it takes values in the representables. Thus $p_*F\colon \Cc\morphism\Dd$ exists. The additional assertion about limits follows as above, noting that the limits in question exist in $\Dd$ if and only if the limits taken in $\Pp(\Dd)$ (where they definitely exist) are representable, since $Y^\Dd$ is fully faithful and preserves limits.
+	Now for the case of general $\Dd$. The Yoneda embedding $\Yo^\Dd\colon \Dd\morphism\Pp(\Dd)$ is fully faithful, hence an equivalence onto its essential image. To obtain a functor $p_*F\colon \Cc\morphism\Dd$, it thus suffices to check that $p_*(\Yo^\Dd\circ F)\colon \Cc\morphism\Pp(\Dd)$ has image in the representable functors. By assumption, all limits $\limit_{\Ee_{|c}}F_{|c}$ exist in $\Dd$ and $\Yo^\Dd$ preserves limits by \cref{cor:HomPreservesColimits}, hence the description of the values $p_*(Y\circ F)(c)$ for $c\in \Cc$ shows that indeed it takes values in the representables. Thus $p_*F\colon \Cc\morphism\Dd$ exists. The additional assertion about limits follows as above, noting that the limits in question exist in $\Dd$ if and only if the limits taken in $\Pp(\Dd)$ (where they definitely exist) are representable, since $\Yo^\Dd$ is fully faithful and preserves limits.
 \end{proof*}
 \begin{lem*}\label{lem*:SmoothBaseChange}
 	Let $p\colon \Cc\morphism\Dd$ be a cocartesian fibration of $\infty$-categories. Consider a pullback square \embrace{inside $\Cat_\infty$} as on the left
@@ -1374,7 +1376,7 @@ We start with an existence result for \enquote{Kan extensions} which was already
 	admits a left-adjoint. Its value on $p\colon \Ee\morphism\Cc$ is obtained by factoring $\Ee\morphism\Cc\morphism\Dd$ as a cofinal map followed by a right fibration $p'\colon\Ee'\morphism\Dd$. In diagrams
 	\begin{equation*}
 		\begin{tikzcd}
-			\Ee\dar["p"']\rar& \Ee'\dar["p'"']\\
+			\Ee\dar["p"']\rar& \Ee'\dar["\vphantom{p}\smash{p'}"]\\
 			\Cc\rar["f"]&\Dd
 		\end{tikzcd}
 	\end{equation*}
@@ -1389,6 +1391,7 @@ We start with an existence result for \enquote{Kan extensions} which was already
 		\item Under the fully faithful inclusions $\Right(\Cc)\subseteq\Cat_\infty/\Cc$ and $\Right(\Dd)\subseteq\Cat_\infty/\Dd$, the pullback functor $f^*\colon \Cat_\infty/\Dd\morphism\Cat_\infty/\Cc$ restricts to $f^*\colon \Right(\Dd)\morphism\Right(\Cc)$ from the formulation of the theorem.
 		\item The fully faithful inclusion $\Right(\Dd)\subseteq\Cat_\infty/\Dd$ has a left adjoint, sending an object $q\colon\Ee\morphism\Dd$ to $q'\colon\Ee'\morphism\Dd$, where $\Ee\morphism\Ee'\morphism\Dd$ is any factorisation into a cofinal map followed by a right fibration.
 	\end{numerate}
+	
 	Since left adjoints compose, combining \itememph{1}, \itememph{2}, and \itememph{3} shows that $f^*\colon \Right(\Dd)\morphism\Right(\Cc)$ has a left adjoint $f_!$ with the desired description on objects.
 		
 	To show \itememph{1}, we use \cref{cor:AdjointsPointwise} to see that it suffices to show that $f\circ p$ is a left adjoint object of $p$ for any $(p\colon \Ee\morphism\Cc)\in \Cat_\infty/\Cc$. If we had the dual of \cref{cor:HomPreservesColimits} below already, this would be almost trivial, but as it is, we need to be a bit careful. Factor $f\circ p$ into a Joyal equivalence $\Ee\morphism \Ee'$ followed by an isofibration $p'\colon\Ee'\morphism\Dd$. Then $f^*\Ee'$ equals the same pullback taken in $\sSet$ by \cref{thm:HomotopyLimits}. Hence there is a natural map $\Ee\morphism f^*\Ee'$. Together with functoriality of $f^*$, it induces natural transformations
@@ -1406,7 +1409,7 @@ We start with an existence result for \enquote{Kan extensions} which was already
 	The functor $f^*\colon \Pp(\Dd)\morphism\Pp(\Cc)$ has a left-adjoint $f_!$ \embrace{given by left Kan extension} such that the diagram
 	\begin{equation*}
 		\begin{tikzcd}
-			\Cc\rar["f"]\dar["Y^\Cc"']& \Dd\dar["Y^\Dd"]\\			\Pp(\Cc)\rar["f_!"]&\Pp(\Dd)
+			\Cc\rar["f"]\dar["\Yo^\Cc"']& \Dd\dar["\Yo^\Dd"]\\			\Pp(\Cc)\rar["f_!"]&\Pp(\Dd)
 		\end{tikzcd}
 	\end{equation*}
 	 commutes in the $\infty$-category $\Cat_\infty$.
@@ -1446,18 +1449,18 @@ Note that \cref{cor:HomInFunctorCats} explains why natural transformations are c
 			\TwAr(\Cc)\rar["{(s,t)}"] & \Cc^\op\morphism\Cc\rar["F^\op\times G"] & \Dd^\op\times\Dd\rar["\Hom_\Dd"] & \An
 		\end{tikzcd}
 	\end{equation*}
-	which shows $\Gamma(p)\simeq\Hom_{\Cat_\infty/\Cc^\op\times\Cc}(\TwAr(\Cc),P')$. But these are both left fibrations over $\Cc^\op\times\Cc$, so the $\Hom$ anima on the right-hand side can be equivalently computed as $\Nat(\Hom_\Cc,{\Hom_\Dd}\circ(F^\op\times G))$. Now the currying equality  $\Fun(\Cc^\op\times\Cc,\An)=\Fun(\Cc,\Pp(\Cc))$ sends $\Hom_\Cc$ to $Y^\Cc$ and ${\Hom_\Dd}\circ(F^\op\times G)$ to $F^*\circ Y^\Dd\circ G$, hence the $\Hom$ anima under consideration is given by
+	which shows $\Gamma(p)\simeq\Hom_{\Cat_\infty/\Cc^\op\times\Cc}(\TwAr(\Cc),P')$. But these are both left fibrations over $\Cc^\op\times\Cc$, so the $\Hom$ anima on the right-hand side can be equivalently computed as $\Nat(\Hom_\Cc,{\Hom_\Dd}\circ(F^\op\times G))$. Now the currying equality  $\Fun(\Cc^\op\times\Cc,\An)=\Fun(\Cc,\Pp(\Cc))$ sends $\Hom_\Cc$ to $\Yo^\Cc$ and ${\Hom_\Dd}\circ(F^\op\times G)$ to $F^*\circ \Yo^\Dd\circ G$, hence the $\Hom$ anima under consideration is given by
 	\begin{equation*}
-		\Nat\big(Y^\Cc,F^*\circ Y^\Dd\circ G)\big)\simeq \Nat(F_!\circ Y^\Cc,Y^\Dd\circ G)\simeq \Nat(Y^\Dd\circ F,Y^\Dd\circ G)\simeq \Nat(F,G)\,,
+		\Nat\big(\Yo^\Cc,F^*\circ \Yo^\Dd\circ G)\big)\simeq \Nat(F_!\circ \Yo^\Cc,\Yo^\Dd\circ G)\simeq \Nat(\Yo^\Dd\circ F,\Yo^\Dd\circ G)\simeq \Nat(F,G)\,,
 	\end{equation*}
-	as claimed. For the left equivalence, we use that $F_!\circ -$ is an adjoint of $F^*\circ -$ by construction and \cref{obs:AdjunctionOfFunctorCats}, the middle equivalence follows from \cref{cor:f_!:PC->PD}, and the right one since $Y^\Dd\colon \Dd\morphism\Pp(\Dd)$ is fully faithful by Yoneda's lemma (\cref{thm:Yoneda}).
+	as claimed. For the left equivalence, we use that $F_!\circ -$ is an adjoint of $F^*\circ -$ by construction and \cref{obs:AdjunctionOfFunctorCats}, the middle equivalence follows from \cref{cor:f_!:PC->PD}, and the right one since $\Yo^\Dd\colon \Dd\morphism\Pp(\Dd)$ is fully faithful by Yoneda's lemma (\cref{thm:Yoneda}).
 \end{proof}
 \begin{cor}\label{cor:HomPreservesColimits}
 	Let $F\colon \Ii\morphism\Cc$ be a functor of $\infty$-categories. A natural transformation $\eta\colon F\Rightarrow\const c$ exhibits $c\in \Cc$ as the colimit of $F$ if and only if the natural map
 	\begin{equation*}
 		\eta^*\colon \Hom_\Cc(c,x)\isomorphism\limit_{i\in\Ii^\op}\Hom_\Cc\big(F(i),x\big)
 	\end{equation*}
-	is an equivalence for all $x\in \Cc$. A similar assertion holds for limits. In particular, the functors $\Hom_\Cc(-,d)\colon \Cc^\op\morphism\An$ and $Y^\Cc\colon \Cc\morphism\Pp(\Cc)$ preserve limits.
+	is an equivalence for all $x\in \Cc$. A similar assertion holds for limits. In particular, the functors $\Hom_\Cc(-,d)\colon \Cc^\op\morphism\An$ and $\Yo^\Cc\colon \Cc\morphism\Pp(\Cc)$ preserve limits.
 \end{cor}
 \begin{proof}
 	We are done if we can show that the right-hand side is just $\Nat(F,\const x)$. From \cref{cor:HomInFunctorCats} we get a map
@@ -1486,9 +1489,9 @@ Fabian wrote $i/s$ instead of $s/i$ in the lecture and in \cite[Corollar~I.50]{K
 \subsection{Kan Extensions}
 \lecture[Kan extensions and a version of \cref{thm:2Yoneda} for $\infty$-categories. Lots of examples to show how algebraic topology becomes a triviality after enough $\infty$-category theory.\newline --- \emph{\enquote{I'm so happy he \textup{[}Peter Scholze\textup{]} uses \textup{\enquote{$\An$}} \textup{[}to denote anima\textup{]}. I forced this on him. He wanted to call them \textup{\enquote{$\mathrm{Ani}$}}. That's the name of Darth Vader!}}]{2020-11-12}The first goal for today is to discuss two closely related theorems, which provide an $\infty$-analogue of \cref{thm:2Yoneda}.
 \begin{thm}\label{thm:ColimitPreservingRepresentable}
-	For every cocomplete $\infty$-category $\Dd$ and every small $\infty$-category $\Cc$, the restriction of $Y^*\colon \Fun(\Pp(\Cc),\Dd)\morphism\Fun(\Cc,\Dd)$ to colimit-preserving functors in the source is an equivalence. Furthermore, any such functor has a right adjoint. In view of \cref{obs:AdjointsPreserveLimits}, we thus get an equivalence
+	For every cocomplete $\infty$-category $\Dd$ and every small $\infty$-category $\Cc$, the restriction of $\Yo^{\Cc,*}\colon \Fun(\Pp(\Cc),\Dd)\morphism\Fun(\Cc,\Dd)$ to colimit-preserving functors in the source is an equivalence. Furthermore, any such functor has a right adjoint. In view of \cref{obs:AdjointsPreserveLimits}, we thus get an equivalence
 	\begin{equation*}
-		Y^{\Cc,*}\colon \Fun^L\big(\Pp(\Cc),\Dd\big)\isomorphism\Fun(\Cc,\Dd)\,,
+		\Yo^{\Cc,*}\colon \Fun^L\big(\Pp(\Cc),\Dd\big)\isomorphism\Fun(\Cc,\Dd)\,,
 	\end{equation*}
 	where $\Fun^L$ denotes the full sub-$\infty$-category spanned by left adjoint functors.
 \end{thm}
@@ -1537,34 +1540,34 @@ In the official lectures notes (starting from \cite[Observation~I.56]{KTheory}) 
 	\end{equation*}
 	In particular, $t\circ\eta'=\eta$. Now the desired equivalence can be obtained via the composite $\eta_*\circ s^*\colon \Nat(F,-\circ f)\Rightarrow \Nat(F\circ s,-\circ f\circ s)\Rightarrow \Nat(F\circ s,-\circ t)$. To show that it is an equivalence, we simply check that $r^*\colon \Nat(F\circ s,-\circ t)\Rightarrow \Nat(F,-\circ f)$ (here we use $s\circ r=\id_\Cc$ and $t\circ r=f$) is an inverse by a straightforward computation.
 \end{proof*}
-To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\Cc}\colon \Fun(\Cc,\Dd)\morphism \Fun(\Pp(\Cc),\Dd)$ constitutes an inverse to $Y^{\Cc,*}$. For this, we need to check that $\Lan_{Y^\Cc}$ really takes values in $\Fun^L(\Pp(\Cc),\Dd)$, which needs some preparations. The first is a lemma that I copied straight from Fabians notes \cite[Proposition~I.51]{KTheory} (but Fabian proves it differently).
+To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{\Yo^\Cc}\colon \Fun(\Cc,\Dd)\morphism \Fun(\Pp(\Cc),\Dd)$ constitutes an inverse to $\Yo^{\Cc,*}$. For this, we need to check that $\Lan_{\Yo^\Cc}$ really takes values in $\Fun^L(\Pp(\Cc),\Dd)$, which needs some preparations. The first is a lemma that I copied straight from Fabians notes \cite[Proposition~I.51]{KTheory} (but Fabian proves it differently).
 \begin{lem*}\label{lem*:PresheafColimitOfRepresentables}
 	Every element in $\Pp(\Cc)$ is a colimit of representable presheaves. More precisely, for every $E\in \Pp(\Cc)$, the canonical map
 	\begin{equation*}
-		\colimit_{(c,c\rightarrow E)\in Y^\Cc\!/E}\Hom_\Cc(-,c)\isomorphism E
+		\colimit_{(c,c\rightarrow E)\in \Yo^\Cc\!/E}\Hom_\Cc(-,c)\isomorphism E
 	\end{equation*}
 	is an equivalence.
 \end{lem*}
 \begin{proof*}
 	By \cref{thm:JoyalEquivalence}\itememph{b}, it suffices to check that both sides agree after evaluation at $x\in \Cc^\op$. Since colimits in functor categories are computed pointwise by \cref{lem:f^*preservesColimits}, we see that the left-hand side, when evaluated at $x$, is given by the colimit of
 	\begin{equation*}
-		Y^\Cc\!/E\morphism[s]\Cc\xrightarrow{\Hom_\Cc(x,-)}\An\,.
+		\Yo^\Cc\!/E\morphism[s]\Cc\xrightarrow{\Hom_\Cc(x,-)}\An\,.
 	\end{equation*}
 	We know how to compute colimits in $\An$ by \cref{prop:CoLimitsInCat}. The cocartesian unstraightening of $\Hom_\Cc(x,-)$ is $x/\Cc\morphism \Cc$, hence the cocartesian unstraightening $U$ of the functor in question is given by the pullback
 	\begin{equation*}
 		\begin{tikzcd}
 			U\rar\dar\drar[pullback] & x/\Cc\dar\\
-			Y^\Cc\!/E\rar["s"] & \Cc
+			\Yo^\Cc\!/E\rar["s"] & \Cc
 		\end{tikzcd}
 	\end{equation*}
-	We'll see in the proof of \cref{lem*:LanY^CCommutesWithColimits} that $Y^\Cc\!/E\morphism \Cc$ is cartesian (even a right fibration), hence the dual of \cref{exc:cocartesianFibrationLeftAdjoint} provides an adjunction $U\times_{x/C}\{\id_x\}\shortdoublelrmorphism U$. In particular, we get a homotopy equivalence $|U\times_{x/\Cc}\{\id_x\}|\simeq |U|$ (see \cite[Corollary~XI.17]{HigherCatsII}). Now \cref{prop:CoLimitsInCat} shows that $|U|$ is precisely the colimit we're interested in, and
+	We'll see in the proof of \cref{lem*:LanY^CCommutesWithColimits} that $\Yo^\Cc\!/E\morphism \Cc$ is cartesian (even a right fibration), hence the dual of \cref{exc:cocartesianFibrationLeftAdjoint} provides an adjunction $U\times_{x/C}\{\id_x\}\shortdoublelrmorphism U$. In particular, we get a homotopy equivalence $|U\times_{x/\Cc}\{\id_x\}|\simeq |U|$ (see \cite[Corollary~XI.17]{HigherCatsII}). Now \cref{prop:CoLimitsInCat} shows that $|U|$ is precisely the colimit we're interested in, and
 	\begin{equation*}
-		U\times_{x/\Cc}\{\id_x\}\simeq Y^\Cc\!/E\times_\Cc\{x\}\simeq \Hom_{\Pp(\Cc)}\big(Y^\Cc(x),E\big)\simeq E(x)
+		U\times_{x/\Cc}\{\id_x\}\simeq \Yo^\Cc\!/E\times_\Cc\{x\}\simeq \Hom_{\Pp(\Cc)}\big(\Yo^\Cc(x),E\big)\simeq E(x)
 	\end{equation*}
 	holds by a quick unravelling of definitions and Yoneda's lemma.
 \end{proof*}
 \begin{lem*}\label{lem*:LanY^CCommutesWithColimits}
-	Let $\Dd$ be cocomplete. For every functor $F\colon \Cc\morphism\Dd$, the left Kan extension $\Lan_{Y^\Cc}F\colon \Pp(\Cc)\morphism\Dd$ commutes with colimits.
+	Let $\Dd$ be cocomplete. For every functor $F\colon \Cc\morphism\Dd$, the left Kan extension $\Lan_{\Yo^\Cc}F\colon \Pp(\Cc)\morphism\Dd$ commutes with colimits.
 \end{lem*}
 \begin{proof*}
 	One is tempted to say \enquote{This follows immediately from the pointwise formula (\cref{thm:KanExtension}) and the fact that colimits commute (\cref{prop:ColimitsCommute})}, but in reality it is way more subtle than that. If you don't believe me, have a look at \cref{warn*:LanFCommutesWithColimits} below. Anyway, let's move onward to the problem at hand.
@@ -1572,32 +1575,32 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	Let $\Theta\colon \Ii\morphism \Pp(\Cc)$ be a diagram with colimit $E\simeq \colimit_\Ii\Theta$. Abusively we will also write $\Theta(i)=E_i$ and $E\simeq \colimit_{i\in\Ii} E_i$. Define $\Jj$ as the pullback
 	\begin{equation*}
 		\begin{tikzcd}
-			\Jj\dar\rar\drar[pullback]& Y^\Cc\!/\Pp(\Cc)\dar["t"]\rar["s"] & \Cc\rar["F"]&\Dd\\
-			\Ii\rar["\Theta"] & \Pp(\Cc)\ar[urr,dashed,"\Lan_{Y^\Cc}F"',bend right=15]
+			\Jj\dar\rar\drar[pullback]& \Yo^\Cc\!/\Pp(\Cc)\dar["t"]\rar["s"] & \Cc\rar["F"]&\Dd\\
+			\Ii\rar["\Theta"] & \Pp(\Cc)\ar[urr,dashed,"\Lan_{\Yo^\Cc}F"',bend right=15]
 		\end{tikzcd}
 	\end{equation*}
-	Note that $t\colon Y^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ is a cocartesian fibration by an easy generalisation of \cref{exm:MyFirstCocartesian}\itememph{b}, hence so is $\Jj\morphism \Ii$. The pointwise formula from \cref{thm:KanExtension} yields
+	Note that $t\colon \Yo^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ is a cocartesian fibration by an easy generalisation of \cref{exm:MyFirstCocartesian}\itememph{b}, hence so is $\Jj\morphism \Ii$. The pointwise formula from \cref{thm:KanExtension} yields
 	\begin{equation*}
-		\Lan_{Y^\Cc}F\Big(\colimit_{i\in \Ii}E_i\Big)\simeq\Lan_{Y^\Cc}F(E)\simeq \colimit \left(Y^\Cc\!/E\morphism \Cc\morphism[F]\Dd\right)
+		\Lan_{\Yo^\Cc}F\Big(\colimit_{i\in \Ii}E_i\Big)\simeq\Lan_{\Yo^\Cc}F(E)\simeq \colimit \left(\Yo^\Cc\!/E\morphism \Cc\morphism[F]\Dd\right)
 	\end{equation*}
 	Using the pointwise formula for each $E_i$ together with \cref{prop:ColimitsCommute}, we find that
 	\begin{equation*}
-		\colimit_{i\in \Ii}\Lan_{Y^\Cc}F(E_i)\simeq \colimit\left(\Jj\morphism \Cc\morphism[F]\Dd\right)\,.
+		\colimit_{i\in \Ii}\Lan_{\Yo^\Cc}F(E_i)\simeq \colimit\left(\Jj\morphism \Cc\morphism[F]\Dd\right)\,.
 	\end{equation*}
-	We obtain a canonical map $\Jj\morphism Y^\Cc\!/E$ as follows: Extend $\Theta\colon \Ii\morphism\Pp(\Cc)$ to its colimit cocone $\Theta^\triangleright\colon \Ii^\triangleright\morphism\Pp(\Cc)$. Since $\Ii^\triangleright=(\Ii\times\Delta^1)/(\Ii\times\{1\})$, this can be further extended to a map $\Ii\times \Delta^1\morphism \Pp(\Cc)$ which is $\const E$ on $\Ii\times\{1\}$. Pulling back $t\colon Y^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Ii\times\Delta^1\morphism \Pp(\Cc)$ gives a cocartesian fibration over $\Ii\times\Delta^1$, hence a cocartesian fibration over $\Delta^1$ by composing with $\pr_2\colon \Ii\times \Delta^1\morphism \Delta^1$. After applying $\St^\cocart$ this gives a map $\Jj\morphism \Ii\times Y^\Cc\!/E$, providing the required map $\Jj\morphism Y^\Cc\!/E$.
+	We obtain a canonical map $\Jj\morphism \Yo^\Cc\!/E$ as follows: Extend $\Theta\colon \Ii\morphism\Pp(\Cc)$ to its colimit cocone $\Theta^\triangleright\colon \Ii^\triangleright\morphism\Pp(\Cc)$. Since $\Ii^\triangleright=(\Ii\times\Delta^1)/(\Ii\times\{1\})$, this can be further extended to a map $\Ii\times \Delta^1\morphism \Pp(\Cc)$ which is $\const E$ on $\Ii\times\{1\}$. Pulling back $t\colon \Yo^\Cc\!/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Ii\times\Delta^1\morphism \Pp(\Cc)$ gives a cocartesian fibration over $\Ii\times\Delta^1$, hence a cocartesian fibration over $\Delta^1$ by composing with $\pr_2\colon \Ii\times \Delta^1\morphism \Delta^1$. After applying $\St^\cocart$ this gives a map $\Jj\morphism \Ii\times \Yo^\Cc\!/E$, providing the required map $\Jj\morphism \Yo^\Cc\!/E$.
 	
-	Now observe that $\Jj\morphism \Cc$ is a cartesian fibration and $Y^\Cc\!/E\morphism \Cc$ is even a right fibration. Indeed, by construction and some abstract nonsense about pullbacks, we get pullback diagrams
+	Now observe that $\Jj\morphism \Cc$ is a cartesian fibration and $\Yo^\Cc\!/E\morphism \Cc$ is even a right fibration. Indeed, by construction and some abstract nonsense about pullbacks, we get pullback diagrams
 	\begin{equation*}
 		\begin{tikzcd}
-			\Jj\rar\dar\drar[pullback] & \Cc\dar["Y^\Cc"]\\
+			\Jj\rar\dar\drar[pullback] & \Cc\dar["\Yo^\Cc"]\\
 			\Pp(\Cc)/\Theta \rar["s"]& \Pp(\Cc)
 		\end{tikzcd}\quad\text{and}\quad
 		\begin{tikzcd}
-			Y^\Cc\!/E\rar\dar\drar[pullback] & \Cc\dar["Y^\Cc"]\\
+			\Yo^\Cc\!/E\rar\dar\drar[pullback] & \Cc\dar["\Yo^\Cc"]\\
 			\Pp(\Cc)/E \rar["s"]& \Pp(\Cc)
 		\end{tikzcd}
 	\end{equation*}
-	Now $\Pp(\Cc)/\Theta\morphism \Pp(\Cc)$ is a cartesian fibration by an easy generalisation of the dual of \cref{exm:MyFirstCocartesian}\itememph{b} and $\Pp(\Cc)/E\morphism\Pp(\Cc)$ is a right fibration. The right-hand side shows that $\St^\cart(Y^\Cc\!/E\morphism \Cc)\simeq \Hom_{\Pp(\Cc)}(Y^\Cc(-),E)\simeq E(-)$ as functors $\Cc^\op\morphism \An$ by Yoneda's lemma. Hence the map $\Jj\morphism Y^\Cc\!/E$ constructed above induces a natural transformation
+	Now $\Pp(\Cc)/\Theta\morphism \Pp(\Cc)$ is a cartesian fibration by an easy generalisation of the dual of \cref{exm:MyFirstCocartesian}\itememph{b} and $\Pp(\Cc)/E\morphism\Pp(\Cc)$ is a right fibration. The right-hand side shows that $\St^\cart(\Yo^\Cc\!/E\morphism \Cc)\simeq \Hom_{\Pp(\Cc)}(\Yo^\Cc(-),E)\simeq E(-)$ as functors $\Cc^\op\morphism \An$ by Yoneda's lemma. Hence the map $\Jj\morphism \Yo^\Cc\!/E$ constructed above induces a natural transformation
 	\begin{equation*}
 		\St^\cart(\Jj\rightarrow\Cc)\Longrightarrow E\,.
 	\end{equation*}
@@ -1606,16 +1609,16 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	\begin{equation*}
 		\begin{tikzcd}
 			\Ii\dar["\Theta"']\rar["{\ev_x}\circ \Theta"]& \An\\
-			\Pp(\Cc)\urar["{\Hom_{\Pp(\Cc)}\big(Y^\Cc(x),-\big)}"']
+			\Pp(\Cc)\urar["{\Hom_{\Pp(\Cc)}\big(\Yo^\Cc(x),-\big)}"']
 		\end{tikzcd}
 	\end{equation*}
-	commutes, hence $\Un^\cocart({\ev_x}\circ \Theta)$ is the pullback of the left fibration $Y^\Cc(x)/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Theta$. By abstract pullback nonsense again, this agrees with $\Jj\times_\Cc\{x\}$, as required.
+	commutes, hence $\Un^\cocart({\ev_x}\circ \Theta)$ is the pullback of the left fibration $\Yo^\Cc(x)/\Pp(\Cc)\morphism \Pp(\Cc)$ along $\Theta$. By abstract pullback nonsense again, this agrees with $\Jj\times_\Cc\{x\}$, as required.
 	
-	Now that we know $|\St^\cart(\Jj\morphism \Cc)|\simeq E$, we can finally prove that $\Jj\morphism Y^\Cc\!/E$ is cofinal, which ultimately shows what we want. Since $|\blank|\colon \Cat_\infty\morphism \An$ is a left adjoint of $\An\subseteq \Cat_\infty$, we obtain $\Hom_{\Fun(\Cc^\op,\Cat_\infty)}(\St^\cart(\Jj\rightarrow \Cc),G)\simeq \Hom_{\Pp(\Cc)}(E,G)$ for all presheaves $G\colon \Cc^\op\morphism \An$, hence
+	Now that we know $|\St^\cart(\Jj\morphism \Cc)|\simeq E$, we can finally prove that $\Jj\morphism \Yo^\Cc\!/E$ is cofinal, which ultimately shows what we want. Since $|\blank|\colon \Cat_\infty\morphism \An$ is a left adjoint of $\An\subseteq \Cat_\infty$, we obtain $\Hom_{\Fun(\Cc^\op,\Cat_\infty)}(\St^\cart(\Jj\rightarrow \Cc),G)\simeq \Hom_{\Pp(\Cc)}(E,G)$ for all presheaves $G\colon \Cc^\op\morphism \An$, hence
 	\begin{equation*}
-		\Hom_{\Cart(\Cc)}(\Jj,X)\simeq \Hom_{\Right(\Cc)}\big(Y^\Cc\!/E,X\big)
+		\Hom_{\Cart(\Cc)}(\Jj,X)\simeq \Hom_{\Right(\Cc)}\big(\Yo^\Cc\!/E,X\big)
 	\end{equation*}
-	for right fibrations $X\morphism \Cc$. This easily implies $\Fun_{Y^\Cc\!/E}(\Jj,X)\simeq \Fun_{Y^\Cc\!/E}(Y^\Cc\!/E,X)$ for all right fibrations $X\morphism Y^\Cc\!/E$, hence $\Jj\morphism Y^\Cc\!/E$ is indeed cofinal in the sense of \cite[Definition~\HTTthm{4.1.1.1}]{HTT}, which is equivalent to our \cref{def:cofinal}.
+	for right fibrations $X\morphism \Cc$. This easily implies $\Fun_{\Yo^\Cc\!/E}(\Jj,X)\simeq \Fun_{\Yo^\Cc\!/E}(\Yo^\Cc\!/E,X)$ for all right fibrations $X\morphism \Yo^\Cc\!/E$, hence $\Jj\morphism \Yo^\Cc\!/E$ is indeed cofinal in the sense of \cite[Definition~\HTTthm{4.1.1.1}]{HTT}, which is equivalent to our \cref{def:cofinal}.
 \end{proof*}
 \begin{warn*}\label{warn*:LanFCommutesWithColimits}
 	In the situation of \cref{thm:KanExtension}, there examples where $f\colon \Cc\morphism\Ee$ is fully faithful and colimit-dense, but still $\Lan_fF$ doesn't commute with colimits (but of course the functor $\Lan_f$ itself does preserve colimits as it is a left adjoint). Here's a counterexample, I think. Let $\Cc=\IN\sqcup\{c\}$ be the poset consisting of $\IN$ and a totally unrelated additional point $c$, such that $\Hom_\Cc(c,n)=\emptyset=\Hom_\Cc(n,c)$ for all $n\in \IN$. Let $\Ee=\Cc^\triangleright$ be the cocone below $\Cc$, with tip $e\in \Ee$, and let $f\colon \Cc\morphism \Ee$ be the canonical inclusion. Let $F\colon \Cc\morphism\An$ be the functor that is constant with value $\emptyset\in \An$ on $\IN$ and takes $F(c)=*\in \An$. Then $\colimit_{n\in \IN}n\simeq e$ and we have
@@ -1624,14 +1627,14 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	\end{equation*}
 	(here we use \cref{cor:FullyFaithfulKanExtension} below). However, $\Lan_fF(e)\neq \emptyset$, because there is a map $F(c)\morphism \Lan_fF(e)$ by the pointwise formula. 
 	
-	The key problem in this counterexample is the existence of a map $c\morphism e\simeq \colimit_{n\in \IN}n$ that doesn't factor over any $c\morphism n$, and the only reason why this doesn't happen for $Y^\Cc\colon \Cc\morphism \Pp(\Cc)$ as well is the Yoneda lemma! This shows that \cref{lem*:LanY^CCommutesWithColimits} critically depends on the Yoneda lemma and perhaps justifies the effort we had to put into its proof.
+	The key problem in this counterexample is the existence of a map $c\morphism e\simeq \colimit_{n\in \IN}n$ that doesn't factor over any $c\morphism n$, and the only reason why this doesn't happen for $\Yo^\Cc\colon \Cc\morphism \Pp(\Cc)$ as well is the Yoneda lemma! This shows that \cref{lem*:LanY^CCommutesWithColimits} critically depends on the Yoneda lemma and perhaps justifies the effort we had to put into its proof.
 \end{warn*}
 \begin{proof*}[Proof of \cref{thm:ColimitPreservingRepresentable}]
-	From \cref{thm:KanExtension} we obtain that $Y^{\Cc,*}$ admits a left adjoint $\Lan_{Y^\Cc}\colon \Fun(\Cc,\Dd)\morphism\Fun(\Pp(\Cc),\Dd)$. We have verified in \cref{lem*:LanY^CCommutesWithColimits} that $\Lan_{Y^\Cc}$ takes values in the full sub-$\infty$-category $\Fun^{\colimit}(\Pp(\Cc),\Dd)$ of colimit-preserving functors. We first show that
+	From \cref{thm:KanExtension} we obtain that $\Yo^{\Cc,*}$ admits a left adjoint $\Lan_{\Yo^\Cc}\colon \Fun(\Cc,\Dd)\morphism\Fun(\Pp(\Cc),\Dd)$. We have verified in \cref{lem*:LanY^CCommutesWithColimits} that $\Lan_{\Yo^\Cc}$ takes values in the full sub-$\infty$-category $\Fun^{\colimit}(\Pp(\Cc),\Dd)$ of colimit-preserving functors. We first show that
 	\begin{equation*}
-		\Lan_{Y^\Cc}\colon \Fun(\Cc,\Dd)\doublelrmorphism[\sim][\sim] \Fun^{\colimit}\big(\Pp(\Cc),\Dd\big) \noloc Y^{C,*}
+		\Lan_{\Yo^\Cc}\colon \Fun(\Cc,\Dd)\doublelrmorphism[\sim][\sim] \Fun^{\colimit}\big(\Pp(\Cc),\Dd\big) \noloc \Yo^{C,*}
 	\end{equation*}
-	is an equivalence. It suffices to show that the unit and counit of $(\Lan_{Y^\Cc},Y^{\Cc,*})$ are equivalences. For the counit, this follows from \cref{cor:FullyFaithfulKanExtension} below. For the unit, let $G\colon \Pp(\Cc)\morphism \Dd$ be a colimit-preserving functor. We need to prove that $G\simeq \Lan_{Y^\Cc}(G\circ Y^{\Cc,*})$. But both sides coincide on representable presheaves (i.e.\ after precomposition with $Y^\Cc$, as we have just verified) and every presheaf can be written as a colimit of representable ones by \cref{lem*:PresheafColimitOfRepresentables}, hence the claim.
+	is an equivalence. It suffices to show that the unit and counit of $(\Lan_{\Yo^\Cc},\Yo^{\Cc,*})$ are equivalences. For the counit, this follows from \cref{cor:FullyFaithfulKanExtension} below. For the unit, let $G\colon \Pp(\Cc)\morphism \Dd$ be a colimit-preserving functor. We need to prove that $G\simeq \Lan_{\Yo^\Cc}(G\circ \Yo^{\Cc,*})$. But both sides coincide on representable presheaves (i.e.\ after precomposition with $\Yo^\Cc$, as we have just verified) and every presheaf can be written as a colimit of representable ones by \cref{lem*:PresheafColimitOfRepresentables}, hence the claim.
 	
 	It remains to check that $\Fun^L(\Pp(\Cc),\Dd)\subseteq \Fun^{\colimit}(\Pp(\Cc),\Dd)$ is an equivalence, i.e.\ that every colimit-preserving functor $\Pp(\Cc)\morphism \Dd$ admits a right adjoint. This can be written down explicitly, which we do in \cref{cor:ExplicitAdjoint} below.
 \end{proof*}
@@ -1647,18 +1650,18 @@ To prove \cref{thm:ColimitPreservingRepresentable}, we'll check that $\Lan_{Y^\C
 	The natural transformations in question are induced by the unit of the $(\Lan_f,f^*)$-adjunction and the counit of the $(f^*,\Ran_f)$-adjunction, so it suffices to check both of them on objects $c\in \Cc$. But if $f$ is fully faithful, then the slice categories $f/f(c)$ have $(c,\id_{f(c)})$ as terminal objects, hence colimits over $f/f(c)$ are computed by evaluation at that object, proving $\Lan_fF(f(c))\simeq F(c)$. Same for $\Ran_fF(f(c))$.
 \end{proof}
 \begin{cor}\label{cor:ExplicitAdjoint}
-	In the situation of \cref{thm:ColimitPreservingRepresentable}, let $F\colon\Cc\morphism\Dd$ be a functor corresponding to $\Lan_{Y^\Cc}F\colon \Pp(\Cc)\morphism\Dd$. Then $\Lan_{Y^\Cc}F$ admits a right-adjoint $R\colon \Dd\morphism \Pp(\Cc)$, which is given by
+	In the situation of \cref{thm:ColimitPreservingRepresentable}, let $F\colon\Cc\morphism\Dd$ be a functor corresponding to $\Lan_{\Yo^\Cc}F\colon \Pp(\Cc)\morphism\Dd$. Then $\Lan_{\Yo^\Cc}F$ admits a right-adjoint $R\colon \Dd\morphism \Pp(\Cc)$, which is given by
 	\begin{equation*}
 		R(d)\simeq \Hom_\Dd(F\!\mathop{}-,d)\colon \Cc^\op\morphism \An
 	\end{equation*}
 	on objects $d\in \Dd$.
 \end{cor}
 \begin{proof}
-	To check that $\Lan_{Y^\Cc}F$ admits a right adjoint, it suffices to check that all $d\in \Dd$ admit right-adjoint objects under $\Lan_{Y^\Cc}F$ by \cref{cor:AdjointsPointwise}. We already have a candidate for $R(d)$, so we need to check that there is an equivalence
+	To check that $\Lan_{\Yo^\Cc}F$ admits a right adjoint, it suffices to check that all $d\in \Dd$ admit right-adjoint objects under $\Lan_{\Yo^\Cc}F$ by \cref{cor:AdjointsPointwise}. We already have a candidate for $R(d)$, so we need to check that there is an equivalence
 	\begin{equation*}
-		\Hom_\Dd\big(\Lan_{Y^\Cc}F\!\mathop{}-,d\big)\simeq \Nat\big(-,R(d)\big)
+		\Hom_\Dd\big(\Lan_{\Yo^\Cc}F\!\mathop{}-,d\big)\simeq \Nat\big(-,R(d)\big)
 	\end{equation*}
-	of functors $\Pp(\Cc)^\op\morphism\An$. But regarding both sides as functors $\Pp(\Cc)\morphism\An^\op$ instead, note that they preserve colimits and they agree on representables since both become $\Hom_\Dd(F\!\mathop{}-,d)$ after precomposition with $Y^\Cc\colon \Cc\morphism\Pp(\Cc)$ (for the left-hand side we need to use \cref{cor:FullyFaithfulKanExtension}, for the right-hand side use Yoneda's lemma). Hence these two functors must be equivalent by \cref{thm:ColimitPreservingRepresentable}. To complete the proof that $R(d)$ is a right-adjoint object of $d$, we need to check that the above equivalence is actually induced by a map $\Lan_{Y^\Cc}F(R(d))\morphism d$, but this we get for free by plugging $R(d)$ into the above equivalence and taking the of $\id_{R(d)}\in\Nat(R(d),R(d))$ in the left-hand side.
+	of functors $\Pp(\Cc)^\op\morphism\An$. But regarding both sides as functors $\Pp(\Cc)\morphism\An^\op$ instead, note that they preserve colimits and they agree on representables since both become $\Hom_\Dd(F\!\mathop{}-,d)$ after precomposition with $\Yo^\Cc\colon \Cc\morphism\Pp(\Cc)$ (for the left-hand side we need to use \cref{cor:FullyFaithfulKanExtension}, for the right-hand side use Yoneda's lemma). Hence these two functors must be equivalent by \cref{thm:ColimitPreservingRepresentable}. To complete the proof that $R(d)$ is a right-adjoint object of $d$, we need to check that the above equivalence is actually induced by a map $\Lan_{\Yo^\Cc}F(R(d))\morphism d$, but this we get for free by plugging $R(d)$ into the above equivalence and taking the of $\id_{R(d)}\in\Nat(R(d),R(d))$ in the left-hand side.
 \end{proof}
 This finishes the proofs of \cref{thm:ColimitPreservingRepresentable} and \cref{thm:KanExtension}. Time for examples!
 
@@ -2195,7 +2198,7 @@ Fabian remarks that $\comp\colon\cat{sAn}\morphism \cat{CSAn}$ is impossible to 
 		Indeed, $\N_n^r(K)\simeq \core\Fun([n],K)\simeq \Fun(|[n]|,K)\simeq K$ as $|[n]|\simeq *$.
 	\end{alphanumerate}
 \end{exm}
-\begin{lem}
+\begin{lem}\label{lem:NrTwAr}
 	For any $\infty$-category $\Cc$ we can describe $\N^r(\TwAr(\Cc))$ as follows:
 	\begin{equation*}
 		\N_n^r\big(\TwAr(\Cc)\big)\simeq \Hom_{\Cat_\infty}\big([n]^\op\star[n],\Cc\big)\simeq \Hom_{\cat{s}\An}\big((\Delta^n)^\op\star\Delta^n,\N^r(\Cc)\big)\,.
@@ -2261,7 +2264,11 @@ Finally, \hyperref[eq:Umformung8]{(8)} is immediate once we convinced ourselves 
 since $\N^r$ is fully faithful by \cref{thmdef:RezkNerve}. To obtain the equivalence above, note that $\Hom_{\Cat_\infty}([m],[n]^\op\star [n])\simeq \Hom_{\Cat_1}([m],[n]^\op\star [n])$, even though $\Cat_1\subseteq \Cat_\infty$ is not fully faithful in general. Here it works, since every isomorphism of functors in $\Fun([m],[n]^\op\star[n])$ must be an identity (as $[n]^\op\star[n]$ has no non-identity isomorphisms). Thus $\N_m^r([n]^\op\star[n])$ is given by the discrete set $\Hom_{\sSet}(\Delta^m,(\Delta^n)^\op\star\Delta^n)$ since $\N\colon \Cat_1\morphism\sSet$ is fully faithful and compatible with $-\star -$ and $(-)^\op$. This shows that $\N^r([n]^\op\star [n])$ indeed agrees with $(\Delta^n)^\op\star\Delta^n$.
 \end{proof}
 \numpar{The Quillen $Q$-Construction}\label{par:QuillenQConstruction}
-Let $\Cc$ be an $\infty$-category and let $Q_n(\Cc)\subseteq \Fun(\TwAr([n])^\op,\Cc)$ be the full sub-$\infty$-category consisting of those functors that take all \enquote{squares} in $\TwAr([n])^\op$ to pullbacks. To make sense of this, recall our description of $\TwAr([n])$ from \cref{par:MoreOnTwAr}. In that way, a functor $\TwAr([n])^\op\morphism \Cc$ can be pictured as a diagram
+Let $\Cc$ be an $\infty$-category and let
+\begin{equation*}
+	Q_n(\Cc)\subseteq \Fun\big(\TwAr([n])^\op,\Cc\big)
+\end{equation*}
+be the full sub-$\infty$-category consisting of those functors that take all \enquote{squares} in $\TwAr([n])^\op$ to pullbacks. To make sense of this, recall our description of $\TwAr([n])$ from \cref{par:MoreOnTwAr}. In that way, a functor $\TwAr([n])^\op\morphism \Cc$ can be pictured as a diagram
 \begin{center}
 	\begin{tikzpicture}[x=0.6cm,y=0.6cm,line cap=round]
 		\fill (0,0) circle (0.5ex) coordinate (00);
@@ -2312,7 +2319,7 @@ in $\Cc$ (shown here for $n=3$), and to be in $Q_n(\Cc)$ we require that all squ
 The $Q_n(\Cc)$ assemble into a simplicial $\infty$-category $Q(\Cc)\colon \IDelta^\op\morphism \Cat_\infty$. To see this, one first shows that $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ gives a functor. It's clear that all its ingredients are functorial, except perhaps for $\TwAr(-)$. But $\TwAr(-)\colon \sSet\morphism \sSet$ is right-adjoint to $(-)^\op\star (-)\colon \sSet\morphism \sSet$ (indeed, this guy has a right adjoint by \cref{thm:2Yoneda}, now unravel that $\TwAr(-)$ as defined in \cref{par:HomC}\itememph{b} fits the general description of such right adjoints), which one can show is a left Quillen functor for the Joyal model structure (by \cite[Proposition~D.5]{HigherCatsII} for example).
 
 Now that we know $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\infty$ is a functor, we only need to check that all the boundary and degeneracy maps preserve the full subcategories $Q_n(\Cc)$ described above. We leave this as an exercise. As you might have guessed, assigning to $\Cc$ the simplicial $\infty$-category $Q(\Cc)$ is called the \emph{Quillen $Q$-construction}.
-\begin{propdef}\upshape\lecture[A sleep-deprived Fabian proves that $Q(\Cc)$ is a Segal $\infty$-category and introduces cartesian monoids.]{2020-11-24}\itshape
+\begin{propdef}\upshape\lecture[A sleep-deprived Fabian proves that $Q(\Cc)$ is a Segal $\infty$-category and introduces cartesian monoids.]{2020-11-24}\label{propdef:SpanQ}\itshape
 	Let $\Cc$ be an $\infty$-category with pullbacks. The simplicial anima
 	\begin{equation*}
 		\core Q(\Cc)\colon \IDelta^\op\morphism \An
@@ -2324,30 +2331,32 @@ Now that we know $\Fun(\TwAr([-])^\op,\Cc)\colon \IDelta^\op\morphism \Cat_\inft
 	
 	Recall that the $0$-simplices in $\TwAr([n])^\op$ are given by morphisms in the poset $[n]$, i.e.\ by relations $(i\leq j)$. Now let $J_n\subseteq \TwAr([n])^\op$ be the subposet spanned by all $0$-simplices $(i\leq j)$ with $j\leq i+1$. In pictures, $J_n$ (for $n=3$) looks as follows:
 	\begin{center}
-		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round]
-			\node[FabiansPurple!67!FabiansPink] (00) at (0,0) {$0\leq 0$};
-			\node[FabiansPurple!67!FabiansPink] (01) at (2,0) {$1\leq 1$};
-			\node[FabiansPurple!67!FabiansPink] (02) at (4,0) {$2\leq 2$};
-			\node[FabiansPurple!67!FabiansPink] (03) at (6,0) {$3\leq 3$};
-			\node[FabiansPurple!67!FabiansPink] (10) at (1,1) {$0\leq 1$};
-			\node[FabiansPurple!67!FabiansPink] (11) at (3,1) {$1\leq 2$};
-			\node[FabiansPurple!67!FabiansPink] (12) at (5,1) {$2\leq 3$};
+		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round, line join=round]
+			\draw[line width=2.5ex,yellow!42!white] (0,0) to (1,1) to (2,0) to (3,1) to (4,0) to (5,1) to (6,0);
+			\node[fill=yellow!42!white,rounded corners=2] (00) at (0,0) {$0\leq 0$};
+			\node[fill=yellow!42!white,rounded corners=2] (01) at (2,0) {$1\leq 1$};
+			\node[fill=yellow!42!white,rounded corners=2] (02) at (4,0) {$2\leq 2$};
+			\node[fill=yellow!42!white,rounded corners=2] (03) at (6,0) {$3\leq 3$};
+			\node[fill=yellow!42!white,rounded corners=2] (10) at (1,1) {$0\leq 1$};
+			\node[fill=yellow!42!white,rounded corners=2] (11) at (3,1) {$1\leq 2$};
+			\node[fill=yellow!42!white,rounded corners=2] (12) at (5,1) {$2\leq 3$};
 			\node (20) at (2,2) {$0\leq 2$};
 			\node (21) at (4,2) {$1\leq 3$};
 			\node (30) at (3,3) {$0\leq 3$};
-			\draw[to-,FabiansPurple!67!FabiansPink] (00) -- (10);
-			\draw[to-,FabiansPurple!67!FabiansPink] (01) -- (10);
-			\draw[to-,FabiansPurple!67!FabiansPink] (01) -- (11);
-			\draw[to-,FabiansPurple!67!FabiansPink] (02) -- (11);
-			\draw[to-,FabiansPurple!67!FabiansPink] (02) -- (12);
-			\draw[to-,FabiansPurple!67!FabiansPink] (03) -- (12);
+			\draw[to-] (00) -- (10);
+			\draw[to-] (01) -- (10);
+			\draw[to-] (01) -- (11);
+			\draw[to-] (02) -- (11);
+			\draw[to-] (02) -- (12);
+			\draw[to-] (03) -- (12);
 			\draw[to-,shorten <=1ex] (10) -- (20);
 			\draw[to-,shorten <=1ex] (11) -- (20);
 			\draw[to-,shorten <=1ex] (11) -- (21);
 			\draw[to-,shorten <=1ex] (12) -- (21);
 			\draw[to-]  (20) -- (30);
 			\draw[to-] (21) -- (30);
-			\draw[dotted,rounded corners=2] (00.south west) to (03.south east) to (03.north east) to node[above right] {$J_n$} (12.north east) to (10.north west) to node[above left] {$\phantom{J_n}$} (00.north west) to cycle;
+			%\path (03.north east) to node {$J_3$} (12.north east);
+			\draw[dotted,rounded corners=2] (00.south west) to (03.south east) to (03.north east) to node[above right] {$J_3$} (12.north east) to (10.north west) to node[above left] {$\phantom{J_n}$} (00.north west) to cycle;
 		\end{tikzpicture}
 	\end{center}
 	Then one checks from the pointwise formula for Kan extensions (\cref{thm:KanExtension}) that a functor $F\colon \TwAr([n])^\op\morphism \Cc$ is in $Q_n(\Cc)$ iff it is right-Kan extended from $F|_{J_n}$. To see this in the example above, note that Kan extensions can be computed in steps (because right adjoints compose), so we may first Kan extend to the $0$-simplex $(0\leq 2)$, then to $(1\leq 3)$ and then finally to $(0\leq 3)$. In each step, the Kan extension is given by pullback, as one can see by restricting the limit from \cref{thm:KanExtension} to a suitable cofinal sub-$\infty$-category of the respective slice categories. The case for general $n$ works precisely the same. 
