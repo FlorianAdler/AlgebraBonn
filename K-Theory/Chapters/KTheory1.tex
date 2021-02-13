@@ -975,7 +975,7 @@ And voilà, plenty of spans!
 		\path (12) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (22);
 		\path (21) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (31);
 		\path (22) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (13);
-		\path (21) to  node[pos=0.5,sloped,rotate=-45] {$\ldots$} (30);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) to (30);
 	\end{tikzpicture}
 \end{center}
 As a bit of foreshadowing, Fabian mentioned that the first picture is related to the \emph{Quillen $Q$-construction} (see~\cref{par:QuillenQConstruction}), whereas the second is related to the \emph{Segal $S$-construction} (see \cref{con:SConstruction}), which people keep calling \emph{Waldhausen} $S$-construction, even though Waldhausen himself wrote \emph{Segal} $S$-construction.
@@ -999,14 +999,14 @@ Now that we have a sufficient supply of mutually equivalent definitions of the $
 			\Yo^\Cc\colon\Cc\morphism\Fun(\Cc^\op,\cat{An})\quad\text{and}\quad \Yo_\Cc\colon\Cc^\op\morphism\Fun(\Cc,\An)\,.
 		\end{equation*}
 \end{thm}
-Initially, I used $Y$ to denote the Yoneda embeddings, but then people advised me to use $\Yo$ instead, the hiragana symbol for \emph{yo}, which I think makes a lot of sense.
+%Initially, I used $Y$ to denote the Yoneda embeddings, but then people advised me to use $\Yo$ instead, the hiragana symbol for \emph{yo}, which I think makes a lot of sense.
 \begin{proof*}[Proof of \cref{thm:Yoneda}]
 	See \cite[Corollaries~XI.2 and~XI.4]{HigherCatsII}.
 \end{proof*}
 \begin{defi}
 	For an $\infty$-category $\Cc$ we denote by $\Pp(\Cc)=\Fun(\Cc^\op,\cat{An})$ the \emph{$\infty$-category of presheaves} on $\Cc$.
 \end{defi}
-%Onwards to adjunctions!
+Onwards to adjunctions!
 \begin{defi}
 	Let $R\colon\Dd\morphism\Cc$ be a functor of $\infty$-categories.
 	\begin{alphanumerate}

@@ -115,7 +115,7 @@ The immediate problem here is that $K(\IF_p)\morphism K(\IZ)$ and $K(R/\pp)\morp
 
 Before we move on, Fabian remarks that the sequences above already contain interesting information in low degrees. For example, after taking homotopy groups in degrees $0$ and $1$, the first sequence becomes
 \begin{equation*}
-	\begin{tikzcd}[row sep=small]
+	\begin{tikzcd}[row sep=scriptsize]
 		K_1(\IZ)\rar\eqar[d] & K_1(\IQ)\rar\eqar[d]& \displaystyle\bigoplus_{p\text{ prime}}K_0(\IF_p)\rar\eqar[d,shorten <=-1ex] & K_0(\IZ)\eqar[d]\rar &K_0(\IQ)\eqar[d]\\
 		\{\pm 1\}\rar & \IQ^\times\rar & \displaystyle\bigoplus_{p\text{ prime}}\IZ\rar & \IZ\rar[iso] & \IZ
 	\end{tikzcd}
@@ -388,7 +388,7 @@ As we've already seen in the baby case of $K_0(\Cc)$, we now longer have to grou
 	\end{equation*}
 	Since $\left|\core S(\Cc)\right|$ is connected, there's no need to specify a basepoint.
 \end{defi}
-\begin{lem}
+\begin{lem}\label{lem:SkeletalInduction}
 	For all stable $\infty$-categories $\Cc$, there is a canonical isomorphism
 	\begin{equation*}
 		K_0(\Cc)\simeq \pi_0\big(k(\Cc)\big)\simeq \pi_1\big(\left|\core(\Cc)\right|\big)\,.
@@ -578,7 +578,7 @@ where the indices $(-)_\ell$ and $(-)_r$ indicate the \enquote{left} and \enquot
 			\node[below left=0.5ex] at (42) {\scriptsize $(2_\ell\leq 2_\ell)$};
 			\node[below left=0.5ex] at (33) {\scriptsize $(2_r\leq 2_r)$};
 			\node[below left=0.5ex] at (24) {\scriptsize $(1_r\leq 1_r)$};
-			\draw[-to,shorten <=1.25ex, shorten >=1.75ex] (60) to (50);
+			\draw[-to,shorten <=1.25ex, shorten >=1.25ex] (60) to (50);
 			\draw[-to,shorten <=1.25ex, shorten >=1.25ex] (50) to (40);
 			\draw[-to,shorten <=1.25ex, shorten >=1.25ex] (40) to (30);
 			\draw[-to,shorten <=1.25ex, shorten >=1.25ex] (30) to (20);
@@ -654,7 +654,7 @@ by \cref{thm:CMonCGrpAdjunctions} and the following observation:
 	\end{equation*}
 	But if $\Cc$ is stable, then it has finite coproducts and thus $\Cc^\sqcup\morphism \IGamma^\op$ is a symmetric monoidal $\infty$-category. Moreover, any map $F\colon \Cc\morphism\Dd$ in $\Cat_\infty^\mathrm{st}$ preserves finite coproducts, so its image  $F^\sqcup\colon \Cc^\sqcup\morphism\Dd^\sqcup$ is strongly monoidal. Hence $(-)^\sqcup$ restricts to a functor
 	\begin{equation*}
-		(-)^\oplus\colon \Cat_\infty^\mathrm{st}\morphism\CMon(\An)\,.
+		(-)^\oplus\colon \Cat_\infty^\mathrm{st}\morphism\CMon(\Cat_\infty)\,.
 	\end{equation*}
 	From this, we can extract functors $\oplus_\Cc\colon \Cc\times \Cc\morphism \Cc$ in $\Cat_\infty^\mathrm{st}$ which assemble into a natural transformation $\oplus\colon \Delta\Rightarrow \id$ in $\Fun(\Cat_\infty^\mathrm{st},\Cat_\infty^\mathrm{st})$ with the properties from  \cref{lem:SemiAddCriterion}. Hence that lemma implies that $\Cat_\infty^\mathrm{st}$ is semi-additive. The other cases are similar.
 \end{proof}
@@ -682,14 +682,14 @@ We also put $\Cc_{[a,b]}\coloneqq \Cc_{\geq a}\cap \Cc_{\leq b}$, and $\Cc^\hear
 \begin{equation*}
 	\Cc=\bigcup_{n\in\IN}\Cc_{[-n,n]}\,.
 \end{equation*}
-Fabian remarks that the notion of a weight structure is different from that of a $t$-structure (which you might know from \cite[Definition~\HAthm{1.2.1.4}]{HA}). For example, in a $t$-structure the roles of \enquote{$\leq$} and \enquote{$\geq$} in \itememph{c} would be swapped. You should think of $t$-structures as generalisations of \enquote{smart} truncation of chain complexes, whereas a weight structure behaves more like \enquote{stupid} truncation. In particular, the fibre sequence in $\Cc$ is highly non-canonical, whereas in a $t$-structure there's always a canonical choice using the truncation functors.
+Fabian remarks that the notion of a weight structure is different from that of a $t$-structure (which you might know from \cite[Definition~\HAthm{1.2.1.4}]{HA}). For example, in a $t$-structure the roles of \enquote{$\leq$} and \enquote{$\geq$} in \itememph{c} would be swapped. You should think of $t$-structures as generalisations of \enquote{smart} truncation of chain complexes, whereas a weight structure behaves more like \enquote{stupid} truncation. In particular, the fibre sequence in $\Cc$ is highly non-canonical, whereas in a $t$-structure there's always a canonical choice using the truncation functors. Moreover, the heart of a $t$-structure is always an abelian category, whereas it need not even be a $1$-category for a weight structure.
 
 Note that \itememph{a} implies that both $\Cc_{\geq 0}$ and $\Cc_{\leq 0}$ contain $0$, since it is a retract of everything (and both sub-$\infty$-categories are non-empty by \itememph{c}), and both are closed under finite direct sums. To acquaint myself a bit more with weight structures, let me also list the following further properties:
-\begin{lem*}
+\begin{lem*}\label{lem*:MoreOnHearts}
 	\begin{alphanumerate}
 		\item An object $x\in \Cc$ lies in $\Cc_{\leq 0}$ iff $\hom_\Cc(x,y)$ is connective for all $y\in \Cc_{\geq 0}$. Similarly, $y\in \Cc$ lies in $\Cc_{\geq 0}$ iff $\hom_\Cc(x,y)$ is connective for all $x\in \Cc_{\leq 0}$.
-		\item Both $\Cc_{\geq 0}$ and $\Cc_{\leq 0}$ are closed under fibre sequences.
-		\item $\Cc^\heartsuit$ is an additive $1$-category in which every short exact sequence splits.
+		\item Both $\Cc_{\geq 0}$ and $\Cc_{\leq 0}$ are closed under extensions. That is, if the outer two terms in a fibre sequence lie in $\Cc_{\geq 0}$, then the same is true for the inner term, and likewise for  $\Cc_{\leq 0}$.
+		\item $\Cc^\heartsuit$ is an additive $\infty$-category, and every fibre sequence $x\morphism y\morphism z$ in $\Cc$ splits if all of its terms lie in $\Cc^\heartsuit$.
 	\end{alphanumerate}
 \end{lem*}
 \begin{proof*}
@@ -699,15 +699,18 @@ Note that \itememph{a} implies that both $\Cc_{\geq 0}$ and $\Cc_{\leq 0}$ conta
 	\end{equation*}
 	In particular, $\pi_0\hom_\Cc(z,y)\morphism \pi_0\hom_\Cc(y,y)$ is surjective. Choosing a preimage of $\id_y$ witnesses $y$ as a retract of $z$, hence $y\in \Cc_{\geq 0}$ because it is closed under retracts. This shows \itememph{a}. Part~\itememph{b} is an immediate consequence of \itememph{a} and the long exact homotopy groups sequence.
 	
-	To show that $\Cc^\heartsuit$ is a $1$-category, it suffices to show that $\pi_i\Hom_\Cc(x,y)=0$ for $i\geq 1$ and all $x,y\in \Cc^\heartsuit$, since then $\Cc^\heartsuit\morphism \pi\Cc^\heartsuit$ is an equivalence. But for $i\geq1$ and $x,y\in \Cc^\heartsuit$ we have
+	It's clear that $\Cc^\heartsuit$ is contains $0$ and is closed under finite direct sums (in fact, under fibre sequences by \itememph{b}), hence it inherits additivity from $\Cc$. If $x\morphism y\morphism z$ is a fibre sequence in $\Cc$ whose terms lie in $\Cc^\heartsuit$, then $\hom_\Cc(z,x)\morphism \hom_\Cc(z,y)\morphism\hom_\Cc(z,z)$ is a fibre sequence in spectra. But all of its entries are connective, hence the long exact sequence of homotopy groups reads
 	\begin{equation*}
-		\pi_i\Hom_\Cc(x,y)=\pi_i\hom_\Cc(x,y)=\pi_{-1}\hom_\Cc\big(x[-i+1],y\big)=0\,,
+		\dotso\morphism \pi_0\hom_\Cc(z,x)\morphism \pi_0\hom_\Cc(z,y)\morphism \pi_0\hom_\Cc(z,z)\morphism 0\,.
 	\end{equation*}
-	since $x[-i+1]\in \Cc_{\leq -i+1}\subseteq \Cc_{\leq 0}$, so $\hom_\Cc(x[-i+1],y)$ is connective. It's clear that $\Cc^\heartsuit$ is contains $0$ and is closed under finite direct sums (in fact, under fibre sequences by \itememph{b}), hence it inherits additivity from $\Cc$. It remains to see that all exact sequences split. Since fibre and cofibre sequences in $\Cc$ agree and $\Cc^\heartsuit\subseteq \Cc$ is closed under fibre sequences, the short exact sequences in $\Cc^\heartsuit$ are precisely the fibre sequences in $\Cc$ whose entries lie in $\Cc^\heartsuit$. If $x\morphism y\morphism z$ is such a sequence, then $\hom_\Cc(z,x)\morphism \hom_\Cc(z,y)\morphism\hom_\Cc(z,z)$ is a fibre sequence in spectra. But all of its entries are discrete, hence the long exact sequence of homotopy groups reads
+	In particular, $\pi_0\hom_\Cc(z,y)\morphism \pi_0\hom_\Cc(z,z)$ is surjective, whence we get a split $z\morphism y$ by choosing a preimage of $\id_z$. Now consider the diagram
 	\begin{equation*}
-		0\morphism \pi_0\hom_\Cc(z,x)\morphism \pi_0\hom_\Cc(z,y)\morphism \pi_0\hom_\Cc(z,z)\morphism 0\,.
+		\begin{tikzcd}
+			0 \rar\dar\drar[dotted,pushout] & x \rar\dar\drar[pushout] & 0\dar\\
+			z \rar & y\rar & z
+		\end{tikzcd}
 	\end{equation*}
-	In particular, $\pi_0\hom_\Cc(z,y)\morphism \pi_0\hom_\Cc(z,z)$ is surjective, whence we get a split $z\morphism y$ by choosing a preimage of $\id_z$. Similarly, we get a split $y\morphism x$, hence $y\simeq x\oplus z$ (we need both splits since $\Cc^\heartsuit$ is not necessarily an abelian category).
+	The right square is a pushout by assumption, and the outer rectangle is a pushout too since $z\morphism y\morphism z$ is equivalent to the identity on $z$. Hence the left square is a pushout as well, which establishes $y\simeq x\oplus z$.
 \end{proof*}
 The prime example of an exhaustive weight structure is $\Dd^\perf(R)$ for a ring $R$, with
 \begin{equation*}
@@ -728,13 +731,13 @@ We won't prove \cref{thm:Resolution}. But Fabian has promised he will sketch a n
 \section{\texorpdfstring{$K$}{K}-Theory as the Universal Additive Invariant}
 \lecture[Lots of terminology named after Verdier. Recollements. The additivity theorem.\newline --- \emph{\enquote{Today there will be a definition that's longer than a page, and then a theorem that's longer than a page, and the theorem will essentially be trivial.}}]{2021-02-04}Our next goal is to analyse the functor $k\colon \Cat_\infty^\mathrm{st}\morphism \CGrp(\An)$, and in particular to prove the following result from \cite{BlumbergGepnerTabuada}:
 \begin{thm}\label{thm:K=coreGrp}
-	The inclusion $\Fun^{\grp}(\Cat_\infty^\mathrm{st},\CGrp(\An))\subseteq\Fun^\mathrm{add}(\Cat_\infty^\mathrm{st},\An)$ admits a left adjoint $(-)^\grp$, and 
+	The inclusion $\Fun^{\grp}(\Cat_\infty^\mathrm{st},\CGrp(\An))\subseteq\Fun^\mathrm{add}(\Cat_\infty^\mathrm{st},\An)$ admits a left adjoint $(-)^\grp\simeq \Omega|\Span^{(-)}(-)|$, and 
 	\begin{equation*}
 		k\simeq \core^\grp\,.
 	\end{equation*}
 	In other words, $K$-theory is the initial grouplike functor under $\core\colon \Cat_\infty^\mathrm{st}\morphism \An$.
 \end{thm}
-\cref{thm:K=coreGrp} contains a bunch of new terminology, and to explain what all of this means we'll introduce even more terminology.
+The proof of \cref{thm:K=coreGrp} has to wait till page~\labelcpageref{page:ProofOfBlumbergGepnerTabuada}. Let's start with explaining all that new terminology in it, and to do that, we'll introduce even more.
 
 \begin{defi}\label{def:VerdierStuff}
 	Let's define things named after Verdier:
@@ -754,7 +757,7 @@ We won't prove \cref{thm:Resolution}. But Fabian has promised he will sketch a n
 	\begin{equation*}
 		\Fun^\mathrm{Kar}(\Cat_\infty^\mathrm{st},\Ee)\subseteq \Fun^\mathrm{Verd}(\Cat_\infty^\mathrm{st},\Ee)\subseteq \Fun^\add(\Catst,\Ee)\,.
 	\end{equation*}
-	Finally, an additive functor $F\colon\Catst\morphism \Ee$ is called \emph{grouplike} if it factors (automatically canonically, see \cref{par:MoreOnVerdierSequences}\itememph{c}) over $\CGrp(\Ee)$. The corresponding full sub-$\infty$-category is denoted
+	Finally, an additive functor $F\colon\Catst\morphism \Ee$ is called \emph{grouplike} if it factors over $\CGrp(\Ee)$ (the factorisation is automatically canonical, see \cref{par:MoreOnVerdierSequences}\itememph{c}). The corresponding full sub-$\infty$-category is denoted
 	\begin{equation*}
 		\Fun^\grp(\Catst,\Ee)\subseteq \Fun^\add(\Catst,\Ee)\,.
 	\end{equation*}
@@ -778,7 +781,7 @@ Having introduced a plethora of new terminology in \cref{def:VerdierStuff}, some
 			\Aa\rar & 0
 		\end{tikzcd}
 	\end{equation*}
-	is always a split Verdier square, $\Cc\morphism \Cc\morphism 0$ is always a split Verdier sequence, and so is $\Cc\morphism \Aa\times \Cc\morphism \Aa$ in general. Hence additive functors preserve finite products. But then \cref{thm:CMonCGrpAdjunctions} implies that
+	is always a split Verdier square. Moreover, $\Cc\morphism \Cc\morphism 0$ is always a split Verdier sequence, and so is $\Cc\morphism \Aa\times \Cc\morphism \Aa$ in general. Hence additive functors preserve finite products. But then \cref{thm:CMonCGrpAdjunctions} implies that
 	\begin{equation*}
 		\Fun^\add(\Catst,\Ee)\simeq \Fun^\add\big(\Catst,\CMon(\Ee)\big)\simeq \CMon\big(\Fun^\add(\Catst,\Ee)\big)
 	\end{equation*}
@@ -787,7 +790,8 @@ Having introduced a plethora of new terminology in \cref{def:VerdierStuff}, some
 		\Fun^\grp(\Catst,\Ee)\simeq \Fun^\add\big(\Catst,\CGrp(\Ee)\big)\simeq \CGrp\big(\Fun^\add(\Catst,\Ee)\big)\,.
 	\end{equation*}
 	Moreover, the arguments above show that $\Fun^\add(\Catst,\Ee)$ is semi-additive, and thus the same is true for $\Fun^\grp(\Catst,\Ee)$, $\Fun^\Verd(\Catst,\Ee)$, and $\Fun^\Kar(\Catst,\Ee)$. Finally, all of them are closed under limits in $\Fun(\Catst,\Ee)$.
-	\item An example of a Verdier-localising but not grouplike functor is $\core\colon \Catst\morphism \An$. It is Verdier-localising simply because it takes arbitrary pullbacks (and not just Verdier squares) to pullbacks in $\An$.
+	\item[\itememph{d^*}] If $F\colon \Catst\morphism \An$ is a grouplike additive functor, then $F(\Bb)\simeq F(A)\times F(\Cc)$ for every split Verdier sequence $\Aa\morphism \Bb\morphism \Cc$. Indeed, $F(\Aa)\morphism F(\Bb)\morphism F(\Cc)$ is a fibre sequence in $\An$, hence also in $\CGrp(\An)\subseteq \Sp$, and either of the fully faithful adjoints $\Cc\morphism \Bb$ induces a split $F(\Cc)\morphism F(\Bb)$. But any such fibre sequence in $\Sp$ must be split, using the same argument as in the proof of \cref{lem*:MoreOnHearts}.
+	\item[\itememph{e}] An example of a Verdier-localising but not grouplike functor is $\core\colon \Catst\morphism \An$. It is Verdier-localising simply because it takes arbitrary pullbacks (and not just Verdier squares) to pullbacks in $\An$.
 	
 	Here we should probably mention that $\Catst\subseteq \Cat_\infty$ is closed under pullbacks (and in fact, arbitrary finite limits). To see this, first note that $\Catst\subseteq\Cat_\infty^\mathrm{lex}$ has both adjoints by \cref{thm:SpLeftAdjoint} and the remark after it. Hence it suffices that $\Cat_\infty^\mathrm{lex}\subseteq \Cat_\infty$ is closed under pullbacks. But if we are given a pullback diagram in $\Cat_\infty$ such that both legs preserve finite limits, then any finite limit in the pullback can be computed componentwise (and in particular, exists if it exists componentwise).
 \end{alphanumerate}
@@ -972,7 +976,7 @@ As a consequence of \cref{thm:VerdierStuff}\itememph{b} and \itememph{d},  for a
 \end{equation*}
 in $\Catst$ to be a left/right split Verdier square, it suffices that the left vertical map $\Bb\morphism \Dd$ is a left/right split Verdier projection; we don't even need to assume that $\Aa\morphism\Cc$ is a Verdier projection at all. Indeed, if there is a fully faithful left/right adjoint $\Dd\morphism \Bb$, then we also get a fully faithful left/right adjoint $\Cc\morphism\Aa$ from the pullback property. Hence $\Aa\morphism \Cc$ is automatically a left/right split Verdier projection as well.
 
-\numpar{Stable Recollements}
+\numpar{Stable Recollements}\label{par:Recollements}
 A split Verdier sequence
 \begin{equation*}
 	\begin{tikzcd}
@@ -989,7 +993,7 @@ is also known as a \emph{stable recollement} (with French pronounciation), and $
 is a pullback, and in fact a split Verdier square, so
 \begin{equation*}
 	\begin{tikzcd}[column sep=large]
-		\Aa\rar["\id_\Aa\Rightarrow 0"'] & \Ar(\Aa)\rar["t"']\lar[dashed,bend right=45,"s"']\lar[dashed,bend left=45,"{\fib(-)}"{below}] & \Cc\lar[dashed,bend right=45,"0\Rightarrow \id_\Aa"']\lar[dashed,bend left=45,"\id_\Aa\Rightarrow \id_\Aa"{below}]
+		\Aa\rar["\id_\Aa\Rightarrow 0"'] & \Ar(\Aa)\rar["t"']\lar[dashed,bend right=45,"s"']\lar[dashed,bend left=45,"{\fib(-)}"{below}] & \Aa\lar[dashed,bend right=45,"0\Rightarrow \id_\Aa"']\lar[dashed,bend left=45,"\id_\Aa\Rightarrow \id_\Aa"{below}]
 	\end{tikzcd}
 \end{equation*}
 is the universal stable recollement with fibre $\Aa$. 
@@ -1060,7 +1064,7 @@ Note that the left pullback square from \cref{cor:GreenleesMay} already made its
 
 
 Now onwards to the proof of \cref{thm:K=coreGrp}. We start with a somewhat random lemma/definition.
-\begin{lemdef}
+\begin{lemdef}\label{lem:SpanF}
 	Let $\Cc$ be a stable $\infty$-category. For each $0\leq i\leq n$ the pushout square
 	\begin{equation*}
 		\begin{tikzcd}
@@ -1074,13 +1078,13 @@ Now onwards to the proof of \cref{thm:K=coreGrp}. We start with a somewhat rando
 		Q_n(\Cc)\rar\dar\drar[pullback] & Q_i(\Cc)\dar\\
 		Q_{n-i}(\Cc)\rar & Q_0(\Cc)
 		\end{tikzcd}	\end{equation*}
-	In particular, for an additive functor $F\colon \Cat_\infty^\mathrm{st}\morphism \An$, the simplicial anima $F\circ Q(\Cc)\in \cat{sAn}$ is a \embrace{not necessarily complete} Segal anima and we put
+	In particular, for an additive functor $F\colon \Cat_\infty^\mathrm{st}\morphism \An$, the simplicial anima $F( Q(\Cc))\in \cat{sAn}$ is a \embrace{not necessarily complete} Segal anima and we put
 	\begin{equation*}
-		\Span^F(\Cc)\coloneqq \asscat\big(F\circ Q(\Cc)\big)\,.
+		\Span^F(\Cc)\coloneqq \asscat\big(F( Q(\Cc))\big)\,.
 	\end{equation*}
 \end{lemdef}
 \begin{proof}
-	Let's first check that our would-be split Verdier square is a pullback square at all (in $\Cat_\infty$ or $\Catst$, that doesn't matter by \cref{par:MoreOnVerdierSequences}\itememph{d}). This follows from direct inspection, as the Quillen $Q$-construction satisfies the Segal condition by \cref{propdef:SpanQ}, so $Q_n(\Cc)$ can be written as the $(n+1)$-fold pullback $Q_1(\Cc)\times_{Q_0(\Cc)}\dotsb\times_{Q_0(\Cc)}Q_1(\Cc)$. A similar argument shows that once we know that the pullback square is split Verdier, $F\circ Q(\Cc)$ will indeed satisfy the Segal condition, since $F$ sends split Verdier squares to pullbacks.
+	Let's first check that our would-be split Verdier square is a pullback square at all (in $\Cat_\infty$ or $\Catst$, that doesn't matter by \cref{par:MoreOnVerdierSequences}\itememph{e}). This follows from direct inspection, as the Quillen $Q$-construction satisfies the Segal condition by \cref{propdef:SpanQ}, so $Q_n(\Cc)$ can be written as the $(n+1)$-fold pullback $Q_1(\Cc)\times_{Q_0(\Cc)}\dotsb\times_{Q_0(\Cc)}Q_1(\Cc)$. A similar argument shows that once we know that the pullback square is split Verdier, $F( Q(\Cc))$ will indeed satisfy the Segal condition, since $F$ sends split Verdier squares to pullbacks.
 	
 	So it remains to show that the pullback square is split Verdier. Recall from the proof of \cref{propdef:SpanQ} that $Q_n(\Cc)\simeq \Fun(J_n,\Cc)$, where $J_n$ is a zigzag
 	\begin{center}
@@ -1105,30 +1109,135 @@ Now onwards to the proof of \cref{thm:K=coreGrp}. We start with a somewhat rando
 	\end{center}
 	In general, if $\iota\colon [k]\monomorphism{} [\ell]$ is the inclusion of an interval, then it induces a fully faithful functor $\iota\colon J_k\morphism J_\ell$. Since the $J_i$ are finite and $\Cc$ has finite limits and colimits, $\iota^*\colon \Fun(J_\ell,\Cc)\morphism \Fun(J_k,\Cc)$ has both adjoints, given by left and right Kan extension, and they are fully faithful again by \cref{cor:FullyFaithfulKanExtension}, Thus $Q_\ell(\Cc)\morphism Q_k(\Cc)$ is a split Verdier projection by \cref{thm:VerdierStuff}\itememph{b}. This clearly applies in our case, whence we're done.
 \end{proof}
-\begin{thm}[Additivity]\label{thm:Additivity}
+\begin{thm}[Waldhausen's additivity theorem]\label{thm:Additivity}
 	If $F\colon \Cat_\infty^\mathrm{st}\morphism\An$ is additive, then so is
 	\begin{equation*}
 		\big|\Span^F(-)\big|\colon \Cat_\infty^\mathrm{st}\morphism \An\,.
 	\end{equation*}
 	In particular, $k\colon \Cat_\infty^\mathrm{st}\morphism \An$ is additive.
 \end{thm}
-This particular formulation of the additivity theorem, or to be really precise, its generalisation to Poincaré categories, first appeared in \cite[Theorem~2.4.1]{9author2}, but versions of it were already known before.
+This particular general formulation of the additivity theorem, or to be really precise, its further generalisation to Poincaré categories, first appeared in \cite[Theorem~2.4.1]{9author2}. But of course the original formulation (with $F\simeq \core$) is due to Waldhausen.
 \begin{proof}[Proof of \cref{thm:Additivity}]
-	The \enquote{in particular} follows as $k(\Cc)\simeq \Omega\left|\Span(\Cc)\right|\simeq \Omega\left|\Span^{\core}(\Cc)\right|$ by \cref{prop:QvsS}, $\core$ is additive by \cref{par:MoreOnTwAr}\itememph{d}, and $\Omega$ preserves pullbacks. The proof of the main statement consists of three steps.
+	The \enquote{in particular} follows as $k(\Cc)\simeq \Omega\left|\Span(\Cc)\right|\simeq \Omega\left|\Span^{\core}(\Cc)\right|$ by \cref{prop:QvsS}, $\core$ is additive by \cref{par:MoreOnTwAr}\itememph{d}, and $\Omega$ preserves pullbacks. The proof of the main statement consists of four steps.
 	\begin{alphanumerate}
 		\item[\itememph{1}] \itshape We prove that if $p\colon \Cc\morphism\Dd$ is a split Verdier projection, then it is  a bicartesian fibration \embrace{i.e.\ both cartesian and cocartesian}.
 	\end{alphanumerate}
 
-	This step is simple. Applying \cref{lem:CocartesianLemma}\itememph{b} below to $p$ and its fully faithful left adjoint (which are exact functors between stable $\infty$-categories, so all assumptions are verified) shows that $p$ is cocartesian. By a dual argument applied to $p$ and its fully faithful right adjoint, $p$ is also cartesian.
+	This step is basically a consequence of the following simple lemma.
+	\begin{lem}\label{lem:CocartesianLemma}
+		Let $g\colon \Bb\shortdoublelrmorphism\Aa\noloc f$ be an adjoint pair in $\Cat_\infty$, with counit $c\colon gf\Rightarrow\id_\Aa$.
+		\begin{alphanumerate}
+			\item A morphism $\phi\colon x\morphism y$ in $\Aa$ is $f$-cocartesian iff the square
+			\begin{equation*}
+				\begin{tikzcd}
+					gf(x)\rar["gf(\phi)"]\dar["c"']\drar[pushout] & gf(y)\dar["c"]\\
+					x\rar["\phi"] & y
+				\end{tikzcd}
+			\end{equation*}
+			is a pushout in $\Aa$.
+			\item If $\Aa$ admits pushouts, $f$ preserves pushouts, and $g$ is fully faithful, then $f$ is a cocartesian fibration.
+		\end{alphanumerate}
+	\end{lem}
+	\begin{proof}[Proof of \cref{lem:CocartesianLemma}]
+		For \itememph{a}, plug the $(g,f)$-adjunction into the pullback square from \cref{def:WeirdCocartesianDefinition}\itememph{a}. For \itememph{b}, let $\phi'\colon x'\morphism y'$ be a morphism in $\Bb$ and let $x\in \Aa$ with $f(x)\simeq x'$ be given. Since $g$ is fully faithful, we have $y'\simeq fg(y')$, hence the morphism $\phi'\colon f(x)\morphism y'$ induces a morphism $gf(x)\morphism g(y')$ by adjunction. Now form the pushout
+		\begin{equation*}
+			\begin{tikzcd}
+				gf(x)\rar \dar["c"']\drar[pushout] & g(y')\dar\\
+				x\rar["\phi"] & y
+			\end{tikzcd}
+		\end{equation*}
+		in $\Aa$. Note that $f(c)\colon fgf(x)\morphism f(x)\simeq x'$ is equivalent to the identity on $x'$ since $g$ is fully faithful. Moreover, $f$ preserve pushouts. Therefore, applying $f$ to the pushout square above gives a pushout
+		\begin{equation*}
+			\begin{tikzcd}
+				x'\eqar[d] \rar["\phi'"]\drar[pushout] & y'\dar\\
+				x\rar["f(\phi)"] & y
+			\end{tikzcd}
+		\end{equation*}
+		Hence $f(\phi)\simeq \phi'$, so $\phi\colon x\morphism y$ is a lift of $\phi'$. By \itememph{a}, it is even an $f$-cocartesian lift, proving that $f$ is indeed a cocartesian fibration.
+	\end{proof}
+	Now we resume the proof of \cref{thm:Additivity}. Applying \cref{lem:CocartesianLemma}\itememph{b} to $p$ and its fully faithful left adjoint (which are exact functors between stable $\infty$-categories, so all assumptions are verified) shows that $p$ is a cocartesian fibration. By a dual argument applied to $p$ and its fully faithful right adjoint, $p$ is also cartesian. This finishes Step~\itememph{1}.
 	\begin{alphanumerate}
-		\item[\itememph{2}] \itshape We prove that if $p\colon \Cc\morphism\Dd$ is an exact bicartesian fibration between stable $\infty$-categories, then 
+		\item[\itememph{2}] \itshape We prove that if $p\colon \Cc\morphism\Dd$ is a split Verdier projection \embrace{thus an exact bicartesian fibration by Step~\itememph{1}}, then 
 		\begin{equation*}
 			\Span^F(p)\colon \Span^F(\Cc)\morphism\Span^F(\Dd)
 		\end{equation*}
 		is a  bicartesian fibration as well.
 	\end{alphanumerate}
 
-	This will be done next time.
+	\lecture[End of the proof of the additivity theorem. Group completion for additive functors. Rezk's equifibrancy lemma.]{2021-02-09}Let's first discuss the case $F\simeq \core$, which is of course the one of most interest to us, since it leads to $K$-theory, but it will also be half of the argument for the general case. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}]\itshape A morphism $x\morphism z$ in $\Span(\Cc)$, i.e., a span $x\lmorphism y\morphism z$ in $\Cc$, is $\Span(p)$-cocartesian if $y\morphism x$ is $p$-cartesian and $y\morphism z$ is $p$-cocartesian.
+	\end{alphanumerate}
+	Unravelling what a map $\Lambda_0^2\morphism \Span(\Cc)$ and a map $\Delta^2\morphism\Span(\Dd)$ look like, we have to show the following: Suppose we're given two solid diagrams
+	\begin{equation*}
+		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round,baseline=(10.base)]
+			\node (00) at (0,0) {$x$};
+			\node (01) at (2,0) {$z$};
+			\node (02) at (4,0) {$v$};
+			\node (10) at (1,1) {$y$};
+			\node (11) at (3,1) {$\bullet$};
+			\node (20) at (2,2) {$w$};
+			\draw[-to] (10) to (00);
+			\draw[-to] (10) to (01);
+			\draw[-to,dotted] (20) to node[pos=0.5,below right=-0.5ex] {$\scriptscriptstyle (1)$} (10);
+			\draw[-to,dotted] (20) to node[pos=0.5,below left=-0.5ex] {$\scriptscriptstyle (2)$} (11);
+			\draw[-to,dotted] (11) to node[pos=0.5,below right=-0.5ex] {$\scriptscriptstyle (3)$} (01);
+			\draw[-to,dotted] (11) to node[pos=0.5,below left=-0.5ex] {$\scriptscriptstyle (4)$} (02);
+			\node[dotted,rotate=-45] at (2,1) {$\scriptstyle\pullbacksign$};
+			\draw[-to,bend right] (20) to (00);
+			\draw[-to,bend left] (20) to (02);
+		\end{tikzpicture}\quad\overset{p}{\longmapsto}\quad
+		\begin{tikzpicture}[x=1cm,y=1cm,line cap=round,baseline=(10.base)]
+			\node (00) at (0,0) {$p(x)$};
+			\node (01) at (2,0) {$p(z)$};
+			\node (02) at (4,0) {$p(v)$};
+			\node (10) at (1,1) {$p(y)$};
+			\node (11) at (3,1) {$u$};
+			\node (20) at (2,2) {$p(w)$};
+			\draw[-to] (10) to (00);
+			\draw[-to] (10) to (01);
+			\draw[-to] (20) to (10);
+			\draw[-to] (20) to (11);
+			\draw[-to] (11) to (01);
+			\draw[-to] (11) to (02);
+			\node[rotate=-45] at (2,1) {$\scriptstyle\pullbacksign$};
+		\end{tikzpicture}
+	\end{equation*}
+	in $\Cc$ and $\Dd$, respectively, such that the left one is mapped into the right one under $p$. We must show that we can fill in all the dotted arrows (along with the missing object $\bullet$) in the left diagram in such a way that the square in the middle becomes a pullback. We can fill in the dotted arrow labelled \enquote{$(1)$} since $y\morphism x$ is $p$-cartesian. Next, we can choose the dotted arrow \enquote{$(2)$} to be a $p$-cocartesian lift of $p(w)\morphism u$. Since $w\morphism \bullet$ is now $p$-cocartesian, we can fill in the two missing dotted arrows \enquote{$(3)$} and \enquote{$(4)$}. Playing around with \cref{def:WeirdCocartesianDefinition}\itememph{a} easily shows that the square in the middle is a pushout iff $w\morphism \bullet$ is $p$-cocartesian. Hence it is a pushout by construction, and thus also a pullback since $\Cc$ is a stable $\infty$-category. This proves \itememph{\boxtimes}. Let us also remark that our argument shows that filling in the dotted arrows is unique up to contractible choice. Indeed, this is clear for \enquote{$(1)$}, \enquote{$(3)$}, and \enquote{$(4)$}, and for \enquote{$(2)$} we've just argued that we need to choose $w\morphism \bullet$ as a $p$-cocartesian lift of $p(w)\morphism u$ to make the middle square a pullback.
+	
+	We can now conclude that $\Span(p)\colon \Span(\Cc)\morphism \Span(\Dd)$ is a bicartesian fibration. Indeed, $p$ is bicartesian by Step~\itememph{1}, and given any span $p(x)\lmorphism y'\morphism z'$ in $\Dd$, we can lift the left map to a $p$-cartesian edge $y\morphism x$, and then the right map to a $p$-cocartesian edge $y\morphism z$, which proves that $\Span(p)$ is a cocartesian fibration by \itememph{\boxtimes}. Dualising the argument shows that $\Span(p)$ is also cartesian.
+	
+	
+	Now for the general case. Let $\Ee\subseteq Q_1(\Cc)\simeq \Fun(J_1,\Cc)$ be the full sub-$\infty$-category where the left edge is $p$-cartesian and the right edge is $p$-cocartesian. Then the diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Ee\dar["p"']\rar["d_1"]\drar[pullback] & \Cc\dar["p"]\\
+			Q_1(\Dd)\rar["d_1"] & \Dd
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback. Informally, this is because we can lift any span $(p(x)\lmorphism y'\morphism z')\in Q_1(\Dd)$ to a span $(x\lmorphism y\morphism z)\in \Ee$ as argued in the previous paragraph, and this lift is necessarily unique up to contractible choice since so is taking $p$-cartesian and $p$-cocartesian lifts. For a more formal argument, you would have to show that the map from $\Ee$ to the pullback is fully faithful and essentially surjective. Essential surjectivity follows from the argument we've just given. For fully faithfulness, use \cref{cor:HomInFunctorCats} to compute $\Hom$ anima in $Q_1(\Cc)$ and $Q_1(\Dd)$ (we have $\TwAr(J_1)\simeq J_2^\op$, so the formula really is not too bad) and then simplify using the pullback square from \cref{def:WeirdCocartesianDefinition}\itememph{a} and its dual for cartesian edges. I'll leave working out the details to you.
+	
+	Likewise, we get a pullback diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\Ee\times_{Q_1(\Cc)}Q_2(\Cc)\dar["p"']\rar["{(\id_\Ee,d_1)}"]\drar[pullback] & \Ee\times_\Cc Q_1(\Cc)\dar["p"]\\
+			Q_2(\Dd)\rar["{(d_2,d_1)}"] & Q_1(\Dd)\times_\Dd Q_1(\Dd)
+		\end{tikzcd}
+	\end{equation*}
+	where the fibre product in the upper left corner is formed using $d_2\colon Q_2(\Cc)\morphism Q_1(\Cc)$. Informally, this square being a pullback is precisely what we proved in \itememph{\boxtimes}. Indeed, $\Ee\times_\Cc Q_1(\Cc)$ encodes the data of the diagram without the dotted arrows filled in, $Q_2(\Dd)$ encodes the data of the solid diagram in $\Dd$, and $Q_1(\Dd)\times_\Dd Q_1(\Dd)$ makes sure these two are compatible under $p$. We've seen in \itememph{\boxtimes} that it's always possible to fill in the dotted arrows, so that we obtain an object of $\Ee\times_{Q_1(\Cc)}Q_2(\Cc)$. Moreover, this object is unique up to contractible choice, as we've noted at the end of the proof of \itememph{\boxtimes}. This is the informal reason why $\Ee\times_{Q_1(\Cc)}Q_2(\Cc)$ is the pullback. To make this argument formal, you would again have to show that the map from $\Ee\times_{Q_1(\Cc)}Q_2(\Cc)$ to the pullback is fully faithful and essentially surjective. Essential surjectivity follows from the informal argument, and for fully faithfulness you have to compute $\Hom$ anima again using \cref{cor:HomInFunctorCats} (and even $\Hom$ anima in $Q_2(\Cc)$ are not too bad since limits over $\TwAr(J_2)\simeq J_3^\op$ are very manageable).
+	
+	Long story short, we get two pullback squares. But in fact they are split Verdier squares! Indeed, by \labelcref{par:EvenMoreOnVerdierSequences}, we only need to check that $\Cc\morphism \Dd$ and $\Ee\times_\Cc Q_1(\Cc)\morphism Q_1(\Dd)\times_\Dd Q_1(\Dd)$ are split Verdier projection. For the first one, this holds by assumption. The second one is a pullback of $Q_1(\Cc)\morphism Q_1(\Dd)$ (using the first pullback square), which is a split Verdier projection because the fully faithful left and right adjoints of $\Cc\morphism \Dd$ extend to functor $\infty$-categories.
+	
+	Thus, both diagrams stay pullback squares after applying the additive functor $F$. The second diagram then witnesses that the image of
+	\begin{equation*}
+		F(\Ee)\morphism F\big(Q_1(\Cc)\big)\morphism \Hom_{\Cat_\infty}\big([1],\Span^F(\Cc)\big)
+	\end{equation*}
+	consists of $\Span^F(p)$-cocartesian edges (essentially by running the above arguments backwards), and the first diagram gives a sufficient supply of these. This shows that $\Span^F(p)$ is indeed a cocartesian fibration. By a dual argument we see that it is cartesian as well. This finishes Step~\itememph{2}.
+	
+	
+	
+	
+	
 	\begin{alphanumerate}
 		\item[\itememph{3}] \itshape We prove that the functor $|\blank|\colon \Cat_\infty\morphism\An$ preserves pullback squares if one of the legs is a bicartesian fibration.
 	\end{alphanumerate}
@@ -1140,12 +1249,13 @@ This particular formulation of the additivity theorem, or to be really precise, 
 			\Cc\rar["p"] & \Dd
 		\end{tikzcd}
 	\end{equation*}
-	in $\Cat_\infty$, such that  $\Bb\morphism \Dd$ and thus also $\Aa\morphism \Cc$ are bicartesian fibrations. We denote by $F\coloneqq \St^\cocart(\Bb\morphism\Dd)\colon \Dd\morphism \Cat_\infty$ be the cocartesian straightening of $\Bb\morphism\Dd$. Then the pullback above can be rewritten as
+	in $\Cat_\infty$, such that  $\Bb\morphism \Dd$ and thus also $\Aa\morphism \Cc$ are bicartesian fibrations. We denote by $F\coloneqq \St^\cocart(\Bb\morphism\Dd)\colon \Dd\morphism \Cat_\infty$ be the cocartesian straightening of $\Bb\morphism\Dd$. Since unstraightening turns compositions into pullbacks, we obtain
 	\begin{equation*}
-		\begin{tikzcd}
-			\Un^\cocart(F\circ p)\dar\rar\drar[pullback] &\Un^\cocart(F)\dar\\
-			\Cc\rar["p"] & \Dd
-		\end{tikzcd}
+	%	\begin{tikzcd}
+	%		\Un^\cocart(F\circ p)\dar\rar\drar[pullback] &\Un^\cocart(F)\dar\\
+	%		\Cc\rar["p"] & \Dd
+	%	\end{tikzcd}
+		\Un^\cocart(F\circ p)\simeq \Aa\quad\text{and}\quad \Un^\cocart(F)\simeq \Bb\,.
 	\end{equation*}
 	Now consider the diagram
 	\begin{equation*}
@@ -1169,40 +1279,352 @@ This particular formulation of the additivity theorem, or to be really precise, 
 		&\simeq \colimit\Big(|\Dd|\morphism[|F|] \An\Big)\\
 		&\simeq \Un^\mathrm{left}\big(|F|\big)\,,
 	\end{align*}
-	as desired. The second equivalence follows from the fact that $|\blank|\colon \Cat_\infty\morphism \An$, being a left adjoint, preserves colimits. For the third equivalence, we use that the localisation $\Dd\morphism|\Dd|$ is cofinal, as we noted after \cref{def:cofinal}. For $\Un^\cocart(F\circ p)$ we can use a similar argument.
+	as desired. The second equivalence follows from the fact that $|\blank|\colon \Cat_\infty\morphism \An$, being a left adjoint, preserves colimits. For the third equivalence, we use that the localisation $\Dd\morphism|\Dd|$ is cofinal, as we noted after \cref{def:cofinal}. For $\Un^\cocart(F\circ p)$ we can use a similar argument. This finishes Step~\itememph{3}.
+	\begin{alphanumerate}
+		\item[\itememph{4}] \itshape We prove that $\Span^F(-)$ sends split Verdier squares to pullbacks in $\Cat_\infty$ and finish the proof of \cref{thm:Additivity}.
+	\end{alphanumerate}
+
+	If we can show the first assertion, then a combination of Step~\itememph{2} and~\itememph{3} seals the deal. Recall that $\Span^F\simeq \asscat(F(Q(-)))$ by \cref{lem:SpanF}. So let
+	\begin{equation*}
+		\begin{tikzcd}
+			\Aa\dar\rar\drar[pullback] &\Bb\dar\\
+			\Cc\rar & \Dd
+		\end{tikzcd}
+	\end{equation*}
+	be a split Verdier square. We know that $Q_n(-)\colon \Catst\morphism\Catst$ preserves split Verdier squares for all $n\in\IN$ (because $Q_n(-)\simeq \Fun(J_n,-)$ preserves pullbacks and the required fully faithful adjoints extend to functor $\infty$-categories) and $F$ turns them into pullbacks in $\An$, hence
+	\begin{equation*}
+		\begin{tikzcd}
+			F \big(Q(\Aa)\big)\dar\rar\drar[pullback] &F\big(Q(\Bb)\big)\dar\\
+			F\big(Q(\Cc)\big)\rar & F\big(Q(\Dd)\big)
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback in $\cat{sAn}$. In fact, it is even a Segal anima by \cref{lem:SpanF}. However, $\asscat(-)\colon \cat{sAn}\morphism \Cat_\infty$ doesn't necessarily preserve pullbacks of incomplete Segal anima. However, the canonical (up to contractible choice) morphism
+	\begin{equation*}
+		\asscat(X\times_YZ)\morphism \asscat(X)\times_{\asscat(Y)}\asscat(Z)
+	\end{equation*}
+	is always fully faithful for Segal anima $X,Y,Z\in\cat{sAn}$, as follows from \cref{eq:asscat2}. So only essential surjectivity can go wrong. Recall that $\core \asscat(X)\simeq |X^\times|$ for $X$ Segal by \cref{eq:asscat1}. We claim that
+	\begin{equation*}
+		\pi_0\left|X^\times\times_{Y^\times}Z^\times\right|\morphism \pi_0\left(|X^\times|\times_{|Y^\times|}|Z^\times|\right)
+	\end{equation*}
+	is surjective if $\asscat(X)\morphism\asscat(Y)$ is a bicartesian fibration, which will be sufficient for our case by Step~\itememph{2}. Every connected component on the right-hand side can be represented by points $x\in X_0$, $z\in Z_0$, and a path in $|Y^\times|$ connecting their images. To see why the $0$-skeleta already hit all path components, take a look again at the skeletal method in the proof of \cref{lem:SkeletalInduction}, and in particular, at \cref{eq:SkeletalInduction}. Again by considering skeleta, we see that two points belonging to the same path component in $|Y^\times|$ is already determined by $Y_1^\times$. Hence there are edges $y_i\in Y_1^\times$ and a path $w$ in $Y_0$ that connect $x$ and $z$ via
+	\begin{equation*}
+		x\morphism[y_1]s_1\lmorphism[y_2]s_2\morphism[y_3]\dotso \xleftarrow{y_{2n}}s_{2n}\overset{w}{\longrightsquigarrow{\morphismlength-0.145em}} z
+	\end{equation*}
+	Using that $\asscat(X)\morphism\asscat(Y)$ is a bicartesian fibration, we can lift this to a similar sequence in $X$, which gives a connected component in $\pi_0|X^\times\times_{Y^\times}Z^\times|$. This shows the desired surjectivity and the proof is finally done!
 \end{proof}
 
-\begin{lem}\label{lem:CocartesianLemma}
-	Let $g\colon \Bb\shortdoublelrmorphism\Aa\noloc f$ be an adjoint pair in $\Cat_\infty$, with counit $c\colon gf\Rightarrow\id_\Aa$.
+We're now almost in position to prove \cref{thm:K=coreGrp}. But Fabian decided to give a brief discussion of grouplike additive functors and their span $\infty$-categories first. To make the result of that discussion more comprehensible, I put them into a separate lemma.
+\begin{lem}\label{lem:GrouplikeFunctors}
+	Suppose $F\colon \Catst\morphism \An$ is a grouplike additive functor and let $\Cc$ be a stable $\infty$-category. Then
+	\begin{equation*}
+		F\big(\Ar(\Cc)\big)\simeq F(\Cc)\times F(\Cc)\quad\text{and}\quad F\big(Q_n(\Cc)\big)\simeq F(\Cc)^{2n+1}
+	\end{equation*}
+	for all $n\in\IN$. More generally, there's an equivalence
+	\begin{equation*}
+		\operatorname{Bar}\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\isomorphism F\big( Q(\Cc)\big)\,.
+	\end{equation*}
+	Finally, $\Span^F(\Cc)\simeq B F(\Cc)$ \embrace{so in particular $\Span^F(\Cc)$ is a connected anima}.
+\end{lem}
+\begin{proof}[Proof sketch]
+	The equivalence $F(\Ar(\Cc))\simeq F(\Cc)\times F(\Cc)$ follows from the stable recollement from \cref{par:Recollements} together with \cref{par:MoreOnVerdierSequences}\itememph{d^*}. The equivalence $F(Q_n(\Cc))\isomorphism F(\Cc)^{2n+1}$ is induced by evaluation $Q_n(\Cc)\simeq \Fun(J_n,\Cc)\morphism \Cc$ at the $2n+1$ objects of $J_n$. To see that it is indeed an equivalence, let's first consider the case $n=1$. In this case we have a split Verdier sequence $\Cc\morphism Q_1(\Cc)\morphism \Ar(\Cc)$ (adjoints are given by left/right Kan extension along $[1]\morphism J_1$), which proves $F(Q_1(\Cc))\simeq F(\Cc)^3$ by \cref{par:MoreOnVerdierSequences}\itememph{d^*}. The general case follows either by induction, or by the an iterative application of the split Verdier square from \cref{lem:SpanF}.
+	
+	We've seen in \cref{par:MoreOnVerdierSequences}\itememph{c} that $F(\Cc)$ has a canonical $\IE_\infty$-group structure. Moreover, its addition map $\oplus\colon F(\Cc)\times F(\Cc)\morphism F(\Cc)$ turns $F(\Cc)$ into a left module over $F(\Cc)\times F(\Cc)$.  We may thus form $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))\colon \IDelta^\op\morphism \CGrp(\An)$ as in \labelcref{par:BarConstruction}. By construction, it satisfies
+	\begin{equation*}
+		\operatorname{Bar}_n\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\simeq F(\Cc)^{2n+1}\,,
+	\end{equation*}
+	so it coincides degreewise with $F( Q(\Cc))$. But $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))$ is also left-Kan extended from its restriction along $\IDelta_{\mathrm{inj},\leq 1}^\op\morphism \IDelta^\op$, so it's easy to construct a functor from it into $F( Q(\Cc))$, which is then a degreewise equivalence.
+	
+	From the description as a bar complex, or just by checking directly, one can verify that $F(Q_1(\Cc))^\times\simeq F(Q_1(\Cc))$. Hence $\Span^F(\Cc)\simeq \asscat(F (Q(\Cc)))$ is an anima (combine \cref{thmdef:RezkNerve}\itememph{c} with \cref{eq:asscat2} to see that all edges are equivalences). Moreover, it is connected. To see this, we first note $\Span^F(\Cc)\simeq \core (\asscat(F (Q(\Cc))))\simeq |F(Q(\Cc))^\times|$ by \cref{eq:asscat1}. Now $\pi_0$ of the right-hand side can be computed as described in claim~\itememph{*} in the proof of \cref{prop:CompletionOfMonoidsFullyFaithful}, the result being
+	\begin{align*}
+		\pi_0\big|F\big(Q(\Cc)\big)^\times\big|&= \Coeq\left(\pi_0F\big(Q_1(\Cc)\big)^\times\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)^\times\right)\\
+		&=\Coeq\left(\pi_0F\big(Q_1(\Cc)\big)\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)\right)\\
+		&=\Coeq\left(\pi_0F(\Cc)^3\doublemorphism[\pr_1][\pr_3] \pi_0F(\Cc)\right)\,,
+	\end{align*}
+	which evidently vanishes. Hence to prove $\Span^F(\Cc)\simeq BF(\Cc)$, it suffices to compute that $\Omega_0\Span^F(\Cc)\simeq F(\Cc)$ by \cref{par:Grp(An)=(*/An)Connected}. Now $\Omega_0\Span^F(\Cc)$ coincides with $\Hom_{\Span^F(\Cc)}(0,0)$. To compute this, consider\begin{equation*}
+		\begin{tikzcd}
+			\Cc\dar\rar\drar[pullback] & Q_1(\Cc)\dar["{(d_1,d_0)}"]\\
+			0\rar & Q_0(\Cc)\times Q_0(\Cc)
+		\end{tikzcd}
+	\end{equation*}
+	It is a pullback by inspection, as there are $\Cc$ possibilities to fill in the missing spot in a span $0\lmorphism \bullet\morphism 0$.
+	It is even a split Verdier square, since the right vertical arrow has both adjoints, given by left and right Kan extension, which are both fully faithful (in fact, both adjoints agree and send a pair $(x,y)\in Q_0(\Cc)\times Q_0(\Cc)\simeq \Cc\times \Cc$ to the span $x\lmorphism x\oplus y\morphism y$ in $Q_1(\Cc)\simeq \Fun(J_1,\Cc)$). So the pullback property is preserved upon applying $F$. But after applying $F$, the new pullback diagram computes $\Hom_{\Span^F(\Cc)}(0,0)$ by \cref{eq:asscat2}.
+\end{proof}
+Fabian remarks that the special case $k(\Ar(\Cc))\simeq k(\Cc)\times k(\Cc)$ of \cref{lem:GrouplikeFunctors} is the content of Waldhausen's original additivity theorem. Moreover, we've seen in the proof that $F(Q_1(\Cc))^\times\simeq F(Q_1(\Cc))$ for every grouplike additive functor $F$. This tells us that the Segal anima $F (Q(\Cc))$ is seldom complete: By \cref{thmdef:RezkNerve}\itememph{c}, we would need that
+\begin{equation*}
+	F(\Cc)\simeq F\big(Q_0(\Cc)\big)\isomorphism F\big(Q_1(\Cc)\big)^\times\simeq F(\Cc)^3
+\end{equation*}
+is an equivalence, which only holds if $F(\Cc)\simeq 0$.
+\begin{thm}\label{thm:SpanF}
+	If $F\colon \Catst\morphism\An$ is grouplike and additive and $\Cc$ is a stable $\infty$-category $\Cc$, then applying the realisation functor $|\blank|\colon \Cat_\infty\morphism \An$ to the pullback square
+	\begin{equation*}
+		\begin{tikzcd}
+			\Hom_{\Span^F(\Cc)}(0,0)\rar\dar\drar[pullback] & 0/\Span^F(\Cc)\dar\\
+			*\rar["0"] & \Span^F(\Cc)
+		\end{tikzcd}
+	\end{equation*}
+	in $\Cat_\infty$ gives a pullback square
+	\begin{equation*}
+		\begin{tikzcd}
+			F(\Cc)\rar\dar\drar[pullback] & *\dar["0"]\\
+			*\rar["0"] & {|\Span^F(\Cc)|}
+		\end{tikzcd}
+	\end{equation*}
+	in $\An$. So in particular, $F(\Cc)\simeq \Omega |\Span^F(\Cc)|$.
+\end{thm}
+With that, we can finally prove the theorem of Blumberg--Gepner--Tabuada.
+\begin{proof}[Proof of \cref{thm:K=coreGrp}]\label{page:ProofOfBlumbergGepnerTabuada}
+	First note that $\Omega|\Span^F(-)|$ is additive again for any additive functor $F$, since it is the composition of the additive functor $|\Span^F(-)|$ (\cref{thm:Additivity}) with the limits-preserving functor $\Omega\colon \CMon(\An)\morphism \CGrp(\An)$ (\cref{cor:CommutativeHorizontalAdjoints}\itememph{b}). This also shows that $\Omega|\Span^F(-)|$ takes values in the grouplikes.
+	
+	As always, we'll use Proposition~\labelcref{prop:LLaddendum} to prove that 
+	\begin{equation*}
+		L\simeq \Omega |\Span^{(-)}(-)|\colon \Fun^\add(\Catst,\An)\morphism \Fun^\grp(\Catst,\An)
+	\end{equation*}
+	is a left Bousfield localisation. First, we need a natural transformation $\eta\colon \id \Rightarrow L$. The computation in the proof of \cref{lem:GrouplikeFunctors} shows $F(\Cc)\simeq \Hom_{\Span^F(\Cc)}(0,0)$ for all additive functors $F$ (although we assumed that $F$ is grouplike there, but this isn't needed in the computation). Composing with the natural map 
+	\begin{equation*}
+		\Hom_{\Span^F(\Cc)}(0,0)\morphism \Hom_{|\Span^F(\Cc)|}(0,0)\simeq \Omega|\Span^F(\Cc)|
+	\end{equation*}
+	gives a map $F(\Cc)\morphism \Omega|\Span^F(\Cc)|$ which is functorial in $\Cc$ and $F$, thus providing the required transformation $\eta\colon \id\Rightarrow L$. Now \cref{thm:SpanF} implies that $\eta L,L\eta\colon L\overset{\sim}{\Longrightarrow} L\circ L$ are both equivalences, whence $L$ is indeed a left Bousfield localisation. Its essential image is contained in the grouplike functors as checked above, hence equals the grouplike functors since \cref{thm:SpanF} precisely says that $\eta$ is an equivalence on grouplikes.
+\end{proof}
+For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
+\begin{lemdef}[Rezk]\label{lemdef:Equifibred}
+	Let $\Ii$ be any $\infty$-category \embrace{which we think of as a digram shape}. Suppose we're given a pullback square
+	\begin{equation*}
+		\begin{tikzcd}
+			A\rar\dar["\sigma"']\drar[pullback] & B\dar["\tau"]\\
+			C\rar & D
+		\end{tikzcd}
+	\end{equation*}
+	in $\Fun(\Ii,\An)$ such that $\tau$ us \emph{equifibred}, i.e.\ such that
+	\begin{equation*}
+		\begin{tikzcd}
+			B_i\rar\dar \drar[pullback] & B_j\dar \\
+			D_i\rar & D_j
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback for all morphisms $i\morphism j$ in $\Ii$. Then also the diagram
+	\begin{equation*}
+		\begin{tikzcd}[row sep=scriptsize]
+			\colimit\limits_{i\in\Ii} A\rar\dar[shorten <=-0.75ex,"\sigma"']\drar[pullback] & \colimit\limits_{i\in\Ii} B_i\dar[shorten <=-0.75ex,"\tau"]\\
+			\colimit\limits_{i\in\Ii} C_i\rar & \colimit\limits_{i\in\Ii} D_i
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback in $\An$.
+\end{lemdef}
+\begin{proof}
+	We first prove the following claim to get a description of $\colimit_\Ii B$.
 	\begin{alphanumerate}
-		\item A morphism $\phi\colon x\morphism y$ in $\Aa$ is $f$-cocartesian iff the square
+		\item[\itememph{\boxtimes}] \itshape Suppose $\tau$ is equifibred and let $K$ be any anima. Then a transformation $\eta\colon B\Rightarrow \const K$ together with a map $K\morphism \colimit_{i\in\Ii} D_i$ make the diagram
 		\begin{equation*}
 			\begin{tikzcd}
-				gf(x)\rar["gf(\phi)"]\dar["c"'] & gf(y)\dar["c"]\\
-				x\rar["\phi"] & y
+				B_i\rar\dar \drar[pullback] & K\dar \\
+				D_i\rar & \colimit\limits_{i\in\Ii} D_i
 			\end{tikzcd}
 		\end{equation*}
-		goes to a pushout under $f\colon \Aa\morphism\Bb$.
-		\item If $\Aa$ admits pushouts which $f$ preserves, and $g$ is fully faithful, then $f$ is a cocartesian fibration.
+		a pullback for each $i\in \Ii$ iff $\eta$ induces an equivalence $\colimit_{i\in\Ii} B_i\isomorphism K$.
 	\end{alphanumerate}
-\end{lem}
-\begin{proof}
-	For \itememph{a}, plug the $(g,f)$-adjunction into the pullback square from \cref{def:WeirdCocartesianDefinition}\itememph{a}. For \itememph{b}, let $\phi'\colon x'\morphism y'$ be a morphism in $\Bb$ and let $x\in \Aa$ with $f(x)\simeq x'$ be given. Since $g$ is fully faithful, we have $y'\simeq fg(y')$, hence the morphism $\phi'\colon f(x)\morphism y'$ induces a morphism $gf(x)\morphism g(y')$ by adjunction. Now form the pushout
+	To prove \itememph{\boxtimes}, consider the functors $F_i\simeq \St^\mathrm{left}(B_i\morphism D_i)\colon D_i\morphism \An$. We claim that by equifibrancy of $\tau$, the $F_i$ assemble into a functor
 	\begin{equation*}
-		\begin{tikzcd}
-			gf(x)\rar \dar["c"']\drar[pushout] & g(y')\dar\\
-			x\rar["\phi"] & y
+		F\colon \colimit_{i\in\Ii} D_i\morphism \An\,.
+	\end{equation*}
+	On Sil's insistence, Fabian has given a proper argument for this in the official notes \cite[Chapter~IV p.\:46]{KTheory}, which I'll include here. The transformation $\tau$ corresponds to a map $[1]\morphism \Fun(\Ii,\An)$, which we may curry to a map $\Ii\morphism \Ar(\An)$. That $\tau$ is equifibrant means that this map sends all morphisms in $\Ii$ to morphisms in $\Ar(\An)$ which are represented by pullback squares in $\An$. On the other hand,
+	\begin{equation*}
+		\Fun\left(\colimit_{i\in\Ii}D_i,\An\right)\simeq \limit_{i\in \Ii^\op}\Fun(D_i,\An)\simeq \limit_{i\in\Ii^\op}\An/D_i
+	\end{equation*}
+	by straightening. Note that the functor $\An/-\colon \An^\op\morphism \Cat_\infty$ is not the usual slice category functor (whose codomain would be $\An$ rather than $\An^\op$). Indeed, to a map $i\morphism j$ in $\Ii$ we don't associate the forgetful functor $\An/D_i\morphism \An/D_j$, but the pullback functor $-\times_{D_j}D_i\colon\An/D_j\morphism \An/D_i$. Thus, $\An/-\colon\An^\op\morphism\Cat_\infty$ is represented by the cartesian (!) straightening of $t\colon \Ar(\An)\morphism \An$, which is in fact a cartesian fibration by \cref{exc:tCartesian}. Moreover, the $t$-cartesian edges are precisely the pullback squares, hence $\Ii\morphism \Ar(\An)$ sends every edge to a $t$-cartesian edge. Therefore, the induced map $\Ii\morphism \Ii\times_{\An}\Ar(\An)$ is a map of cartesian fibrations over $\Ii$, and thus it induces a natural transformation
+	\begin{equation*}
+		\left(\const *\Longrightarrow \An/D_{(-)}\right)\colon \Ii^\op\morphism \An\,.
+	\end{equation*}
+	This transformation induces a single map $*\morphism \limit_{i\in\Ii^\op}\An/D_i$, which provides the functor $F\colon \colimit_{i\in\Ii}\morphism \An$ we're looking for.
+	
+	Note that $\Un^\mathrm{left}(F)\morphism \colimit_{i\in \Ii}D_i$ is a left fibration over the anima $\colimit_{i\in \Ii}D_i$, hence $\Un^\mathrm{left}(F)$ is an anima itself. Thus $\Un^\mathrm{left}(F)\simeq |\Un^\mathrm{left}(F)|$, and we may apply  \cref{prop:CoLimitsInCat} twice to get
+	\begin{align*}
+		\Un^\mathrm{left}(F)\simeq \colimit_{\colimit_{i\in \Ii}D_i}F&\simeq \colimit_{i\in \Ii}\colimit_{D_i}D_i\\
+		&\simeq \colimit_{i\in\Ii}\Un^\mathrm{left}(F_i)\\
+		&\simeq \colimit_{i\in\Ii}B_i\,.
+	\end{align*}
+	This shows that $K\simeq\colimit_{i\in\Ii}B_i\simeq \Un^\mathrm{left}(F)$ does indeed fit into the pullback diagram from \itememph{\boxtimes}. Conversely, every $K\morphism \colimit_{i\in \Ii}D_i$ is uniquely determined by its pullbacks to the $D_i$, since  straightening implies $\An/\colimit_{i\in \Ii}D_i\simeq \Fun(\colimit_{i\in \Ii}D_i,\An)\simeq \limit_{i\in\Ii^\op}\An/D_i$, as seen above. So there is only one $K$ that fits into the pullbacks from \itememph{\boxtimes}, whence $K\simeq \colimit_{i\in \Ii}B_i$ is the only possibility. This shows \itememph{\boxtimes}.
+	
+	Now the actual proof may start. We first check that $\sigma$ is equifibred as well. To this end, let $i\morphism j$ be any morphism in $\Ii$ and consider the diagram
+	\begin{equation*}
+		\begin{tikzcd}[row sep=scriptsize]
+			A_i\dar\rar\drar[dotted,pullback] & A_j\rar\dar\drar[pullback] &B_j\rar\dar\drar[pullback] & \colimit\limits_{i\in\Ii} B_i\dar[shorten <=-0.75ex,"\tau"]\\
+			C_i\rar & C_j\rar & D_j\rar &\colimit\limits_{i\in\Ii} D_i
 		\end{tikzcd}
 	\end{equation*}
-	in $\Aa$. Note that $f(c)\colon fgf(x)\morphism f(x)\simeq x'$ is equivalent to the identity on $x'$ since $g$ is fully faithful. Moreover, $f$ preserve pushouts. Therefore, applying $f$ to the pushout square above gives a pushout
+	We must show that the left square is a pullback. But the middle square is a pullback by assumption and the right one is a pullback by \itememph{\boxtimes}. Hence also the rectangle formed by the middle and the right square is a pullback. But then the same argument implies that also the rectangle formed by all three squares must be a pullback. By abstract pullback nonsense, this implies that the left square must be a pullback as well, as claimed. This shows that $\sigma$ is equifibred.
+	
+	Now consider the diagram
 	\begin{equation*}
-		\begin{tikzcd}
-			x'\eqar[d] \rar["\phi'"]\drar[pushout] & y'\dar\\
-			x\rar["f(\phi)"] & y
+		\begin{tikzcd}[row sep=scriptsize]
+			A_j\dar\rar\drar[dotted,pullback]   &\colimit\limits_{i\in\Ii}B_i\times_{\colimit_{i\in\Ii}D_i}\colimit\limits_{i\in\Ii}C_i\rar\dar[shorten <=-0.75ex]\drar[pullback] & \colimit\limits_{i\in\Ii} B_i\dar[shorten <=-0.75ex,"\tau"]\\
+			C_j\rar & \colimit\limits_{i\in\Ii}C_i\rar &\colimit\limits_{i\in\Ii} D_i
 		\end{tikzcd}
 	\end{equation*}
-	Hence $f(\phi)\simeq \phi'$, so $\phi\colon x\morphism y$ is a lift of $\phi'$. By \itememph{a}, it is even an $f$-cocartesian lift, proving that $f$ is indeed a cocartesian fibration.
+	The right square is a pullback by construction, and that the outer rectangle is a pullback was checked in the previous step. Hence again the left square is a pullback too for all $j\in \Ii$. But then \itememph{\boxtimes} applied to $\sigma$ implies that $\colimit_{i\in\Ii}B_i\times_{\colimit_{i\in\Ii}D_i}\colimit_{i\in\Ii}C_i\simeq \colimit_{i\in\Ii}A_i$ and we're done!
 \end{proof}
+\begin{proof}[Proof sketch of \cref{thm:SpanF}]
+	We split the proof into two major steps.
+	\begin{alphanumerate}
+		\item[\itememph{1}] \itshape We construct an easily understood Segal anima $\operatorname{Null}(\Cc)\colon \IDelta^\op\morphism\An$ satisfying
+		\begin{equation*}
+			\asscat\big(F(\operatorname{Null}(\Cc))\big)\simeq 0/\Span^F(\Cc)
+		\end{equation*}
+	\end{alphanumerate}
+	
+	Consider the functor $[0]\star -\colon \IDelta^\op\morphism \IDelta^\op$. It induces a functor $\operatorname{d\acute{e}c}\colon \cat{sAn}\morphism \cat{sAn}$, called the \emph{décalage}. It already appeared in the proof of \cref{prop:HStronglyMonoidal}, although our convention there was to consider $-\star[0]$ instead (but who cares). The décalage functor comes equipped with natural transformations
+	\begin{equation*}
+		p\colon \operatorname{d\acute{e}c}\Longrightarrow \const\ev_0\quad\text{and}\quad d_0\colon \operatorname{d\acute{e}c} \Longrightarrow \id\,,
+	\end{equation*}
+	induced by $[0]\subseteq [0]\star [n]$ and $[n]\subseteq [0]\star [n]$ for all $[n]\in \IDelta^\op$, respectively. One easily checks that for every Segal anima $X$ and all $x\in X_0$ one has a commutative diagram
+	\begin{equation*}
+		\begin{tikzcd}
+			\asscat\big(\fib_x(p\colon \operatorname{d\acute{e}c} X\morphism \const X_0)\big)\dar["d_0"']\rar[iso] & x/\asscat(X) \dlar[bend left=15]\\
+			\asscat(X) & 
+		\end{tikzcd}
+	\end{equation*}
+	To see this, one first checks that $\fib_x(p\colon \operatorname{d\acute{e}c} X\morphism \const X_0)$ is Segal again, so the $\Hom$ anima in its associated category can be computed via \cref{eq:asscat2}. Once we understand the $\Hom$ anima in it, we find that $\asscat(\fib_x(p\colon \operatorname{d\acute{e}c} X\morphism \const X_0))$ has an initial element that's mapped to $x$ under $d_0$, hence $d_0$ lifts canonically to $x/\asscat(X)$. Then show that the lift is fully faithful and essentially surjective, again using that $\Hom$ anima can be calculated via \cref{eq:asscat2}. I leave the details to you since I'm too lazy to work them out.
+	
+	Now put 
+	\begin{equation*}
+		\operatorname{Null}(\Cc)\coloneqq \fib_0(p\colon \operatorname{d\acute{e}c}Q(\Cc)\rightarrow \const \Cc)\,.
+	\end{equation*}
+	So explicitly, $\operatorname{Null}_n(\Cc)\subseteq Q_{n+1}(\Cc)$ is the full sub-$\infty$-category spanned by diagrams of the following form:
+	\begin{center}
+		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
+			\node (00) at (0,0) {$0$};
+			\fill (2,0) circle (0.5ex) coordinate (01);
+			\fill (4,0) circle (0.5ex) coordinate (02);
+			\fill (6,0) circle (0.5ex) coordinate (03);
+			\fill (8,0) circle (0.5ex) coordinate (04);
+			\fill (1,1) circle (0.5ex) coordinate (10);
+			\fill (3,1) circle (0.5ex) coordinate (11);
+			\fill (5,1) circle (0.5ex) coordinate (12);
+			\fill (7,1) circle (0.5ex) coordinate (13);
+			\fill (2,2) circle (0.5ex) coordinate (20);
+			\fill (4,2) circle (0.5ex) coordinate (21);
+			\fill (6,2) circle (0.5ex) coordinate (22);
+			\fill (3,3) circle (0.5ex) coordinate (30);
+			\fill (5,3) circle (0.5ex) coordinate (31);
+			\fill (4,4) circle (0.5ex) coordinate (40);
+			\draw[to-,shorten >=1.25ex] (00) -- (10);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (10);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (11);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (10) -- (20);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (20);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (12);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (21);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (30);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (04) -- (13);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (13) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (22) -- (31);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (31) -- (40);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (13);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (31);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (30) -- (40);
+			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
+			\path (11) to  node[pos=0.5,sloped] {$\ldots$} (21);
+			\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
+			\node[rotate=-45] at (2,1) {$\pullbacksign$};
+			\node[rotate=-45] at (6,1) {$\pullbacksign$};
+			\node[rotate=-45] at (5,2) {$\pullbacksign$};
+			\node[rotate=-45] at (4,3) {$\pullbacksign$};
+			\path (00) to node[pos=0.5,below=0.5ex] {$\underbrace{\hspace{5.656cm}}_{n+1\text{ zigs and zags}}$} (04);
+		\end{tikzpicture}
+	\end{center}
+	Moreover, since $p\colon \operatorname{d\acute{e}c}Q(\Cc)\rightarrow \const \Cc)$ is a degreewise split Verdier projection (with left/right Kan extension as adjoints, as usual), we have 
+	\begin{equation*}
+		F\big(\operatorname{Null}(\Cc)\big)\simeq \fib_0\big(p\colon \operatorname{d\acute{e}c}F (Q(\Cc))\rightarrow \const F(\Cc)\big)\,.
+	\end{equation*}
+	Thus, our considerations above show $\asscat(F(\operatorname{Null}(\Cc)))\simeq 0/\Span^F(\Cc)$, as desired.
+	\begin{alphanumerate}
+		\item[\itememph{2}]\itshape We show that there is a pullback diagram
+		\begin{equation*}
+			\begin{tikzcd}
+				\const F(\Cc)\rar\dar\drar[pullback] & F\big(\operatorname{Null}(\Cc)\big)\dar["F(d_0)"]\\
+				\const * \rar["0"] & F\big( Q(\Cc)\big)
+			\end{tikzcd}
+		\end{equation*}
+		in which the right vertical arrow is equifibred in the sense of \cref{lemdef:Equifibred}.
+	\end{alphanumerate}
+	
+	It is easy to see that the diagram above is indeed a pullback. Indeed, the pullback $\{0\}\times_{Q_n(\Cc)}\operatorname{Null}_n(\Cc)$ consists of diagrams of the form
+	\begin{center}
+		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
+			\node (00) at (0,0) {$0$};
+			\node (01) at (2,0) {$0$};
+			\node (02) at (4,0) {$0$};
+			\node (03) at (6,0) {$0$};
+			\node (04) at (8,0) {$0$};
+			\node (10) at (1,1) {$x$};
+			\node (11) at (3,1) {$0$};
+			\node (12) at (5,1) {$0$};
+			\node (13) at (7,1) {$0$};
+			\node (20) at (2,2) {$x$};
+			\node (21) at (4,2) {$0$};
+			\node (22) at (6,2) {$0$};
+			\node (30) at (3,3) {$x$};
+			\node (31) at (5,3) {$0$};
+			\node (40) at (4,4) {$x$};
+			\draw[to-] (00) -- (10);
+			\draw[to-] (01) -- (10);
+			\draw[to-] (01) -- (11);
+			\draw[to-] (02) -- (11);
+			\draw[to-] (10) -- (20);
+			\draw[to-] (11) -- (20);
+			\draw[to-] (03) -- (12);
+			\draw[to-] (12) -- (21);
+			\draw[to-] (21) -- (30);
+			\draw[to-] (04) -- (13);
+			\draw[to-] (13) -- (22);
+			\draw[to-] (22) -- (31);
+			\draw[to-] (31) -- (40);
+			\draw[to-] (03) -- (13);
+			\draw[to-] (12) -- (22);
+			\draw[to-] (21) -- (31);
+			\draw[to-] (30) -- (40);
+			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
+			\path (11) to  node[pos=0.5,sloped] {$\ldots$} (21);
+			\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
+			\node[rotate=-45] at (2,1) {$\pullbacksign$};
+			\node[rotate=-45] at (6,1) {$\pullbacksign$};
+			\node[rotate=-45] at (5,2) {$\pullbacksign$};
+			\node[rotate=-45] at (4,3) {$\pullbacksign$};
+			\path (00) to node[pos=0.5,below=0.5ex] {$\underbrace{\hspace{5.656cm}}_{n+1\text{ zigs and zags}}$} (04);
+		\end{tikzpicture}
+	\end{center}
+	hence $\{0\}\times_{Q_n(\Cc)}\operatorname{Null}_n(\Cc)\simeq \Cc$. Moreover, $d_0\colon \operatorname{Null}_n(\Cc)\morphism Q_n(\Cc)$ is a split Verdier projection (with left/right Kan extension as adjoints, as usual), hence this pullback is preserved by $F$ and we obtain $\{0\}\times_{F(Q_n(\Cc))}F(\operatorname{Null}_n(\Cc))\simeq F(\Cc)$, as desired. This proves that we get a pullback diagram as above.
+	
+	If we can show that the right vertical arrow is equifibred, then we're done! Indeed, if this is the case, then \cref{lemdef:Equifibred} says that the diagram stays a pullback after applying $|\blank|\simeq \colimit_{\IDelta^\op}$. Hence we get a pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			\left|\const F(\Cc)\right|\rar\dar\drar[pullback] & \left|F\big(\operatorname{Null}(\Cc)\big)\right|\dar["\left|F(d_0)\right|"] \\
+			\left|\const *\right|\rar["0"] & \left|F\big(Q(\Cc)\big)\right|
+		\end{tikzcd}
+	\end{equation*}
+	The upper left corner is $F(\Cc)$, which coincides with the anima $\Hom_{\Span^F(\Cc)}(0,0)$ as argued in the proof of \cref{lem:GrouplikeFunctors}. The lower left corner is clearly $*$. Applying \cref{rem:Realisation} to $\asscat(F(\operatorname{Null}(\Cc)))\simeq 0/\Span^F(\Cc)$ and $\asscat(F(Q(\Cc)))\simeq \Span^F(\Cc)$ shows that the upper and lower right corner coincide with $|0/\Span^F(\Cc)|\simeq *$ and $|\Span^F(\Cc)|$, hence the pullback diagram we get is precisely the one we want!
+	
+	It remains to show that $F(d_0)\colon F(\operatorname{Null}(\Cc))\morphism F(Q(\Cc))$ is equifibred. That is, we must show that
+	\begin{equation*}
+		\begin{tikzcd}
+			F\big(\operatorname{Null}_m(\Cc)\big)\rar\dar\drar[pullback] & F\big(\operatorname{Null}_n(\Cc)\big)\dar\\
+			F\big(Q_m(\Cc)\big) \rar & F\big(Q_n(\Cc)\big)
+		\end{tikzcd}
+	\end{equation*}
+	is a pullback for every map $[m]\morphism{} [n]$ in $\IDelta^\op$. I think the way we did this in the lecture is too complicated and I can give a simpler proof. It seems almost too easy, so I feel a bit like I'm overlooking something, but I couldn't find anything. Please tell me if I'm wrong. 
+	
+	We've seen above that $\operatorname{Null}_n(\Cc)\morphism Q_n(\Cc)$ is a split Verdier projection with fibre $\Cc$. Hence, since $F$ is grouplike, \cref{par:MoreOnVerdierSequences}\itememph{d^*} implies $F(\operatorname{Null}_n(\Cc))\simeq F(Q_n(\Cc))\times F(\Cc)$, and likewise $F(\operatorname{Null}_m(\Cc))\simeq F(Q_m(\Cc))\times F(\Cc)$. So the pullback property is trivially satisfied.
+	%In fact, it suffices to consider maps in $\IDelta^\op_\mathrm{inj}$, since the realisation of a simplicial anima coincides with its realisation as a semi-simplicial anima (see the proof of \cref{lem:SkeletalInduction}), so we can replace $F(\operatorname{Null}(\Cc))$ and $F(Q(\Cc))$ as well as $\const F(\Cc)$ and $\const *$ with their semi-simplicial restrictions. Moreover, since $F(\operatorname{Null}(\Cc))$ and $F(Q(\Cc))$ satisfy the Segal conditions, it's enough to check the pullback property for the three maps $d_0,d_1,d_2\colon [2]\morphism{} [1]$ in $\IDelta^\op_\mathrm{inj}$. For $d_1$ and $d_2$, the would-be pullback squares are split Verdier squares before applying $F$, hence they stay pullback squares. For $d_0$ instead, we get a diagram
+	%\begin{equation*}
+	%	\begin{tikzcd}
+	%		\operatorname{Null}_2(\Cc)\rar\dar & 	\operatorname{Null}_1(\Cc)\dar\\
+	%		Q_2(\Cc) \rar & Q_n(\Cc)
+	%	\end{tikzcd}
+	%\end{equation*}
+	%whose horizontal (!) maps are split Verdier projections (for $\operatorname{Null}_2(\Cc)\morphism\operatorname{Null}_1(\Cc)$ this needs a bit of fiddling, since we can't just take Kan extensions as always, but it's not hard to write down the adjoints explicitly), but this diagram is not a pullback.
+\end{proof}
+
 
 
 \backmatter\KOMAoption{chapterprefix}{false}

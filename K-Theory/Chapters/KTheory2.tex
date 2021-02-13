@@ -560,7 +560,7 @@ Now observe that $\Hom_\An(X,-)\colon \An\morphism \An$ preserves products, henc
 \end{align*}
 Be aware that in general these aren't equivalences in general! This is only true when $X$ is a finite CW complex (or a retract of such), as we will see in \cref{cor:BOBU} once we have the group completion theorem available.
 
-Now put $k\cat{o}^*(X)\coloneqq \pi_{-*}\Hom_\An(X,k\cat{o})$ and define $k\cat{u}^*(X)$, $k\cat{top}^*(X)$, and $k\cat{sph}^*(X)$ similarly. These groups are pretty important invariants in geometric topology! For example, $k\cat{o}^*(X)$ and $k\cat{u}^*(X)$ are what's usually called \emph{real} and \emph{complex $K$-theory}. In the special case $X=*$ they are completely known, thanks to the famous \emph{Bott periodicity theorem} (which we'll see again in a refined version in \cref{thm:BottPeriodicity}):
+Now put $k\cat{o}^*(X)\coloneqq \pi_{*}\Hom_\An(X,k\cat{o})$ and define $k\cat{u}^*(X)$, $k\cat{top}^*(X)$, and $k\cat{sph}^*(X)$ similarly. These groups are pretty important invariants in geometric topology! For example, $k\cat{o}^*(X)$ and $k\cat{u}^*(X)$ are what's usually called \emph{real} and \emph{complex $K$-theory}. In the special case $X=*$ they are completely known, thanks to the famous \emph{Bott periodicity theorem} (which we'll see again in a refined version in \cref{thm:BottPeriodicity}):
 \begin{equation*}
 	\pi_n(k\cat{u})\simeq\begin{cases*}
 		\IZ & if $n\equiv 0\mod 2$\\
@@ -1064,7 +1064,7 @@ For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-ad
 	
 	Finally, we need to show that $\CMon\colon \Cat_\infty^\times\morphism \Cat_\infty^\mathrm{semi\mhyph add}$ and $\CGrp\colon \Cat_\infty^\times \morphism \Cat_\infty^\mathrm{add}$ are right adjoints. If we denote $R=\CMon$ and $\eta\colon R\Rightarrow \id$ the forgetful natural transformation (given by evaluation in degree $1$), then \cref{prop:CMonOfSemiAdditive} and the fact that $\CMon(\Cc)$ is semi-additive show that $\eta R\colon R\circ R\overset{\sim}{\Longrightarrow} R$ and $R\eta\colon R\circ R\overset{\sim}{\Longrightarrow} R$ are natural equivalences. Thus we may apply the dual of Proposition~\labelcref{prop:LLaddendum} to see that $R$ is a right adjoint to the inclusion $\im(R)\subseteq \Cat_\infty^\times$ of its essential image. But $\im(R)=\Cat_\infty^\mathrm{semi\mhyph add}$: Indeed, \enquote{$\subseteq$} was checked above, whereas \enquote{$\supseteq$} follows from \cref{prop:CMonOfSemiAdditive} again. The argument for $\CGrp$ is completely analogous.
 \end{proof}
-\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \emph{\enquote{Peter May hates this proof. I love it.}}]{2020-12-10}\label{par:FreeCMon}
+\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \emph{\enquote{Old-timey topologists hate this proof. I love it.}}]{2020-12-10}\label{par:FreeCMon}
 The forgetful functor $\CMon(\An)\morphism\An$ as a left adjoint $\Free^\CMon\colon \An\morphism \CMon(\An)$. Like \cref{prop:FreeMonoids}, we won't prove this, but Fabian gives a sketch in \cite[Chapter~II pp.\:128--132]{KTheory}, after our venture into the land of $\infty$-operads. On objects $X\in\An$, the left adjoint is given by
 \begin{equation*}
 	\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{h\SS_n}^n\,,
@@ -1222,7 +1222,7 @@ Via the Eilenberg--MacLane spectrum functor $H$, the adjunction $\snake{C}_\bull
 \begin{equation*}
 	C_\bullet\colon \Sp\doublelrmorphism \Dd(\IZ)\noloc H\,.
 \end{equation*}
-The new $C_\bullet$ is defined by the formula $C_\bullet(X)\simeq \colimit_{i\in \IN}\snake{C}_\bullet(\Omega^{\infty-i}X)[-i]$ on objects. To see where the transition maps in this colimit come from, recall that $\Omega=[-1]$ is the loop functor in $\Dd(\IZ)$. Together with $\snake{C}(*)\simeq 0$, this provides a natural transformation $\snake{C}_\bullet(\Omega\,-)\Rightarrow \snake{C}_\bullet(-)[-1]$, which provide the required transition maps.
+The new $C_\bullet$ is defined by the formula $C_\bullet(X)\simeq \colimit_{i\in \IN}\snake{C}_\bullet(\Omega^{\infty-i}X)[-i]$ on objects. To see where the transition maps in this colimit come from, recall that $\Omega=[-1]$ is the loop functor in $\Dd(\IZ)$. Together with $\snake{C}(*)\simeq 0$, this provides a natural transformation $\snake{C}_\bullet(\Omega\,-)\Rightarrow \snake{C}_\bullet(-)[-1]$, which yields the required transition maps.
 
 To check that $C_\bullet$ is a left adjoint, it suffices to do so on objects by \cref{cor:AdjointsPointwise} (in particular, this will show that $C_\bullet$ is a functor at all), where we can compute
 \begin{align*}
@@ -1230,14 +1230,14 @@ To check that $C_\bullet$ is a left adjoint, it suffices to do so on objects by 
 	&\simeq \limit_{i\in \IN^\op}\Hom_{*/\An}\big(\Omega^{\infty-i}X,K(D[i])\big)\\
 	&\simeq \limit_{i\in \IN^\op}\Hom_{*/\An}(\Omega^{\infty-i}X,\Omega^{\infty-i}HD)\,,
 \end{align*}
-and the last term is $\Hom_\Sp(X,HD)$ since$\Hom$ anima in $\Sp$ (in fact, in arbitrary limits of $\infty$-categories) can be computed as a limit over the $\Hom$ anima in each degree. Also all equivalences are clearly functorial in $D\in \Dd(\IZ)$.
+and the last term is $\Hom_\Sp(X,HD)$ since $\Hom$ anima in $\Sp$ (in fact, in arbitrary limits of $\infty$-categories) can be computed as a limit over the $\Hom$ anima in each degree. Also all equivalences are clearly functorial in $D\in \Dd(\IZ)$.
 
 Now define the \emph{homology} and the \emph{cohomology of $X\in \Sp$ with coefficients in $A\in \Ab$} to be
 \begin{gather*}
 	H_*(X,A)\coloneqq H_*\big(C_\bullet (X)\otimes_\IZ^LA\big)=\colimit_{i\in \IN}H_*(\Omega^{\infty-i}X,A)\,,\\
-	H^*(X,A)\coloneqq H_{-*}\big(R\!\Hom_\IZ(C_\bullet(X),A)\big)\,.
+	H^*(X,A)\coloneqq H_{*}\big(R\!\Hom_\IZ(C_\bullet(X),A)\big)\,.
 \end{gather*}
-In the special case $X\simeq\IS[Y]$ for some anima $Y$, it turns out that $H_*(\IS[Y],A)=H_*(Y,A)$ and $H^*(\IS[Y],A)=H^*(Y,A)$ coincide with singular cohomology. See \cref{lem:HomologyOfS} for the case of homology, and \cref{cor*:SpectraCohomologyTheory} for the case of cohomology. In the latter corollary* we'll also find out that $H_*(X,A)=\Tor_*^\IS(X,HA)$ and $H^*(X,A)\simeq \Ext_\IS^*(X,HA)$ can be interpreted as \enquote{$\Tor$ and $\Ext$ over the sphere spectrum}.
+In the special case $X\simeq\IS[Y]$ for some anima $Y$, it turns out that $H_*(\IS[Y],A)=H_*(Y,A)$ and $H^*(\IS[Y],A)=H^{-*}(Y,A)$ coincide with singular homology and (up to a sign swap) singular cohomology. See \cref{lem:HomologyOfS} below. In \cref{cor*:SpectraCohomologyTheory}  we'll also find out that $H_*(X,A)=\Tor_*^\IS(X,HA)$ and $H^*(X,A)\simeq \Ext_\IS^*(X,HA)$ can be interpreted as \enquote{$\Tor$ and $\Ext$ over the sphere spectrum}.
 
 \numpar*{\smash{\Attention} Warning}
 Don't confuse the homology or cohomology \emph{of} a spectrum with the homology or cohomology theory \emph{associated} to a spectrum, which we'll introduce in \cref{def:SpectraCohomologyTheory} below. Also, neither $H_*(HC,A)$ for a complex $C\in \Dd(\IZ)$ nor $H_*(B^\infty M,A)$ for some $M\in\CGrp(\An)$ are easy to compute in general!
@@ -1597,7 +1597,7 @@ i.e.\ the \emph{stable homotopy groups of spheres}. In contrast to the vastly co
 	\end{equation*}
 	More generally, we have $C_\bullet(\IS[X])\simeq C_\bullet(X)$ for all $X\in \An$ \embrace{where the $C_\bullet(-)$ on the left-hand side is the one from \cref{par:HomologyOfSpectra}, and the $C_\bullet(-)$ on the right-hand side was defined in Very Long Example~\textup{\labelcref{exm:EilenberMacLane}}}, so in particular,
 	\begin{equation*}
-		H_*\big(\IS[X],A\big)\simeq H_*(X,A)\quad\text{and}\quad H^*\big(\IS[X],A\big)\simeq H^*(X,A)\,.
+		H_*\big(\IS[X],A\big)= H_*(X,A)\quad\text{and}\quad H^*\big(\IS[X],A\big)= H^{-*}(X,A)\,.
 	\end{equation*}
 \end{smalllem}
 \begin{proof*}
@@ -1709,7 +1709,7 @@ The functors $-\otimes E$ and $E^{(-)}$ for spectra that were constructed in the
 	Let $E\in \Sp$ and $X\in \An$. The \emph{homology} and \emph{cohomology theory} associated to $E$ are defined by
 	\begin{equation*}
 		E_*(X)=\pi_*(X\otimes E)=\pi_*\left(\colimit_XE\right)\quad\text{and}\quad
-		E^*(X)=\pi_{-*}(E^X)=\pi_{-*}\left(\limit_XE\right)\,.
+		E^*(X)=\pi_{*}(E^X)=\pi_{*}\left(\limit_XE\right)\,.
 	\end{equation*}
 \end{defi}
 A little bit of foreshadowing: We can also extend the tensor product (or \emph{smash product}) $-\otimes -$ to all of $\Sp$ by defining
@@ -2560,25 +2560,26 @@ Before we go on and construct module categories, I'd like to go on another detou
 	The homology and cohomology associated to a spectrum $E$ by \cref{def:SpectraCohomologyTheory} can be described as
 	\begin{equation*}
 		\begin{aligned}[t]
-			E_*(-)&\simeq \pi_*\big(\IS[-]\otimes E\big)\\
-			&\simeq \Tor_*^\IS\big(\IS[-],E\big)
+			E_*(-)&= \pi_*\big(\IS[-]\otimes E\big)\\
+			&= \Tor_*^\IS\big(\IS[-],E\big)
 		\end{aligned}
 		\quad\text{and}\quad
 		\begin{aligned}[t]
-			E^*(-)&\simeq \pi_{-*}\hom_\Sp\big(\IS[-],E\big)\\
-			&\simeq \Ext_\IS^*\big(\IS[-],E\big)
+			E^*(-)&= \pi_{*}\hom_\Sp\big(\IS[-],E\big)\\
+			&= \Ext_\IS^{*}\big(\IS[-],E\big)
 		\end{aligned}\,.
 	\end{equation*}
-	They satisfy the Eilenberg--Steenrod axioms. Moreover, the homology and cohomology theory associated to an Eilenbergg--MacLane spectrum $HA$ for some abelian group $A$ coincide with singular homology and cohomology, i.e.
+	They satisfy the Eilenberg--Steenrod axioms. Moreover, the homology and cohomology theory associated to an Eilenberg--MacLane spectrum $HA$ for some abelian group $A$ coincide with singular homology and \embrace{up to a sign swap} singular cohomology. That is,
 	\begin{equation*}
-		HA_*(-)\simeq H_*(-,A)\colon \An\morphism \Ab\quad\text{and}\quad HA^*(-)\simeq H^*(-,A)\colon \An^\op\morphism \Ab\,.
+		HA_*(-)\simeq H_*(-,A)\colon \An\morphism \Ab\quad\text{and}\quad HA^*(-)\simeq H^{-*}(-,A)\colon \An^\op\morphism \Ab\,.
 	\end{equation*}
 	Finally, the homology and cohomology of a spectrum $E$ itself, as defined in \cref{par:HomologyOfSpectra}, is given by
 	\begin{equation*}
-		H_*(E,A)\simeq \pi_*(E\otimes HA)\quad\text{and}\quad H^*(E,A)\simeq \pi_{-*}\hom_\Sp(E,HA)\,.
+		H_*(E,A)\simeq \pi_*(E\otimes HA)\quad\text{and}\quad H^*(E,A)\simeq \pi_{*}\hom_\Sp(E,HA)\,.
 	\end{equation*}
 \end{cor*}
-\begin{proof*}
+The sign swap in cohomology is deliberate. Fabian believes it was a mistake to have ever defined singular cohomology in nonnegative degrees rather than in nonpositive ones (or in fact, to have ever defined cochain complexes). I was late to be convinced, but in the end I was, not at least because in \cref{par:AdamsOperations} we'll encounter a situation where our sign convention is definitely preferable.
+\begin{proof*}[Proof of \cref{cor*:SpectraCohomologyTheory}]
 	The description of $E_*(-)$ follows from our computations in \cref{par:SpTensorProduct}. Along the same lines one can also prove $E^X\simeq\hom_\Sp(\IS[X],E)$, hence the description of $E^*(-)$.
 	
 	Next we check the Eilenberg--Steenrod axioms. To construct the long exact sequences and excision, first note that fibre and cofibre sequences in the stable $\infty$-category $\Sp$ coincide, and that to each such sequence there  is an associated long exact sequence on homotopy group (because the functors $\Omega^{\infty-i}\colon \Sp\morphism */\An$ preserve fibre sequences, so the long exact sequences from $*/\An$ are inherited). Now both $\IS[-]\otimes E$ and $\hom_\Sp(\IS[-],E)$ transform cofibre sequences in $\An$ into fibre sequences in $\Sp$, providing the long exact sequences for $E_*(-)$ and $E^*(-)$.
@@ -2589,13 +2590,13 @@ Before we go on and construct module categories, I'd like to go on another detou
 	\begin{equation*}
 		\hom_\Sp(E,HA)\simeq \hom_{\Dd(\IZ)}\big(C_\bullet(E),A\big)\simeq H\big(R\!\Hom_\IZ(C_\bullet(E),A)\big)
 	\end{equation*}
-	By \cref{exm:MyFirstSpectra}\itememph{c}, the homotopy groups of the right-hand side are the homology groups of $R\!\Hom_\IZ(C_\bullet(E),A)$, which are the singular cohomology groups $H^*(E,A)$ (in negative degrees) by definition. Since $H^*(\IS[X],A)\simeq H^*(X,A)$ for all $X\in\An$ by \cref{lem:HomologyOfS}, plugging in the special case $E\simeq \IS[X]$ also shows $HA^*(X)\simeq H^*(X,A)$.
+	By \cref{exm:MyFirstSpectra}\itememph{c}, the homotopy groups of the right-hand side are the homology groups of $R\!\Hom_\IZ(C_\bullet(E),A)$, which are the singular cohomology groups $H^*(E,A)$ (in negative degrees) by definition. Since $H^*(\IS[X],A)= H^{-*}(X,A)$ for all $X\in\An$ by \cref{lem:HomologyOfS}, plugging in the special case $E\simeq \IS[X]$ also shows $HA^*(X)= H^{-*}(X,A)$.
 	
 	For the homology case we actually need to use fact that $H$ is lax symmetric monoidal by \cref{lem:HLaxMonoidal}. Combining this with the unit $E\morphism HC_\bullet(E)$ of the $(C_\bullet,H)$-adjunction gives functorial maps
 	\begin{equation*}
 		E\otimes HA\morphism HC_\bullet(E)\otimes HA\morphism H\big(C_\bullet(E)\otimes_\IZ^LA\big)\,.
 	\end{equation*}
-	If we can show that the composition is an equivalence, taking homotopy groups on both sides will show $\pi_*(E\otimes HA)\simeq H_*(E,A)$, as desired, and then the special case $E\simeq \IS[X]$ together with \cref{lem:HomologyOfS} will also show $HA_*(X)\simeq H_*(X,A)$.
+	If we can show that the composition is an equivalence, taking homotopy groups on both sides will show $\pi_*(E\otimes HA)= H_*(E,A)$, as desired, and then the special case $E\simeq \IS[X]$ together with \cref{lem:HomologyOfS} will also show $HA_*(X)= H_*(X,A)$.
 	
 	To show that the composition is indeed an equivalence, first note that it is an equivalence for $E\simeq \IS$ by \cref{lem:HomologyOfS}, and that both sides commute with shifts and colimits in $E$. For this we need that $H$ commutes with colimits, which is perhaps a bit surprising at first, given that $H$ is only a right adjoint, but we give an argument in the proof sketch* of \cref{thm:D(R)IsModOverHR} below (and once you know this theorem, $H$ preserving colimits is not that surprising any more). Now all of $\Sp$ can be generated from $\IS$ using shifts and colimits, hence
 	\begin{equation*}
@@ -2917,9 +2918,9 @@ Hence every commutative algebra $A\in\CAlg(\Cc^\otimes)$ canonically refines to 
 \numpar*{\thesmallerdummy. The Bar Construction}\label{par:BarConstruction}
 The tensor product in $\LMod_A(\Cc^\otimes)$ can be computed by the \emph{bar construction}: For $M,N\in \LMod_A(\Cc^\otimes)$, the underlying $\Cc$-object of $M\otimes_AN$ (which we'll abusingly also denote that way) is given by
 \begin{equation*}
-	M\otimes_AN\simeq \colimit_{\IDelta^\op}B_\bullet(M,A,N)\,.
+	M\otimes_AN\simeq \colimit_{\IDelta^\op}\operatorname{Bar}(M,A,N)\,.
 \end{equation*}
-Informally, the functor $B_\bullet(M,A,N)\colon \IDelta^\op\morphism \Cc$ sends $[n]\in\IDelta^\op$ to $M\otimes A^{\otimes n}\otimes N$, with the tensor product being taken in $\Cc$. 
+Informally, the functor $\operatorname{Bar}(M,A,N)\colon \IDelta^\op\morphism \Cc$ sends $[n]\in\IDelta^\op$ to $M\otimes A^{\otimes n}\otimes N$, with the tensor product being taken in $\Cc$. 
 
 In the script \cite[Chapter~II pp.\:123--124]{KTheory}, Fabian explains how to define the bar construction formally. Let $\operatorname{rev}\colon \IDelta^\op\morphism\Delta^\op$ denote the functor that reverses the order of a totally ordered set. Using \cref{thm:AlgAssocDescription}, it induces a functor
 \begin{equation*}
@@ -2946,9 +2947,9 @@ Now observe that $P\colon \IDelta^\op\morphism \Cc^\otimes$ factors over $\Cc_\m
 
 The unique active maps $f_n\colon \langle n\rangle\morphism \langle 1\rangle$ define a natural transformation $\id_{\IGamma^\op_\mathrm{act}}\Rightarrow \const {\langle 1\rangle}$ in $\Fun(\IGamma_\mathrm{act}^\op,\IGamma_\mathrm{act}^\op)$. By unstraightening magic, it defines a map of cocartesian fibrations from $\Cc_\mathrm{act}^\otimes$ to its pullback along $\const {\langle 1\rangle}$, which is $\Cc\times\IGamma^\op_\mathrm{act}$. Composing $P$ with that map gives a functor
 \begin{equation*}
-	B_\bullet(M,A,N)\colon \IDelta^\op\morphism \Cc\,,
+	\operatorname{Bar}(M,A,N)\colon \IDelta^\op\morphism \Cc\,,
 \end{equation*}
-which is the one we're looking for. Since cocartesian lifts of the active maps $f_{n+2}\colon \langle n+2\rangle\morphism \langle 1\rangle$ just tensor stuff together, we see that $B(M,A,N)$ does indeed take $[n]$ to $M\otimes A^{\otimes n}\otimes N$.
+which is the one we're looking for. Since cocartesian lifts of the active maps $f_{n+2}\colon \langle n+2\rangle\morphism \langle 1\rangle$ just tensor stuff together, we see that $\operatorname{Bar}(M,A,N)$ does indeed take $[n]$ to $M\otimes A^{\otimes n}\otimes N$.
 
 We won't explain why the bar construction computes the tensor product in $\LMod_A(\Cc^\otimes)$, and refer instead to \cite{HA} again: In Proposition~\HAthm{4.4.2.8}, Lurie proves that the tensor product in \emph{bimodules} is given by the bar construction, and in Theorem~\HAthm{4.5.2.1} he shows that the tensor product on $\LMod_A(\Cc^\otimes)$ for $A\in \CAlg(\Cc^\otimes)$ factors over the specialisation from bimodules to left modules.
 \refstepcounter{smallerdummy}
@@ -3003,27 +3004,27 @@ which informally sends objects $(c_1,\dotsc,c_n)$ to $((1_\Cc,c_1),\dotsc,(1_\Cc
 	\end{equation*}
 	(since then it formally follows that $H$ preserves cocartesian lifts of active morphisms, hence all cocartesian lifts). There's nothing to show for the first equivalence. For the second, we'll use the bar construction from \labelcref{par:BarConstruction}. Since $H$, being an equivalence, preserves colimits, it suffices to consider the case $M=R[0]$. Hence we must show
 	\begin{equation*}
-		HN\simeq \colimit_{\IDelta^\op}B_\bullet(HR,HR,HN)\,.
+		HN\simeq \colimit_{\IDelta^\op}\operatorname{Bar}(HR,HR,HN)\,.
 	\end{equation*}
 	
-	This is, in fact, a special case of a general principle. Observe that the bar construction $B_\bullet\coloneqq B_\bullet(HR,HR,HN)$ is the \emph{décalage} of another simplicial $HR$-module. That is, there is another functor $B'_\bullet\colon \IDelta^\op\morphism\Mod_{HR}$ such that the following diagram commutes:
+	This is, in fact, a special case of a general principle. Observe that the bar construction $B\coloneqq \operatorname{Bar}(HR,HR,HN)$ is the \emph{décalage} of another simplicial $HR$-module. That is, there is another functor $B'\colon \IDelta^\op\morphism\Mod_{HR}$ such that the following diagram commutes:
 	\begin{equation*}
 		\begin{tikzcd}[column sep=small]
-			\IDelta^\op\ar[rr,"\sigma^\op"]\drar["B_\bullet"'] & & \IDelta^\op\dlar["B_\bullet'"]\\
+			\IDelta^\op\ar[rr,"\sigma^\op"]\drar["B"'] & & \IDelta^\op\dlar["B'"]\\
 			& \Mod_{HR}
 		\end{tikzcd}
 	\end{equation*}
 	Here $\sigma\colon \IDelta \morphism\IDelta $ denotes the functor taking objects $[n]$ to $[n+1]$ and morphisms $\alpha\colon [n]\morphism{[m]}$ to $\sigma(\alpha)\colon [n+1]\morphism {[m+1]}$ given by $\sigma(\alpha)(i)=\alpha(i)$ for $i\leq n$ and $\sigma(\alpha)(n+1)=m+1$.
 	
-	It's not hard to construct $B'_\bullet$ in our example. Basically, one has to place another $HN$ in degree $0$ and add those maps $ HR^{\otimes n}\otimes HN\morphism HR^{\otimes n+1}\otimes HN $ that are given by $\IS\morphism HR$ on the first factor and the identity on the rest, as well as those maps $ HR^{\otimes n+1}\otimes HN\morphism HR^{\otimes n}\otimes HN $ that multiply the first factor with $HN$ (so we are forming some kind of cyclic bar construction). I'll leave the formal construction to you.
+	It's not hard to construct $B'$ in our example. Basically, one has to place another $HN$ in degree $0$ and add those maps $ HR^{\otimes n}\otimes HN\morphism HR^{\otimes n+1}\otimes HN $ that are given by $\IS\morphism HR$ on the first factor and the identity on the rest, as well as those maps $ HR^{\otimes n+1}\otimes HN\morphism HR^{\otimes n}\otimes HN $ that multiply the first factor with $HN$ (so we are forming some kind of cyclic bar construction). I'll leave the formal construction to you.
 	
-	In general, if $B_\bullet,B_\bullet'\colon \IDelta^\op\morphism \Cc$ are simplicial objects in some $\infty$-category $\Cc$, and if $B_\bullet\simeq \operatorname{d\acute{e}c}(B_\bullet')$ is the décalage of $B'_\bullet$, then
+	In general, if $B,B'\colon \IDelta^\op\morphism \Cc$ are simplicial objects in some $\infty$-category $\Cc$, and if $B\simeq \operatorname{d\acute{e}c}(B')$ is the décalage of $B'$, then
 	\begin{equation*}
-		\colimit_{\IDelta^\op}B_\bullet\simeq \colimit_{\IDelta^\op}\const {B_0'}\simeq B_0'\,.
+		\colimit_{\IDelta^\op}B\simeq \colimit_{\IDelta^\op}\const {B_0'}\simeq B_0'\,.
 	\end{equation*}
-	The right equivalence follows from the fact that $\IDelta^\op$ is weakly contractible (with $[0]$ an initial object). For the left-hand side, observe that there are canonical transformations $B_\bullet \Rightarrow\const {B_0'}$ and $\const {B_0'} \Rightarrow B_\bullet$ in $\Fun(\IDelta^\op,\Cc)$, induced by suitable natural transformations $\eta\colon \sigma^\op\Rightarrow \const {[0]}$ and $\tau\colon \const {[0]}\Rightarrow \sigma^\op$ in $\Fun(\IDelta^\op,\IDelta^\op)$. Using higher order transformations between $\eta$ and $\sigma$, one shows that
+	The right equivalence follows from the fact that $\IDelta^\op$ is weakly contractible (with $[0]$ an initial object). For the left-hand side, observe that there are canonical transformations $B \Rightarrow\const {B_0'}$ and $\const {B_0'} \Rightarrow B$ in $\Fun(\IDelta^\op,\Cc)$, induced by suitable natural transformations $\eta\colon \sigma^\op\Rightarrow \const {[0]}$ and $\tau\colon \const {[0]}\Rightarrow \sigma^\op$ in $\Fun(\IDelta^\op,\IDelta^\op)$. Using higher order transformations between $\eta$ and $\sigma$, one shows that
 	\begin{equation*}
-		\tau^*\colon\Nat(B_\bullet,\const x)\doublelrmorphism[\sim][\sim] \Nat(\const {B_0'},\const x)\noloc\eta^*
+		\tau^*\colon\Nat(B,\const x)\doublelrmorphism[\sim][\sim] \Nat(\const {B_0'},\const x)\noloc\eta^*
 	\end{equation*}
 	are mutually inverse homotopy equivalences, which is what we need.
 \end{proof*}
@@ -3088,7 +3089,7 @@ Moreover one can check that $\Sp^{\Op_\infty}(\operatorname{Day}(\Cc_\otimes,\Oo
 \end{align*}
 If $\Cc^\otimes\simeq\Cc^\times$ is the cartesian monoidal structure from \cref{prop:CartesianMonoidalStructure}, then $\Cc_\times^\op\simeq (\Cc^\op)^\sqcup$ is the cocartesian monoidal structure, and $\CAlg(\Cc_\times^\op)\simeq\CAlg((\Cc^\op)^\sqcup)\simeq \Cc^\op$ by the second half of \cref{thm:OMon}. In particular, every anima $X\in \An$ is a coalgebra in the cartesian monoidal structure. Hence $\IS[X]\in \CAlg(\Sp_\otimes^\op)$, and then we see that $\hom_\Sp(\IS[X],E)$ is canonically an $\IE_\infty$-ring spectrum for every $\IE_\infty$-ring spectrum $E$. Now \cref{cor*:SpectraCohomologyTheory} implies
 \begin{equation*}
-	\pi_{-*}\hom_\Sp\big(\IS[X],HR\big)\simeq H^*(X,R)\,,
+	\pi_{*}\hom_\Sp\big(\IS[X],HR\big)\simeq H^{-*}(X,R)\,,
 \end{equation*}
 whence \cref{par:pi*GradedRing} endows the cohomology of $X$ with a graded commutative ring structure. This is (our definition of) the \emph{cup product}.
 

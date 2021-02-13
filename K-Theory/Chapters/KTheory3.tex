@@ -121,7 +121,7 @@ Now what's still missing is an argument why $R[S^{-1}]$ is an $\IE_\infty$-ring 
 	\end{equation*}
 	induced by the lax symmetric monoidal functor $\Mod_R^{\otimes_R}\morphism \Sp^\otimes$. The right vertical arrow is an equivalence by \cref{cor:LMod_1C=C}, and by \cref{propdef:Idempotent}\itememph{c}, the top arrow can be identified with the inclusion $\Mod_{R,S}\subseteq \Mod_R$. Hence the bottom arrow, which is fully faithful with essential image contained in $\Mod_{R,S}$, also hits of $\Mod_{R,S}$. In particular, the left vertical arrow is an equivalence as well, and one can even show that it is strongly monoidal: It clearly preserves tensor units, hence all we need to check is 
 	\begin{equation*}
-		\colimit_{\IDelta^\op}B_\bullet(M,R,N)\simeq \colimit_{\IDelta^\op}B_\bullet\big(M,R[S^{-1}],N\big)
+		\colimit_{\IDelta^\op}\operatorname{Bar}(M,R,N)\simeq \colimit_{\IDelta^\op}\operatorname{Bar}\big(M,R[S^{-1}],N\big)
 	\end{equation*}
 	for all $S$-local $R$-modules $M$ and $N$. But we can permute $\colimit_{\IDelta^\op}$ with the colimits defining $R[S^{-1}]$, and then $M$ and $N$ being $S$-local does the rest.
 	
@@ -772,11 +772,11 @@ Recall that the tensor product $-\otimes_R-$ on $\Proj(R)$ turns $B^\infty k(R)$
 
 Using \cref{cor*:SpectraCohomologyTheory}, we now recognize
 \begin{equation*}
-	k\cat{o}^i(X)=\pi_{-i}\Hom_\An(X,k\cat{o})=\pi_{-i}\hom_\Sp\big(\IS[X],B^\infty k\cat{o}\big)=(B^\infty k\cat{o})^{i}(X)
+	k\cat{o}^i(X)=\pi_{i}\Hom_\An(X,k\cat{o})=\pi_{i}\hom_\Sp\big(\IS[X],B^\infty k\cat{o}\big)=(B^\infty k\cat{o})^{i}(X)
 \end{equation*}
-for all $i\leq 0$. In particular, $k\cat{o}^*(-)\simeq\pi_{-*}\Hom_\An(-,k\cat{o})$ and $k\cat{u}^*(-)\simeq \Hom_\An(-,k\cat{u})$ can be canonically extended to cohomology theories in both positive and negative degrees. However, this is not the extension topologists are looking for. Instead, it will turn out (and this is the content of the famous \emph{Bott periodicity theorem}, which will appear as \cref{thm:BottPeriodicity} in a moment) that in negative degrees $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are $8$-periodic and $2$-periodic, respectively, and the \enquote{right} way to extend them should be to make them periodic in all integral degrees. 
+for all $i\geq 0$. In particular, $k\cat{o}^*(-)\simeq\pi_{*}\Hom_\An(-,k\cat{o})$ and $k\cat{u}^*(-)\simeq \pi_*\Hom_\An(-,k\cat{u})$ can be canonically extended to cohomology theories in both positive and negative degrees. However, this is not the extension which topologists are usually calling \enquote{$K$-theory}. Instead, it will turn out (and this is the content of the famous \emph{Bott periodicity theorem}, which will appear as \cref{thm:BottPeriodicity} in a moment) that in positive degrees $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are $8$-periodic and $2$-periodic, respectively, and the \enquote{usual} way to extend them is to make them periodic in all integral degrees. 
 
-If you've seen topological $K$-theory before, this situation might look familiar: One usually constructs $K^0(X)$ as the group completion of $\cat{Vect}_\IR(X)$ or $\cat{Vect}_\IC(X)$, and then one gets $K$-theory in negative degrees for free since the suspension isomorphism is supposed to be satisfied. But after that there's the problem of extending it to positive degrees, thus making $K$-theory a cohomology theory at all. This is done using Bott periodicity. We've seen above that $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ provide another extension to a cohomology theory, but it's the \enquote{wrong} one.
+If you've seen topological $K$-theory before, this situation might look familiar: One usually constructs $K^0(X)$ as the group completion of $\cat{Vect}_\IR(X)$ or $\cat{Vect}_\IC(X)$, and then one gets $K$-theory in negative degrees (which correspond to positive degrees in our sign convention, see the discussion after \cref{cor*:SpectraCohomologyTheory}) for free since the suspension isomorphism is supposed to be satisfied. But after that there's the problem of extending it to all integral degrees, thus making $K$-theory a cohomology theory at all. This is done using Bott periodicity. We've seen above that $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ provide another extension to a cohomology theory, known as \emph{connective} topological $K$-theory. To emphasise the difference, the \enquote{usual} topological $K$-theory is sometimes called \emph{periodic} topological $K$-theory.
 %as the negative part of the cohomology theory associated to $B^\infty k\cat{o}$. The same works for $k\cat{u}^*(X)$. It might seem weird at first that  $k\cat{o}^*(-)$ and $k\cat{u}^*(-)$ are only negative parts of cohomology theories, but then again it's not so weird anymore if you know a bit of topological $K$-theory: A priori, it can only be constructed in degrees $\leq 0$. To extend it to positive degrees, one needs \emph{Bott periodicity}---which we'll discuss next.
 \refstepcounter{smallerdummy}
 \numpar*{\thesmallerdummy. Hopf Bundles}
@@ -826,7 +826,7 @@ As a consequence, we can now define spectra $K\cat{U}$ and $K\cat{O}$ with $\Ome
 \begin{equation*}
 	K\cat{U}\simeq (B^\infty k\cat{u})[\beta^{-1}]\quad\text{and}\quad K\cat{O}\simeq (B^\infty k\cat{o})[\nu^{-1}]
 \end{equation*}
-(in \cref{prop:Ms-1}, we only saw how to localise elements from $\pi_0$, but the construction is straightforward to generalise to elements from arbitrary degrees). In this formluation we immediately see $K\cat{O},K\cat{U}\in\CAlg$. The associated cohomology theories $K\cat{U}^*(-)$ and $K\cat{O}^*(-)$ were studied by Atiyah and Hirzebruch, and are known as \emph{\embrace{periodic} topological $K$-theory.} They coincide with $k\cat{u}^*(-)$ and $k\cat{o}^*(-)$ in nonpositive degrees.
+(in \cref{prop:Ms-1}, we only saw how to localise elements from $\pi_0$, but the construction is straightforward to generalise to elements from arbitrary degrees). In this formluation we immediately see $K\cat{O},K\cat{U}\in\CAlg$. The associated cohomology theories $K\cat{U}^*(-)$ and $K\cat{O}^*(-)$ were studied by Atiyah and Hirzebruch, and are known as \emph{\embrace{periodic} topological $K$-theory.} They coincide with $k\cat{u}^*(-)$ and $k\cat{o}^*(-)$ in nonnegative degrees (which correspond to nonpositive degrees in the usual sign convention).
 
 \numpar{Adams Operations on $K$-Theory}\label{par:AdamsOperations}
 The Adams operations are certain maps $\psi^i\colon k\cat{u}\morphism k\cat{u}$. We'll construct them in two steps:
@@ -859,15 +859,15 @@ We would like to extend the $\Lambda^i$ to natural maps $\Lambda^i\colon k\cat{u
 \end{equation*}
 hence $k\cat{u}^0(-)=\Hom_{\pi\An}(-,k\cat{u})$ is represented by $k\cat{u}$. By the $1$-categorical Yoneda lemma, any endotransformation of $k\cat{u}^0(-)$ thus corresponds to a map $k\cat{u}\morphism k\cat{u}$ in $\pi\An$, or put differently, to an element of $k\cat{u}^0(k\cat{u})$. The idea how to construct the element $\lambda^i\in k\cat{u}^0(k\cat{u})$ we're looking for is simple: We \enquote{approximate} $k\cat{u}$ by suitable finite anima, on which we already know what $\Lambda^i$ does, and show that all finite stages together combine into a unique element of $k\cat{u}^0(k\cat{u})$. Let's give a sketch of how to make this precise!
 
-First off, we need to compute $k\cat{u}^0(k\cat{u})$. Since $\Omega^\infty K\cat{U}\simeq k\cat{u}$, we may equivalently compute $K \cat{U}^0(k\cat{u})$. In the lecture we worked with $k\cat{u}^*$ right away, but I think this might get us into trouble (please don't take my word for it, I'm way out of my mathematical comfort zone here). Now $K\cat{U}$ (and more generally any $2$-periodic $\IE_\infty$-ring spectrum) is an example of a \emph{multiplicative complex oriented cohomology theory}. These are $\IE_\infty$-ring spectra $E$ for which the natural inclusion $\IS^2\simeq \IC\IP^1\subseteq \IC\IP^\infty$ induces a surjection $E^2(\IC\IP^\infty)\epimorphism E^2(\IS^2)$. This is by the way the reason why believe we should take $K\cat{U}^*$ instead of $k\cat{u}^*$: The cohomology theory associated to $B^\infty k\cat{u}$ is not complex oriented (I think). A general fact about multiplicative complex oriented cohomology theories is the formula
+First off, we need to compute $k\cat{u}^0(k\cat{u})$. Now both $k\cat{u}$ and $K\cat{U}$ (and more generally any $\IE_\infty$-ring spectrum $E$ satisfying $\pi_3(E)=\pi_5(E)= \dotso = \pi_{2n+1}(E)=\dotso$) is an example of a \emph{multiplicative complex oriented cohomology theory}. These are $\IE_\infty$-ring spectra $E$ for which the natural inclusion $\IS^2\simeq \IC\IP^1\subseteq \IC\IP^\infty$ induces a surjection $E^2(\IC\IP^\infty)\epimorphism E^2(\IS^2)$. A general fact about multiplicative complex oriented cohomology theories is the formula
 \begin{equation*}
 	E^*\big(B\cat{U}(n)\big)\simeq \pi_*(E)\llbracket c_1,\dotsc,c_n\rrbracket\,,
 \end{equation*}
-where the $c_i\in E^{2i}(B\cat{U}(n))$ are the \emph{Chern classes} in $E$-cohomology. You can find a proof in \cite[Lecture~\href{https://www.math.ias.edu/~lurie/252xnotes/Lecture4.pdf}{4}]{LurieChromaticHomotopy}. If you are confused like me about how a power series ring is supposed to be graded: It appears to be a convention to regard graded cohomology rings as products $E^*(X)=\prod_{n\in\IZ}E^n(\IZ)$ rather than direct sums $\bigoplus_{n\in\IN}E^n(X)$.
+where the $c_i\in E^{-2i}(B\cat{U}(n))$ are the \emph{Chern classes} in $E$-cohomology. The power series ring is to be understood in a graded sense. That is, we allow infinite sums of elements of the same degree, but not of different degrees. Alternatively, you can work with the convention that graded cohomology rings are products $E^*(X)=\prod_{n\in\IZ}E^n(\IZ)$ rather than direct sums $\bigoplus_{n\in\IN}E^n(X)$ and get a power series ring on the nose. A proof of the formula can be found in \cite[Lecture~\href{https://www.math.ias.edu/~lurie/252xnotes/Lecture4.pdf}{4}]{LurieChromaticHomotopy}, but be warned that Lurie's sign convention is $E^*(X)=\pi_{-*}(E^X)$. So in particular, Lurie has to invert the grading on $\pi_*(E)$ to make the formula work (which he doesn't tell you). Here we have a clear instance where Fabian's sign convention is superior!
 
-Applying the above formula to $E\simeq K\cat{U}$, which has $\pi_*(K\cat{U})=\IZ[\beta,\beta^{-1}]$, where $\beta$ is the Bott element from \cref{thm:BottPeriodicity}, and using $k\cat{u}\simeq \IZ\times B\cat{U}$, we find
+Apply the above formula to $E\simeq k\cat{u}$, which has $\pi_*(k\cat{u})=\IZ[\beta]$, where $\beta$ in degree $2$ is the Bott element from \cref{thm:BottPeriodicity}. Using $k\cat{u}\simeq \IZ\times B\cat{U}$, we find
 \begin{equation*}
-	k\cat{u}^0(k\cat{u})=K\cat{U}^0(k\cat{u})=\prod_{n\in\IZ}\IZ\left\llbracket \beta^{-i}c_i\st i\geq 1\right\rrbracket\,.
+	k\cat{u}^0(k\cat{u})=\prod_{n\in\IZ}\IZ\left\llbracket \beta^{i}c_i\st i\geq 1\right\rrbracket\,.
 \end{equation*}
 
 Now that we have computed $k\cat{u}^0(k\cat{u})$, we enter phase~2 of our plan and try to \enquote{approximate} $k\cat{u}$ by finite anima. Let $\operatorname{Gr}_k(\IC^m)$ be the \emph{Grassmannian} parametrising $k$-dimensional sub-$\IC$-vector spaces of $\IC^n$, and let $\gamma_{k,m}^\IC\morphism \operatorname{Gr}_k(\IC^m)$ be the tautological bundle. By the classification of vector bundles, it defines a homotopy class of maps $\operatorname{Gr}_k(\IC^m)\morphism B\cat{U}(k)$. Furthermore, we have a maps $B\cat{U}(k)\morphism \{n\}\times B\cat{U}\subseteq k\cat{u}$ for all $n\in\IZ$. Letting $k$, $m$, and $n$ vary thus provides a single map
@@ -1457,7 +1457,7 @@ Only the third part of the following lemma was mentioned in the lecture, but the
 		are isomorphisms, then $f$ is also an isomorphism on homology with $\IZ$-coefficients.
 		\item[\itememph{c}] For all spectra $E$, there is a canonical pullback square \embrace{the \enquote{arithmetic fracture square}}
 		\begin{equation*}
-			\begin{tikzcd}[row sep=small]
+			\begin{tikzcd}[row sep=scriptsize]
 				E\rar\dar\drar[pullback] & \displaystyle\prod_p\roof{E}_p\dar[shorten <=-1ex]\\
 				E\otimes H\IQ\rar & \Bigg(\displaystyle\prod_p\roof{E}_p\Bigg)\otimes H\IQ
 			\end{tikzcd}
