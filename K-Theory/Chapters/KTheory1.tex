@@ -2,18 +2,29 @@
 	\section{Organisational Stuff}
 	Under no circumstances you should call Fabian by his last name! Also there will be oral exams in the weeks from $15\ordinalth$--$19\ordinalth$ February and $22\ordinalnd$--$26\ordinalth$ March.
 	\numpar*{Disclaimer \smash{\Attention}}
-	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes \cite{KTheory} (please suggest a better shorthand) to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. These are an excellent resource and please the eye with their purple colour scheme! So why should I bother typing my own notes? This is because of two main reasons. First, I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).  The second reason is that typing notes and polishing them after the lecture really forces me to think through all the technical details, which can be a lot of work, but it's the best way for me to learn that stuff.
-	
-	I might also take the opportunity to try and work out some skipped details or omitted proofs myself (given the Fabian's ambitious goals for this lecture, there can be no doubt that some cuts will have to be made). \emph{My own additions are marked with an asterisk!} So whenever you encounter a \emph{Proof}* which is not just digging up some references, or a \emph{Lemma}*, be extra careful for mistakes. If you happen to spot some, do not hesitate to tell me via \href{https://github.com/FlorianAdler/AlgebraBonn/issues/new}{GitHub} or in person.
+	These are not official lecture notes. Instead, Fabian uploads his own handwritten notes \cite{KTheory} (please suggest a better shorthand) to the lecture's \href{https://www.math.uni-bonn.de/people/fhebestr/Ktheory/}{website}. Fabian's notes are an excellent resource, and they please the eye with their purple and pink colour scheme! So why should I bother typing my own notes? This is because of two main reasons.
+	\begin{alphanumerate}
+		\item I like having my notes as one single document with clickable hyperlinks and a somewhat reasonable file size (I once attempted to open Fabian's also excellent but also handwritten straightening/unstraightening notes on my phone with slow mobile internet---don't try this at home).
+		\item Typing notes and polishing them after the lecture is a way to force myself to spend time thinking about the lecture, and in particular, its technical details. This can be a lot of work, but it's the best way for me to learn stuff.
+	\end{alphanumerate}
+	I also took the opportunity to try and work out some skipped details or omitted proofs myself (given Fabian's ambitious goals for this lecture, some cuts were unavoidable), and I made a few additions in the hope of clarifying things or sometimes just to unconfuse myself. \emph{My own additions are marked with an asterisk!} So whenever you encounter a \emph{Proof}*, or a \emph{Lemma}*, or a list item \itememph{c^*}, be extra careful for mistakes. If you happen to spot some, do not hesitate to tell me via \href{https://github.com/FlorianAdler/AlgebraBonn/issues/new}{GitHub} or in person.
 	
 	\numpar*{Differences in Numbering \smash{\Attention}}
-	Unfortunately, my numbers in \cref{chap:preliminaries} tend to diverge from Fabian's notes, mainly because some examples discussed there haven't been part of the lecture (that's another reason to check out Fabian's notes!). I'm trying to keep the numbers aligned where possible and to minimize the offset where not.
+	Unfortunately, my numbers in \cref{chap:preliminaries}, and likewise at some points in the later chapters, tend to diverge from Fabian's notes, mainly because some examples discussed there haven't been part of the lecture (that's another reason to check out Fabian's notes!). I'm trying to keep the numbers aligned where possible and to minimize the offset where not.
+	
+	On a related note, I sometimes rearrange the material a bit, for example by upgrading a side note to the status of a lemma to be citable later. Nevertheless, I hope that these notes stayed mostly faithful to Fabian's lecture.
+	
+	\numpar*{Acknowledgements}
+	Massive thanks to Fabian, Bastiaan, Branko and Thiago for spotting countless errors and suggesting various improvements!
+	
+	
 	
 	
 	\section{A Fairytale}
 
 	\lecture[From Riemann--Roch to Quillen's definition of $K$-theory. Outline of the course.]{2020-10-27}
-	We start with an overview of the mathematical developments that eventually led to the invention of $K$-theory. Don't worry if you're not familiar with the stuff on the next few pages, it is neither a prerequisite for the lecture, nor will it play any prominent role in it.
+	We start 
+	with an overview of the mathematical developments that eventually led to the invention of $K$-theory. Don't worry if you're not familiar with the stuff on the next few pages, it is neither a prerequisite for the lecture, nor will it play any prominent role in it.
 	
 	Let's begin in the 1850's: Consider a compact Riemann surface $\Sigma$ and let $D\in\IZ[\Sigma]$ be a divisor on $\Sigma$. That is, $D=\sum D_s\{s\}$ is a formal sum of points $s\in\Sigma$ with coefficients $D_s\in\IZ$, all but finitely many of which are zero. For example, if $f\colon \Sigma\morphism \IC$ is a meromorphic function, one could consider the \emph{principal divisor} $D(f)$ given by
 	\begin{equation*}
@@ -330,7 +341,7 @@
 				\end{pgfscope}
 			\end{pgfpicture}
 		\end{center}
-		The bottom line is the usual pushforward in cohomology \textup{(}use Poincaré duality on $X$, then the usual pushforward $f_*\colon H_*(X,\IZ)\morphism H_*(Y,\IZ)$ on homology, and finally use Poincaré duality on $Y$ to get back to cohomology\textup{)}.
+		The bottom line is the pushforward in cohomology \textup{(}use Poincaré duality on $X$, then the usual pushforward $f_*\colon H_*(X,\IZ)\morphism H_*(Y,\IZ)$ on homology, and finally use Poincaré duality on $Y$ to get back to cohomology\textup{)}.
 	\end{thm}
 	The theory of $K_0(X)$ (and its higher versions $K_i(X)$) is called \emph{topological $K$-theory} and was developed by Atiyah and Hirzebruch soon after Grothendieck had presented is result at the Arbeitstagung in Bonn. But $K_0(X)$ also has an algebraic analogue.
 	\begin{defi}\label{def:K0R}
@@ -374,7 +385,7 @@
 	\end{equation*}
 	(the objects on the bottom line are also known as \emph{grouplike $\IE_\infty$-spaces} and \emph{$\IE_\infty$-spaces} respectively). In this framework, we can finally define the higher $K$-groups!
 	\begin{defi}
-		The \emph{$i\ordinalth$ $K$-group} of a ring $R$ is defined as $K_i(R)=\pi_i(\Proj (R)^\inftygrp)$ (these are abelian groups). More importantly, we define $K(R)=\Proj (R)^\inftygrp$, which is an object of the $\infty$-category of anima.
+		The \emph{$i\ordinalth$ $K$-group} of a ring $R$ is defined as $K_i(R)=\pi_i(\Proj (R)^\inftygrp)$ (these are abelian groups). More importantly, we define $K(R)=\Proj (R)^\inftygrp$, which is an object of the $\infty$-category of $\infty$-groupoids (or \emph{anima}, as we will call them).
 	\end{defi}
 	\begin{warn}
 		The functor
@@ -384,17 +395,19 @@
 		is bloody complicated. For example, one has $\left\{\text{Finite sets},\sqcup\right\}^\inftygrp=\Omega^\infty\IS=\colimit_{n\geq 0}\Omega^n\IS^n$, so even in the simplest case---finite sets and disjoint union---the homotopy groups of what comes out are terrifying: they are the stable homotopy groups of spheres.
 	\end{warn}
 	\section{Outline of the Course}
-	The course is planned to consist of three parts, but let's see how far we will actually get.
+	The course will consist of three parts.
 	\numpar*{Part 1}
-	\emph{wherein we lay the required $\infty$-categorical foundations.} We will discuss symmetric monoidal structures on $\infty$-categories and anima. In particular, we will analyse $\IE_\infty$-spaces/groups and develop the theory of spectra and stable $\infty$-categories. Important examples of stable $\infty$-categories are the $\infty$-category $\cat{Sp}$ of of spectra and the derived $\infty$-category $\Dd(R)$ of $R$-modules. We will also prove that $\{\text{Picard $\infty$-groupoids}\}\simeq\{\text{connective spectra}\}$, which is a result due to Boardman--Vogt and May.
+	\emph{wherein we laid the required $\infty$-categorical foundations.} 
+	After a review of Fabian's previous lectures on $\infty$-categories,
+	we will discuss symmetric monoidal structures on $\infty$-categories and anima. In particular, we will analyse $\IE_\infty$-monoids/groups and develop the theory of spectra and stable $\infty$-categories. Important examples of stable $\infty$-categories are the $\infty$-category $\cat{Sp}$ of of spectra and the derived $\infty$-category $\Dd(R)$ of $R$-modules. We will also prove that $\{\text{Picard $\infty$-groupoids}\}\simeq\{\text{connective spectra}\}$, which is a result due to Boardman--Vogt and May.
 	\numpar*{Part 2}
-	\emph{wherein we finally define $K$-theory.} Apart from that, we will do some basic computations, including Quillens computation of $K_*(\IF_q)$. There might also be some guest lectures to get an overview of the landscape.
+	\emph{wherein we finally define $K$-theory.} Apart from that, we will do some basic computations, including Quillens computation of the $K$-theory of finite fields.
 	\numpar*{Part 3}
-	\emph{wherein we do some \enquote{modern} $K$-theory.} In particular, we will discuss $K$-theory as a functor $K\colon \cat{Cat}_\infty^\mathrm{st}\morphism \cat{Sp}$ from the $\infty$-category of stable $\infty$-categories to the $\infty$-category of spectra, and prove the basic results of \enquote{localisation, resolution, and dévissage}. For this we will follow \cite{LandTamme} as well as the series of papers \cite{9author1,9author2,9author3} that Fabian co-authored. These papers are actually concerned with \emph{hermitian} $K$-theory, which arises if we replace $\Proj (R)$ by 
+	\emph{wherein we do some \enquote{modern} $K$-theory.} In particular, we will discuss $K$-theory as a functor $K\colon \cat{Cat}_\infty^\mathrm{st}\morphism \cat{Sp}$ from the $\infty$-category of stable $\infty$-categories to the $\infty$-category of spectra, and sketch the proof of the basic results of \enquote{localisation, resolution, and dévissage}. For this we will follow \cite{LandTamme} as well as the series of papers \cite{9author1,9author2,9author3} that Fabian co-authored. These papers are actually concerned with \emph{hermitian} $K$-theory, which arises if we replace $\Proj (R)$ by 
 	\begin{equation*}
 		\operatorname{Unimod}(R)=\left\{(P,q)\st \text{$P$ is finite projective, $q$ is a unimodular form on $R$}\right\}\,.
 	\end{equation*}
-	Fabian hopes to develop the algebraic and the hermitian theory simultaneously. If time permits, we will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
+	Fabian's original plan was to develop the algebraic and the hermitian theory simultaneously. As it turned out, the hermitian side of things fell a bit short, but still played a role. We will also talk about $K$-theory being the \enquote{universal additive invariant} in the sense of \cite{BlumbergGepnerTabuada}.
 	\renewcommand{\thechapter}{\Roman{chapter}}
 	
 	\chapter{Recollections and Preliminaries}\label{chap:preliminaries}
@@ -1686,16 +1699,16 @@ The right adjoint of $C_\bullet$ is
 \end{equation*}
 Here $\snake{C}_\bullet(X,x)$ is the complex computing the \emph{reduced homology} of a pointed anima $(X,x)$. For example, if $\IS^i$ is your favourite model for the $i$-sphere in anima, then $C_\bullet(\IS^i,*)\simeq \IZ[i]$. This new adjunction needs a bit of justification, but to not interrupt the flow we'll discuss that later in \cref{rem*:UpgradeToPointed}. For now let's compute
 \begin{align*}
-	\pi_iK(C)&\simeq \pi_0\Hom_{*/\An}\big((\IS^i,*),K(C)\big)\\
-	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(\IS^i,*),C\big)\\
-	&\simeq \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(\IZ[i],C\big)\\
-	&\simeq H_i(C)\,.
+	\pi_iK(C)&= \pi_0\Hom_{*/\An}\big((\IS^i,*),K(C)\big)\\
+	&= \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(\IS^i,*),C\big)\\
+	&= \pi_0\Hom_{\Dd_{\geq 0}(\IZ)}\big(\IZ[i],C\big)\\
+	&= H_i(C)\,.
 \end{align*}
-In fact, we can say more: Let $A$ bw an abelian group and $A[n]\in \Dd_{\geq 0}(\IZ)$ the complex consisting of $A$ placed in degree $n$ (technically we have to replace $A[n]$ by a projective resolution to be consistent with \cref{exm:MyFirstInftyCats}\itememph{e}). Then $K(A,n)\coloneqq K(A[n])$ satisfies
+In fact, we can say more: Let $A$ be an abelian group and $A[n]\in \Dd_{\geq 0}(\IZ)$ the complex consisting of $A$ placed in degree $n$ (technically we have to replace $A[n]$ by a projective resolution to be consistent with \cref{exm:MyFirstInftyCats}\itememph{e}). Then $K(A,n)\coloneqq K(A[n])$ satisfies
 \begin{align*}
-	\pi_i\Hom_{\An}\big(X,K(A,n)\big)&\simeq \pi_i\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(X),A[n]\big)\\
-	&\simeq H_{i-n}C^\bullet(X,A)\\
-	&\simeq H^{n-i}(X,A)\,,
+	\pi_i\Hom_{\An}\big(X,K(A,n)\big)&= \pi_i\Hom_{\Dd_{\geq 0}(\IZ)}\big(C_\bullet(X),A[n]\big)\\
+	&= H_{i-n}C^\bullet(X,A)\\
+	&= H^{n-i}(X,A)\,,
 \end{align*}
 where $C^\bullet(X,A)\in\Dd_{\leq 0}(\IZ)$ is the complex of simplicial/cellular/singular cochains with coefficients in $A$. If $X$ is pointed and connected, the same calculation works with reduced cohomology (this only matters for $n=i$). We thus obtain:
 \begin{smallthm}[Eilenberg--MacLane]\label{thm:EilenbergMacLane}
@@ -1709,9 +1722,9 @@ For $n\geq 1$, an isomorphism on the right-hand side gives an equivalence on the
 
 Now consider the full sub-$\infty$-category $*/\An_{\leq n}\subseteq */\An$ spanned by \emph{$n$-truncated anima}, i.e.\ those with vanishing $\pi_i$ for $i>n$. The inclusion has a left-adjoint $\tau_{\leq n}\colon {*/\An}\morphism */\An_{\leq n}$. One can construct $\tau_{\leq n}X$ by iteratively attaching cells to $X$ to kill higher and higher homotopy groups and then use that adjunctions can be constructed objectwise by \cref{cor:AdjointsPointwise}. In fact, one can take $\tau_{\leq n}X=\operatorname{cosk}_{n+1}X$, since the right-hand side is a really brutal way of killing homotopy groups in degrees $n$ and higher. In particular, the $n$-truncation $\tau_{\leq n}X$ satisfies
 \begin{equation*}
-	\pi_i(\tau_{\leq n}X)\simeq \begin{cases*}
+	\pi_i(\tau_{\leq n}X)= \begin{cases*}
 		0 & if $i>n$\\
-		\pi_iX & if $i\leq n$
+		\pi_i(X) & if $i\leq n$
 	\end{cases*}\,.
 \end{equation*}
 The unit map $X\morphism \tau_{\leq n}X$ factors over $\tau_{\leq n+1}X\morphism\tau_{\leq n}X$, since $\tau_{\leq n}X$ is already $(n+1)$-truncated. We claim that the homotopy fibre $F$ (i.e.\ the fibre taken inside the $\infty$-category $\An$) of this map is equivalent to $K(\pi_{n+1}X,n+1)$. Indeed, the long exact sequence of homotopy groups shows that $\pi_iF=0$ for $i\neq n+1$ and that $\pi_{n+1}F\simeq \pi_{n+1}X$. Hence, by the discussion after \cref{thm:EilenbergMacLane},
@@ -2016,7 +2029,8 @@ Before we discuss our first examples of Bousfield localisations, we need to disc
 	\end{alphanumerate}
 	If these conditions are satisfied, $\phi$ is called a \emph{derived localisation} \embrace{or sometimes \enquote{$\Tor$-unital}}.
 \end{propdef}
-\numpar*{Examples}\enquote{My first derived localisations}:
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. Examples}\enquote{My first derived localisations}:
 \begin{alphanumerate}
 	\item If $W\subseteq R$ is a multiplicative subset in the commutative ring $R$, then $R\morphism R[W^{-1}]$ is a derived localisation. This easily follows from \cref{propdef:derivedLocalisation}\itememph{d} since $R[W^{-1}]$ is flat over $R$.
 	\item For non-commutative rings, one needs the (left or right, who knows?) \emph{Ore condition} for $R\morphism R[W^{-1}]$ to be a derived localisation.

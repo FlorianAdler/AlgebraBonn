@@ -66,7 +66,7 @@ Now what's still missing is an argument why $R[S^{-1}]$ is an $\IE_\infty$-ring 
 	\end{equation*}
 	is an equivalence for all $y\in \Cc$, which is clear from the condition on $x$. Hence $L_f$ is indeed a Bousfield localisation, with unit $\eta$. By definition, an element $y\in \Cc$ absorbs $f$ iff $\eta_y\colon y\morphism L_f(y)$ is an equivalence, hence $\Cc_f$ is indeed the essential image of $L_f$.
 	
-	For \itememph{b}, we use the criterion from Lemma~\labelcref{lem:LaxMonoidalAdjoints}\itememph{b}. Unravelling the statement, we must show that whenever $g\colon y\morphism y'$ is a morphism in $\Cc$ such that $L_f(g)\simeq \id_x\otimes g\colon x\otimes y\isomorphism x\otimes y'$ is an equivalence, then so is $L_f(g\otimes \id_z)\simeq \id_x\otimes g\otimes \id_z\colon x\otimes y\otimes z\isomorphism x\otimes y'\otimes z$ for all $z\in \Cc$. But that's just obvious, and so are the additional two assertions from \itememph{b}.
+	For \itememph{b}, we use the criterion from \labelcref{par:LaxMonoidalAdjoints}\itememph{b}. Unravelling the statement, we must show that whenever $g\colon y\morphism y'$ is a morphism in $\Cc$ such that $L_f(g)\simeq \id_x\otimes g\colon x\otimes y\isomorphism x\otimes y'$ is an equivalence, then so is $L_f(g\otimes \id_z)\simeq \id_x\otimes g\otimes \id_z\colon x\otimes y\otimes z\isomorphism x\otimes y'\otimes z$ for all $z\in \Cc$. But that's just obvious, and so are the additional two assertions from \itememph{b}.
 	
 	For \itememph{c}, note that the adjunction $L_f\colon \Cc\shortdoublelrmorphism\Cc_f\noloc i$ descends to adjunctions
 	\begin{align*}
@@ -1022,7 +1022,7 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 			\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)\,,
 		\end{equation*}
 		sending a representation $V\in R_\IC(G)$, i.e.\ a $\IC$-vector space with a $G$-action, to the vector bundle $EG\times_GV\morphism BG$. Alternatively, it can be described as sending a group homomorphism $r\colon G\morphism \cat{U}(n)$ to the map $BG\morphism B\cat{U}(n)\morphism \{n\}\times B\cat{U}\subseteq k\cat{u}$. It suffices to consider homomorphisms $r\colon G\morphism \cat{U}(n)\subseteq \GL_n(\IC)$, since we can always find a $G$-equivariant scalar product on any $G$-representation $V$ (start with any scalar product $\langle \blank,\blank\rangle'$ on $V$ and put $\langle u,v\rangle=\#G^{-1}\sum_{g\in G}\langle r(g)u,r(g)v\rangle'$ to make it $G$-equivariant).
-		\item For any field $k$, there are exterior power maps $\Lambda^i\colon \LMod_{k[G]}\morphism \LMod_{k[G]}$. Just as in Step~\itememph{1} of \cref{par:AdamsOperations} (minus the technical mumbo-jumbo), these induce maps of sets $\lambda^i\colon R_k(G)\morphism R_k(G)$, turning the representation ring $R_k(G)=K_0(k[G])$ into a $\lambda$-ring. And just as in Step~\itememph{2} of \cref{par:AdamsOperations}, we can then extract Adams operations $\psi^i\colon R_k(G)\morphism R_k(G)$ from them. In the case $k=\IC$, it follows from the constructions that $\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)$ from \itememph{a} commutes with the Adams operations on both sides.
+		\item For any field $k$, there are exterior power maps $\Lambda^i\colon \LMod_{k[G]}\morphism \LMod_{k[G]}$. Just as in Step~\itememph{1} of \cref{par:AdamsOperations} (minus the technical mumbo-jumbo about complex oriented cohomology theories), these induce maps of sets $\lambda^i\colon R_k(G)\morphism R_k(G)$, turning the representation ring $R_k(G)=K_0(k[G])$ into a $\lambda$-ring. And just as in Step~\itememph{2} of \cref{par:AdamsOperations}, we can then extract Adams operations $\psi^i\colon R_k(G)\morphism R_k(G)$ from them. In the case $k=\IC$, it follows from the constructions that $\operatorname{rep}\colon R_\IC(G)\morphism k\cat{u}^0(BG)$ from \itememph{a} commutes with the Adams operations on both sides.
 		\item Recall that a \emph{class function} on $G$ is a function $G\morphism \IC$ which is constant on conjugacy classes. One of the first result about complex representations is that the function
 		\begin{equation*}
 			\chi\colon R_\IC(G)\monomorphism \{\text{class functions }G\rightarrow \IC\}
@@ -1092,8 +1092,8 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 			\pi_0\Hom_\An\big(B\!\GL_\infty(\IF_q),\fib(\psi^q-\id)\big)\isomorphism \lim_{n\in\IN}\pi_0\Hom_\An\big(B\!\GL_n(\IF_q),\fib(\psi^q-\id)\big)\,.
 		\end{gather*}
 	\end{alphanumerate}
-	The first map is automatically surjective. Indeed, the left-hand side consists of maps to the homotopy fibre $\fib(\psi^q-\id)$, which given by maps to $\cat{ku}$ plus a homotopy to the identity after composition with $\psi^q\colon k\cat{u}\morphism k\cat{u}$. On the right-hand side, we forget the choice of homotopy and only remember that there is some. To show injectivity, we use that $\Hom_\An(B\!\GL_n(\IF_q),-)$ preserves fibre sequences. Hence, by the long exact sequence of a fibration, there is a surjection from $\pi_1(B\!\GL_n(\IF_q),k\cat{u})=k\cat{u}^{-1}(B\!\GL_n(\IF_q))$ onto the kernel. But we have the following general result (which we won't prove):
-	\begin{smallthm}[Atiyah--Segal completion theorem]
+	The first map is automatically surjective. Indeed, the left-hand side consists of maps to the homotopy fibre $\fib(\psi^q-\id)$, which given by maps to $k\cat{u}$ plus a homotopy to the identity after composition with $\psi^q\colon k\cat{u}\morphism k\cat{u}$. On the right-hand side, we forget the choice of homotopy and only remember that there is some. To show injectivity, we use that $\Hom_\An(B\!\GL_n(\IF_q),-)$ preserves fibre sequences. Hence, by the long exact sequence of a fibration, there is a surjection from $\pi_1(B\!\GL_n(\IF_q),k\cat{u})=k\cat{u}^1(B\!\GL_n(\IF_q))$ onto the kernel. But we have the following general result:
+	\begin{smallthm}[Atiyah--Segal completion theorem]\label{thm:AtiyahSegalCompletion}
 		If $G$ is a finite group \embrace{or a compact Lie group}, then
 		\begin{equation*}
 			K\cat{U}^i(BG)=\begin{cases*}
@@ -1103,17 +1103,30 @@ The group $\mu_{\ell^\infty}$ of $\ell$-power roots of unity is called the \emph
 		\end{equation*}
 		where $I$ is the kernel of $\rk\colon R_\IC(G)\morphism \IZ$, and $(-)_I^\complete$ denotes $I$-adic completion.
 	\end{smallthm}
-	This shows $k\cat{u}^{-1}(B\!\GL_n(\IF_q))=0$, and thus the first map is indeed a bijection. I suspect that there should be a less overkill proof that $k\cat{u}^{-1}$ vanishes, but right now I'm too lazy to think about this.
+	\begin{proof*}[Proof of \cref{thm:AtiyahSegalCompletion}]
+		See \cite{AtiyahCompletion} for the case where $G$ is finite, and \cite{AtiyahSegalCompletion} for the case of compact Lie groups.
+	\end{proof*}
+	Back to the proof of \cref{thm:QuillenKTheoryOfFiniteFields}. The completion theorem shows $k\cat{u}^1(B\!\GL_n(\IF_q))=0$, and thus the first map in \itememph{3} is indeed a bijection. I suspect that there should be a less overkill proof that $k\cat{u}^1$ vanishes, but right now I'm too lazy to think about this.
 	
-	The second map is part of a \emph{Milnor exact sequence}. In general, the homotopy groups of a sequential limit $\limit_{n\in\IN}X_n$ in $*/\An$ sit in an exact sequence
+	The second map in \itememph{3} is part of a \emph{Milnor exact sequence}. In general, the homotopy groups of a sequential limit $\limit_{n\in\IN}X_n$ in $*/\An$ sit in an exact sequence
 	\begin{equation*}
 		0\morphism R^1\!\limit_{n\in\IN}\pi_{i+1}(X_n)\morphism \pi_i\left(\limit_{n\in\IN}X_n\right)\morphism \limit_{n\in\IN}\pi_i(X_n)\morphism 0\,.
 	\end{equation*}
-	A proof can be found in the corresponding \href{https://ncatlab.org/nlab/show/lim^1+and+Milnor+sequences#MilnorSequences}{$n$Lab} article, but it's also not hard to prove this yourself. The Milnor sequence now shows that the second map is surjective and its kernel is given by
+	A proof of this general fact can be found in the corresponding \href{https://ncatlab.org/nlab/show/lim^1+and+Milnor+sequences#MilnorSequences}{$n$Lab} article, but it's also not hard to prove this yourself. The Milnor sequence now shows that the second map in \itememph{3} is surjective and its kernel is given by
 	\begin{equation*}
-		R^1\!\limit_{n\in\IN}\pi_1\Hom_\An\big(B\!\GL_n(\IF_q),k\cat{u}\big)\,.
+		R^1\!\limit_{n\in\IN}\pi_1\Hom_\An\big(B\!\GL_n(\IF_q),\fib(\psi^q-\id)\big)=R^1\!\limit_{n\in\IN} k\cat{u}^1\big(B\!\GL_n(\IF_q)\big)\,.
 	\end{equation*}
-	But this vanishes by the Atiyah--Segal completion theorem again.
+	By the long exact homotopy group sequence and \cref{thm:AtiyahSegalCompletion}, $k\cat{u}^1(B\!\GL_n(\IF_q))$ is a quotient of $R_\IC(\GL_n(\IF_q))_I^\complete$. Since $R^2\!\limit_{n\in\IN}$ vanishes, it thus suffices to show 
+	\begin{equation*}
+		R^1\!\limit_{n\in\IN}R_\IC\big(\GL_n(\IF_q)\big)_I^\complete=0\,.
+	\end{equation*}
+	For simplicity, put $R_n=R_\IC(\GL_n(\IF_q))$ and $I_n=\ker(\rk\colon R_n\morphism \IZ)$. Then $\limit_{m\in\IN}R_n/I_n^m\simeq R\!\limit_{m\in\IN}R_n/I_n^m$, because the Mittag-Leffler condition is satisfied. Moreover, the short exact sequences $0\morphism I_n/I_n^m\morphism R_n/I_n^m\morphism R_n/I_n\morphism 0$ show $R_n/I_n^m=\IZ\oplus I_n/I_n^m$. Finally, the quotient $I_n/I_n^m$ is a finite abelian group by \cite[Proposition~(6.13)]{AtiyahCompletion}. Putting everything together, we obtain
+	\begin{align*}
+		R\!\limit_{n\in\IN}\left(\limit_{m\in\IN}R_n/I_n^m\right)&\simeq R\!\limit_{n\in\IN}\left(R\!\limit_{m\in\IN}R_n/I_n^m\right)\\
+		&\simeq R\!\limit_{n\in\IN}R_n/I_n^n\\
+		&\simeq R\!\limit_{n\in\IN}\IZ\oplus R\!\limit_{n\in\IN}I_n/I_n^n	\,,
+	\end{align*}
+	where we use that the diagonal $\Delta\colon \IN\morphism \IN\times\IN$ is final (which is straightforward to verify via the dual of \cref{thm:JoyalQuillenThmA}\itememph{b}). But $R^1\!\limit_{n\in\IN}I_n/I_n^n$ vanishes, because the Mittag-Leffler condition is satisfied in any inverse system of finite abelian groups, and $R^1\!\limit_{n\in\IN}\IZ$ vanishes because the Mittag-Leffler condition is trivially satisfied. This proves what we want and finishes Step~\itememph{3}.
 	
 	Therefore, we have constructed a homotopy class of maps $B\!\GL_\infty(\IF_q)\morphism \fib(\psi^q-\id)$. Now extend it over the Quillen plus construction $B\!\GL_\infty(\IF_q)^+$ and the computation of group homology may begin \dotso
 \end{proof}
@@ -1510,9 +1523,7 @@ hence \cref{lem:HomotopyOfPCompletion} implies that $\ell$-completion shifts the
 		0 & if $i$ is odd
 	\end{cases*}\,,
 \end{equation*}
-as \cref{thm:SuslinRigidity} predicts.
-
-Fabian also mentioned that even though the Adams operations $\psi^i\colon B^\infty k\cat{u}\morphism B^\infty k\cat{u}$ aren't maps of $\IE_\infty$-ring spectra, they can be refined to an action of $\roof{\IZ}$ on the $\ell$-completion $(B^\infty k\cat{u})_\ell^\complete$ through $\IE_\infty$-ring spectra maps.
+as \cref{thm:SuslinRigidity} predicts. Fabian also mentioned that even though the Adams operations $\psi^i\colon B^\infty k\cat{u}\morphism B^\infty k\cat{u}$ aren't maps of $\IE_\infty$-ring spectra, they can be refined to an action of $\roof{\IZ}$ on the $\ell$-completion $(B^\infty k\cat{u})_\ell^\complete$ through $\IE_\infty$-ring spectra maps.
 
 To end this chapter, we state the analogue of \cref{thm:QuillenKTheoryOfFiniteFields} for Hermitian $K$-theory/Gro-thendieck--Witt theory.
 
