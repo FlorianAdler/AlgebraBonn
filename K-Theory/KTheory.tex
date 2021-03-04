@@ -5,6 +5,8 @@
 \usepackage{StyleK}
 \usepackage{ShortcutsK}
 \usepackage[normalem]{ulem}
+\usepackage[outline]{contour}
+\contourlength{2.25pt}
 
 
 \newcommand{\embrace}[1]{\textup{(}#1\textup{)}}
@@ -101,16 +103,16 @@
 %\addtocounter{dummy}{-1}
 \section{The Modern Definition of \texorpdfstring{$K$}{K}-Theory}
 \subsection{\texorpdfstring{$K_0$}{K0} of a Stable \texorpdfstring{$\infty$}{Infinity}-Category}
-\numpar{Some Motivation}
+\numpar{Some Motivation}\label{par:SomeMotivation}
 Throughout, we define the \emph{connective $K$-theory spectrum} of a ring $R$ to be $K(R)\coloneqq B^\infty k(R)$. One of our goals in this chapter will be to explain Quillen's fibre sequence
 \begin{equation*}
  \bigoplus_{p\text{ prime}}K(\IF_p)\morphism  K(\IZ)\morphism K(\IQ)\,,
 \end{equation*}
 and more generally, for $R$ a Dedekind domain,
 \begin{equation*}
-	\bigoplus_{0\neq \pp\text{ prime}}K(R/\pp)\morphism  K(R)\morphism K(\Frac R)\,.
+	\bigoplus_{0\neq \mm\text{ prime}}K(R/\mm)\morphism  K(R)\morphism K(\Frac R)\,.
 \end{equation*}
-The immediate problem here is that $K(\IF_p)\morphism K(\IZ)$ and $K(R/\pp)\morphism K(R)$ can't possibly be induced by by ring maps $\IF_p\morphism \IZ$ or $R/\pp\morphism R$, since there are none. However, there are perfectly fine exact and fully faithful functors $\Dd(\IF_p)\morphism \Dd(\IZ)$ and $\Dd(R/\pp)\morphism \Dd(R)$, given by the inclusion of the $p$-torsion or $\pp$-torsion complexes, respectively. Motivated by that, we'll define $K$-theory of a ring in terms of its derived $\infty$-category $\Dd(R)$ (or really its sub-$\infty$-category $\Dd^\perf(R)$, see below), and once we're there, nothing can stop us from defining $K$-theory of arbitrary stable $\infty$-categories.
+The immediate problem here is that $K(\IF_p)\morphism K(\IZ)$ and $K(R/\mm)\morphism K(R)$ can't possibly be induced by by ring maps $\IF_p\morphism \IZ$ or $R/\mm\morphism R$, since there are none. However, there are perfectly fine exact (but not fully faithful) functors $\Dd(\IF_p)\morphism \Dd(\IZ)$ and $\Dd(R/\mm)\morphism \Dd(R)$, with essential image the $p$-torsion or $\mm$-torsion complexes, respectively. Motivated by that, we'll define $K$-theory of a ring in terms of its derived $\infty$-category $\Dd(R)$ (or really its sub-$\infty$-category $\Dd^\perf(R)$, see below), and once we're there, nothing can stop us from defining $K$-theory of arbitrary stable $\infty$-categories.
 
 Before we move on, Fabian remarks that the sequences above already contain interesting information in low degrees. For example, after taking homotopy groups in degrees $0$ and $1$, the first sequence becomes
 \begin{equation*}
@@ -155,7 +157,7 @@ So you don't need a projective module to specify an element in $K_0(R)$, all you
 	\end{align*}
 	Continuing inductively, we see that we may shift all even degrees into degree $0$, and all odd degrees into degree $1$. Hence we may assume $K\simeq P_0[0]\oplus P_1[1]$. Now $K$ being mapped to $0$ implies $[P_0]=[P_1]$, hence, by construction of the Grothendieck group completion, there exists a finite projective module $Q$ such that $P_0\oplus Q\simeq P_1\oplus Q$. But by an argument we've already seen, $Q\oplus Q[1]\sim_{\mathrm{ext}}0$, hence $K\sim_{\mathrm{ext}} (P_0\oplus Q)[0]\oplus (P_1\oplus Q)[1]$. This has again the form $P'[0]\oplus P'[1]$, hence $K\sim_{\mathrm{ext}} 0$ and we're done.
 \end{proof*}
-\begin{defi}
+\begin{defi}\label{def:K0C}
 	Given a (small) stable $\infty$-category $\Cc$, put
 	\begin{equation*}
 		K_0(\Cc)\coloneqq \pi_0\core(\Cc)/\sim_{\mathrm{ext}}\,,
@@ -181,22 +183,22 @@ composing to $\id_c$. For example, free $R$-modules are dense in $\Proj(R)$.
 		\Cc^H\coloneqq\big\{x\in\Cc\ \big|\ [x]\in H\big\}&\longmapsfrom H\subseteq K_0(\Cc)
 	\end{align*}
 \end{thm}
-\begin{warn*}\label{warn*:StableSubcategory}
+\begin{rem*}\label{warn*:StableSubcategory}
 	Two remarks on our \enquote{sub-$\infty$-category} terminology.
 	\begin{alphanumerate}
 		\item By saying \emph{stable sub-$\infty$-category}, we always implicitly assume that $\Dd\morphism\Cc$ is a functor in $\Cat_\infty^\mathrm{st}$, i.e.\ exact. In particular, being a stable sub-$\infty$-category is slightly stronger than being a sub-$\infty$-category that happens to be stable.
 		\item The left-hand side of the \enquote{Galois correspondence} is a bit ambiguous in that a priori there might be equivalent but non-equal sub-$\infty$-categories of $\Cc$. So depending on your taste, you either have to identify two sub-$\infty$-categories if their essential images agree, or you have to restrict to only those sub-$\infty$-categories $\Dd\subseteq \Cc$ which are equal (as simplicial sets) to their essential image, or equivalently, those $\Dd\subseteq \Cc$ such that $\Dd\morphism\Cc$ is an isofibration.
 	\end{alphanumerate}
-\end{warn*}
+\end{rem*}
 \refstepcounter{smallerdummy}
-\numpar*{\thesmallerdummy. Example}
+\numpar*{\thesmallerdummy. Example}\label{exm:Minimalisation}
 \cref{thm:ThomasonDenseSubcategories} tells us that the smallest dense stable sub-$\infty$-category
 \begin{equation*}
 	\Dd^\mathrm{free}(R)\subseteq \Dd^\perf(R)
 \end{equation*}
 containing $R[0]$ corresponds to $\im(\IZ\morphism K_0(R))$, since the image of $R[0]$ in $K_0(R)$ is $1$. Moreover, any stable $\infty$-category $\Cc$ has a smallest dense stable sub-$\infty$-category
 \begin{equation*}
-	\Cc^0=\big\{x\in\Cc\ \big|\ [x]=0\text{ in }K_0(\Cc)\big\}\,.
+	\Cc^{\min}=\Cc^0=\big\{x\in\Cc\ \big|\ [x]=0\text{ in }K_0(\Cc)\big\}\,.
 \end{equation*}
 Already the existence of such a smallest dense stable sub-$\infty$-category is not quite obvious.
 \begin{proof}[Proof of \cref{thm:ThomasonDenseSubcategories}]
@@ -681,7 +683,7 @@ We also put $\Cc_{[a,b]}\coloneqq \Cc_{\geq a}\cap \Cc_{\leq b}$, and $\Cc^\hear
 \begin{equation*}
 	\Cc=\bigcup_{n\in\IN}\Cc_{[-n,n]}\,.
 \end{equation*}
-Fabian remarks that the notion of a weight structure is different from that of a $t$-structure (which you might know from \cite[Definition~\HAthm{1.2.1.4}]{HA}). For example, in a $t$-structure the roles of \enquote{$\leq$} and \enquote{$\geq$} in \itememph{c} would be swapped. You should think of $t$-structures as generalisations of \enquote{smart} truncation of chain complexes, whereas a weight structure behaves more like \enquote{stupid} truncation. In particular, the fibre sequence in $\Cc$ is highly non-canonical, whereas in a $t$-structure there's always a canonical choice using the truncation functors. Moreover, the heart of a $t$-structure is always an abelian category, whereas it need not even be a $1$-category for a weight structure.
+Fabian remarks that the notion of a weight structure is different from that of a $t$-structure (which you might know from \cite[Definition~\HAthm{1.2.1.4}]{HA}; we'll introduce it properly in \cref{par:tStructure}). For example, in a $t$-structure the roles of \enquote{$\leq$} and \enquote{$\geq$} in \itememph{c} would be swapped. You should think of $t$-structures as generalisations of \enquote{smart} truncation of chain complexes, whereas a weight structure behaves more like \enquote{stupid} truncation. In particular, the fibre sequence in $\Cc$ is highly non-canonical, whereas in a $t$-structure there's always a canonical choice using the truncation functors. Moreover, the heart of a $t$-structure is always an abelian category, whereas it need not even be a $1$-category for a weight structure.
 
 Note that \itememph{a} implies that both $\Cc_{\geq 0}$ and $\Cc_{\leq 0}$ contain $0$, since it is a retract of everything (and both sub-$\infty$-categories are non-empty by \itememph{c}), and both are closed under finite direct sums. To acquaint myself a bit more with weight structures, let me also list the following further properties:
 \begin{lem*}\label{lem*:MoreOnHearts}
@@ -737,7 +739,7 @@ We won't prove \cref{thm:Resolution}. But Fabian has promised he will sketch a n
 	In other words, $K$-theory is the initial grouplike functor under $\core\colon \Cat_\infty^\mathrm{st}\morphism \An$.
 \end{thm}
 The proof of \cref{thm:K=coreGrp} has to wait till page~\labelcpageref{page:ProofOfBlumbergGepnerTabuada}. Let's start with explaining all that new terminology in it, and to do that, we'll introduce even more.
-
+\subsection{Verdier Sequences}
 \begin{defi}\label{def:VerdierStuff}
 	Let's define things named after Verdier:
 	\begin{alphanumerate}
@@ -752,7 +754,7 @@ The proof of \cref{thm:K=coreGrp} has to wait till page~\labelcpageref{page:Proo
 		\end{equation*}
 		such that the vertical maps are Verdier projections. A Verdier square is called \emph{\embrace{left/right} split} if the Verdier projections have the respective property.
 	\end{alphanumerate}
-	Moreover, functor $F \colon \Cat_\infty^\mathrm{st}\morphism \Ee$, where $\Ee$ has finite limits, is \emph{additive} or \emph{Verdier-localising} if it takes split Verdier squares or all Verdier squares to pullback squares in $\Ee$. It is called \emph{Karoubi-localising} if it is Verdier-localising and takes dense inclusions to equivalences. The corresponding full sub-$\infty$-categories of $\Fun(\Cat_\infty^\mathrm{st},\Ee)$ are denoted
+	Moreover, a functor $F \colon \Cat_\infty^\mathrm{st}\morphism \Ee$, where $\Ee$ has finite limits, is \emph{additive} or \emph{Verdier-localising} if $F(0)$ is a final object of $\Ee$ and $F$ takes split Verdier squares or all Verdier squares to pullback squares in $\Ee$. It is called \emph{Karoubi-localising} if it is Verdier-localising and takes dense inclusions to equivalences. The corresponding full sub-$\infty$-categories of $\Fun(\Cat_\infty^\mathrm{st},\Ee)$ are denoted
 	\begin{equation*}
 		\Fun^\mathrm{Kar}(\Cat_\infty^\mathrm{st},\Ee)\subseteq \Fun^\mathrm{Verd}(\Cat_\infty^\mathrm{st},\Ee)\subseteq \Fun^\add(\Catst,\Ee)\,.
 	\end{equation*}
@@ -789,7 +791,7 @@ Having introduced a plethora of new terminology in \cref{def:VerdierStuff}, some
 		\Fun^\grp(\Catst,\Ee)\simeq \Fun^\add\big(\Catst,\CGrp(\Ee)\big)\simeq \CGrp\big(\Fun^\add(\Catst,\Ee)\big)\,.
 	\end{equation*}
 	Moreover, the arguments above show that $\Fun^\add(\Catst,\Ee)$ is semi-additive, and thus the same is true for $\Fun^\grp(\Catst,\Ee)$, $\Fun^\Verd(\Catst,\Ee)$, and $\Fun^\Kar(\Catst,\Ee)$. Finally, all of them are closed under limits in $\Fun(\Catst,\Ee)$.
-	\item[\itememph{d^*}] If $F\colon \Catst\morphism \An$ is a grouplike additive functor, then $F(\Bb)\simeq F(A)\times F(\Cc)$ for every split Verdier sequence $\Aa\morphism \Bb\morphism \Cc$. Indeed, $F(\Aa)\morphism F(\Bb)\morphism F(\Cc)$ is a fibre sequence in $\An$, hence also in $\CGrp(\An)\subseteq \Sp$, and either of the fully faithful adjoints $\Cc\morphism \Bb$ induces a split $F(\Cc)\morphism F(\Bb)$. But any such fibre sequence in $\Sp$ must be split, using the same argument as in the proof of \cref{lem*:MoreOnHearts}.
+	\item[\itememph{d^*}] If $F\colon \Catst\morphism \An$ is a grouplike additive functor, then $F(\Bb)\simeq F(A)\times F(\Cc)$ for every split Verdier sequence $\Aa\morphism \Bb\morphism \Cc$. Indeed, $F(\Aa)\morphism F(\Bb)\morphism F(\Cc)$ is a fibre sequence in $\An$, hence also in $\CGrp(\An)$. Either of the fully faithful adjoints $\Cc\morphism \Bb$ induces a split $F(\Cc)\morphism F(\Bb)$, so in particular, $\pi_0(F(\Bb))\morphism \pi_0(F(\Cc))$ is surjective. Hence the fibre $\fib(F(\Bb)\morphism F(\Cc))$ in $\Sp$ must be connective too, whence it coincides with the fibre $F(\Aa)$ taken in $\CGrp(\An)\simeq \Sp_{\geq 0}$. Now every fibre sequence in $\Sp$ with a split must actually \emph{be} split, using the same argument as in the proof of \cref{lem*:MoreOnHearts}\itememph{c}.
 	\item[\itememph{e}] An example of a Verdier-localising but not grouplike functor is $\core\colon \Catst\morphism \An$. It is Verdier-localising simply because it takes arbitrary pullbacks (and not just Verdier squares) to pullbacks in $\An$.
 	
 	Here we should probably mention that $\Catst\subseteq \Cat_\infty$ is closed under pullbacks (and in fact, arbitrary finite limits). To see this, first note that $\Catst\subseteq\Cat_\infty^\mathrm{lex}$ has both adjoints by \cref{thm:SpLeftAdjoint} and the remark after it. Hence it suffices that $\Cat_\infty^\mathrm{lex}\subseteq \Cat_\infty$ is closed under pullbacks. But if we are given a pullback diagram in $\Cat_\infty$ such that both legs preserve finite limits, then any finite limit in the pullback can be computed componentwise (and in particular, exists if it exists componentwise).
@@ -810,7 +812,7 @@ There's also an explicit description of cofibres in $\Catst$. Given an exact fun
 \end{equation*}
 where the mod-$\Aa$ equivalences are all those maps $\phi\colon x\morphism y$ whose fibre/cofibre is a retract of an object in the stable sub-$\infty$-category generated by the essential image of $f$. As $\fib(\phi)\simeq \cofib(\phi)[-1]$, it really suffices to assume that either one is such a retract.
 
-In contrast to \itememph{c}, it's not so easy to show that $\cofib(f)\simeq \Bb/\Aa$ is a stable $\infty$-category again and that $\Bb\morphism \Bb/\Aa$ is an exact functor, so we'll postpone the proof for the moment. But assuming this is true, it's easy to check that $\Bb/\Aa$ is indeed the correct cofibre: Let $\Cc$ be another stable $\infty$-category. By definition (see \cref{exm:Localisation}),
+In contrast to \itememph{c}, it's not so easy to show that $\cofib(f)\simeq \Bb/\Aa$ is a stable $\infty$-category again and that $\Bb\morphism \Bb/\Aa$ is an exact functor, so we'll postpone the proof until \cref{lem:VerdierQuotients}. But assuming this is true, it's easy to check that $\Bb/\Aa$ is indeed the correct cofibre: Let $\Cc$ be another stable $\infty$-category. By definition (see \cref{exm:Localisation}),
 \begin{equation*}
 	\Hom_{\Catst}(\Bb/\Aa,\Cc)\subseteq \Hom_{\Catst}(\Bb,\Cc)
 \end{equation*}
@@ -865,7 +867,7 @@ Therefore, it suffices to show $\Hom_{\Catst}(\Bb/\Aa,\Cc)$ and $\Hom_{\Catst}(\
 	\end{equation*}
 \end{thm}
 \begin{proof*}
-	The proof is essentially trivial (assuming the description of cofibres in \labelcref{par:CofibreSequencesInCatSt}) and was left as an exercise in the lecture.
+	The proof is essentially trivial (assuming the description of cofibres in \labelcref{par:CofibreSequencesInCatSt}, which we'll prove in \cref{lem:VerdierQuotients}) and was left as an exercise in the lecture.
 	
 	We begin with \itememph{a}. Every Verdier projection is a localisation by \labelcref{par:CofibreSequencesInCatSt}, hence it suffices to prove the converse. If $\Bb\simeq \Aa[W^{-1}]$ for some $W\subseteq \pi_0\core\Ar(\Aa)$, then all morphisms $\phi\colon x\morphism y$ in $W$ satisfy $F(\fib(\phi))\simeq 0$ since $\phi$ is sent to an equivalence and $F$ is exact. Hence $W$ is contained in the mod-$\fib(F)$ equivalences. This might well be a proper inclusion. But every exact functor $\Bb\morphism \Cc$ automatically inverts all mod-$\fib(F)$ equivalences, hence also
 	\begin{equation*}
@@ -896,7 +898,7 @@ Therefore, it suffices to show $\Hom_{\Catst}(\Bb/\Aa,\Cc)$ and $\Hom_{\Catst}(\
 	\begin{equation*}
 		\begin{tikzcd}
 			& b\eqar[dr]\dar & \\
-			b\eqar[ur]\drar["0"]\rar & c& b\lar["s"']\\
+			b\eqar[ur]\drar["0"']\rar & c& b\lar["s"']\\
 			& b\uar\eqar[ur]& 
 		\end{tikzcd}
 	\end{equation*}
@@ -1061,8 +1063,8 @@ for the \emph{$s$-divisible part} of $M$. With this terminology out of the way, 
 \end{proof}
 Note that the left pullback square from \cref{cor:GreenleesMay} already made its appearance in \cref{lem:Nakayama}\itememph{b}. But now we've seen that it also follows from ridiculously general principles. Cool, right? Similarly, applying \cref{lem:LocalisationRecollement} to the localisation $\IS\morphism H\IQ$ gives the arithmetic fracture square from \cref{lem:ArithmeticFractureSquare}\itememph{c}!
 
-
-Now onwards to the proof of \cref{thm:K=coreGrp}. We start with a somewhat random lemma/definition.
+\subsection{The Additivity Theorem and a Proof of \texorpdfstring{\cref{thm:K=coreGrp}}{Theorem IV.12}}
+Onwards to the proof of \cref{thm:K=coreGrp}. We start with a somewhat random lemma/definition.
 \begin{lemdef}\label{lem:SpanF}
 	Let $\Cc$ be a stable $\infty$-category. For each $0\leq i\leq n$ the pushout square
 	\begin{equation*}
@@ -1333,13 +1335,24 @@ We're now almost in position to prove \cref{thm:K=coreGrp}. But Fabian decided t
 	\end{equation*}
 	so it coincides degreewise with $F( Q(\Cc))$. But $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))$ is also left-Kan extended from its restriction along $\IDelta_{\mathrm{inj},\leq 1}^\op\morphism \IDelta^\op$, so it's easy to construct a functor from it into $F( Q(\Cc))$, which is then a degreewise equivalence.
 	
-	From the description as a bar complex, or just by checking directly, one can verify that $F(Q_1(\Cc))^\times\simeq F(Q_1(\Cc))$. Hence $\Span^F(\Cc)\simeq \asscat(F (Q(\Cc)))$ is an anima (combine \cref{thmdef:RezkNerve}\itememph{c} with \cref{eq:asscat2} to see that all edges are equivalences). Moreover, it is connected. To see this, we first note $\Span^F(\Cc)\simeq \core (\asscat(F (Q(\Cc))))\simeq |F(Q(\Cc))^\times|$ by \cref{eq:asscat1}. Now $\pi_0$ of the right-hand side can be computed as described in claim~\itememph{*} in the proof of \cref{prop:CompletionOfMonoidsFullyFaithful}, the result being
-	\begin{align*}
-		\pi_0\big|F\big(Q(\Cc)\big)^\times\big|&= \Coeq\left(\pi_0F\big(Q_1(\Cc)\big)^\times\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)^\times\right)\\
-		&=\Coeq\left(\pi_0F\big(Q_1(\Cc)\big)\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)\right)\\
-		&=\Coeq\left(\pi_0F(\Cc)^3\doublemorphism[\pr_1][\pr_3] \pi_0F(\Cc)\right)\,,
-	\end{align*}
-	which evidently vanishes. Hence to prove $\Span^F(\Cc)\simeq BF(\Cc)$, it suffices to compute that $\Omega_0\Span^F(\Cc)\simeq F(\Cc)$ by \cref{par:Grp(An)=(*/An)Connected}. Now $\Omega_0\Span^F(\Cc)$ coincides with $\Hom_{\Span^F(\Cc)}(0,0)$. To compute this, consider\begin{equation*}
+	From the description as a bar complex, or just by checking directly, one can verify that
+	\begin{equation*}
+		F\big(Q_1(\Cc)\big)^\times\simeq F\big(Q_1(\Cc)\big)\,.
+	\end{equation*}
+	 Hence $\Span^F(\Cc)\simeq \asscat\big(F (Q(\Cc))\big)$is an anima (combine \cref{thmdef:RezkNerve}\itememph{c} with \cref{eq:asscat2} to see that all edges are equivalences). Moreover, it is connected. In fact, it's true that $|\Span^F(\Cc)|$ is connected for every additive functor $F$. To see this, use \cref{rem:Realisation}, \cref{prop:QvsS}, and \labelcref{par:edgewiseSubdivision} (in that order) to obtain
+	\begin{equation*}
+		\big|\Span^F(\Cc)\big|\simeq \left|F\big(Q(\Cc)\big)\right|\simeq \big|F\big(S(\Cc)\big)^\mathrm{esd}\big|\simeq \left|F\big(S(\Cc)\big)\right|\,.
+	\end{equation*}
+	Now $\pi_0F(S_0(\Cc))\morphism \pi_0\left|F(S(\Cc))\right|$ is surjective, see claim~\itememph{*} in the proof of \cref{prop:CompletionOfMonoidsFullyFaithful}. But $S_0(\Cc)\simeq *$, hence indeed $\pi_0\left|F(S(\Cc))\right|=0$.
+	
+	%To see this, we first note $\Span^F(\Cc)\simeq \core (\asscat(F (Q(\Cc))))\simeq |F(Q(\Cc))^\times|$ by \cref{eq:asscat1}. Now $\pi_0$ of the right-hand side can be computed as described in , the result being
+	%\begin{align*}
+	%	\pi_0\big|F\big(Q(\Cc)\big)^\times\big|&= \Coeq\left(\pi_0F\big(Q_1(\Cc)\big)^\times\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)^\times\right)\\
+	%	&=\Coeq\left(\pi_0F\big(Q_1(\Cc)\big)\doublemorphism[d_1][d_0] \pi_0F\big(Q_0(\Cc)\big)\right)\\
+	%	&=\Coeq\left(\pi_0F(\Cc)^3\doublemorphism[\pr_1][\pr_3] \pi_0F(\Cc)\right)\,,
+	%\end{align*}
+	%which evidently vanishes.
+	Back in the situation where $F$ is grouplike, we see that to prove $\Span^F(\Cc)\simeq BF(\Cc)$, it suffices to compute that $\Omega_0\Span^F(\Cc)\simeq F(\Cc)$ by \cref{par:Grp(An)=(*/An)Connected}. Now $\Omega_0\Span^F(\Cc)$ coincides with $\Hom_{\Span^F(\Cc)}(0,0)$. To compute this, consider\begin{equation*}
 		\begin{tikzcd}
 			\Cc\dar\rar\drar[pullback] & Q_1(\Cc)\dar["{(d_1,d_0)}"]\\
 			0\rar & Q_0(\Cc)\times Q_0(\Cc)
@@ -1370,6 +1383,13 @@ is an equivalence, which only holds if $F(\Cc)\simeq 0$.
 	\end{equation*}
 	in $\An$. So in particular, $F(\Cc)\simeq \Omega |\Span^F(\Cc)|$.
 \end{thm}
+\begin{proof}[First proof]
+	We've checked (or at least sketched) in \cref{lem:GrouplikeFunctors} that
+	\begin{equation*}
+		\Span^F(\Cc)\simeq |\Span^F(\Cc)|\simeq BF(\Cc)\,.
+	\end{equation*}
+	But $F(\Cc)$ is already an $\IE_\infty$-group by assumption, so $\Omega BF(\Cc)\simeq F(\Cc)$ follows from \cref{cor:CommutativeHorizontalAdjoints}\itememph{c}. A posteriori, this implies that the square in question is indeed a pullback.
+\end{proof}
 With that, we can finally prove the theorem of Blumberg--Gepner--Tabuada.
 \begin{proof}[Proof of \cref{thm:K=coreGrp}]\label{page:ProofOfBlumbergGepnerTabuada}
 	First note that $\Omega|\Span^F(-)|$ is additive again for any additive functor $F$, since it is the composition of the additive functor $|\Span^F(-)|$ (\cref{thm:Additivity}) with the limits-preserving functor $\Omega\colon \CMon(\An)\morphism \CGrp(\An)$ (\cref{cor:CommutativeHorizontalAdjoints}\itememph{b}). This also shows that $\Omega|\Span^F(-)|$ takes values in the grouplikes.
@@ -1384,7 +1404,7 @@ With that, we can finally prove the theorem of Blumberg--Gepner--Tabuada.
 	\end{equation*}
 	gives a map $F(\Cc)\morphism \Omega|\Span^F(\Cc)|$ which is functorial in $\Cc$ and $F$, thus providing the required transformation $\eta\colon \id\Rightarrow L$. Now \cref{thm:SpanF} implies that $\eta L,L\eta\colon L\overset{\sim}{\Longrightarrow} L\circ L$ are both equivalences, whence $L$ is indeed a left Bousfield localisation. Its essential image is contained in the grouplike functors as checked above, hence equals the grouplike functors since \cref{thm:SpanF} precisely says that $\eta$ is an equivalence on grouplikes.
 \end{proof}
-For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
+As the \enquote{first proof} above suggests, we will give a second proof of \cref{thm:SpanF}. The second proof won't rely on the sketchy parts of \cref{lem:GrouplikeFunctors} (at the price of being much longer), but more importantly, it will introduce some tools that we'll need later. Where the first proof showed $F\simeq \Omega|\Span^F(-)|$ right away and then deduced the pullback property afterwards, the second proof will verify the pullback property directly. The key to still getting pullbacks after taking colimits is Rezk's equifibrancy lemma.
 \begin{lemdef}[Rezk]\label{lemdef:Equifibred}
 	Let $\Ii$ be any $\infty$-category \embrace{which we think of as a digram shape}. Suppose we're given a pullback square
 	\begin{equation*}
@@ -1461,7 +1481,7 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 	\end{equation*}
 	The right square is a pullback by construction, and that the outer rectangle is a pullback was checked in the previous step. Hence again the left square is a pullback too for all $j\in \Ii$. But then \itememph{\boxtimes} applied to $\sigma$ implies that $\colimit_{i\in\Ii}B_i\times_{\colimit_{i\in\Ii}D_i}\colimit_{i\in\Ii}C_i\simeq \colimit_{i\in\Ii}A_i$ and we're done!
 \end{proof}
-\begin{proof}[Proof sketch of \cref{thm:SpanF}]
+\begin{proof}[Second proof of \cref{thm:SpanF}]
 	We split the proof into two major steps.
 	\begin{alphanumerate}
 		\item[\itememph{1}] \itshape We construct an easily understood Segal anima $\operatorname{Null}(\Cc)\colon \IDelta^\op\morphism\An$ satisfying
@@ -1487,10 +1507,10 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 	\begin{equation*}
 		\operatorname{Null}(\Cc)\coloneqq \fib_0(p\colon \operatorname{d\acute{e}c}Q(\Cc)\rightarrow \const \Cc)\,.
 	\end{equation*}
-	So explicitly, $\operatorname{Null}_n(\Cc)\subseteq Q_{n+1}(\Cc)$ is the full sub-$\infty$-category spanned by diagrams of the following form:
+	So explicitly, $\operatorname{Null}_n(\Cc)\subseteq Q_{n+1}(\Cc)$ is the full sub-$\infty$-category spanned by diagrams of the following form (as usual, the dotted part is uniquely determined by the solid part):
 	\begin{center}
 		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
-			\node (00) at (0,0) {$0$};
+			\node[inner sep=2] (00) at (0,0) {$0$};
 			\fill (2,0) circle (0.5ex) coordinate (01);
 			\fill (4,0) circle (0.5ex) coordinate (02);
 			\fill (6,0) circle (0.5ex) coordinate (03);
@@ -1499,29 +1519,29 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 			\fill (3,1) circle (0.5ex) coordinate (11);
 			\fill (5,1) circle (0.5ex) coordinate (12);
 			\fill (7,1) circle (0.5ex) coordinate (13);
-			\fill (2,2) circle (0.5ex) coordinate (20);
-			\fill (4,2) circle (0.5ex) coordinate (21);
-			\fill (6,2) circle (0.5ex) coordinate (22);
-			\fill (3,3) circle (0.5ex) coordinate (30);
-			\fill (5,3) circle (0.5ex) coordinate (31);
-			\fill (4,4) circle (0.5ex) coordinate (40);
+			\draw[fill=white] (2,2) circle (0.5ex) coordinate (20);
+			\draw[fill=white] (4,2) circle (0.5ex) coordinate (21);
+			\draw[fill=white] (6,2) circle (0.5ex) coordinate (22);
+			\draw[fill=white] (3,3) circle (0.5ex) coordinate (30);
+			\draw[fill=white] (5,3) circle (0.5ex) coordinate (31);
+			\draw[fill=white] (4,4) circle (0.5ex) coordinate (40);
 			\draw[to-,shorten >=1.25ex] (00) -- (10);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (10);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (02) -- (11);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (10) -- (20);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (11) -- (20);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (10) -- (20);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (11) -- (20);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (12);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (21);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (30);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (12) -- (21);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (30);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (04) -- (13);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (13) -- (22);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (22) -- (31);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (31) -- (40);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (13) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (22) -- (31);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (31) -- (40);
 			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (13);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (12) -- (22);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (21) -- (31);
-			\draw[to-,shorten <=1.25ex,shorten >=1.25ex] (30) -- (40);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (12) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (31);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (30) -- (40);
 			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
 			\path (11) to  node[pos=0.5,sloped] {$\ldots$} (21);
 			\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
@@ -1551,38 +1571,38 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 	It is easy to see that the diagram above is indeed a pullback. Indeed, the pullback $\{0\}\times_{Q_n(\Cc)}\operatorname{Null}_n(\Cc)$ consists of diagrams of the form
 	\begin{center}
 		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
-			\node (00) at (0,0) {$0$};
-			\node (01) at (2,0) {$0$};
-			\node (02) at (4,0) {$0$};
-			\node (03) at (6,0) {$0$};
-			\node (04) at (8,0) {$0$};
-			\node (10) at (1,1) {$x$};
-			\node (11) at (3,1) {$0$};
-			\node (12) at (5,1) {$0$};
-			\node (13) at (7,1) {$0$};
-			\node (20) at (2,2) {$x$};
-			\node (21) at (4,2) {$0$};
-			\node (22) at (6,2) {$0$};
-			\node (30) at (3,3) {$x$};
-			\node (31) at (5,3) {$0$};
-			\node (40) at (4,4) {$x$};
+			\node[inner sep=2] (00) at (0,0) {$0$};
+			\node[inner sep=2] (01) at (2,0) {$0$};
+			\node[inner sep=2] (02) at (4,0) {$0$};
+			\node[inner sep=2] (03) at (6,0) {$0$};
+			\node[inner sep=2] (04) at (8,0) {$0$};
+			\node[inner sep=2] (10) at (1,1) {$x$};
+			\node[inner sep=2] (11) at (3,1) {$0$};
+			\node[inner sep=2] (12) at (5,1) {$0$};
+			\node[inner sep=2] (13) at (7,1) {$0$};
+			\node[inner sep=2] (20) at (2,2) {$x$};
+			\node[inner sep=2] (21) at (4,2) {$0$};
+			\node[inner sep=2] (22) at (6,2) {$0$};
+			\node[inner sep=2] (30) at (3,3) {$x$};
+			\node[inner sep=2] (31) at (5,3) {$0$};
+			\node[inner sep=2] (40) at (4,4) {$x$};
 			\draw[to-] (00) -- (10);
 			\draw[to-] (01) -- (10);
 			\draw[to-] (01) -- (11);
 			\draw[to-] (02) -- (11);
-			\draw[to-] (10) -- (20);
-			\draw[to-] (11) -- (20);
+			\draw[to-,dotted] (10) -- (20);
+			\draw[to-,dotted] (11) -- (20);
 			\draw[to-] (03) -- (12);
-			\draw[to-] (12) -- (21);
-			\draw[to-] (21) -- (30);
+			\draw[to-,dotted] (12) -- (21);
+			\draw[to-,dotted] (21) -- (30);
 			\draw[to-] (04) -- (13);
-			\draw[to-] (13) -- (22);
-			\draw[to-] (22) -- (31);
-			\draw[to-] (31) -- (40);
+			\draw[to-,dotted] (13) -- (22);
+			\draw[to-,dotted] (22) -- (31);
+			\draw[to-,dotted] (31) -- (40);
 			\draw[to-] (03) -- (13);
-			\draw[to-] (12) -- (22);
-			\draw[to-] (21) -- (31);
-			\draw[to-] (30) -- (40);
+			\draw[to-,dotted] (12) -- (22);
+			\draw[to-,dotted] (21) -- (31);
+			\draw[to-,dotted] (30) -- (40);
 			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
 			\path (11) to  node[pos=0.5,sloped] {$\ldots$} (21);
 			\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
@@ -1602,7 +1622,11 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 			\left|\const *\right|\rar["0"] & \left|F\big(Q(\Cc)\big)\right|
 		\end{tikzcd}
 	\end{equation*}
-	The upper left corner is $F(\Cc)$, which coincides with the anima $\Hom_{\Span^F(\Cc)}(0,0)$ as argued in the proof of \cref{lem:GrouplikeFunctors}. The lower left corner is clearly $*$. Applying \cref{rem:Realisation} to $\asscat(F(\operatorname{Null}(\Cc)))\simeq 0/\Span^F(\Cc)$ and $\asscat(F(Q(\Cc)))\simeq \Span^F(\Cc)$ shows that the upper and lower right corner coincide with $|0/\Span^F(\Cc)|\simeq *$ and $|\Span^F(\Cc)|$, hence the pullback diagram we get is precisely the one we want!
+	The upper left corner is $F(\Cc)$, which coincides with the anima $\Hom_{\Span^F(\Cc)}(0,0)$ as argued in the proof of \cref{lem:GrouplikeFunctors}. The lower left corner is clearly $*$. Applying \cref{rem:Realisation} to 
+	\begin{equation*}
+		\asscat\big(F(\operatorname{Null}(\Cc))\big)\simeq 0/\Span^F(\Cc)\quad\text{and}\quad\asscat\big(F(Q(\Cc))\big)\simeq \Span^F(\Cc) 
+	\end{equation*}
+	shows that the upper and lower right corner coincide with $|0/\Span^F(\Cc)|\simeq *$ and $|\Span^F(\Cc)|$, hence the pullback diagram we get is precisely the one we want!
 	
 	It remains to show that $F(d_0)\colon F(\operatorname{Null}(\Cc))\morphism F(Q(\Cc))$ is equifibred. That is, we must show that
 	\begin{equation*}
@@ -1613,7 +1637,7 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 	\end{equation*}
 	is a pullback for every map $[m]\morphism{} [n]$ in $\IDelta^\op$. I think the way we did this in the lecture is too complicated and I can give a simpler proof. It seems almost too easy, so I feel a bit like I'm overlooking something, but I couldn't find anything. Please tell me if I'm wrong. 
 	
-	We've seen above that $\operatorname{Null}_n(\Cc)\morphism Q_n(\Cc)$ is a split Verdier projection with fibre $\Cc$. Hence, since $F$ is grouplike, \cref{par:MoreOnVerdierSequences}\itememph{d^*} implies $F(\operatorname{Null}_n(\Cc))\simeq F(Q_n(\Cc))\times F(\Cc)$, and likewise $F(\operatorname{Null}_m(\Cc))\simeq F(Q_m(\Cc))\times F(\Cc)$. So the pullback property is trivially satisfied.
+	We've seen above that $\operatorname{Null}_n(\Cc)\morphism Q_n(\Cc)$ is a split Verdier projection with fibre $\Cc$, and so is $\operatorname{Null}_m(\Cc)\morphism Q_m(\Cc)$. Hence the induced map on fibres over $0$ in the diagram above is an equivalence, namely the identity on $F(\Cc)$. But that's enough to show the pullback property: Since $F$ is grouplike, all terms in the diagram are $\IE_\infty$-groups, hence all fibres are empty or equivalent to the fibres over $0$. But \cref{par:MoreOnVerdierSequences}\itememph{d^*} implies $F(\operatorname{Null}_n(\Cc))\simeq F(Q_n(\Cc))\times F(\Cc)$, and likewise $F(\operatorname{Null}_m(\Cc))\simeq F(Q_m(\Cc))\times F(\Cc)$, so none of the fibres can be empty. In fact, I believe the map $F(\operatorname{Null}_m(\Cc))\morphism F(\operatorname{Null}_n(\Cc))$ is the product map, which would make the pullback property even more apparent, but in any case the argument given above should suffice.
 	%In fact, it suffices to consider maps in $\IDelta^\op_\mathrm{inj}$, since the realisation of a simplicial anima coincides with its realisation as a semi-simplicial anima (see the proof of \cref{lem:SkeletalInduction}), so we can replace $F(\operatorname{Null}(\Cc))$ and $F(Q(\Cc))$ as well as $\const F(\Cc)$ and $\const *$ with their semi-simplicial restrictions. Moreover, since $F(\operatorname{Null}(\Cc))$ and $F(Q(\Cc))$ satisfy the Segal conditions, it's enough to check the pullback property for the three maps $d_0,d_1,d_2\colon [2]\morphism{} [1]$ in $\IDelta^\op_\mathrm{inj}$. For $d_1$ and $d_2$, the would-be pullback squares are split Verdier squares before applying $F$, hence they stay pullback squares. For $d_0$ instead, we get a diagram
 	%\begin{equation*}
 	%	\begin{tikzcd}
@@ -1623,6 +1647,746 @@ For the proof of \cref{thm:SpanF} we'll employ Rezk's equifibrancy lemma.
 	%\end{equation*}
 	%whose horizontal (!) maps are split Verdier projections (for $\operatorname{Null}_2(\Cc)\morphism\operatorname{Null}_1(\Cc)$ this needs a bit of fiddling, since we can't just take Kan extensions as always, but it's not hard to write down the adjoints explicitly), but this diagram is not a pullback.
 \end{proof}
+
+\begin{rem}\lecture[The relative $Q$-construction. Verdier quotients. Waldhausen's fibration theorem. Some final remarks on Karoubi sequences, inductive completions, Quillen's dévissage, and non-connective $K$-theory.\newline --- \emph{\enquote{What is the original formulation of Waldhausen's fibration theorem \dotso and where's the fibration?} \enquote{I never understood that.}}]{2021-02-11}\label{rem:RandomComment}
+	Fabian started the final lecture with two not-so-random and one very random comment:
+	\begin{alphanumerate}
+		\item We know from \cref{lem:GrouplikeFunctors} and \cref{thm:Additivity} that $BF\simeq \Span^F(-)\simeq |\Span^F(-)|$ is additive again whenever $F$ is a grouplike additive functor. In fact, $BF$ is even grouplike by \cref{cor:CommutativeHorizontalAdjoints}\itememph{b}. More generally, it is true that $|\Span^F(-)|\simeq |F(Q(-))|$ is grouplike for any additive functor $F$, since $\pi_0|F(Q(-))|=0$ as seen in the proof of \cref{lem:GrouplikeFunctors}. However, if $F$ isn't grouplike, then $BF$ doesn't even need to be additive anymore, let alone coincide with $|F(Q(-))|$.
+		\item Quillen defined $k(R)\coloneqq K_0(R)\times B\!\GL_\infty(R)^+$ and then showed a posteriori that it is an infinite loop space, essentially\footnote{Quillen did not put $\Dd^\perf(R)$ there, but still that's basically what he proved.} by verifying
+		\begin{equation*}
+			k(R)\simeq \Omega^i\big|\core Q^{i}\big(\Dd^\perf(R)\big)\big|\,.
+		\end{equation*}
+		Here $Q^{i}\colon \Catst\morphism \Fun((\IDelta^\op)^i,\Catst)$ denotes the $i$-fold $Q$-construction. It takes values in \enquote{$i$-simplicial} anima, and subsequently the realisation $|\blank|$ in the formula above doesn't denote colimits over $\IDelta^\op$, but over $(\IDelta^\op)^i$. 
+		
+		In the script \cite[Chapter~IV p.\:53]{KTheory}, Fabian explains a bit more. In general, if $F$ is an additive functor, then
+		\begin{equation*}
+			\Omega\left|F\big(Q(-)\big)\right|\simeq \Omega^i\left|F\big(Q^i(-)\big)\right|\,,
+		\end{equation*}
+		where again $|\blank|$ on the right-hand side denotes the colimit over $(\IDelta^\op)^i$. If $F$ is grouplike, then both sides are also equivalent to $F$. To prove the equivalence above, we use \cref{thm:Additivity} iteratively (along with \cref{cor:ColimitsCommute} to replace nested colimits over $\IDelta^\op$ by colimits over $(\IDelta^\op)^i$) to see that $|F(Q^i(-))|$ is additive. By the same argument as in \itememph{a}, it is also grouplike. Hence \cref{thm:SpanF} implies $|F(Q^i(-))|\simeq \Omega|F(Q^{i+1}(-))|$, from which the formula above follows by induction.
+		
+		Therefore, any additive functor $F\colon \Catst\morphism \An$ upgrades to a prespectra-valued (see \cref{par:Prespectra}) functor
+		\begin{equation*}
+			\operatorname{\IS pan}^F\colon \Catst\morphism \cat{PSp}
+		\end{equation*}
+		given by $\operatorname{\IS pan}^F(\Cc)\simeq (F(\Cc),\Omega |F(Q(\Cc))|,\Omega^2|F(Q^2(\Cc))|,\dotsc)$. The construction of $\operatorname{\IS pan}^F$ is clearly functorial in $F$, hence induces a functor
+		\begin{equation*}
+			\operatorname{\IS pan}^{(-)}\colon \Fun^\add(\Catst,\An)\morphism \Fun(\Catst,\cat{PSp})\,.
+		\end{equation*}
+		If we restrict to $\Fun^\grp(\Catst,\An)\subseteq \Fun^\add(\Catst,\An)$, then $\operatorname{\IS pan}^{(-)}$ takes values in $\Fun(\Catst,\Sp)$. Moreover, it follows from \itememph{a} that $\operatorname{\IS pan}^{(-)}$ coincides with $B^\infty$ on grouplike functors. Thus, for a stable $\infty$-category $\Cc$, we put
+		\begin{equation*}
+			K(\Cc)\coloneqq \operatorname{\IS pan}^{k}(\Cc)\simeq B^\infty k(\Cc)
+		\end{equation*}
+		and call this the \emph{$K$-theory spectrum} or \emph{projective class spectrum} of $\Cc$.
+		\item Now for the random comment: If $\Sp_{[0,1]}\subseteq \Sp$ denotes the full subcategory of spectra $E$ whose homotopy groups $\pi_i(E)$ vanish for $i\notin[0,1]$, then 
+		\begin{equation*}
+			\Sp_{[0,1]}\simeq \CGrp(\An)_{[0,1]}\simeq \CGrp(\Grpd)\,.
+		\end{equation*}
+		A symmetric monoidal $1$-groupoid $\Gg^\otimes$ on the right-hand side corresponds to a gem (\enquote{generalised Eilenberg--MacLane anima}, see Very Long Example~\cref{exm:EilenberMacLane}) in the middle iff the symmetry isomorphisms $\sigma_{x,x}\colon x\otimes x\isomorphism x\otimes x$ from \labelcref{par:EinftyRefinement} is the identity on $x\otimes x$ for all $x\in \Gg$.
+	\end{alphanumerate}
+\end{rem}
+\subsection{The Fibration Theorem}
+To get fibre sequences like in \cref{par:SomeMotivation}, it doesn't suffice to know that $K$-theory is additive. For example, if $R\morphism S$ is a derived localisation of ordinary rings (\cref{propdef:derivedLocalisation}), then $\Dd(S)\morphism \Dd(R)\morphism \Dd(R)^{S\mhyph\mathrm{tors}}$ is a split Verdier sequence by \cref{lem:LocalisationRecollement}, but this is no longer true if we restrict to $\Dd^\perf$ everywhere. Instead, we'll have to show that $k\colon \Catst\morphism \An$ is Verdier-localising (\cref{def:VerdierStuff}), which is our next goal. It will turn out that even being Verdier-localising isn't quite enough, but more on that once we're there.
+\begin{defi}\label{def:RelativeQ}
+	If $f\colon \Aa\morphism\Bb$ is an exact functor of stable $\infty$-categories, then the \emph{relative $Q$-construction} $Q(f)\in \cat{sCat}_\infty^\mathrm{st}$ is defined by the pullback
+	\begin{equation*}
+		\begin{tikzcd}
+			Q(f)\rar\dar\drar[pullback] & \operatorname{Null}(\Bb)\dar["d_0"] \\
+			Q(\Aa)\rar["f"] & Q(\Bb)
+		\end{tikzcd}
+	\end{equation*}
+\end{defi}
+By \cref{par:MoreOnVerdierSequences}\itememph{e}, it doesn't matter whether this pullback is taken in $\cat{sCat}_\infty^\mathrm{st}$ or on $\cat{sCat}_\infty$. We may think of $Q_n(f)$ as diagrams of the following form (as usual, the dotted part is uniquely determined by the solid part):
+\begin{center}
+	\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (00) at (0,0) {$0$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (01) at (2,0) {$a_0$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (02) at (4,0) {$a_2$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (03) at (6,0) {$a_{2n-2}$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (04) at (8,0) {$a_{2n}$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (10) at (1,1) {$b$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (11) at (3,1) {$a_1$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (12) at (5,1) {$a_{2n-3}$};
+		\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (13) at (7,1) {$a_{2n-1}$};
+		\draw[fill=white] (2,2) circle (0.5ex) coordinate (20);
+		\draw[fill=white] (4,2) circle (0.5ex) coordinate (21);
+		\draw[fill=white] (6,2) circle (0.5ex) coordinate (22);
+		\draw[fill=white] (3,3) circle (0.5ex) coordinate (30);
+		\draw[fill=white] (5,3) circle (0.5ex) coordinate (31);
+		\draw[fill=white] (4,4) circle (0.5ex) coordinate (40);
+		\draw[to-] (00) -- (10);
+		\draw[to-] (01) -- (10);
+		\draw[to-] (01) -- (11);
+		\draw[to-] (02) -- (11);
+		\draw[to-,shorten >=1.25ex,dotted] (10) -- (20);
+		\draw[to-,shorten >=1.25ex,dotted] (11) -- (20);
+		\draw[to-] (03) -- (12);
+		\draw[to-,shorten >=1.25ex,dotted] (12) -- (21);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (30);
+		\draw[to-] (04) -- (13);
+		\draw[to-,shorten >=1.25ex,dotted] (13) -- (22);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (22) -- (31);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (31) -- (40);
+		\draw[to-] (03) -- (13);
+		\draw[to-,shorten >=1.25ex,dotted] (12) -- (22);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (31);
+		\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (30) -- (40);
+		\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
+		\path (11.center) to  node[pos=0.5,sloped] {$\ldots$} (21);
+		\path (20.center) to  node[pos=0.5,sloped] {$\ldots$} (30);
+		%\node[rotate=-45] at (2,1) {$\pullbacksign$};
+		%\node[rotate=-45] at (6,1) {$\pullbacksign$};
+		%\node[rotate=-45] at (5,2) {$\pullbacksign$};
+		%\node[rotate=-45] at (4,3) {$\pullbacksign$};
+		\path (00.center) to node[pos=0.51,below=0.5ex] {$\underbrace{\hspace{5.856cm}}_{n+1\text{ zigs and zags}}$} (04.center);
+	\end{tikzpicture}
+\end{center}
+Here $a_0,\dotsc,a_{2n}\in \Aa$, $b\in \Bb$, and of course the arrow $b\morphism a_0$ should be interpreted as a morphism $b\morphism f(a_0)$ in $\Bb$.
+\begin{cor}\label{cor:RelativeQ}
+	If $F\colon \Catst\morphism \An$ is grouplike additive, then for all exact functors $f\colon \Aa\morphism \Bb$ there is a fibre sequence
+	\begin{equation*}
+		\left|F\big(Q(f)\big)\right|\morphism \left|F\big(Q(\Aa)\big)\right|\morphism \left|F\big(Q(\Bb)\big)\right|
+	\end{equation*}
+	in $\An$ \embrace{or equivalently in $\CGrp(\An)$}.
+\end{cor}
+\begin{proof}
+	Recall the following facts from the second proof of \cref{thm:SpanF}:
+	\begin{alphanumerate}
+		\item $d_0\colon \operatorname{Null}_n(\Bb)\morphism Q_n(\Bb)$ is a split Verdier projection for all $[n]\in \IDelta^\op$; see Step~\itememph{2}.
+		\item $F(d_0)\colon F(\operatorname{Null}(\Bb))\morphism F(Q(\Bb))$ is equifibred; see Step~\itememph{2}.
+		\item $|F(\operatorname{Null}(\Bb))|\simeq |0/\Span^F(\Bb)|\simeq *$; see Step~\itememph{1}.
+	\end{alphanumerate}
+	By \itememph{a}, the pullback square defining $Q(f)$ is a degreewise split Verdier square. Hence it stays a pullback after applying $F$. Now \itememph{b} together with \cref{lemdef:Equifibred} ensures that we still get a pullback after taking realisations. By \itememph{c}, this pullback square provides the desired fibre sequence. 
+\end{proof}
+\begin{cor}\label{cor:GrouplikeVerdierLocalising}
+	For a grouplike additive functor $F\colon \Catst\morphism \An$, the following are equivalent:
+	\begin{alphanumerate}
+		\item $F$ is Verdier-localising and sends Verdier projections to $\pi_0$-surjections. That is, for all Verdier-projections $\Bb\morphism \Cc$, the induced map $\pi_0(F(\Bb))\morphism \pi_0(F(\Cc))$ is surjective.
+		\item For all Verdier inclusions $i\colon \Aa\morphism\Bb$ the canonical map
+		\begin{equation*}
+			\left|F\big(Q(i)\big)\right|\isomorphism F(\Bb/\Aa)
+		\end{equation*}
+		is an equivalence.
+		\item[\itememph{c^*}] The functor $B^\infty F\colon \Catst\morphism \Sp$ is Verdier-localising.
+	\end{alphanumerate}
+\end{cor}
+In the lecture, we only had \itememph{a} and \itememph{b}, and we didn't impose the condition that $F$ sends Verdier projections to $\pi_0$-surjections. I think it is needed though. In view of \itememph{\boxtimes} below, it's a natural question whether one can drop this condition (along with \itememph{c^*}) and in turn only ask for $\left|F(Q(i))\right|\morphism F(\Bb/\Aa)$ to be an inclusion of path components. However, I believe this breaks the argument why $F$ sends Verdier squares to pullbacks. Please tell me if it's true after all.
+
+Also note that $K$-theory does send Verdier projections to $\pi_0$-surjections, which is clear from \cref{def:K0C} and the fact that $\Bb\morphism \Bb/\Aa$ is essentially surjective.
+\begin{proof*}[Proof of \cref{cor:GrouplikeVerdierLocalising}]
+	Let's first explain where the canonical map comes from. So for the moment, $F$ is only grouplike additive. \cref{thm:SpanF} implies $\Omega |F(Q(\Aa))|\simeq F(\Aa)$ and likewise for $\Bb$. Thus, rotating the fibre sequence from \cref{cor:RelativeQ} gives a fibre sequence
+	\begin{equation*}
+		F(\Aa)\morphism F(\Bb)\morphism \left|F\big(Q(i)\big)\right|
+	\end{equation*}
+	in $\CGrp(\An)$. We claim:
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape The induced map $\pi_0(F(\Bb))\morphism \pi_0\left|F(Q(i))\right|$ is surjective and thus the sequence above is also a fibre/cofibre sequence in $\Sp$.
+	\end{alphanumerate}
+	If $C$ denotes the cofibre in $\Sp$, then by \cref{lem*:WhiteheadForSpectra} it suffices to show that the canonical map $C\morphism \left|F(Q(i))\right|$ induces isomorphisms on all homotopy groups. Observe that $C$ is connective, so this holds for all negative homotopy groups, and the usual five lemma arguments show the same for all positive homotopy groups. It remains to check that $\pi_0(C)\morphism \pi_0\left|F(Q(i))\right|$ is an isomorphism. For that, we must show that $\pi_0(F(\Bb))\morphism \pi_0\left|F(Q(i))\right|$ is surjective. By \cref{lem:GrouplikeFunctors}, the fibre sequence from \cref{cor:RelativeQ} can be rewritten as
+	\begin{equation*}
+		\left|F\big(Q(i)\big)\right|\morphism BF(\Aa)\morphism BF(\Bb)\,.
+	\end{equation*}
+	Hence $\pi_1(BF(\Bb))\morphism \pi_0\left|F(Q(i))\right|\morphism \pi_0(BF(\Aa))$ is exact. But $\pi_1(BF(\Bb))=\pi_0(F(\Bb))$ and $\pi_0(BF(\Aa))=0$ since $B$ shifts homotopy groups up. Thus $\pi_0(F(\Bb))\morphism \pi_0\left|F(Q(i))\right|$ is indeed surjective and we've proved \itememph{\boxtimes}.
+	
+	Now for the actual proof. Since $F(\Aa)\morphism F(\Bb)\morphism F(\Bb/\Aa)$ always composes to $0$, \itememph{\boxtimes} provides the desired natural map $\left|F(Q(i))\right|\morphism F(\Bb/\Aa)$. Assume \itememph{a} holds. Then $F(\Aa)\morphism F(\Bb)\morphism F(\Bb/\Aa)$ is a fibre sequence too. By the usual five lemma arguments, $\left|F(Q(i))\right|\morphism F(\Bb/\Aa)$ is an isomorphism on all homotopy groups except possibly $\pi_0$. But since $\pi_0(F(\Bb))\morphism \pi_0(F(\Bb/\Aa))$ is surjective by assumption and $\pi_0(F(\Bb))\morphism \pi_0\left|F(Q(i))\right|$ is surjective by \itememph{\boxtimes}, the five lemma also works in $\pi_0$. This shows \itememph{a} $\Rightarrow$ \itememph{b}.
+	
+	Conversely, assume that $\left|F(Q(i))\right|\isomorphism F(\Bb/\Aa)$. Then $F$ sends Verdier sequences to fibre sequences and Verdier projections to $\pi_0$-surjections. It remains to show that $F$ transforms Verdier squares into pullbacks. But whether a square in $\CGrp(\An)$ is a pullback square can be tested on fibres. Since $F$ sends Verdier projections to $\pi_0$-surjections, all fibres are non-empty and thus all fibres are equivalent to the respective fibres over $0$. But the induced map on fibres over $0$ is an equivalence since we know what $F$ does on Verdier sequences. This shows \itememph{b} $\Rightarrow$ \itememph{a}.
+	
+	Finally, for \itememph{a} $\Leftrightarrow$ \itememph{c^*} it suffices to observe that a fibre sequence $X\morphism Y\morphism Z$ in $\CGrp(\An)$ stays a fibre sequence under $B^\infty\colon \CGrp(\An)\morphism \Sp$ iff $\pi_0(Y)\morphism \pi_0(Z)$ is surjective, which follows from the argument in \itememph{\boxtimes}.
+\end{proof*}
+We still owe a proof that cofibres in $\Catst$ can be described as in \labelcref{par:CofibreSequencesInCatSt}. The following takes care of the essential case.
+\begin{lem}\label{lem:VerdierQuotients}
+	Let $\Cc\subseteq \Dd$ be a stable sub-$\infty$-category \embrace{in the sense of \cref{warn*:StableSubcategory}} and let $\Dd/\Cc$ be the localisation of $\Dd$ at the mod-$\Cc$ equivalences. Then for all $x,y\in\Dd$,
+	\begin{equation*}
+		\Hom_{\Dd/\Cc}(x,y)\simeq\colimit_{c\in\Cc/y}\Hom_\Dd\big(x,\cofib(c\rightarrow y)\big)\,.
+	\end{equation*}
+	In particular, $\Dd/\Cc$ is stable and $\Dd\morphism \Dd/\Cc$ is an exact functor.
+\end{lem}
+\cref{lem:VerdierQuotients} only takes care of the fully faithful case, but it follows at once that the description from \labelcref{par:CofibreSequencesInCatSt} also holds for arbitrary exact functors. Moreover, note that the slice category $\Cc/y\coloneqq \Cc\times_\Dd\Dd/y$ is filtered. Indeed, given any map $K\morphism \Cc/y$ from a finite simplicial set $K$, we can find an extension $K^\triangleright\morphism \Cc/y$ by taking the colimit in $\Cc$, which maps canonically to $y$ since $\Cc\subseteq \Dd$ preserves finite colimits. Moreover, recall that filtered colimits in $\An$ commute with finite limits. This is proved in \cite[Proposition~\HTTthm{5.3.3.3}]{HTT}, but I think it also follows from \cref{rem*:piPreservesFilteredColimits} after some fiddling.
+\begin{proof}[Proof of \cref{lem:VerdierQuotients}]
+	Let $W\subseteq \pi_0\core\Ar(\Dd)$ be the collection of morphisms whose fibre is in $\Cc$. In the definition of mod-$\Cc$ equivalences we also allowed morphisms whose fibre is only a retract of an object of $\Cc$, but once we've shown that $\Dd[W^{-1}]$ is stable and $p\colon \Dd\morphism \Dd[W^{-1}]$ is exact, it will be clear that $\Dd[W^{-1}]$ coincides with the localisation $\Dd/\Cc$ at all mod-$\Cc$ equivalences.
+	
+	Recall from \cref{lem:HomsInLocalisation} that $\Hom_{\Dd[W^{-1}]}(x,-)\colon \Dd[W^{-1}]\morphism \An$ is left-Kan extended from $\Hom_\Dd(x,-)\colon \Dd\morphism \An$. Moreover, left Kan extension $p_!$ sits in an adjunction
+	\begin{equation*}
+		p_!\colon \Fun(\Dd,\An)\doublelrmorphism \Fun\big(\Dd[W^{-1}],\An\big)\noloc p^*
+	\end{equation*}
+	in which $p^*$ is fully faithful. Hence $p^*p_!\colon \Fun(\Dd,\An)\morphism \Fun(\Dd,\An)$ defines a left Bousfield localisation onto the full sub-$\infty$-category of functors that invert $W$.
+	
+	The idea is now to guess an explicit description of $p^*p_!$ and verify its correctness using Proposition~\labelcref{prop:LLaddendum}. Consider the functor $L\colon \Fun(\Dd,\An)\morphism \Fun(\Dd,\An)$ defined by
+	\begin{equation*}
+		LF(x)\simeq \colimit_{c\in \Cc/x}F\big(\cofib(c\rightarrow x)\big)\,.
+	\end{equation*}
+	The functorial maps $x\morphism \cofib(c\morphism x)$ define a map 
+	\begin{equation*}
+		F(x)\simeq \colimit_{c\in\Cc/x}F(x)\morphism \colimit_{c\in\Cc/x}F\big(\cofib(c\rightarrow x)\big)\,,
+	\end{equation*}
+	where the equivalence on the left follows from the fact that any filtered $\infty$-category is weakly contractible. One checks that these maps are functorial in $x$ and $F$, whence they assemble into a natural transformation $\eta\colon\id\Rightarrow L$. We claim:
+	\begin{numerate}\itshape
+		\item For all $F$, the functor $LF$ inverts $W$.
+		\item If $F$ already inverts $W$, then $\eta\colon F\morphism LF$ is an equivalence.
+	\end{numerate}
+	Claims~\itememph{1} and \itememph{2} together easily imply that the conditions of Proposition~\labelcref{prop:LLaddendum} are met, so indeed $L\simeq p^*p_!$. This also proves that $\Hom$ anima in $\Dd[W^{-1}]$ are given by
+	\begin{equation*}
+		\Hom_{\Dd[W^{-1}]}(x,y)\simeq \colimit_{c\in\Cc/y}\Hom_\Dd\big(x,\cofib(c\rightarrow y)\big)\,.
+	\end{equation*}
+	Using this formula together with \cref{cor:HomPreservesColimits} and the fact that filtered colimits commute with finite limits shows that $\Dd\morphism \Dd[W^{-1}]$ preserves finite colimits. Using the same argument for $\Dd^\op\morphism \Dd^\op[(W^\op)^{-1}]$ shows that $\Dd\morphism \Dd[W^{-1}]$ also preserves finite limits. Moreover, we can get that $\Dd[W^{-1}]$ has finite limits out of this. We already have a terminal object, hence it suffices to have pullbacks. But every span $x\morphism y\lmorphism z$ in $\Dd[W^{-1}]$ can be represented by a span $x\morphism \cofib(c\morphism y)\lmorphism z$ in $\Dd$ for some $c\in\Cc/y$, since the colimit in the formula above is filtered. Now $y\morphism \cofib(c\morphism y)$ is in $W$, hence an equivalence in $\Dd[W^{-1}]$, thus it suffices to take the pullback in $\Dd$ to get the desired pullback in $\Dd[W^{-1}]$. In the same way, one shows that $\Dd[W^{-1}]$ has finite colimits. Moreover, our argument also shows that pullback and pushout squares coincide, whence $\Dd[W^{-1}]$ is stable by \cref{propdef:StableInftyCategory}\itememph{c}. This proves everything we want, safe for the two claims above.
+	
+	We didn't prove these claims in the lecture, but here's what I think should work. Let's first check \itememph{1}. Suppose $\phi\colon x\morphism y$ has fibre in $\Cc$. Then also $\cofib(x\morphism y)\in \Cc$. Now, for any $c\in \Cc/y$, consider the following diagram:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=small]
+			\phi^*c\dar\drar[pullback]\rar & x\dar["\phi"] \rar\drar[pullback] & 0\dar\\
+			c \rar\dar\drar[pullback] & y\dar\rar & \cofib(x\morphism y)\\
+			0 \rar & \cofib(c\morphism y)
+		\end{tikzcd}
+	\end{equation*}
+	From the upper two squares we obtain that $\phi^*c\morphism c\morphism \cofib(x\morphism y)$ is a fibre sequence in $\Dd$, two of whose terms are in $\Cc$. Hence also $\phi^*c\in \Cc$. Thus, taking pullbacks along $\phi$ defines a functor $\phi^*\colon \Cc/y\morphism \Cc/x$, which one readily checks to be right-adjoint to the forgetful functor $\phi_!\colon \Cc/x\morphism \Cc/y$. Recall that right adjoints are cofinal; see the discussion after \cref{def:cofinal}. Moreover, the left two squares in the diagram above show $\cofib(\phi^*c\morphism x)\simeq \cofib(c\morphism y)$. Hence $\phi^*$ defines an equivalence
+	\begin{equation*}
+		\phi^*\colon LF(y)\simeq \colimit_{c\in\Cc/y}F\big(\cofib(\phi^*c\rightarrow x)\big)\isomorphism \colimit_{c'\in \Cc/x}F\big(\cofib(c'\rightarrow x)\big)\simeq LF(x)\,.
+	\end{equation*}
+	One checks that $\phi^*$ is an inverse to the induced map $LF(\phi)\colon LF(x)\morphism LF(y)$, so that $LF$ indeed inverts $W$. This shows \itememph{1}.
+	
+	It remains to show \itememph{2}, which is easy: $x\morphism \cofib(c\morphism x)$ lies in $W$ because its fibre is $c$. Hence $F(x)\isomorphism F(\cofib(c\morphism x))$ is an equivalence, which proves that $F(x)\isomorphism LF(x)$ is an equivalence as well for all $x\in \Dd$.
+\end{proof}
+To prove that $K$-theory is Verdier-localising, we invoke a somewhat non-standard formulation of Waldhausen's fibration theorem.
+\begin{thm}[Waldhausen's fibration theorem]\label{thm:Fibration}
+	Let $\Aa\subseteq \Bb$ be a stable sub-$\infty$-category, let $K$ be a finite $\infty$-category, and let $\Fun^\Aa(K,\Bb)\subseteq \Fun(K,\Bb)$ be the wide sub-$\infty$-category spanned by all objects but only the pointwise mod-$\Aa$ equivalences. Then
+	\begin{equation*}
+		\big|\Fun^\Aa(K,\Bb)\big|\morphism \Fun(K,\Bb/\Aa)
+	\end{equation*}
+	is \emph{faithful}, i.e., it induces inclusions of path components on $\Hom$ anima. Furthermore:
+	\begin{alphanumerate}
+		\item If $\Aa\subseteq \Bb$ is a Verdier inclusion \embrace{i.e.\ closed under retracts}, then the map above is an equivalence onto $\core \Fun(K,\Bb/\Aa)$.
+		\item If $\Aa\subseteq \Bb$ is dense, then $|\Fun^\Aa(K,\Bb)|$ is discrete \embrace{since $\Bb/\Aa\simeq 0$}. In fact, it is the discrete group $K_0\Fun(K,\Bb)/K_0\Fun(K,\Aa)$.
+	\end{alphanumerate}
+\end{thm}
+
+\noindent\begin{tikzpicture}[line cap=round,line join=round]
+	\node[text width=\textwidth,inner sep=0,align=justify,below] {\emph{Proof.}};
+	\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-9\baselineskip) {\phantom{Toast}\qed};
+	\begin{scope}[opacity=0.25,black!12!white]
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,0) {\phantom{\emph{Proof.}} \contour{black!20!white}{Lorem ipsum dolor sit amet, consectetuer adipiscing elit.} \contour{black!20!white}{Ut purus elit, vestibulum} \phantom{ut, placerat ac,}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-\baselineskip) {\contour{black!20!white}{ut, placerat ac, adispiscing vitae, felis.} \contour{black!20!white}{Curabitur dictum gravida mauris. Nam arcu libero} \phantom{nonnummy}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-2\baselineskip) {\contour{black!20!white}{nonummy eget, consectetuer id, vulputate a, magna.}\hfill \contour{black!20!white}{Donec vehicula augue eu neque. Pel-}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-3\baselineskip) {\contour{black!20!white}{lentesque habitant morbi tristique}\hfill \contour{black!20!white}{senectus et netus et malesuada fames ac turpis egestas.}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-4\baselineskip) {\contour{black!20!white}{Mauris ut leo. Cras viverra metus rhoncus sem.}\hfill \contour{black!20!white}{Nulla et lectus vestibulum urna fringilla}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-5\baselineskip) {\contour{black!20!white}{ultrices. Phasellus eu tellus sit amet tortor gravida placerat.}\hfill \contour{black!20!white}{Integer sapien est, iaculis in,}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-6\baselineskip) {\contour{black!20!white}{pretium quis, viverra ac, nunc.}\hfill \contour{black!20!white}{Praesent eget sem vel leo ultrices bibendum. Aenean fauci-}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-7\baselineskip) {\contour{black!20!white}{bus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla.}\hfill \contour{black!20!white}{Curabitur auctor sem-}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-8\baselineskip) {\contour{black!20!white}{per nulla. Donec varius orci eget risus.} \contour{black!20!white}{Duis nibh mi congue eu, accumsan eleifend, saggitis} \phantom{quis, diam.}};
+		
+		\node[text width=\textwidth,inner sep=0,align=justify,below] at (0,-9\baselineskip) {\contour{black!20!white}{quis, diam. Duis eget orci sit amet orci dignissim rutrum.}};
+	\end{scope}
+	\draw[fill=white,rounded corners=2] (-3.7,-0.15) rectangle (3.7,-3.95);
+	\sffamily
+	\node[align=justify,text width=6cm] at (0,-0.62) {\footnotesize\textbf{This proof is part of Andrea's Master's Thesis}\\[-1ex]
+		\scriptsize Please, select a purchase option:};
+	\begin{scope}[yshift=0.05cm]
+		\begin{scope}
+			\clip[rounded corners=1] (-2.4,-1.06) rectangle (2.4,-3.4);
+			\fill[black!20!white] (-2.4,-2.9) rectangle (2.4,-3.4);
+		\end{scope}
+		\draw[rounded corners=1] (-2.4,-1.06) rectangle (2.4,-3.4);
+		\draw (-2.4,-2.9) -- (2.4,-2.9);
+		\node[align=left,text width=4cm] at (0.2,-1.31) {\scriptsize Hardcover Book\hfill \textbf{\$99.99}};
+		\node[align=left,text width=4cm,below] at (0.2,-1.35) {\hfill \tiny Price includes VAT};
+		\node[align=left,text width=3.75cm,below] at (0.2,-1.6) {\scriptsize $\bullet$ Dispatched in about 6 Months\\[-1ex]
+			$\bullet$ Free shipping worldwide};
+		\fill[FabiansPurple!75!FabiansPink,rounded corners=1.5] (-1.8,-2.4) rectangle (2.2,-2.8);
+		\node[white] at (0.2,-2.6) {\hypersetup{urlcolor=white}\scriptsize \textbf{\href{http://tiny.cc/AlgebraicHermitianKTheory}{Buy Hardcover Book}}};
+		\node[align=left,text width=4cm] at (0.2,-3.15) {\scriptsize eBook\hfill \textbf{\$89.99}};
+		\draw[shift={(-2.1,-1.31)},FabiansPurple!75!FabiansPink] (0,0) circle (0.6ex);
+		\fill[shift={(-2.1,-1.31)},FabiansPurple!75!FabiansPink] (0,0) circle (0.35ex);
+		\draw[shift={(-2.1,-3.15)},FabiansPurple!75!FabiansPink,fill=white] (0,0) circle (0.6ex);
+	\end{scope}
+	
+	%\draw[shift={(-2.15,-1.3)},thick] (0,0) -- (0.5ex,-0.5ex) -- (1ex,0);
+	%\draw[shift={(-2.15,-3.1)},thick] (0.5ex,-0.5ex) -- (1ex,0) -- (0.5ex,0.5ex);
+	\node[align=right,text width=3cm,left] at (0,-3.7) {\hypersetup{urlcolor=black}\tiny\bfseries  \href{http://tiny.cc/AlgebraicHermitianKTheory}{\underline{Learn about $K$-Theor\smash{y} PREMIUM}}};
+	\node[align=left,text width=3.2cm,right] at (0,-3.7) {\hypersetup{urlcolor=black}\tiny Already have an account? \href{http://tiny.cc/AlgebraicHermitianKTheory}{\underline{\textbf{Si\smash{g}n in}}}};;
+	\draw (0,-3.5) -- (0,-3.8);
+\end{tikzpicture}
+\begin{cor}\label{cor:KVerdierLocalising}
+	The $K$-Theory functor $k\colon \Catst\morphism \An$ is Verdier-localising. The same is true for its spectra-valued variant $K\simeq B^\infty k\colon \Catst\morphism \Sp$.
+\end{cor}
+\begin{proof}[Proof sketch]
+	Let $i\colon \Aa\morphism \Bb$ be a Verdier inclusion. Consider the simplicial stable $\infty$-category
+	\begin{equation*}
+		\Fun(-,\Bb)\colon \IDelta^\op\morphism \Catst
+	\end{equation*}
+	sending $[n]\mapsto \Fun([n],\Bb)$. We claim that there is a degreewise fully faithful inclusion
+	\begin{equation*}
+		Q(i)\subseteq \Fun(-,\Bb)^\mathrm{esd}
+	\end{equation*}
+	(where $(-)^\mathrm{esd}$ denotes the edgewise subdivision; see \labelcref{par:edgewiseSubdivision}) with degreewise essential image those functors in $\Fun([n],\Bb)$ that land in the mod-$\Aa$ equivalences. To see this, recall that the elements of $Q_n(i)$ can be pictured as diagrams
+	\begin{center}
+		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (00) at (0,0) {$0$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (01) at (2,0) {$a_0$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (02) at (4,0) {$a_2$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (03) at (6,0) {$a_{2n-2}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (04) at (8,0) {$a_{2n}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (10) at (1,1) {$b_0$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (11) at (3,1) {$a_1$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (12) at (5,1) {$a_{2n-3}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (13) at (7,1) {$a_{2n-1}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (20) at  (2,2) {$b_1$};
+			\draw[fill=white] (4,2) circle (0.5ex) coordinate (21);
+			\draw[fill=white] (6,2) circle (0.5ex) coordinate (22);
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (30) at  (3,3) {$b_{2n-1}$};
+			\draw[fill=white] (5,3) circle (0.5ex) coordinate (31);
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (40) at  (4,4) {$b_{2n}$};
+			\draw[to-] (00) -- (10);
+			\draw[to-] (01) -- (10);
+			\draw[to-] (01) -- (11);
+			\draw[to-] (02) -- (11);
+			\draw[to-,dotted] (10) -- (20);
+			\draw[to-,dotted] (11) -- (20);
+			\draw[to-] (03) -- (12);
+			\draw[to-,shorten >=1.25ex,dotted] (12) -- (21);
+			\draw[to-,shorten <=1.25ex,dotted] (21) -- (30);
+			\draw[to-] (04) -- (13);
+			\draw[to-,shorten >=1.25ex,dotted] (13) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (22) -- (31);
+			\draw[to-,shorten <=1.25ex,dotted] (31) -- (40);
+			\draw[to-] (03) -- (13);
+			\draw[to-,shorten >=1.25ex,dotted] (12) -- (22);
+			\draw[to-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (31);
+			\draw[to-,dotted] (30) -- (40);
+			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
+			\path (11.center) to  node[pos=0.5,sloped] {$\ldots$} (21);
+			\path (20.center) to  node[pos=0.5,sloped] {$\ldots$} (30.center);
+			%\node[rotate=-45] at (2,1) {$\pullbacksign$};
+			%\node[rotate=-45] at (6,1) {$\pullbacksign$};
+			%\node[rotate=-45] at (5,2) {$\pullbacksign$};
+			%\node[rotate=-45] at (4,3) {$\pullbacksign$};
+			%\path (00.center) to node[pos=0.51,below=0.5ex] {$\underbrace{\hspace{5.856cm}}_{n+1\text{ zigs and zags}}$} (04.center);
+		\end{tikzpicture}
+	\end{center}
+	where $a_0,\dotsc,a_{2n}\in \Aa$, $b_0\in \Bb$, and the $b_1,\dotsc,b_n$ as well as the rest of the diagram are uniquely determined by the pullback conditions. To such a diagram, we can associate the sequence
+	\begin{equation*}
+		\fib(b_0\rightarrow a_0)\morphism \dotso \morphism\fib(b_{2n}\rightarrow a_{2n})\morphism b_{2n}\morphism \dotso \morphism b_0\,,
+	\end{equation*}
+	which evidently is an element of $\Fun([2n+1],\Bb)\simeq (\Fun(-,\Bb)^\mathrm{esd})_n$, and one easily checks that all maps are actually mod-$\Aa$ equivalences. Conversely, the diagram can be uniquely reconstructed from the sequence. To make this precise, one should argue similar to \cref{prop:QvsS}, but we'll leave the details to you.
+	
+	We conclude that $Q_nQ_m(i)$ consists of functors $J_n\times[2m+1]\morphism \Bb$ that take all morphisms $(j,k)\morphism(j,\ell)$ to mod-$\Aa$ equivalences. Thus $Q_nQ_m(i)\simeq \Fun([2m+1],\Fun^\Aa(J_n,\Bb))$ and therefore
+	\begin{equation*}
+		\core Q_nQ(i)\simeq \big(\N^r\Fun^\Aa(J_n,\Bb)\big)^\mathrm{esd}\,.
+	\end{equation*}
+	Taking realisations and using \cref{thm:Fibration}\itememph{a}, we obtain
+	\begin{equation*}
+		\left|\core Q_nQ(i)\right|\simeq \big|\Fun^\Aa(J_n,\Bb)\big|\simeq \core \Fun(J_n,\Bb/\Aa)\,.
+	\end{equation*}
+	Combining this with \cref{lem:GrouplikeFunctors} shows
+	\begin{equation*}
+		\left|Bk\big(Q(i)\big)\right|\simeq  \left|\core Q\big(Q(i)\big)\right|\simeq \left|\core Q(\Bb/\Aa)\right|\simeq Bk(\Bb/\Aa)
+	\end{equation*}
+	(the second realisation is actually a colimit over $(\IDelta^\op)^2$, similar to \cref{rem:RandomComment}\itememph{b}). By \cref{cor:GrouplikeVerdierLocalising}, this shows that $Bk\colon \Catst\morphism \CGrp(\An)$ and $B^{\infty+1}k\colon \Catst\morphism \Sp$ are Verdier-localising. Hence so are $k\simeq \Omega Bk$ and $K\simeq B^\infty k\simeq (B^{\infty+1}k)[-1]$.
+\end{proof}
+\begin{cor}\label{cor:KDenseInclusion}
+	If $\Aa\subseteq \Bb$ is a dense stable sub-$\infty$-category, then $K_i(\Aa)\isomorphism K_i(\Bb)$ is an isomorphism for all $i\geq 1$.
+\end{cor}
+\begin{proof*}
+	Throughout the proof, let $i\colon \Aa\morphism \Bb$ denote the inclusion and let $A=K_0(\Bb)/K_0(\Aa)$. Recall from the proof of \cref{cor:GrouplikeVerdierLocalising} that there is a fibre sequence
+	\begin{equation*}
+		Bk(\Aa)\morphism Bk(\Bb)\morphism \left|Bk\big(Q(i)\big)\right|\,.
+	\end{equation*}
+	Since $B$ shifts homotopy groups up, the statement of the corollary is equivalent to $\left|Bk(Q(i))\right|$ being the Eilenberg--MacLane anima $K(A,1)$. As in the proof of \cref{cor:KVerdierLocalising}, but using \cref{thm:Fibration}\itememph{b} instead, we get
+	\begin{equation*}
+		\left|\core Q_nQ(i)\right|\simeq \big|\Fun^\Aa(J_n,\Bb)\big|\simeq K_0\Fun(J_n,\Bb)/K_0\Fun(J_n,\Aa)\,.
+	\end{equation*}
+	Now \cref{lem:GrouplikeFunctors} implies $K_0\Fun(J_n,\Bb)/K_0\Fun(J_n,\Aa)=A^{2n+1}$, and thus
+	\begin{equation*}
+		\left|Bk\big(Q(i)\big)\right|\simeq  \left|\core Q\big(Q(i)\big)\right|\simeq \colimit_{[n]\in \IDelta^\op}A^{2n+1}\,.
+	\end{equation*}
+	Be aware that the colimit on the right-hand side is taken in $\An$, regarding the abelian groups $A^{2n+1}$ as discrete anima, and thus the simplicial abelian group $A^{2\bullet+1}\colon \IDelta^\op\morphism \Ab$ as a discrete simplicial anima. Let's analyse the face maps in $A^{2\bullet+1}$. Elements of $\Fun(J_n,\Bb)$ are given by zigzags
+		\begin{center}
+		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round]
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (00) at (0,0) {$b_0$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (01) at (2,0) {$b_2$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (02) at (4,0) {$b_4$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (03) at (6,0) {$b_{2n-2}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (04) at (8,0) {$b_{2n}$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (10) at (1,1) {$b_1$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (11) at (3,1) {$b_3$};
+			\node[text height=1.5ex,text depth=0.25ex,inner sep=2] (13) at (7,1) {$b_{2n-1}$};
+			\draw[to-] (00) -- (10);
+			\draw[to-] (01) -- (10);
+			\draw[to-] (01) -- (11);
+			\draw[to-] (02) -- (11);
+			\draw[to-] (04) -- (13);
+			\draw[to-] (03) -- (13);
+			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (03);
+		\end{tikzpicture}
+	\end{center}
+	for some $b_0,\dotsc,b_{2n}\in\Bb$. The outer face maps $d_0,d_{n}\colon \Fun(J_n,\Bb)\morphism \Fun(J_{n-1},\Bb)$ simply chop of $b_0$, $b_1$ or $b_{2n-1}$, $b_{2n}$, respectively. The inner face maps $d_j\colon \Fun(J_n,\Bb)\morphism \Fun(J_{n-1},\Bb)$ for $1\leq j<n$ remove $b_{2j-1}$, $b_{2j}$, $b_{2j+1}$ and replace them by the pullback $b_{2j-1}\times_{b_{2j}}b_{2j+1}$ in $\Bb$. Once we note that $[b_{2j-1}\times_{b_{2j}}b_{2j+1}]=[b_{2j-1}]+[b_{2j+1}]-[b_{2j}]$ in $K_0(\Bb)$, it follows that the face maps $d_j\colon A^{2n+1}\morphism A^{2n-1}$ in $A^{2\bullet+1}$ are given thusly:
+	\begin{equation*}
+		d_j(a_0,\dotsc,a_{2n})=
+		\begin{cases*}
+			(a_2,\dotsc,a_{2n}) & if $j=0$\\
+			(a_0,\dotsc,a_{2j-2},a_{2j-1}+a_{2j+1}-a_{2j},a_{2j+2},\dotsc,a_{2n}) & if $1\leq j<n$\\
+			(a_0,\dotsc,a_{2n-2}) & if $j=n$
+		\end{cases*}\,.
+	\end{equation*}
+	The simplicial abelian group $A^{2\bullet+1}$ is a Kan complex by \cref{exm:MyFirstKanComplexes}\itememph{c}. Hence \cref{rem:Realisation} implies that $\colimit_{[n]\in\IDelta^\op}A^{2n+1}$ is just given by $A^{2\bullet+1}$ itself, considered as an anima. By \cref{thm:DoldKan}, the homotopy groups of $A^{2\bullet+1}$ are the homology groups of its normalised chain complex $N_*(A^{2\bullet+1})$, where $N_n(A^{2\bullet+1})=\bigcap_{1\leq j\leq n}\ker(d_j)\subseteq A^{2n+1}$ and the differentials are given by $d_0$. One easily checks $N_0(A^{2\bullet+1})=A$, $N_0(A^{2\bullet+1})=A^2$, and $N_n(A^{2\bullet+1})=0$ for $n\geq 2$, which upon inspection of the differentials shows that $A^{2\bullet+1}$ is indeed the Eilenberg--MacLane anima $K(A,1)$.
+\end{proof*}
+\subsection{Localisation and Dévissage}
+\numpar{}\label{par:ThingsLeftToDo}
+Two final things are left to do:
+\begin{alphanumerate}
+	\item If $R\morphism S$ is a derived localisation of rings (we will soon see how to generalise this to an arbitrary localisation of $\IE_\infty$-ring spectra), we wish to show that under a soon to be specified mild technical condition ($R\morphism S$ having \emph{perfectly generated fibre}) there is a fibre sequence
+	\begin{equation*}
+		k\big(\Dd^\perf(R)^{S\mhyph\mathrm{tors}}\big)\morphism k\big(\Dd^\perf(R)\big)\morphism k\big(\Dd^\perf(S)\big)\,.
+	\end{equation*}
+	This is not yet trivial since \cref{cor:KVerdierLocalising} isn't applicable right away: Even though $\Dd(R)^{S\mhyph\mathrm{tors}}\morphism \Dd(R)\morphism \Dd(S)$ is a Verdier sequence by \cref{lem:LocalisationRecollement} and \cref{thm:VerdierStuff}, the same need not be true anymore after restricting to the full sub-$\infty$-categories of perfect complexes everywhere. For example, $S\otimes_R-\colon \Dd^\perf(R)\morphism \Dd^\perf(S)$ may fail to be essentially surjective. This can already be the case for $S\otimes_R-\colon \Proj(R)\morphism \Proj(S)$. However, its essential image is always a dense subcategory, since every finite free $S$-module is hit and every finite projective $S$-module is a retract of a finite free one. This observation leads us on the right track, as we'll see in a moment.
+	\item If $R$ and $S$ are nice enough, we wish to show that the $K$-theory of $\Dd^\perf(R)^{S\mhyph\mathrm{tors}}$ can be computed in terms of the $K$-theory of suitable quotients of $R$. For example, we'd like to have
+	\begin{equation*}
+		\bigoplus_{p\text{ prime}}K(\IF_p)\simeq K\big(\Dd^\perf(\IZ)^{\IQ\mhyph\mathrm{tors}}\big)\,.
+	\end{equation*}
+	More generally, a similar formula should hold for arbitrary Dedekind domains. This will be the content of \emph{Quillen's dévissage}.
+\end{alphanumerate}
+Before we can tackle \itememph{a}, we must take two brief detours: One into \emph{Karoubi}-land, and one into the land of \emph{inductive completions}.
+\numpar{Karoubi Things}
+A \emph{Karoubi equivalence} is an inclusion of a dense sub-$\infty$-category. We put
+\begin{equation*}
+	\Cat_{\infty,\natural}^\mathrm{st}\coloneqq \Catst\big[\{\text{Karoubi equiv.}\}^{-1}\big]\,.
+\end{equation*}
+A \emph{Karoubi sequence} is a sequence in $\Catst$ that becomes both a fibre and a cofibre sequence in $\Cat_{\infty,\natural}^\mathrm{st}$. Moreover, we define \emph{Karoubi inclusions} and \emph{Karoubi projections} in the obvious way.
+
+We didn't have time to discuss the following lemma in the lecture, but it appears in Fabian's notes \cite[Lemma/Definition~IV.34]{KTheory} and should be mentioned here.
+\begin{smalllem}\label{lem:KaroubiBousfieldLocalisation}
+	The localisation $\Catst\morphism \Cat_{\infty,\natural}^\mathrm{st}$ is both a left and a right Bousfield localisation. A left adjoint is given by $\Cc\mapsto \Cc^{\min}$, where $\Cc^{\min}$ denotes the \emph{minimalisation} from Example~\textup{\labelcref{exm:Minimalisation}}, and a right adjoint is given by $\Cc\mapsto \Cc^\natural$, where $\Cc^\natural$ denotes the \emph{idempotent completion} of $\Cc$.
+\end{smalllem}
+\begin{proof*}
+	Let $\Cat_\infty^{\mathrm{st},K_0=0}\subseteq\Catst$ be the full sub-$\infty$-category spanned by those stable $\infty$-categories $\Cc$ that have no dense stable sub-$\infty$-category, or equivalently (by
+	\cref{thm:ThomasonDenseSubcategories}) those $\Cc$ with $K_0(\Cc)=0$. We claim that $\Cc\mapsto \Cc^{\min}$ is a right adjoint of this inclusion (and yes, we really want a right adjoint here; we'll explain below where the left/right switch comes from). First note that $(-)^{\min}\colon\Catst\morphism\Catst$ is indeed a functor and comes with a pointwise fully faithful transformation $(-)^{\min}\Rightarrow \id$: Just consider a suitable simplicial subset of $\Un^\cocart(\Catst\morphism\Cat_\infty)$. Now \cref{thm:ThomasonDenseSubcategories} implies that $(-)^{\min}\Rightarrow \id$ satisfies the (dual) conditions of Proposition~\labelcref{prop:LLaddendum}, whence $\Cat_\infty^{\mathrm{st},K_0=0}$ is indeed a right Bousfield localisation of $\Catst$.
+	
+	It's clear that $(-)^{\min}$ inverts dense inclusions. Hence it descends to a functor 
+	\begin{equation*}
+		(-)^{\min}\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},K_0=0}\,,
+	\end{equation*}
+	which we claim is an equivalence. To see this, simply note that $\Cat_\infty^{\mathrm{st},K_0=0}\subseteq\Catst\morphism \Cat_{\infty,\natural}^\mathrm{st}$ is an inverse. Together with the adjunction that was verified above, this now implies that $(-)^{\min}\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},K_0=0}\subseteq \Catst$ is indeed a left adjoint of $\Catst\morphism \Cat_{\infty,\natural}^\mathrm{st}$, as claimed. Moreover, we see where the left/right switch comes from: Whether $\Cc\mapsto \Cc^{\min}$ is a left or right adjoint depends on which side of the adjunction contains the equivalence $(-)^{\min}\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},K_0=0}$.
+	
+	The case of idempotent completions is similar. Let $\Cat_\infty^{\mathrm{st},\natural}\subseteq \Catst$ be spanned by the \emph{idempotent complete} stable $\infty$-categories (see \cite[Corollary~\HTTthm{4.4.5.15}]{HTT}). Then this inclusion has a left adjoint $(-)^\natural$. This really doesn't have anything to do with stable $\infty$-categories, as already $\Cat_\infty^\natural\subseteq \Cat_\infty$ has a left adjoint $(-)^\natural$ (see \cite[Proposition~\HTTthm{5.4.2.16}]{HTT}), and we only need to check that $\Cc^\natural$ is stable again if $\Cc$ is (and that exactness of functors is preserved, but that will also fall out from our argument). Lurie constructs $\Cc^\natural\subseteq \Pp(\Cc)$ as the retract closure of $\Cc\subseteq \Pp(\Cc)$. Since $\Hom_\Cc(-,c)\colon \Cc^\op\morphism \An$ is left-exact for all $c\in \Cc$, one easily checks that the retract closure is contained in $\Fun^\mathrm{lex}(\Cc^\op,\An)\simeq \Fun^{\mathrm{ex}}(\Cc^\op,\Sp)$, where the equivalence in follows from \cref{thm:SpLeftAdjoint}. Now $\Fun^\mathrm{ex}(\Cc^\op,\Sp)$ is stable (in fact, it is a stable sub-$\infty$-category of $\Fun(\Cc^\op,\Sp)$), hence stability of $\Cc^\natural$ follows from \cref{lem:RetractClosure} below.
+	
+	%Now $\Fun(\Cc^\op,\Sp)$ is stable and the stable Yoneda embedding $\Cc\subseteq \Fun(\Cc^\op,\Sp)$ is exact, hence it suffices to show that $\Cc^\natural\subseteq \Fun(\Cc^\op,\Sp)$ is closed under shifts, finite direct sums, and fibres. The first two are almost trivial, so let's only do closedness under fibres. Let $F,G\colon \Cc^\op\morphism \Sp$ be retracts of $\hom_\Cc(-,c)$ and $\hom_\Cc(-,d)$, and let $\alpha\colon F\morphism G$ be given. Since $\Fun(\Cc^\op,\Sp)$ is stable, all retracts split (by a similar argument as in the proof of \cref{lem*:MoreOnHearts}\itememph{c}), hence $\hom_\Cc(-,c)\simeq F\oplus F'$ and $\hom_\Cc(-,d)\simeq G\oplus G'$. Consider $\alpha\oplus 0\colon F\oplus F'\morphism G\oplus G'$. By Yoneda's lemma, it corresponds to a map $\alpha'\colon c\morphism d$ in $\Cc$. Moreover, $\fib(\alpha\oplus 0)\simeq \hom_\Cc(-,\fib(\alpha'))$ is contained in $\Cc\subseteq \Fun(\Cc^\op,\Sp)$. But we also calculate $\fib(\alpha\oplus 0)\simeq \fib(\alpha)\oplus F'\oplus G'[-1]$. This shows that $\fib(\alpha)$ is again a retract of an element in $\Cc$, proving that $\Cc^\natural\subseteq\Fun(\Cc^\op,\Sp)$ is closed under fibres. Thus $\Cc^\natural$ is indeed stable.
+	
+	The functor $(-)^\natural\colon \Catst\morphism\Cat_\infty^{\mathrm{st},\natural}$ takes dense inclusions to equivalences. This is actually not entirely clear from the construction, so we refer to \cite[Definition~\HTTthm{5.1.4.1} and Proposition~\HTTthm{5.1.4.9}]{HTT}. Once this is known, it follows as above that $(-)^\natural$ descends to an equivalence
+	\begin{equation*}
+		(-)^\natural\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},\natural}
+	\end{equation*}
+	and thus $(-)^\natural\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},\natural}\subseteq \Catst$ is a right adjoint to $\Catst\morphism\Cat_{\infty,\natural}^\mathrm{st}$ (and we get the same left/right switch as above).
+\end{proof*}
+\begin{lem*}\label{lem:RetractClosure}
+	Let $\Cc\subseteq \Dd$ be a stable sub-$\infty$-category \embrace{in the sense of \cref{warn*:StableSubcategory}} and let $\Cc'\subseteq \Dd$ be the retract closure of $\Cc$. Then $\Cc'$ is stable again.
+\end{lem*}
+\begin{proof*}
+	It suffices to show that $\Cc'$ is closed under shifts, finite direct sums, and fibres. The first two are trivial, so let $\alpha\colon c'\morphism d'$ be a morphism in $\Cc'$. By definition, $c'$ and $d'$ are retracts of objects $c,d\in\Cc$. But all retracts in a stable $\infty$-category are split (by a similar argument as in the proof of \cref{lem*:MoreOnHearts}\itememph{c}), hence there are $c''$ and $d''$ such that $c\simeq c'\oplus c''$ and $d'\simeq d\oplus d''$. Consider the map $\alpha\oplus 0\colon c\morphism d$. Then $\fib(\alpha\oplus 0)$ is an object of $\Cc$ again. However, $\fib(\alpha\oplus 0)\simeq \fib(\alpha)\oplus c''\oplus d''[-1]$, which proves that $\fib(\alpha)$ is again a retract of an object in $\Cc$.
+\end{proof*}
+
+The upshot is that there are two ways to embed $\Cat_{\infty,\natural}^\mathrm{st}$ into $\Catst$: As the full sub-$\infty$-category where $K_0$ vanishes, and as the full sub-$\infty$-category of idempotent complete stable $\infty$-categories. Moreover, \cref{lem:KaroubiBousfieldLocalisation} implies that a functor $f\colon \Aa\morphism\Bb$ in $\Catst$ becomes an equivalence under $\Catst\morphism\Cat_{\infty,\natural}^\mathrm{st}$ iff it is a Karoubi equivalence, i.e., a dense inclusion. The \enquote{if} is trivial, so let's suppose the converse. Then
+\begin{equation*}
+	f^\natural\colon \Aa^\natural\isomorphism \Bb^\natural\quad\text{and}\quad f^{\min}\colon \Aa^{\min}\isomorphism \Bb^{\min}
+\end{equation*}
+are equivalences. Since $\Aa\subseteq \Aa^\natural$ and $\Bb\subseteq \Bb^\natural$ are fully faithful, $f^\natural$ being an equivalence shows that $f$ is fully faithful. And $f^{\min}$ being an equivalence shows that $f$ is dense.
+
+Moreover, \cref{lem:KaroubiBousfieldLocalisation} allows us to characterise Karoubi sequences. We'll see an even cooler characterisation in \cref{thm:ThomasonNeemanLocalisation} below.
+\begin{smalllem}\label{lem:KaroubiSequenceCriteria}
+	 For a nullcomposite sequence $\Aa\morphism\Bb\morphism\Cc$ in $\Catst$, the following are equivalent:
+	 \begin{alphanumerate}
+	 	\item It is a Karoubi sequence.
+	 	\item The induced maps $\Aa\morphism \fib(\Bb\morphism\Cc)$ and $\Bb/\Aa\morphism \Cc$ are Karoubi equivalences.
+	 	\item The induced maps $\Aa^\natural\isomorphism\fib(\Bb^\natural\rightarrow  \Cc^\natural)$ and $\Bb^{\min}/\Aa^{\min}\isomorphism \Cc^{\min}$ are equivalences.
+	 \end{alphanumerate}
+\end{smalllem}
+\begin{proof*}
+Since $\Catst\morphism\Cat_{\infty,\natural}^\mathrm{st}$ has both adjoints by \cref{lem:KaroubiBousfieldLocalisation}, it preserves fibres and cofibres. Hence \itememph{a} $\Leftrightarrow$ \itememph{b}.
+
+Moreover, we've seen in the proof above that $(-)^\natural\colon \Cat_{\infty,\natural}^\mathrm{st}\isomorphism \Cat_\infty^{\mathrm{st},\natural}$ is an equivalence and that $\Cat_\infty^{\mathrm{st},\natural}\subseteq \Catst$ is a right adjoint. Hence $\fib(\Bb^\natural\morphism \Cc^\natural)$ is also the fibre in $\Cat_{\infty}^{\mathrm{st},\natural}$. Thus $\Aa\morphism \fib(\Bb\morphism\Cc)$ and $\Bb/\Aa\morphism \Cc$ is a Karoubi equivalence iff $\Aa^\natural\isomorphism\fib(\Bb^\natural\rightarrow  \Cc^\natural)$ is an actual equivalence. Together with a similar argument for $(-)^{\min}$, this implies \itememph{b} $\Leftrightarrow$ \itememph{c}.
+\end{proof*}
+
+\numpar{Inductive Completions}\label{par:Ind}
+Let $\Cc$ be an $\infty$-category with finite colimits. Then we define its \emph{inductive completion} to be the full sub-$\infty$-category $\operatorname{Ind}(\Cc)\subseteq \Pp(\Cc)$ of functors $F\colon \Cc^\op\morphism \An$ that preserve finite limits. Note that if $\Cc$ is stable, then
+\begin{equation*}
+	\operatorname{Ind}(\Cc)\simeq \Fun^\mathrm{lex}(\Cc^\op,\An)\simeq \Fun^\mathrm{ex}(\Cc^\op,\Sp)
+\end{equation*}
+by \cref{thm:SpLeftAdjoint}. This implies that $\operatorname{Ind}(\Cc)$ is stable again.
+
+One can also define $\operatorname{Ind}(\Cc)$ if $\Cc$ doesn't necessarily have finite colimits, but then the correct definition is a bit different; see \cite[Definition~\HTTthm{5.3.5.1}]{HTT}. In any case, $\operatorname{Ind}(\Cc)$ is the \enquote{free way} of adding filtered colimits to $\Cc$, as the following lemma shows.
+\begin{smalllem}\label{lem:IndUniversalProperty}
+	If $\Dd$ has filtered colimits, then restriction along the Yoneda embedding $\Yo_{\omega}^\Cc\colon \Cc\morphism\operatorname{Ind}(\Cc)$ induces an equivalence
+	\begin{equation*}
+		\Yo_\omega^{\Cc,*}\colon\Fun^{\mathrm{filt}\mhyph\mathrm{colim}}\big(\operatorname{Ind}(\Cc),\Dd\big)\isomorphism \Fun(\Cc,\Dd)\,,
+	\end{equation*}
+	where $\Fun^{\mathrm{filt}\mhyph\mathrm{colim}}\subseteq \Fun$ is the full sub-$\infty$-category of filtered colimits preserving functors.
+\end{smalllem}
+\begin{proof*}
+	We'll only do the case where $\Cc$ has finite colimits, since that was our assumption above (but the general case isn't really more difficult). First note that since filtered colimits commute with finite limits in $\An$, $\operatorname{Ind}(\Cc)\subseteq \Pp(\Cc)$ is closed under filtered colimits. Next, observe that every functor $f\colon \Cc\morphism \Dd$ admits a left Kan extension $\Lan_{\Yo_\omega^\Cc}f\colon \operatorname{Ind}(\Cc)\morphism \Dd$. To see this, it suffices to show that $\Dd$ admits $\Yo_\omega^\Cc/F$-shaped colimits for every $F\in \operatorname{Ind}(\Cc)$, since then the formulas from \cref{thm:KanExtension} provide the desired Kan extension. So we must prove that $\Yo_\omega^\Cc/F$ is filtered.
+	
+	Let $K$ be a finite simplicial set and let $K\morphism \Yo_\omega^\Cc/F$ be a diagram, which we may think of as objects $c_k\in \Cc$ together with maps $c_k\morphism F$ in $\operatorname{Ind}(\Cc)$. By Yoneda's lemma, such maps correpond to points in $F(c_k)$. Since $\Cc$ admits finite colimits, $c\coloneqq\colimit_{k\in K}c_k$ exists and satisfies $F(c)\simeq \limit_{k\in K^\op}F(c_k)$, since $c$ is given by a finite limit in $\Cc^\op$ and $F$ preserves finite limits. Hence the given maps $c_k\morphism F$ define a contractably unique map $c\morphism F$ and thus an extension $K^\triangleright\morphism \Yo_\omega^\Cc/F$. This shows that $\Yo_\omega^\Cc/F$ is filtered and thus there exists a Kan extension functor $\Lan_{\Yo_\omega^\Cc}\colon \Fun(\Cc,\Dd)\morphism \Fun(\operatorname{Ind}(\Cc),\Dd)$.
+	
+	Next, observe that any such Kan extension $\Lan_{\Yo_\omega^\Cc}f\colon \operatorname{Ind}(\Cc)\morphism \Dd$ preserves filtered colimits. To see this, choose a colimit-preserving embedding $\Dd\subseteq \Dd'$ into a cocomplete $\infty$-category $\Dd'$ (for example, one could take $\Dd'\simeq \Fun(\Dd^\op,\An^\op)$) and consider the left Kan extension $\Lan_{Y^\Cc}f\colon \Pp(\Cc)\morphism \Dd'$ along the usual Yoneda embedding $Y^\Cc\colon \Cc\morphism \Pp(\Cc)$. $\Lan_{Y^\Cc}f$ preserves colimits by \cref{thm:ColimitPreservingRepresentable}, and its restriction to $\operatorname{Ind}(\Cc)$ is $\Lan_{\Yo_\omega^\Cc}f$ by \cref{cor:FullyFaithfulKanExtension}. Since $\operatorname{Ind}(\Cc)\subseteq \Pp(\Cc)$ preserves filtered colimits, this implies that $\Lan_{\Yo_\omega^\Cc}f\colon \operatorname{Ind}(\Cc)\morphism \Dd$ preserves filtered colimits as well.
+	
+	The upshot is that $\Yo_\omega^{\Cc,*}\colon \Fun^{\mathrm{filt}\mhyph\mathrm{colim}}(\operatorname{Ind}(\Cc),\Dd)\morphism \Fun(\Cc,\Dd)$ has a left adjoint $\Lan_{\Yo_\omega^\Cc}$. One easily checks that unit and counit are equivalences, using that the same is true by \cref{thm:ColimitPreservingRepresentable} for the adjunction $\Lan_{\Yo^\Cc}\colon \Fun(\Cc,\Dd)\shortdoublelrmorphism \Fun^{\colimit}(\Pp(\Cc),\Dd)\noloc \Yo^{\Cc,*}$.
+\end{proof*}
+\refstepcounter{smallerdummy}
+\numpar*{\thesmallerdummy. Compact and Tiny Objects}Let $\Dd$ be an $\infty$-category. Recall that an object $d\in \Dd$ is called \emph{compact} if $\Hom_\Dd(d,-)$ commutes with filtered colimits, and \emph{tiny} if $\Hom_\Dd(d,-)$ commutes with all colimits. Moreover, we say that a set $S$ of objects of $\Dd$ is a  \emph{set of generators} if the functors $\Hom_\Dd(s,-)$ for $s\in S$ are jointly conservative.
+
+If $\Dd\simeq \Pp(\Cc)$ for some small $\infty$-category $\Cc$, then the essential image of the Yoneda embedding $Y^\Cc\colon \Cc\morphism \Pp(\Cc)$ is a set of tiny generators, as follows easily from Yoneda's lemma. In fact, a cocomplete $\Dd$ is of the form $\Dd\simeq \Pp(\Cc)$ if and only if it has a set of tiny generators, in which case $\Dd\simeq \Pp(\Dd^{\mathrm{tiny}})$, where $\Dd^{\mathrm{tiny}}\subseteq \Dd$ is the full sub-$\infty$-category spanned by the tiny objects. To see this, we apply Criterion~\itememph{\boxtimes} from the proof of \cref{lem:TautologicalPresheafLemma} to $i\colon \Dd^{\mathrm{tiny}}\morphism \Dd$ to see that the colimit-preserving functor $\Pp(\Dd^{\mathrm{tiny}})\morphism \Dd$ induced by \cref{thm:ColimitPreservingRepresentable} is an equivalence. Conditions~\itememph{a} and~\itememph{b} are trivially satisfied. To check condition~\itememph{c}, i.e.\ that $\Sing_i\colon \Dd\morphism \Pp(\Dd^{\mathrm{tiny}})$ is conservative, recall that $\Sing_i(d)\simeq \Hom_\Dd(i(-),d)\colon (\Dd^{\mathrm{tiny}})^\op\morphism \An$. So conservativity of $\Sing_i$ follows immediately from the fact that $\Dd$ has a set of tiny generators.
+
+The exact same thing holds for inductive completions and compact objects.
+\begin{smalllem}\label{lem:CompactlyGenerated}
+	Let $\Dd$ be an $\infty$-category with finite colimits. Then $\Dd$ is of the form $\Dd\simeq \operatorname{Ind}(\Cc)$ for some small $\infty$-category $\Cc$ iff $\Dd$ admits filtered colimits and has a set of compact generators. In this case automatically $\Dd\simeq \operatorname{Ind}(\Dd^\omega)$, where $\Dd^\omega\subseteq \Dd$ is the full sub-$\infty$-category of compact objects.
+\end{smalllem}
+\begin{proof*}
+	The proof is completely analogous to Criterion~\itememph{\boxtimes} in the proof of \cref{lem:TautologicalPresheafLemma}, except for two things that should perhaps be explained. First, $\Dd^\omega\subseteq \Dd$ is closed under finite colimits, since filtered colimits commute with finite limits in $\An$. So in particular, $\Dd^\omega$ has finite colimits, whence we can define $\operatorname{Ind}(\Dd^\omega)$ as above and the inclusion $i\Dd^\omega\subseteq\Dd$ extends to a functor $\operatorname{Ind}(\Dd^\omega)\morphism \Dd$ by \cref{lem:IndUniversalProperty}.
+	
+	Second, we have to explain why this functor has a left adjoint. Choose a colimit-preserving embedding $\Dd\subseteq \Dd'$ into a cocomplete $\infty$-category. Then $i\colon \Dd^\omega\morphism\Dd'$ induces a colimit-preserving functor $|\blank|_i\colon \Pp(\Dd^\omega)\morphism \Dd'$ with right adjoint $\Sing_i\colon \Dd'\morphism\Pp(\Dd^\omega)$. On objects $d\in \Dd'$, $\Sing_i$ is given by $\Sing_i(d)\simeq \Hom_{\Dd'}(i(-),d)\colon (\Dd^\omega)^\op\morphism\An$. For $d\in \Dd$, this presheaf coincides with $\Hom_\Dd(-,d)\colon (\Dd^\omega)^\op\morphism \An$, which preserves finite limits. Hence $\Sing_i$ restricts to a right adjoint $\Dd\morphism\operatorname{Ind}(\Dd^\omega)$ of $\operatorname{Ind}(\Dd^\omega)\morphism \Dd$.
+\end{proof*}
+An $\infty$-category $\Dd$ as in \cref{lem:CompactlyGenerated} is called \emph{compactly generated}. For example, we've checked in the proof of \cref{thm:D(R)IsModOverHR} that $\Mod_R$ is compactly generated for any $\IE_\infty$-ring spectrum $R$.
+
+\begin{thm}[Thomason--Neeman localisation theorem]\label{thm:ThomasonNeemanLocalisation}
+	A nullcomposite sequence $\Aa\morphism\Bb\morphism\Cc$ in $\Catst$ is a Karoubi sequence iff
+	\begin{equation*}
+		\operatorname{Ind}(\Aa)\morphism\operatorname{Ind}(\Bb)\morphism\operatorname{Ind}(\Cc)
+	\end{equation*}
+	is a Verdier sequence.
+\end{thm}
+\begin{proof*}
+	Throughout the proof, we'll use that $\operatorname{Ind}(\Dd)\simeq \Fun^\mathrm{ex}(\Dd^\op,\Sp)$ holds for all stable $\infty$-categories $\Dd$. Under this identification, the functor $\operatorname{Ind}(\Dd)\morphism \operatorname{Ind}(\Ee)$ induced by an exact functor $i\colon \Dd\morphism \Ee$ corresponds to $\Lan_i\colon \Fun^\mathrm{ex}(\Dd^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Ee^\op,\Sp)$, as follows from the proof of \cref{lem:IndUniversalProperty}.
+	We proceed in three steps.
+	\begin{alphanumerate}
+		\item[\itememph{1}] \itshape We show that a map $\Dd\morphism \Ee$ in $\Catst$ is a Karoubi equivalence iff $\operatorname{Ind}(\Dd)\isomorphism\operatorname{Ind}(\Ee)$ is an equivalence.
+	\end{alphanumerate}
+	
+	Let's first assume that $i\colon \Dd\morphism \Ee$ is a Karoubi equivalence. As seen above, we have to show that $\Lan_i\colon \Fun^{\mathrm{ex}}(\Dd^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Ee^\op,\Sp)$ is an equivalence. For this, it suffices that its right adjoint 
+	\begin{equation*}
+		i^*\colon \Fun^\mathrm{ex}(\Ee^\op,\Sp)\isomorphism \Fun(\Dd^\op,\Sp)
+	\end{equation*}
+	is an equivalence. Equivalences of $\infty$-categories can be detected on $\core(-)$ and $\core\Ar(-)$. To check that $i^*\colon \core\Fun^\mathrm{ex}(\Ee^\op,\Sp)\isomorphism \core\Fun^\mathrm{ex}(\Dd^\op,\Sp)$ is an equivalence, we use \cref{lem:KaroubiBousfieldLocalisation} to get
+	\begin{equation*}
+		\Hom_{\Cat_{\infty,\natural}^\mathrm{st}}(\Dd^\op,\Sp)\simeq \Hom_{\Catst}(\Dd^\op,\Sp^\natural)\simeq \Hom_{\Catst}(\Dd^\op,\Sp)\,.
+	\end{equation*}
+	Here we also used $\Sp^\natural\simeq \Sp$, since $\Sp$ is already idempotent complete (it is even cocomplete). Similarly,
+	\begin{equation*}
+		\Hom_{\Cat_{\infty,\natural}^\mathrm{st}}(\Ee^\op,\Sp)\simeq \Hom_{\Catst}(\Ee^\op,\Sp)\,.
+	\end{equation*}
+	But now the left-hand sides agree since $\Dd\subseteq \Ee$ is a Karoubi equivalence, hence also the right-hand sides agree. Thus
+	\begin{equation*}
+		\Hom_{\Catst}(\Dd^\op,\Sp)\simeq \Hom_{\Catst}(\Ee^\op,\Sp)\,,
+	\end{equation*}
+	as desired. To show that $i^*\colon \core\Ar(\Fun^\mathrm{ex}(\Ee^\op,\Sp))\isomorphism \core\Ar(\Fun^\mathrm{ex}(\Dd^\op,\Sp))$ is an equivalence, simply repeat the argument with $\Ar(\Sp)$ instead of $\Sp$.
+	
+	Conversely, assume that $\operatorname{Ind}(\Dd)\isomorphism \operatorname{Ind}(\Ee)$ is an equivalence. Since $\Dd\subseteq \operatorname{Ind}(\Dd)$ and $\Ee\subseteq \operatorname{Ind}(\Ee)$ are fully faithful, it follows that $\Dd\morphism \Ee$ is fully faithful as well. It remains to show that all objects of $\Ee$ are retracts. But every $e\in \Ee$ can be written as a filtered colimit $e\simeq \colimit_{i\in\Ii}d_i$ over elements from $\Dd$. Since $e$ is compact in $\operatorname{Ind}(\Ee)$, the isomorphism $e\isomorphism \colimit_{i\in \Ii}d_i$ already factors over some $d_j\morphism \colimit_{i\in \Ii}d_i$. But then
+	\begin{equation*}
+		e\morphism d_j\morphism \colimit_{i\in \Ii}d_i\isomorphism e
+	\end{equation*}
+	witnesses $e$ as a retract of $d_j$, as required. This finishes Step~\itememph{1}.
+	\begin{alphanumerate}
+		\item[\itememph{2}]\itshape We show that if $\Aa\morphism \Bb\morphism \Cc$ is a Karoubi sequence, then $\operatorname{Ind}(\Aa)\morphism \operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc)$ is a Verdier sequence.
+	\end{alphanumerate}
+	
+	As seen above, both arrows in $\operatorname{Ind}(\Aa)\morphism\operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc)$ have right adjoints, given by the usual restriction functors
+	\begin{equation*}
+		\Fun^\mathrm{ex}(\Cc^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Bb^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Aa^\op,\Sp)\,.
+	\end{equation*}
+	By \cref{thm:VerdierStuff}, it suffices to show that this is a Verdier sequence. Note that $\Aa\morphism \Bb$ is fully faithful (for example by \cref{lem:KaroubiSequenceCriteria}\itememph{b}), hence so is the left Kan extension functor $\Fun^\mathrm{ex}(\Aa^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Bb^\op,\Sp)$. Therefore, $\Fun^\mathrm{ex}(\Bb^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Aa^\op,\Sp)$ is a left split Verdier projection by \cref{thm:VerdierStuff}\itememph{b}, and thus all that's left to do is to identify its fibre with $\Fun^\mathrm{ex}(\Cc^\op,\Sp)$.
+	
+	By \cref{lem:KaroubiSequenceCriteria}\itememph{b} and Step~\itememph{1}, we have $\Fun^\mathrm{ex}(\Cc^\op,\Sp)\simeq \Fun^\mathrm{ex}((\Bb/\Aa)^\op,\Sp)$, so we may show instead that 
+	\begin{equation*}
+		\Fun^\mathrm{ex}((\Bb/\Aa)^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Bb^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Aa^\op,\Sp)
+	\end{equation*}
+	is a fibre sequence in $\Catst$ (or equivalently in $\Cat_\infty$; see \cref{par:MoreOnVerdierSequences}\itememph{e}). But this is obvious: $\Fun^\mathrm{ex}((\Bb/\Aa)^\op,\Sp)\morphism \Fun^\mathrm{ex}(\Bb^\op,\Sp)$ is fully faithful with essential image those exact functors that invert mod-$\Aa^\op$ equivalences. And an exact functor $\Bb^\op\morphism \Sp$ inverts mod-$\Aa^\op$ equivalences iff the composition $\Aa^\op\morphism \Bb^\op\morphism \Sp$ vanishes.
+	\begin{alphanumerate}
+		\item[\itememph{3}]\itshape We show that if $\operatorname{Ind}(\Aa)\morphism \operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc)$ is a Verdier sequence, then $\Aa\morphism \Bb\morphism \Cc$ is a Karoubi sequence.
+	\end{alphanumerate}
+	
+	Let $\Aa'\coloneqq \fib(\Bb\morphism \Cc)$ and $\Cc'\coloneqq \Bb/\Aa'$. Then clearly $\Aa'\morphism \Bb$ is fully faithful and closed under retracts, hence \cref{thm:VerdierStuff} shows that $\Aa'\morphism \Bb\morphism \Cc'$ is a Verdier sequence. In particular, Step~\itememph{2} implies that $\operatorname{Ind}(\Aa')\morphism \operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc')$ is a Verdier sequence too. We're done if we can show that $\Aa\morphism \Aa'$ and $\Cc'\morphism \Cc$ are Karoubi equivalences. Indeed, the former implies that $\Bb/\Aa\simeq \Bb/\Aa'$, thus also $\Bb/\Aa\morphism \Cc$ is a Karoubi equivalence, whence both conditions from \cref{lem:KaroubiSequenceCriteria}\itememph{b} are satisfied.
+	
+	By construction, we get fully faithful inclusions $\operatorname{Ind}(\Aa)\subseteq \operatorname{Ind}(\Aa')\subseteq \operatorname{Ind}(\Bb)$. But $\operatorname{Ind}(\Aa)$ is also the fibre of $\operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc)$, so $\Aa'\subseteq \operatorname{Ind}(\Aa)$. Since $\operatorname{Ind}(\Aa)$ is already closed under filtered colimits, this shows that $\operatorname{Ind}(\Aa)\isomorphism \operatorname{Ind}(\Aa')$ must be an equivalence. Hence $\Aa\morphism \Aa'$ is a Karoubi equivalence by Step~\itememph{1}. Now both
+	\begin{equation*}
+		\operatorname{Ind}(\Aa)\morphism \operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc)\quad\text{and}\quad \operatorname{Ind}(\Aa')\morphism \operatorname{Ind}(\Bb)\morphism \operatorname{Ind}(\Cc')
+	\end{equation*}
+	are Verdier sequences and we already know $\operatorname{Ind}(\Aa)\simeq \operatorname{Ind}(\Aa')$, so $\operatorname{Ind}(\Cc')\simeq \operatorname{Ind}(\Cc)$ holds as well. By Step~\itememph{1} again, this implies that $\Cc'\morphism \Cc$ is a Karoubi equivalence. We're done.
+\end{proof*}
+
+\numpar{Quillen's Localisation Sequence}
+If $R$ is an $\IE_\infty$-ring spectrum, we put
+\begin{equation*}
+	k(R)\coloneqq k(\Mod_R^\omega)\quad\text{and}\quad K(R)\coloneqq K(\Mod_R^\omega)
+\end{equation*}
+for short. In the case where $R$ is an ordinary ring, this is compatible with our previous definitions, since one easily checks that $\Dd^\perf(R)$ consists of precisely the compact objects in $\Dd(R)\simeq \Mod_{HR}$.
+
+Let $R\morphism S$ be a localisation of $\IE_\infty$-ring spectra (see \cref{par:Recollements}). We say that $R\morphism S$ has \emph{perfectly generated fibre} if $I\coloneqq \fib(R\morphism S)$ lies in the smallest stable sub-$\infty$-category of $\Mod_R^{S\mhyph\mathrm{tors}}$ generated by $\Mod_R^{S\mhyph\mathrm{tors},\omega}\coloneqq \Mod_R^{S\mhyph\mathrm{tors}}\cap\Mod_R^\omega$ under colimits. This is always true if $S\simeq R[s^{-1}]$ is a localisation at some element $s\in \pi_0(R)$, since then
+\begin{equation*}
+	I\simeq (R/s^\infty)[-1]\simeq \colimit_{n\in\IN}(R/s^n)[-1]\,,
+\end{equation*}
+and every $R/s^n\simeq \cofib(s^n\colon R\morphism R)$ is an element of $\Mod_R^{S\mhyph\mathrm{tors},\omega}$ Essentially the same argument shows that localisations $R\morphism R[S^{-1}]$ at arbitrary subsets $S\subseteq \pi_0(R)$ have perfectly generated fibre. Moreover, it is a theorem of Thomason--Trobaugh that $R\morphism S$ has perfectly generated fibre whenever $R$ and $S$ are ordinary rings such that $\Spec S\morphism \Spec R$ is an open embedding of affine schemes (which is always a derived localisation, see Example~\labelcref{exm:MyFirstDerivedLocalisations}\itememph{c}).
+
+The following lemma explains why having perfectly generated fibre is a very natural technical condition to impose.
+\begin{smalllem}\label{lem:PerfectlyGeneratedFibre}
+	The smallest stable sub-$\infty$-category of $\Mod_R^{S\mhyph\mathrm{tors}}$ generated by $\Mod_R^{S\mhyph\mathrm{tors},\omega}$ is equivalent to $\operatorname{Ind}(\Mod_R^{S\mhyph\mathrm{tors},\omega})$. Moreover, the following are equivalent.
+	\begin{alphanumerate}
+		\item $R\morphism S$ has perfectly generated fibre.
+		\item The canonical functor $\operatorname{Ind}(\Mod_R^{S\mhyph\mathrm{tors},\omega})\isomorphism \Mod_R^{S\mhyph\mathrm{tors}}$ is an equivalence.
+		\item $\Mod_R^{S\mhyph\mathrm{tors},\omega}\morphism \Mod_R^\omega\morphism\Mod_S^\omega$ is a Karoubi sequence.
+	\end{alphanumerate}
+\end{smalllem}
+\begin{proof*}
+	We know that $\Mod_R\simeq \operatorname{Ind}(\Mod_R^\omega)$ from \cref{lem:CompactlyGenerated}. Hence the canonical functor
+	\begin{equation*}
+		\operatorname{Ind}(\Mod_R^{S\mhyph\mathrm{tors},\omega})\morphism \operatorname{Ind}(\Mod_R^{\omega})\simeq \Mod_R
+	\end{equation*}
+	induced by \cref{lem:IndUniversalProperty} is fully faithful, and its essential image is contained in $\Mod_R^{S\mhyph\mathrm{tors}}$ since being $S$-torsion is preserved under arbitrary colimits. Moreover, the essential image is closed under filtered colimits by construction, and closed under finite colimits since it is a stable sub-$\infty$-category. But every colimit can be built from coproducts (which can be rewritten as filtered colimits) and coequalisers (which are finite), hence the essential image is closed under all colimits. Finally, $\operatorname{Ind}(\Mod_R^{S\mhyph\mathrm{tors},\omega})$ is generated by $\Mod_R^{S\mhyph\mathrm{tors},\omega}$ under colimits (even under filtered ones), hence it is indeed the smallest sub-$\infty$-category we're looking for.
+	
+	The implication \itememph{b} $\Rightarrow$ \itememph{a} is clear since the fibre $I\simeq \fib(R\morphism S)$ is contained in $\Mod_R^{S\mhyph\mathrm{tors}}$. Conversely, assume $I$ can be written as a colimit $I\simeq \colimit_{i\in \Ii}C_i$ with $C_i\in \Mod_R^{S\mhyph\mathrm{tors},\omega}$. By the above, we may even assume that $\Ii$ is filtered. Let $M$ be any $S$-torsion $R$-module spectrum. Since $\Mod_R$ is compactly generated, $M$ can be written as a filtered colimit $M\simeq \colimit_{j\in\Jj}D_j$ with $D_j\in \Mod_R^\omega$. But then $M\simeq M\otimes_RI$ since $M$ is $S$-torsion, which implies
+	\begin{equation*}
+		M\simeq \colimit_{j\in \Jj}D_j\otimes_RI\simeq \colimit_{(i,j)\in \Ii\times \Jj}C_i\otimes_RD_j\,,
+	\end{equation*}
+	using that $-\otimes_RI$ commutes with colimits along with \cref{prop:ColimitsCommute}. It's straightforward to check that the $C_i\otimes_RD_j$ are compact again and $S$-torsion, whence $M\in \operatorname{Ind}(\Mod_R^{S\mhyph\mathrm{tors},\omega})$. This shows \itememph{a} $\Rightarrow$ \itememph{b}. Finally, \itememph{b} $\Leftrightarrow$ \itememph{c} follows from \cref{thm:ThomasonNeemanLocalisation}, \cref{lem:LocalisationRecollement} and the fact that $\Mod_R\simeq \operatorname{Ind}(\Mod_R^\omega)$.
+\end{proof*}
+
+Combining everything we did on the last few pages, we finally obtain \emph{Quillen's fibre sequence}!
+\begin{smallcor}\label{cor:QuillensFibreSequence}
+	If $R\morphism S$ is a localisation of $\IE_\infty$-ring spectra with perfectly generated fibre, then there's a fibre sequence
+	\begin{equation*}
+		k(\Mod_R^{S\mhyph\mathrm{tors},\omega})\morphism k(R)\morphism k(S)
+	\end{equation*}
+	in $\An$ \embrace{or in $\CGrp(\An)$}. In particular, if $R\morphism S$ is a derived localisation of ordinary rings with perfectly generated fibre, then there's a fibre sequence
+	\begin{equation*}
+		k\big(\Dd^\perf(R)^{S\mhyph\mathrm{tors}}\big)\morphism k(R)\morphism k(S)\,.
+	\end{equation*}
+\end{smallcor}
+Fabian also mentioned that the perfectly generated fibre condition was recently removed by Alexander Efimov, but his result would leave the scope of this lecture.
+\begin{proof}[Proof of \cref{cor:QuillensFibreSequence}]
+	We know from \cref{lem:PerfectlyGeneratedFibre}\itememph{c} that $\Mod_R^{S\mhyph\mathrm{tors},\omega}\morphism \Mod_R^\omega\morphism\Mod_S^\omega$ is a Karoubi sequence. It's straightforward to check that $\Mod_R^{S\mhyph\mathrm{tors},\omega}\morphism \Mod_R^\omega$ is fully faithful and closed under retracts, hence a Verdier inclusion by \cref{thm:VerdierStuff}\itememph{c}. Thus, if $\Cc$ denotes the Verier quotient $\Mod_R^\omega/\Mod_R^{S\mhyph\mathrm{tors},\omega}$, then \cref{cor:KVerdierLocalising} implies that
+	\begin{equation*}
+		k(\Mod_R^{S\mhyph\mathrm{tors},\omega})\morphism k(\Mod_R^\omega)\morphism k(\Cc)
+	\end{equation*}
+	is a fibre sequence in $\An$. Moreover, $\Cc\morphism \Mod_S^\omega$ is a Karoubi equivalence by \cref{lem:KaroubiSequenceCriteria}\itememph{b}, whence $k(\Cc)\morphism k(\Mod_S^\omega)$ is an inclusion of path components by \cref{cor:KDenseInclusion} and \cref{thm:ThomasonDenseSubcategories}. This shows that
+	\begin{equation*}
+		k(\Mod_R^{S\mhyph\mathrm{tors},\omega})\morphism k(\Mod_R^\omega)\morphism k(\Mod_S^\omega)
+	\end{equation*}
+	is a fibre sequence in $\An$ as well, as required.
+\end{proof}
+Despite \cref{cor:QuillensFibreSequence}, it's not necessarily true that the $K$-theory spectra arrange into a fibre sequence 
+\begin{equation*}
+	K(\Mod_R^{S\mhyph\mathrm{tors},\omega})\morphism K(R)\morphism K(S)
+\end{equation*}
+if $R\morphism S$ is a localisation with perfectly generated fibre. However, the only thing that can fail is that $K_0(R)\morphism K_0(S)$ isn't surjective. In the case $R=\IZ$, $S=\IQ$, and more generally whenever $R$ is an integral domain and $S=\Frac R$ its fraction field, $K_0(R)\morphism K_0(S)$ is clearly surjective. Hence we do get a fibre sequence
+\begin{equation*}
+	K\big(\Dd^\perf(\IZ)^{\IQ\mhyph\mathrm{tors}}\big)\morphism K\big(\Dd^\perf(\IZ)\big)\morphism K\big(\Dd^\perf(\IQ)\big)
+\end{equation*}
+in $\Sp$. We've thus completed thing~\itememph{a} of the two final things from \cref{par:ThingsLeftToDo}, and only thing~\itememph{b} is left to do. 
+Again, this will lead us on two detours. First, we have to introduce the classical definition of $K$-theory of abelian/exact categories. It's a bit unsatisfying that we can't stay on the stable $\infty$-categorical high road, especially after we have been avoiding to leave it for so long, but as far as Fabian knows, a formulation of Quillen's dévissage in stable $\infty$-framework has yet to be found.
+
+\numpar{Algebraic $K$-Theory of Abelian/Exact Categories*}\label{par:KTheoryOfExact}
+Let $\Aa$ be an abelian category. We let $Q(\Aa)$ be the category whose objects are all $a\in \Aa$, and whose morphisms sets $\Hom_{Q(\Aa)}(a,a')$ are given by isomorphism classes of span diagrams $a\lepimorphism a''\monomorphism a'$, where the left arrow is an epimorphism and the right arrow is a monomorphism. We define the \emph{algebraic $K$-theory anima of $\Aa$} and its spectrum variant as
+\begin{equation*}
+	k(\Aa)\coloneqq \Omega \left|Q(\Aa)\right|\quad\text{and}\quad K(\Aa)\coloneqq B^\infty k(\Aa)\,,
+\end{equation*}
+where $\left|Q(\Aa)\right|$ denotes the $\infty$-categorical localisation of the $1$-category $Q(\Aa)$ at all its morphisms.
+
+The same definition can be given if $\Aa$ is only an \emph{exact} category: In a nutshell, these are additive categories together with a given supply of exact sequences, subject to a bunch of axioms which I'm not going to recall. In the exact case, the arrows in $a\lepimorphism a''\monomorphism a'$ have to be \emph{admissible} epi- and monomorphisms, respectively. Here we call an epi- or monomorphism \emph{admissible} means if it is part of one of the specified exact sequences.
+
+\numpar{$t$-Structures}\label{par:tStructure}
+Let $\Cc$ be a stable $\infty$-category. A \emph{$t$-structure} on $\Cc$ consists of two full sub-$\infty$-categories $\Cc_{\geq 0},\Cc_{\leq 0}\subseteq \Cc$ subject to the following conditions:
+\begin{alphanumerate}
+	\item $\Cc_{\geq 0}$ is closed under pushouts, $\Cc_{\leq 0}$ is closed under pullbacks, and both under retracts.
+	\item If $x\in \Cc_{\geq 0}$ and $y\in \Cc_{\leq 0}$, the spectrum $\hom_\Cc(x,y)$ is \emph{coconnective}, i.e., its homotopy groups vanish in positive degrees.
+	\item Every $y\in \Cc$ admits a fibre sequence $x\morphism y \morphism z$ with $x\in \Cc_{\geq 1}$ and $z\in \Cc_{\leq 0}$. Here we write $\Cc_{\geq a}\coloneqq \Cc_{\geq 0}[a]$ and similarly $\Cc_{\leq b}\coloneqq \Cc_{\leq 0}[b]$.
+\end{alphanumerate}
+As for weight structures (see \cref{par:WeightStructure}), we put $\Cc_{[a,b]}\coloneqq \Cc_{\geq a}\cap \Cc_{\leq b}$ and $\Cc^\heartsuit\coloneqq \Cc_{[0,0]}\simeq \Cc_{\geq 0}\cap \Cc_{\leq 0}$. A $t$-structure on $\Cc$ is called \emph{exhaustive} (which is nonstandard terminology; Lurie uses \emph{bounded} instead) if
+\begin{equation*}
+	\Cc=\bigcup_{n\in\IN}\Cc_{[-n,n]}\,.
+\end{equation*}
+As already mentioned in \cref{par:WeightStructure}, $t$-structures behave a lot differently than weight structures. The inclusions $\Cc_{\geq n}\subseteq \Cc$ have right adjoints $\tau_{\geq n}\colon \Cc_{\geq n}\morphism \Cc$ and the inclusions $\Cc_{\leq n}\subseteq \Cc$ have left adjoints $\tau_{\leq n}\colon \Cc_{\leq n}\morphism \Cc$. With this terminology, it turns out that the fibre sequence from \itememph{c} is necessarily of the form $\tau_{\geq 1} y \morphism y \morphism \tau_{\leq 0}y$, hence it is unique and functorial! Finally, and most importantly for our purposes, the heart $\Cc^\heartsuit$ is always an abelian $1$-category. Proofs of all of this can be found in \cite[Subsection~1.2.1]{HA}.
+
+The standard example of a stable $\infty$-category with a $t$-structure is $\Dd(R)$ for some ring $R$ together with the full sub-$\infty$-categories $\Dd_{\geq 0}(R)$ and $\Dd_{\leq 0}(R)$ of complexes whose homology vanishes in negative or positive degrees, respectively. Note, however, that this usually doesn't restrict to a $t$-structure on $\Dd^\perf(R)$, since truncations of a perfect complex need not be perfect anymore. We'll see in \cref{par:GTheory} below how this can be fixed. But first let's see how $K$-theory of abelian categories relates to $t$-structures.
+\begin{thm}\label{thm:BarwickHeart}
+	Let $\Cc$ be a stable $\infty$-category equipped with an exhaustive $t$-structure.
+	\begin{alphanumerate}
+		\item There is a canonical equivalence $k(\Cc^\heartsuit)\isomorphism k(\Cc)$, where the left-hand side is defined as in \cref{par:KTheoryOfExact}, using that $\Cc^\heartsuit$ is abelian.
+		\item Suppose $\Dd$ is another stable $\infty$-category with an exhaustive $t$-structure, and let $F\colon \Cc\morphism \Dd$ be an exact and $t$-exact functor \embrace{i.e.\ $F(\Cc_{\geq 0})\subseteq \Dd_{\geq 0}$ and $F(\Cc_{\leq 0})\subseteq \Dd_{\geq 0}$}. Suppose furthermore that the induced functor $F\colon \Cc^\heartsuit\morphism \Dd^\heartsuit$ is fully faithful, its essential image is closed under subobjects and quotients, and that every object in the abelian category $b\in \Dd^\heartsuit$ has a finite filtration $0=b_0\subseteq b_1\subseteq \dotsb\subseteq b_n=b$ whose subquotients $b_{i+1}/b_i$ are in the essential image of $F$. Then $F$ induces an equivalence
+		\begin{equation*}
+			F\colon k(\Cc)\isomorphism k(\Dd)\,.
+		\end{equation*}
+	\end{alphanumerate}
+\end{thm}
+\begin{proof*}[Proof sketch]
+	Part~\itememph{a} is Barwick's theorem of the heart, and we refer to \cite{BarwickHeart}. Assuming \itememph{a}, one can give a surprisingly simple proof of \itememph{b}, which is taken from Weibel's $K$-book, \cite[Chapter~\href{https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.V.pdf}{V} \S4]{WeibelKBook}. Using \itememph{a}, it suffices to show $k(\Cc^\heartsuit)\simeq k(\Dd^\heartsuit)$, and for this, it suffices to show that the nerves of $Q(\Aa)$ and $Q(\Bb)$ are weakly equivalent as simplicial sets, where we write $\Aa\coloneqq\Cc^\heartsuit$ and $\Bb\coloneqq\Dd^\heartsuit$ since the hearts are getting on my nerves.
+	
+	We'll show something stronger: $i\colon Q(\Aa)\morphism Q(\Bb)$ is final! By the dual of \cref{thm:JoyalQuillenThmA},\footnote{I somewhat suspect that this was in fact the original purpose of Quillen's theorem A.} we must show that the slice categories $i/b\coloneqq Q(\Aa)\times_{Q(\Bb)}Q(\Bb)/b$ are weakly contractible for all $b\in \Bb$. Since $\Aa\morphism \Bb$ is fully faithful by assumption, the same is true for $Q(\Aa)\morphism Q(\Bb)$ by construction and the fact that $\Aa\subseteq \Bb$ is closed under subobjects. Hence the slice categories $i/a$ for $a\in \Aa$ are weakly contractible, since they have a terminal object. Now a general object $b\in \Bb$ has a finite filtration with subquotients in $\Aa$, hence it suffices to show that $i/b'\morphism i/b$ is a weak equivalence for all subobjects $b'\subseteq b$ whose quotient $b/b'$ lies in $\Aa$.
+	
+	By definition, the objects of $i/b$ are given by pairs $(a,\phi\colon a\morphism b)$, where $a\in \Aa$ and $\phi$ is a morphism in $Q(\Bb)$, given by a span $a\lepimorphism c\monomorphism b$ in $\Bb$. Letting $c'=\ker(c\morphism a)$, such a span may be equivalently described as a chain of monomorphisms $c'\monomorphism c\monomorphism b$ such that $a=c/c'$ is contained in $\Aa$. Now let $J\subseteq i/b$ be the full subcategory of objects $(c'\monomorphism c\monomorphism b)$ where $c'\subseteq b'$ holds as subobjects of $b$. Then $i/b'\morphism i/b$ can be factored into a solid sequence
+	\begin{equation*}
+		\begin{tikzcd}
+			i/b'\rar& J\rar \lar[dashed,bend left=45,"r"{above,swap}] & i/b\,.\lar[dashed,bend right=45,"s"]
+		\end{tikzcd}
+	\end{equation*}
+	If we can show that the dashed adjoints exist, then we're done, since adjoint functors induce inverse homotopy equivalences. Define $r$ and $s$ explicitly as
+	\begin{equation*}
+		\textstyle r(c'\monomorphism c\monomorphism b)=(c'\monomorphism c\cap b'\monomorphism b')\quad\text{and}\quad s(c'\monomorphism c\monomorphism b)=(c'\cap b'\monomorphism c\monomorphism b)\,.
+	\end{equation*}
+	Note that $(c\cap b)/c'$ is contained in $\Aa$ since it is a subobject of $c/c'=a$. Similarly, $c/(c'\cap b')$ is a subobject of $b/b'$ and thus also contained in $\Aa$. So $r$ and $s$ are well-defined. One easily checks that they indeed provide the desired adjoints.
+\end{proof*}
+\numpar{Almost Perfect Complexes and $G$-Theory}\label{par:GTheory}
+As explained above, the standard $t$-structure on $\Dd(R)$ doesn't restrict to a $t$-structure on $\Dd^\perf(R)$, at least not without some extra conditions on $R$. Instead, we say a complex $D\in \Dd(R)$ is \emph{almost perfect} (or \emph{pseudocoherent} in Stacks Project language) if it satisfies the following equivalent conditions.
+\begin{alphanumerate}
+	\item For all $n\in \IZ$ the truncation $\tau_{\leq n}D$ coincides with $\tau_{\leq n}C_n$ for some perfect complex $C_n\in \Dd^\perf(R)$.
+	\item $D$ is quasi-isomorphic to a (not necessarily bounded above) complex of degreewise finite projective $R$-modules.
+\end{alphanumerate}
+Equivalence is proved in \cite[\stackstag{064U}]{stacks-project} (beware that The Stacks Project uses cohomological indexing). Upon replacing \enquote{perfect} by \enquote{compact}, condition~\itememph{a} can also be generalised in a straightforward way to modules over an $\IE_\infty$-ring spectrum.
+
+It's clear from condition~\itememph{a} that the full sub-$\infty$-category of almost perfect complexes is stable again and inherits a $t$-structure. Moreover, if we further restrict to the full sub-$\infty$-category $\Dd^\mathrm{aperf}(R)\subseteq \Dd(R)$ of \emph{bounded} almost perfect complexes, then that $t$-structure becomes exhaustive. We define the \emph{$G$-theory spectrum of $R$} to be
+\begin{equation*}
+	G(R)\coloneqq K\big(\Dd^{\mathrm{aperf}}(R)\big)\,.
+\end{equation*}
+If $R$ is noetherian, then a complex $D\in \Dd(R)$ is almost perfect iff its homology $H_*(D)$ is a finitely generated $R$-module in each degree; see \cite[\stackstag{066E}]{stacks-project}. In particular, the heart of the $t$-structure on $\Dd^\mathrm{aperf}(R)$ is the abelian category of finite $R$-modules. If $R$ is moreover regular and of finite Krull dimension, then it has \emph{finite global dimension}, which means that every finite $R$-module has a \enquote{finite finite} projective resolution (i.e.\ a resolution of finite length consisting of finite projective $R$-modules). This easily implies that every bounded almost perfect complex is in fact perfect, so
+\begin{equation*}
+	G(R)\simeq K(R)
+\end{equation*}
+holds for all regular noetherian rings of finite Krull dimension. With this out of the way, we can finally prove Quillen's fibre sequence from \cref{par:SomeMotivation}.
+\begin{cor}\label{cor:QuillensFibreSequenceII}
+	Let $R$ be a Dedekind domain. Then $\bigoplus_\mm\Dd^\perf(R/\mm)\morphism \Dd^\perf(R)^\mathrm{tors}$, where $\mm$ runs over all maximal/nonzero prime ideals of $R$, induces an equivalence
+	\begin{equation*}
+		\bigoplus_\mm K(R/\mm)\isomorphism K\big(\Dd^\perf(R)^\mathrm{tors}\big)\,.
+	\end{equation*}
+	In particular, there is a fibre sequence
+	\begin{equation*}
+		\bigoplus_\mm K(R/\mm)\morphism K(R)\morphism K(\Frac R)\,.
+	\end{equation*}
+\end{cor}
+\begin{proof*}
+	Since $R$ is regular noetherian, there's a natural $t$-structure on $\Dd^\perf(R)$, which persists to $\Dd^\perf(R)^\mathrm{tors}$. The functors $\Dd^\perf(R/\mm)\morphism \Dd^\perf(R)^\mathrm{tors}$ are clearly $t$-exact and induce fully faithful functors on hearts, namely the inclusion
+	\begin{equation*}
+		\Mod_R^{\mathrm{fg},\mm\mhyph\mathrm{tors}}\subseteq \Mod_R^{\mathrm{fg},\mathrm{tors}}
+	\end{equation*}
+	of finitely generated $\mm$-torsion $R$-modules into all finitely generated torsion $R$-modules. Let me remark, however, that $\Dd^\perf(R/\mm)\morphism \Dd^\perf(R)^\mathrm{tors}$ itself isn't fully faithful, since $\Ext_{R/\mm}^1$ vanishes (as $R/\mm$ is a field), but $\Ext_R^1$ doesn't. This is the reason why we had to introduce all this stuff about $t$-structures and $K$-theory of abelian categories.
+	
+	Now $\bigoplus_\mm\Dd^\perf(R/\mm)$ inherits a $t$-structure, and by the Chinese remainder theorem, its heart can be described as the full subcategory $\Aa\subseteq \Mod_R^{\mathrm{fg},\mathrm{tors}}$ of finitely generated torsion modules whose annihilator $\Ann_R(M)\subseteq R$ is a \emph{squarefree} ideal, i.e., the factors $\mm_i$ in the prime ideal decomposition $\Ann_R(M)=\mm_1\dotsm\mm_n$ are distinct. Note that every finitely generated torsion $R$-module has a finite filtration with subquotients in $\Aa$. In fact, every finitely generated module over an arbitrary noetherian ring has a finite filtration with subquotients of the form $R/\pp_i$ for some $\pp_i\in \Spec R$; see \cite[\stackstag{00L0}]{stacks-project}. Thus, the functor $\bigoplus_\mm\Dd^\perf(R/\mm)\morphism \Dd^\perf(R)^\mathrm{tors}$ satisfies the assumptions from \cref{thm:BarwickHeart}\itememph{b}, whence we get an equivalence
+	\begin{equation*}
+		K\left(\bigoplus_\mm\Dd^\perf(R/\mm)\right)\isomorphism K\big(\Dd^\perf(R)^\mathrm{tors}\big)\,.
+	\end{equation*}
+	It remains to identify the left-hand side with $\bigoplus_\mm K(\Dd^\perf(R/\mm))\simeq \bigoplus_\mm K(R/\mm)$, which is a straightforward check. The additional assertion about the fibre sequence follows immediately from \cref{cor:QuillensFibreSequence}.
+\end{proof*}
+
+\numpar{Nonconnective $K$-Theory}
+As introduced in \cref{def:VerdierStuff}, let $\Fun^\Kar$ denote $\infty$-categories of Karoubi-localising functors. It turns out that
+\begin{equation*}
+	\Omega^\infty\colon \Fun^\Kar(\Catst,\Sp)\isomorphism \Fun^\Kar(\Catst,\An)
+\end{equation*}
+is an equivalence. Now $\Cc\mapsto k(\Cc^\natural)$ is a Karoubi-localising functor, hence an element on the right. We let $\IK\colon \Catst\morphism \Sp$ denote a preimage and call this \emph{non-connective $K$-theory}. Fabian warns you that in general the preimage of a Karoubi-localising functor $F\colon \Catst\morphism \An$ may not be given by $B^\infty F\colon \Catst\morphism \Sp$, as this guy might not be Karoubi-localising at all (but of course this only fails on $\pi_0$). In particular, if $\Cc$ is a stable $\infty$-category, then $\IK(\Cc)$ usually doesn't coincide with $B^\infty k(\Cc^\natural)$, and it is usually not a connective spectrum---hence the name.
+
+This is where Fabian's final lecture ends. But needless to say that Fabian has at least a dozen pages worth of additional cool stuff to say in his official notes.
+
+
 
 
 \backmatter\KOMAoption{chapterprefix}{false}

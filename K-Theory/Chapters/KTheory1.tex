@@ -624,6 +624,9 @@ By now, we haven't been able to produce any examples of $\infty$-categories yet,
 	\end{equation*}
 	These equivalences translates homotopy groups into chain homology groups. Moreover, we have $\F_{\Ch(\IZ)}(C,D)=\Sing_{C_\bullet}(\Hhom_\IZ(C,D))$ for all $C,D\in\Ch_{\geq 0}(\IZ)$.
 \end{thm}
+\begin{proof*}
+	See \cite[Subsection~1.2.3]{HA}; it takes a bit of fiddling though to check that our constructions coincide with the standard ones (i.e.\ the ones Lurie uses). 
+\end{proof*}
 
 \numpar{Philosophical Nonsense~I}
 We obtain a chain of adjunctions
@@ -2030,7 +2033,7 @@ Before we discuss our first examples of Bousfield localisations, we need to disc
 	If these conditions are satisfied, $\phi$ is called a \emph{derived localisation} \embrace{or sometimes \enquote{$\Tor$-unital}}.
 \end{propdef}
 \refstepcounter{smallerdummy}
-\numpar*{\thesmallerdummy. Examples}\enquote{My first derived localisations}:
+\numpar*{\thesmallerdummy. Examples}\label{exm:MyFirstDerivedLocalisations}\enquote{My first derived localisations}:
 \begin{alphanumerate}
 	\item If $W\subseteq R$ is a multiplicative subset in the commutative ring $R$, then $R\morphism R[W^{-1}]$ is a derived localisation. This easily follows from \cref{propdef:derivedLocalisation}\itememph{d} since $R[W^{-1}]$ is flat over $R$.
 	\item For non-commutative rings, one needs the (left or right, who knows?) \emph{Ore condition} for $R\morphism R[W^{-1}]$ to be a derived localisation.
@@ -2168,7 +2171,7 @@ What \itememph{b} is trying to say is that whenever the $\Delta^{\{0,2\}}$- and 
 	\begin{equation*}
 		\colimit_{\IDelta^\op}T\simeq \Big(\hocolimit_{\CC[\IDelta^\op]}T\Big)^\mathrm{f}\simeq T^\mathrm{f}\simeq \Sing|T|
 	\end{equation*}
-	using \cref{thm:HomotopyLimits}. The notation is also consistent with $|\blank|\colon\Cat_\infty\morphism \An$ in that generally for a simplicial anima $T\colon \IDelta^\op\morphism\An$ we have
+	using \cref{thm:HomotopyLimits}. With the technique that we will introduce in the proof of \cref{lem:SkeletalInduction}, one can also show directly that $\colimit_{\IDelta^\op}T$ is the anima corresponding to the CW complex $|T|$. The notation is moreover consistent with $|\blank|\colon\Cat_\infty\morphism \An$ in that generally for a simplicial anima $T\colon \IDelta^\op\morphism\An$ we have
 	\begin{equation*}
 		|\asscat(T)|\simeq |T|\,.
 	\end{equation*}

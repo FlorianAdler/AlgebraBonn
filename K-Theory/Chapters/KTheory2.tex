@@ -857,7 +857,7 @@ So Eilenberg--MacLane anima give rise to $\IE_\infty$-groups. Another source of 
 \numpar*{\thesmallerdummy}
 	Recall from \cref{cor*:BOmegaAdjunction} that we have an adjunction
 	\begin{equation*}
-		B\colon \Mon(\An)\doublelrmorphism */\An\colon \Omega\,.
+		B\colon \Mon(\An)\doublelrmorphism {*/\An}\colon \Omega\,.
 	\end{equation*}
 	Now $B=|\blank|$ and $\Omega$ both preserve finite products---the former by \cref{prop:RealisationCommutesWithFiniteProducts}, the latter since it is a right-adjoint. So both functors preserve the Segal condition. Therefore, if we apply $\Fun(\IGamma^\op,-)$ to both sides of the adjunction above, then the resulting adjunction restricts to another adjunction
 \begin{equation}\label{eq:BOmegaAdjunction}
@@ -1394,7 +1394,7 @@ The $\Hom$ functors on $\Dd(R)$ and $\Kk(R)$ have canonical refinements over $\S
 	Now the Yoneda embedding $\Cc^\op\morphism \Fun(\Cc,\An)$ has image in $\Fun^\mathrm{lex}(\Cc,\An)\simeq \Fun^\mathrm{ex}(\Cc,\Sp)$ and we get our desired $\hom_\Cc$ after currying.
 \end{proof}
 
-\numpar*{Spectra and Prespectra}
+\numpar{Spectra and Prespectra}\label{par:Prespectra}
 We already know that $\Sp$ is complete and $\Omega^{\infty-i}\colon \Sp\morphism\An$ preserves limits for all $i$, see the summary before \cref{cor:RecognitionForInfiniteLoopSpaces}. We also know from \cref{propdef:StableInftyCategory} that $\Sp$ has finite colimits because it is stable. But in fact, $\Sp$ is even cocomplete! To see this, we will write $\Sp$ as a Bousfield localisation of a suitable cocomplete $\infty$-category of \emph{prespectra} and apply \cref{cor:CoLimitsInBousfield}.
 
 Prespectra can be introduced in general. So let $\Cc$ be an $\infty$-category with finite limits and (thus) a terminal object $*\in \Cc$. We let
@@ -1484,13 +1484,13 @@ As another consequence of the maps $\eta_n$ being defined by right Kan extension
 for all $X\in \cat{PSp}(\Cc)$ and $Y\in \Sp(\Cc)$ (just compute the left-hand side as a $\Hom$ anima in $\limit_{n\in \IN^\op}\Fun(\IN_{\leq (n,n)}^2,*/\Cc)$ and use the universal property of right Kan extension).
 
 Note that $\cat{PSp}(\Cc)$ inherits all limits and colimits from $*/\Cc$. Also $\Sp(\Cc)\subseteq \cat{PSp}(\Cc)$ is closed under limits, but not colimits. To show that $\Sp(\Cc)$ is cocomplete (under appropriate conditions), we need to show that it is in fact a Bousfield localisation of $\cat{PSp}(\Cc)$. This is done by the following proposition.
-\begin{prop}\label{prop:Spectrification}
+\begin{smallprop}\label{prop:Spectrification}
 	If $*/\Cc$ has sequential colimits and $\Omega\colon {*/\Cc}\morphism*/\Cc$ commutes with them, then the inclusion $\Sp(\Cc)\subseteq\cat{PSp}(\Cc)$ has a left adjoint $(-)^\mathrm{sp}\colon \cat{PSp}(\Cc)\morphism\Sp(\Cc)$. On objects it is given by
 	\begin{equation*}
 		\Omega^{\infty-i}(X^\mathrm{sp})\simeq \colimit_{n\in \IN}\Omega^nX_{n+i}\,,
 	\end{equation*}
 	where the transition maps are induced by the morphisms $X_i\morphism\Omega X_{i+1}$ that where constructed on the previous page.
-\end{prop}
+\end{smallprop}
 Before we prove \cref{prop:Spectrification}, we'll discuss some consequences. First, to be able to apply it in the case $\Cc=\An$, we show:
 \begin{smalllem}\label{lem:piPreservesSequentialColimits}
 	The loop space functor $\Omega\colon {*/\An}\morphism*/\An$ for pointed anima commutes with sequential colimits. In particular, $\Sp$ is a Bousfield localisation of $\cat{PSp}$ and therefore cocomplete by \cref{cor:CoLimitsInBousfield}.
@@ -2013,7 +2013,7 @@ While Lurie writes down explicit simplicial sets to construct the desired $\inft
 	\end{alphanumerate}
 	We prove \itememph{\boxtimes} first. Condition~\itememph{b} implies that $\Sing_F$ commutes with colimits. Indeed, this can be checked pointwise by \cref{thm:JoyalEquivalence}\itememph{b} since there always is a natural transformation $\colimit_\Ii\Sing_F\Rightarrow\Sing_F\colimit_\Ii$. Moreover, colimits in $\Pp(\Cc)$ are computed pointwise. Plugging in the explicit description of $\Sing_F$ that \cref{cor:ExplicitAdjoint} offers us, we must thus check that $\colimit_\Ii\Hom_\Dd(F(c),d_i)\simeq \Hom_\Dd(F(c),\colimit_\Ii d_i)$ for all $c\in \Cc$ and $d_i\in \Dd$. This is \itememph{b}.
 	
-	Now since $F$ is fully faithful, the unit $\id_{\Pp(\Cc)}\Rightarrow\Sing_F|\blank|_F$ is an equivalence on representables. Indeed, the right-hand side sends $c\in \Cc$ to $\Hom_\Dd(\mathop{F}-,F(c))\simeq \Hom_\Cc(-,c)$ by \cref{cor:ExplicitAdjoint} again. Now both sides preserve colimits and every presheaf on $\Cc$ can be written as a colimit of representatives by \cref{lem*:PresheafColimitOfRepresentables}, hence the unit is an equivalence everywhere. By the triangle identities and the fact that $\Sing_F$ is conservative by \itememph{c}, this implies that the counit $|\Sing_F-|_F\Rightarrow \id_\Dd$ is an equivalence as well. This finishes the proof of \itememph{\boxtimes}.
+	Now since $F$ is fully faithful, the unit $\id_{\Pp(\Cc)}\Rightarrow\Sing_F|\blank|_F$ is an equivalence on representables. Indeed, the right-hand side sends $c\in \Cc$ to $\Hom_\Dd(F\,-,F(c))\simeq \Hom_\Cc(-,c)$ by \cref{cor:ExplicitAdjoint} again. Now both sides preserve colimits and every presheaf on $\Cc$ can be written as a colimit of representatives by \cref{lem*:PresheafColimitOfRepresentables}, hence the unit is an equivalence everywhere. By the triangle identities and the fact that $\Sing_F$ is conservative by \itememph{c}, this implies that the counit $|\Sing_F-|_F\Rightarrow \id_\Dd$ is an equivalence as well. This finishes the proof of \itememph{\boxtimes}.
 	
 	Now to check that \itememph{\boxtimes} is applicable for $\Cc=\Ee/X$ and $\Dd=\Pp(\Ee)/X$. We already argued that $\Pp(\Ee)/X$ is cocomplete. It's easily checked that $\Ee/X\morphism\Pp(\Ee)/X$ is fully faithful since it's induced by the fully faithful Yoneda embedding, so \itememph{a} holds. To check \itememph{c}, let $\alpha\colon F\morphism F'$ be a morphism in $\Pp(\Ee)/X$ such that $\alpha_*\colon \Hom_{\Pp(\Ee/X)}(-,F)\morphism \Hom_{\Pp(\Ee/X)}(-,F')$ is an equivalence on representable presheaves. We must check that $\alpha$ is an equivalence itself. But if $\alpha_*$ is an equivalence on representables, then the Yoneda lemma implies that $\alpha\colon F(e)\morphism F'(e)$ is an equivalence for all $e\in \Ee$ (except those $e\in \Ee$ for which $X(e)=\emptyset$ since these aren't contained in the image of $\Ee/X\morphism \Ee$, but in that case we have $F(e)=\emptyset=F'(e)$ too since $F$ and $F'$ come with a map to $X$), hence $\alpha$ is an equivalence of presheaves.
 	
@@ -3002,9 +3002,9 @@ is an equivalence, where $\CGrp(\An)^\otimes\simeq \CGrp^{\Op_\infty}(\An^\times
 \begin{proof*}[Proof sketch of \cref{thm:D(R)IsModOverHR}]
 	We didn't prove it in the lecture, but Fabian has sketched out a proof in the lecture notes \cite[Theorem~II.57]{KTheory}, which I include here.
 	
-	Recall that an object $c$ in an $\infty$-category $\Cc$ is called \emph{compact} if $\Hom_\Cc(c,-)$ commutes with filtered colimits (which were introduced in \cref{rem*:piPreservesFilteredColimits}). The proof is based on the following general fact:
+	Recall that an object $c$ in an $\infty$-category $\Cc$ is called \emph{compact} if $\Hom_\Cc(c,-)$ commutes with filtered colimits (which were introduced in \cref{rem*:piPreservesFilteredColimits}). The proof is based on the following general fact (which we'll later discuss in detail in \cref{par:Ind}):
 	\begin{alphanumerate}
-		\item[\itememph{\boxtimes}]\itshape Let $\Cc$ be an $\infty$-category with a set $S$ of compact objects such that the functors 
+		\item[\itememph{\boxtimes}]\itshape Let $\Cc$ be an $\infty$-category with finite colimits and a set $S$ of compact objects such that the functors 
 		\begin{equation*}
 			\Hom_\Cc(s,-)\colon \Cc\morphism\An
 		\end{equation*}

@@ -39,6 +39,15 @@
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 \addbibresource{LiteratureK.bib}
+\DeclareSourcemap{
+	\maps[datatype=bibtex]{
+		\map[overwrite=true]{
+			\step[fieldsource=fjournal]
+			\step[fieldset=journal, origfieldval]
+		}
+	}
+}
+
 
 %%%% lists %%%%
 \newlength{\thmsep}%hax
@@ -183,6 +192,7 @@ listname={List of Lectures}%
 \newtheorem{thm*}[smallerdummy]{Theorem*}
 \newtheorem{lem*}[smallerdummy]{Lemma*}
 \newtheorem{smalllem}[smallerdummy]{Lemma}
+\newtheorem{smallprop}[smallerdummy]{Proposition}
 \newtheorem{smallcor}[smallerdummy]{Corollary}
 \newtheorem{smallthm}[smallerdummy]{Theorem}
 \newtheorem{cor*}[smallerdummy]{Corollary*}
@@ -257,6 +267,7 @@ listname={List of Lectures}%
 \crefformat{thm*}{Theorem*~\textup{#2#1#3}}
 \crefformat{lem*}{Lemma*~\textup{#2#1#3}}
 \crefformat{smalllem}{Lemma~\textup{#2#1#3}}
+\crefformat{smallprop}{Proposition~\textup{#2#1#3}}
 \crefformat{smallthm}{Theorem~\textup{#2#1#3}}
 \crefformat{smallcor}{Corollary~\textup{#2#1#3}}
 \crefformat{cor*}{Corollary*~\textup{#2#1#3}}
