@@ -255,7 +255,31 @@ Next we will discuss some examples. We begin with free monoids and groups.
 		\operatorname{Free}^{\Mon}(K)_1\simeq \coprod_{n\geq 0}K^n\,.
 	\end{equation*}
 \end{prop}
-We postpone the proof of \cref{prop:FreeMonoids} indefinitely (but Fabian's notes give a sketch in the much more general setting of algebras over $\infty$-operads, see \cite[Chapter~II pp.~128--132]{KTheory}). By the explicit construction of $\Free^\Mon$, the diagram
+\begin{proof*}
+	We didn't prove this in the lecture, but here's a very simple argument that Fabian explained to me. We call a morphism in $\IDelta$ \emph{inert} if it is the inclusion of an interval, and \emph{active} if it preserves the largest and the smallest element. Note that the Segal maps $e_i\colon [1]\morphism {[n]}$ are precisely the inert maps with source $[1]$, and that every map can be uniquely factored into an inert followed by an active. We let $\IDelta^\op_\mathrm{int}\subseteq \IDelta^\op$ denote the (non-full) subcategory spanned by the inert maps. Let's first verify the following two claims.
+	\begin{alphanumerate}
+		\item[\itememph{1}] \itshape Consider the full sub-$\infty$-category $\Fun^\mathrm{Seg}(\IDelta^\op_\mathrm{int},\An)$ spanned by the \enquote{reduced Segal functors}, i.e.\ those $X\colon \IDelta^\op_\mathrm{int}\morphism \An$ satisfying $X_0\simeq *$ and $X_n\simeq \prod_{i=1}^nX_1$ via the Segal maps. Then evaluation at $[1]$ induces an equivalence
+		\begin{equation*}
+			\ev_{1}\colon \Fun^\mathrm{Seg}(\IDelta^\op_\mathrm{int},\An)\isomorphism \An\,.
+		\end{equation*}
+		\item[\itememph{2}] Consider the left-Kan extension functor $\Lan_i\colon \Fun(\IDelta^\op_\mathrm{int},\An)\morphism \Fun(\IDelta^\op,\An)$ along $i\colon \IDelta^\op_\mathrm{int}\morphism \IDelta^\op$.Then $\Lan_i$ preserves reduced Segal functors.
+	\end{alphanumerate}
+	To show \itememph{1}, we verify that right-Kan extension along the inclusion $j\colon \{[1]\}\morphism \IDelta_\mathrm{int}^\op$ defines an inverse. Using the pointwise formulas from \cref{thm:KanExtension} together with the fact that the inert maps $[1]\morphism{[n]}$ are precisely the Segal maps, we see that $\Ran_j$ indeed takes values in the reduced Segal functors, and that $\Ran_j\circ \ev_{1}\simeq \id$. To show $\ev_{1}\circ \Ran_j\simeq \id$, observe that $j$ is fully faithful and use \cref{cor:FullyFaithfulKanExtension}. This proves \itememph{1}.
+	
+	To prove \itememph{2}, let $X\colon \IDelta^\op_\mathrm{int}\morphism \An$ be reduced Segal. By \cref{thm:KanExtension},
+	\begin{equation*}
+		(\Lan_iX)_n\simeq \colimit_{([k]\morphism{ [n]})\in \IDelta^\op_\mathrm{int}/[n]}X_k\simeq \colimit_{([k]\morphism {[n]})\in \IDelta^\op_\mathrm{int}/[n]} X_1^k\,.
+	\end{equation*}
+	An object $[k]\morphism {[n]}$ of $\IDelta^\op_\mathrm{int}/[n]$ corresponds to a map $[n]\morphism{} [k]$ in $\IDelta$. Any such map can be uniquely factored into an inert $[n']\morphism{} [k]$ followed by an active $\alpha\colon [n]\morphism{} [n']$. This allows us to decompose $\IDelta^\op_\mathrm{int}/[n]$ into a disjoint union $\coprod_\alpha \Cc_\alpha$, indexed by all active maps $\alpha\colon [n]\morphism {[n']}$ with source $[n]$. Moreover, each $\Cc_\alpha$ has a terminal object, which is given by $\alpha$ itself (or rather the corresponding object $\alpha^\op\colon[n']\morphism{[n]}$ in $\IDelta^\op_\mathrm{int}/[n]$).
+	
+	For $n=0$ this shows $(\Lan_iX)_n\simeq *$, since $\id_{[0]}\colon [0]\morphism {[0]}$ is the only active map with source $[0]$. For $n=1$, we get a unique active map $[1]\morphism {[n]}$ for all $n$, which shows $(\Lan_iX)_1\simeq \coprod_{k\geq 0}X_1^k$. For general $n$, we get
+	\begin{equation*}
+		(\Lan_iX)_n\simeq \coprod_{k_1,\dotsc,k_n\geq 0} X_1^{k_1+\dotsb +k_n}\,.
+	\end{equation*}
+	Upon inspection, this shows that $\Lan_iX$ is again reduced Segal. We've thus proved~\itememph{2}. Combining \itememph{1} and~\itememph{2} shows that $\Free^\Mon\colon \An\morphism \Mon(\An)$ is given by $\Lan_i\circ \Ran_j$. But then the calculations above show $\operatorname{Free}^{\Mon}(K)_1\simeq \coprod_{n\geq 0}K^n$, as claimed.
+\end{proof*}
+%We postpone the proof of \cref{prop:FreeMonoids} indefinitely (but Fabian's notes give a sketch in the much more general setting of algebras over $\infty$-operads, see \cite[Chapter~II pp.~128--132]{KTheory}). 
+By the explicit construction of $\Free^\Mon$, the diagram
 \begin{equation*}
 	\begin{tikzcd}[column sep=large]
 		\Set\dar\rar["\operatorname{Free}"]& \cat{Mon}(\Set)\dar\\
@@ -373,13 +397,13 @@ commutes. But be aware that this is not automatic, and in fact we'll see it very
 		\end{equation*}
 		It's straightforward to check that $\alpha_*$ is a cocartesian lift of $\alpha$ (note that the daunting homotopy pullbacks in \cref{def:WeirdCocartesianDefinition} become just good old pullbacks of sets/discrete anima, since we are dealing with $1$-categories).
 		
-		It remains to check that $\St (p^\otimes)$ satisfies the conditions from \cref{def:CartesianMonoids}. As seen above, $\St (p^\otimes)_0\simeq \Cc_0^\otimes \simeq \Cc^0\simeq *$ is a point, as desired. To verify the Segal condition, let's organize the world a little bit. Call a map in $\IDelta$ \emph{inert} if it is the inclusion of an interval and \emph{active} if it preserves the largest and the smallest element. The Segal maps $e_i\colon [1]\morphism {}[n]$ are precisely the inert maps with source $[1]$. We claim that for a general inert map $\alpha\colon [m]\morphism{[n]}$, the induced functor (given by taking cocartesian lifts) 
+		It remains to check that $\St (p^\otimes)$ satisfies the conditions from \cref{def:CartesianMonoids}. As seen above, $\St (p^\otimes)_0\simeq \Cc_0^\otimes \simeq \Cc^0\simeq *$ is a point, as desired. To verify the Segal condition, let's organize the world a little bit. Recall that a map in $\IDelta$ is called \emph{inert} if it is the inclusion of an interval and \emph{active} if it preserves the largest and the smallest element. The Segal maps $e_i\colon [1]\morphism {}[n]$ are precisely the inert maps with source $[1]$. We claim that for a general inert map $\alpha\colon [m]\morphism{[n]}$, the induced functor (given by taking cocartesian lifts) 
 		\begin{equation*}
 			\alpha_*\colon \Cc^n\simeq \Cc_n^\otimes \morphism \Cc_m^\otimes \simeq \Cc^m
 		\end{equation*}
 		simply sends $(x_1,\dotsc,x_n)\in \Cc^n$ to $(x_{\alpha(1)},\dotsc,x_{\alpha(m)})\in \Cc^m$ with no tensor products occuring. Thus the Segal condition follows immediately.
 		
-		As a slogan, \enquote{inerts induce forgetful functors on fibres}, whereas \enquote{actives don't forget, they just tensor}. Generally, any map in $\IDelta$ can be uniquely factored into an inert followed by an active.
+		As a slogan, \enquote{inerts induce forgetful functors on fibres}, whereas \enquote{actives don't forget, they just tensor}. %Generally, any map in $\IDelta$ can be uniquely factored into an inert followed by an active.
 		\item The construction from \itememph{e} also works if $\Cc$ is Kan enriched. In this case one can again construct a cocartesian fibration $p^\otimes\colon \Cc^\otimes \morphism \IDelta^\op$, but of Kan-enriched categories this time (where $\IDelta^\op$ receives its discrete enrichment). Then $\N^c(\Cc^\otimes)\morphism \N^c(\IDelta^\op)\simeq \IDelta^\op$ straightens to a monoidal $\infty$-category as well. Fabian wouldn't tell us what a cocartesian fibration of Kan-enriched categories is though, since this would take---not a lot, but too much---time.
 	\end{alphanumerate}
 \end{exm}
@@ -1065,8 +1089,9 @@ For the proof of \cref{thm:CMonCGrpAdjunctions}, we need a criterion for semi-ad
 	
 	Finally, we need to show that $\CMon\colon \Cat_\infty^\times\morphism \Cat_\infty^\mathrm{semi\mhyph add}$ and $\CGrp\colon \Cat_\infty^\times \morphism \Cat_\infty^\mathrm{add}$ are right adjoints. If we denote $R=\CMon$ and $\eta\colon R\Rightarrow \id$ the forgetful natural transformation (given by evaluation in degree $1$), then \cref{prop:CMonOfSemiAdditive} and the fact that $\CMon(\Cc)$ is semi-additive show that $\eta R\colon R\circ R\overset{\sim}{\Longrightarrow} R$ and $R\eta\colon R\circ R\overset{\sim}{\Longrightarrow} R$ are natural equivalences. Thus we may apply the dual of Proposition~\labelcref{prop:LLaddendum} to see that $R$ is a right adjoint to the inclusion $\im(R)\subseteq \Cat_\infty^\times$ of its essential image. But $\im(R)=\Cat_\infty^\mathrm{semi\mhyph add}$: Indeed, \enquote{$\subseteq$} was checked above, whereas \enquote{$\supseteq$} follows from \cref{prop:CMonOfSemiAdditive} again. The argument for $\CGrp$ is completely analogous.
 \end{proof}
-\numpar*{A Few Comments/Examples}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \emph{\enquote{Old-timey topologists hate this proof. I love it.}}]{2020-12-10}\label{par:FreeCMon}
-The forgetful functor $\CMon(\An)\morphism\An$ as a left adjoint $\Free^\CMon\colon \An\morphism \CMon(\An)$. Like \cref{prop:FreeMonoids}, we won't prove this, but Fabian gives a sketch in \cite[Chapter~II pp.\:128--132]{KTheory}, after our venture into the land of $\infty$-operads. On objects $X\in\An$, the left adjoint is given by
+\numpar*{Free $\IE_\infty$-Monoids}\lecture[Spectra! The recognition principle for infinite loop spaces. Stable $\infty$-categories.\newline --- \emph{\enquote{Old-timey topologists hate this proof. I love it.}}]{2020-12-10}\label{par:FreeCMon}
+Similar to \cref{prop:FreeMonoids}, the forgetful functor $\CMon(\An)\morphism\An$ as a left adjoint $\Free^\CMon\colon \An\morphism \CMon(\An)$. %Like \cref{prop:FreeMonoids}, we won't prove this, but Fabian gives a sketch in \cite[Chapter~II pp.\:128--132]{KTheory}, after our venture into the land of $\infty$-operads. 
+On objects $X\in\An$, it is given by
 \begin{equation*}
 	\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{h\SS_n}^n\,,
 \end{equation*}
@@ -1075,6 +1100,8 @@ i.e.\ we take free words in $X$, but we need to homotopy-quotient out the action
 	F_{hG}\simeq \colimit_{BG}F\,.
 \end{equation*}
 On $X^n$, the $\SS_n$-action is given by \enquote{permuting factors}. More precisely, we may apply \cref{par:Grp(An)=(*/An)Connected} to see that giving a functor $B\SS_n\morphism\core(\An)$ sending the unique $0$-simplex of $B\SS_n$ to $X^n$ is the same as giving a functor $\SS_n\morphism \Omega_{X^n}\core(\An)\simeq \Hom_{\core(\An)}(X^n,X^n)$. But each factor permutation is a map in $\Hom_{\core(\An)}(X^n,X^n)$, hence there's indeed a canonical map from the discrete anima $\SS_n$ into it.
+
+To prove the formula above, we can proceed as in the proof* of \cref{prop:FreeMonoids}: Call a map in $\IGamma^\op$ \emph{inert} if it is a bijection (where it is defined), and \emph{active} if it is defined everywhere. With this terminology, the proof* of \cref{prop:FreeMonoids} can be copied, except for the following small change: In the decomposition $\IGamma_\mathrm{int}^\op/\langle 1\rangle\simeq \coprod_\alpha \Cc_\alpha$, the categories $\Cc_\alpha$ no longer have the active map $\alpha\colon \langle n\rangle\morphism \langle 1\rangle$ as a terminal object; instead, $\{\alpha\colon \langle n\rangle\morphism \langle 1\rangle\}$ together with its automorphisms spans cofinal subcategory. This subcategory is equivalent to the anima $B\SS_n$, as follows immediately from \cref{par:Grp(An)=(*/An)Connected}. Thus we get indeed $\Free^\CMon(X)_1\simeq \coprod_{n\geq 0}X_{h\SS_n}^n$.
 
 As an example,
 \begin{equation*}
@@ -2999,44 +3026,75 @@ As an easy consequence, we obtain that also
 \end{equation*}
 is an equivalence, where $\CGrp(\An)^\otimes\simeq \CGrp^{\Op_\infty}(\An^\times)$ denotes the symmetric monoidal structure on $\CGrp(\An)$ obtained via \cref{prop:Sp(C)Monoidal}.
 
-\begin{proof*}[Proof sketch of \cref{thm:D(R)IsModOverHR}]
-	We didn't prove it in the lecture, but Fabian has sketched out a proof in the lecture notes \cite[Theorem~II.57]{KTheory}, which I include here.
+\begin{proof*}[Proof of \cref{thm:D(R)IsModOverHR}]
+	Fabian has sketched out a proof in the lecture notes \cite[Theorem~II.57]{KTheory}. But then about a month after the final lecture, Fabian has come up with a more straightforward argument, which he explained to me and I'll include it here.
 	
-	Recall that an object $c$ in an $\infty$-category $\Cc$ is called \emph{compact} if $\Hom_\Cc(c,-)$ commutes with filtered colimits (which were introduced in \cref{rem*:piPreservesFilteredColimits}). The proof is based on the following general fact (which we'll later discuss in detail in \cref{par:Ind}):
+	Recall that an object $c$ in an $\infty$-category $\Cc$ is called \emph{compact} if $\Hom_\Cc(c,-)$ commutes with filtered colimits (which were introduced in \cref{rem*:piPreservesFilteredColimits}). Note that a finite colimit of compact objects is compact again; this follows from the fact that $\Hom_\Cc(-,-)$ transforms finite colimits in the first variable into finite limits, and finite limits commute with filtered colimits in $\An$. This is proved in \cite[Proposition~\HTTthm{5.3.3.3}]{HTT}, but I think it also follows from \cref{rem*:piPreservesFilteredColimits} after some fiddling. With that out of the way, the proof of \cref{thm:D(R)IsModOverHR} is based on the following three observations:
 	\begin{alphanumerate}
-		\item[\itememph{\boxtimes}]\itshape Let $\Cc$ be an $\infty$-category with finite colimits and a set $S$ of compact objects such that the functors 
-		\begin{equation*}
-			\Hom_\Cc(s,-)\colon \Cc\morphism\An
-		\end{equation*}
-		are jointly conservative. Let $\Cc^\omega\subseteq\Cc$ denote the full sub-$\infty$-category of compact objects. Then the restricted Yoneda embedding $\Cc\morphism\Pp(\Cc^\omega)$ is fully faithful with essential image described equivalently as
-		\begin{alphanumerate}
-			\item those functors $(\Cc^\omega)^\op\morphism \An$ that preserve finite limits, or
-			\item the smallest subcategory of $\Pp(\Cc^\omega)$ that contains $\Cc^\omega$ and is closed under filtered colimits \embrace{also known as the \emph{ind-completion} $\operatorname{Ind}(\Cc^\omega)$}.
-		\end{alphanumerate}
+		\item[\itememph{1}]\itshape The objects $R[i]\in\Dd(R)$ are compact, and the functors $\pi_0\Hom_{\Dd(R)}(R[i],-)\colon \Dd(R)\morphism \cat{Ab}$ for $i\in\IZ$ are jointly conservative. The same is true for the objects $HR[i]\in \Mod_{HR}$ and the functors $\pi_0\hom_{\Mod_{HR}}(HR[i],-)\colon \Mod_{HR}\morphism \cat{Ab}$.
+		\item[\itememph{2}] The functor $H\colon \Dd(R)\morphism \Mod_{HR}$ preserves colimits.
+		\item[\itememph{3}] $\Dd(R)$ is generated under colimits by the $R[i]$, and $\Mod_{HR}$ is generated under colimits by the $HR[i]$.
 	\end{alphanumerate}
-	Such $\infty$-categories are called \emph{compactly generated}. Note that $\Dd(R)$ is compactly generated, with $S=\left\{R[i]\st i\in\IZ\right\}$. Indeed, to show that $\Hom_{\Dd(R)}(R[i],-)\simeq \Omega^\infty\hom_{\Dd(R)}(R[i],-)$ are jointly conservative and commute with filtered colimits, it suffices to show the same for $\pi_j\hom_{\Dd(R)}(R[i],-)$, using that $\Omega^\infty$ and $\pi_j$ preserve filtered colimits (\cref{rem*:piPreservesFilteredColimits}) and that equivalences of spectra can be detected on homotopy groups (\cref{lem*:WhiteheadForSpectra}). We've seen in the proof of \cref{lem:HLaxMonoidal} that $\hom_{\Dd(R)}(R[0],-)\simeq H\colon \Dd(R)\morphism \Sp$. Hence
+	To show that $\Hom_{\Dd(R)}(R[i],-)\simeq \Omega^\infty\hom_{\Dd(R)}(R[i],-)$ commutes with filtered colimits, it suffices to show the same for $\pi_j\hom_{\Dd(R)}(R[i],-)$, using that $\Omega^\infty$ and $\pi_j$ preserve filtered colimits (\cref{rem*:piPreservesFilteredColimits}) and that equivalences of spectra can be detected on homotopy groups (\cref{lem*:WhiteheadForSpectra}). We've seen in the proof of \cref{lem:HLaxMonoidal} that $\hom_{\Dd(R)}(R[0],-)\simeq H\colon \Dd(R)\morphism \Sp$. Hence
 	\begin{equation*}
 		\pi_j\hom_{\Dd(R)}\big(R[i],-\big)\simeq \pi_j H\big(-[-i]\big)\simeq H_{i+j}\colon \Dd(R)\morphism \Ab
 	\end{equation*}
-	is the functor taking homology in degree $i+j$. These functors preserve fitered colimits and are clearly jointly conservative, as claimed.
+	is the functor taking homology in degree $i+j$. These functors preserve fitered colimits. The above description also immediately shows that the functors $\pi_0\Hom_{\Dd(R)}(R[i],-)\colon \Dd(R)\morphism \cat{Ab}$ for $i\in\IZ$ are jointly conservative.
 	
-	We remark for future use that this argument also proves that $H\colon \Dd(R)\morphism \Sp$ is conservative and commutes with filtered colimits. In fact, it even shows that $H$ commutes with arbitrary colimits! Indeed, $H$ is an exact functor between stable $\infty$-categories, hence it also preserves finite colimits. But every colimit can be obtained from coproducts (which are filtered colimits of finite coproducts) and pushouts (which are finite). The upshot is that also the functor $H\colon \Dd(R)\morphism \Mod_{HR}$ we're interested in is conservative and colimit-preserving, since colimits and equivalences in $\Mod_{HR}$ can be detected on underlying spectra by \cref{cor:LModHasCoLimits}, and the Segal condition from \cref{thm:AlgLModDescription}, respectively.
-	
-	Similarly, $\Mod_T$ is a compactly generated $\infty$-category for any $\IE_\infty$-ring spectrum $T$, with $S=\left\{T[i]\st i\in\IZ\right\}$ a set of compact generators. Indeed, \cref{cor*:LModFreeAdjunction} implies
+	The corresponding assertions for $HR$ hold more generally for any $\IE_\infty$-ring spectrum $T$. Indeed, \cref{cor*:LModFreeAdjunction} implies
 	\begin{equation*}
-		\Hom_{\Mod_T}\big(T[i],-\big)\simeq \Hom_\Sp\big(\IS[i],-\big)\simeq \Omega^{\infty+i}\,,
+		\Hom_{\Mod_T}\big(T[i],-\big)\simeq \Hom_\Sp\big(\IS[i],-\big)\simeq \Omega^{\infty+i}\,.
 	\end{equation*}
-	and the right-hand sides are clearly jointly conservative and preserve filtered colimits by \cref{rem*:piPreservesFilteredColimits}.
+	$\Omega^{\infty+i}$ preserves filtered colimits by \cref{rem*:piPreservesFilteredColimits}, and the functors $\pi_0\Omega^{\infty+i}\simeq \pi_i\colon \Sp\morphism \cat{Ab}$ for $i\in \IZ$ are jointly conservative by \cref{lem*:WhiteheadForSpectra}. Combine this with the fact that colimits and equivalences in $\Mod_{HR}$ can be detected on underlying spectra by \cref{cor:LModHasCoLimits} and the Segal condition from \cref{thm:AlgLModDescription}, respectively, to  finish the proof of \itememph{1}.
 	
-	Now we can begin with the actual proof. It's a general fact that a conservative functor is an equivalence iff it has a left adjoint and the counit is an equivalence (use the triangle relations to show that the unit must be an equivalence as well). By Lurie's presentability magic (more precisely, \cite[Corollary~\HTTthm{5.5.2.9}]{HTT}), a functor between compactly generated $\infty$-categories has a left adjoint if it preserves preserves limits and filtered colimits, and a right adjoint if it preserves colimits. This is certainly true for $H\colon \Dd(R)\morphism \Mod_{HR}$: It preserves limits since these can be computed on underlying spectra by \cref{cor:LModHasCoLimits} and the underlying functor $H\colon \Dd(R)\morphism\Sp$ is a right adjoint. Preservation of colimits was checked above. Hence we get a left adjoint (and a right adjoint, which we won't need) for free and all we need to check is that the counit is an equivalence.
+	The above arguments also show that $H\colon \Dd(R)\morphism \Mod_{HR}$ commutes with filtered colimits. But $H$ is an exact functor between stable $\infty$-categories, hence it also commutes with finite colimits. But every colimit can be obtained from coproducts (which are filtered colimits of finite coproducts) and pushouts (which are finite), proving \itememph{2}.
 	
-	If $L\colon \Mod_{HR}\morphism \Dd(R)$ denotes the left adjoint, then
-	\begin{align*}
-		\Hom_{\Dd(R)}\big(L(HR),C\big)&\simeq \Hom_{\Mod_{HR}}(HR,HC)\\
-		&\simeq \Hom_\Sp(\IS,HC)\\
-		&\simeq \Hom_{\Dd(R)}\big(R[0],C\big)\,,
-	\end{align*}
-	using the adjunctions from \cref{cor*:LModFreeAdjunction} and \cref{lem:HLaxMonoidal}. Hence the counit $LH\Rightarrow \id_{\Dd(R)}$ is an equivalence on $R[0]$. Since $\Mod_{HR}$ is stable by \cref{cor:LModHasCoLimits}, $L$ is a colimit-preserving functor between stable $\infty$-categories, hence exact by \cref{cor:ExactFunctors}. Thus both $LH$ and $\id_{\Dd(R)}$ are exact and preserve colimits, and therefore the sub-$\infty$-category of $\Dd(R)$ where the counit is an equivalence must be stable under shifts and colimits. But then it must be all of $\Dd(R)$: It contains $R[0]$, hence all $R[i]$, hence everything as $\Dd(R)$ is compactly generated.
+	It remains to show \itememph{3}. We only show the part about $HR$, since the part about $\Dd(R)$ is similar. Again, we may replace $HR$ by an arbitrary $\IE_\infty$-ring spectrum $T$. Let $\Cc\subseteq \Mod_T$ denote the full sub-$\infty$-category generated by the $T[i]$ under finite colimits. We claim that the canonical map
+	\begin{equation*}
+		\colimit_{X\in \Cc/M}X\isomorphism M
+	\end{equation*}
+	is an equivalence for all $M\in\Mod_T$, which will imply that $\Mod_T$ is generated by the $T[i]$ under colimits. By \itememph{1}, the equivalence above may be checked after applying $\pi_0\Hom_{\Mod_T}(T[i],-)$ on both sides. Note that the indexing $\infty$-category $\Cc/M$ is filtered. Indeed, any map $K\morphism \Cc/M$ from a finite simplicial set $K$ can be extended over $K^\triangleright$ by taking the colimit in $\Cc$. Using that $T[i]$ is compact, we thus need to show that
+	\begin{equation*}
+		\colimit_{X\in \Cc/M}\pi_0\Hom_{\Mod_T}\big(T[i],X\big)\isomorphism \pi_0\Hom_{\Mod_T}\big(T[i],M\big)
+	\end{equation*}
+	is an isomorphism of abelian groups. It is surjective because each map $f\colon T[i]\morphism M$ on the right-hand side also defines an element of $\Cc/M$, the image of $\id_{T[i]}\in \pi_0\Hom_{\Mod_T}(T[i],T[i])$ in the colimit maps to $f$. For injectivity, assume $g\colon T[i]\morphism X$ is mapped to $0$ on the right-hand side. Then $X\morphism M$ extends over $\cofib(g)$. Note that $\cofib(g)$ is an element of $\Cc$ again, and that $g$ maps to $0$ in $\pi_0\Hom_{\Mod_T}(T[i],\cofib(g))$. Hence the image of $g$ in the colimit is $0$. This proves \itememph{3}.
+	
+	Now note that $\hom_{\Dd(R)}(R[0],M)\isomorphism \hom_{HR}(HR,HM)$ is an equivalence for all $M\in \Dd(R)$, since both sides coincide with $HM$ by the arguments in \itememph{1}. The full sub-$\infty$-category of all $X\in \Dd(R)$ for which $\hom_{\Dd(R)}(R[0],M)\isomorphism \hom_{HR}(HR,HM)$ is an equivalence is clearly closed under shifts and colimits, hence it must be all of $\Dd(R)$ by \itememph{3}. Thus $H$ is fully faithful. Its essential image is closed under colimits by \itememph{2} and contains all $HR[i]$. Hence $H$ is also essentially surjective by \itememph{3} again.	
+	%The proof is based on the following general fact (which we'll later discuss in detail in \cref{par:Ind}):
+	%\begin{alphanumerate}
+	%	\item[\itememph{\boxtimes}]\itshape Let $\Cc$ be an $\infty$-category with finite colimits and a set $S$ of compact objects such that the functors 
+	%	\begin{equation*}
+	%		\Hom_\Cc(s,-)\colon \Cc\morphism\An
+	%	\end{equation*}
+	%	are jointly conservative. Let $\Cc^\omega\subseteq\Cc$ denote the full sub-$\infty$-category of compact objects. Then the restricted Yoneda embedding $\Cc\morphism\Pp(\Cc^\omega)$ is fully faithful with essential image described equivalently as
+	%	\begin{alphanumerate}
+	%		\item those functors $(\Cc^\omega)^\op\morphism \An$ that preserve finite limits, or
+	%		\item the smallest subcategory of $\Pp(\Cc^\omega)$ that contains $\Cc^\omega$ and is closed under filtered colimits \embrace{also known as the \emph{ind-completion} $\operatorname{Ind}(\Cc^\omega)$}.
+	%	\end{alphanumerate}
+	%\end{alphanumerate}
+	%Such $\infty$-categories are called \emph{compactly generated}. Note that $\Dd(R)$ is compactly generated, with $S=\left\{R[i]\st i\in\IZ\right\}$. Indeed, to show that $\Hom_{\Dd(R)}(R[i],-)\simeq \Omega^\infty\hom_{\Dd(R)}(R[i],-)$ are jointly conservative and commute with filtered colimits, it suffices to show the same for $\pi_j\hom_{\Dd(R)}(R[i],-)$, using that $\Omega^\infty$ and $\pi_j$ preserve filtered colimits (\cref{rem*:piPreservesFilteredColimits}) and that equivalences of spectra can be detected on homotopy groups (\cref{lem*:WhiteheadForSpectra}). We've seen in the proof of \cref{lem:HLaxMonoidal} that $\hom_{\Dd(R)}(R[0],-)\simeq H\colon \Dd(R)\morphism \Sp$. Hence
+	%\begin{equation*}
+	%	\pi_j\hom_{\Dd(R)}\big(R[i],-\big)\simeq \pi_j H\big(-[-i]\big)\simeq H_{i+j}\colon \Dd(R)\morphism \Ab
+	%\end{equation*}
+	%is the functor taking homology in degree $i+j$. These functors preserve fitered colimits and are clearly jointly conservative, as claimed.
+	%
+	%We remark for future use that this argument also proves that $H\colon \Dd(R)\morphism \Sp$ is conservative and commutes with filtered colimits. In fact, it even shows that $H$ commutes with arbitrary colimits! Indeed, $H$ is an exact functor between stable $\infty$-categories, hence it also preserves finite colimits. But every colimit can be obtained from coproducts (which are filtered colimits of finite coproducts) and pushouts (which are finite). The upshot is that also the functor $H\colon \Dd(R)\morphism \Mod_{HR}$ we're interested in is conservative and colimit-preserving, since colimits and equivalences in $\Mod_{HR}$ can be detected on underlying spectra by \cref{cor:LModHasCoLimits}, and the Segal condition from \cref{thm:AlgLModDescription}, respectively.
+	%
+	%Similarly, $\Mod_T$ is a compactly generated $\infty$-category for any $\IE_\infty$-ring spectrum $T$, with $S=\left\{T[i]\st i\in\IZ\right\}$ a set of compact generators. Indeed, \cref{cor*:LModFreeAdjunction} implies
+	%\begin{equation*}
+	%	\Hom_{\Mod_T}\big(T[i],-\big)\simeq \Hom_\Sp\big(\IS[i],-\big)\simeq \Omega^{\infty+i}\,,
+	%\end{equation*}
+	%and the right-hand sides are clearly jointly conservative and preserve filtered colimits by \cref{rem*:piPreservesFilteredColimits}.
+	%
+	%Now we can begin with the actual proof. It's a general fact that a conservative functor is an equivalence iff it has a left adjoint and the counit is an equivalence (use the triangle relations to show that the unit must be an equivalence as well). By Lurie's presentability magic (more precisely, \cite[Corollary~\HTTthm{5.5.2.9}]{HTT}), a functor between compactly generated $\infty$-categories has a left adjoint if it preserves preserves limits and filtered colimits, and a right adjoint if it preserves colimits. This is certainly true for $H\colon \Dd(R)\morphism \Mod_{HR}$: It preserves limits since these can be computed on underlying spectra by \cref{cor:LModHasCoLimits} and the underlying functor $H\colon \Dd(R)\morphism\Sp$ is a right adjoint. Preservation of colimits was checked above. Hence we get a left adjoint (and a right adjoint, which we won't need) for free and all we need to check is that the counit is an equivalence.
+	%
+	%If $L\colon \Mod_{HR}\morphism \Dd(R)$ denotes the left adjoint, then
+	%\begin{align*}
+	%	\Hom_{\Dd(R)}\big(L(HR),C\big)&\simeq \Hom_{\Mod_{HR}}(HR,HC)\\
+	%	&\simeq \Hom_\Sp(\IS,HC)\\
+	%	&\simeq \Hom_{\Dd(R)}\big(R[0],C\big)\,,
+	%\end{align*}
+	%using the adjunctions from \cref{cor*:LModFreeAdjunction} and \cref{lem:HLaxMonoidal}. Hence the counit $LH\Rightarrow \id_{\Dd(R)}$ is an equivalence on $R[0]$. Since $\Mod_{HR}$ is stable by \cref{cor:LModHasCoLimits}, $L$ is a colimit-preserving functor between stable $\infty$-categories, hence exact by \cref{cor:ExactFunctors}. Thus both $LH$ and $\id_{\Dd(R)}$ are exact and preserve colimits, and therefore the sub-$\infty$-category of $\Dd(R)$ where the counit is an equivalence must be stable under shifts and colimits. But then it must be all of $\Dd(R)$: It contains $R[0]$, hence all $R[i]$, hence everything as $\Dd(R)$ is compactly generated.
 \end{proof*}
 Fabian also mentioned in the lecture (and elaborates in the script, see \cite[Theorem~II.58]{KTheory}) that one can more or less the same argument as in the proof of \cref{thm:D(R)IsModOverHR} to show a vast generalisation: The \emph{Schwede--Shipley theorem}. 
 \begin{thm}[Schwede--Shipley]
@@ -3149,6 +3207,35 @@ which is the one we're looking for. Since cocartesian lifts of the active maps $
 We won't explain why the bar construction computes the tensor product in $\LMod_A(\Cc^\otimes)$, and refer instead to \cite{HA} again: In Proposition~\HAthm{4.4.2.8}, Lurie proves that the tensor product in \emph{bimodules} is given by the bar construction, and in Theorem~\HAthm{4.5.2.1} he shows that the tensor product on $\LMod_A(\Cc^\otimes)$ for $A\in \CAlg(\Cc^\otimes)$ factors over the specialisation from bimodules to left modules.
 \refstepcounter{smallerdummy}
 
+\numpar*{\thesmallerdummy. The Tensor Unit*}\label{par:TensorUnit}
+Unravelling the construction in \cref{thm:LModSymmetricMonoidal}, we see that $A$ is the tensor unit in $\LMod_A(\Cc^\otimes)^{\otimes_A}$, as it should be. As a reality check, let's see that this also comes out of the Bar construction. We must show
+\begin{equation*}
+	N\simeq \colimit_{\IDelta^\op}\operatorname{Bar}(A,A,N)\,.
+\end{equation*}
+
+This is, in fact, a special case of a general principle. Observe that the bar construction $B\coloneqq \operatorname{Bar}(A,A,N)$ is the \emph{décalage} of another simplicial object in $\Cc$. That is, there is another functor $B'\colon \IDelta^\op\morphism\Cc$ such that the following diagram commutes:
+\begin{equation*}
+	\begin{tikzcd}[column sep=small]
+		\IDelta^\op\ar[rr,"\sigma^\op"]\drar["B"'] & & \IDelta^\op\dlar["B'"]\\
+		& \Cc
+	\end{tikzcd}
+\end{equation*}
+Here $\sigma\colon \IDelta \morphism\IDelta $ denotes the functor taking objects $[n]$ to $[n+1]$ and morphisms $\alpha\colon [n]\morphism{[m]}$ to $\sigma(\alpha)\colon [n+1]\morphism {[m+1]}$ given by $\sigma(\alpha)(i)=\alpha(i)$ for $i\leq n$ and $\sigma(\alpha)(n+1)=m+1$.
+
+It's not hard to construct $B'$ in our example. Basically, one has to place another $M$ in degree $0$ and add those maps $ A^{\otimes n}\otimes N\morphism A^{\otimes n+1}\otimes N$ that are given by $1_\Cc\morphism A$ on the first factor and the identity on the rest, as well as those maps $ A^{\otimes n+1}\otimes N\morphism A^{\otimes n}\otimes N $ that multiply the first factor with $N$ (so we are forming some kind of cyclic bar construction). I'll leave the formal construction to you.
+
+In general, if $B,B'\colon \IDelta^\op\morphism \Cc$ are simplicial objects in some $\infty$-category $\Cc$, and if $B\simeq \operatorname{d\acute{e}c}(B')$ is the décalage of $B'$, then
+\begin{equation*}
+	\colimit_{\IDelta^\op}B\simeq \colimit_{\IDelta^\op}\const {B_0'}\simeq B_0'\,.
+\end{equation*}
+The right equivalence follows from the fact that $\IDelta^\op$ is weakly contractible (with $[0]$ an initial object). For the left-hand side, observe that there are canonical transformations $B \Rightarrow\const {B_0'}$ and $\const {B_0'} \Rightarrow B$ in $\Fun(\IDelta^\op,\Cc)$, induced by suitable natural transformations $\eta\colon \sigma^\op\Rightarrow \const {[0]}$ and $\tau\colon \const {[0]}\Rightarrow \sigma^\op$ in $\Fun(\IDelta^\op,\IDelta^\op)$. Using higher order transformations between $\eta$ and $\sigma$, one shows that
+\begin{equation*}
+	\tau^*\colon\Nat(B,\const x)\doublelrmorphism[\sim][\sim] \Nat(\const {B_0'},\const x)\noloc\eta^*
+\end{equation*}
+are mutually inverse homotopy equivalences, which is what we need.
+
+\refstepcounter{smallerdummy}
+
 \numpar*{\thesmallerdummy. Relative Tensor Products of Spectra*}\label{par:TensorHomInCAlg}
 We can now define symmetric monoidal structures on the stable $\infty$-categories $\Mod_R^{\otimes_R}$ for all $\IE_\infty$-ring spectra $R$. We'd hope the following properties to hold:
 \begin{alphanumerate}\itshape
@@ -3197,31 +3284,7 @@ which informally sends objects $(c_1,\dotsc,c_n)$ to $((1_\Cc,c_1),\dotsc,(1_\Cc
 	\begin{equation*}
 		H\big(R[0]\big)\simeq HR\quad\text{and}\quad H(M\otimes_R^LN)\simeq HM\otimes_{HR}HN
 	\end{equation*}
-	(since then it formally follows that $H$ preserves cocartesian lifts of active morphisms, hence all cocartesian lifts). There's nothing to show for the first equivalence. For the second, we'll use the bar construction from \labelcref{par:BarConstruction}. Since $H$, being an equivalence, preserves colimits, it suffices to consider the case $M=R[0]$. Hence we must show
-	\begin{equation*}
-		HN\simeq \colimit_{\IDelta^\op}\operatorname{Bar}(HR,HR,HN)\,.
-	\end{equation*}
-	
-	This is, in fact, a special case of a general principle. Observe that the bar construction $B\coloneqq \operatorname{Bar}(HR,HR,HN)$ is the \emph{décalage} of another simplicial $HR$-module. That is, there is another functor $B'\colon \IDelta^\op\morphism\Mod_{HR}$ such that the following diagram commutes:
-	\begin{equation*}
-		\begin{tikzcd}[column sep=small]
-			\IDelta^\op\ar[rr,"\sigma^\op"]\drar["B"'] & & \IDelta^\op\dlar["B'"]\\
-			& \Mod_{HR}
-		\end{tikzcd}
-	\end{equation*}
-	Here $\sigma\colon \IDelta \morphism\IDelta $ denotes the functor taking objects $[n]$ to $[n+1]$ and morphisms $\alpha\colon [n]\morphism{[m]}$ to $\sigma(\alpha)\colon [n+1]\morphism {[m+1]}$ given by $\sigma(\alpha)(i)=\alpha(i)$ for $i\leq n$ and $\sigma(\alpha)(n+1)=m+1$.
-	
-	It's not hard to construct $B'$ in our example. Basically, one has to place another $HN$ in degree $0$ and add those maps $ HR^{\otimes n}\otimes HN\morphism HR^{\otimes n+1}\otimes HN $ that are given by $\IS\morphism HR$ on the first factor and the identity on the rest, as well as those maps $ HR^{\otimes n+1}\otimes HN\morphism HR^{\otimes n}\otimes HN $ that multiply the first factor with $HN$ (so we are forming some kind of cyclic bar construction). I'll leave the formal construction to you.
-	
-	In general, if $B,B'\colon \IDelta^\op\morphism \Cc$ are simplicial objects in some $\infty$-category $\Cc$, and if $B\simeq \operatorname{d\acute{e}c}(B')$ is the décalage of $B'$, then
-	\begin{equation*}
-		\colimit_{\IDelta^\op}B\simeq \colimit_{\IDelta^\op}\const {B_0'}\simeq B_0'\,.
-	\end{equation*}
-	The right equivalence follows from the fact that $\IDelta^\op$ is weakly contractible (with $[0]$ an initial object). For the left-hand side, observe that there are canonical transformations $B \Rightarrow\const {B_0'}$ and $\const {B_0'} \Rightarrow B$ in $\Fun(\IDelta^\op,\Cc)$, induced by suitable natural transformations $\eta\colon \sigma^\op\Rightarrow \const {[0]}$ and $\tau\colon \const {[0]}\Rightarrow \sigma^\op$ in $\Fun(\IDelta^\op,\IDelta^\op)$. Using higher order transformations between $\eta$ and $\sigma$, one shows that
-	\begin{equation*}
-		\tau^*\colon\Nat(B,\const x)\doublelrmorphism[\sim][\sim] \Nat(\const {B_0'},\const x)\noloc\eta^*
-	\end{equation*}
-	are mutually inverse homotopy equivalences, which is what we need.
+	(since then it formally follows that $H$ preserves cocartesian lifts of active morphisms, hence all cocartesian lifts). There's nothing to show for the first equivalence. For the second, we'll use the bar construction from \labelcref{par:BarConstruction}. Since $H$, being an equivalence, preserves colimits and shifts, it suffices to consider the case $M=R[0]$, which follows immediately from the fact that $R$ is the tensor unit in $\Dd(R)^{\otimes_R^L}$ and $HR$ is the tensor unit in $\Mod_{HR}^{\otimes_{HR}}$.
 \end{proof*}
 
 \subsection{Miscellanea}
@@ -3261,9 +3324,7 @@ If $M\in \CGrp(\An)$, then $\IS[M]$ is an $\IE_\infty$-ring spectrum, as noted w
 \begin{equation*}
 	\pi_*\big(\IS[M]\otimes HR\big)\simeq H_*(M,R)\,.
 \end{equation*}
-This is (our definition of) the \emph{Pontryagin product}. 
-
-A natural question is whether the cup product in cohomology arises in a similar way. It does! The main ingredient is a construction due to Glasman, which upgrades the Yoneda embedding $\Yo^\Cc\colon \Cc\morphism \Fun(\Cc^\op,\An)$ to a lax symmetric monoidal functor
+This is (our definition of) the \emph{Pontryagin product}. A natural question is whether the cup product in cohomology arises in a similar way. It does! The main ingredient is a construction due to Glasman, which upgrades the Yoneda embedding $\Yo^\Cc\colon \Cc\morphism \Fun(\Cc^\op,\An)$ to a lax symmetric monoidal functor
 \begin{equation*}
 	\Cc^\otimes\morphism\operatorname{Day}(\Cc_\otimes^\op,\An^\times)\,,
 \end{equation*}

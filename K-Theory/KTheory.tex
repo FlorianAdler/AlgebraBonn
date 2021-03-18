@@ -101,6 +101,7 @@
 
 \chapter{The \texorpdfstring{$K$}{K}-Theory of Stable \texorpdfstring{$\infty$}{Infinity}-Categories}
 %\addtocounter{dummy}{-1}
+
 \section{The Modern Definition of \texorpdfstring{$K$}{K}-Theory}
 \subsection{\texorpdfstring{$K_0$}{K0} of a Stable \texorpdfstring{$\infty$}{Infinity}-Category}
 \numpar{Some Motivation}\label{par:SomeMotivation}
@@ -1314,32 +1315,60 @@ This particular general formulation of the additivity theorem, or to be really p
 	Using that $\asscat(X)\morphism\asscat(Y)$ is a bicartesian fibration, we can lift this to a similar sequence in $X$, which gives a connected component in $\pi_0|X^\times\times_{Y^\times}Z^\times|$. This shows the desired surjectivity and the proof is finally done!
 \end{proof}
 
-We're now almost in position to prove \cref{thm:K=coreGrp}. But Fabian decided to give a brief discussion of grouplike additive functors and their span $\infty$-categories first. To make the result of that discussion more comprehensible, I put them into a separate lemma.
+We're now almost in position to prove \cref{thm:K=coreGrp}. But Fabian decided to give a brief discussion of grouplike additive functors and their span $\infty$-categories first. To make the results of that discussion more comprehensible, I put them into a separate lemma.
 \begin{lem}\label{lem:GrouplikeFunctors}
 	Suppose $F\colon \Catst\morphism \An$ is a grouplike additive functor and let $\Cc$ be a stable $\infty$-category. Then
 	\begin{equation*}
 		F\big(\Ar(\Cc)\big)\simeq F(\Cc)\times F(\Cc)\quad\text{and}\quad F\big(Q_n(\Cc)\big)\simeq F(\Cc)^{2n+1}
 	\end{equation*}
-	for all $n\in\IN$. More generally, there's an equivalence
-	\begin{equation*}
-		\operatorname{Bar}\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\isomorphism F\big( Q(\Cc)\big)\,.
-	\end{equation*}
-	Finally, $\Span^F(\Cc)\simeq B F(\Cc)$ \embrace{so in particular $\Span^F(\Cc)$ is a connected anima}.
+	for all $n\in\IN$. %More generally, there's an equivalence
+	%\begin{equation*}
+	%	\operatorname{Bar}\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\isomorphism F\big( Q(\Cc)\big)\,.
+	%\end{equation*}
+	Moreover, $\Span^F(\Cc)\simeq B F(\Cc)$, so in particular $\Span^F(\Cc)$ is a connected anima.
 \end{lem}
 \begin{proof}[Proof sketch]
 	The equivalence $F(\Ar(\Cc))\simeq F(\Cc)\times F(\Cc)$ follows from the stable recollement from \cref{par:Recollements} together with \cref{par:MoreOnVerdierSequences}\itememph{d^*}. The equivalence $F(Q_n(\Cc))\isomorphism F(\Cc)^{2n+1}$ is induced by evaluation $Q_n(\Cc)\simeq \Fun(J_n,\Cc)\morphism \Cc$ at the $2n+1$ objects of $J_n$. To see that it is indeed an equivalence, let's first consider the case $n=1$. In this case we have a split Verdier sequence $\Cc\morphism Q_1(\Cc)\morphism \Ar(\Cc)$ (adjoints are given by left/right Kan extension along $[1]\morphism J_1$), which proves $F(Q_1(\Cc))\simeq F(\Cc)^3$ by \cref{par:MoreOnVerdierSequences}\itememph{d^*}. The general case follows either by induction, or by the an iterative application of the split Verdier square from \cref{lem:SpanF}.
 	
-	We've seen in \cref{par:MoreOnVerdierSequences}\itememph{c} that $F(\Cc)$ has a canonical $\IE_\infty$-group structure. Moreover, its addition map $\oplus\colon F(\Cc)\times F(\Cc)\morphism F(\Cc)$ turns $F(\Cc)$ into a left module over $F(\Cc)\times F(\Cc)$.  We may thus form $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))\colon \IDelta^\op\morphism \CGrp(\An)$ as in \labelcref{par:BarConstruction}. By construction, it satisfies
-	\begin{equation*}
-		\operatorname{Bar}_n\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\simeq F(\Cc)^{2n+1}\,,
-	\end{equation*}
-	so it coincides degreewise with $F( Q(\Cc))$. But $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))$ is also left-Kan extended from its restriction along $\IDelta_{\mathrm{inj},\leq 1}^\op\morphism \IDelta^\op$, so it's easy to construct a functor from it into $F( Q(\Cc))$, which is then a degreewise equivalence.
+	%We've seen in \cref{par:MoreOnVerdierSequences}\itememph{c} that $F(\Cc)$ has a canonical $\IE_\infty$-group structure. Moreover, its addition map $\oplus\colon F(\Cc)\times F(\Cc)\morphism F(\Cc)$ turns $F(\Cc)$ into a left module over $F(\Cc)\times F(\Cc)$.  We may thus form $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))\colon \IDelta^\op\morphism \CGrp(\An)$ as in \labelcref{par:BarConstruction}. By construction, it satisfies
+	%\begin{equation*}
+	%	\operatorname{Bar}_n\big(*,F(\Cc)\times F(\Cc),F(\Cc)\big)\simeq F(\Cc)^{2n+1}\,,
+	%\end{equation*}
+	%so it coincides degreewise with $F( Q(\Cc))$. But $\operatorname{Bar}(*,F(\Cc)\times F(\Cc),F(\Cc))$ is also left-Kan extended from its restriction along $\IDelta_{\mathrm{inj},\leq 1}^\op\morphism \IDelta^\op$, so it's easy to construct a functor from it into $F( Q(\Cc))$, which is then a degreewise equivalence.
 	
-	From the description as a bar complex, or just by checking directly, one can verify that
+	Next, we set out to prove that $\Span^F(\Cc)$ is a connected anima. For this, we first prove the following claim (which wasn't in the lecture, so I hope it's correct).
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes}] \itshape Let $F$ be grouplike. Under the identifications $F(Q_n(\Cc))\simeq F(\Cc)^{2n+1}$, the \enquote{composition map}
+		\begin{equation*}
+			\begin{tikzcd}[column sep=2.7em]
+				F(\Cc)^5\simeq F\big(Q_1(\Cc)\big)\times_{d_1,F(\Cc),d_0}F\big(Q_1(\Cc)\big) & F\big(Q_2(\Cc)\big)\morphism[d_1]F\big(Q_1(\Cc)\big)\simeq F(\Cc)^3\lar["{(d_0,d_2)}"',"\sim"]
+			\end{tikzcd}
+		\end{equation*}
+		is given by $(a_0,a_1,a_2,a_3,a_4)\mapsto (a_0,a_1-a_2+a_3,a_4)$ \embrace{of course, we shouldn't think of this map in terms of objects, but rather in terms of the structure maps of the $\IE_\infty$-group $F(\Cc)$; however, a precise statement would become utterly unreadable}.
+	\end{alphanumerate}
+	After unravelling what the face maps of the simplicial $\infty$-category $Q(\Cc)$ do, \itememph{\boxtimes} reduces to the following statement.
+	\begin{alphanumerate}
+		\item[\itememph{\boxtimes'}] \itshape Let $p\colon \Fun(\Lambda_2^2,\Cc)\morphism \Cc$ be the map given by taking pullbacks. As above, we can identify $F(\Fun(\Lambda_2^2,\Cc))\simeq F(\Cc)^3$. Then under this identification,
+		\begin{equation*}
+			F(p)\colon F(\Cc)^3\morphism F(\Cc)
+		\end{equation*}
+		is given by $(a_1,a_2,a_3)\mapsto a_1-a_2+a_3$.
+	\end{alphanumerate}
+	To prove \itememph{\boxtimes'}, recall that pullbacks in the stable $\infty$-category $\Cc$ can be computed as follows: Let $a_1\morphism a_2\lmorphism a_3$ be a span in $\Cc$ and consider the map
+	\begin{equation*}
+		\phi\colon a_1\oplus a_3\xrightarrow{(+,-)} a_2
+	\end{equation*}
+	given by $a_1\morphism a_2$ in the first component, and the negative of $a_3\morphism a_2$ in the second component. Then $\fib(\phi)$ is the required pullback. This allows us to write $p$ as a composition
+	\begin{equation*}
+		\Fun(\Lambda_2^2,\Cc)\morphism \Ar(\Cc)\xrightarrow{\fib(-)} \Cc\,.
+	\end{equation*}
+	Upon applying $F$ and identifying $F(\Ar(\Cc))\simeq F(\Cc)^2$ via source and target, the first arrow induces the map $F(\Cc)^3\morphism F(\Cc)^2$ given by $(a_1,a_2,a_3)\mapsto (a_1+a_3,a_2)$. Thus, it remains to show that $F(\fib(-))\colon F(\Ar(\Cc))\morphism F(\Cc)$ sends $(a,b)\mapsto a-b$. Consider the map the map $q\colon \Ar(\Cc)\morphism \Ar(\Cc)$ given by $q(\psi\colon a\morphism b)\simeq (\pr_2\colon \fib(\psi)\oplus b\morphism b)$. The lower half of the universal recollement from \cref{par:Recollements} implies that $F(q)\colon F(\Ar(\Cc))\morphism F(\Ar(\Cc))$ is homotopic to the identity. Hence $F(\fib(-))+F(t)\simeq F(s)$ holds in $\Hom_\An(F(\Ar(\Cc)),F(\Cc))$. This shows that $F(\fib(-))$ is indeed given by $(a,b)\mapsto a-b$, whence \itememph{\boxtimes'} follows.
+	
+	Using \itememph{\boxtimes} and the fact that $F(\Cc)$ is an $\IE_\infty$-group, one easily verifies that
 	\begin{equation*}
 		F\big(Q_1(\Cc)\big)^\times\simeq F\big(Q_1(\Cc)\big)\,.
 	\end{equation*}
-	 Hence $\Span^F(\Cc)\simeq \asscat\big(F (Q(\Cc))\big)$is an anima (combine \cref{thmdef:RezkNerve}\itememph{c} with \cref{eq:asscat2} to see that all edges are equivalences). Moreover, it is connected. In fact, it's true that $|\Span^F(\Cc)|$ is connected for every additive functor $F$. To see this, use \cref{rem:Realisation}, \cref{prop:QvsS}, and \labelcref{par:edgewiseSubdivision} (in that order) to obtain
+	Hence $\Span^F(\Cc)\simeq \asscat\big(F (Q(\Cc))\big)$is an anima (combine \cref{thmdef:RezkNerve}\itememph{c} with \cref{eq:asscat2} to see that all edges are equivalences). Moreover, it is connected. In fact, it's true that $|\Span^F(\Cc)|$ is connected for every additive functor $F$. To see this, use \cref{rem:Realisation}, \cref{prop:QvsS}, and \labelcref{par:edgewiseSubdivision} (in that order) to obtain
 	\begin{equation*}
 		\big|\Span^F(\Cc)\big|\simeq \left|F\big(Q(\Cc)\big)\right|\simeq \big|F\big(S(\Cc)\big)^\mathrm{esd}\big|\simeq \left|F\big(S(\Cc)\big)\right|\,.
 	\end{equation*}
@@ -1378,7 +1407,7 @@ is an equivalence, which only holds if $F(\Cc)\simeq 0$.
 	\begin{equation*}
 		\begin{tikzcd}
 			F(\Cc)\rar\dar\drar[pullback] & *\dar["0"]\\
-			*\rar["0"] & {|\Span^F(\Cc)|}
+			*\rar["0"] & {\big|\Span^F(\Cc)\big|}
 		\end{tikzcd}
 	\end{equation*}
 	in $\An$. So in particular, $F(\Cc)\simeq \Omega |\Span^F(\Cc)|$.
@@ -1386,7 +1415,7 @@ is an equivalence, which only holds if $F(\Cc)\simeq 0$.
 \begin{proof}[First proof]
 	We've checked (or at least sketched) in \cref{lem:GrouplikeFunctors} that
 	\begin{equation*}
-		\Span^F(\Cc)\simeq |\Span^F(\Cc)|\simeq BF(\Cc)\,.
+		\Span^F(\Cc)\simeq \big|\Span^F(\Cc)\big|\simeq BF(\Cc)\,.
 	\end{equation*}
 	But $F(\Cc)$ is already an $\IE_\infty$-group by assumption, so $\Omega BF(\Cc)\simeq F(\Cc)$ follows from \cref{cor:CommutativeHorizontalAdjoints}\itememph{c}. A posteriori, this implies that the square in question is indeed a pullback.
 \end{proof}
@@ -1396,11 +1425,11 @@ With that, we can finally prove the theorem of Blumberg--Gepner--Tabuada.
 	
 	As always, we'll use Proposition~\labelcref{prop:LLaddendum} to prove that 
 	\begin{equation*}
-		L\simeq \Omega |\Span^{(-)}(-)|\colon \Fun^\add(\Catst,\An)\morphism \Fun^\grp(\Catst,\An)
+		L\simeq \Omega \big|\Span^{(-)}(-)\big|\colon \Fun^\add(\Catst,\An)\morphism \Fun^\grp(\Catst,\An)
 	\end{equation*}
 	is a left Bousfield localisation. First, we need a natural transformation $\eta\colon \id \Rightarrow L$. The computation in the proof of \cref{lem:GrouplikeFunctors} shows $F(\Cc)\simeq \Hom_{\Span^F(\Cc)}(0,0)$ for all additive functors $F$ (although we assumed that $F$ is grouplike there, but this isn't needed in the computation). Composing with the natural map 
 	\begin{equation*}
-		\Hom_{\Span^F(\Cc)}(0,0)\morphism \Hom_{|\Span^F(\Cc)|}(0,0)\simeq \Omega|\Span^F(\Cc)|
+		\Hom_{\Span^F(\Cc)}(0,0)\morphism \Hom_{|\Span^F(\Cc)|}(0,0)\simeq \Omega\big|\Span^F(\Cc)\big|
 	\end{equation*}
 	gives a map $F(\Cc)\morphism \Omega|\Span^F(\Cc)|$ which is functorial in $\Cc$ and $F$, thus providing the required transformation $\eta\colon \id\Rightarrow L$. Now \cref{thm:SpanF} implies that $\eta L,L\eta\colon L\overset{\sim}{\Longrightarrow} L\circ L$ are both equivalences, whence $L$ is indeed a left Bousfield localisation. Its essential image is contained in the grouplike functors as checked above, hence equals the grouplike functors since \cref{thm:SpanF} precisely says that $\eta$ is an equivalence on grouplikes.
 \end{proof}
@@ -1490,7 +1519,7 @@ As the \enquote{first proof} above suggests, we will give a second proof of \cre
 		\end{equation*}
 	\end{alphanumerate}
 	
-	Consider the functor $[0]\star -\colon \IDelta^\op\morphism \IDelta^\op$. It induces a functor $\operatorname{d\acute{e}c}\colon \cat{sAn}\morphism \cat{sAn}$, called the \emph{décalage}. It already appeared in the proof of \cref{prop:HStronglyMonoidal}, although our convention there was to consider $-\star[0]$ instead (but who cares). The décalage functor comes equipped with natural transformations
+	Consider the functor $[0]\star -\colon \IDelta^\op\morphism \IDelta^\op$. It induces a functor $\operatorname{d\acute{e}c}\colon \cat{sAn}\morphism \cat{sAn}$, called the \emph{décalage}. It already appeared in \labelcref{par:TensorUnit}, although our convention there was to consider $-\star[0]$ instead (but who cares). The décalage functor comes equipped with natural transformations
 	\begin{equation*}
 		p\colon \operatorname{d\acute{e}c}\Longrightarrow \const\ev_0\quad\text{and}\quad d_0\colon \operatorname{d\acute{e}c} \Longrightarrow \id\,,
 	\end{equation*}
@@ -1654,7 +1683,7 @@ As the \enquote{first proof} above suggests, we will give a second proof of \cre
 		\item We know from \cref{lem:GrouplikeFunctors} and \cref{thm:Additivity} that $BF\simeq \Span^F(-)\simeq |\Span^F(-)|$ is additive again whenever $F$ is a grouplike additive functor. In fact, $BF$ is even grouplike by \cref{cor:CommutativeHorizontalAdjoints}\itememph{b}. More generally, it is true that $|\Span^F(-)|\simeq |F(Q(-))|$ is grouplike for any additive functor $F$, since $\pi_0|F(Q(-))|=0$ as seen in the proof of \cref{lem:GrouplikeFunctors}. However, if $F$ isn't grouplike, then $BF$ doesn't even need to be additive anymore, let alone coincide with $|F(Q(-))|$.
 		\item Quillen defined $k(R)\coloneqq K_0(R)\times B\!\GL_\infty(R)^+$ and then showed a posteriori that it is an infinite loop space, essentially\footnote{Quillen did not put $\Dd^\perf(R)$ there, but still that's basically what he proved.} by verifying
 		\begin{equation*}
-			k(R)\simeq \Omega^i\big|\core Q^{i}\big(\Dd^\perf(R)\big)\big|\,.
+			k(R)\simeq \Omega^i\left|\core Q^{i}\big(\Dd^\perf(R)\big)\right|\,.
 		\end{equation*}
 		Here $Q^{i}\colon \Catst\morphism \Fun((\IDelta^\op)^i,\Catst)$ denotes the $i$-fold $Q$-construction. It takes values in \enquote{$i$-simplicial} anima, and subsequently the realisation $|\blank|$ in the formula above doesn't denote colimits over $\IDelta^\op$, but over $(\IDelta^\op)^i$. 
 		
@@ -2287,13 +2316,21 @@ in $\Sp$. We've thus completed thing~\itememph{a} of the two final things from \
 Again, this will lead us on two detours. First, we have to introduce the classical definition of $K$-theory of abelian/exact categories. It's a bit unsatisfying that we can't stay on the stable $\infty$-categorical high road, especially after we have been avoiding to leave it for so long, but as far as Fabian knows, a formulation of Quillen's dévissage in stable $\infty$-framework has yet to be found.
 
 \numpar{Algebraic $K$-Theory of Abelian/Exact Categories*}\label{par:KTheoryOfExact}
-Let $\Aa$ be an abelian category. We let $Q(\Aa)$ be the category whose objects are all $a\in \Aa$, and whose morphisms sets $\Hom_{Q(\Aa)}(a,a')$ are given by isomorphism classes of span diagrams $a\lepimorphism a''\monomorphism a'$, where the left arrow is an epimorphism and the right arrow is a monomorphism. We define the \emph{algebraic $K$-theory anima of $\Aa$} and its spectrum variant as
+Let $\Aa$ be an abelian category. We define a category $\Span(\Aa)$ as follows: Its objects the objects of $\Aa$. Its morphism sets $\Hom_{\Span(\Aa)}(a,a')$ are equivalence classes of span diagrams 
 \begin{equation*}
-	k(\Aa)\coloneqq \Omega \left|Q(\Aa)\right|\quad\text{and}\quad K(\Aa)\coloneqq B^\infty k(\Aa)\,,
+	a\lepimorphism a''\monomorphism a'
 \end{equation*}
-where $\left|Q(\Aa)\right|$ denotes the $\infty$-categorical localisation of the $1$-category $Q(\Aa)$ at all its morphisms.
+in $\Aa$, where two such diagrams are equivalent iff there is an isomorphism between them which restricts to the identity on $a$ and $a'$. Composition is given by taking pullbacks, as we would expect from a span category. The same definition can be given if $\Aa$ is only an \emph{exact} category: In a nutshell, these are additive categories together with a given supply of exact sequences, subject to a bunch of axioms which I'm not going to recall. In the exact case, the arrows in $a\lepimorphism a''\monomorphism a'$ have to be \emph{admissible} epi- and monomorphisms, respectively. Here we call an epi- or monomorphism \emph{admissible} means if it is part of one of the specified exact sequences.
 
-The same definition can be given if $\Aa$ is only an \emph{exact} category: In a nutshell, these are additive categories together with a given supply of exact sequences, subject to a bunch of axioms which I'm not going to recall. In the exact case, the arrows in $a\lepimorphism a''\monomorphism a'$ have to be \emph{admissible} epi- and monomorphisms, respectively. Here we call an epi- or monomorphism \emph{admissible} means if it is part of one of the specified exact sequences.
+Two caveats are in order. First, $\Span(\Aa)$ is \emph{not} the $\infty$-category obtained by applying \cref{propdef:SpanQ} to $\Aa$, since we only allow specific spans here. One should probably signify that by adding a suitable decoration, but I couldn't come up with a good one. I hope that doesn't cause confusion. Second, what we call $\Span(\Aa)$ here, is usually denoted $Q(\Aa)$ in the literature, since that's how Quillen's $Q$-construction was originally defined. However, calling it $\Span(\Aa)$ is more consistent with the notation in the rest of these notes.
+
+In any case, we define the \emph{algebraic $K$-theory anima of $\Aa$} and its spectrum variant as
+\begin{equation*}
+	k(\Aa)\coloneqq \Omega \left|\Span(\Aa)\right|\quad\text{and}\quad K(\Aa)\coloneqq B^\infty k(\Aa)\,,
+\end{equation*}
+where $\left|\Span(\Aa)\right|$ denotes the $\infty$-categorical localisation of the $1$-category $\Span(\Aa)$ at all its morphisms.
+
+
 
 \numpar{$t$-Structures}\label{par:tStructure}
 Let $\Cc$ be a stable $\infty$-category. A \emph{$t$-structure} on $\Cc$ consists of two full sub-$\infty$-categories $\Cc_{\geq 0},\Cc_{\leq 0}\subseteq \Cc$ subject to the following conditions:
@@ -2313,16 +2350,22 @@ The standard example of a stable $\infty$-category with a $t$-structure is $\Dd(
 	Let $\Cc$ be a stable $\infty$-category equipped with an exhaustive $t$-structure.
 	\begin{alphanumerate}
 		\item There is a canonical equivalence $k(\Cc^\heartsuit)\isomorphism k(\Cc)$, where the left-hand side is defined as in \cref{par:KTheoryOfExact}, using that $\Cc^\heartsuit$ is abelian.
-		\item Suppose $\Dd$ is another stable $\infty$-category with an exhaustive $t$-structure, and let $F\colon \Cc\morphism \Dd$ be an exact and $t$-exact functor \embrace{i.e.\ $F(\Cc_{\geq 0})\subseteq \Dd_{\geq 0}$ and $F(\Cc_{\leq 0})\subseteq \Dd_{\geq 0}$}. Suppose furthermore that the induced functor $F\colon \Cc^\heartsuit\morphism \Dd^\heartsuit$ is fully faithful, its essential image is closed under subobjects and quotients, and that every object in the abelian category $b\in \Dd^\heartsuit$ has a finite filtration $0=b_0\subseteq b_1\subseteq \dotsb\subseteq b_n=b$ whose subquotients $b_{i+1}/b_i$ are in the essential image of $F$. Then $F$ induces an equivalence
+		\item Suppose $\Dd$ is another stable $\infty$-category with an exhaustive $t$-structure, and let $F\colon \Cc\morphism \Dd$ be an exact and $t$-exact functor \embrace{i.e.\ $F(\Cc_{\geq 0})\subseteq \Dd_{\geq 0}$ and $F(\Cc_{\leq 0})\subseteq \Dd_{\leq 0}$}. Suppose furthermore that the induced functor $F\colon \Cc^\heartsuit\morphism \Dd^\heartsuit$ is fully faithful, its essential image is closed under subobjects and quotients, and that every object in the abelian category $b\in \Dd^\heartsuit$ has a finite filtration
+		\begin{equation*}
+			0=b_0\subseteq b_1\subseteq \dotsb\subseteq b_n=b
+		\end{equation*}
+		whose subquotients $b_{i+1}/b_i$ are in the essential image of $F$. Then $F$ induces an equivalence
 		\begin{equation*}
 			F\colon k(\Cc)\isomorphism k(\Dd)\,.
 		\end{equation*}
 	\end{alphanumerate}
 \end{thm}
-\begin{proof*}[Proof sketch]
-	Part~\itememph{a} is Barwick's theorem of the heart, and we refer to \cite{BarwickHeart}. Assuming \itememph{a}, one can give a surprisingly simple proof of \itememph{b}, which is taken from Weibel's $K$-book, \cite[Chapter~\href{https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.V.pdf}{V} \S4]{WeibelKBook}. Using \itememph{a}, it suffices to show $k(\Cc^\heartsuit)\simeq k(\Dd^\heartsuit)$, and for this, it suffices to show that the nerves of $Q(\Aa)$ and $Q(\Bb)$ are weakly equivalent as simplicial sets, where we write $\Aa\coloneqq\Cc^\heartsuit$ and $\Bb\coloneqq\Dd^\heartsuit$ since the hearts are getting on my nerves.
+% I think I can give another proof and I will sketch the argument below. But first let's show part~\itememph{b}, assuming that \itememph{a} is true.
+
+\begin{proof*}[Proof sketch of \cref{thm:BarwickHeart}]
+	Part~\itememph{a} is Clark Barwick's theorem of the heart and we refer to his original proof in \cite{BarwickHeart}. Assuming \itememph{a}, we can give a surprisingly simple proof of \itememph{b}, which is taken from Charles Weibel's $K$-book, \cite[Chapter~\href{https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.V.pdf}{V} \S4]{WeibelKBook}. Using \itememph{a}, it suffices to show $k(\Cc^\heartsuit)\simeq k(\Dd^\heartsuit)$, and for this, it suffices to show that the nerves of $\Span(\Aa)$ and $\Span(\Bb)$ are weakly equivalent as simplicial sets, where we write $\Aa\coloneqq\Cc^\heartsuit$ and $\Bb\coloneqq\Dd^\heartsuit$ since the hearts are getting on my nerves.
 	
-	We'll show something stronger: $i\colon Q(\Aa)\morphism Q(\Bb)$ is final! By the dual of \cref{thm:JoyalQuillenThmA},\footnote{I somewhat suspect that this was in fact the original purpose of Quillen's theorem A.} we must show that the slice categories $i/b\coloneqq Q(\Aa)\times_{Q(\Bb)}Q(\Bb)/b$ are weakly contractible for all $b\in \Bb$. Since $\Aa\morphism \Bb$ is fully faithful by assumption, the same is true for $Q(\Aa)\morphism Q(\Bb)$ by construction and the fact that $\Aa\subseteq \Bb$ is closed under subobjects. Hence the slice categories $i/a$ for $a\in \Aa$ are weakly contractible, since they have a terminal object. Now a general object $b\in \Bb$ has a finite filtration with subquotients in $\Aa$, hence it suffices to show that $i/b'\morphism i/b$ is a weak equivalence for all subobjects $b'\subseteq b$ whose quotient $b/b'$ lies in $\Aa$.
+	We'll show something stronger: $i\colon \Span(\Aa)\morphism \Span(\Bb)$ is final! By the dual of \cref{thm:JoyalQuillenThmA},\footnote{I somewhat suspect that this was in fact the original purpose of Quillen's theorem A.} we must show that the slice categories $i/b\coloneqq \Span(\Aa)\times_{\Span(\Bb)}\Span(\Bb)/b$ are weakly contractible for all $b\in \Bb$. Since $\Aa\morphism \Bb$ is fully faithful by assumption, the same is true for $\Span(\Aa)\morphism \Span(\Bb)$ by construction and the fact that $\Aa\subseteq \Bb$ is closed under subobjects. Hence the slice categories $i/a$ for $a\in \Aa$ are weakly contractible, since they have a terminal object. Now a general object $b\in \Bb$ has a finite filtration with subquotients in $\Aa$, hence it suffices to show that $i/b'\morphism i/b$ is a weak equivalence for all subobjects $b'\subseteq b$ whose quotient $b/b'$ lies in $\Aa$.
 	
 	By definition, the objects of $i/b$ are given by pairs $(a,\phi\colon a\morphism b)$, where $a\in \Aa$ and $\phi$ is a morphism in $Q(\Bb)$, given by a span $a\lepimorphism c\monomorphism b$ in $\Bb$. Letting $c'=\ker(c\morphism a)$, such a span may be equivalently described as a chain of monomorphisms $c'\monomorphism c\monomorphism b$ such that $a=c/c'$ is contained in $\Aa$. Now let $J\subseteq i/b$ be the full subcategory of objects $(c'\monomorphism c\monomorphism b)$ where $c'\subseteq b'$ holds as subobjects of $b$. Then $i/b'\morphism i/b$ can be factored into a solid sequence
 	\begin{equation*}
@@ -2336,6 +2379,66 @@ The standard example of a stable $\infty$-category with a $t$-structure is $\Dd(
 	\end{equation*}
 	Note that $(c\cap b)/c'$ is contained in $\Aa$ since it is a subobject of $c/c'=a$. Similarly, $c/(c'\cap b')$ is a subobject of $b/b'$ and thus also contained in $\Aa$. So $r$ and $s$ are well-defined. One easily checks that they indeed provide the desired adjoints.
 \end{proof*}
+%Now let me sketch what I think is a proof of \cref{thm:BarwickHeart}\itememph{a}. Needless to say, this was not part of the lecture and it may well be that I made a stupid mistake. Please tell me if you think I did indeed.
+%
+%First of all, to be able to define the would-be equivalence $k(\Cc^\heartsuit)\morphism k(\Cc)$, we need to define a version of the $Q$-construction for $\Cc^\heartsuit$.
+%\begin{con*}
+%	Recall that $Q_n(\Cc)\simeq \Fun(\TwAr([n])^\op,\Cc)\simeq \Fun(J_n,\Cc)$. We let $Q_n(\Cc^\heartsuit)\subseteq Q_n(\Cc)$ be the full sub-$\infty$-category spanned by zigzags of the form
+%	\begin{center}
+%		\begin{tikzpicture}[x=0.707cm,y=0.707cm,line cap=round,>={to}]
+%			\fill (0,0) circle (0.5ex) coordinate (00);
+%			\fill (2,0) circle (0.5ex) coordinate (01);
+%			\fill (4,0) circle (0.5ex) coordinate (02);
+%			\fill (6,0) circle (0.5ex) coordinate (03);
+%			\fill (8,0) circle (0.5ex) coordinate (04);
+%			\fill (1,1) circle (0.5ex) coordinate (10);
+%			\fill (3,1) circle (0.5ex) coordinate (11);
+%			\fill (5,1) circle (0.5ex) coordinate (12);
+%			\fill (7,1) circle (0.5ex) coordinate (13);
+%			\draw[fill=white] (2,2) circle (0.5ex) coordinate (20);
+%			\draw[fill=white] (4,2) circle (0.5ex) coordinate (21);
+%			\draw[fill=white] (6,2) circle (0.5ex) coordinate (22);
+%			\draw[fill=white] (3,3) circle (0.5ex) coordinate (30);
+%			\draw[fill=white] (5,3) circle (0.5ex) coordinate (31);
+%			\draw[fill=white] (4,4) circle (0.5ex) coordinate (40);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex] (00) -- (10);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex] (01) -- (10);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex] (01) -- (11);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex] (02) -- (11);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex,dotted] (10) -- (20);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (11) -- (20);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex] (03) -- (12);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (12) -- (21);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (30);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex] (04) -- (13);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (13) -- (22);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (22) -- (31);
+%			\draw[<-right hook,shorten <=1.25ex,shorten >=1.25ex,dotted] (31) -- (40);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex] (03) -- (13);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex,dotted] (12) -- (22);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex,dotted] (21) -- (31);
+%			\draw[<<-,shorten <=1.25ex,shorten >=1.25ex,dotted] (30) -- (40);
+%			\path (02) to  node[pos=0.5,sloped] {$\ldots$} (12);
+%			\path (11) to  node[pos=0.5,sloped] {$\ldots$} (21);
+%			\path (20) to  node[pos=0.5,sloped] {$\ldots$} (30);
+%			\node[rotate=-45] at (2,1) {$\pullbacksign$};
+%			\node[rotate=-45] at (6,1) {$\pullbacksign$};
+%			\node[rotate=-45] at (5,2) {$\pullbacksign$};
+%			\node[rotate=-45] at (4,3) {$\pullbacksign$};
+%			\path (00) to node[pos=0.5,below=0.5ex] {$\underbrace{\hspace{5.656cm}}_{n\text{ zigs and zags}}$} (04);
+%		\end{tikzpicture}
+%	\end{center}
+%	where the solid part is contained in $\Cc^\heartsuit$ and the solid arrows are epi- and monomorphisms as indicated. It's easy to check that then also the dotted part is contained in $\Cc^\heartsuit$, with epi- and monomorphisms as shown, and that each square in the diagram above is both a pullback and a pushout square both in $\Cc^\heartsuit$ and in $\Cc$. Thus, the $Q_n(\Cc^\heartsuit)$ assemble into a simplicial full sub-$\infty$-category $Q(\Cc^\heartsuit)\subseteq Q(\Cc)$.
+%\end{con*}
+%To the inclusion $i\colon \Cc^\heartsuit\morphism \Cc$ we associate the relative $Q$-construction $Q(i)$, given by the pullback
+%\begin{equation*}
+%	\begin{tikzcd}
+%		Q(i)\dar\rar\drar[pullback] & \operatorname{Null}(\Cc)\dar\\
+%		Q(\Cc^\heartsuit)\rar & Q(\Cc)
+%	\end{tikzcd}
+%\end{equation*}
+%Our strategy will be to show that $\Omega\left|\core Q(i)\right|$ is contractible.
+
 \numpar{Almost Perfect Complexes and $G$-Theory}\label{par:GTheory}
 As explained above, the standard $t$-structure on $\Dd(R)$ doesn't restrict to a $t$-structure on $\Dd^\perf(R)$, at least not without some extra conditions on $R$. Instead, we say a complex $D\in \Dd(R)$ is \emph{almost perfect} (or \emph{pseudocoherent} in Stacks Project language) if it satisfies the following equivalent conditions.
 \begin{alphanumerate}
