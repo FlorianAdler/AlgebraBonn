@@ -93,7 +93,7 @@ listname={List of Lectures}%
 \newcommand{\lecture}[2][]{%
 	\DTMsavedate{retardDate}{#2}%
 	\stepcounter{llecture}%
-	\marginnote{\textsc{Lecture~\arabic{llecture}}\\%
+	\marginnote{\upshape\textsc{Lecture~\arabic{llecture}}\\%
 		\normalfont \mbox{\smash{\DTMenglishordinal{\DTMfetchday{retardDate}}} \DTMshortmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate}}}%
 	\addxcontentsline{lol}{chapter}{Lecture~\arabic{llecture} (\DTMenglishordinal{\DTMfetchday{retardDate}} \DTMmonthname{\DTMfetchmonth{retardDate}},\ \DTMfetchyear{retardDate})}%
 	\IsArgEmpty{#1}{}{\texttolol{#1}}%
