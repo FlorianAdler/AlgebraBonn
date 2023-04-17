@@ -782,17 +782,17 @@ If you've seen topological $K$-theory before, this situation might look familiar
 \numpar*{\thesmallerdummy. Hopf Bundles}
 To formulate Bott periodicity properly, we need the following vector bundles (see \cite[Examples~4.45--4.47]{Hatcher} for a construction):
 \begin{equation*}
-	(\gamma_1^\IR\rightarrow \IR\IP^1)\in\cat{Vect}_\IR^1(\IS^1)\,,\quad (\gamma_1^\IH\rightarrow \IH\IP^1)\in\cat{Vect}_\IR(\IS^4)\,,\quad\text{and}\quad (\gamma_1^\IO\rightarrow\IO\IP^1)\in \cat{Vect}_\IR^8(\IS^8)
+	(\gamma_1^\IR\rightarrow \IR\IP^1)\in\cat{Vect}_\IR^1(\IS^1)\,,\quad (\gamma_1^\IH\rightarrow \IH\IP^1)\in\cat{Vect}_\IR^4(\IS^4)\,,\quad\text{and}\quad (\gamma_1^\IO\rightarrow\IO\IP^1)\in \cat{Vect}_\IR^8(\IS^8)
 \end{equation*}
 (where $\IH$ denotes the quaternions and $\IO$ the octonions) and also
 \begin{equation*}
 	(\gamma_1^\IC\rightarrow \IC\IP^1)\in \cat{Vect}_\IC^1(\IS^2)
 \end{equation*}
-(which is $1$-dimensional as a complex bundle, hence the $\cat{Vect}_\IC^1$ is not a typo). As mentioned in \cref{cor:BOBU}, we have $\pi_0\cat{Vect}_\IR(\IS^n)=\pi_0\Hom_\An(\IS^n,k\cat{o})$. Hence every vector bundle $\xi\morphism \IS^n$ defines a homotopy class of maps $\xi\colon \IS^n\morphism k\cat{o}$. If the vector bundle in question is $d$-dimensional, the map $\xi$ has image in $\{d\}\times B\cat{O}\subseteq \IZ\times B\cat{O}\simeq k\cat{o}$. Similar to our considerations in \labelcref{rem:BasePointIssues}, there is a map $+[\IR]\colon k\cat{o}\morphism k\cat{o}$ (induced by the one we took the colimit over to construct $k\cat{o}\simeq T(\cat{\Vv ect}_\IR),[\IR])$ in the first place) which sends $\{i\}\times B\cat{O}\morphism \{i+1\}\times B\cat{O}$. If $-[\IR^d]$ denotes the $d$-fold iteration of its inverse, then we can postcompose $\xi$ with $-[\IR^d]$ to obtain a map $\xi-[\IR^d]\colon \IS^n\morphism k\cat{o}$, which lands in the $0$-component $k\cat{o}_0\simeq \{0\}\times B\cat{O}$, hence defines an element of $\pi_n(k\cat{o}_0)$.
+(which is $1$-dimensional as a complex bundle, hence the $\cat{Vect}_\IC^1$ is not a typo). As mentioned in \cref{cor:BOBU}, we have $\pi_0\cat{Vect}_\IR(\IS^n)=\pi_0\Hom_\An(\IS^n,k\cat{o})$. Hence every vector bundle $\xi\morphism \IS^n$ defines a homotopy class of maps $\xi\colon \IS^n\morphism k\cat{o}$. If the vector bundle in question is $d$-dimensional, the map $\xi$ has image in $\{d\}\times B\cat{O}\subseteq \IZ\times B\cat{O}\simeq k\cat{o}$. Similar to our considerations in \labelcref{rem:BasePointIssues}, there is a map $+[\IR]\colon k\cat{o}\morphism k\cat{o}$ (induced by the one we took the colimit over to construct $k\cat{o}\simeq T(\cat{\Vv ect}_\IR,[\IR])$ in the first place) which sends $\{i\}\times B\cat{O}\morphism \{i+1\}\times B\cat{O}$. If $-[\IR^d]$ denotes the $d$-fold iteration of its inverse, then we can postcompose $\xi$ with $-[\IR^d]$ to obtain a map $\xi-[\IR^d]\colon \IS^n\morphism k\cat{o}$, which lands in the $0$-component $k\cat{o}_0\simeq \{0\}\times B\cat{O}$, hence defines an element of $\pi_n(k\cat{o}_0)$.
 
 Applying this construction to the Hopf bundles $\gamma_1^\IR$, $\gamma_1^\IH$, and $\gamma_1^\IO$, and its complex analogue to the Hopf bundle $\gamma_1^\IC$, we obtain elements
 \begin{align*}
-	\eta&=\gamma_1^\IR-[\IR]\in \pi_1(k\cat{o}_0)\,, & \beta &=\gamma_1^\IC-[\IC]\in\pi_1(k\cat{u}_0)\,,\\
+	\eta&=\gamma_1^\IR-[\IR]\in \pi_1(k\cat{o}_0)\,, & \beta &=\gamma_1^\IC-[\IC]\in\pi_2(k\cat{u}_0)\,,\\
 	\sigma&=\gamma_1^\IH-[\IR^4]\in \pi_4(k\cat{o}_0)\,, & \nu &=\gamma_1^\IO-[\IR^4]\in\pi_8(k\cat{o}_0)\,.
 \end{align*}
 Since $B^\infty k\cat{o}$ and $B^\infty k\cat{u}$ are $\IE_\infty$-ring spectra, we see that $\pi_*(k\cat{o}_0)=\pi_*(B^\infty k\cat{o})$ and $\pi_*(k\cat{u}_0)=\pi_*(B^\infty k\cat{u})$ are graded commutative rings by \cref{par:pi*GradedRing} (and more generally, the same is true for $k\cat{o}^*(X)$ and $k\cat{u}^*(X)$ using the cup product from \cref{par:CupProduct}). In fact, we'll see in a second that they are even honest commutative, since the odd degrees vanish or have characteristic $2$.
